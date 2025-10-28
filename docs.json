@@ -68,14 +68,27 @@
         ]
       },
       {
-        "tab":"KYC",
-        "groups":[
+        "tab": "KYC",
+        "groups": [
           {
-            "group":"Digilocker SDK",
-            "pages":[
-              "kyc/digilocker-sdk/integration_guide",
-              {"group":"API Reference",
-              "pages":["kyc/digilocker-sdk/endpoints/create-session","kyc/digilocker-sdk/endpoints/get-session-status","kyc/digilocker-sdk/endpoints/get-document"]}
+            "group": "Digilocker SDK",
+            "pages": [
+              {
+                "group": "Integration Guide",
+                "pages": [
+                  "kyc/digilocker-sdk/integration-guide/web_integration_guide",
+                  "kyc/digilocker-sdk/integration-guide/android_integration_guide",
+                  "kyc/digilocker-sdk/integration-guide/ios_integration_guide"
+                ]
+              },
+              {
+                "group": "API Reference",
+                "pages": [
+                  "kyc/digilocker-sdk/endpoints/create-session",
+                  "kyc/digilocker-sdk/endpoints/get-session-status",
+                  "kyc/digilocker-sdk/endpoints/get-document"
+                ]
+              }
             ]
           }
         ]
@@ -92,7 +105,8 @@
           "anchor": "GST",
           "href": "https://mintlify.com/blog",
           "icon": "newspaper"
-        },{
+        },
+        {
           "anchor": "TDS",
           "href": "https://mintlify.com/docs",
           "icon": "book-open-cover"
@@ -124,15 +138,15 @@
   },
   "contextual": {
     "options": [
-     "copy",
-     "view",
-     "chatgpt",
-     "claude",
-     "perplexity",
-     "mcp",
-     "cursor",
-     "vscode"
-   ]
+      "copy",
+      "view",
+      "chatgpt",
+      "claude",
+      "perplexity",
+      "mcp",
+      "cursor",
+      "vscode"
+    ]
   },
   "footer": {
     "socials": {
