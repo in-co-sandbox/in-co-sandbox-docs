@@ -4,6 +4,7 @@ description: "This integration guide provides a step-by-step process to integrat
 ---
 
 <Steps>
+  
   <Step title="Create a Session" stepNumber={1} titleSize="h2">
     Before initializing the SDK, you must create a **unique session**.\
     Each SDK instance requires its own session to ensure secure and independent interactions.
@@ -147,10 +148,3 @@ description: "This integration guide provides a step-by-step process to integrat
     This is useful for confirming completion or troubleshooting unexpected results, especially in cases where the client event might have been interrupted.
   </Step>
 </Steps>
-
-### Summary
-
-1. **Create a session** using your backend and store the `session_id`.
-2. **Integrate the SDK** on the client side and configure it with your brand and theme.
-3. **Listen for SDK events** to determine success, failure, or cancellation.
-4. **Verify session status** using the server-side API for additional confirmation.
