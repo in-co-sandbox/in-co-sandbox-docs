@@ -1,0 +1,28 @@
+---
+title: "Versioning"
+description: "Description of your new file."
+---
+
+We follow the globally accepted semantic versioning for Sandbox API. Below is an example
+
+| **Type** | **Compatibility**                                   | **Current Version** | **New Version** |
+| :------- | :-------------------------------------------------- | :------------------ | :-------------- |
+| Major    | Backward-non compatible                             | 1.0.0               | 2.0.0           |
+| Minor    | New functionality added, backward compatible        | 2.0.0               | 2.1.0           |
+| Patch    | Bug-fix in the current version, backward compatible | 2.1.0               | 2.1.1           |
+
+### **Specifying API Version**
+
+Sandbox APIs are always on the latest version and previous versions are inaccessible. However, in some APIs, by specifying a version in a request, you can get responses as per the specified version of the API. This can be done via the `x-api-version` header. 
+
+<Tip>
+  **API requests without any version specification go to the latest stable version.**
+</Tip>
+
+### **Deprecation**
+
+API deprecation is the practice of gradually retiring an API. This typically happens when major changes are introduced, rendering the previous version less optimal. Once deprecated, the older version is no longer actively maintained. Developers are encouraged to migrate to the newer version or explore alternative APIs suggested in the changelogs.
+
+### **Discontinuation**
+
+The deprecated APIs are eventually discontinued in a planned manner. Post the dates communicated, the API will no longer work and you'll get Service Unavailable responses on the same. The dates will be communicated in the changelogs, via emails as well on the API Reference pages.

@@ -1,0 +1,34 @@
+---
+title: "Errors"
+description: "Description of your new file."
+---
+
+If there is an incorrect request or issues at the source level, Sandbox API will return an error response such as below
+
+Error Response
+
+```
+{
+    "code": 401,
+    "message": "Unauthorized",
+    "timestamp": 1687602744185,
+    "transaction_id": "2230d738-2ef4-4821-a510-cb7fa51d19d8"
+}
+```
+
+### **Error Codes**
+
+The following table provides you with the common error codes you may encounter when using our APIs, along with the possible reasons for them.
+
+| **Status Code**           | **Possible Reason**                                                                                                                                                                                                            |
+| :------------------------ | :----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| 2XX OK                    | All good                                                                                                                                                                                                                       |
+| 400 Bad Request           | API request not as per contract (missing mandatory fields)                                                                                                                                                                     |
+| 401 Unauthorized          | API key/secret is invalid                                                                                                                                                                                                      |
+| 403 Forbidden             | Restricting access due to one of the errors described<br />- Invalid access token<br />- Access token has expired<br />- Insufficient privilege<br />- Insufficient credits<br />- Usage quota exhausted<br />- Access revoked |
+| 404 Not Found             | An incorrect URL is used                                                                                                                                                                                                       |
+| 422 Unprocessable Entity  | Values/flags are incorrect as per schema or pattern                                                                                                                                                                            |
+| 429 Too Many Requests     | Rate-limiting                                                                                                                                                                                                                  |
+| 500 Internal Server Error | Something went wrong from Sandbox's side (very rare)                                                                                                                                                                           |
+| 503 Service Unavailable   | Our source is not working, try again later                                                                                                                                                                                     |
+| 504 Gateway Timeout       | Your request timed out, please try again                                                                                                                                                                                       |
