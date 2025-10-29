@@ -17,13 +17,28 @@
     "light": "/favicon/light.svg",
     "dark": "/favicon/dark.svg"
   },
-    "navbar": {
+  "navbar": {
     "links": [
-      {"label":"Home ","href":"https://sandbox.co.in/"},
-      {"label":"Status","href":"https://status.api.sandbox.co.in/?utm_source=in-co-sandbox-developer&utm_medium=direct&utm_campaign=in-co-sandbox-developer.header.status"},
-      {"label":"Help Center","href":"https://help.sandbox.co.in/?utm_source=in-co-sandbox-developer&utm_medium=direct&utm_campaign=in-co-sandbox-developer.header.help-center"},
-      {"label":"Contact Sales","href":"https://sandbox.co.in/contact-sales?utm_source=in-co-sandbox-developer&utm_medium=direct&utm_campaign=in-co-sandbox-developer.header.contact-sales"},
-      {"label":"Login","href":"https://accounts.sandbox.co.in/?utm_source=in-co-sandbox-developer&utm_medium=direct&utm_campaign=in-co-sandbox-developer.header.login"}
+      {
+        "label": "Home ",
+        "href": "https://sandbox.co.in/"
+      },
+      {
+        "label": "Status",
+        "href": "https://status.api.sandbox.co.in/?utm_source=in-co-sandbox-developer&utm_medium=direct&utm_campaign=in-co-sandbox-developer.header.status"
+      },
+      {
+        "label": "Help Center",
+        "href": "https://help.sandbox.co.in/?utm_source=in-co-sandbox-developer&utm_medium=direct&utm_campaign=in-co-sandbox-developer.header.help-center"
+      },
+      {
+        "label": "Contact Sales",
+        "href": "https://sandbox.co.in/contact-sales?utm_source=in-co-sandbox-developer&utm_medium=direct&utm_campaign=in-co-sandbox-developer.header.contact-sales"
+      },
+      {
+        "label": "Login",
+        "href": "https://accounts.sandbox.co.in/?utm_source=in-co-sandbox-developer&utm_medium=direct&utm_campaign=in-co-sandbox-developer.header.login"
+      }
     ]
   },
   "navigation": {
@@ -31,105 +46,82 @@
       "tabs": [
         {
           "product": "KYC",
-          "icon":"code-simple",
-          "iconType":"solid",
+          "icon": "code-simple",
+          "iconType": "solid",
           "href": "https://developer.sandbox.co.in/"
         },
         {
           "product": "Income Tax",
-          "icon":"code-simple",
-          "iconType":"solid",
+          "icon": "code-simple",
+          "iconType": "solid",
           "href": "https://developer.sandbox.co.in/"
         },
         {
           "product": "GST",
-          "icon":"code-simple",
-          "iconType":"solid",
+          "icon": "code-simple",
+          "iconType": "solid",
           "href": "https://developer.sandbox.co.in/"
         },
         {
           "product": "Digital Locker",
-          "icon":"code-simple",
-          "iconType":"solid",
+          "icon": "code-simple",
+          "iconType": "solid",
           "href": "https://developer.sandbox.co.in/"
         }
       ],
       "dropdowns": [
         {
-          "product": "KYC",
-          "icon":"code-simple",
-          "iconType":"solid",
-          "href": "https://developer.sandbox.co.in/"
-        },
-        {
-          "product": "Income Tax",
-          "icon":"code-simple",
-          "iconType":"solid",
-          "href": "https://developer.sandbox.co.in/"
-        },
-        {
-          "product": "GST",
-          "icon":"code-simple",
-          "iconType":"solid",
-          "href": "https://developer.sandbox.co.in/"
-        },
-        {
-          "product": "Digital Locker",
-          "icon":"code-simple",
-          "iconType":"solid",
-          "href": "https://developer.sandbox.co.in/"
+          "dropdown": "KYC",
+          "icon": "code-simple",
+          "pages": [
+            "kyc/digilocker-sdk/integration-guide/web_integration_guide",
+            "kyc/digilocker-sdk/integration-guide/android_integration_guide",
+            "kyc/digilocker-sdk/integration-guide/ios_integration_guide"
+          ]
         }
       ],
       "products": [
         {
           "product": "KYC",
-          "icon":"code-simple",
-          "iconType":"solid",
+          "icon": "code-simple",
+          "iconType": "solid",
           "href": "https://developer.sandbox.co.in/"
         },
         {
           "product": "Income Tax",
-          "icon":"code-simple",
-          "iconType":"solid",
+          "icon": "code-simple",
+          "iconType": "solid",
           "href": "https://developer.sandbox.co.in/"
         },
         {
           "product": "GST",
-          "icon":"code-simple",
-          "iconType":"solid",
+          "icon": "code-simple",
+          "iconType": "solid",
           "href": "https://developer.sandbox.co.in/"
         },
         {
           "product": "Digital Locker",
-          "icon":"code-simple",
-          "iconType":"solid",
+          "icon": "code-simple",
+          "iconType": "solid",
           "href": "https://developer.sandbox.co.in/"
         }
       ],
-      "anchors":[
+      "anchors": [
         {
-          "product": "KYC",
-          "icon":"code-simple",
-          "iconType":"solid",
-          "href": "https://developer.sandbox.co.in/"
+          "anchor": "KYC",
+          "icon": "code-simple"
         },
         {
-          "product": "Income Tax",
-          "icon":"code-simple",
-          "iconType":"solid",
-          "href": "https://developer.sandbox.co.in/"
+          "anchor": "Income Tax",
+          "icon": "code-simple"
         },
         {
-          "product": "GST",
-          "icon":"code-simple",
-          "iconType":"solid",
-          "href": "https://developer.sandbox.co.in/"
+          "anchor": "GST",
+          "icon": "code-simple"
         },
         {
-          "product": "Digital Locker",
-          "icon":"code-simple",
-          "iconType":"solid",
-          "href": "https://developer.sandbox.co.in/"
+          "anchor": "Digital Locker",
+          "icon": "code-simple"
         }
       ]
     },
