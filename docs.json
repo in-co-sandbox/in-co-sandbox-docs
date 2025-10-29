@@ -65,20 +65,36 @@
           },
           {
             "group": "Aadhaar",
-            "pages": []
+            "pages": [
+              {
+                "group": "OKYC",
+                "pages": [
+                  "kyc/aadhaar/endpoints/generate_otp",
+                  "kyc/aadhaar/endpoints/verify_otp"
+                ]
+              }
+            ]
           },
           {
             "group": "Bank",
-            "pages": []
+            "pages": [
+              "kyc/bank/endpoints/ifsc_verification",
+              "kyc/bank/endpoints/penny_drop",
+              "kyc/bank/endpoints/penny_less"
+            ]
           },
           {
             "group": "Digilocker",
-            "pages": []
+            "pages": [
+              "kyc/digilocker/endpoints/initiate_session",
+              "kyc/digilocker/endpoints/session_status",
+              "kyc/digilocker/endpoints/fetch_document"
+            ]
           },
           {
             "group": "Digilocker SDK",
             "pages": [
-              "kyc/digilocker-sdk/integration-guide/integration_guide",
+              "kyc/digilocker-sdk/integration/integration_guide",
               {
                 "group": "API Reference",
                 "pages": [
@@ -99,7 +115,9 @@
           },
           {
             "group": "PAN",
-            "pages": []
+            "pages": [
+              "kyc/pan/endpoints/verify_pan_details"
+            ]
           }
         ]
       }

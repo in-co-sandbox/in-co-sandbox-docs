@@ -8,7 +8,7 @@ description: "This integration guide provides a step-by-step process to integrat
     Before initializing the SDK, you must create a **unique session**.\
     Each SDK instance requires its own session to ensure secure and independent interactions.
 
-    Use the [Create Session](https://developer.sandbox.co.in/reference/create-session) endpoint to generate this session.\
+    Use the [Create Session](../endpoints/create-session) endpoint to generate this session.\
     This is a **server-side API call** that uses [Sandbox Authentication](https://developer.sandbox.co.in/docs/authentication) to validate your credentials.
 
     Once created, you’ll receive a `session_id`, which you’ll need when initializing the SDK on the client side.
@@ -43,7 +43,7 @@ description: "This integration guide provides a step-by-step process to integrat
     };
     ```
 
-    To programmatically verify the final status of a session, you can call the  [Session Status](https://developer.sandbox.co.in/docs/authentication) endpoint from your backend.
+    To programmatically verify the final status of a session, you can call the  [Session Status](../endpoints/get-session-status) endpoint from your backend.
 
     This is useful for confirming completion or troubleshooting unexpected results, especially in cases where the client event might have been interrupted.
   </Step>
