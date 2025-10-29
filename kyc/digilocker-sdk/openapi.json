@@ -1,16 +1,23 @@
 {
   "openapi": "3.1.0",
   "info": {
-    "title": "Digilocker SDK",
+    "title": "API Reference",
     "version": "1.0.0",
     "contact": {}
   },
+  "servers": [
+    {
+      "url": "https://api.sandbox.co.in",
+      "description": "Production"
+    },
+    {
+      "url": "https://test-api.sandbox.co.in",
+      "description": "Test"
+    }
+  ],
   "paths": {
     "/kyc/digilocker-sdk/sessions/create": {
       "post": {
-        "tags": [
-          "DigiLocker SDK"
-        ],
         "summary": "Create Session",
         "description": "Create Session",
         "operationId": "createSession",
@@ -46,6 +53,12 @@
                     "type": "array",
                     "items": {
                       "type": "string",
+                      "enum": [
+                        "aadhaar",
+                        "driving_license",
+                        "pan"
+                      ],
+                      "description": "Document type",
                       "example": "aadhaar"
                     },
                     "example": [
@@ -56,6 +69,11 @@
                   },
                   "flow": {
                     "type": "string",
+                    "enum": [
+                      "sign_in",
+                      "sign_up"
+                    ],
+                    "description": "Flow type",
                     "example": "sign_in"
                   }
                 }
@@ -69,7 +87,7 @@
                       "driving_license",
                       "pan"
                     ],
-                    "flow": "sign"
+                    "flow": "sign_in"
                   }
                 }
               }
@@ -183,9 +201,6 @@
     },
     "/kyc/digilocker-sdk/sessions/{session_id}/status": {
       "get": {
-        "tags": [
-          "DigiLocker SDK"
-        ],
         "summary": "Session Status",
         "description": "Session Status",
         "operationId": "sessionStatus",
@@ -210,6 +225,7 @@
             "name": "session_id",
             "in": "path",
             "required": true,
+            "description": "Session ID from create session response",
             "schema": {
               "type": "string",
               "example": "a7fac865-61a9-4589-b80c...."
@@ -243,6 +259,12 @@
                           "type": "array",
                           "items": {
                             "type": "string",
+                            "enum": [
+                              "aadhaar",
+                              "pan",
+                              "driving_license"
+                            ],
+                            "description": "Document type",
                             "example": "aadhaar"
                           },
                           "example": [
@@ -256,6 +278,15 @@
                         },
                         "status": {
                           "type": "string",
+                          "enum": [
+                            "created",
+                            "initialized",
+                            "authorized",
+                            "succeeded",
+                            "failed",
+                            "expired"
+                          ],
+                          "description": "Session status",
                           "example": "created"
                         },
                         "updated_at": {
@@ -367,9 +398,6 @@
     },
     "/kyc/digilocker-sdk/sessions/{session_id}/documents/{doc_type}": {
       "get": {
-        "tags": [
-          "DigiLocker SDK"
-        ],
         "summary": "Get Document",
         "description": "Get Document",
         "operationId": "getDocument",
@@ -394,6 +422,7 @@
             "name": "session_id",
             "in": "path",
             "required": true,
+            "description": "Session ID from create session response",
             "schema": {
               "type": "string",
               "example": "a7fac865-61a9-4589-b80c...."
@@ -405,6 +434,12 @@
             "required": true,
             "schema": {
               "type": "string",
+              "enum": [
+                "aadhaar",
+                "pan",
+                "driving_license"
+              ],
+              "description": "Document type",
               "example": "aadhaar"
             }
           }
@@ -646,10 +681,5 @@
   },
   "components": {
     "securitySchemes": {}
-  },
-  "tags": [
-    {
-      "name": "DigiLocker SDK"
-    }
-  ]
+  }
 }

@@ -1,0 +1,50 @@
+---
+title: "Integration Guide"
+description: "This integration guide provides a step-by-step process to integrate the Digilocker SDK into your application."
+---
+
+<Steps>
+  <Step title="Create a Session" stepNumber={1} titleSize="h2">
+    Before initializing the SDK, you must create a **unique session**.\
+    Each SDK instance requires its own session to ensure secure and independent interactions.
+
+    Use the [Create Session](https://developer.sandbox.co.in/reference/create-session) endpoint to generate this session.\
+    This is a **server-side API call** that uses [Sandbox Authentication](https://developer.sandbox.co.in/docs/authentication) to validate your credentials.
+
+    Once created, you’ll receive a `session_id`, which you’ll need when initializing the SDK on the client side.
+  </Step>
+  <Step title="Integrate the SDK on the Client Side" titleSize="h2">
+    After creating the session, the next step is to integrate the DigiLocker SDK into your client-side application.\
+    You’ll add a “Fetch with DigiLocker” button that triggers the DigiLocker flow.
+
+  </Step>
+  <Step title="Handle Session Success and Failure" titleSize="h2">
+    After a user interacts with the DigiLocker SDK, various **events** are emitted that indicate the outcome of the session — whether it succeeded, failed, or was canceled.
+
+    Your event listener (defined earlier) receives these events. You can handle them as follows:
+
+    ```javascript
+    const handleEvent = (event) => {
+      console.log("Event received:", event);
+      
+      switch (event.type) {
+        case "in.co.sandbox.kyc.digilocker_sdk.session.completed":
+          // The documents were fetched from digilocker successfully
+          // Proceed with your application flow
+          break;
+    
+        case "in.co.sandbox.kyc.digilocker_sdk.session.closed":
+          // The user closed or exited out of the sdk
+          break;
+    
+        default:
+          console.log("Unhandled event:", event);
+      }
+    };
+    ```
+
+    To programmatically verify the final status of a session, you can call the  [Session Status](https://developer.sandbox.co.in/docs/authentication) endpoint from your backend.
+
+    This is useful for confirming completion or troubleshooting unexpected results, especially in cases where the client event might have been interrupted.
+  </Step>
+</Steps>
