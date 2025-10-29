@@ -42,59 +42,61 @@
     ]
   },
   "navigation": {
-    "tabs": [
-      {
-        "tab": "KYC",
-        "href": "https://sandbox.co.in/kyc"
-      },
-      {
-        "tab": "Income Tax",
-        "href": "https://sandbox.co.in/it"
-      },
-      {
-        "tab": "GST",
-        "href": "https://sandbox.co.in/gst"
-      },
-      {
-        "tab": "Digital Locker",
-        "href": "https://sandbox.co.in/digital-locker"
-      }
-    ],
-    "products": [
-      {
-        "product": "KYC",
-        "description": "Verify identity of your customers using Digilocker",
-        "icon": "code-simple",
-        "href": "https://developer.sandbox.co.in/docs/kyc",
-        "groups": [
-          {
-            "group": "Digilocker",
-            "pages": []
-          },
-          {
-            "group": "Digilocker SDK",
-            "pages": [
-              {
-                "group": "Integration Guide",
-                "pages": [
-                  "kyc/digilocker-sdk/integration-guide/web_integration_guide",
-                  "kyc/digilocker-sdk/integration-guide/android_integration_guide",
-                  "kyc/digilocker-sdk/integration-guide/ios_integration_guide"
-                ]
-              },
-              {
-                "group": "API Reference",
-                "pages": [
-                  "kyc/digilocker-sdk/endpoints/create-session",
-                  "kyc/digilocker-sdk/endpoints/get-session-status",
-                  "kyc/digilocker-sdk/endpoints/get-document"
-                ]
-              }
-            ]
-          }
-        ]
-      }
-    ]
+    "global": {
+      "tabs": [
+        {
+          "tab": "KYC",
+          "href": "https://sandbox.co.in/kyc"
+        },
+        {
+          "tab": "Income Tax",
+          "href": "https://sandbox.co.in/it"
+        },
+        {
+          "tab": "GST",
+          "href": "https://sandbox.co.in/gst"
+        },
+        {
+          "tab": "Digital Locker",
+          "href": "https://sandbox.co.in/digital-locker"
+        }
+      ],
+      "products": [
+        {
+          "product": "KYC",
+          "description": "Verify identity of your customers using Digilocker",
+          "icon": "code-simple",
+          "href": "https://developer.sandbox.co.in/docs/kyc",
+          "groups": [
+            {
+              "group": "Digilocker",
+              "pages": []
+            },
+            {
+              "group": "Digilocker SDK",
+              "pages": [
+                {
+                  "group": "Integration Guide",
+                  "pages": [
+                    "kyc/digilocker-sdk/integration-guide/web_integration_guide",
+                    "kyc/digilocker-sdk/integration-guide/android_integration_guide",
+                    "kyc/digilocker-sdk/integration-guide/ios_integration_guide"
+                  ]
+                },
+                {
+                  "group": "API Reference",
+                  "pages": [
+                    "kyc/digilocker-sdk/endpoints/create-session",
+                    "kyc/digilocker-sdk/endpoints/get-session-status",
+                    "kyc/digilocker-sdk/endpoints/get-document"
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
   },
   "contextual": {
     "options": [
