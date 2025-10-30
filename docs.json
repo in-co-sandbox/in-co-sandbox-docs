@@ -1,314 +1,314 @@
 {
-  "$schema": "https://mintlify.com/docs.json",
-  "theme": "almond",
-  "name": "Sandbox Financial Technologies Private Limited",
-  "colors": {
-    "primary": "#151455",
-    "light": "#CFCEFF",
-    "dark": "#1B1B20"
-  },
-  "description": "End-to-end tax automation platform for businesses to verify tax ids, calculate & pay taxes, generate e-invoices, process tax documents, analyse & reconcile tax ledgers, prepare and file tax returns through SDKs & APIs.",
-  "logo": {
-    "light": "/static/logo/light.svg",
-    "dark": "/static/logo/dark.svg",
-    "href": "https://developer.sandbox.co.in/"
-  },
-  "favicon": {
-    "light": "/static/favicon/light.svg",
-    "dark": "/static/favicon/dark.svg"
-  },
-  "navbar": {
-    "links": [
-      {
-        "label": "Contact Sales",
-        "href": "https://sandbox.co.in/contact-sales?utm_source=in-co-sandbox-developer&utm_medium=direct&utm_campaign=in-co-sandbox-developer.header.contact-sales"
-      }
-    ],
-    "primary": {
-      "type": "button",
-      "label": "Sign Up",
-      "href": "https://accounts.sandbox.co.in/?utm_source=in-co-sandbox-developer&utm_medium=direct&utm_campaign=in-co-sandbox-developer.header.login"
+    "$schema": "https://mintlify.com/docs.json",
+    "theme": "almond",
+    "name": "Sandbox Financial Technologies Private Limited",
+    "colors": {
+        "primary": "#151455",
+        "light": "#CFCEFF",
+        "dark": "#1B1B20"
+    },
+    "description": "End-to-end tax automation platform for businesses to verify tax ids, calculate & pay taxes, generate e-invoices, process tax documents, analyse & reconcile tax ledgers, prepare and file tax returns through SDKs & APIs.",
+    "logo": {
+        "light": "/static/logo/light.svg",
+        "dark": "/static/logo/dark.svg",
+        "href": "https://developer.sandbox.co.in/"
+    },
+    "favicon": {
+        "light": "/static/favicon/light.svg",
+        "dark": "/static/favicon/dark.svg"
+    },
+    "navbar": {
+        "links": [
+            {
+                "label": "Contact Sales",
+                "href": "https://sandbox.co.in/contact-sales?utm_source=in-co-sandbox-developer&utm_medium=direct&utm_campaign=in-co-sandbox-developer.header.contact-sales"
+            }
+        ],
+        "primary": {
+            "type": "button",
+            "label": "Sign Up",
+            "href": "https://accounts.sandbox.co.in/?utm_source=in-co-sandbox-developer&utm_medium=direct&utm_campaign=in-co-sandbox-developer.header.login"
+        }
+    },
+    "navigation": {
+        "tabs": [
+            {
+                "tab": "Guides",
+                "groups": [
+                    {
+                        "group": "Introduction",
+                        "pages": [
+                            "guides/introduction/about_sandbox",
+                            "guides/introduction/authentication"
+                        ]
+                    },
+                    {
+                        "group": "Get Started",
+                        "pages": [
+                            "guides/get-started/the_basics",
+                            "guides/get-started/versioning",
+                            "guides/get-started/response_caching",
+                            "guides/get-started/errors",
+                            "guides/get-started/rate_limit",
+                            "guides/get-started/webhooks",
+                            "guides/get-started/post_for_get",
+                            "guides/get-started/changelog"
+                        ]
+                    },
+                    {
+                        "group": "Products",
+                        "pages": [
+                            "guides/products/kyc",
+                            "guides/products/gst",
+                            "guides/products/tds",
+                            "guides/products/income_tax"
+                        ]
+                    },
+                    {
+                        "group": "Billing & Invoicing",
+                        "pages": [
+                            "guides/billing-and-invoicing/subscription",
+                            "guides/billing-and-invoicing/quota",
+                            "guides/billing-and-invoicing/overdraft",
+                            "guides/billing-and-invoicing/wallet",
+                            "guides/billing-and-invoicing/charges"
+                        ]
+                    }
+                ]
+            },
+            {
+                "tab": "API Reference",
+                "groups": [
+                    {
+                        "group": "Authentication",
+                        "pages": [
+                            "api-reference/authenticate"
+                        ]
+                    },
+                    {
+                        "group": "Products",
+                        "pages": [
+                            "api-reference/overview",
+                            "api-reference/kyc"
+                        ]
+                    }
+                ]
+            },
+            {
+                "tab": "Changelog",
+                "pages": [
+                    "/changelog"
+                ]
+            },
+            {
+                "tab": "KYC",
+                "hidden": true,
+                "groups": [
+                    {
+                        "group": "Aadhaar - OKYC",
+                        "pages": [
+                            "api-reference/kyc/aadhaar/endpoints/generate_otp",
+                            "api-reference/kyc/aadhaar/endpoints/verify_otp"
+                        ]
+                    },
+                    {
+                        "group": "Bank",
+                        "pages": [
+                            "api-reference/kyc/bank/endpoints/ifsc_verification",
+                            "api-reference/kyc/bank/endpoints/penny_drop",
+                            "api-reference/kyc/bank/endpoints/penny_less"
+                        ]
+                    },
+                    {
+                        "group": "Digilocker",
+                        "pages": [
+                            "api-reference/kyc/digilocker/endpoints/initiate_session",
+                            "api-reference/kyc/digilocker/endpoints/session_status",
+                            "api-reference/kyc/digilocker/endpoints/fetch_document"
+                        ]
+                    },
+                    {
+                        "group": "Digilocker SDK",
+                        "pages": [
+                            "api-reference/kyc/digilocker-sdk/integration/integration_guide",
+                            "api-reference/kyc/digilocker-sdk/endpoints/create-session",
+                            "api-reference/kyc/digilocker-sdk/endpoints/get-session-status",
+                            "api-reference/kyc/digilocker-sdk/endpoints/get-document"
+                        ]
+                    },
+                    {
+                        "group": "PAN",
+                        "pages": [
+                            "api-reference/kyc/pan/endpoints/verify_pan_details"
+                        ]
+                    }
+                ]
+            },
+            {
+                "tab": "GST",
+                "hidden": true,
+                "groups": [
+                    {
+                        "group": "Aadhaar - OKYC",
+                        "pages": [
+                            "kyc/aadhaar/endpoints/generate_otp",
+                            "kyc/aadhaar/endpoints/verify_otp"
+                        ]
+                    },
+                    {
+                        "group": "Bank",
+                        "pages": [
+                            "kyc/bank/endpoints/ifsc_verification",
+                            "kyc/bank/endpoints/penny_drop",
+                            "kyc/bank/endpoints/penny_less"
+                        ]
+                    },
+                    {
+                        "group": "Digilocker",
+                        "pages": [
+                            "kyc/digilocker/endpoints/initiate_session",
+                            "kyc/digilocker/endpoints/session_status",
+                            "kyc/digilocker/endpoints/fetch_document"
+                        ]
+                    },
+                    {
+                        "group": "Digilocker SDK",
+                        "pages": [
+                            "kyc/digilocker-sdk/integration/integration_guide",
+                            "kyc/digilocker-sdk/endpoints/create-session",
+                            "kyc/digilocker-sdk/endpoints/get-session-status",
+                            "kyc/digilocker-sdk/endpoints/get-document"
+                        ]
+                    },
+                    {
+                        "group": "PAN",
+                        "pages": [
+                            "kyc/pan/endpoints/verify_pan_details"
+                        ]
+                    }
+                ]
+            },
+            {
+                "tab": "TDS",
+                "hidden": true,
+                "groups": [
+                    {
+                        "group": "Aadhaar - OKYC",
+                        "pages": [
+                            "kyc/aadhaar/endpoints/generate_otp",
+                            "kyc/aadhaar/endpoints/verify_otp"
+                        ]
+                    },
+                    {
+                        "group": "Bank",
+                        "pages": [
+                            "kyc/bank/endpoints/ifsc_verification",
+                            "kyc/bank/endpoints/penny_drop",
+                            "kyc/bank/endpoints/penny_less"
+                        ]
+                    },
+                    {
+                        "group": "Digilocker",
+                        "pages": [
+                            "kyc/digilocker/endpoints/initiate_session",
+                            "kyc/digilocker/endpoints/session_status",
+                            "kyc/digilocker/endpoints/fetch_document"
+                        ]
+                    },
+                    {
+                        "group": "Digilocker SDK",
+                        "pages": [
+                            "kyc/digilocker-sdk/integration/integration_guide",
+                            "kyc/digilocker-sdk/endpoints/create-session",
+                            "kyc/digilocker-sdk/endpoints/get-session-status",
+                            "kyc/digilocker-sdk/endpoints/get-document"
+                        ]
+                    },
+                    {
+                        "group": "PAN",
+                        "pages": [
+                            "kyc/pan/endpoints/verify_pan_details"
+                        ]
+                    }
+                ]
+            },
+            {
+                "tab": "Income Tax",
+                "hidden": true,
+                "groups": [
+                    {
+                        "group": "Aadhaar - OKYC",
+                        "pages": [
+                            "kyc/aadhaar/endpoints/generate_otp",
+                            "kyc/aadhaar/endpoints/verify_otp"
+                        ]
+                    },
+                    {
+                        "group": "Bank",
+                        "pages": [
+                            "kyc/bank/endpoints/ifsc_verification",
+                            "kyc/bank/endpoints/penny_drop",
+                            "kyc/bank/endpoints/penny_less"
+                        ]
+                    },
+                    {
+                        "group": "Digilocker",
+                        "pages": [
+                            "kyc/digilocker/endpoints/initiate_session",
+                            "kyc/digilocker/endpoints/session_status",
+                            "kyc/digilocker/endpoints/fetch_document"
+                        ]
+                    },
+                    {
+                        "group": "Digilocker SDK",
+                        "pages": [
+                            "kyc/digilocker-sdk/integration/integration_guide",
+                            "kyc/digilocker-sdk/endpoints/create-session",
+                            "kyc/digilocker-sdk/endpoints/get-session-status",
+                            "kyc/digilocker-sdk/endpoints/get-document"
+                        ]
+                    },
+                    {
+                        "group": "PAN",
+                        "pages": [
+                            "kyc/pan/endpoints/verify_pan_details"
+                        ]
+                    }
+                ]
+            },
+            {
+                "tab": "Knowledge Base",
+                "pages": [
+                    "knowledge-base/overview"
+                ]
+            },
+            {
+                "tab": "Help Centre",
+                "pages": [
+                    "help-centre/overview"
+                ]
+            }
+        ]
+    },
+    "contextual": {
+        "options": [
+            "copy",
+            "view",
+            "chatgpt",
+            "claude",
+            "perplexity",
+            "mcp",
+            "cursor",
+            "vscode"
+        ]
+    },
+    "footer": {
+        "socials": {
+            "github": "https://github.com/in-co-sandbox",
+            "linkedin": "https://www.linkedin.com/showcase/sandboxapi",
+            "medium": "https://medium.com/blog-by-sandbox",
+            "youtube": "https://www.youtube.com/@sandboxapi",
+            "x": "https://twitter.com/sandbox_api"
+        }
     }
-  },
-  "navigation": {
-    "tabs": [
-      {
-        "tab": "Guides",
-        "groups": [
-          {
-            "group": "Introduction",
-            "pages": [
-              "guides/introduction/about_sandbox",
-              "guides/introduction/authentication"
-            ]
-          },
-          {
-            "group": "Get Started",
-            "pages": [
-              "guides/get-started/the_basics",
-              "guides/get-started/versioning",
-              "guides/get-started/response_caching",
-              "guides/get-started/errors",
-              "guides/get-started/rate_limit",
-              "guides/get-started/webhooks",
-              "guides/get-started/post_for_get",
-              "guides/get-started/changelog"
-            ]
-          },
-          {
-            "group": "Products",
-            "pages": [
-              "guides/products/kyc",
-              "guides/products/gst",
-              "guides/products/tds",
-              "guides/products/income_tax"
-            ]
-          },
-          {
-            "group": "Billing & Invoicing",
-            "pages": [
-              "guides/billing-and-invoicing/subscription",
-              "guides/billing-and-invoicing/quota",
-              "guides/billing-and-invoicing/overdraft",
-              "guides/billing-and-invoicing/wallet",
-              "guides/billing-and-invoicing/charges"
-            ]
-          }
-        ]
-      },
-      {
-        "tab": "API Reference",
-        "groups": [
-          {
-            "group": "Authentication",
-            "pages": [
-              "api-reference/authenticate"
-            ]
-          },
-          {
-            "group": "Products",
-            "pages": [
-              "api-reference/overview",
-              "api-reference/kyc"
-            ]
-          }
-        ]
-      },
-      {
-        "tab": "KYC",
-        "hidden": true,
-        "groups": [
-          {
-            "group": "Aadhaar - OKYC",
-            "pages": [
-              "api-reference/kyc/aadhaar/endpoints/generate_otp",
-              "api-reference/kyc/aadhaar/endpoints/verify_otp"
-            ]
-          },
-          {
-            "group": "Bank",
-            "pages": [
-              "api-reference/kyc/bank/endpoints/ifsc_verification",
-              "api-reference/kyc/bank/endpoints/penny_drop",
-              "api-reference/kyc/bank/endpoints/penny_less"
-            ]
-          },
-          {
-            "group": "Digilocker",
-            "pages": [
-              "api-reference/kyc/digilocker/endpoints/initiate_session",
-              "api-reference/kyc/digilocker/endpoints/session_status",
-              "api-reference/kyc/digilocker/endpoints/fetch_document"
-            ]
-          },
-          {
-            "group": "Digilocker SDK",
-            "pages": [
-              "api-reference/kyc/digilocker-sdk/integration/integration_guide",
-              "api-reference/kyc/digilocker-sdk/endpoints/create-session",
-              "api-reference/kyc/digilocker-sdk/endpoints/get-session-status",
-              "api-reference/kyc/digilocker-sdk/endpoints/get-document"
-            ]
-          },
-          {
-            "group": "PAN",
-            "pages": [
-              "api-reference/kyc/pan/endpoints/verify_pan_details"
-            ]
-          }
-        ]
-      },
-      {
-        "tab": "GST",
-        "hidden": true,
-        "groups": [
-          {
-            "group": "Aadhaar - OKYC",
-            "pages": [
-              "kyc/aadhaar/endpoints/generate_otp",
-              "kyc/aadhaar/endpoints/verify_otp"
-            ]
-          },
-          {
-            "group": "Bank",
-            "pages": [
-              "kyc/bank/endpoints/ifsc_verification",
-              "kyc/bank/endpoints/penny_drop",
-              "kyc/bank/endpoints/penny_less"
-            ]
-          },
-          {
-            "group": "Digilocker",
-            "pages": [
-              "kyc/digilocker/endpoints/initiate_session",
-              "kyc/digilocker/endpoints/session_status",
-              "kyc/digilocker/endpoints/fetch_document"
-            ]
-          },
-          {
-            "group": "Digilocker SDK",
-            "pages": [
-              "kyc/digilocker-sdk/integration/integration_guide",
-              "kyc/digilocker-sdk/endpoints/create-session",
-              "kyc/digilocker-sdk/endpoints/get-session-status",
-              "kyc/digilocker-sdk/endpoints/get-document"
-            ]
-          },
-          {
-            "group": "PAN",
-            "pages": [
-              "kyc/pan/endpoints/verify_pan_details"
-            ]
-          }
-        ]
-      },
-      {
-        "tab": "TDS",
-        "hidden": true,
-        "groups": [
-          {
-            "group": "Aadhaar - OKYC",
-            "pages": [
-              "kyc/aadhaar/endpoints/generate_otp",
-              "kyc/aadhaar/endpoints/verify_otp"
-            ]
-          },
-          {
-            "group": "Bank",
-            "pages": [
-              "kyc/bank/endpoints/ifsc_verification",
-              "kyc/bank/endpoints/penny_drop",
-              "kyc/bank/endpoints/penny_less"
-            ]
-          },
-          {
-            "group": "Digilocker",
-            "pages": [
-              "kyc/digilocker/endpoints/initiate_session",
-              "kyc/digilocker/endpoints/session_status",
-              "kyc/digilocker/endpoints/fetch_document"
-            ]
-          },
-          {
-            "group": "Digilocker SDK",
-            "pages": [
-              "kyc/digilocker-sdk/integration/integration_guide",
-              "kyc/digilocker-sdk/endpoints/create-session",
-              "kyc/digilocker-sdk/endpoints/get-session-status",
-              "kyc/digilocker-sdk/endpoints/get-document"
-            ]
-          },
-          {
-            "group": "PAN",
-            "pages": [
-              "kyc/pan/endpoints/verify_pan_details"
-            ]
-          }
-        ]
-      },
-      {
-        "tab": "Income Tax",
-        "hidden": true,
-        "groups": [
-          {
-            "group": "Aadhaar - OKYC",
-            "pages": [
-              "kyc/aadhaar/endpoints/generate_otp",
-              "kyc/aadhaar/endpoints/verify_otp"
-            ]
-          },
-          {
-            "group": "Bank",
-            "pages": [
-              "kyc/bank/endpoints/ifsc_verification",
-              "kyc/bank/endpoints/penny_drop",
-              "kyc/bank/endpoints/penny_less"
-            ]
-          },
-          {
-            "group": "Digilocker",
-            "pages": [
-              "kyc/digilocker/endpoints/initiate_session",
-              "kyc/digilocker/endpoints/session_status",
-              "kyc/digilocker/endpoints/fetch_document"
-            ]
-          },
-          {
-            "group": "Digilocker SDK",
-            "pages": [
-              "kyc/digilocker-sdk/integration/integration_guide",
-              "kyc/digilocker-sdk/endpoints/create-session",
-              "kyc/digilocker-sdk/endpoints/get-session-status",
-              "kyc/digilocker-sdk/endpoints/get-document"
-            ]
-          },
-          {
-            "group": "PAN",
-            "pages": [
-              "kyc/pan/endpoints/verify_pan_details"
-            ]
-          }
-        ]
-      },
-      {
-        "tab": "Changelog",
-        "pages": [
-          "changelog/updates"
-        ]
-      },
-      {
-        "tab": "Knowledge Base",
-        "pages": [
-          "knowledge-base/overview"
-        ]
-      },
-      {
-        "tab": "Help Centre",
-        "pages": [
-          "help-centre/overview"
-        ]
-      }
-    ]
-  },
-  "contextual": {
-    "options": [
-      "copy",
-      "view",
-      "chatgpt",
-      "claude",
-      "perplexity",
-      "mcp",
-      "cursor",
-      "vscode"
-    ]
-  },
-  "footer": {
-    "socials": {
-      "github": "https://github.com/in-co-sandbox",
-      "linkedin": "https://www.linkedin.com/showcase/sandboxapi",
-      "medium": "https://medium.com/blog-by-sandbox",
-      "youtube": "https://www.youtube.com/@sandboxapi",
-      "x": "https://twitter.com/sandbox_api"
-    }
-  }
 }
