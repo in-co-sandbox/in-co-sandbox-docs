@@ -1,0 +1,17 @@
+/* Target the true container that holds the tab items */
+.nav-tabs {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    width: 100%;
+}
+
+/* Hide everything after the 4th tab except the last one */
+.nav-tabs > .nav-tabs-item:nth-child(n+5):not(:last-child) {
+    display: none !important;
+}
+
+/* Push the last tab (“Help Centre”) to the far right */
+.nav-tabs > .nav-tabs-item:last-child {
+    margin-left: auto !important;
+}
