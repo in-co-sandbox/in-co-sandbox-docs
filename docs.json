@@ -9,48 +9,92 @@
   },
   "description": "End-to-end tax automation platform for businesses to verify tax ids, calculate & pay taxes, generate e-invoices, process tax documents, analyse & reconcile tax ledgers, prepare and file tax returns through SDKs & APIs.",
   "logo": {
-    "light": "/logo/light.svg",
-    "dark": "/logo/dark.svg",
+    "light": "/static/logo/light.svg",
+    "dark": "/static/logo/dark.svg",
     "href": "https://developer.sandbox.co.in/"
   },
   "favicon": {
-    "light": "/favicon/light.svg",
-    "dark": "/favicon/dark.svg"
+    "light": "/static/favicon/light.svg",
+    "dark": "/static/favicon/dark.svg"
   },
   "navbar": {
     "links": [
       {
-        "label": "Home",
-        "href": "https://sandbox.co.in/"
-      },
-      {
-        "label": "Status",
-        "href": "https://status.api.sandbox.co.in/?utm_source=in-co-sandbox-developer&utm_medium=direct&utm_campaign=in-co-sandbox-developer.header.status"
-      },
-      {
-        "label": "Help Center",
-        "href": "https://help.sandbox.co.in/?utm_source=in-co-sandbox-developer&utm_medium=direct&utm_campaign=in-co-sandbox-developer.header.help-center"
-      },
-      {
         "label": "Contact Sales",
         "href": "https://sandbox.co.in/contact-sales?utm_source=in-co-sandbox-developer&utm_medium=direct&utm_campaign=in-co-sandbox-developer.header.contact-sales"
-      },
-      {
-        "label": "Login",
-        "href": "https://accounts.sandbox.co.in/?utm_source=in-co-sandbox-developer&utm_medium=direct&utm_campaign=in-co-sandbox-developer.header.login"
       }
-    ]
+    ],
+    "primary": {
+      "type": "button",
+      "label": "Sign Up",
+      "href": "https://accounts.sandbox.co.in/?utm_source=in-co-sandbox-developer&utm_medium=direct&utm_campaign=in-co-sandbox-developer.header.login"
+    }
   },
+  "redirects": [
+    {
+      "source": "/kyc/index",
+      "destination": "/kyc/aadhaar"
+    }
+  ],
   "navigation": {
     "tabs": [
       {
-        "tab": "Home",
+        "tab": "Guides",
         "groups": [
           {
             "group": "Introduction",
             "pages": [
               "guides/introduction/about_sandbox",
               "guides/introduction/authentication"
+            ]
+          },
+          {
+            "group": "Get Started",
+            "pages": [
+              "guides/get-started/the_basics",
+              "guides/get-started/versioning",
+              "guides/get-started/response_caching",
+              "guides/get-started/errors",
+              "guides/get-started/rate_limit",
+              "guides/get-started/webhooks",
+              "guides/get-started/post_for_get",
+              "guides/get-started/changelog"
+            ]
+          },
+          {
+            "group": "Products",
+            "pages": [
+              "guides/products/kyc",
+              "guides/products/gst",
+              "guides/products/tds",
+              "guides/products/income_tax"
+            ]
+          },
+          {
+            "group": "Billing & Invoicing",
+            "pages": [
+              "guides/billing-and-invoicing/subscription",
+              "guides/billing-and-invoicing/quota",
+              "guides/billing-and-invoicing/overdraft",
+              "guides/billing-and-invoicing/wallet",
+              "guides/billing-and-invoicing/charges"
+            ]
+          }
+        ]
+      },
+      {
+        "tab": "API Reference",
+        "groups": [
+          {
+            "group": "Authentication",
+            "pages": [
+              "api-reference/authenticate"
+            ]
+          },
+          {
+            "group": "Products",
+            "pages": [
+              "kyc/index"
             ]
           }
         ]
@@ -59,26 +103,10 @@
         "tab": "KYC",
         "groups": [
           {
-            "group": "Introduction",
+            "group": "Aadhaar - OKYC",
             "pages": [
-              "kyc/common/index"
-            ]
-          }
-        ]
-      },
-      {
-        "tab": "KYC API",
-        "groups": [
-          {
-            "group": "Aadhaar",
-            "pages": [
-              {
-                "group": "OKYC",
-                "pages": [
-                  "kyc/aadhaar/endpoints/generate_otp",
-                  "kyc/aadhaar/endpoints/verify_otp"
-                ]
-              }
+              "kyc/aadhaar/endpoints/generate_otp",
+              "kyc/aadhaar/endpoints/verify_otp"
             ]
           },
           {
@@ -101,23 +129,10 @@
             "group": "Digilocker SDK",
             "pages": [
               "kyc/digilocker-sdk/integration/integration_guide",
-              {
-                "group": "API Reference",
-                "pages": [
-                  "kyc/digilocker-sdk/endpoints/create-session",
-                  "kyc/digilocker-sdk/endpoints/get-session-status",
-                  "kyc/digilocker-sdk/endpoints/get-document"
-                ]
-              }
+              "kyc/digilocker-sdk/endpoints/create-session",
+              "kyc/digilocker-sdk/endpoints/get-session-status",
+              "kyc/digilocker-sdk/endpoints/get-document"
             ]
-          },
-          {
-            "group": "EntityLocker",
-            "pages": []
-          },
-          {
-            "group": "MCA",
-            "pages": []
           },
           {
             "group": "PAN",
@@ -143,136 +158,11 @@
   },
   "footer": {
     "socials": {
+      "github": "https://github.com/in-co-sandbox",
       "linkedin": "https://www.linkedin.com/showcase/sandboxapi",
       "medium": "https://medium.com/blog-by-sandbox",
       "youtube": "https://www.youtube.com/@sandboxapi",
       "x": "https://twitter.com/sandbox_api"
-    },
-    "links": [
-      {
-        "header": "Products & Pricing",
-        "items": [
-          {
-            "label": "Pricing",
-            "href": "https://sandbox.co.in/pricing"
-          },
-          {
-            "label": "KYC",
-            "href": "https://sandbox.co.in/kyc"
-          },
-          {
-            "label": "Income Tax",
-            "href": "https://sandbox.co.in/it"
-          },
-          {
-            "label": "TDS",
-            "href": "https://sandbox.co.in/tds"
-          },
-          {
-            "label": "GST",
-            "href": "https://sandbox.co.in/gst"
-          },
-          {
-            "label": "Digital Locker",
-            "href": "https://sandbox.co.in/digital-locker"
-          }
-        ]
-      },
-      {
-        "header": "Developer",
-        "items": [
-          {
-            "label": "API Documentation",
-            "href": "https://developer.sandbox.co.in/"
-          },
-          {
-            "label": "Guides",
-            "href": "https://developer.sandbox.co.in/docs/about-sandbox"
-          },
-          {
-            "label": "API References",
-            "href": "https://developer.sandbox.co.in/reference/authenticate-api"
-          },
-          {
-            "label": "Recipes",
-            "href": "https://developer.sandbox.co.in/recipes"
-          },
-          {
-            "label": "Changelog",
-            "href": "https://developer.sandbox.co.in/changelog"
-          },
-          {
-            "label": "Postman Collection",
-            "href": "https://www.postman.com/in-co-sandbox"
-          },
-          {
-            "label": "Libraries and SDKs",
-            "href": "https://github.com/in-co-sandbox"
-          },
-          {
-            "label": "API Status",
-            "href": "https://status.api.sandbox.co.in/"
-          }
-        ]
-      },
-      {
-        "header": "Resources",
-        "items": [
-          {
-            "label": "Help Center",
-            "href": "https://help.sandbox.co.in/portal/"
-          },
-          {
-            "label": "Blog",
-            "href": "https://medium.com/blog-by-sandbox"
-          },
-          {
-            "label": "Podcasts",
-            "href": "https://open.spotify.com/show/3KlQiuUoKuT6rPlkgY0Mex"
-          },
-          {
-            "label": "Brand Kit",
-            "href": "https://brandfetch.com/sandbox.co.in"
-          },
-          {
-            "label": "Trust Site",
-            "href": "https://sandbox.trust.site/"
-          },
-          {
-            "label": "Bug Bounty",
-            "href": "https://help.sandbox.co.in/portal/en/kb/articles/bug-bounty-program"
-          }
-        ]
-      },
-      {
-        "header": "Company",
-        "items": [
-          {
-            "label": "Why Sandbox",
-            "href": "https://sandbox.co.in/why-sandbox"
-          },
-          {
-            "label": "Contact Sales",
-            "href": "https://sandbox.co.in/contact-sales"
-          },
-          {
-            "label": "Partner with us",
-            "href": "https://docs.google.com/forms/d/e/1FAIpQLSezvWvk7_jbuv6eFPAeIsMbzz3SVMdIZHm_9oiGE_zRQ6gDZA/viewform"
-          },
-          {
-            "label": "Privacy",
-            "href": "https://help.sandbox.co.in/portal/en/kb/articles/privacy-policy"
-          },
-          {
-            "label": "Terms of use",
-            "href": "https://help.sandbox.co.in/portal/en/kb/articles/terms-of-use"
-          },
-          {
-            "label": "About us",
-            "href": "http://quicko.company/"
-          }
-        ]
-      }
-    ]
+    }
   }
 }
