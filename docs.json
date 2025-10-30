@@ -130,10 +130,28 @@
                     {
                         "group": "Digilocker SDK",
                         "pages": [
-                            "api-reference/kyc/digilocker-sdk/integration/integration_guide",
-                            "api-reference/kyc/digilocker-sdk/endpoints/create-session",
-                            "api-reference/kyc/digilocker-sdk/endpoints/get-session-status",
-                            "api-reference/kyc/digilocker-sdk/endpoints/get-document"
+                            {
+                                "group": "Integration",
+                                "pages": [
+                                    "api-reference/kyc/digilocker-sdk/integration/guide"
+                                ]
+                            },
+                            {
+                                "group": "Platforms",
+                                "pages": [
+                                    "api-reference/kyc/digilocker-sdk/integration/platforms/web",
+                                    "api-reference/kyc/digilocker-sdk/integration/platforms/android",
+                                    "api-reference/kyc/digilocker-sdk/integration/platforms/ios"
+                                ]
+                            },
+                            {
+                                "group": "Endpoints",
+                                "pages": [
+                                    "api-reference/kyc/digilocker-sdk/endpoints/create-session",
+                                    "api-reference/kyc/digilocker-sdk/endpoints/get-session-status",
+                                    "api-reference/kyc/digilocker-sdk/endpoints/get-document"
+                                ]
+                            }
                         ]
                     },
                     {
