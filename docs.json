@@ -1,6 +1,6 @@
 {
   "$schema": "https://mintlify.com/docs.json",
-  "theme": "mint",
+  "theme": "almond",
   "name": "Sandbox Financial Technologies Private Limited",
   "colors": {
     "primary": "#151455",
@@ -30,12 +30,6 @@
       "href": "https://accounts.sandbox.co.in/?utm_source=in-co-sandbox-developer&utm_medium=direct&utm_campaign=in-co-sandbox-developer.header.login"
     }
   },
-  "redirects": [
-    {
-      "source": "/kyc/index",
-      "destination": "/kyc/aadhaar"
-    }
-  ],
   "navigation": {
     "tabs": [
       {
@@ -94,13 +88,15 @@
           {
             "group": "Products",
             "pages": [
-              "kyc/index"
+              "api-reference/overview",
+              "api-reference/kyc"
             ]
           }
         ]
       },
       {
         "tab": "KYC",
+        "hidden": true,
         "groups": [
           {
             "group": "Aadhaar - OKYC",
@@ -144,6 +140,7 @@
       },
       {
         "tab": "GST",
+        "hidden": true,
         "groups": [
           {
             "group": "Aadhaar - OKYC",
@@ -187,6 +184,7 @@
       },
       {
         "tab": "TDS",
+        "hidden": true,
         "groups": [
           {
             "group": "Aadhaar - OKYC",
@@ -230,6 +228,7 @@
       },
       {
         "tab": "Income Tax",
+        "hidden": true,
         "groups": [
           {
             "group": "Aadhaar - OKYC",
