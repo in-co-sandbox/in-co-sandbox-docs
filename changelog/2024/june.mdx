@@ -1,0 +1,97 @@
+---
+title: "June"
+description: "Changelog for the June 2024"
+---
+
+<Update label="June 25th " tags={["Added"]}>
+  ## **New TDS Return APIs**
+
+  As part of [<u>POST to GET</u>](https://developer.sandbox.co.in/docs/post-for-get), we have released new TDS Return APIs. While the methods to file TDS returns by providing TXT and CSI files or by submitting a zip file containing the FVU and Form 27A existed in previous contracts, we are enhancing the capabilities and streamlining the process with these new endpoints.
+
+  Moreover, with the introduction of the Fetch Jobs API, users can now easily track and retrieve the status of their TDS return jobs submitted through Sandbox APIs.
+
+  ## **Using TXT & CSI**
+
+  You can refer to the new endpoints for TDS Return APIs using TXT and CSI [<u>here</u>](https://developer.sandbox.co.in/reference/e-file-tds-return-api)
+
+  Consequently, the previous contracts have been deprecated.
+
+  ## **Using FVU & Form 27A**
+
+  You can refer to the new endpoints for TDS Return APIs using the zip of FVU & Form27A [<u>here</u>](https://developer.sandbox.co.in/reference/e-file-tds-return-submit-job-api)
+
+  Consequently, the previous contracts have been deprecated.
+
+  ## **Fetch Jobs API**
+
+  Users can now utilize this API to [<u>Fetch TDS Return Jobs</u>](https://developer.sandbox.co.in/reference/fetch-tds-return-jobs) based on the provided `tan`, `quarter`, `form` & `financial_year`. Additionally, you have the option to retrieve jobs within a specified period for easier search and more flexible filtering.
+
+  ```json
+  {
+    "code": 200,
+    "timestamp": 1715757773000,
+    "transaction_id": "109469b2-0748-4135-a569-e86fc9e45756",
+    "data": {
+      "@entity": "in.co.sandbox.tds.compliance.e-file.paginated_list",
+      "items": [
+        {
+          "@entity": "in.co.sandbox.tds.compliance.e-file.job",
+          "job_id": "096c4812-1829-4ee1-a3c6-3bd291654b72",
+          "tan": "AHMS12345C",
+          "financial_year": "FY 2023-24",
+          "quarter": "Q2",
+          "form": "26Q",
+          "created_at": 1714529043000,
+          "updated_at": 1714529044000,
+          "status": "succeeded",
+          "return_receipt_number": 123456789012345
+        },
+        {
+          "@entity": "in.co.sandbox.tds.compliance.e-file.job",
+          "job_id": "096c4812-1829-4ee1-a3c6-3bd291654b72",
+          "tan": "AHMS12345C",
+          "financial_year": "FY 2023-24",
+          "quarter": "Q2",
+          "form": "26Q",
+          "created_at": 1714527043000,
+          "updated_at": 1714527044000,
+          "status": "failed",
+          "message": "Unacceptable FVU"
+        },
+        {
+          "@entity": "in.co.sandbox.tds.compliance.e-file.job",
+          "job_id": "096c4812-1829-4ee1-a3c6-3bd291654b72",
+          "tan": "AHMS12345C",
+          "financial_year": "FY 2023-24",
+          "quarter": "Q2",
+          "form": "26Q",
+          "created_at": 1714530043000,
+          "updated_at": 1714530044000,
+          "status": "failed",
+          "message": "Validation error"
+        }
+      ],
+      "last_evaluated_key": "eydadadadada...=="
+    }
+  }
+  ```
+</Update>
+
+<Update label="June 25th " tags={["Deprecated"]}>
+  ## **Older API contracts for TDS return filing**
+
+  We have released a new and updated set of TDS Return Filing APIs. Following are the APIs marked deprecated:
+
+  - TXT and CSI
+    - [<u>Submit Job</u>](https://developer.sandbox.co.in/reference/e-file-tds-return-deprecated-api)
+    - [<u>Poll Job</u>](https://developer.sandbox.co.in/reference/e-file-tds-return-job-status-deprecated-api)
+  - FVU & Form 27A
+    - [<u>Submit Job</u>](https://developer.sandbox.co.in/reference/e-file-tds-return-submit-job-deprecated-api)
+    - [<u>Poll Job</u>](https://developer.sandbox.co.in/reference/e-file-tds-return-poll-job-deprecated-api)
+
+  Refer to the changelog [**<u>here</u>**](https://developer.sandbox.co.in/changelog/new-tdsr-api-contracts) for more details
+
+  ## **Discontinuation**
+
+  The deprecated contracts will be discontinued by 31st July 2024. Existing users are to keep this in mind and accordingly plan their migration to the new API contracts.
+</Update>
