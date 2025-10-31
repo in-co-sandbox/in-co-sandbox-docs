@@ -78,17 +78,23 @@
             },
             {
                 "tab": "API Reference",
-                "dropdowns": [
+                "menu": [
                     {
-                        "dropdown": "Basic APIs",
-                        "icon": "shield-check",
-                        "pages": [
-                            "api-reference/authenticate"
+                        "item": "Basic APIs",
+                        "icon": "rocket",
+                        "groups": [
+                            {
+                                "group": "Auth",
+                                "icon": "square-terminal",
+                                "pages": [
+                                    "api-reference/authenticate"
+                                ]
+                            }
                         ]
                     },
                     {
-                        "dropdown": "KYC",
-                        "icon": "shield-check",
+                        "item": "KYC",
+                        "icon": "./static/icons/KYC.svg",
                         "groups": [
                             {
                                 "group": "Rest API",
@@ -152,34 +158,9 @@
                                 ]
                             }
                         ]
-                    }
-                ]
-            },
-            {
-                "tab": "API Reference2",
-                "menu": [
-                    {
-                        "item": "Basic APIs",
-                        "icon": "rocket",
-                        "groups": [
-                            {
-                                "group": "Test1",
-                                "icon": "square-terminal",
-                                "pages": [
-                                    "test/index"
-                                ]
-                            }
-                        ]
                     },
                     {
-                        "item": "KYC",
-                        "icon": "code",
-                        "pages": [
-                            "test/index2"
-                        ]
-                    },
-                    {
-                        "item": "GST",
+                        "item": "TDS",
                         "icon": "code",
                         "pages": [
                             "test/index2"
@@ -190,7 +171,18 @@
             {
                 "tab": "Changelog",
                 "pages": [
-                    "/changelog/2025"
+                    {
+                        "group": "2025",
+                        "pages": [
+                            "changelog/2025/july"
+                        ]
+                    },
+                    {
+                        "group": "2024",
+                        "pages": [
+                            "changelog/2024/december"
+                        ]
+                    }
                 ]
             },
             {

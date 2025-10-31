@@ -1,6 +1,6 @@
 /**
  * Navigation Tabs Layout Customization
- * Purpose: Customizes the top navigation tabs to show only the first 4 tabs 
+ * Purpose: Customizes the top navigation tabs to move the last tab to the right 
  * and to position the last tab to the right.
  * Visual Result: [Guides] [API Reference] [Changelog] [Knowledge Base] ............... [Help Centre]
  */
@@ -17,17 +17,6 @@
     align-items: center;
     justify-content: flex-start;
     width: 100%;
-}
-
-/* 
- * Hide middle tabs (5th onwards) while preserving the last tab
- * - :nth-child(n+5) targets all children from position 5 onwards
- * - :not(:last-child) excludes the last child from this selection
- * - Result: Tabs 5, 6, 7... (n-1) are hidden, but the last tab remains visible
- * - !important ensures this rule takes precedence over other styles
- */
-.nav-tabs > .nav-tabs-item:nth-child(n+6):not(:last-child) {
-    display: none !important;
 }
 
 /* 
