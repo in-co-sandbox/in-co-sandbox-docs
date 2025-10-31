@@ -1,0 +1,105 @@
+---
+title: "September "
+description: "Changelog for September 2023"
+---
+
+<Update label="September 14th " tags={["Added"]}>
+  ## Changes we have brought in
+
+  - TDS Reporting API contracts are updated as per the newly released ITD utility.
+
+  ## **Contract changes for TDS Reporting APIs**
+
+  > ## **❗️Changes are non-backward compatible.**
+
+  ### **Enumerations released by ITD**
+
+  | **New sections**                                                                                                                                                                                         | **Introduced in**  |
+  | :------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | :----------------- |
+  | 194BA - Winnings from online games                                                                                                                                                                       | Form 26Q & Form27Q |
+  | 194BA-P - Net Winnings from online games where the net winnings are made in kind or cash is not sufficient to meet the tax liability and tax has been paid before said winnings are released             | Form 26Q & Form27Q |
+  | 194NC- Payment of certain amounts in cash to co-operative societies                                                                                                                                      | Form 26Q & Form27Q |
+  | 194N-FT - Payment of certain amount in cash to non-filers being co-operative societies                                                                                                                   | Form 26Q & Form27Q |
+  | 194N - Payment of certain amount in cash                                                                                                                                                                 | Form 26Q           |
+  | 194NF - Payment of certain amounts in cash to non-filers                                                                                                                                                 | Form 26Q           |
+  | 194B - Winnings from Lotteries, Puzzle, etc                                                                                                                                                              | Form 27Q           |
+  | 194BB - Winnings from Horse Race                                                                                                                                                                         | Form 27Q           |
+  | 194B-P - Winnings from lottery and crossword puzzle, etc where consideration is made in kind or cash is not sufficient to meet the tax liability and tax has been paid before such winnings are released | Form 27Q           |
+  | 194LC(2) (i) & (ia) - Income by way of interest from Indian company engaged in certain Business before 01.07.2023                                                                                        | Form 27Q           |
+  | 194LC(2) (ib) - Income by way of interest from bonds                                                                                                                                                     | Form 27Q           |
+  | 194LC(2) (ic) - Income by way of interest from Indian company engaged in certain Business after 01.07.2023                                                                                               | Form 27Q           |
+
+  | **Previously used section**                                                                                                                                                                            | **Updated section**                                                                                                                                                                                      |
+  | :----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | :------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+  | 194B - Lotteries / Puzzle / Game                                                                                                                                                                       | 194B - Winnings from Lotteries, Puzzle, etc.                                                                                                                                                             |
+  | 194B-P - Winnings from lotteries and crossword puzzles where consideration is made in kind or cash is not sufficient to meet the tax liability and tax has been paid before such winnings are released | 194B-P - Winnings from lottery and crossword puzzle, etc where consideration is made in kind or cash is not sufficient to meet the tax liability and tax has been paid before such winnings are released |
+
+  | **New Reason for Lower Deduction**                                                                          | **Introduced in** |
+  | :---------------------------------------------------------------------------------------------------------- | :---------------- |
+  | Transaction where Tax not been deducted as amount paid to vendor/party has not exceeded the threshold limit | Form 27Q          |
+
+  | **New Minor Head** | **Introduced in** |
+  | :----------------- | :---------------- |
+  | (100) Advance Tax  | Form 27Q          |
+
+  | **New Nature of Remittances introduced (Form 27Q Only)** |
+  | :------------------------------------------------------- |
+  | Long Term Capital Gain u/s 115E in case of NRI Citizen   |
+  | Long Term Capital Gain u/s 112(1)(c)(iii)                |
+  | Long Term Capital Gain u/s 112                           |
+  | Long Term Capital Gain u/s 112A                          |
+  | Short Term Capital Gains u/s 111A                        |
+
+  | **Previous**            | **Updated by ITD**               |
+  | :---------------------- | :------------------------------- |
+  | Long-Term Capital Gains | Long-Term Capital Gains (Others) |
+
+  ### **API Changes**
+
+  New inputs have been introduced in the JSON payload.
+
+  #### **Form 26Q**
+
+  | **New keys in Request Body**                                                                        |
+  | :-------------------------------------------------------------------------------------------------- |
+  | amount_of_cash_withdrawal_more_than_1_crore_us_194N                                                 |
+  | amount_of_cash_withdrawal_between_20_lakhs_and_1_crore_us_194N_for_non_filers                       |
+  | amount_of_cash_withdrawal_more_than_1_crore_us_194N_for_non_filers                                  |
+  | amount_of_cash_withdrawal_more_than_3_crore_us_194N_for_co-operative_societies                      |
+  | amount_of_cash_withdrawal_between_20_lakhs_and_3_crore_us_194N_for_non_filer_co-operative_societies |
+  | amount_of_cash_withdrawal_more_than_3_crore_us_194N_for_non_filer_co-operative_societies            |
+
+  | **Previous**   | **Updated keys in Request Body** |
+  | :------------- | :------------------------------- |
+  | education_cess | health_and_education_cess        |
+
+  #### **Form27Q**
+
+  | **New keys in Request Body**                                                                        |
+  | :-------------------------------------------------------------------------------------------------- |
+  | amount_of_cash_withdrawal_more_than_3_crore_us_194N_for_co-operative_societies                      |
+  | amount_of_cash_withdrawal_between_20_lakhs_and_3_crore_us_194N_for_non_filer_co-operative_societies |
+  | amount_of_cash_withdrawal_more_than_3_crore_us_194N_for_non_filer_co-operative_societies            |
+
+  | **Previous**   | **Updated keys in Request Body** |
+  | :------------- | :------------------------------- |
+  | education_cess | health_and_education_cess        |
+
+  #### **Form24Q**
+
+  | **Previous**   | **Updated keys in Request Body** |
+  | :------------- | :------------------------------- |
+  | education_cess | health_and_education_cess        |
+
+  #### **Form 24Q (Q4)**
+
+  | **New keys in Request Body**                 |
+  | :------------------------------------------- |
+  | other_special_allowances_under_section_10_14 |
+  | gross_amount_us_80_cch                       |
+  | deductible_amount_us_80_cch                  |
+
+  | **Previous**   | **Updated keys in Request Body** |
+  | :------------- | :------------------------------- |
+  | education_cess | health_and_education_cess        |
+</Update>

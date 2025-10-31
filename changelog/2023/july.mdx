@@ -1,0 +1,42 @@
+---
+title: "July"
+description: "Changelog for July 2023"
+---
+
+<Update label="July 6th " tags={["Added"]}>
+  ## Changes we have brought in
+
+  - New response parameters added in GST Compliance APIs (Public, Taxpayer API)
+  - Response caching added in PAN Verification Basic API
+  - Added section 80EE in Income Tax Calculator API
+  - New error handling states added in Aadhaar Offline e-KYC API
+  - Response parameter replaced in Section 206AB & 206CCA Check API, non-backward compatible change
+
+  ## **New response parameters in GST Compliance APIs**
+
+  The API response body of the GST Public and GST Taxpayer APIs has been updated. A new variable status_cd (status code) has been added, streamlining the API response with the GSTN.
+
+  ## **Response Caching on PAN Verification [Basic]**
+
+  Please note that caching has been enabled on this API. As a result, the response for a particular PAN verification request will be cached for 24 hours. If the same PAN is verified again within this time frame, you will receive a cached response. You can identify a cached response by looking at the X-Cache header in the response.
+
+  It's important to note that no wallet charges will be deducted for cached responses, but the usage of the API will still be counted.
+
+  ## **Error handling in Aadhaar Offline e-KYC Verify OTP**
+
+  Error handling was updated and new responses were added, as mentioned below.
+
+  | **Code** | **Message**            |
+  | :------- | :--------------------- |
+  | 422      | OTP missing in request |
+  | 422      | Invalid Reference Id   |
+  | 500      | Invalid OTP            |
+
+  ## **Inclusion of Section 80EE in Income Tax Calculator API [Deprecated]**
+
+  We have introduced Section 80EE as an input in the JSON body for the calculation of Income Tax. This is an optional field that can be passed if the required data is present.
+
+  ## **Introduction of PAN Status key in Section 206AB & 206CCA API**
+
+  In line with the changes made by the Department, the aadhaar_seeding_status key has now been replaced with pan_status in the response. The response will include either `Operative` or `Inoperative`.
+</Update>
