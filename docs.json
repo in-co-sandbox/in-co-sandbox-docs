@@ -78,18 +78,111 @@
             },
             {
                 "tab": "API Reference",
-                "groups": [
+                "dropdowns": [
                     {
-                        "group": "Authentication",
+                        "dropdown": "Basic APIs",
+                        "icon": "shield-check",
                         "pages": [
                             "api-reference/authenticate"
                         ]
                     },
                     {
-                        "group": "Products",
+                        "dropdown": "KYC",
+                        "icon": "shield-check",
+                        "groups": [
+                            {
+                                "group": "Rest API",
+                                "pages": [
+                                    {
+                                        "group": "Aadhaar",
+                                        "pages": [
+                                            "api-reference/kyc/aadhaar/endpoints/generate_otp",
+                                            "api-reference/kyc/aadhaar/endpoints/verify_otp"
+                                        ]
+                                    },
+                                    {
+                                        "group": "Bank",
+                                        "pages": [
+                                            "api-reference/kyc/bank/endpoints/ifsc_verification",
+                                            "api-reference/kyc/bank/endpoints/penny_drop",
+                                            "api-reference/kyc/bank/endpoints/penny_less"
+                                        ]
+                                    },
+                                    {
+                                        "group": "Digilocker",
+                                        "pages": [
+                                            "api-reference/kyc/digilocker/endpoints/initiate_session",
+                                            "api-reference/kyc/digilocker/endpoints/session_status",
+                                            "api-reference/kyc/digilocker/endpoints/fetch_document"
+                                        ]
+                                    },
+                                    {
+                                        "group": "Digilocker SDK",
+                                        "pages": [
+                                            {
+                                                "group": "Integration",
+                                                "pages": [
+                                                    "api-reference/kyc/digilocker-sdk/integration/guide"
+                                                ]
+                                            },
+                                            {
+                                                "group": "Platforms",
+                                                "pages": [
+                                                    "api-reference/kyc/digilocker-sdk/integration/platforms/web",
+                                                    "api-reference/kyc/digilocker-sdk/integration/platforms/android",
+                                                    "api-reference/kyc/digilocker-sdk/integration/platforms/ios"
+                                                ]
+                                            },
+                                            {
+                                                "group": "Endpoints",
+                                                "pages": [
+                                                    "api-reference/kyc/digilocker-sdk/endpoints/create-session",
+                                                    "api-reference/kyc/digilocker-sdk/endpoints/get-session-status",
+                                                    "api-reference/kyc/digilocker-sdk/endpoints/get-document"
+                                                ]
+                                            }
+                                        ]
+                                    },
+                                    {
+                                        "group": "PAN",
+                                        "pages": [
+                                            "api-reference/kyc/pan/endpoints/verify_pan_details"
+                                        ]
+                                    }
+                                ]
+                            }
+                        ]
+                    }
+                ]
+            },
+            {
+                "tab": "API Reference2",
+                "menu": [
+                    {
+                        "item": "Basic APIs",
+                        "icon": "rocket",
+                        "groups": [
+                            {
+                                "group": "Test1",
+                                "icon": "square-terminal",
+                                "pages": [
+                                    "test/index"
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "item": "KYC",
+                        "icon": "code",
                         "pages": [
-                            "api-reference/overview",
-                            "api-reference/kyc"
+                            "test/index2"
+                        ]
+                    },
+                    {
+                        "item": "GST",
+                        "icon": "code",
+                        "pages": [
+                            "test/index2"
                         ]
                     }
                 ]

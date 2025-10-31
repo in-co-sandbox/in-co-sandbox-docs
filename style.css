@@ -1,4 +1,17 @@
-/* Target the true container that holds the tab items */
+/**
+ * Navigation Tabs Layout Customization
+ * Purpose: Customizes the top navigation tabs to show only the first 4 tabs 
+ * and to position the last tab to the right.
+ * Visual Result: [Guides] [API Reference] [Changelog] [Knowledge Base] ............... [Help Centre]
+ */
+
+/* 
+ * Setup flexbox container for navigation tabs
+ * - Enables horizontal layout with flex
+ * - Centers items vertically
+ * - Aligns items to the start (left side)
+ * - Takes full width of parent container
+ */
 .nav-tabs {
     display: flex;
     align-items: center;
@@ -6,12 +19,24 @@
     width: 100%;
 }
 
-/* Hide everything after the 4th tab except the last one */
-.nav-tabs > .nav-tabs-item:nth-child(n+5):not(:last-child) {
+/* 
+ * Hide middle tabs (5th onwards) while preserving the last tab
+ * - :nth-child(n+5) targets all children from position 5 onwards
+ * - :not(:last-child) excludes the last child from this selection
+ * - Result: Tabs 5, 6, 7... (n-1) are hidden, but the last tab remains visible
+ * - !important ensures this rule takes precedence over other styles
+ */
+.nav-tabs > .nav-tabs-item:nth-child(n+6):not(:last-child) {
     display: none !important;
 }
 
-/* Push the last tab (“Help Centre”) to the far right */
+/* 
+ * Position the last tab (Help Centre) at the far right
+ * - margin-left: auto pushes the element to the right edge in flexbox
+ * - This creates visual separation between main navigation and help link
+ * - !important ensures this rule takes precedence over default margin styles
+ */
 .nav-tabs > .nav-tabs-item:last-child {
     margin-left: auto !important;
 }
+
