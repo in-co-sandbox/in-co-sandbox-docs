@@ -1,5 +1,42 @@
 ---
-title: 'New file'
-description: 'Description of your new file.'
+title: "Changelogs"
+description: "Description of your new file."
 ---
 
+<Update label="10/31/2025" tags={Added}>
+  ### Introducing Digilocker APIs
+
+  We’ve launched DigiLocker APIs that let you build consent-based, digital KYC flows. These APIs allow individuals to fetch verified documents like Aadhaar, PAN, and Driving License directly from DigiLocker, a digital document wallet trusted by millions.
+
+  **Workflow**
+
+  1. [<u>Initiate Session</u>](https://developer.sandbox.co.in/reference/digilocker-api-initiate-session): Generate a one-time DigiLocker link for document consent
+  2. [<u>Session Status</u>](https://developer.sandbox.co.in/reference/digilocker-api-session-status): Check real-time consent status and list of approved documents
+  3. [<u>Fetch Document</u>](https://developer.sandbox.co.in/reference/digilocker-api-fetch-document): Retrieve the requested document using session ID + document type
+
+  **Key Behaviour**
+
+  - One-hour retention: Documents are retained for up to 60 minutes, then auto-deleted
+  - You control the UX: Build your own flows, Sandbox just powers the backend
+  - Certified TSP: Sandbox is a government-recognized Technology Solution Provider
+</Update>
+
+<Update label="10/31/2025" description="">
+  Income Tax API: Feature Release
+
+  With Sandbox 2.0 Release going live, we have published new features, standardized API contracts to better align with REST guidlines and squashed bugs here and there.
+
+  1. New Calculator APIs built on top of powerful P&L and Tax P&L calculator engines
+     1. [<u>Domestic Securities Tax P&L Report</u>](https://developer.sandbox.co.in/reference/it-reports-tax-pnl-securities-submit-job)
+     2. Calculate Tax P&L for Domestic Securities - Sync
+     3. Calculate Tax P&L for Foreign Securities - Sync
+  2. Introducing Webhooks to facilitiate true automation in Domestic Securities Tax P&L Report. Webhooks can be configured via Console. Read about configuring a webhook [<u>here</u>](https://help.sandbox.co.in/portal/en/kb/articles/configure-a-webhook).
+  3. Change in contracts to align as per REST guidelines
+
+  | **Feature**                                                                                                                              | **New Endpoint**                           | **Old Endpoint**                                  |
+  | :--------------------------------------------------------------------------------------------------------------------------------------- | :----------------------------------------- | :------------------------------------------------ |
+  | [<u>Calculate Tax P&L for Domestic Securities</u>](https://developer.sandbox.co.in/reference/submit-job-calculator-domestic-securities)  | /it/calculator/tax-pnl/securities/domestic | /it-calculator/securities/domestic/report/tax-pnl |
+  | [<u>Calculate Tax P&L for Foreign Securities</u>](https://developer.sandbox.co.in/reference/submit-job-it-calculator-securities-foreign) | /it/calculator/tax-pnl/securities/foreign  | /it-calculator/securities/foreign/report/tax-pnl  |
+
+  Please go through the linked API endpoints to make the necessary changes to avoid any production impact. In case of any queries, feel free to reach out to [<u>help@sandbox.co.in</u>](mailto:help@sandbox.co.in), we are here to help.
+</Update>
