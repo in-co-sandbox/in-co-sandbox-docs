@@ -1,0 +1,814 @@
+{
+    "openapi": "3.1.0",
+    "info": {
+        "title": "Aadhaar",
+        "version": "1.0"
+    },
+    "servers": [
+        {
+            "url": "https://api.sandbox.co.in"
+        },
+        {
+            "url": "https://test-api.sandbox.co.in"
+        }
+    ],
+    "components": {
+        "securitySchemes": {}
+    },
+    "security": [
+        {}
+    ],
+    "paths": {
+        "/kyc/aadhaar/okyc/otp": {
+            "post": {
+                "summary": "Generate OTP",
+                "description": "",
+                "operationId": "aadhaar-okyc-generate-otp-api",
+                "parameters": [
+                    {
+                        "name": "Authorization",
+                        "in": "header",
+                        "description": "JWT access token",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "x-api-key",
+                        "in": "header",
+                        "description": "API key for identification",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type": "object",
+                                "required": [
+                                    "@entity",
+                                    "aadhaar_number",
+                                    "consent",
+                                    "reason"
+                                ],
+                                "properties": {
+                                    "@entity": {
+                                        "type": "string",
+                                        "description": "Entity name",
+                                        "default": "in.co.sandbox.kyc.aadhaar.okyc.otp.request"
+                                    },
+                                    "aadhaar_number": {
+                                        "type": "string",
+                                        "description": "12-digit number issued by the UIDAI"
+                                    },
+                                    "consent": {
+                                        "type": "string",
+                                        "description": "Consent of the end-user to get their information for verification purposes. Possible values: `Y` or `y`"
+                                    },
+                                    "reason": {
+                                        "type": "string",
+                                        "description": "Indicate the purpose for verification."
+                                    }
+                                }
+                            },
+                            "examples": {
+                                "Request Example": {
+                                    "value": {
+                                        "@entity": "in.co.sandbox.kyc.aadhaar.okyc.otp.request",
+                                        "aadhaar_number": "123456789012",
+                                        "consent": "y",
+                                        "reason": "For KYC"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "200",
+                        "content": {
+                            "application/json": {
+                                "examples": {
+                                    "OTP generated": {
+                                        "value": {
+                                            "code": 200,
+                                            "timestamp": 1647439112523,
+                                            "transaction_id": "250c5051-ecec-4803-9a1e-4e0b2f88cff8",
+                                            "data": {
+                                                "@entity": "in.co.sandbox.kyc.aadhaar.okyc.otp.response",
+                                                "reference_id": "1234567",
+                                                "message": "OTP sent successfully"
+                                            }
+                                        }
+                                    },
+                                    "Invalid Aadhaar": {
+                                        "value": {
+                                            "code": 200,
+                                            "timestamp": 1647439112623,
+                                            "transaction_id": "250c5051-ecec-4803-9a1e-4e0b2f88cff8",
+                                            "data": {
+                                                "@entity": "in.co.sandbox.kyc.aadhaar.okyc.otp.response",
+                                                "message": "Invalid Aadhaar Card"
+                                            }
+                                        }
+                                    },
+                                    "OTP already generated for this aadhaar": {
+                                        "value": {
+                                            "code": 200,
+                                            "timestamp": 1672226687297,
+                                            "transaction_id": "a4d95225-1802-475b-a990-e57af523ea6e",
+                                            "message": "OTP generated for this aadhaar, please try after 45 seconds"
+                                        }
+                                    },
+                                    "Aadhaar not linked to mobile number": {
+                                        "value": {
+                                            "code": 200,
+                                            "timestamp": 1647439112523,
+                                            "transaction_id": "250c5051-ecec-4803-9a1e-4e0b2f88cff8",
+                                            "data": {
+                                                "@entity": "in.co.sandbox.kyc.aadhaar.okyc.otp.response",
+                                                "reference_id": "1236667",
+                                                "message": "Aadhaar not linked to mobile number"
+                                            }
+                                        }
+                                    }
+                                },
+                                "schema": {
+                                    "oneOf": [
+                                        {
+                                            "title": "OTP generated",
+                                            "type": "object",
+                                            "properties": {
+                                                "code": {
+                                                    "type": "integer",
+                                                    "example": 200,
+                                                    "default": 0
+                                                },
+                                                "timestamp": {
+                                                    "type": "integer",
+                                                    "example": 1647439112523,
+                                                    "default": 0
+                                                },
+                                                "transaction_id": {
+                                                    "type": "string",
+                                                    "example": "250c5051-ecec-4803-9a1e-4e0b2f88cff8"
+                                                },
+                                                "data": {
+                                                    "type": "object",
+                                                    "properties": {
+                                                        "@entity": {
+                                                            "type": "string",
+                                                            "example": "in.co.sandbox.kyc.aadhaar.okyc.otp.response"
+                                                        },
+                                                        "reference_id": {
+                                                            "type": "string",
+                                                            "example": "1234567"
+                                                        },
+                                                        "message": {
+                                                            "type": "string",
+                                                            "example": "OTP sent successfully"
+                                                        }
+                                                    }
+                                                }
+                                            }
+                                        },
+                                        {
+                                            "title": "Invalid Aadhaar",
+                                            "type": "object",
+                                            "properties": {
+                                                "code": {
+                                                    "type": "integer",
+                                                    "example": 200,
+                                                    "default": 0
+                                                },
+                                                "timestamp": {
+                                                    "type": "integer",
+                                                    "example": 1647439112623,
+                                                    "default": 0
+                                                },
+                                                "transaction_id": {
+                                                    "type": "string",
+                                                    "example": "250c5051-ecec-4803-9a1e-4e0b2f88cff8"
+                                                },
+                                                "data": {
+                                                    "type": "object",
+                                                    "properties": {
+                                                        "@entity": {
+                                                            "type": "string",
+                                                            "example": "in.co.sandbox.kyc.aadhaar.okyc.otp.response"
+                                                        },
+                                                        "message": {
+                                                            "type": "string",
+                                                            "example": "Invalid Aadhaar Card"
+                                                        }
+                                                    }
+                                                }
+                                            }
+                                        },
+                                        {
+                                            "title": "OTP already generated for this aadhaar",
+                                            "type": "object",
+                                            "properties": {
+                                                "code": {
+                                                    "type": "integer",
+                                                    "example": 200,
+                                                    "default": 0
+                                                },
+                                                "timestamp": {
+                                                    "type": "integer",
+                                                    "example": 1672226687297,
+                                                    "default": 0
+                                                },
+                                                "transaction_id": {
+                                                    "type": "string",
+                                                    "example": "a4d95225-1802-475b-a990-e57af523ea6e"
+                                                },
+                                                "message": {
+                                                    "type": "string",
+                                                    "example": "OTP generated for this aadhaar, please try after 45 seconds"
+                                                }
+                                            }
+                                        },
+                                        {
+                                            "title": "Aadhaar not linked to mobile number",
+                                            "type": "object",
+                                            "properties": {
+                                                "code": {
+                                                    "type": "integer",
+                                                    "example": 200,
+                                                    "default": 0
+                                                },
+                                                "timestamp": {
+                                                    "type": "integer",
+                                                    "example": 1647439112523,
+                                                    "default": 0
+                                                },
+                                                "transaction_id": {
+                                                    "type": "string",
+                                                    "example": "250c5051-ecec-4803-9a1e-4e0b2f88cff8"
+                                                },
+                                                "data": {
+                                                    "type": "object",
+                                                    "properties": {
+                                                        "@entity": {
+                                                            "type": "string",
+                                                            "example": "in.co.sandbox.kyc.aadhaar.okyc.otp.response"
+                                                        },
+                                                        "reference_id": {
+                                                            "type": "string",
+                                                            "example": "1236667"
+                                                        },
+                                                        "message": {
+                                                            "type": "string",
+                                                            "example": "Aadhaar not linked to mobile number"
+                                                        }
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    ]
+                                }
+                            }
+                        }
+                    },
+                    "422": {
+                        "description": "422",
+                        "content": {
+                            "application/json": {
+                                "examples": {
+                                    "Invalid Aadhaar number pattern": {
+                                        "value": "{\n  \"code\": 422,\n  \"timestamp\": 1647439112623,\n  \"transaction_id\": \"250c5051-ecec-4803-9a1e-4e0b2f88cff8\",\n  \"data\": {\n    \"message\": \"Invalid Aadhaar number pattern\"\n  }\n}"
+                                    }
+                                },
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "code": {
+                                            "type": "integer",
+                                            "example": 422,
+                                            "default": 0
+                                        },
+                                        "timestamp": {
+                                            "type": "integer",
+                                            "example": 1647439112623,
+                                            "default": 0
+                                        },
+                                        "transaction_id": {
+                                            "type": "string",
+                                            "example": "250c5051-ecec-4803-9a1e-4e0b2f88cff8"
+                                        },
+                                        "data": {
+                                            "type": "object",
+                                            "properties": {
+                                                "message": {
+                                                    "type": "string",
+                                                    "example": "Invalid Aadhaar number pattern"
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "deprecated": false,
+                "security": []
+            }
+        },
+        "/kyc/aadhaar/okyc/otp/verify": {
+            "post": {
+                "summary": "Verify OTP",
+                "description": "",
+                "operationId": "aadhaar-okyc-verify-otp-api",
+                "parameters": [
+                    {
+                        "name": "Authorization",
+                        "in": "header",
+                        "description": "JWT access token",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "x-api-key",
+                        "in": "header",
+                        "description": "API key for identification",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type": "object",
+                                "required": [
+                                    "@entity",
+                                    "reference_id",
+                                    "otp"
+                                ],
+                                "properties": {
+                                    "@entity": {
+                                        "type": "string",
+                                        "description": "Entity name",
+                                        "default": "in.co.sandbox.kyc.aadhaar.okyc.request"
+                                    },
+                                    "reference_id": {
+                                        "type": "string",
+                                        "description": "Reference ID received in the Generate OTP response"
+                                    },
+                                    "otp": {
+                                        "type": "string",
+                                        "description": "OTP generated to mobile number associated with Aadhaar"
+                                    }
+                                }
+                            },
+                            "examples": {
+                                "Request Example": {
+                                    "value": {
+                                        "@entity": "in.co.sandbox.kyc.aadhaar.okyc.request",
+                                        "reference_id": "1234567",
+                                        "otp": "121212"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "200",
+                        "content": {
+                            "application/json": {
+                                "examples": {
+                                    "Aadhaar exists": {
+                                        "value": {
+                                            "code": 200,
+                                            "timestamp": 1647439112523,
+                                            "transaction_id": "250c5051-ecec-4803-9a1e-4e0b2f88cff8",
+                                            "data": {
+                                                "@entity": "in.co.sandbox.kyc.aadhaar.okyc",
+                                                "reference_id": "1234567",
+                                                "status": "VALID",
+                                                "message": "Aadhaar Card Exists",
+                                                "care_of": "S/O: Johnny Doe",
+                                                "full_address": "Mangal Kanaka Niwas, Main Cross 3rd, Bengaluru, Bengaluru-Karnataka, India ",
+                                                "date_of_birth": "21-04-1985",
+                                                "email_hash": "044917e2c4c62a439d068.......d9f71bbde10b1d227a914e",
+                                                "gender": "M",
+                                                "name": "John Doe",
+                                                "address": {
+                                                    "@entity": "in.co.sandbox.kyc.aadhaar.okyc.address",
+                                                    "country": "India",
+                                                    "district": "Bengaluru",
+                                                    "house": "Mangal Kanaka Niwas",
+                                                    "landmark": "",
+                                                    "pincode": "581615",
+                                                    "post_office": "Bengaluru",
+                                                    "state": "Karnataka",
+                                                    "street": "Main Cross 3rd",
+                                                    "subdistrict": "",
+                                                    "vtc": "Bengaluru"
+                                                },
+                                                "year_of_birth": "1985",
+                                                "mobile_hash": "044917e2c4c62a439d068.......d9f71bbde10b1d227a914e",
+                                                "photo": "data:image/jpeg;base64,/9j/4AAQSk.......mj/2Q==",
+                                                "share_code": "1234"
+                                            }
+                                        }
+                                    },
+                                    "Invalid OTP": {
+                                        "value": {
+                                            "code": 200,
+                                            "timestamp": 1647439112523,
+                                            "transaction_id": "250c5051-ecec-4803-9a1e-4e0b2f88cff8",
+                                            "data": {
+                                                "@entity": "in.co.sandbox.kyc.aadhaar.okyc",
+                                                "message": "Invalid OTP"
+                                            }
+                                        }
+                                    },
+                                    "Invalid Reference Id": {
+                                        "value": {
+                                            "code": 200,
+                                            "timestamp": 1647439112523,
+                                            "transaction_id": "250c5051-ecec-4803-9a1e-4e0b2f88cff8",
+                                            "data": {
+                                                "@entity": "in.co.sandbox.kyc.aadhaar.okyc",
+                                                "message": "Invalid Reference Id"
+                                            }
+                                        }
+                                    },
+                                    "OTP Expired": {
+                                        "value": {
+                                            "code": 200,
+                                            "timestamp": 1715627385316,
+                                            "transaction_id": "689093f0-0331-4022-bf01-ea67687f955a",
+                                            "data": {
+                                                "@entity": "in.co.sandbox.kyc.aadhaar.okyc",
+                                                "message": "OTP expired"
+                                            }
+                                        }
+                                    },
+                                    "Request under process": {
+                                        "value": {
+                                            "code": 200,
+                                            "timestamp": 1672226687297,
+                                            "transaction_id": "a4d95225-1802-475b-a990-e57af523ea6e",
+                                            "message": "Request under process, please try after 30 seconds"
+                                        }
+                                    }
+                                },
+                                "schema": {
+                                    "oneOf": [
+                                        {
+                                            "title": "Aadhaar exists",
+                                            "type": "object",
+                                            "properties": {
+                                                "code": {
+                                                    "type": "integer",
+                                                    "example": 200,
+                                                    "default": 0
+                                                },
+                                                "timestamp": {
+                                                    "type": "integer",
+                                                    "example": 1647439112523,
+                                                    "default": 0
+                                                },
+                                                "transaction_id": {
+                                                    "type": "string",
+                                                    "example": "250c5051-ecec-4803-9a1e-4e0b2f88cff8"
+                                                },
+                                                "data": {
+                                                    "type": "object",
+                                                    "properties": {
+                                                        "@entity": {
+                                                            "type": "string",
+                                                            "example": "in.co.sandbox.kyc.aadhaar.okyc"
+                                                        },
+                                                        "reference_id": {
+                                                            "type": "string",
+                                                            "example": "1234567"
+                                                        },
+                                                        "status": {
+                                                            "type": "string",
+                                                            "example": "VALID"
+                                                        },
+                                                        "message": {
+                                                            "type": "string",
+                                                            "example": "Aadhaar Card Exists"
+                                                        },
+                                                        "care_of": {
+                                                            "type": "string",
+                                                            "example": "S/O: Johnny Doe"
+                                                        },
+                                                        "full_address": {
+                                                            "type": "string",
+                                                            "example": "Mangal Kanaka Niwas, Main Cross 3rd, Bengaluru, Bengaluru-Karnataka, India "
+                                                        },
+                                                        "date_of_birth": {
+                                                            "type": "string",
+                                                            "example": "21-04-1985"
+                                                        },
+                                                        "email_hash": {
+                                                            "type": "string",
+                                                            "example": "044917e2c4c62a439d068.......d9f71bbde10b1d227a914e"
+                                                        },
+                                                        "gender": {
+                                                            "type": "string",
+                                                            "example": "M"
+                                                        },
+                                                        "name": {
+                                                            "type": "string",
+                                                            "example": "John Doe"
+                                                        },
+                                                        "address": {
+                                                            "type": "object",
+                                                            "properties": {
+                                                                "@entity": {
+                                                                    "type": "string",
+                                                                    "example": "in.co.sandbox.kyc.aadhaar.okyc.address"
+                                                                },
+                                                                "country": {
+                                                                    "type": "string",
+                                                                    "example": "India"
+                                                                },
+                                                                "district": {
+                                                                    "type": "string",
+                                                                    "example": "Bengaluru"
+                                                                },
+                                                                "house": {
+                                                                    "type": "string",
+                                                                    "example": "Mangal Kanaka Niwas"
+                                                                },
+                                                                "landmark": {
+                                                                    "type": "string",
+                                                                    "example": ""
+                                                                },
+                                                                "pincode": {
+                                                                    "type": "string",
+                                                                    "example": "581615"
+                                                                },
+                                                                "post_office": {
+                                                                    "type": "string",
+                                                                    "example": "Bengaluru"
+                                                                },
+                                                                "state": {
+                                                                    "type": "string",
+                                                                    "example": "Karnataka"
+                                                                },
+                                                                "street": {
+                                                                    "type": "string",
+                                                                    "example": "Main Cross 3rd"
+                                                                },
+                                                                "subdistrict": {
+                                                                    "type": "string",
+                                                                    "example": ""
+                                                                },
+                                                                "vtc": {
+                                                                    "type": "string",
+                                                                    "example": "Bengaluru"
+                                                                }
+                                                            }
+                                                        },
+                                                        "year_of_birth": {
+                                                            "type": "string",
+                                                            "example": "1985"
+                                                        },
+                                                        "mobile_hash": {
+                                                            "type": "string",
+                                                            "example": "044917e2c4c62a439d068.......d9f71bbde10b1d227a914e"
+                                                        },
+                                                        "photo": {
+                                                            "type": "string",
+                                                            "example": "data:image/jpeg;base64,/9j/4AAQSk.......mj/2Q=="
+                                                        },
+                                                        "share_code": {
+                                                            "type": "string",
+                                                            "example": "1234"
+                                                        }
+                                                    }
+                                                }
+                                            }
+                                        },
+                                        {
+                                            "title": "Invalid OTP",
+                                            "type": "object",
+                                            "properties": {
+                                                "code": {
+                                                    "type": "integer",
+                                                    "example": 200,
+                                                    "default": 0
+                                                },
+                                                "timestamp": {
+                                                    "type": "integer",
+                                                    "example": 1647439112523,
+                                                    "default": 0
+                                                },
+                                                "transaction_id": {
+                                                    "type": "string",
+                                                    "example": "250c5051-ecec-4803-9a1e-4e0b2f88cff8"
+                                                },
+                                                "data": {
+                                                    "type": "object",
+                                                    "properties": {
+                                                        "@entity": {
+                                                            "type": "string",
+                                                            "example": "in.co.sandbox.kyc.aadhaar.okyc"
+                                                        },
+                                                        "message": {
+                                                            "type": "string",
+                                                            "example": "Invalid OTP"
+                                                        }
+                                                    }
+                                                }
+                                            }
+                                        },
+                                        {
+                                            "title": "Invalid Reference Id",
+                                            "type": "object",
+                                            "properties": {
+                                                "code": {
+                                                    "type": "integer",
+                                                    "example": 200,
+                                                    "default": 0
+                                                },
+                                                "timestamp": {
+                                                    "type": "integer",
+                                                    "example": 1647439112523,
+                                                    "default": 0
+                                                },
+                                                "transaction_id": {
+                                                    "type": "string",
+                                                    "example": "250c5051-ecec-4803-9a1e-4e0b2f88cff8"
+                                                },
+                                                "data": {
+                                                    "type": "object",
+                                                    "properties": {
+                                                        "@entity": {
+                                                            "type": "string",
+                                                            "example": "in.co.sandbox.kyc.aadhaar.okyc"
+                                                        },
+                                                        "message": {
+                                                            "type": "string",
+                                                            "example": "Invalid Reference Id"
+                                                        }
+                                                    }
+                                                }
+                                            }
+                                        },
+                                        {
+                                            "title": "OTP Expired",
+                                            "type": "object",
+                                            "properties": {
+                                                "code": {
+                                                    "type": "integer",
+                                                    "example": 200,
+                                                    "default": 0
+                                                },
+                                                "timestamp": {
+                                                    "type": "integer",
+                                                    "example": 1715627385316,
+                                                    "default": 0
+                                                },
+                                                "transaction_id": {
+                                                    "type": "string",
+                                                    "example": "689093f0-0331-4022-bf01-ea67687f955a"
+                                                },
+                                                "data": {
+                                                    "type": "object",
+                                                    "properties": {
+                                                        "@entity": {
+                                                            "type": "string",
+                                                            "example": "in.co.sandbox.kyc.aadhaar.okyc"
+                                                        },
+                                                        "message": {
+                                                            "type": "string",
+                                                            "example": "OTP expired"
+                                                        }
+                                                    }
+                                                }
+                                            }
+                                        },
+                                        {
+                                            "title": "Request under process",
+                                            "type": "object",
+                                            "properties": {
+                                                "code": {
+                                                    "type": "integer",
+                                                    "example": 200,
+                                                    "default": 0
+                                                },
+                                                "timestamp": {
+                                                    "type": "integer",
+                                                    "example": 1672226687297,
+                                                    "default": 0
+                                                },
+                                                "transaction_id": {
+                                                    "type": "string",
+                                                    "example": "a4d95225-1802-475b-a990-e57af523ea6e"
+                                                },
+                                                "message": {
+                                                    "type": "string",
+                                                    "example": "Request under process, please try after 30 seconds"
+                                                }
+                                            }
+                                        }
+                                    ]
+                                }
+                            }
+                        }
+                    },
+                    "422": {
+                        "description": "422",
+                        "content": {
+                            "application/json": {
+                                "examples": {
+                                    "OTP missing in request": {
+                                        "value": {
+                                            "code": 422,
+                                            "timestamp": 1647439112523,
+                                            "transaction_id": "250c5051-ecec-4803-9a1e-4e0b2f88cff8",
+                                            "message": "OTP missing in request"
+                                        }
+                                    },
+                                    "Invalid Reference Id": {
+                                        "value": {
+                                            "code": 422,
+                                            "timestamp": 1647439112523,
+                                            "transaction_id": "250c5051-ecec-4803-9a1e-4e0b2f88cff8",
+                                            "message": "Invalid Reference Id"
+                                        }
+                                    }
+                                },
+                                "schema": {
+                                    "oneOf": [
+                                        {
+                                            "title": "OTP missing in request",
+                                            "type": "object",
+                                            "properties": {
+                                                "code": {
+                                                    "type": "integer",
+                                                    "example": 422,
+                                                    "default": 0
+                                                },
+                                                "timestamp": {
+                                                    "type": "integer",
+                                                    "example": 1647439112523,
+                                                    "default": 0
+                                                },
+                                                "transaction_id": {
+                                                    "type": "string",
+                                                    "example": "250c5051-ecec-4803-9a1e-4e0b2f88cff8"
+                                                },
+                                                "message": {
+                                                    "type": "string",
+                                                    "example": "OTP missing in request"
+                                                }
+                                            }
+                                        },
+                                        {
+                                            "title": "Invalid Reference Id",
+                                            "type": "object",
+                                            "properties": {
+                                                "code": {
+                                                    "type": "integer",
+                                                    "example": 422,
+                                                    "default": 0
+                                                },
+                                                "timestamp": {
+                                                    "type": "integer",
+                                                    "example": 1647439112523,
+                                                    "default": 0
+                                                },
+                                                "transaction_id": {
+                                                    "type": "string",
+                                                    "example": "250c5051-ecec-4803-9a1e-4e0b2f88cff8"
+                                                },
+                                                "message": {
+                                                    "type": "string",
+                                                    "example": "Invalid Reference Id"
+                                                }
+                                            }
+                                        }
+                                    ]
+                                }
+                            }
+                        }
+                    }
+                },
+                "deprecated": false,
+                "security": []
+            }
+        }
+    }
+}

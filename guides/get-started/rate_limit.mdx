@@ -1,0 +1,17 @@
+---
+title: "Rate Limits"
+description: "Description of your new file."
+---
+
+To ensure a stable and reliable experience for all API users, Sandbox has implemented rate limits on API requests. If the number of requests exceeds these limits, the response status code will be 429 for all subsequent requests.
+
+<Tip>
+  **Once the requests are within the specified rate limits, the issue will be automatically resolved.**
+</Tip>
+
+Please note that Sandbox applies different rate limits for the production and test environments. This distinction helps maintain control and optimize performance based on the specific needs of each environment.
+
+| **Environment** | **Host URL**                                            | **Max API Calls per second** |
+| :-------------- | :------------------------------------------------------ | :--------------------------- |
+| Test            | [test-api.sandbox.co.in](http://test-api.sandbox.co.in) | 25                           |
+| Live            | [api.sandbox.co.in](http://api.sandbox.co.in)           | 100                          |

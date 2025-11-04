@@ -1,0 +1,103 @@
+---
+title: "July"
+description: "Changelog for July 2025"
+---
+
+<Update label="July 3rd" tags={["Added"]}>
+  ## Sandbox Version 2.0
+
+  We’re excited to introduce Sandbox v2.0. Our new release includes redesigned website, Console - Billing & Subscription Management platform, new APIs, and more.
+
+  This guide walks you through what's new, the actions required from your end, and where to find support.
+
+  <Check>
+    [******<u>Sandbox v2.0 is now live 🚀 You can visit Console here.</u>******](https://console.sandbox.co.in/)
+  </Check>
+  ## What’s New
+
+  We started with a simple goal - to make taxes programmable for enterprises using simple and fast APIs. We focus on four pillars - RESTful APIs, easy-to-read documentation, Postman Collection and a self-serve onboarding experience.
+
+  We continue to build these to improve your user experience. Here is a summary of improvements
+
+  ### 🌐 Website
+
+  Our [<u>new website</u>](https://sandbox.co.in/) catalogs all APIs, resources, use cases and customer stories together in one place. And most importantly, transparently communicates the pricing.
+
+  ### 📊 Console
+
+  [<u>Console</u>](https://console.sandbox.co.in/) is the control center for managing your Sandbox API subscription. We have enhanced following features
+
+  📈 **Monitoring:** Understanding your API usage is important, not just for billing but also to drill down into what's working and what's not as well as spot unexpected usage. You can track your API usage in real-time, see the endpoints you're hitting, all this with the breakdown into 2xx, 4xx and 5xx.
+
+  💳 **Payment Options:** Many customers struggle with setting up payment mandates. You can now configure recurring payment method or make one-time payment to start your subscription. You can also configure primary and secondary payment methods to avoid failures.
+
+  <Danger>
+    **We have switched our payment gateway and existing payment mandates will be invalid, you have to configure new mandates. There should be no downtime, as we have added a 30-day grace period.**
+  </Danger>
+  🔑 **Manage API Keys:** Your API Key and Secret are the credentials that authenticate your access to Sandbox APIs. You can manage - generate, regenerate, view and download API credentials from Console.
+
+  🧾 **Billing & Subscription:** You can start, upgrade/downgrade or cancel your subscription at anytime. You can view billing history and download invoices from Console. Your API keys also remain same every time you make changes to your plan. This makes it easy for you to scale up or down based on change in business cycles or upcoming product launches.
+
+  👥 **Teams:** It takes a team to build & run a business. You can now invite your team members to your workspace, allowing your product, technology and finance team to access your Sandbox subscription with role based access control.
+
+  💰 **Wallet:** Some of our APIs are sourced from ecosystem partners - government departments, licensed intermediaries and other businesses. These are **PAID** APIs. You must add credits to your wallet to use these APIs. You can recharge your wallet via UPI or bank transfer.
+
+  <Note>
+    **New virtual accounts have been issued on Console for your wallet. This means a new account number, IFSC and beneficiary name for the virtual account (VA). Deposit money only in the new VAs to use Paid APIs with your wallet balance.**
+  </Note>
+  📡 **Webhooks:** Webhooks are essential in building products on event-driven architecture. You can configure webhooks for all our Async APIs on Console. Events will be as per the Cloud Events specifications, and you can encrypt the payload using a secret.
+
+  ### 🔌 APIs
+
+  We have further simplified our APIs - improved contracts, reduced latency, better documentation and more. Here are key updates.
+
+  ⚙️ **Consistent REST Contracts:** We have updated our APIs contracts to more closely follow REST convention which makes them easy to understand and integrate.
+
+  📡 **Webhooks:** All async APIs now support webhooks - this makes it easy to build systems using event driven workflows. Webhook events also support large payloads as well as employ a retry mechanism to ensure delivery.
+
+  🆕 **New APIs:** We are continuously adding APIs to our stack. You can find new API guides and references on API Docs [<u>here</u>](https://developer.sandbox.co.in/reference).
+
+  🧩 **Updated Client SDKs:** Sandbox SDKs are available in Java and Node.js. You can also generate SDKs using Open API specification in a language of your choice.
+
+  You can check the changelogs for complete details.
+
+  - [<u>Income Tax</u>](https://developer.sandbox.co.in/changelog/income-tax-api-feature-release)
+  - [<u>GST</u>](https://developer.sandbox.co.in/changelog/gst-api-feature-release)
+  - [<u>TDS</u>](https://developer.sandbox.co.in/changelog/tds-api-feature-release)
+  - [<u>Authentication</u>](https://developer.sandbox.co.in/changelog/authentication-feature-release)
+
+  ## Way Forward
+
+  ### ✅ What You Need to Do
+
+  1. Log in to [<u>Console</u>](https://console.sandbox.co.in/)
+  2. Invite your team members
+  3. Set up your payment method
+  4. Monitor usage and manage API keys
+
+  ### 💬 Need Help?
+
+  We know change can come with questions, and we're here for you every step of the way.
+
+  Start with our [<u>Help Center</u>](https://help.sandbox.co.in/portal/en/kb), where we’ve covered everything Console. You’ll find detailed changelogs & API references to guide you through the latest updates on Sandbox APIs.
+
+  Still unsure or stuck? Just drop us a note at [<u>help@sandbox.co.in</u>](mailto:help@sandbox.co.in), [<u>raise a ticket</u>](https://help.sandbox.co.in/portal/en/newticket) or reach out to your relationship manager.
+</Update>
+
+<Update label="July 31st" tags={["Added"]}>
+  ## Introducing DigiLocker APIs
+
+  We’ve launched DigiLocker APIs that let you build consent-based, digital KYC flows. These APIs allow individuals to fetch verified documents like Aadhaar, PAN, and Driving License directly from DigiLocker, a digital document wallet trusted by millions.
+
+  **Workflow**
+
+  1. [<u>Initiate Session</u>](https://developer.sandbox.co.in/reference/digilocker-api-initiate-session): Generate a one-time DigiLocker link for document consent
+  2. [<u>Session Status</u>](https://developer.sandbox.co.in/reference/digilocker-api-session-status): Check real-time consent status and list of approved documents
+  3. [<u>Fetch Document</u>](https://developer.sandbox.co.in/reference/digilocker-api-fetch-document): Retrieve the requested document using session ID + document type
+
+  **Key Behaviour**
+
+  - One-hour retention: Documents are retained for up to 60 minutes, then auto-deleted
+  - You control the UX: Build your own flows, Sandbox just powers the backend
+  - Certified TSP: Sandbox is a government-recognized Technology Solution Provider
+</Update>
