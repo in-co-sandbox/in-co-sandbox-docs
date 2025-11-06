@@ -35,26 +35,6 @@ description: "Changelog for June 2025"
   Please go through the linked API endpoints to make the necessary changes to avoid any production impact. In case of any queries, feel free to reach out to [<u>help@sandbox.co.in</u>](mailto:help@sandbox.co.in), we are here to help.
 </Update>
 
-<Update label="June 3rd " tags={["Improved"]} description>
-  ## **Income Tax API: Feature Release**
-
-  **W**ith Sandbox 2.0 Release going live, we have published new features, standardized API contracts to better align with REST guidlines and squashed bugs here and there.
-
-  1. New Calculator APIs built on top of powerful P&L and Tax P&L calculator engines
-     1. [<u>Domestic Securities Tax P&L Report</u>](https://developer.sandbox.co.in/reference/it-reports-tax-pnl-securities-submit-job)
-     2. Calculate Tax P&L for Domestic Securities - Sync
-     3. Calculate Tax P&L for Foreign Securities - Sync
-  1. Introducing Webhooks to facilitiate true automation in Domestic Securities Tax P&L Report. Webhooks can be configured via Console. Read about configuring a webhook [<u>here</u>](https://help.sandbox.co.in/portal/en/kb/articles/configure-a-webhook).
-  2. Change in contracts to align as per REST guidelines
-
-  | **Feature**                                                                                                                              | **New Endpoint**                           | **Old Endpoint**                                  |
-  | :--------------------------------------------------------------------------------------------------------------------------------------- | :----------------------------------------- | :------------------------------------------------ |
-  | [<u>Calculate Tax P&L for Domestic Securities</u>](https://developer.sandbox.co.in/reference/submit-job-calculator-domestic-securities)  | /it/calculator/tax-pnl/securities/domestic | /it-calculator/securities/domestic/report/tax-pnl |
-  | [<u>Calculate Tax P&L for Foreign Securities</u>](https://developer.sandbox.co.in/reference/submit-job-it-calculator-securities-foreign) | /it/calculator/tax-pnl/securities/foreign  | /it-calculator/securities/foreign/report/tax-pnl  |
-
-  Please go through the linked API endpoints to make the necessary changes to avoid any production impact. In case of any queries, feel free to reach out to [<u>help@sandbox.co.in</u>](mailto:help@sandbox.co.in), we are here to help.
-</Update>
-
 <Update label="June 23rd" tags={["Improved"]}>
   ## **GST API: Feature Release**
 
@@ -96,6 +76,26 @@ description: "Changelog for June 2025"
   | [<u>Search Prepare TDS Return Jobs</u>](https://developer.sandbox.co.in/reference/fetch-tds-report-jobs)              | /tds/reports/deductors/tdsrs/search                     | /tds/reports/txt/search                 |
   | [<u>Prepare TCS Return Job</u>](https://developer.sandbox.co.in/reference/tcs-submit-job)                             | /tcs/reports/collectors/tcsrs                           | /tcs/reports/txt                        |
   | [<u>Search Prepare TCS Return Jobs</u>](https://developer.sandbox.co.in/reference/fetch-tcs-report-jobs)              | /tcs/reports/collectors/tcsrs/search                    | /tcs/reports/txt/search                 |
+
+  Please go through the linked API endpoints to make the necessary changes to avoid any production impact. In case of any queries, feel free to reach out to [<u>help@sandbox.co.in</u>](mailto:help@sandbox.co.in), we are here to help.
+</Update>
+
+<Update label="June 3rd " tags={["Improved"]} description>
+  ## **Income Tax API: Feature Release**
+
+  **W**ith Sandbox 2.0 Release going live, we have published new features, standardized API contracts to better align with REST guidlines and squashed bugs here and there.
+
+  1. New Calculator APIs built on top of powerful P&L and Tax P&L calculator engines
+     1. [<u>Domestic Securities Tax P&L Report</u>](https://developer.sandbox.co.in/reference/it-reports-tax-pnl-securities-submit-job)
+     2. Calculate Tax P&L for Domestic Securities - Sync
+     3. Calculate Tax P&L for Foreign Securities - Sync
+  1. Introducing Webhooks to facilitiate true automation in Domestic Securities Tax P&L Report. Webhooks can be configured via Console. Read about configuring a webhook [<u>here</u>](https://help.sandbox.co.in/portal/en/kb/articles/configure-a-webhook).
+  2. Change in contracts to align as per REST guidelines
+
+  | **Feature**                                                                                                                              | **New Endpoint**                           | **Old Endpoint**                                  |
+  | :--------------------------------------------------------------------------------------------------------------------------------------- | :----------------------------------------- | :------------------------------------------------ |
+  | [<u>Calculate Tax P&L for Domestic Securities</u>](https://developer.sandbox.co.in/reference/submit-job-calculator-domestic-securities)  | /it/calculator/tax-pnl/securities/domestic | /it-calculator/securities/domestic/report/tax-pnl |
+  | [<u>Calculate Tax P&L for Foreign Securities</u>](https://developer.sandbox.co.in/reference/submit-job-it-calculator-securities-foreign) | /it/calculator/tax-pnl/securities/foreign  | /it-calculator/securities/foreign/report/tax-pnl  |
 
   Please go through the linked API endpoints to make the necessary changes to avoid any production impact. In case of any queries, feel free to reach out to [<u>help@sandbox.co.in</u>](mailto:help@sandbox.co.in), we are here to help.
 </Update>

@@ -3,6 +3,20 @@ title: "January"
 description: "Changelog for January 2025"
 ---
 
+
+<Update label="January 20th " tags={["Added"]}>
+  ## **Generate FVU**
+
+  This API allows you to generate the FVU file and Form 27A required for filing your TDS return by passing the TXT and CSI files. The job-based workflow ensures easy integration into your existing processes and completes the TDS return preparation journey as follows:
+
+  1. Generate TXT using the TDS Reports or TCS Reports API
+  2. Download CSI File API
+  3. Generate FVU API
+     1. [<u>Submit Job</u>](https://developer.sandbox.co.in/reference/generate-fvu-api)
+     2. [<u>Poll Job</u>](https://developer.sandbox.co.in/reference/fetch-fvu-api)
+  1. E-File TDS Return API
+</Update>
+
 <Update label="January 10th " tags={["Improved"]}>
   ## **Introducing Criss-Cross Operations for Reliable e-Invoicing**
 
@@ -31,17 +45,4 @@ description: "Changelog for January 2025"
   - x-proxy: secondary (Route through e-Invoice 2 portal to access data of e-Invoice 1 portal)
 
   This feature enhances reliability, minimizes disruptions, and provides businesses with robust failover management for critical e-Invoice operations.
-</Update>
-
-<Update label="January 20th " tags={["Added"]}>
-  ## **Generate FVU**
-
-  This API allows you to generate the FVU file and Form 27A required for filing your TDS return by passing the TXT and CSI files. The job-based workflow ensures easy integration into your existing processes and completes the TDS return preparation journey as follows:
-
-  1. Generate TXT using the TDS Reports or TCS Reports API
-  2. Download CSI File API
-  3. Generate FVU API
-     1. [<u>Submit Job</u>](https://developer.sandbox.co.in/reference/generate-fvu-api)
-     2. [<u>Poll Job</u>](https://developer.sandbox.co.in/reference/fetch-fvu-api)
-  1. E-File TDS Return API
 </Update>
