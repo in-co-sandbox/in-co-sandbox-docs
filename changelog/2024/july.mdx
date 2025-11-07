@@ -3,95 +3,13 @@ title: "July "
 description: "Changelog for July 2024"
 ---
 
-<Update label="July 2nd " tags={["Added"]}>
-  ## **206AB & 206CCA Compliance Check**
-
-  To verify if a given PAN belongs to a specified person as per the Income Tax Act, you can use this API. Based on the API's response, you can deduct the relevant TDS when making any payments to that person.
-
-  The API requires the following parameters:
-
-  - PAN: The PAN number of the person you are verifying.
-  - Consent: Consent from the user for the check.
-  - Reason: The reason for checking if they are a specified person.
-
-  This API will indicate whether the PAN holder is classified as a specified person.
-
-  For detailed information and integration guidelines, please refer to our [<u>API Documentation</u>](https://developer.sandbox.co.in/reference/section-206ab-206cca-compliance-check-sync-api).
-</Update>
-
-<Update label="July 12th " tags={["Added"]}>
-  ## **TCS Reports API**
-
-  Similar to TDS, TCS returns are to be filed every quarter. In order to do so, the collector needs to create a .txt file containing all the necessary details of transactions that need to be submitted to the government.
-
-  Through the TCS Reports API, users can generate their .txt file, reducing man-hours, minimizing errors, and allowing easy generation of the file for bulk transactions.
-
-  Refer to the API documentation for more details:
-
-  - [<u>Submit Job</u>](https://developer.sandbox.co.in/reference/tcs-submit-job)
-  - [<u>Poll Job</u>](https://developer.sandbox.co.in/reference/tcs-poll-job)
-  - [<u>Fetch Jobs</u>](https://developer.sandbox.co.in/reference/fetch-tcs-report-jobs)
-
-  To understand the payload to be passed, you can refer to the documentation [<u>here</u>](https://developer.sandbox.co.in/reference/prepare-form-27eq-tcs-return).
-</Update>
-
-<Update label="July 15th " tags={["Deprecated"]}>
-  ## **Older API contracts for TDS Reporting**
-
-  We have released a new and updated set of TDS Report APIs. Following are the APIs marked deprecated:
-
-  - TDS Reporting API
-    - [<u>Submit Job</u>](https://developer.sandbox.co.in/reference/prepare-tds-return-api)
-    - [<u>Poll Job</u>](https://developer.sandbox.co.in/reference/prepare-tds-return-job-status-api)
-
-  Similarly, earlier used [<u>entities </u>](https://developer.sandbox.co.in/reference/entities)and [<u>enumerations </u>](https://developer.sandbox.co.in/reference/tds-reports-master-data)are marked deprecated as well.
-
-  Refer to changelog [**<u>here</u>**](https://developer.sandbox.co.in/changelog/new-tds-reports-api) for more details
-
-  ## **Discontinuation**
-
-  The deprecated contracts will be discontinued by 31st July 2024. Existing users are to keep this in mind and accordingly plan their migration to the new API contracts.
-</Update>
-
-<Update label="July 15th " tags={["Added"]}>
-  ## **New TDS Reports API**
-
-  As part of [<u>POST for GET</u>](https://developer.sandbox.co.in/docs/post-for-get), we have released new TDS Reports APIs.
-
-  - [<u>Submit Job</u>](https://developer.sandbox.co.in/reference/prepare-tds-return)
-  - [<u>Poll Job</u>](https://developer.sandbox.co.in/reference/prepare-tds-return-job-status)
-
-  While the flow for preparing TDS returns remains the same, there are changes in the entities, request payload and enumerations. All of these have been updated in the [<u>API documentation</u>](https://developer.sandbox.co.in/reference/tds-entities#workbooks).
-
-  These changes allow users to easily integrate with our other APIs since the enumerations used are repeatable.
-
-  Moreover, with the introduction of the [<u>Fetch Jobs API</u>](https://developer.sandbox.co.in/reference/fetch-tds-report-jobs), users can now easily retrieve the status of all their TDS Report jobs submitted through Sandbox APIs.
-</Update>
-
-
-<Update label="July 25th " tags={["Improved"]}>
+<Update label="July 25th, 2024 " tags={["Improved"]}>
   ## **X-Accept-Cache header support added in GST Public API**
 
   X-Accept-Cache header gives more control to API users over caching in Sandbox APIs. [<u>Search GSTIN API</u>](https://developer.sandbox.co.in/reference/search-gstin-api) and [<u>Track GST Returns API</u>](https://developer.sandbox.co.in/reference/track-gst-returns-api) now support X-Accept-Cache header. You can read more about the header [<u>here</u>](https://developer.sandbox.co.in/docs/response-caching#x-accept-cache-header).
 </Update>
 
-<Update label="July 24th " tags={["Added"]}>
-  ## **Download Form-16 APIs**
-
-  After filing their TDS returns, deductors must issue TDS certificates such as Form 16 (if the deduction took place for salary payments) and Form 16A (for non-salary payments).
-
-  Through our Download Form 16 APIs, users can download their or their clients' Form 16s for a given TAN, quarter, and financial year, easily generating volumetric certificates.
-
-  The API also gives users the option of whether Sandbox should remember credentials, allowing users to submit and poll jobs without storing credentials on our end.
-
-  Refer to the API documentation for more details:
-
-  - [<u>Submit Job</u>](https://developer.sandbox.co.in/reference/download-form-16-api)
-  - [<u>Poll Job</u>](https://developer.sandbox.co.in/reference/poll-job-form16-api)
-  - [<u>Fetch Jobs</u>](https://developer.sandbox.co.in/reference/fetch-tds-certificate-jobs)
-</Update>
-
-<Update label="July 25th " tags={["Added"]}>
+<Update label="July 25th, 2024 " tags={["Added"]}>
   ## **New contract for Search GSTIN by PAN API**
 
   With Search GSTIN by PAN API, one can pass the PAN and state code to get the GST Registration details for any business. This helps in easy onboarding and verification of vendors or business clients. We have published the new contract for [<u>Search GSTIN by PAN API</u>](https://developer.sandbox.co.in/reference/search-gstin-by-pan-api).
@@ -109,4 +27,85 @@ description: "Changelog for July 2024"
   ### **X-Accept-Cache header**
 
   The new contract for Search GSTIN by PAN API supports X-Accept-Cache header. You can read more about this [<u>here</u>](https://developer.sandbox.co.in/docs/response-caching#x-accept-cache-header).
+</Update>
+
+<Update label="July 24th, 2024 " tags={["Added"]}>
+  ## **Download Form-16 APIs**
+
+  After filing their TDS returns, deductors must issue TDS certificates such as Form 16 (if the deduction took place for salary payments) and Form 16A (for non-salary payments).
+
+  Through our Download Form 16 APIs, users can download their or their clients' Form 16s for a given TAN, quarter, and financial year, easily generating volumetric certificates.
+
+  The API also gives users the option of whether Sandbox should remember credentials, allowing users to submit and poll jobs without storing credentials on our end.
+
+  Refer to the API documentation for more details:
+
+  - [<u>Submit Job</u>](https://developer.sandbox.co.in/reference/download-form-16-api)
+  - [<u>Poll Job</u>](https://developer.sandbox.co.in/reference/poll-job-form16-api)
+  - [<u>Fetch Jobs</u>](https://developer.sandbox.co.in/reference/fetch-tds-certificate-jobs)
+</Update>
+
+<Update label="July 15th, 2024 " tags={["Deprecated"]}>
+  ## **Older API contracts for TDS Reporting**
+
+  We have released a new and updated set of TDS Report APIs. Following are the APIs marked deprecated:
+
+  - TDS Reporting API
+    - [<u>Submit Job</u>](https://developer.sandbox.co.in/reference/prepare-tds-return-api)
+    - [<u>Poll Job</u>](https://developer.sandbox.co.in/reference/prepare-tds-return-job-status-api)
+
+  Similarly, earlier used [<u>entities </u>](https://developer.sandbox.co.in/reference/entities)and [<u>enumerations </u>](https://developer.sandbox.co.in/reference/tds-reports-master-data)are marked deprecated as well.
+
+  Refer to changelog [**<u>here</u>**](https://developer.sandbox.co.in/changelog/new-tds-reports-api) for more details
+
+  ## **Discontinuation**
+
+  The deprecated contracts will be discontinued by 31st July 2024. Existing users are to keep this in mind and accordingly plan their migration to the new API contracts.
+</Update>
+
+<Update label="July 15th, 2024 " tags={["Added"]}>
+  ## **New TDS Reports API**
+
+  As part of [<u>POST for GET</u>](https://developer.sandbox.co.in/docs/post-for-get), we have released new TDS Reports APIs.
+
+  - [<u>Submit Job</u>](https://developer.sandbox.co.in/reference/prepare-tds-return)
+  - [<u>Poll Job</u>](https://developer.sandbox.co.in/reference/prepare-tds-return-job-status)
+
+  While the flow for preparing TDS returns remains the same, there are changes in the entities, request payload and enumerations. All of these have been updated in the [<u>API documentation</u>](https://developer.sandbox.co.in/reference/tds-entities#workbooks).
+
+  These changes allow users to easily integrate with our other APIs since the enumerations used are repeatable.
+
+  Moreover, with the introduction of the [<u>Fetch Jobs API</u>](https://developer.sandbox.co.in/reference/fetch-tds-report-jobs), users can now easily retrieve the status of all their TDS Report jobs submitted through Sandbox APIs.
+</Update>
+
+<Update label="July 12th, 2024 " tags={["Added"]}>
+  ## **TCS Reports API**
+
+  Similar to TDS, TCS returns are to be filed every quarter. In order to do so, the collector needs to create a .txt file containing all the necessary details of transactions that need to be submitted to the government.
+
+  Through the TCS Reports API, users can generate their .txt file, reducing man-hours, minimizing errors, and allowing easy generation of the file for bulk transactions.
+
+  Refer to the API documentation for more details:
+
+  - [<u>Submit Job</u>](https://developer.sandbox.co.in/reference/tcs-submit-job)
+  - [<u>Poll Job</u>](https://developer.sandbox.co.in/reference/tcs-poll-job)
+  - [<u>Fetch Jobs</u>](https://developer.sandbox.co.in/reference/fetch-tcs-report-jobs)
+
+  To understand the payload to be passed, you can refer to the documentation [<u>here</u>](https://developer.sandbox.co.in/reference/prepare-form-27eq-tcs-return).
+</Update>
+
+<Update label="July 2nd, 2024 " tags={["Added"]}>
+  ## **206AB & 206CCA Compliance Check**
+
+  To verify if a given PAN belongs to a specified person as per the Income Tax Act, you can use this API. Based on the API's response, you can deduct the relevant TDS when making any payments to that person.
+
+  The API requires the following parameters:
+
+  - PAN: The PAN number of the person you are verifying.
+  - Consent: Consent from the user for the check.
+  - Reason: The reason for checking if they are a specified person.
+
+  This API will indicate whether the PAN holder is classified as a specified person.
+
+  For detailed information and integration guidelines, please refer to our [<u>API Documentation</u>](https://developer.sandbox.co.in/reference/section-206ab-206cca-compliance-check-sync-api).
 </Update>

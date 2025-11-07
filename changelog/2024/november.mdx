@@ -3,31 +3,30 @@ title: "November"
 description: "Changelog for November 2024"
 ---
 
-<Update label="November 12th " tags={["Added"]}>
-  ## **Generate e-Invoice PDF**
+<Update label="November 25th, 2024 " tags={["Added"]} description>
+  ## **Get e-Invoices generated within last 6 months**
 
-  With the [<u>Generate e-Invoice PDF API</u>](https://developer.sandbox.co.in/reference/generate-e-invoice-pdf-api), you can instantly generate a downloadable e-Invoice PDF. The PDF follows the NIC e-Invoice template, making it easy to share with recipients in a consistent format. This API completes the invoice generation flow, as below.
+  We have added new GST Taxpayer APIs to retrieve e-Invoices generated within the last 6 months directly from the GST Network. Previously, it was only possible to access e-Invoices generated within the past 3 days, as data was ported from the e-Invoice portal to the GST portal. Below are the APIs released.
 
-  1. [<u>Generate e-Invoice API</u>](https://developer.sandbox.co.in/reference/generate-e-invoice-api)
-  2. [<u>Generate e-Invoice PDF API</u>](https://developer.sandbox.co.in/reference/generate-e-invoice-pdf-api)
-  3. Share with the recipients
+  1. [<u>Get e-Invoice by IRN</u>](https://developer.sandbox.co.in/reference/taxpayer-get-e-invoice-by-irn-api)
+  2. [<u>List Sales e-Invoices for a return period</u>](https://developer.sandbox.co.in/reference/list-sales-e-invoices-job-status-api)
+  3. [<u>List Purchase e-Invoices for a return period</u>](https://developer.sandbox.co.in/reference/list-purchase-e-invoices-job-status-api)
 </Update>
 
-<Update label="November 20th " tags={["Added"]}>
-  ## **GST Invoice Managenent System (IMS) API**
+<Update label="November 22nd, 2024 " tags={["Added"]}>
+  ## **Sheet JSON Converter APIs**
 
-  The Invoice Management System (IMS) on the GST portal streamlines invoice management and reconciliation by allowing recipients to accept, reject, or mark invoices as pending. [<u>Sandbox IMS API</u>](https://developer.sandbox.co.in/reference/gst-invoice-management-system) enable for businesses to automate these processes.
+  Financial information required for tax compliance is typically stored in Excel files or formats. However, while Sandbox APIs process this data in a [<u>Sheet-JSON structure</u>](https://developer.sandbox.co.in/docs/the-basics#sheet-structure), developers often face the challenge of manually mapping values and performing conversions, which can significantly extend development timelines.
 
-  To facilitate and enable IMS workflows, Sandbox has integrated and released below IMS APIs.
+  The introduction of the Sheet-JSON APIs resolves this issue by providing an efficient way to handle conversions between Excel (XLSX) and Sheet-JSON formats. This automation eliminates the need for manual mapping, significantly speeding up the development process. The APIs include:
 
-  - [<u>Get Invoice Count</u>](https://developer.sandbox.co.in/reference/get-invoice-count-api): Obtain the count of invoices along with their current status available on IMS
-  - [<u>Get Invoices</u>](https://developer.sandbox.co.in/reference/get-invoices-api): Fetch invoice objects with their status in real time
-  - [<u>Save Invoice Status</u>](https://developer.sandbox.co.in/reference/save-invoice-status-api): Save invoices status on IMS
-  - [<u>Reset Invoice Status</u>](https://developer.sandbox.co.in/reference/reset-invoice-status-api): Reset invoices status on IMS
-  - [<u>Check Invoice Status</u>](https://developer.sandbox.co.in/reference/check-invoice-status-api): Check status of action taken on invoices
+  - [<u>XLSX to Sheet JSON</u>](https://developer.sandbox.co.in/reference/xlsx-to-json-submit-job-api): Converts XLSX files into Sheet-JSON format.
+  - [<u>Sheet JSON to XLSX</u>](https://developer.sandbox.co.in/reference/json-to-xlsx-submit-job-api): Converts Sheet-JSON data back into XLSX files.
+
+  The Sheet-JSON APIs also offer flexibility, enabling developers to create custom JSON structures, as long as the XLSX and JSON follow the Sheet-JSON format. This allows for efficient and tailored data conversions beyond the specific JSON requirements of the Sandbox APIs.
 </Update>
 
-<Update label="November 21st " tags={["Added"]} description>
+<Update label="November 21st, 2024 " tags={["Added"]} description>
   ## **New Contract for PAN-Aadhaar Link Status**
 
   We have deployed a new contract for this API. Consequently, the previous contract has been marked deprecated. The API contract has changed as per our POST to GET thought process, which you can read about [<u>here</u>](https://developer.sandbox.co.in/docs/post-for-get).
@@ -97,7 +96,7 @@ description: "Changelog for November 2024"
   The old contracts have been deprecated and will be discontinued soon. Timelines will be communicated.
 </Update>
 
-<Update label="November 21st " tags={["Added"]}>
+<Update label="November 21st, 2024 " tags={["Added"]}>
   ## **Regenerate GSTR-2B on-demand**
 
   With Sandbox APIs, you can regenerate GSTR-2B on-demand regeneration. whenever actions are taken on invoices within the Invoice Management System (IMS), the GSTR-2B gets outdated, which means it needs to be regenerated. GSTR-2B regeneration ensures that the latest invoice status (Accepted/Rejected/Pending) is reflected in GSTR-2B in real time, improving compliance accuracy.
@@ -109,25 +108,27 @@ description: "Changelog for November 2024"
 
   These eliminate discrepancies between invoice records and GSTR-2B data, ensuring businesses claim the correct Input Tax Credit (ITC) after any updates done on the IMS.
 </Update>
-<Update label="November 22nd " tags={["Added"]}>
-  ## **Sheet JSON Converter APIs**
 
-  Financial information required for tax compliance is typically stored in Excel files or formats. However, while Sandbox APIs process this data in a [<u>Sheet-JSON structure</u>](https://developer.sandbox.co.in/docs/the-basics#sheet-structure), developers often face the challenge of manually mapping values and performing conversions, which can significantly extend development timelines.
+<Update label="November 20th, 2024 " tags={["Added"]}>
+  ## **GST Invoice Managenent System (IMS) API**
 
-  The introduction of the Sheet-JSON APIs resolves this issue by providing an efficient way to handle conversions between Excel (XLSX) and Sheet-JSON formats. This automation eliminates the need for manual mapping, significantly speeding up the development process. The APIs include:
+  The Invoice Management System (IMS) on the GST portal streamlines invoice management and reconciliation by allowing recipients to accept, reject, or mark invoices as pending. [<u>Sandbox IMS API</u>](https://developer.sandbox.co.in/reference/gst-invoice-management-system) enable for businesses to automate these processes.
 
-  - [<u>XLSX to Sheet JSON</u>](https://developer.sandbox.co.in/reference/xlsx-to-json-submit-job-api): Converts XLSX files into Sheet-JSON format.
-  - [<u>Sheet JSON to XLSX</u>](https://developer.sandbox.co.in/reference/json-to-xlsx-submit-job-api): Converts Sheet-JSON data back into XLSX files.
+  To facilitate and enable IMS workflows, Sandbox has integrated and released below IMS APIs.
 
-  The Sheet-JSON APIs also offer flexibility, enabling developers to create custom JSON structures, as long as the XLSX and JSON follow the Sheet-JSON format. This allows for efficient and tailored data conversions beyond the specific JSON requirements of the Sandbox APIs.
+  - [<u>Get Invoice Count</u>](https://developer.sandbox.co.in/reference/get-invoice-count-api): Obtain the count of invoices along with their current status available on IMS
+  - [<u>Get Invoices</u>](https://developer.sandbox.co.in/reference/get-invoices-api): Fetch invoice objects with their status in real time
+  - [<u>Save Invoice Status</u>](https://developer.sandbox.co.in/reference/save-invoice-status-api): Save invoices status on IMS
+  - [<u>Reset Invoice Status</u>](https://developer.sandbox.co.in/reference/reset-invoice-status-api): Reset invoices status on IMS
+  - [<u>Check Invoice Status</u>](https://developer.sandbox.co.in/reference/check-invoice-status-api): Check status of action taken on invoices
 </Update>
 
-<Update label="November 25th " tags={["Added"]} description>
-  ## **Get e-Invoices generated within last 6 months**
+<Update label="November 12th, 2024 " tags={["Added"]}>
+  ## **Generate e-Invoice PDF**
 
-  We have added new GST Taxpayer APIs to retrieve e-Invoices generated within the last 6 months directly from the GST Network. Previously, it was only possible to access e-Invoices generated within the past 3 days, as data was ported from the e-Invoice portal to the GST portal. Below are the APIs released.
+  With the [<u>Generate e-Invoice PDF API</u>](https://developer.sandbox.co.in/reference/generate-e-invoice-pdf-api), you can instantly generate a downloadable e-Invoice PDF. The PDF follows the NIC e-Invoice template, making it easy to share with recipients in a consistent format. This API completes the invoice generation flow, as below.
 
-  1. [<u>Get e-Invoice by IRN</u>](https://developer.sandbox.co.in/reference/taxpayer-get-e-invoice-by-irn-api)
-  2. [<u>List Sales e-Invoices for a return period</u>](https://developer.sandbox.co.in/reference/list-sales-e-invoices-job-status-api)
-  3. [<u>List Purchase e-Invoices for a return period</u>](https://developer.sandbox.co.in/reference/list-purchase-e-invoices-job-status-api)
+  1. [<u>Generate e-Invoice API</u>](https://developer.sandbox.co.in/reference/generate-e-invoice-api)
+  2. [<u>Generate e-Invoice PDF API</u>](https://developer.sandbox.co.in/reference/generate-e-invoice-pdf-api)
+  3. Share with the recipients
 </Update>

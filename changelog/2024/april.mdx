@@ -3,173 +3,44 @@ title: "April "
 description: "Changelog for April 2024"
 ---
 
-<Update label="April 5th " tags={["Added"]}>
-  ## **Verify PAN Details API**
+<Update label="April 24th, 2024 " tags={["Added"]}>
+  ## **TCS Calculator API**
 
-  In line with the changes communicated by the income tax department, we have released the [<u>Verify PAN Details API</u>](https://developer.sandbox.co.in/reference/verify-pan-details-api). The new contract requires the user to pass the PAN, name as per PAN, and date of birth to verify the entity.
+  We have gone live with [<u>TCS Calculator API</u>](https://developer.sandbox.co.in/reference/calculate-tcs). Now Calculate the TCS collectible on incoming payments by providing us the values such as the `nature_of_payment`, `payment_amount` and among other details.
 
-  ## **[Deprecated] PAN Basic and PAN Advance API**
+  API will then determine the `collection_amount`, `collection_rate`, `section`&`due_date` to deposit the TCS amount.
 
-  While existing PAN Verification APIs are working, the upstream partners have confirmed that they will be discontinued by 30th April.
-
-  As such, we have marked them deprecated and recommend immediate migration to the new [<u>Verify PAN Details API</u>](https://developer.sandbox.co.in/reference/verify-pan-details-api).
-</Update>
-
-<Update label="April 5th " tags={["Deprecated"]}>
-  ## **PAN Basic and Advance API**
-
-  While existing PAN Verification APIs are working, the upstream partners have confirmed that they will be discontinued by 30th April in line with the changes communicated by the income tax department.
-
-  As such, we have marked them deprecated and recommend immediate migration to the new [<u>Verify PAN Details API</u>](https://developer.sandbox.co.in/reference/verify-pan-details-api).
-</Update>
-
-<Update label="April 13th " tags={["Added"]}>
-  ## **New contracts for GST Public and Taxpayer API**
-
-  New API contracts for GST Public APIs and GST Taxpayer APIs have been published along with improvements and bug fixes.
-
-  ## **New contracts**
-
-  ### **Change in endpoints**
-
-  At a high level, the endpoints have changed in the fashion below. However, **for specific APIs**, please refer to the API reference for complete details.
-
-  | **GST API**                                                                            | **New endpoint**                               | **Deprecated endpoint**             |
-  | :------------------------------------------------------------------------------------- | :--------------------------------------------- | :---------------------------------- |
-  | [<u>Public</u>](https://developer.sandbox.co.in/reference/search-gstin-api)            | sandbox_host/gst/compliance/public/endpoint    | sandbox_host/gsp/public/endpoint    |
-  | [<u>Taxpayer</u>](https://developer.sandbox.co.in/reference/taxpayer-generate-otp-api) | sandbox_host/gst/compliance/tax-payer/endpoint | sandbox_host/gsp/tax-payer/endpoint |
-
-  ### **Change in response**
-
-  The new contracts have a change in the response nesting.
-
-  New API ResponseDeprecated API Response
+  API Response
 
   ```
   {
-      "transaction_id": "28828716-0e9c-4af8-94da-5367fa8c679d",
+      "transaction_id": "7f3a8edb-4caf-48a9-83c4-0843cf843ad5",
       "code": 200,
       "data": {
-          "data": {
-              "ack_num": "ASDFSDF1241343"
-          },
-          "status_cd": 1
+          "code": "6CO",
+          "due_date": 1707244200000,
+          "payment_amount": 799900,
+          "section": "206C(1G)",
+          "is_pan_available": true,
+          "@entity": "in.co.sandbox.tcs.calculator.response",
+          "threshold_amount": 700000,
+          "is_206cca_applicable": true,
+          "collectee_type": "individual",
+          "is_pan_operative": false,
+          "collection_rate": 20.00,
+          "nature_of_payment": "foreign_flight_tickets",
+          "collection_amount": 159980,
+          "residential_status": "non_resident",
+          "category": "overseas_tour_program_package",
+          "payment_date": 1706505329000
       },
-      "timestamp": 1621510445676
+      "timestamp": 1713942438000
   }
   
   ```
-
-  ### **POST to GET**
-
-  Some API contracts have changed as per our thought-process about which you can [<u>read here</u>](https://developer.sandbox.co.in/docs/post-for-get). Below APIs have changed as per our design choice.
-
-  - [<u>Search GSTIN</u>](https://developer.sandbox.co.in/reference/search-gstin-api)
-  - [<u>Track GST Returns</u>](https://developer.sandbox.co.in/reference/track-gst-returns-api)
-  - [<u>Generate OTP</u>](https://developer.sandbox.co.in/reference/taxpayer-generate-otp-api)
-  - [<u>Verify OTP</u>](https://developer.sandbox.co.in/reference/taxpayer-verify-otp-api)
-  - [<u>Generate EVC OTP</u>](https://developer.sandbox.co.in/reference/generate-evc-otp-api)
-
-  ## **Improvements**
-
-  ### **Change in issuer for Taxpayer access token**
-
-  Issuer has been changed to "[gst.gov.in](http://gst.gov.in)" in the Taxpayer access token.
-
-  ### **GSTIN transformation**
-
-  GSTIN passed in lowercase will be transformed to uppercase and then request will be executed.
-
-  ## **Bug Fixes**
-
-  - **Taxpayer access token:** Wrong expiry has been corrected.
 </Update>
 
-<Update label="April 13th " tags={["Deprecated"]}>
-  ## **Deprecated contracts for GST Public and Taxpayer API**
-
-  We have deployed new API contracts for GST Public APIs and GST Taxpayer API, as detailed in the [<u>changelog here</u>](https://developer.sandbox.co.in/changelog/new-contracts-for-gst-public-and-taxpayer-api). Consequently, the previous contracts have been deprecated.
-
-  ### **Change in endpoints**
-
-  | **GST API** | **New endpoint**                               | **Deprecated endpoint**             |
-  | :---------- | :--------------------------------------------- | :---------------------------------- |
-  | Public      | sandbox_host/gst/compliance/public/endpoint    | sandbox_host/gsp/public/endpoint    |
-  | Taxpayer    | sandbox_host/gst/compliance/tax-payer/endpoint | sandbox_host/gsp/tax-payer/endpoint |
-
-  ## **Discontinuation**
-
-  The deprecated contracts will be discontinued on **31st October 2024**
-</Update>
-
-<Update label="April 16th " tags={["Added"]}>
-  ## **Crypto Tax PnL API**
-
-  With the new version of Crypto PnL API, we have added support for crypto futures along with pnl and tax calculations of crypto spot trading.
-
-  This addition in the API changes the request and response structure in the newer version, these changes are as follows.
-
-  ## **Changes in the request body**
-
-  - Created two separate sheets for the spot tradebook and futures tradebook. Transactions from the spot market need to be passed in the `crypto_currency_spot_tradebook_sheet` and transactions from trading crypto futures are required to be passed in the `crypto_currency_future_tradebook_sheet` respectively. Both the sheets also have a block where the last traded price of cryptocurrency or contract is to be passed.
-  - Added labels- `margin`,`margin_gain`, and `margin_loss`. These labels are required to be passed in the spot tradebook sheet when the user has traded crypto futures.
-
-  ## **Changes in the response body**
-
-  - Two separate sheets will be given for tradewise pnl of spot and futures.
-  - Instead of a separate sheet for holdings of cryptocurrencies, it will be given as a block within the `crypto_currency_spot_tradewise_tax_pnl_sheet`. Similarly, open positions in crypto futures will be given within the `crypto_currency_future_tradewise_tax_pnl_sheet`
-  - Tax pnl summary sheet will show the income from crypto futures as business & profession income as a non-speculative business income.
-</Update>
-
-<Update label="April 18th " tags={["Added"]}>
-  ## **New contracts for GST e-Invoice API**
-
-  New API contracts for GST e-Invoice API have been published along with improvements and bug fixes.
-
-  ## **New contracts**
-
-  ### **Change in endpoints**
-
-  At a high level, the endpoints have changed in the fashion below. However, **for specific APIs**, please refer to the [<u>API reference</u>](https://developer.sandbox.co.in/reference/generate-e-invoice-api) for complete details.
-
-  | **New endpoints**                                        | **Deprecated endpoints**            |
-  | :------------------------------------------------------- | :---------------------------------- |
-  | sandbox_host/gst/compliance/e-invoice/tax-payer/endpoint | sandbox_host/irp/tax-payer/endpoint |
-
-  ### **POST to GET**
-
-  Some API contracts have changed as per our thought-process about which you can [<u>read here</u>](https://developer.sandbox.co.in/docs/post-for-get). Below APIs have changed as per our design choice.
-
-  - [<u>e-Invoice Authentication</u>](https://developer.sandbox.co.in/reference/e-invoice-authentication-api)
-  - [<u>Search GSTIN Details</u>](https://developer.sandbox.co.in/reference/irp-einv-search-gstin-details)
-
-  ## **Improvements**
-
-  ### **Schema validation**
-
-  As a high number of requests are invalid as per NIC schemas, we have enabled schema validation on the e-Invoice APIs. The API which will return Invalid request body if request body does not match the schema. We have added the schemas on our e-Invoice APIs documentation for reference.
-
-  #### **How to validate the request body with schema**
-
-  1. Go to [<u>JSON Schema Validator</u>](https://www.jsonschemavalidator.net/).
-  2. Copy the schema from API reference page and paste in the Select Schema box (left).
-  3. Paste your request body in the Input JSON box (right).
-  4. The validator will show you errors if any. Change the request body accordingly until no errors are found.
-
-  ### **Change in issuer for e-Invoice access token**
-
-  Issuer has been changed to "[irp1.gst.gov.in](http://irp1.gst.gov.in)" in the e-Invoice access token.
-
-  ### **GSTIN transformation**
-
-  GSTIN passed in lowercase will be transformed to uppercase and then request will be executed.
-
-  ## **Bug Fixes**
-
-  - **e-Invoice access token:** Wrong expiry has been [corrected.es](http://corrected.es) will be communicated.
-</Update>
-
-<Update label="April 23rd " tags={["Added"]}>
+<Update label="April 23rd, 2024 " tags={["Added"]}>
   ## **New contracts for MCA APIs**
 
   We have deployed new API contracts for MCA APIs. Consequently, the previous contracts have been deprecated.
@@ -429,7 +300,55 @@ description: "Changelog for April 2024"
   The old contracts have been deprecated and will be discontinued soon. Timelines will be communicated.
 </Update>
 
-<Update label="April 18th " tags={["Deprecated"]}>
+<Update label="April 18th, 2024 " tags={["Added"]}>
+  ## **New contracts for GST e-Invoice API**
+
+  New API contracts for GST e-Invoice API have been published along with improvements and bug fixes.
+
+  ## **New contracts**
+
+  ### **Change in endpoints**
+
+  At a high level, the endpoints have changed in the fashion below. However, **for specific APIs**, please refer to the [<u>API reference</u>](https://developer.sandbox.co.in/reference/generate-e-invoice-api) for complete details.
+
+  | **New endpoints**                                        | **Deprecated endpoints**            |
+  | :------------------------------------------------------- | :---------------------------------- |
+  | sandbox_host/gst/compliance/e-invoice/tax-payer/endpoint | sandbox_host/irp/tax-payer/endpoint |
+
+  ### **POST to GET**
+
+  Some API contracts have changed as per our thought-process about which you can [<u>read here</u>](https://developer.sandbox.co.in/docs/post-for-get). Below APIs have changed as per our design choice.
+
+  - [<u>e-Invoice Authentication</u>](https://developer.sandbox.co.in/reference/e-invoice-authentication-api)
+  - [<u>Search GSTIN Details</u>](https://developer.sandbox.co.in/reference/irp-einv-search-gstin-details)
+
+  ## **Improvements**
+
+  ### **Schema validation**
+
+  As a high number of requests are invalid as per NIC schemas, we have enabled schema validation on the e-Invoice APIs. The API which will return Invalid request body if request body does not match the schema. We have added the schemas on our e-Invoice APIs documentation for reference.
+
+  #### **How to validate the request body with schema**
+
+  1. Go to [<u>JSON Schema Validator</u>](https://www.jsonschemavalidator.net/).
+  2. Copy the schema from API reference page and paste in the Select Schema box (left).
+  3. Paste your request body in the Input JSON box (right).
+  4. The validator will show you errors if any. Change the request body accordingly until no errors are found.
+
+  ### **Change in issuer for e-Invoice access token**
+
+  Issuer has been changed to "[irp1.gst.gov.in](http://irp1.gst.gov.in)" in the e-Invoice access token.
+
+  ### **GSTIN transformation**
+
+  GSTIN passed in lowercase will be transformed to uppercase and then request will be executed.
+
+  ## **Bug Fixes**
+
+  - **e-Invoice access token:** Wrong expiry has been [corrected.es](http://corrected.es) will be communicated.
+</Update>
+
+<Update label="April 18th, 2024 " tags={["Deprecated"]}>
   ## **Deprecated contracts for GST e-Invoice API**
 
   We have deployed new API contracts for GST e-Invoice APIs, as detailed in the [<u>changelog here</u>](https://developer.sandbox.co.in/changelog/new-contracts-for-gst-e-invoice-api). Consequently, the previous contracts have been deprecated.
@@ -439,39 +358,120 @@ description: "Changelog for April 2024"
   The deprecated contracts will be discontinued on **31st October 2024**
 </Update>
 
-<Update label="April 24th " tags={["Added"]}>
-  ## **TCS Calculator API**
+<Update label="April 16th, 2024 " tags={["Added"]}>
+  ## **Crypto Tax PnL API**
 
-  We have gone live with [<u>TCS Calculator API</u>](https://developer.sandbox.co.in/reference/calculate-tcs). Now Calculate the TCS collectible on incoming payments by providing us the values such as the `nature_of_payment`, `payment_amount` and among other details.
+  With the new version of Crypto PnL API, we have added support for crypto futures along with pnl and tax calculations of crypto spot trading.
 
-  API will then determine the `collection_amount`, `collection_rate`, `section`&`due_date` to deposit the TCS amount.
+  This addition in the API changes the request and response structure in the newer version, these changes are as follows.
 
-  API Response
+  ## **Changes in the request body**
+
+  - Created two separate sheets for the spot tradebook and futures tradebook. Transactions from the spot market need to be passed in the `crypto_currency_spot_tradebook_sheet` and transactions from trading crypto futures are required to be passed in the `crypto_currency_future_tradebook_sheet` respectively. Both the sheets also have a block where the last traded price of cryptocurrency or contract is to be passed.
+  - Added labels- `margin`,`margin_gain`, and `margin_loss`. These labels are required to be passed in the spot tradebook sheet when the user has traded crypto futures.
+
+  ## **Changes in the response body**
+
+  - Two separate sheets will be given for tradewise pnl of spot and futures.
+  - Instead of a separate sheet for holdings of cryptocurrencies, it will be given as a block within the `crypto_currency_spot_tradewise_tax_pnl_sheet`. Similarly, open positions in crypto futures will be given within the `crypto_currency_future_tradewise_tax_pnl_sheet`
+  - Tax pnl summary sheet will show the income from crypto futures as business & profession income as a non-speculative business income.
+</Update>
+
+<Update label="April 13th, 2024 " tags={["Added"]}>
+  ## **New contracts for GST Public and Taxpayer API**
+
+  New API contracts for GST Public APIs and GST Taxpayer APIs have been published along with improvements and bug fixes.
+
+  ## **New contracts**
+
+  ### **Change in endpoints**
+
+  At a high level, the endpoints have changed in the fashion below. However, **for specific APIs**, please refer to the API reference for complete details.
+
+  | **GST API**                                                                            | **New endpoint**                               | **Deprecated endpoint**             |
+  | :------------------------------------------------------------------------------------- | :--------------------------------------------- | :---------------------------------- |
+  | [<u>Public</u>](https://developer.sandbox.co.in/reference/search-gstin-api)            | sandbox_host/gst/compliance/public/endpoint    | sandbox_host/gsp/public/endpoint    |
+  | [<u>Taxpayer</u>](https://developer.sandbox.co.in/reference/taxpayer-generate-otp-api) | sandbox_host/gst/compliance/tax-payer/endpoint | sandbox_host/gsp/tax-payer/endpoint |
+
+  ### **Change in response**
+
+  The new contracts have a change in the response nesting.
+
+  New API ResponseDeprecated API Response
 
   ```
   {
-      "transaction_id": "7f3a8edb-4caf-48a9-83c4-0843cf843ad5",
+      "transaction_id": "28828716-0e9c-4af8-94da-5367fa8c679d",
       "code": 200,
       "data": {
-          "code": "6CO",
-          "due_date": 1707244200000,
-          "payment_amount": 799900,
-          "section": "206C(1G)",
-          "is_pan_available": true,
-          "@entity": "in.co.sandbox.tcs.calculator.response",
-          "threshold_amount": 700000,
-          "is_206cca_applicable": true,
-          "collectee_type": "individual",
-          "is_pan_operative": false,
-          "collection_rate": 20.00,
-          "nature_of_payment": "foreign_flight_tickets",
-          "collection_amount": 159980,
-          "residential_status": "non_resident",
-          "category": "overseas_tour_program_package",
-          "payment_date": 1706505329000
+          "data": {
+              "ack_num": "ASDFSDF1241343"
+          },
+          "status_cd": 1
       },
-      "timestamp": 1713942438000
+      "timestamp": 1621510445676
   }
   
   ```
+
+  ### **POST to GET**
+
+  Some API contracts have changed as per our thought-process about which you can [<u>read here</u>](https://developer.sandbox.co.in/docs/post-for-get). Below APIs have changed as per our design choice.
+
+  - [<u>Search GSTIN</u>](https://developer.sandbox.co.in/reference/search-gstin-api)
+  - [<u>Track GST Returns</u>](https://developer.sandbox.co.in/reference/track-gst-returns-api)
+  - [<u>Generate OTP</u>](https://developer.sandbox.co.in/reference/taxpayer-generate-otp-api)
+  - [<u>Verify OTP</u>](https://developer.sandbox.co.in/reference/taxpayer-verify-otp-api)
+  - [<u>Generate EVC OTP</u>](https://developer.sandbox.co.in/reference/generate-evc-otp-api)
+
+  ## **Improvements**
+
+  ### **Change in issuer for Taxpayer access token**
+
+  Issuer has been changed to "[gst.gov.in](http://gst.gov.in)" in the Taxpayer access token.
+
+  ### **GSTIN transformation**
+
+  GSTIN passed in lowercase will be transformed to uppercase and then request will be executed.
+
+  ## **Bug Fixes**
+
+  - **Taxpayer access token:** Wrong expiry has been corrected.
+</Update>
+
+<Update label="April 13th, 2024 " tags={["Deprecated"]}>
+  ## **Deprecated contracts for GST Public and Taxpayer API**
+
+  We have deployed new API contracts for GST Public APIs and GST Taxpayer API, as detailed in the [<u>changelog here</u>](https://developer.sandbox.co.in/changelog/new-contracts-for-gst-public-and-taxpayer-api). Consequently, the previous contracts have been deprecated.
+
+  ### **Change in endpoints**
+
+  | **GST API** | **New endpoint**                               | **Deprecated endpoint**             |
+  | :---------- | :--------------------------------------------- | :---------------------------------- |
+  | Public      | sandbox_host/gst/compliance/public/endpoint    | sandbox_host/gsp/public/endpoint    |
+  | Taxpayer    | sandbox_host/gst/compliance/tax-payer/endpoint | sandbox_host/gsp/tax-payer/endpoint |
+
+  ## **Discontinuation**
+
+  The deprecated contracts will be discontinued on **31st October 2024**
+</Update>
+
+<Update label="April 5th, 2024 " tags={["Added"]}>
+  ## **Verify PAN Details API**
+
+  In line with the changes communicated by the income tax department, we have released the [<u>Verify PAN Details API</u>](https://developer.sandbox.co.in/reference/verify-pan-details-api). The new contract requires the user to pass the PAN, name as per PAN, and date of birth to verify the entity.
+
+  ## **[Deprecated] PAN Basic and PAN Advance API**
+
+  While existing PAN Verification APIs are working, the upstream partners have confirmed that they will be discontinued by 30th April.
+
+  As such, we have marked them deprecated and recommend immediate migration to the new [<u>Verify PAN Details API</u>](https://developer.sandbox.co.in/reference/verify-pan-details-api).
+</Update>
+
+<Update label="April 5th, 2024 " tags={["Deprecated"]}>
+  ## **PAN Basic and Advance API**
+
+  While existing PAN Verification APIs are working, the upstream partners have confirmed that they will be discontinued by 30th April in line with the changes communicated by the income tax department.
+
+  As such, we have marked them deprecated and recommend immediate migration to the new [<u>Verify PAN Details API</u>](https://developer.sandbox.co.in/reference/verify-pan-details-api).
 </Update>

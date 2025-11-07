@@ -1,0 +1,1781 @@
+---
+title: "Changelog"
+description: "Changelog for Sandbox APIs"
+---
+## 2025
+### July
+<Update label="July 31st, 2025" tags={["Added"]}>
+  ## Introducing DigiLocker APIs
+
+  We’ve launched DigiLocker APIs that let you build consent-based, digital KYC flows. These APIs allow individuals to fetch verified documents like Aadhaar, PAN, and Driving License directly from DigiLocker, a digital document wallet trusted by millions.
+
+  **Workflow**
+
+  1. [<u>Initiate Session</u>](https://developer.sandbox.co.in/reference/digilocker-api-initiate-session): Generate a one-time DigiLocker link for document consent
+  2. [<u>Session Status</u>](https://developer.sandbox.co.in/reference/digilocker-api-session-status): Check real-time consent status and list of approved documents
+  3. [<u>Fetch Document</u>](https://developer.sandbox.co.in/reference/digilocker-api-fetch-document): Retrieve the requested document using session ID + document type
+
+  **Key Behaviour**
+
+  - One-hour retention: Documents are retained for up to 60 minutes, then auto-deleted
+  - You control the UX: Build your own flows, Sandbox just powers the backend
+  - Certified TSP: Sandbox is a government-recognized Technology Solution Provider
+</Update>
+
+<Update label="July 3rd, 2025" tags={["Added"]}>
+  ## Sandbox Version 2.0
+
+  We’re excited to introduce Sandbox v2.0. Our new release includes redesigned website, Console - Billing & Subscription Management platform, new APIs, and more.
+
+  This guide walks you through what's new, the actions required from your end, and where to find support.
+
+  <Check>
+    [******<u>Sandbox v2.0 is now live 🚀 You can visit Console here.</u>******](https://console.sandbox.co.in/)
+  </Check>
+  ## What’s New
+
+  We started with a simple goal - to make taxes programmable for enterprises using simple and fast APIs. We focus on four pillars - RESTful APIs, easy-to-read documentation, Postman Collection and a self-serve onboarding experience.
+
+  We continue to build these to improve your user experience. Here is a summary of improvements
+
+  ### 🌐 Website
+
+  Our [<u>new website</u>](https://sandbox.co.in/) catalogs all APIs, resources, use cases and customer stories together in one place. And most importantly, transparently communicates the pricing.
+
+  ### 📊 Console
+
+  [<u>Console</u>](https://console.sandbox.co.in/) is the control center for managing your Sandbox API subscription. We have enhanced following features
+
+  📈 **Monitoring:** Understanding your API usage is important, not just for billing but also to drill down into what's working and what's not as well as spot unexpected usage. You can track your API usage in real-time, see the endpoints you're hitting, all this with the breakdown into 2xx, 4xx and 5xx.
+
+  💳 **Payment Options:** Many customers struggle with setting up payment mandates. You can now configure recurring payment method or make one-time payment to start your subscription. You can also configure primary and secondary payment methods to avoid failures.
+
+  <Danger>
+    **We have switched our payment gateway and existing payment mandates will be invalid, you have to configure new mandates. There should be no downtime, as we have added a 30-day grace period.**
+  </Danger>
+  🔑 **Manage API Keys:** Your API Key and Secret are the credentials that authenticate your access to Sandbox APIs. You can manage - generate, regenerate, view and download API credentials from Console.
+
+  🧾 **Billing & Subscription:** You can start, upgrade/downgrade or cancel your subscription at anytime. You can view billing history and download invoices from Console. Your API keys also remain same every time you make changes to your plan. This makes it easy for you to scale up or down based on change in business cycles or upcoming product launches.
+
+  👥 **Teams:** It takes a team to build & run a business. You can now invite your team members to your workspace, allowing your product, technology and finance team to access your Sandbox subscription with role based access control.
+
+  💰 **Wallet:** Some of our APIs are sourced from ecosystem partners - government departments, licensed intermediaries and other businesses. These are **PAID** APIs. You must add credits to your wallet to use these APIs. You can recharge your wallet via UPI or bank transfer.
+
+  <Note>
+    **New virtual accounts have been issued on Console for your wallet. This means a new account number, IFSC and beneficiary name for the virtual account (VA). Deposit money only in the new VAs to use Paid APIs with your wallet balance.**
+  </Note>
+  📡 **Webhooks:** Webhooks are essential in building products on event-driven architecture. You can configure webhooks for all our Async APIs on Console. Events will be as per the Cloud Events specifications, and you can encrypt the payload using a secret.
+
+  ### 🔌 APIs
+
+  We have further simplified our APIs - improved contracts, reduced latency, better documentation and more. Here are key updates.
+
+  ⚙️ **Consistent REST Contracts:** We have updated our APIs contracts to more closely follow REST convention which makes them easy to understand and integrate.
+
+  📡 **Webhooks:** All async APIs now support webhooks - this makes it easy to build systems using event driven workflows. Webhook events also support large payloads as well as employ a retry mechanism to ensure delivery.
+
+  🆕 **New APIs:** We are continuously adding APIs to our stack. You can find new API guides and references on API Docs [<u>here</u>](https://developer.sandbox.co.in/reference).
+
+  🧩 **Updated Client SDKs:** Sandbox SDKs are available in Java and Node.js. You can also generate SDKs using Open API specification in a language of your choice.
+
+  You can check the changelogs for complete details.
+
+  - [<u>Income Tax</u>](https://developer.sandbox.co.in/changelog/income-tax-api-feature-release)
+  - [<u>GST</u>](https://developer.sandbox.co.in/changelog/gst-api-feature-release)
+  - [<u>TDS</u>](https://developer.sandbox.co.in/changelog/tds-api-feature-release)
+  - [<u>Authentication</u>](https://developer.sandbox.co.in/changelog/authentication-feature-release)
+
+  ## Way Forward
+
+  ### ✅ What You Need to Do
+
+  1. Log in to [<u>Console</u>](https://console.sandbox.co.in/)
+  2. Invite your team members
+  3. Set up your payment method
+  4. Monitor usage and manage API keys
+
+  ### 💬 Need Help?
+
+  We know change can come with questions, and we're here for you every step of the way.
+
+  Start with our [<u>Help Center</u>](https://help.sandbox.co.in/portal/en/kb), where we’ve covered everything Console. You’ll find detailed changelogs & API references to guide you through the latest updates on Sandbox APIs.
+
+  Still unsure or stuck? Just drop us a note at [<u>help@sandbox.co.in</u>](mailto:help@sandbox.co.in), [<u>raise a ticket</u>](https://help.sandbox.co.in/portal/en/newticket) or reach out to your relationship manager.
+</Update>
+### June
+<Update label="June 23rd, 2025" tags={["Improved"]}>
+  ## **Authentication: Feature Release**
+
+  With Sandbox v2.0 Release going live, we have published new features, standardized API contracts to better align with REST guidlines and squashed bugs here and there.
+
+  ### **Authenticate API**
+
+  [<u>Authenticate API</u>](https://developer.sandbox.co.in/reference/authenticate-api) will now have the standard Sandbox API response template.
+
+  New ResponseOld Response
+
+  ```
+  {
+      "code": 200,
+      "timestamp": 1750687659809,
+      "data": {
+          "access_token": "eyJ0eXAiOixxxxxdefgQ.eyJ3b3JrxxxxxxxNjB9.bK1BJ5B-KxV2FxxxxxxxxxC8QOgTtSMTA"
+      },
+      "transaction_id": "3a31716a-6a4d-4670-83fe-849d8209e35a"
+  }
+  
+  ```
+
+  > ## **📘For backward compatibility, access token will be present in the response at root for a period of 30 days.**
+
+  ### **Authorize API**
+
+  Authorize API is now deprecated with one goal in mind, simplify Sandbox API Authentication. Only Authenticate API needs to be called to authenticate and get the token. Authorize API will be decomissioned within 30 days.
+
+  Please go through the linked API endpoints to make the necessary changes to avoid any production impact. In case of any queries, feel free to reach out to [<u>help@sandbox.co.in</u>](mailto:help@sandbox.co.in), we are here to help.
+</Update>
+
+<Update label="June 23rd, 2025" tags={["Improved"]}>
+  ## **GST API: Feature Release**
+
+  With Sandbox 2.0 Release going live, we have published new features, standardized API contracts to better align with REST guidlines and squashed bugs here and there.
+
+  1. Introducing Webhooks to empower true automation in GSTR-2B Reconciliation, GSTR-2A Reconciliation, List Sales e-Invoices and List Purchase e-Invoices Job APIs. Webhooks can be configured via Console. Read about configuring a webhook [<u>here</u>](https://help.sandbox.co.in/portal/en/kb/articles/configure-a-webhook).
+  2. Sheet JSON structure change to aligh with JSON schema standards. This impacts
+     1. [<u>GSTR-2B Reconciliation API</u>](https://developer.sandbox.co.in/reference/reconcile-gstr-2b-job)
+     2. [<u>GSTR-2A Reconciliation API</u>](https://developer.sandbox.co.in/reference/reconcile-gstr-2a-job)
+
+  \
+  Please go through the linked API endpoints to make the necessary changes to avoid any production impact. In case of any queries, feel free to reach out to [<u>help@sandbox.co.in</u>](mailto:help@sandbox.co.in), we are here to help.
+</Update>
+
+<Update label="June 23rd, 2025" tags={["Improved"]}>
+  ## **TDS API: Feature Release**
+
+  With Sandbox 2.0 Release going live, we have published new features, standardized API contracts to better align with REST guidlines and squashed bugs here and there.
+
+  1. Introducing Webhooks to enable true automation in Potential Notices, Return Preparation, Return Filing, and Certificate Generation. Webhooks can be configured via Console. Read about configuring a webhook [<u>here</u>](https://help.sandbox.co.in/portal/en/kb/articles/configure-a-webhook).
+  2. Sheet JSON structure change to aligh with JSON schema standards. This impacts
+     1. TDS Potential Notices API
+     2. TCS Potential Notices API
+     3. TDS Return Preparation API
+     4. TCS Return Preparation API
+  1. [<u>Search FVU Generation Jobs API</u>](https://developer.sandbox.co.in/reference/search-generate-fvu-jobs) enables to fetch zip of FVU & Form 27A generated in past jobs.
+  2. Change in contracts to align as per REST guidelines
+
+  | **Feature**                                                                                                           | **Old Endpoint**                                        | **New Endpoint**                        |
+  | :-------------------------------------------------------------------------------------------------------------------- | :------------------------------------------------------ | :-------------------------------------- |
+  | [<u>E-File TDS Return Job</u>](https://developer.sandbox.co.in/reference/e-file-tds-return-job)                       | /tds/compliance/tin-fc/deductors/e-file/fvu             | /tds/compliance/e-file                  |
+  | [<u>Search E-File TDS Return Jobs</u>](https://developer.sandbox.co.in/reference/search-e-file-tds-return-jobs)       | /tds/compliance/tin-fc/deductors/e-file/search          | /tds/compliance/e-file/search           |
+  | [<u>Generate FVU Job</u>](https://developer.sandbox.co.in/reference/generate-fvu-job)                                 | /tds/compliance/fvu-generation                          | /tds/compliance/fvu/generate            |
+  | [<u>Check TDS Potential Notices Job</u>](https://developer.sandbox.co.in/reference/tds-potential-notice-check-api)    | /tds/analytics/deductors/tdsrs/potential-notices        | /tds/analytics/potential-notices        |
+  | [<u>Search TDS Potential Notices Jobs</u>](https://developer.sandbox.co.in/reference/fetch-tds-potential-notice-jobs) | /tds/analytics/deductors/tdsrs/potential-notices/search | /tds/analytics/potential-notices/search |
+  | [<u>Check TCS Potential Notices Job</u>](https://developer.sandbox.co.in/reference/tcs-potential-notice-check-api)    | /tcs/analytics/deductors/tdsrs/potential-notices        | /tcs/analytics/potential-notices        |
+  | [<u>Search TCS Potential Notices Jobs</u>](https://developer.sandbox.co.in/reference/fetch-tcs-potential-notice-jobs) | /tcs/analytics/deductors/tdsrs/potential-notices/search | /tcs/analytics/potential-notices/search |
+  | [<u>Prepare TDS Return Job</u>](https://developer.sandbox.co.in/reference/prepare-tds-return)                         | /tds/reports/deductors/tdsrs                            | /tds/reports/txt                        |
+  | [<u>Search Prepare TDS Return Jobs</u>](https://developer.sandbox.co.in/reference/fetch-tds-report-jobs)              | /tds/reports/deductors/tdsrs/search                     | /tds/reports/txt/search                 |
+  | [<u>Prepare TCS Return Job</u>](https://developer.sandbox.co.in/reference/tcs-submit-job)                             | /tcs/reports/collectors/tcsrs                           | /tcs/reports/txt                        |
+  | [<u>Search Prepare TCS Return Jobs</u>](https://developer.sandbox.co.in/reference/fetch-tcs-report-jobs)              | /tcs/reports/collectors/tcsrs/search                    | /tcs/reports/txt/search                 |
+
+  Please go through the linked API endpoints to make the necessary changes to avoid any production impact. In case of any queries, feel free to reach out to [<u>help@sandbox.co.in</u>](mailto:help@sandbox.co.in), we are here to help.
+</Update>
+
+<Update label="June 3rd, 2025 " tags={["Improved"]} description>
+  ## **Income Tax API: Feature Release**
+
+  **W**ith Sandbox 2.0 Release going live, we have published new features, standardized API contracts to better align with REST guidlines and squashed bugs here and there.
+
+  1. New Calculator APIs built on top of powerful P&L and Tax P&L calculator engines
+     1. [<u>Domestic Securities Tax P&L Report</u>](https://developer.sandbox.co.in/reference/it-reports-tax-pnl-securities-submit-job)
+     2. Calculate Tax P&L for Domestic Securities - Sync
+     3. Calculate Tax P&L for Foreign Securities - Sync
+  1. Introducing Webhooks to facilitiate true automation in Domestic Securities Tax P&L Report. Webhooks can be configured via Console. Read about configuring a webhook [<u>here</u>](https://help.sandbox.co.in/portal/en/kb/articles/configure-a-webhook).
+  2. Change in contracts to align as per REST guidelines
+
+  | **Feature**                                                                                                                              | **New Endpoint**                           | **Old Endpoint**                                  |
+  | :--------------------------------------------------------------------------------------------------------------------------------------- | :----------------------------------------- | :------------------------------------------------ |
+  | [<u>Calculate Tax P&L for Domestic Securities</u>](https://developer.sandbox.co.in/reference/submit-job-calculator-domestic-securities)  | /it/calculator/tax-pnl/securities/domestic | /it-calculator/securities/domestic/report/tax-pnl |
+  | [<u>Calculate Tax P&L for Foreign Securities</u>](https://developer.sandbox.co.in/reference/submit-job-it-calculator-securities-foreign) | /it/calculator/tax-pnl/securities/foreign  | /it-calculator/securities/foreign/report/tax-pnl  |
+
+  Please go through the linked API endpoints to make the necessary changes to avoid any production impact. In case of any queries, feel free to reach out to [<u>help@sandbox.co.in</u>](mailto:help@sandbox.co.in), we are here to help.
+</Update>
+### January
+<Update label="January 20th, 2025 " tags={["Added"]}>
+  ## **Generate FVU**
+
+  This API allows you to generate the FVU file and Form 27A required for filing your TDS return by passing the TXT and CSI files. The job-based workflow ensures easy integration into your existing processes and completes the TDS return preparation journey as follows:
+
+  1. Generate TXT using the TDS Reports or TCS Reports API
+  2. Download CSI File API
+  3. Generate FVU API
+     1. [<u>Submit Job</u>](https://developer.sandbox.co.in/reference/generate-fvu-api)
+     2. [<u>Poll Job</u>](https://developer.sandbox.co.in/reference/fetch-fvu-api)
+  1. E-File TDS Return API
+</Update>
+
+<Update label="January 10th, 2025 " tags={["Improved"]}>
+  ## **Introducing Criss-Cross Operations for Reliable e-Invoicing**
+
+  We’re excited to introduce criss-cross operations, enabling seamless failover management between the two NIC portals: e-Invoice 1 (primary) and e-Invoice 2 (secondary).
+
+  This feature is available for below APIs:
+
+  - Cancel e-Invoice
+  - Get e-Invoice by IRN
+  - Get e-Invoice by Document Data
+  - Generate E-Way Bill by IRN
+  - Get E-Way Bill by IRN
+
+  ## **New Headers: x-source and x-proxy**
+
+  - x-source: Specifies the source to access, either primary (e-Invoice 1 portal) or secondary (e-Invoice 2 portal).
+  - x-proxy: Enables criss-cross operations by routing requests through the specified source (e.g., access primary via secondary if primary is unavailable).
+
+  ### **How These Work Together:**
+
+  **Normal Flow:** The client sets x-source to primary, and the system retrieves data directly from the primary source (e-Invoice 1 portal).
+
+  **Failover or Criss-cross Access:** If the primary portal is inaccessible, the client can use x-proxy to specify an alternate route. For example:
+
+  - x-source: primary (Target is e-Invoice 1 portal)
+  - x-proxy: secondary (Route through e-Invoice 2 portal to access data of e-Invoice 1 portal)
+
+  This feature enhances reliability, minimizes disruptions, and provides businesses with robust failover management for critical e-Invoice operations.
+</Update>
+## 2024
+### December
+<Update label="December 20th, 2024 " tags={["Improved"]}>
+  ## **Generate E-Way Bill to unregistered persons**
+
+  Earlier, generating E-Way Bills to unregistered persons was only possible using the E-Way Bill portal. With the latest update, consigners can now generate E-Way Bills to unregistered persons using Sandbox API. Simply pass "urp" in the toGstin field while creating an [<u>E-Way Bill</u>](https://developer.sandbox.co.in/reference/generate-e-way-bill-api).
+</Update>
+
+<Update label="December 18th, 2024 " tags={["Added"]}>
+  ## **File GSTR-9 API**
+
+  GSTR-9 is the annual return under GST that provides a comprehensive summary of a taxpayer's monthly or quarterly filings during a financial year. It consolidates details of outward and inward supplies, taxes paid, input tax credit (ITC), and adjustments or refunds.
+
+  Sandbox has launched new GST Taxpayer APIs to enable automation of GSTR-9 workflows. Below are the APIs released.
+
+  - [<u>GSTR-9 Auto Calculated Details</u>](https://developer.sandbox.co.in/reference/gstr-9-auto-calculated-details-api)
+  - [<u>Section 8A Details</u>](https://developer.sandbox.co.in/reference/section-8a-details-api)
+  - [<u>Save GSTR-9</u>](https://developer.sandbox.co.in/reference/save-gstr-9-api)
+  - [<u>GSTR-9 Details</u>](https://developer.sandbox.co.in/reference/gstr-9-get-details-api)
+  - [<u>File GSTR-9</u>](https://developer.sandbox.co.in/reference/file-gstr-9-api)
+</Update>
+### November
+<Update label="November 25th, 2024 " tags={["Added"]} description>
+  ## **Get e-Invoices generated within last 6 months**
+
+  We have added new GST Taxpayer APIs to retrieve e-Invoices generated within the last 6 months directly from the GST Network. Previously, it was only possible to access e-Invoices generated within the past 3 days, as data was ported from the e-Invoice portal to the GST portal. Below are the APIs released.
+
+  1. [<u>Get e-Invoice by IRN</u>](https://developer.sandbox.co.in/reference/taxpayer-get-e-invoice-by-irn-api)
+  2. [<u>List Sales e-Invoices for a return period</u>](https://developer.sandbox.co.in/reference/list-sales-e-invoices-job-status-api)
+  3. [<u>List Purchase e-Invoices for a return period</u>](https://developer.sandbox.co.in/reference/list-purchase-e-invoices-job-status-api)
+</Update>
+
+<Update label="November 22nd, 2024 " tags={["Added"]}>
+  ## **Sheet JSON Converter APIs**
+
+  Financial information required for tax compliance is typically stored in Excel files or formats. However, while Sandbox APIs process this data in a [<u>Sheet-JSON structure</u>](https://developer.sandbox.co.in/docs/the-basics#sheet-structure), developers often face the challenge of manually mapping values and performing conversions, which can significantly extend development timelines.
+
+  The introduction of the Sheet-JSON APIs resolves this issue by providing an efficient way to handle conversions between Excel (XLSX) and Sheet-JSON formats. This automation eliminates the need for manual mapping, significantly speeding up the development process. The APIs include:
+
+  - [<u>XLSX to Sheet JSON</u>](https://developer.sandbox.co.in/reference/xlsx-to-json-submit-job-api): Converts XLSX files into Sheet-JSON format.
+  - [<u>Sheet JSON to XLSX</u>](https://developer.sandbox.co.in/reference/json-to-xlsx-submit-job-api): Converts Sheet-JSON data back into XLSX files.
+
+  The Sheet-JSON APIs also offer flexibility, enabling developers to create custom JSON structures, as long as the XLSX and JSON follow the Sheet-JSON format. This allows for efficient and tailored data conversions beyond the specific JSON requirements of the Sandbox APIs.
+</Update>
+
+<Update label="November 21st, 2024 " tags={["Added"]} description>
+  ## **New Contract for PAN-Aadhaar Link Status**
+
+  We have deployed a new contract for this API. Consequently, the previous contract has been marked deprecated. The API contract has changed as per our POST to GET thought process, which you can read about [<u>here</u>](https://developer.sandbox.co.in/docs/post-for-get).
+
+  | **API Name**                                                                                              | **New Contracts**                   | **Deprecated Contracts**                          |
+  | :-------------------------------------------------------------------------------------------------------- | :---------------------------------- | :------------------------------------------------ |
+  | [<u>PAN-Aadhaar Link Status</u>](https://developer.sandbox.co.in/reference/pan-aadhaar-link-status-check) | sandbox_host/kyc/pan-aadhaar/status | sandbox_host/it-tools/pans/pan/pan-aadhaar-status |
+
+  ## **Changes in the API request**
+
+  The API is now a `POST` request, requiring `pan` and `aadhaar_number` to be passed in the request body. Furthermore, the following keys are now required as well:
+
+  - `@entity`
+  - `consent`
+  - `reason`
+
+  You can compare the response as per the old and new contract below:
+
+  New RequestOld Request
+
+  ```
+  curl --request POST \
+       --url https://api.sandbox.co.in/kyc/pan-aadhaar/status \
+       --header 'accept: application/json' \
+       --header 'authorization: eyJhbGciOi....' \
+       --header 'content-type: application/json' \
+       --header 'x-api-key: key_live_T43....' \
+       --data '
+  {
+    "@entity": "in.co.sandbox.kyc.pan_aadhaar.status",
+    "pan": "XXXPX1234A",
+    "aadhaar_number": "123456789012",
+    "consent": "Y",
+    "reason": "For KYC"
+  }
+  '
+  
+  ```
+
+  ## **Changes in the API response**
+
+  The following keys have been added
+
+  - `@entity`
+  - `aadhaar_seeding_status`
+
+  You can compare the response as per the old and new contract below:
+
+  New ResponseOld Response
+
+  ```
+  {
+    "code": 200,
+    "timestamp": 1614696176218,
+    "transaction_id": "611335dc-8be4-40d1-8438-b86526462939",
+    "data": {
+      "@entity": "in.co.sandbox.kyc.pan_aadhaar.status.response",
+      "aadhaar_seeding_status": "y",
+      "message": "Your PAN is linked to Aadhaar Number  XXXX XXXX 9999."
+    }
+  }
+  
+  ```
+
+  ## **Discontinuation of old contracts**
+
+  The old contracts have been deprecated and will be discontinued soon. Timelines will be communicated.
+</Update>
+
+<Update label="November 21st, 2024 " tags={["Added"]}>
+  ## **Regenerate GSTR-2B on-demand**
+
+  With Sandbox APIs, you can regenerate GSTR-2B on-demand regeneration. whenever actions are taken on invoices within the Invoice Management System (IMS), the GSTR-2B gets outdated, which means it needs to be regenerated. GSTR-2B regeneration ensures that the latest invoice status (Accepted/Rejected/Pending) is reflected in GSTR-2B in real time, improving compliance accuracy.
+
+  To facilitate this, Sandbox has integrated and released the following APIs:
+
+  - [<u>Regenerate GSTR-2B</u>](https://developer.sandbox.co.in/reference/regenerate-gstr-2b): Trigger a real-time generation of GSTR-2B when invoice actions are taken in IMS.
+  - [<u>GSTR-2B Regeneration Status</u>](https://developer.sandbox.co.in/reference/gstr-2b-regeneration-status): Check the processing status of an On-Demand GSTR-2B generation request.
+
+  These eliminate discrepancies between invoice records and GSTR-2B data, ensuring businesses claim the correct Input Tax Credit (ITC) after any updates done on the IMS.
+</Update>
+
+<Update label="November 20th, 2024 " tags={["Added"]}>
+  ## **GST Invoice Managenent System (IMS) API**
+
+  The Invoice Management System (IMS) on the GST portal streamlines invoice management and reconciliation by allowing recipients to accept, reject, or mark invoices as pending. [<u>Sandbox IMS API</u>](https://developer.sandbox.co.in/reference/gst-invoice-management-system) enable for businesses to automate these processes.
+
+  To facilitate and enable IMS workflows, Sandbox has integrated and released below IMS APIs.
+
+  - [<u>Get Invoice Count</u>](https://developer.sandbox.co.in/reference/get-invoice-count-api): Obtain the count of invoices along with their current status available on IMS
+  - [<u>Get Invoices</u>](https://developer.sandbox.co.in/reference/get-invoices-api): Fetch invoice objects with their status in real time
+  - [<u>Save Invoice Status</u>](https://developer.sandbox.co.in/reference/save-invoice-status-api): Save invoices status on IMS
+  - [<u>Reset Invoice Status</u>](https://developer.sandbox.co.in/reference/reset-invoice-status-api): Reset invoices status on IMS
+  - [<u>Check Invoice Status</u>](https://developer.sandbox.co.in/reference/check-invoice-status-api): Check status of action taken on invoices
+</Update>
+
+<Update label="November 12th, 2024 " tags={["Added"]}>
+  ## **Generate e-Invoice PDF**
+
+  With the [<u>Generate e-Invoice PDF API</u>](https://developer.sandbox.co.in/reference/generate-e-invoice-pdf-api), you can instantly generate a downloadable e-Invoice PDF. The PDF follows the NIC e-Invoice template, making it easy to share with recipients in a consistent format. This API completes the invoice generation flow, as below.
+
+  1. [<u>Generate e-Invoice API</u>](https://developer.sandbox.co.in/reference/generate-e-invoice-api)
+  2. [<u>Generate e-Invoice PDF API</u>](https://developer.sandbox.co.in/reference/generate-e-invoice-pdf-api)
+  3. Share with the recipients
+</Update>
+### October
+<Update label="October 25th, 2024 " tags={["Added"]}>
+  ## **GSTR-2A Reconciliation with Purchase Ledger**
+
+  GSTR-2A is an dynamic statement generated by the GST Department that contains details of purchases and gets updated whenever new invoices are reported by suppliers. Automating GSTR-2A reconciliation helps match your purchase ledger with the GSTR-2A statement, identify discrepancies in advance to take action and avoid issues during time of filing.
+
+  The API accepts two inputs: the GSTR-2A and a purchase ledger (in Sheet-JSON format) consisting of invoice and debit note details. Based on this input, the API generates a reconciliation report in XLSX format, providing a summary and document-level matching information for invoices and debit notes. This streamlines the reconciliation process, enabling finance teams to quickly identify and address discrepancies.
+
+  For more details, you can refer to the documentation: [<u>GSTR-2A Reconciliation</u>](https://developer.sandbox.co.in/reference/gstr-2a-reconciliation)
+</Update>
+
+<Update label="October 23rd, 2024 " tags={["Improved"]}>
+  ## **X-Accept-Cache header support added in KYC API**
+
+  X-Accept-Cache header gives more control to API users over caching in Sandbox APIs. The following APIs now support this header:
+
+  - [<u>Bank Account Verification [Penny Drop]</u>](https://developer.sandbox.co.in/reference/bank-account-verification-api)
+  - [<u>Bank Account Verification [Penny Less]</u>](https://developer.sandbox.co.in/reference/bank-account-verification-penny-less-api)
+  - [<u>Verify PAN Details</u>](https://developer.sandbox.co.in/reference/verify-pan-details-api)
+
+  You can read more about the header [<u>here</u>](https://developer.sandbox.co.in/docs/response-caching#x-accept-cache-header).
+</Update>
+
+<Update label="October 11th, 2024 " tags={["Added"]}>
+  ## **GSTR-2B Reconciliation with Purchase Ledger**
+
+  GSTR-2B is an auto-drafted statement generated by the GST Department that contains details of purchases and Input Tax Credit (ITC). Automating GSTR-2B reconciliation helps match your purchase ledger with the GSTR-2B statement, identify discrepancies, and accurately claim ITC.
+
+  The API accepts two inputs: the GSTR-2B and a purchase ledger (in Sheet-JSON format) consisting of invoice and debit note details. Based on this input, the API generates a reconciliation report in XLSX format, providing a summary and document-level matching information for invoices and debit notes. This streamlines the reconciliation process, enabling finance teams to quickly identify and address discrepancies.
+</Update>
+### September
+<Update label="September 24th, 2024 " tags={["Deprecated"]}>
+  ## **Deprecated contracts for GST E-Way Bill API**
+
+  We have deployed new API contracts for GST E-Way Bill APIs, as detailed in the [<u>changelog here</u>](https://developer.sandbox.co.in/changelog/new-contracts-for-gst-e-way-bill-api). Consequently, the previous contracts have been deprecated.
+
+  ### **Discontinuation**
+
+  The deprecated contracts will be discontinued on **31st October 2024**.
+</Update>
+
+<Update label="September 24th, 2024 " tags={["Added"]}>
+  ## **New contracts for GST E-Way Bill API**
+
+  New API contracts for GST E-Way Bill API have been published along with improvements and bug fixes.
+
+  ## **New contracts**
+
+  ### **Change in endpoints**
+
+  At a high level, the endpoints have changed in the fashion below. However, **for specific APIs**, please refer to the [<u>API reference</u>](https://developer.sandbox.co.in/reference/generate-e-way-bill-api) for complete details.
+
+  | **New endpoints**                                         | **Deprecated endpoints**            |
+  | :-------------------------------------------------------- | :---------------------------------- |
+  | sandbox_host/gst/compliance/e-way-bill/tax-payer/endpoint | sandbox_host/ewb/tax-payer/endpoint |
+
+  **POST to GET**
+
+  Some API contracts have changed as per our thought-process about which you can [<u>read here</u>](https://developer.sandbox.co.in/docs/post-for-get). Below APIs have changed as per our design choice.
+
+  - [<u>E-Way Bill Authentication</u>](https://developer.sandbox.co.in/reference/e-way-bill-authentication-api)
+  - [<u>Search GSTIN Details</u>](https://developer.sandbox.co.in/reference/e-way-bill-search-gstin-api)
+
+  ### **Improvements**
+
+  ### **Schema validation**
+
+  As a high number of requests are invalid as per NIC schemas, we have enabled schema validation on the E-Way Bill APIs. The API which will return Invalid request body if request body does not match the schema. We have added the schemas on our E-Way Bill APIs documentation for reference.
+
+  #### **How to validate the request body with schema**
+
+  1. Go to [<u>JSON Schema Validator</u>](https://www.jsonschemavalidator.net/).
+  2. Copy the schema from API reference page and paste in the Select Schema box (left).
+  3. Paste your request body in the Input JSON box (right).
+  4. The validator will show you errors if any. Change the request body accordingly until no errors are found.
+
+  ### **Change in issuer for E-Way Bill access token**
+
+  Issuer has been changed to "[irp1.gst.gov.in](http://irp1.gst.gov.in)" in the access token.
+
+  ### **GSTIN transformation**
+
+  GSTIN passed in lowercase will be transformed to uppercase and then request will be executed.
+
+  ### **Bug Fixes**
+
+  - **E-Way Bill access token:** Wrong expiry has been corrected.
+</Update>
+
+<Update label="September 16th, 2024 " tags={["Deprecated"]}>
+  ## **Discontinuation of Old MCA API Contracts**
+
+  As notified in the changelog dated [<u>23.04.2024</u>](https://developer.sandbox.co.in/changelog/new-contract-for-mca-apis), the older contract of MCA APIs will be discontinued by **31st October 2024**. Existing users are to keep this in mind and accordingly plan their migration to the new API contracts.
+</Update>
+
+<Update label="September 16th, 2024 " tags={["Deprecated"]}>
+  ## **Discontinuation of V1 Aadhaar OKYC API**
+
+  As notified in the changelog dated [<u>14.05.2024</u>](https://developer.sandbox.co.in/changelog/changes-in-aadhaar-okyc-api), version 1.0 of Aadhaar OKYC APIs will be discontinued by **31st October 2024**. All requests and responses will be as per version 2.0 of the API contract.
+
+  Existing users should keep this in mind and plan their migration to the new API contracts accordingly.
+</Update>
+
+<Update label="September 13th, 2024 " tags={["Added"]}>
+  ## **Potential Notices API**
+
+  With this API, deductors and collectors can avoid penalties and notices related to their TDS and TCS returns, saving the time and effort required for filing correction returns.
+
+  The API accepts the same sheet-json used for TDS reports and returns an XLSX file containing detailed reports of transactions or challans that may result in a notice, simplifying the process for finance teams to make necessary changes.
+
+  You can refer to the API documentation for more details:
+
+  - [<u>TDS Potential Notices</u>](https://developer.sandbox.co.in/reference/tds-potential-notice-check-api)
+  - [<u>TCS Potential Notices</u>](https://developer.sandbox.co.in/reference/tcs-potential-notice-check-api)
+</Update>
+### July
+<Update label="July 25th, 2024 " tags={["Improved"]}>
+  ## **X-Accept-Cache header support added in GST Public API**
+
+  X-Accept-Cache header gives more control to API users over caching in Sandbox APIs. [<u>Search GSTIN API</u>](https://developer.sandbox.co.in/reference/search-gstin-api) and [<u>Track GST Returns API</u>](https://developer.sandbox.co.in/reference/track-gst-returns-api) now support X-Accept-Cache header. You can read more about the header [<u>here</u>](https://developer.sandbox.co.in/docs/response-caching#x-accept-cache-header).
+</Update>
+
+<Update label="July 25th, 2024 " tags={["Added"]}>
+  ## **New contract for Search GSTIN by PAN API**
+
+  With Search GSTIN by PAN API, one can pass the PAN and state code to get the GST Registration details for any business. This helps in easy onboarding and verification of vendors or business clients. We have published the new contract for [<u>Search GSTIN by PAN API</u>](https://developer.sandbox.co.in/reference/search-gstin-by-pan-api).
+
+  ## **Change in endpoint**
+
+  | **New endpoint**                                    | **Deprecated endpoint**         |
+  | :-------------------------------------------------- | :------------------------------ |
+  | sandbox_host/gst/compliance/public/gstin/pan/search | sandbox_host/gsp/public/pan/pan |
+
+  ### **POST to GET**
+
+  The API contract has been added as per our thought-process about which you can [<u>read here</u>](https://developer.sandbox.co.in/docs/post-for-get).
+
+  ### **X-Accept-Cache header**
+
+  The new contract for Search GSTIN by PAN API supports X-Accept-Cache header. You can read more about this [<u>here</u>](https://developer.sandbox.co.in/docs/response-caching#x-accept-cache-header).
+</Update>
+
+<Update label="July 24th, 2024 " tags={["Added"]}>
+  ## **Download Form-16 APIs**
+
+  After filing their TDS returns, deductors must issue TDS certificates such as Form 16 (if the deduction took place for salary payments) and Form 16A (for non-salary payments).
+
+  Through our Download Form 16 APIs, users can download their or their clients' Form 16s for a given TAN, quarter, and financial year, easily generating volumetric certificates.
+
+  The API also gives users the option of whether Sandbox should remember credentials, allowing users to submit and poll jobs without storing credentials on our end.
+
+  Refer to the API documentation for more details:
+
+  - [<u>Submit Job</u>](https://developer.sandbox.co.in/reference/download-form-16-api)
+  - [<u>Poll Job</u>](https://developer.sandbox.co.in/reference/poll-job-form16-api)
+  - [<u>Fetch Jobs</u>](https://developer.sandbox.co.in/reference/fetch-tds-certificate-jobs)
+</Update>
+
+<Update label="July 15th, 2024 " tags={["Deprecated"]}>
+  ## **Older API contracts for TDS Reporting**
+
+  We have released a new and updated set of TDS Report APIs. Following are the APIs marked deprecated:
+
+  - TDS Reporting API
+    - [<u>Submit Job</u>](https://developer.sandbox.co.in/reference/prepare-tds-return-api)
+    - [<u>Poll Job</u>](https://developer.sandbox.co.in/reference/prepare-tds-return-job-status-api)
+
+  Similarly, earlier used [<u>entities </u>](https://developer.sandbox.co.in/reference/entities)and [<u>enumerations </u>](https://developer.sandbox.co.in/reference/tds-reports-master-data)are marked deprecated as well.
+
+  Refer to changelog [**<u>here</u>**](https://developer.sandbox.co.in/changelog/new-tds-reports-api) for more details
+
+  ## **Discontinuation**
+
+  The deprecated contracts will be discontinued by 31st July 2024. Existing users are to keep this in mind and accordingly plan their migration to the new API contracts.
+</Update>
+
+<Update label="July 15th, 2024 " tags={["Added"]}>
+  ## **New TDS Reports API**
+
+  As part of [<u>POST for GET</u>](https://developer.sandbox.co.in/docs/post-for-get), we have released new TDS Reports APIs.
+
+  - [<u>Submit Job</u>](https://developer.sandbox.co.in/reference/prepare-tds-return)
+  - [<u>Poll Job</u>](https://developer.sandbox.co.in/reference/prepare-tds-return-job-status)
+
+  While the flow for preparing TDS returns remains the same, there are changes in the entities, request payload and enumerations. All of these have been updated in the [<u>API documentation</u>](https://developer.sandbox.co.in/reference/tds-entities#workbooks).
+
+  These changes allow users to easily integrate with our other APIs since the enumerations used are repeatable.
+
+  Moreover, with the introduction of the [<u>Fetch Jobs API</u>](https://developer.sandbox.co.in/reference/fetch-tds-report-jobs), users can now easily retrieve the status of all their TDS Report jobs submitted through Sandbox APIs.
+</Update>
+
+<Update label="July 12th, 2024 " tags={["Added"]}>
+  ## **TCS Reports API**
+
+  Similar to TDS, TCS returns are to be filed every quarter. In order to do so, the collector needs to create a .txt file containing all the necessary details of transactions that need to be submitted to the government.
+
+  Through the TCS Reports API, users can generate their .txt file, reducing man-hours, minimizing errors, and allowing easy generation of the file for bulk transactions.
+
+  Refer to the API documentation for more details:
+
+  - [<u>Submit Job</u>](https://developer.sandbox.co.in/reference/tcs-submit-job)
+  - [<u>Poll Job</u>](https://developer.sandbox.co.in/reference/tcs-poll-job)
+  - [<u>Fetch Jobs</u>](https://developer.sandbox.co.in/reference/fetch-tcs-report-jobs)
+
+  To understand the payload to be passed, you can refer to the documentation [<u>here</u>](https://developer.sandbox.co.in/reference/prepare-form-27eq-tcs-return).
+</Update>
+
+<Update label="July 2nd, 2024 " tags={["Added"]}>
+  ## **206AB & 206CCA Compliance Check**
+
+  To verify if a given PAN belongs to a specified person as per the Income Tax Act, you can use this API. Based on the API's response, you can deduct the relevant TDS when making any payments to that person.
+
+  The API requires the following parameters:
+
+  - PAN: The PAN number of the person you are verifying.
+  - Consent: Consent from the user for the check.
+  - Reason: The reason for checking if they are a specified person.
+
+  This API will indicate whether the PAN holder is classified as a specified person.
+
+  For detailed information and integration guidelines, please refer to our [<u>API Documentation</u>](https://developer.sandbox.co.in/reference/section-206ab-206cca-compliance-check-sync-api).
+</Update>
+### June
+<Update label="June 25th, 2024 " tags={["Added"]}>
+  ## **New TDS Return APIs**
+
+  As part of [<u>POST to GET</u>](https://developer.sandbox.co.in/docs/post-for-get), we have released new TDS Return APIs. While the methods to file TDS returns by providing TXT and CSI files or by submitting a zip file containing the FVU and Form 27A existed in previous contracts, we are enhancing the capabilities and streamlining the process with these new endpoints.
+
+  Moreover, with the introduction of the Fetch Jobs API, users can now easily track and retrieve the status of their TDS return jobs submitted through Sandbox APIs.
+
+  ## **Using TXT & CSI**
+
+  You can refer to the new endpoints for TDS Return APIs using TXT and CSI [<u>here</u>](https://developer.sandbox.co.in/reference/e-file-tds-return-api)
+
+  Consequently, the previous contracts have been deprecated.
+
+  ## **Using FVU & Form 27A**
+
+  You can refer to the new endpoints for TDS Return APIs using the zip of FVU & Form27A [<u>here</u>](https://developer.sandbox.co.in/reference/e-file-tds-return-submit-job-api)
+
+  Consequently, the previous contracts have been deprecated.
+
+  ## **Fetch Jobs API**
+
+  Users can now utilize this API to [<u>Fetch TDS Return Jobs</u>](https://developer.sandbox.co.in/reference/fetch-tds-return-jobs) based on the provided `tan`, `quarter`, `form` & `financial_year`. Additionally, you have the option to retrieve jobs within a specified period for easier search and more flexible filtering.
+
+  ```json
+  {
+    "code": 200,
+    "timestamp": 1715757773000,
+    "transaction_id": "109469b2-0748-4135-a569-e86fc9e45756",
+    "data": {
+      "@entity": "in.co.sandbox.tds.compliance.e-file.paginated_list",
+      "items": [
+        {
+          "@entity": "in.co.sandbox.tds.compliance.e-file.job",
+          "job_id": "096c4812-1829-4ee1-a3c6-3bd291654b72",
+          "tan": "AHMS12345C",
+          "financial_year": "FY 2023-24",
+          "quarter": "Q2",
+          "form": "26Q",
+          "created_at": 1714529043000,
+          "updated_at": 1714529044000,
+          "status": "succeeded",
+          "return_receipt_number": 123456789012345
+        },
+        {
+          "@entity": "in.co.sandbox.tds.compliance.e-file.job",
+          "job_id": "096c4812-1829-4ee1-a3c6-3bd291654b72",
+          "tan": "AHMS12345C",
+          "financial_year": "FY 2023-24",
+          "quarter": "Q2",
+          "form": "26Q",
+          "created_at": 1714527043000,
+          "updated_at": 1714527044000,
+          "status": "failed",
+          "message": "Unacceptable FVU"
+        },
+        {
+          "@entity": "in.co.sandbox.tds.compliance.e-file.job",
+          "job_id": "096c4812-1829-4ee1-a3c6-3bd291654b72",
+          "tan": "AHMS12345C",
+          "financial_year": "FY 2023-24",
+          "quarter": "Q2",
+          "form": "26Q",
+          "created_at": 1714530043000,
+          "updated_at": 1714530044000,
+          "status": "failed",
+          "message": "Validation error"
+        }
+      ],
+      "last_evaluated_key": "eydadadadada...=="
+    }
+  }
+  ```
+</Update>
+
+<Update label="June 25th, 2024 " tags={["Deprecated"]}>
+  ## **Older API contracts for TDS return filing**
+
+  We have released a new and updated set of TDS Return Filing APIs. Following are the APIs marked deprecated:
+
+  - TXT and CSI
+    - [<u>Submit Job</u>](https://developer.sandbox.co.in/reference/e-file-tds-return-deprecated-api)
+    - [<u>Poll Job</u>](https://developer.sandbox.co.in/reference/e-file-tds-return-job-status-deprecated-api)
+  - FVU & Form 27A
+    - [<u>Submit Job</u>](https://developer.sandbox.co.in/reference/e-file-tds-return-submit-job-deprecated-api)
+    - [<u>Poll Job</u>](https://developer.sandbox.co.in/reference/e-file-tds-return-poll-job-deprecated-api)
+
+  Refer to the changelog [**<u>here</u>**](https://developer.sandbox.co.in/changelog/new-tdsr-api-contracts) for more details
+
+  ## **Discontinuation**
+
+  The deprecated contracts will be discontinued by 31st July 2024. Existing users are to keep this in mind and accordingly plan their migration to the new API contracts.
+</Update>
+### May
+<Update label="May 14th, 2024 " tags={["Improved"]}>
+  ## **Changes in Aadhaar OKYC API**
+
+  We have improved the API requests and responses for ease of use for the users.
+
+  > ## **📘This is a versioned change**
+
+  You need to pass `x-api-version` as 2.0 to access the updated API. The existing version is marked deprecated. The API documentation has been updated as per this version.
+
+  ## [**<u>Generate OTP API</u>**](https://developer.sandbox.co.in/reference/aadhaar-okyc-generate-otp-api)
+
+  ### **Changes in Request Body**
+
+  - The following Keys have been added
+    - `@entity`
+    - `consent`
+    - `reason`
+
+  New RequestEarlier Request
+
+  ```
+  {
+      "@entity": "in.co.sandbox.kyc.aadhaar.okyc.otp.request",
+      "aadhaar_number": "99999999999",
+      "consent": "Y",
+      "reason": "For KYC of the Individual"
+  }
+  
+  ```
+
+  ### **Changes in Response**
+
+  - The following Keys have been added
+    - `@entity`
+  - The following Keys have been renamed
+    - `ref_id` is now `reference_id`
+
+  New ResponseEarlier Response
+
+  ```
+  {
+      "code": 200,
+      "timestamp": 1713426154458,
+      "transaction_id": "c9431c86-868c-4208-b71e-ea90c7bed435",
+      "data": {
+          "@entity": "in.co.sandbox.kyc.aadhaar.okyc.otp.response",
+          "reference_id": "1234567",
+          "message": "OTP sent successfully"
+      }
+  }
+  
+  ```
+
+  ## [**<u>Verify OTP API</u>**](https://developer.sandbox.co.in/reference/aadhaar-okyc-verify-otp-api)
+
+  ### **Changes in Request Body**
+
+  - The following Keys have been added
+    - `@entity`
+  - The following Keys have been renamed
+    - `ref_id` is now `reference_id`
+
+  New RequestEarlier Request
+
+  ```
+  {
+      "@entity": "in.co.sandbox.kyc.aadhaar.okyc.request",
+      "reference_id": "1234567",
+      "otp": "121212"
+  }
+  
+  ```
+
+  ### **Changes in Response**
+
+  - The following Keys have been added
+    - `share_code`
+  - The following Keys have been renamed
+    - `ref_id` is now `reference_id`
+    - `dob` is now `date_of_birth`
+    - `dist` is now `district`
+    - `po` is now `post_office`
+    - `subdist` is now `subdistrict`
+    - `address` is now `full_address`
+    - `split_address` is now `address`
+    - `email` is now `email_hash`
+    - `photo_link` is now `photo`
+    - `@entity` value has changed
+
+  ```
+  {
+      "code": 200,
+      "timestamp": 1713426154458,
+      "transaction_id": "c9431c86-868c-4208-b71e-ea90c7bed435",
+      "data": {
+          "@entity": "in.co.sandbox.kyc.aadhaar.okyc",
+          "reference_id": "1234567",
+          "status": "VALID",
+          "message": "Aadhaar Card Exists",
+          "care_of": "S/O: Johnny Doe",
+          "full_address": "Mangal Kanaka Niwas, Main Cross 3rd, Bengaluru, Bengaluru-Karnataka, India ",
+          "date_of_birth": "21-04-1985",
+          "email_hash": "044917e2c4c62a439d068.......d9f71bbde10b1d227a914e",
+          "gender": "M",
+          "name": "John Doe",
+          "address": {
+              "@entity": "in.co.sandbox.kyc.aadhaar.okyc.address",
+              "country": "India",
+              "district": "Bengaluru",
+              "house": "Mangal Kanaka Niwas",
+              "landmark": "",
+              "pincode": "581615",
+              "post_office": "Bengaluru",
+              "state": "Karnataka",
+              "street": "Main Cross 3rd",
+              "subdistrict": "",
+              "vtc": "Bengaluru"
+          },
+          "year_of_birth": "1985",
+          "mobile_hash": "044917e2c4c62a439d068.......d9f71bbde10b1d227a914e",
+          "photo": "data:image/jpeg;base64,/9j/4AAQSk.......mj/2Q==",
+          "share_code": "2356"
+      }
+  }
+  
+  ```
+
+  ## **Discontinuation of old contracts**
+
+  The existing version of this API is marked deprecated and will be discontinued soon. Timelines will be communicated.
+</Update>
+
+<Update label="May 1st, 2024 " tags={["Removed"]}>
+  ## **PAN Advance API**
+
+  As notified in the [<u>changelog</u>](https://developer.sandbox.co.in/changelog/deprecation-of-pan-basic-and-advance-api) dated 05.04.2024, the upstream partners have discontinued PAN Advance API.
+</Update>
+### April
+<Update label="April 24th, 2024 " tags={["Added"]}>
+  ## **TCS Calculator API**
+
+  We have gone live with [<u>TCS Calculator API</u>](https://developer.sandbox.co.in/reference/calculate-tcs). Now Calculate the TCS collectible on incoming payments by providing us the values such as the `nature_of_payment`, `payment_amount` and among other details.
+
+  API will then determine the `collection_amount`, `collection_rate`, `section`&`due_date` to deposit the TCS amount.
+
+  API Response
+
+  ```
+  {
+      "transaction_id": "7f3a8edb-4caf-48a9-83c4-0843cf843ad5",
+      "code": 200,
+      "data": {
+          "code": "6CO",
+          "due_date": 1707244200000,
+          "payment_amount": 799900,
+          "section": "206C(1G)",
+          "is_pan_available": true,
+          "@entity": "in.co.sandbox.tcs.calculator.response",
+          "threshold_amount": 700000,
+          "is_206cca_applicable": true,
+          "collectee_type": "individual",
+          "is_pan_operative": false,
+          "collection_rate": 20.00,
+          "nature_of_payment": "foreign_flight_tickets",
+          "collection_amount": 159980,
+          "residential_status": "non_resident",
+          "category": "overseas_tour_program_package",
+          "payment_date": 1706505329000
+      },
+      "timestamp": 1713942438000
+  }
+  
+  ```
+</Update>
+
+<Update label="April 23rd, 2024 " tags={["Added"]}>
+  ## **New contracts for MCA APIs**
+
+  We have deployed new API contracts for MCA APIs. Consequently, the previous contracts have been deprecated.
+
+  | **API Name**                                                                                          | **New Contracts**                            | **Deprecated Contracts**        |
+  | :---------------------------------------------------------------------------------------------------- | :------------------------------------------- | :------------------------------ |
+  | [<u>Company Master Data</u>](https://developer.sandbox.co.in/reference/mca-company-master-data-api)   | sandbox_host/mca/company/master-data/search  | sandbox_host/mca/companies/:id  |
+  | [<u>Director Master Data</u>](https://developer.sandbox.co.in/reference/mca-director-master-data-api) | sandbox_host/mca/director/master-data/search | sandbox_host/mca/directors/:din |
+
+  API contracts have changed as per our thought-process about which you can [<u>read here</u>](https://developer.sandbox.co.in/docs/post-for-get)
+
+  ## **Changes in the API request**
+
+  ### **Company Master Data API**
+
+  New Request
+
+  ```
+  curl --request POST \
+       --url https://api.sandbox.co.in/mca/company/master-data/search \
+       --header 'accept: application/json' \
+       --header 'content-type: application/json' \
+       --data '
+  {
+    "@entity": "in.co.sandbox.kyc.mca.master_data.request",
+    "id": "U12345AB1234ABC123456",
+    "consent": "y",
+    "reason": "for KYC"
+  }
+  '
+  ```
+
+  ### **Director Master Data API**
+
+  New Request
+
+  ```
+  curl --request POST \
+       --url https://api.sandbox.co.in/mca/director/master-data/search \
+       --header 'accept: application/json' \
+       --header 'content-type: application/json' \
+       --data '
+  {
+    "@entity": "in.co.sandbox.kyc.mca.master_data.request",
+    "id": "9999999",
+    "reason": "for KYC",
+    "consent": "y"
+  }
+  '
+  ```
+
+  ## **Changes in the API response**
+
+  ## \\
+
+  **Company Master Data API**
+
+  The following Keys have been added
+
+  - `rd_region`
+  - `balance_sheets` array consisting of:
+    - `date_of_filing`
+    - `financial_year`
+  - `annual_returns` array consisting of:
+    - `date_of_filing`
+    - `financial_year`
+  - `status_under_cirp` (for LLPINs),
+  - `llp_strike_off/_amalgamated_date` (for LLPINs),
+  - `designation` (for directors)
+
+  The following keys have been removed:
+
+  - `asset_under_charge`
+  - `number_of_members(applicable_in_case_of_company_without_share_capital)`
+
+  You can compare the response as per the old and new contract below:
+
+  **For CINs:**
+
+  New Response
+
+  ```
+  {
+    "code": 200,
+    "timestamp": 1614696176218,
+    "transaction_id": "611335dc-8be4-40d1-8438-b86526462939",
+    "data": {
+      "company_master_data": {
+        "@entity": "in.co.sandbox.kyc.mca.company.master_data",
+        "company_category": "Company limited by Shares",
+        "email_id": "john@doe.com",
+        "class_of_company": "Private",
+        "date_of_last_agm": "30/09/2019",
+        "registered_address": "123, ABC LAKEVIEW TOWER OPPOSITE A COMPLEX, AHMEDABAD Ahmedabad GJ 380015 IN",
+        "registration_number": "999999",
+        "paid_up_capital(rs)": "100000",
+        "whether_listed_or_not": "Unlisted",
+        "suspended_at_stock_exchange": "-",
+        "cin": "U12300GJ2017PTC123456",
+        "company_subcategory": "Non-govt company",
+        "authorised_capital(rs)": "100000",
+        "company_status(for_efiling)": "Active",
+        "roc_code": "RoC-Ahmedabad",
+        "date_of_balance_sheet": "31/03/2019",
+        "date_of_incorporation": "09/06/2017",
+        "company_name": "JOHN DOE PRIVATE LIMITED",
+        "active_compliance": "ACTIVE Compliant",
+        "rd_region": "RD South East Region",
+        "balance_sheets": [],
+        "annual_returns": []
+      },
+      "charges": [
+        {
+          "@entity": "in.co.sandbox.kyc.mca.company.charges",
+          "date_of_creation": "06/02/2019",
+          "date_of_modification": "-",
+          "charge_amount": "2000000000",
+          "status": "Closed"
+        }
+      ],
+      "directors/signatory_details": [
+        {
+          "@entity": "in.co.sandbox.kyc.mca.company.directors_signatory_details",
+          "end_date": "-",
+          "din/pan": "99999999",
+          "begin_date": "09/06/2017",
+          "designation": "Director",
+          "name": "JOHN DOE"
+        }
+      ]
+    }
+  }
+  ```
+
+  **For LLPINs:**
+
+  New Response
+
+  ```
+  {
+    "code": 200,
+    "timestamp": 1614696176218,
+    "transaction_id": "611335dc-8be4-40d1-8438-b86526462939",
+    "data": {
+      "llp_master_data": {
+        "@entity": "in.co.sandbox.kyc.mca.llp.master_data",
+        "email_id": "jane@doe.com",
+        "registered_address": "1234, WILSON GARDEN BANGALORE Bangalore KA 560027 IN",
+        "main_division_of_business_activity_to_be_carried_out_in_india": "74",
+        "previous_firm/_company_details,_if_applicable": "",
+        "llpin": "XXX-0123",
+        "roc_code": "RoC-Bangalore",
+        "number_of_designated_partners": "2",
+        "date_of_incorporation": "24/04/2009",
+        "llp_name": "JANE DOE CONSULTING LLP",
+        "total_obligation_of_contribution": "15000",
+        "llp_status": "Active",
+        "description_of_main_division": "Other Business Activities",
+        "number_of_partners": "0",
+        "llp_strike_off/_amalgamated_date": "",
+        "status_under_cirp": "",
+        "rd_region": "RD South East Region"
+      },
+      "charges": [],
+      "directors/signatory_details": [
+        {
+          "@entity": "in.co.sandbox.kyc.mca.llp.directors_signatory_details",
+          "end_date": "-",
+          "designation": "Designated Partner",
+          "din/pan": "99963999",
+          "begin_date": "31/03/2010",
+          "name": "JANE DOE"
+        },
+        {
+          "@entity": "in.co.sandbox.kyc.mca.llp.directors_signatory_details",
+          "end_date": "-",
+          "designation": "Designated Partner",
+          "din/pan": "99967999",
+          "begin_date": "31/03/2010",
+          "name": "JACK DOE"
+        }
+      ],
+      "balance_sheets": [
+        {
+          "@entity": "in.co.sandbox.kyc.mca.llp.balance_sheet",
+          "date_of_filing": "31/03/2023",
+          "financial_year": "31/03/2023"
+        },
+        {
+          "@entity": "in.co.sandbox.kyc.mca.llp.balance_sheet",
+          "date_of_filing": "31/03/2022",
+          "financial_year": "31/03/2022"
+        }
+      ],
+      "annual_returns": [
+        {
+          "@entity": "in.co.sandbox.kyc.mca.llp.annual_return",
+          "date_of_filing": "31/03/2023",
+          "financial_year": "31/03/2023"
+        }
+      ]
+    }
+  }
+  ```
+
+  ### **Director Master Data API**
+
+  We have added `designation` of the director and remove the `active_complaince` key.
+
+  New Response
+
+  ```
+  {
+    "code": 200,
+    "timestamp": 1614696176218,
+    "transaction_id": "611335dc-8be4-40d1-8438-b86526462939",
+    "data": {
+      "director_data": {
+        "@entity": "in.co.sandbox.kyc.mca.director",
+        "din": "99999999",
+        "name": "JOHN DOE"
+      },
+      "llp_data": [
+        {
+          "@entity": "in.co.sandbox.kyc.mca.director.llp_data",
+          "end_date": "-",
+          "company_name": "JOHN DOE PRIVATE LIMITED",
+          "designation": "Director",
+          "begin_date": "19/03/2015",
+          "llpin/fllpin": "ABC-1234"
+        }
+      ],
+      "company_data": [
+        {
+          "@entity": "in.co.sandbox.kyc.mca.director.company_data",
+          "end_date": "-",
+          "company_name": "JOHN DOE PRIVATE LIMITED",
+          "designation": "Director",
+          "begin_date": "19/03/2015",
+          "cin/fcrn": "U12300GJ2015PTC123456"
+        },
+        {
+          "@entity": "in.co.sandbox.kyc.mca.director.company_data",
+          "end_date": "-",
+          "designation": "Director",
+          "company_name": "JD PRIVATE LIMITED",
+          "begin_date": "09/06/2017",
+          "cin/fcrn": "U12300GJ2017PTC123456"
+        }
+      ]
+    }
+  }
+  ```
+
+  ## **Deprecation of old contracts**
+
+  The old contracts have been deprecated and will be discontinued soon. Timelines will be communicated.
+</Update>
+
+<Update label="April 18th, 2024 " tags={["Added"]}>
+  ## **New contracts for GST e-Invoice API**
+
+  New API contracts for GST e-Invoice API have been published along with improvements and bug fixes.
+
+  ## **New contracts**
+
+  ### **Change in endpoints**
+
+  At a high level, the endpoints have changed in the fashion below. However, **for specific APIs**, please refer to the [<u>API reference</u>](https://developer.sandbox.co.in/reference/generate-e-invoice-api) for complete details.
+
+  | **New endpoints**                                        | **Deprecated endpoints**            |
+  | :------------------------------------------------------- | :---------------------------------- |
+  | sandbox_host/gst/compliance/e-invoice/tax-payer/endpoint | sandbox_host/irp/tax-payer/endpoint |
+
+  ### **POST to GET**
+
+  Some API contracts have changed as per our thought-process about which you can [<u>read here</u>](https://developer.sandbox.co.in/docs/post-for-get). Below APIs have changed as per our design choice.
+
+  - [<u>e-Invoice Authentication</u>](https://developer.sandbox.co.in/reference/e-invoice-authentication-api)
+  - [<u>Search GSTIN Details</u>](https://developer.sandbox.co.in/reference/irp-einv-search-gstin-details)
+
+  ## **Improvements**
+
+  ### **Schema validation**
+
+  As a high number of requests are invalid as per NIC schemas, we have enabled schema validation on the e-Invoice APIs. The API which will return Invalid request body if request body does not match the schema. We have added the schemas on our e-Invoice APIs documentation for reference.
+
+  #### **How to validate the request body with schema**
+
+  1. Go to [<u>JSON Schema Validator</u>](https://www.jsonschemavalidator.net/).
+  2. Copy the schema from API reference page and paste in the Select Schema box (left).
+  3. Paste your request body in the Input JSON box (right).
+  4. The validator will show you errors if any. Change the request body accordingly until no errors are found.
+
+  ### **Change in issuer for e-Invoice access token**
+
+  Issuer has been changed to "[irp1.gst.gov.in](http://irp1.gst.gov.in)" in the e-Invoice access token.
+
+  ### **GSTIN transformation**
+
+  GSTIN passed in lowercase will be transformed to uppercase and then request will be executed.
+
+  ## **Bug Fixes**
+
+  - **e-Invoice access token:** Wrong expiry has been [corrected.es](http://corrected.es) will be communicated.
+</Update>
+
+<Update label="April 18th, 2024 " tags={["Deprecated"]}>
+  ## **Deprecated contracts for GST e-Invoice API**
+
+  We have deployed new API contracts for GST e-Invoice APIs, as detailed in the [<u>changelog here</u>](https://developer.sandbox.co.in/changelog/new-contracts-for-gst-e-invoice-api). Consequently, the previous contracts have been deprecated.
+
+  ## **Discontinuation**
+
+  The deprecated contracts will be discontinued on **31st October 2024**
+</Update>
+
+<Update label="April 16th, 2024 " tags={["Added"]}>
+  ## **Crypto Tax PnL API**
+
+  With the new version of Crypto PnL API, we have added support for crypto futures along with pnl and tax calculations of crypto spot trading.
+
+  This addition in the API changes the request and response structure in the newer version, these changes are as follows.
+
+  ## **Changes in the request body**
+
+  - Created two separate sheets for the spot tradebook and futures tradebook. Transactions from the spot market need to be passed in the `crypto_currency_spot_tradebook_sheet` and transactions from trading crypto futures are required to be passed in the `crypto_currency_future_tradebook_sheet` respectively. Both the sheets also have a block where the last traded price of cryptocurrency or contract is to be passed.
+  - Added labels- `margin`,`margin_gain`, and `margin_loss`. These labels are required to be passed in the spot tradebook sheet when the user has traded crypto futures.
+
+  ## **Changes in the response body**
+
+  - Two separate sheets will be given for tradewise pnl of spot and futures.
+  - Instead of a separate sheet for holdings of cryptocurrencies, it will be given as a block within the `crypto_currency_spot_tradewise_tax_pnl_sheet`. Similarly, open positions in crypto futures will be given within the `crypto_currency_future_tradewise_tax_pnl_sheet`
+  - Tax pnl summary sheet will show the income from crypto futures as business & profession income as a non-speculative business income.
+</Update>
+
+<Update label="April 13th, 2024 " tags={["Added"]}>
+  ## **New contracts for GST Public and Taxpayer API**
+
+  New API contracts for GST Public APIs and GST Taxpayer APIs have been published along with improvements and bug fixes.
+
+  ## **New contracts**
+
+  ### **Change in endpoints**
+
+  At a high level, the endpoints have changed in the fashion below. However, **for specific APIs**, please refer to the API reference for complete details.
+
+  | **GST API**                                                                            | **New endpoint**                               | **Deprecated endpoint**             |
+  | :------------------------------------------------------------------------------------- | :--------------------------------------------- | :---------------------------------- |
+  | [<u>Public</u>](https://developer.sandbox.co.in/reference/search-gstin-api)            | sandbox_host/gst/compliance/public/endpoint    | sandbox_host/gsp/public/endpoint    |
+  | [<u>Taxpayer</u>](https://developer.sandbox.co.in/reference/taxpayer-generate-otp-api) | sandbox_host/gst/compliance/tax-payer/endpoint | sandbox_host/gsp/tax-payer/endpoint |
+
+  ### **Change in response**
+
+  The new contracts have a change in the response nesting.
+
+  New API ResponseDeprecated API Response
+
+  ```
+  {
+      "transaction_id": "28828716-0e9c-4af8-94da-5367fa8c679d",
+      "code": 200,
+      "data": {
+          "data": {
+              "ack_num": "ASDFSDF1241343"
+          },
+          "status_cd": 1
+      },
+      "timestamp": 1621510445676
+  }
+  
+  ```
+
+  ### **POST to GET**
+
+  Some API contracts have changed as per our thought-process about which you can [<u>read here</u>](https://developer.sandbox.co.in/docs/post-for-get). Below APIs have changed as per our design choice.
+
+  - [<u>Search GSTIN</u>](https://developer.sandbox.co.in/reference/search-gstin-api)
+  - [<u>Track GST Returns</u>](https://developer.sandbox.co.in/reference/track-gst-returns-api)
+  - [<u>Generate OTP</u>](https://developer.sandbox.co.in/reference/taxpayer-generate-otp-api)
+  - [<u>Verify OTP</u>](https://developer.sandbox.co.in/reference/taxpayer-verify-otp-api)
+  - [<u>Generate EVC OTP</u>](https://developer.sandbox.co.in/reference/generate-evc-otp-api)
+
+  ## **Improvements**
+
+  ### **Change in issuer for Taxpayer access token**
+
+  Issuer has been changed to "[gst.gov.in](http://gst.gov.in)" in the Taxpayer access token.
+
+  ### **GSTIN transformation**
+
+  GSTIN passed in lowercase will be transformed to uppercase and then request will be executed.
+
+  ## **Bug Fixes**
+
+  - **Taxpayer access token:** Wrong expiry has been corrected.
+</Update>
+
+<Update label="April 13th, 2024 " tags={["Deprecated"]}>
+  ## **Deprecated contracts for GST Public and Taxpayer API**
+
+  We have deployed new API contracts for GST Public APIs and GST Taxpayer API, as detailed in the [<u>changelog here</u>](https://developer.sandbox.co.in/changelog/new-contracts-for-gst-public-and-taxpayer-api). Consequently, the previous contracts have been deprecated.
+
+  ### **Change in endpoints**
+
+  | **GST API** | **New endpoint**                               | **Deprecated endpoint**             |
+  | :---------- | :--------------------------------------------- | :---------------------------------- |
+  | Public      | sandbox_host/gst/compliance/public/endpoint    | sandbox_host/gsp/public/endpoint    |
+  | Taxpayer    | sandbox_host/gst/compliance/tax-payer/endpoint | sandbox_host/gsp/tax-payer/endpoint |
+
+  ## **Discontinuation**
+
+  The deprecated contracts will be discontinued on **31st October 2024**
+</Update>
+
+<Update label="April 5th, 2024 " tags={["Added"]}>
+  ## **Verify PAN Details API**
+
+  In line with the changes communicated by the income tax department, we have released the [<u>Verify PAN Details API</u>](https://developer.sandbox.co.in/reference/verify-pan-details-api). The new contract requires the user to pass the PAN, name as per PAN, and date of birth to verify the entity.
+
+  ## **[Deprecated] PAN Basic and PAN Advance API**
+
+  While existing PAN Verification APIs are working, the upstream partners have confirmed that they will be discontinued by 30th April.
+
+  As such, we have marked them deprecated and recommend immediate migration to the new [<u>Verify PAN Details API</u>](https://developer.sandbox.co.in/reference/verify-pan-details-api).
+</Update>
+
+<Update label="April 5th, 2024 " tags={["Deprecated"]}>
+  ## **PAN Basic and Advance API**
+
+  While existing PAN Verification APIs are working, the upstream partners have confirmed that they will be discontinued by 30th April in line with the changes communicated by the income tax department.
+
+  As such, we have marked them deprecated and recommend immediate migration to the new [<u>Verify PAN Details API</u>](https://developer.sandbox.co.in/reference/verify-pan-details-api).
+</Update>
+### January
+<Update label="January 5th, 2024 " tags={["Added"]}>
+  ## **Contract changed for TDSR E-File API**
+
+  January 5th, 2024
+
+  - Contract Changed: TDSR E-file APIs using TXT & CSI File
+  - Contract Changed: TDSR E-file APIs using FVU & Form27A
+
+  ## **TDSR E-file API using TXT & CSI file**
+
+  The API has minor changes in the endpoint and response structure. Note that the changes are in immediate effect.
+
+  Users will still be able to hit the previous version of the API until 29th February 2024
+
+  ### **New Endpoint**
+
+  | **Previous**                                             | **New**                                                  |
+  | :------------------------------------------------------- | :------------------------------------------------------- |
+  | /tds-compliance/tin-fc/deductors/:tan/tdsrs/:form/e-file | /tds/compliance/tin-fc/deductors/:tan/tdsrs/:form/e-file |
+
+  ### **Changes in the API response structure**
+
+  The API response will now include the @entity and status key. A sample payload can be seen below:
+
+  JSON
+
+  ```
+  {
+    "code": 200,
+    "timestamp": 1616223781341,
+    "transaction_id": "fd096e71-faa0-419b-9133-85f53ca658d7",
+    "data": {
+      "job_id": "096c4812-1829-4ee1-a3c6-3bd291654b72",
+      "status": "succeeded",
+      "receipt_url": "https://s3.ap-south-1.amazonaws.com/efile.tds-compliance.sandbox.co.in/receipt.pdf",
+      "fvu_url": "https://s3.ap-south-1.amazonaws.com/efile.tds-compliance.sandbox.co.in/fvu.fvu",
+      "form27a_url": "https://s3.ap-south-1.amazonaws.com/efile.tds-compliance.sandbox.co.in/form27a.pdf"
+    }
+  }
+  
+  ```
+
+  Furthermore, the job status enumerations have changed:
+
+  | **Previous** | **New**   |
+  | :----------- | :-------- |
+  | JOBCREATED   | created   |
+  | JOBQUEUED    | queued    |
+  | JOBDONE      | succeeded |
+  | JOBFAILED    | failed    |
+
+  You can refer to the updated API documentation for [<u>Submit</u>](https://developer.sandbox.co.in/reference/e-file-tds-return-api)and [<u>Poll Job</u>](https://developer.sandbox.co.in/reference/e-file-tds-return-job-status-api) APIs
+
+  ## **TDSR E-file API using FVU & Form27A**
+
+  The API has minor changes in the endpoint and response structure. Note that the changes are in immediate effect.
+
+  Users will still be able to hit the previous version of the API until 29th February 2024.
+
+  ### **New Endpoint**
+
+  | **Previous**                                           | **New**                                                |
+  | :----------------------------------------------------- | :----------------------------------------------------- |
+  | /tds-compliance/tin-fc/deductors/:tan/tdsrs/fvu/e-file | /tds/compliance/tin-fc/deductors/:tan/tdsrs/fvu/e-file |
+
+  ### **Changes in the API response structure**
+
+  The API response will now include the @entity and status key. A sample payload can be seen below:
+
+  JSON
+
+  ```
+  {
+    "code": 200,
+    "timestamp": 1616223781341,
+    "transaction_id": "fd096e71-faa0-419b-9133-85f53ca658d7",
+    "data": {
+      "job_id": "c01f847c-c42e-4577-9d01-a7208401a922",
+      "status": "succeeded",
+      "receipt_url": "https://s3.ap-south-1.amazonaws.com/efile.tds-compliance.sandbox.co.in/receipt.pdf",
+      "fvu_url": "https://s3.ap-south-1.amazonaws.com/efile.tds-compliance.sandbox.co.in/fvu.fvu",
+      "form27a_url": "https://s3.ap-south-1.amazonaws.com/efile.tds-compliance.sandbox.co.in/form27a.pdf"
+    }
+  }
+  
+  ```
+
+  Furthermore, the job status enumerations have changed:
+
+  | **Previous** | **New**   |
+  | :----------- | :-------- |
+  | JOBCREATED   | created   |
+  | JOBQUEUED    | queued    |
+  | JOBDONE      | succeeded |
+  | JOBFAILED    | failed    |
+
+  You can refer to the updated API documentation for [<u>Submit</u>](https://developer.sandbox.co.in/reference/e-file-tds-return-submit-job-api)and [<u>Poll Job</u>](https://developer.sandbox.co.in/reference/e-file-tds-return-poll-job-api) APIs
+</Update>
+## 2023
+### October
+<Update label="October 11th, 2023 " tags={["Added"]}>
+  ## Changes we have brought in:
+
+  - New API: Bank Account Verification [Penny-Less].
+  - New Major Version for Bank Account Verification [Penny-Drop] & UPI Verification API.
+
+  ## **[New] Bank Account Verification [Penny Less]**
+
+  Avoid dropping a penny when verifying Bank Accounts through [<u>Bank Account Verification [Penny Less] API</u>](https://developer.sandbox.co.in/docs/bank-account-verification-penny-less).
+
+  The user needs to pass the IFSC and account number of the beneficiary to verify their account. Only a [<u>select list of banks</u>](https://developer.sandbox.co.in/docs/bank-account-verification-penny-less#select-banks) can be verified through this API.
+
+  ## **Bank Account Verification [Penny Drop] Version 3.0**
+
+  The new version introduces new responses and changes in the API response structure. Note that the `x-api-version` request header will require 3.0 to call the new version.
+
+  Users will still be able to hit the previous version of the API (2.0) until 30 November 2023 before it is deprecated.
+
+  ### **Changes in the API response structure**
+
+  The API response will now include the @entity key, a sample payload can be seen below:
+
+  JSON
+
+  ```
+  {
+      "code": 200,
+      "timestamp": 1698047469406,
+      "transaction_id": "35b2f6a0-0a80-42c4-88db-75857ad69dec",
+      "data": {
+          "@entity": "@in.co.sandbox.bank.account.penny_drop_verification_response",
+          "message": "Bank Account details verified successfully.",
+          "account_exists": true,
+          "name_at_bank": "John Doe",
+          "utr": "329613870973",
+          "amount_deposited": "1"
+      }
+  }
+  
+  ```
+
+  You can refer to the updated API documentation [<u>here</u>](https://developer.sandbox.co.in/reference/bank-account-verification-api).
+
+  ## **UPI Verification Version 2.0**
+
+  The new version introduces new responses and changes in the API response structure. Note that the `x-api-version` request header will require 2.0 to call the new version.
+
+  Users will still be able to hit the previous version of the API (1.0) until 30 November 2023 before it is deprecated.
+
+  ### **Changes in the API response structure**
+
+  The API response will now include the @entity key, a sample payload can be seen below:
+
+  JSON
+
+  ```
+  {
+      "code": 200,
+      "timestamp": 1698047216057,
+      "transaction_id": "c7f1f12c-a0e0-40a5-8f09-d681b833476a",
+      "data": {
+          "@entity": "@in.co.sandbox.bank.account.upi.upi_verification_response",
+          "account_exists": true,
+          "name_at_bank": "John Doe"
+      }
+  }
+  ```
+
+  You can refer to the updated API documentation [<u>here</u>](https://developer.sandbox.co.in/reference/upi-verification-api).
+</Update>
+### September
+<Update label="September 14th, 2023 " tags={["Added"]}>
+  ## Changes we have brought in
+
+  - TDS Reporting API contracts are updated as per the newly released ITD utility.
+
+  ## **Contract changes for TDS Reporting APIs**
+
+  > ## **❗️Changes are non-backward compatible.**
+
+  ### **Enumerations released by ITD**
+
+  | **New sections**                                                                                                                                                                                         | **Introduced in**  |
+  | :------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | :----------------- |
+  | 194BA - Winnings from online games                                                                                                                                                                       | Form 26Q & Form27Q |
+  | 194BA-P - Net Winnings from online games where the net winnings are made in kind or cash is not sufficient to meet the tax liability and tax has been paid before said winnings are released             | Form 26Q & Form27Q |
+  | 194NC- Payment of certain amounts in cash to co-operative societies                                                                                                                                      | Form 26Q & Form27Q |
+  | 194N-FT - Payment of certain amount in cash to non-filers being co-operative societies                                                                                                                   | Form 26Q & Form27Q |
+  | 194N - Payment of certain amount in cash                                                                                                                                                                 | Form 26Q           |
+  | 194NF - Payment of certain amounts in cash to non-filers                                                                                                                                                 | Form 26Q           |
+  | 194B - Winnings from Lotteries, Puzzle, etc                                                                                                                                                              | Form 27Q           |
+  | 194BB - Winnings from Horse Race                                                                                                                                                                         | Form 27Q           |
+  | 194B-P - Winnings from lottery and crossword puzzle, etc where consideration is made in kind or cash is not sufficient to meet the tax liability and tax has been paid before such winnings are released | Form 27Q           |
+  | 194LC(2) (i) & (ia) - Income by way of interest from Indian company engaged in certain Business before 01.07.2023                                                                                        | Form 27Q           |
+  | 194LC(2) (ib) - Income by way of interest from bonds                                                                                                                                                     | Form 27Q           |
+  | 194LC(2) (ic) - Income by way of interest from Indian company engaged in certain Business after 01.07.2023                                                                                               | Form 27Q           |
+
+  | **Previously used section**                                                                                                                                                                            | **Updated section**                                                                                                                                                                                      |
+  | :----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | :------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+  | 194B - Lotteries / Puzzle / Game                                                                                                                                                                       | 194B - Winnings from Lotteries, Puzzle, etc.                                                                                                                                                             |
+  | 194B-P - Winnings from lotteries and crossword puzzles where consideration is made in kind or cash is not sufficient to meet the tax liability and tax has been paid before such winnings are released | 194B-P - Winnings from lottery and crossword puzzle, etc where consideration is made in kind or cash is not sufficient to meet the tax liability and tax has been paid before such winnings are released |
+
+  | **New Reason for Lower Deduction**                                                                          | **Introduced in** |
+  | :---------------------------------------------------------------------------------------------------------- | :---------------- |
+  | Transaction where Tax not been deducted as amount paid to vendor/party has not exceeded the threshold limit | Form 27Q          |
+
+  | **New Minor Head** | **Introduced in** |
+  | :----------------- | :---------------- |
+  | (100) Advance Tax  | Form 27Q          |
+
+  | **New Nature of Remittances introduced (Form 27Q Only)** |
+  | :------------------------------------------------------- |
+  | Long Term Capital Gain u/s 115E in case of NRI Citizen   |
+  | Long Term Capital Gain u/s 112(1)(c)(iii)                |
+  | Long Term Capital Gain u/s 112                           |
+  | Long Term Capital Gain u/s 112A                          |
+  | Short Term Capital Gains u/s 111A                        |
+
+  | **Previous**            | **Updated by ITD**               |
+  | :---------------------- | :------------------------------- |
+  | Long-Term Capital Gains | Long-Term Capital Gains (Others) |
+
+  ### **API Changes**
+
+  New inputs have been introduced in the JSON payload.
+
+  #### **Form 26Q**
+
+  | **New keys in Request Body**                                                                        |
+  | :-------------------------------------------------------------------------------------------------- |
+  | amount_of_cash_withdrawal_more_than_1_crore_us_194N                                                 |
+  | amount_of_cash_withdrawal_between_20_lakhs_and_1_crore_us_194N_for_non_filers                       |
+  | amount_of_cash_withdrawal_more_than_1_crore_us_194N_for_non_filers                                  |
+  | amount_of_cash_withdrawal_more_than_3_crore_us_194N_for_co-operative_societies                      |
+  | amount_of_cash_withdrawal_between_20_lakhs_and_3_crore_us_194N_for_non_filer_co-operative_societies |
+  | amount_of_cash_withdrawal_more_than_3_crore_us_194N_for_non_filer_co-operative_societies            |
+
+  | **Previous**   | **Updated keys in Request Body** |
+  | :------------- | :------------------------------- |
+  | education_cess | health_and_education_cess        |
+
+  #### **Form27Q**
+
+  | **New keys in Request Body**                                                                        |
+  | :-------------------------------------------------------------------------------------------------- |
+  | amount_of_cash_withdrawal_more_than_3_crore_us_194N_for_co-operative_societies                      |
+  | amount_of_cash_withdrawal_between_20_lakhs_and_3_crore_us_194N_for_non_filer_co-operative_societies |
+  | amount_of_cash_withdrawal_more_than_3_crore_us_194N_for_non_filer_co-operative_societies            |
+
+  | **Previous**   | **Updated keys in Request Body** |
+  | :------------- | :------------------------------- |
+  | education_cess | health_and_education_cess        |
+
+  #### **Form24Q**
+
+  | **Previous**   | **Updated keys in Request Body** |
+  | :------------- | :------------------------------- |
+  | education_cess | health_and_education_cess        |
+
+  #### **Form 24Q (Q4)**
+
+  | **New keys in Request Body**                 |
+  | :------------------------------------------- |
+  | other_special_allowances_under_section_10_14 |
+  | gross_amount_us_80_cch                       |
+  | deductible_amount_us_80_cch                  |
+
+  | **Previous**   | **Updated keys in Request Body** |
+  | :------------- | :------------------------------- |
+  | education_cess | health_and_education_cess        |
+</Update>
+### July
+<Update label="July 6th, 2023 " tags={["Added"]}>
+  ## Changes we have brought in
+
+  - New response parameters added in GST Compliance APIs (Public, Taxpayer API)
+  - Response caching added in PAN Verification Basic API
+  - Added section 80EE in Income Tax Calculator API
+  - New error handling states added in Aadhaar Offline e-KYC API
+  - Response parameter replaced in Section 206AB & 206CCA Check API, non-backward compatible change
+
+  ## **New response parameters in GST Compliance APIs**
+
+  The API response body of the GST Public and GST Taxpayer APIs has been updated. A new variable status_cd (status code) has been added, streamlining the API response with the GSTN.
+
+  ## **Response Caching on PAN Verification [Basic]**
+
+  Please note that caching has been enabled on this API. As a result, the response for a particular PAN verification request will be cached for 24 hours. If the same PAN is verified again within this time frame, you will receive a cached response. You can identify a cached response by looking at the X-Cache header in the response.
+
+  It's important to note that no wallet charges will be deducted for cached responses, but the usage of the API will still be counted.
+
+  ## **Error handling in Aadhaar Offline e-KYC Verify OTP**
+
+  Error handling was updated and new responses were added, as mentioned below.
+
+  | **Code** | **Message**            |
+  | :------- | :--------------------- |
+  | 422      | OTP missing in request |
+  | 422      | Invalid Reference Id   |
+  | 500      | Invalid OTP            |
+
+  ## **Inclusion of Section 80EE in Income Tax Calculator API [Deprecated]**
+
+  We have introduced Section 80EE as an input in the JSON body for the calculation of Income Tax. This is an optional field that can be passed if the required data is present.
+
+  ## **Introduction of PAN Status key in Section 206AB & 206CCA API**
+
+  In line with the changes made by the Department, the aadhaar_seeding_status key has now been replaced with pan_status in the response. The response will include either `Operative` or `Inoperative`.
+</Update>
+### June
+<Update label="June 8th, 2023 " tags={["Added"]}>
+  ## **KYC API - Aadhaar**
+
+  We are pleased to announce the release of the [<u>Aadhaar Verification API</u>](https://developer.sandbox.co.in/docs/aadhaar-okyc-generate-otp). The Aadhaar verification workflow has 2 API
+
+  - Aadhaar Offline e-KYC Generate OTP
+  - Aadhaar Offline e-KYC Verify OTP
+
+  Using the Generate OTP API, an OTP is generated to the mobile number registered with the Aadhaar number. With the Verify OTP API, the OTP is validated and provides the associated Aadhaar data.
+</Update>
+### May
+<Update label="May 29th, 2023 " tags={["Added"]}>
+  ## **[NEW] TDS Reporting APIs**
+
+  API users can now generate .txt files for the following TDS Forms
+
+  - [<u>Form 24Q </u>](https://developer.sandbox.co.in/docs/form-24q): TDS Deduction on Salary Payments
+  - [<u>Form24Q (Q4)</u>](https://developer.sandbox.co.in/docs/form24q-q4): TDS Deduction on Salary Payments (Including Salary Details)
+  - [<u>Form27Q </u>](https://developer.sandbox.co.in/docs/form24q-q4): TDS Deducted on Non-Salary Payments from NRIs
+
+  > ## \*\*📘The API contract remains the same. However, the form type needs to be passed in the path parameter [******`<u>formof the ** Prepare TDS Return API and the payload accordingly in the presigned URL</u>`******](https://developer.sandbox.co.in/docs/prepare-tds-return)
+
+  ### **[NEW] GST e-Invoice & E-Way Bill APIs**
+
+  Users can now automate GST e-Invoicing and E-Way Billing using Sandbox APIs
+
+  - [<u>e-Invoice</u>](https://developer.sandbox.co.in/docs/e-invoice-api-guide): Get, Generate and Cancel e-Invoices (IRNs), generate and get E-Way Bill on IRNs
+  - [<u>E-Way Bill</u>](https://developer.sandbox.co.in/docs/e-way-bill-api): Get, Generate, Update, Reject and Extend E-Way Bills as well as generate consolidated E-Way Bills and Initiate Multi-Vehicle Movements
+</Update>
+### February
+<Update label="February 13th, 2023 " tags={["Added"]}>
+  ## **TDS Compliance E-File APIs**
+
+  The E-File API now supports different filing methods. Users can now file their TDS Return
+
+  - By uploading the [<u>TXT & CSI File</u>](https://developer.sandbox.co.in/docs/e-file-tds-return)
+  - By uploading the zip containing [<u>FVU & Form 27A</u>](https://developer.sandbox.co.in/docs/e-file-tds-return-submit-job)
+
+  > ## **❗️Change are non-backward compatible.**
+
+  ### **Change in API Contract**
+
+  - The E-File API using the zip of FVU & Form 27A has [<u>a new endpoint</u>](https://developer.sandbox.co.in/reference/e-file-tds-return-submit-job-api)
+    - Users will still be able to hit the [<u>previous endpoint</u>](https://developer.sandbox.co.in/docs/e-file-tds-return-api) of the API until **31st March 2023** before it is discontinued.
+  - The endpoint for E-File API using TXT & CSI File can be found [<u>here</u>](https://developer.sandbox.co.in/reference/e-file-tds-return-api)
+
+  ### **Improvements for large payloads**
+
+  - If the number of transactions is high, the payload may be too large for an API gateway to support.
+  - To overcome this infrastructure issue, the E-File API will now return a [<u>pre-signed URL</u>](https://docs.aws.amazon.com/AmazonS3/latest/userguide/PresignedUrlUploadObject.html).
+  - Using an HTTP `PUT` request, API users can upload payloads up to 5 GB to the given pre-signed URL.
+</Update>
+### January
+<Update label="January 2nd, 2023 " tags={["Added"]}>
+  ##  **PAN Verification API (Advance)**
+
+  The updated API endpoint includes the implementation of caching, updated API request response, improved charging mechanism & better pricing.
+
+  > ## **🚧Note that this change is not backward compatible.**
+
+  ### **Change in API Contract**
+
+  - The PAN Verification Advance API is now a POST request API with the new endpoint: `https://api.sandbox.co.in/kyc/pan`
+  - Users will still be able to hit the previous endpoint of the API until 28th February 2023 before it is discontinued.
+
+  ### **Introducing Caching**
+
+  - We will now have cached responses on the already verified PAN number for 24 hours.
+  - This means that if the same PAN is verified again, you will receive a cached response.
+  - You can identify the cached response with the `X-Cache` header.
+  - No wallet charges will be levied on cached responses, however, usage will be counted.
+
+  Please refer to our Response Caching page [<u>here</u>](https://developer.sandbox.co.in/docs/response-caching) for more details
+
+  You can refer to the updated documentation [<u>here</u>](https://developer.sandbox.co.in/reference/pan-verification-advance-api).
+
+  ## **PAN-Aadhaar Link Status**
+
+  There is an update in the API endpoint.
+
+  > ## **🚧Note that this change is not backward compatible.**
+
+  ### **Change in API Contract**
+
+  - The new endpoint of PAN-Aadhaar Link Status: `https://api.sandbox.co.in/it-tools/pans/{pan}/pan-aadhaar-status`
+  - You can refer to the updated documentation [<u>here</u>](https://developer.sandbox.co.in/reference/pan-aadhaar-link-status-api).
+</Update>
+## 2022
+### December
+<Update label="December 14th, 2022 " tags={["Added"]}>
+  ##  **Bank Account Verification [Penny Drop] Version 2.0**
+
+  The new version includes the implementation of caching, updated API responses, and an improved charging mechanism.
+
+  > ## **🚧Note that this version is not backward compatible.**
+
+  ### **Change API Contract**
+
+  - The `x-api-version` request header will require `2.0` to call the new version.
+  - Users will still be able to hit the previous version of the API (1.0) until 31st January 2023 before it is deprecated.
+  - The endpoint will point to the latest version when the version is not passed in the request header.
+
+  Please refer to our versioning policies [<u>here</u>](https://developer.sandbox.co.in/docs/versioning).
+
+  ### **Introducing Caching**
+
+  - We will now have cached responses on the already verified bank accounts for 12 hours.
+  - This means that if the same account is verified again, you will receive a cached response.
+  - You can identify the cached response with the `X-Cache` header.
+  - No wallet charges on cached responses, however, usage will be counted.
+
+  Please refer to our Response Caching page [<u>here</u>](https://developer.sandbox.co.in/docs/response-caching) for more details
+
+  ### **Improvements in the Charging Mechanism**
+
+  - If the `code` is 200 but the penny drop did not take place, then the wallet charge of 0.75 + GST will take place as a verification charge. The reason for the failed penny drop will be mentioned in the response.
+
+  You can refer to the updated documentation [<u>here</u>](https://developer.sandbox.co.in/docs/bank-account-verification).
+</Update>
+### November
+<Update label="November 2nd, 2022" tags={["Added"]}>
+  ##  **Tax Payment APIs Entity changes**
+
+  As we migrate our systems from OLTAS to TIN 2.0, we had to incorporate a few changes to the API contracts.
+
+  ### **Changes in the challan entity**
+
+  The Challan entity has been revamped significantly in view of TIN2.0. Previously, this challan would provide the following parameters:
+
+  - `bsr_code`
+  - `challan_no.`
+  - `download_url`
+
+  However, with migration to TIN 2.0, the challan entity will solely consist of `cin` number. Refer to [<u>this article</u>](https://help.quicko.com/support/solutions/articles/84000374572-how-to-download-challan-no-from-the-income-tax-portal) on how to download the challans henceforth.
+
+  > ## **🚧Note that Fetch Challan API has been deprecated for the same reasons.**
+
+  ### **Changes in other entities**
+
+  A few other entities have also undergone changes:
+
+  - The `address` entity has been removed from the `tax_payer` entity
+  - In the `tax_breakup` entity
+    - `other_amount` and `other_fee` have been replaced with `others`.
+    - `interest_amount` has been changed to `interest`.
+    - `penalty` is no more an entity, but rather a parameter with an integer value.
+
+  All of these changes are now being reflected in our API documentation. In case of any queries, you can reach out to us at [<u>help@sandbox.co.in</u>](mailto:help@sandbox.co.in) .
+</Update>
