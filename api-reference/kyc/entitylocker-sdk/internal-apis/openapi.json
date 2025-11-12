@@ -1,0 +1,726 @@
+{
+    "openapi": "3.1.0",
+    "info": {
+        "title": "EntityLocker SDK APIs",
+        "version": "1.0.0",
+        "description": ""
+    },
+    "servers": [
+        {
+            "url": "https://entityLockerApiGatewayUrl.execute-api.ap-south-1.amazonaws.com/dev"
+        }
+    ],
+    "paths": {
+        "/kyc/entitylocker-sdk/sessions/{session_id}/init": {
+            "post": {
+                "summary": "Initiate Session",
+                "tags": [
+                    "Entity Locker SDK"
+                ],
+                "parameters": [
+                    {
+                        "name": "x-api-key",
+                        "in": "header",
+                        "required": true,
+                        "description": "API key for identification",
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "200 - Success",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "timestamp": {
+                                            "type": "integer"
+                                        },
+                                        "transaction_id": {
+                                            "type": "string"
+                                        },
+                                        "data": {
+                                            "type": "object",
+                                            "properties": {
+                                                "@entity": {
+                                                    "type": "string",
+                                                    "const": "in.co.sandbox.kyc.entitylocker.sdk.authorization.response"
+                                                },
+                                                "access_token": {
+                                                    "type": "string"
+                                                }
+                                            }
+                                        },
+                                        "code": {
+                                            "type": "integer"
+                                        }
+                                    }
+                                },
+                                "examples": {
+                                    "200 - Success": {
+                                        "value": {
+                                            "timestamp": 1750331161196,
+                                            "transaction_id": "df305bfa-ca8b-4e3d-bb41-7abd2c109453",
+                                            "data": {
+                                                "@entity": "in.co.sandbox.kyc.entitylocker.sdk.authorization.response",
+                                                "access_token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJkZXYtc2RrLnNhbmRib3guY28uaW4va3ljL2VudGl0eWxvY2tlciIsInN1YiI6IjA0NTRmMTQ5LTI2ZDAtNDFlZi05ZjE0LWM1NGY0YjVmN2I3MCIsImF1ZCI6IkFQSSIsImFwaV9rZXkiOiJrZXlfbGl2ZV9jZWY4OGM1ODk3NWU0MGNiOGRkNDA2YWEyMjM3ZmY5NSIsIndvcmtzcGFjZV9pZCI6ImUzODU0MzJiLTU3NWMtNGI2Zi04OTI4LTc5MTM2ZGJjMGQ0ZiIsImludGVudCI6IkFDQ0VTU19UT0tFTiIsImV4cCI6MTc1MDMzNDc2NjMyNiwiaWF0IjoxNzUwMzMxMTY2fQ.C_pVT-FeRpwet6sSAGjbIqth8nnH6jUNE0FtSZCRo8o"
+                                            },
+                                            "code": 200
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "parameters": [
+                {
+                    "name": "session_id",
+                    "in": "path",
+                    "required": true,
+                    "description": "Session ID",
+                    "schema": {
+                        "type": "string"
+                    }
+                }
+            ]
+        },
+        "/kyc/entitylocker-sdk/sessions/{session_id}": {
+            "get": {
+                "summary": "Get Session",
+                "tags": [
+                    "Entity Locker SDK"
+                ],
+                "parameters": [
+                    {
+                        "name": "Authorization",
+                        "in": "header",
+                        "required": true,
+                        "description": "SDK Token",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "x-api-key",
+                        "in": "header",
+                        "required": true,
+                        "description": "API key for identification",
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "200 - Success",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "code": {
+                                            "type": "integer"
+                                        },
+                                        "timestamp": {
+                                            "type": "integer"
+                                        },
+                                        "data": {
+                                            "type": "object",
+                                            "properties": {
+                                                "@entity": {
+                                                    "type": "string"
+                                                },
+                                                "status": {
+                                                    "type": "string",
+                                                    "enum": [
+                                                        "created",
+                                                        "initialized",
+                                                        "authorized",
+                                                        "succeeded",
+                                                        "failed",
+                                                        "expired"
+                                                    ]
+                                                },
+                                                "documents_consented": {
+                                                    "type": "array",
+                                                    "items": {
+                                                        "type": "string",
+                                                        "enum": [
+                                                            "company_master_details",
+                                                            "gstn_details",
+                                                            "udhyam_certificate"
+                                                        ]
+                                                    }
+                                                },
+                                                "documents_requested": {
+                                                    "type": "array",
+                                                    "items": {
+                                                        "type": "string",
+                                                        "enum": [
+                                                            "company_master_details",
+                                                            "gstn_details",
+                                                            "udhyam_certificate"
+                                                        ]
+                                                    }
+                                                },
+                                                "id": {
+                                                    "type": "string"
+                                                },
+                                                "created_at": {
+                                                    "type": "integer"
+                                                },
+                                                "updated_at": {
+                                                    "type": "integer"
+                                                }
+                                            }
+                                        },
+                                        "transaction_id": {
+                                            "type": "string"
+                                        }
+                                    }
+                                },
+                                "examples": {
+                                    "200 -Session Initialized": {
+                                        "value": {
+                                            "code": 200,
+                                            "timestamp": 1752580258171,
+                                            "data": {
+                                                "id": "839fd8a0-d645-42e1-a904-bb43353b0139",
+                                                "created_at": 1752579445983,
+                                                "updated_at": 1752579445983,
+                                                "@entity": "in.co.sandbox.kyc.entitylocker.sdk.session",
+                                                "documents_requested": [
+                                                    "company_master_details",
+                                                    "gstn_details"
+                                                ],
+                                                "status": "initialized"
+                                            },
+                                            "transaction_id": "800ff751-2191-4b7d-b20a-8301790a3e19"
+                                        }
+                                    },
+                                    "200 - Session Failed": {
+                                        "value": {
+                                            "code": 200,
+                                            "timestamp": 1752580258171,
+                                            "data": {
+                                                "id": "839fd8a0-d645-42e1-a904-bb43353b0139",
+                                                "created_at": 1752579445983,
+                                                "updated_at": 1752579445983,
+                                                "@entity": "in.co.sandbox.kyc.entitylocker.sdk.session",
+                                                "documents_requested": [
+                                                    "company_master_details",
+                                                    "gstn_details"
+                                                ],
+                                                "status": "failed"
+                                            },
+                                            "transaction_id": "800ff751-2191-4b7d-b20a-8301790a3e19"
+                                        }
+                                    },
+                                    "200 - Session Succeeded": {
+                                        "value": {
+                                            "code": 200,
+                                            "timestamp": 1754991910851,
+                                            "data": {
+                                                "@entity": "in.co.sandbox.kyc.entitylocker.sdk.session",
+                                                "status": "succeeded",
+                                                "documents_consented": [
+                                                    "company_master_details",
+                                                    "gstn_details"
+                                                ],
+                                                "documents_requested": [
+                                                    "company_master_details",
+                                                    "gstn_details"
+                                                ],
+                                                "id": "5ed01344-d9b2-4b44-b0c7-e2901c834999",
+                                                "created_at": 1754990307997,
+                                                "updated_at": 1754990726406
+                                            },
+                                            "transaction_id": "f29f1438-79e2-4090-854e-815d00620bd6"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "parameters": [
+                {
+                    "name": "session_id",
+                    "in": "path",
+                    "required": true,
+                    "description": "Session id",
+                    "schema": {
+                        "type": "string"
+                    }
+                }
+            ]
+        },
+        "/kyc/entitylocker-sdk/sessions/{session_id}/authorization_url": {
+            "get": {
+                "summary": "Get Authorization URL",
+                "tags": [
+                    "Entity Locker SDK"
+                ],
+                "parameters": [
+                    {
+                        "name": "Authorization",
+                        "in": "header",
+                        "required": true,
+                        "description": "SDK Token",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "x-api-key",
+                        "in": "header",
+                        "required": true,
+                        "description": "API key for identification",
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "200 - Success",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "timestamp": {
+                                            "type": "integer"
+                                        },
+                                        "transaction_id": {
+                                            "type": "string"
+                                        },
+                                        "data": {
+                                            "type": "object",
+                                            "properties": {
+                                                "@entity": {
+                                                    "type": "string",
+                                                    "const": "in.co.sandbox.kyc.entitylocker.session.authorization.url.response"
+                                                },
+                                                "authorization_url": {
+                                                    "type": "string",
+                                                    "format": "uri"
+                                                }
+                                            },
+                                            "required": [
+                                                "@entity",
+                                                "authorization_url"
+                                            ]
+                                        },
+                                        "code": {
+                                            "type": "integer"
+                                        }
+                                    }
+                                },
+                                "examples": {
+                                    "200 - Success": {
+                                        "value": {
+                                            "timestamp": 1750331530804,
+                                            "transaction_id": "11e5bf5f-4d69-4c85-922c-21f865307b23",
+                                            "data": {
+                                                "@entity": "in.co.sandbox.kyc.entitylocker.session.authorization.url.response",
+                                                "authorization_url": "https://entity.digilocker.gov.in/public/oauth2/1/authorize?response_type=code&client_id=VRF23C1E3B&state=402b65e4-8860-4e05-ba68-44ba97fffab4&redirect_uri=https%3A%2F%2Fdeveloper.sandbox.co.in%2F&code_challenge=cEWyA4WVsShZemOQQUZqOiPJu1shUA1sz8-PknXfGxQ&code_challenge_method=S256&consent_valid_till=1750335176"
+                                            },
+                                            "code": 200
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "parameters": [
+                {
+                    "name": "session_id",
+                    "in": "path",
+                    "required": true,
+                    "description": "Session id",
+                    "schema": {
+                        "type": "string"
+                    }
+                }
+            ]
+        },
+        "/kyc/entitylocker-sdk/sessions/{session_id}/authorize": {
+            "post": {
+                "summary": "Authorize Session",
+                "tags": [
+                    "Entity Locker SDK"
+                ],
+                "parameters": [
+                    {
+                        "name": "Authorization",
+                        "in": "header",
+                        "required": true,
+                        "description": "SDK Token",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "x-api-key",
+                        "in": "header",
+                        "required": true,
+                        "description": "API key for identification",
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "200 - Success",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "timestamp": {
+                                            "type": "integer"
+                                        },
+                                        "transaction_id": {
+                                            "type": "string"
+                                        },
+                                        "data": {
+                                            "type": "object",
+                                            "properties": {
+                                                "@entity": {
+                                                    "type": "string"
+                                                },
+                                                "access_token": {
+                                                    "type": "string"
+                                                }
+                                            }
+                                        },
+                                        "code": {
+                                            "type": "integer"
+                                        }
+                                    }
+                                },
+                                "examples": {
+                                    "200 - Success": {
+                                        "value": {
+                                            "timestamp": 1750331593859,
+                                            "transaction_id": "8b18fc6b-0290-4003-b8d2-c42b35b313fb",
+                                            "data": {
+                                                "@entity": "in.co.sandbox.kyc.entitylocker.sdk.authorization.response",
+                                                "access_token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzZGsuc2FuZGJveC5jby5pbi9reWMvZW50aXR5bG9ja2VyIiwic3ViIjoiNGU4NDU1ZTgtMjdkYi01MGEwLTk5ZTktMGIwMjExYTQ4MTFkIiwiYXVkIjoiQVBJIiwiYXBpX2tleSI6ImtleV9saXZlX2NlZjg4YzU4OTc1ZTQwY2I4ZGQ0MDZhYTIyMzdmZjk1Iiwid29ya3NwYWNlX2lkIjoiZTM4NTQzMmItNTc1Yy00YjZmLTg5MjgtNzkxMzZkYmMwZDRmIiwiaW50ZW50IjoiQUNDRVNTX1RPS0VOIiwiZXhwIjoxNzUwMzM1MTk2NTQ4LCJvYXV0aF90b2tlbiI6ImV5SmhiR2NpT2lKSVV6STFOaUlzSW5SNWNDSTZJa3BYVkNKOS5leUpwYzNNaU9pSmhjR2t1YzJGdVpHSnZlQzVqYnk1cGJpOXJlV012Wlc1MGFYUjViRzlqYTJWeUlpd2ljM1ZpSWpvaVlqVTFNakpqT0dZdE1qTXlNUzAxTnpkaUxUaGxOek10WVdVeE16WTJaRGxqTlRreElpd2lZWFZrSWpvaVFWQkpJaXdpWVhCcFgydGxlU0k2SW10bGVWOXNhWFpsWHprM01HTmxOelJpTlRJeU5EUTNOVFE1WXpWak9EWTRNV014WWpWalpUZGlJaXdpZDI5eWEzTndZV05sWDJsa0lqb2lObVk0TmpNMk5qTXRabU16T1MwME1UWXhMV0ZpT1RRdE5XUXhOekEzWVRJMk5EVTBJaXdpYVc1MFpXNTBJam9pUVVORFJWTlRYMVJQUzBWT0lpd2laWGh3SWpveE56VTBOVGN3T1RrMkxDSnZZWFYwYUY5MGIydGxiaUk2SW1WNVNtaGlSMk5wVDJsS1NWVjZTVEZPYVVselNXNVNOV05EU1RaSmEzQllWa05LT1M1bGVVcHdZek5OYVU5cFNteGlibEp3WkVocmRWcEhiRzVoVjNoMldUSjBiR05wTlc1aU0xbDFZVmMwYVV4RFNucGtWMGxwVDJsS2FVNVVWWGxOYlUwMFdta3dlVTE2U1hoTVZGVXpUakpKZEU5SFZUTk5lVEZvV2xSRmVrNXFXbXRQVjAweFQxUkZhVXhEU21oa1YxRnBUMmxLU2xaNlZURlJlbVJDVFRCSmQwbHBkMmxoVnpVd1dsYzFNRWxxYjJsUlZVNUVVbFpPVkZneFVsQlRNRlpQU1dsM2FWcFlhSGRKYW05NFRucFZNRTVVWTNkUFZHc3lURU5LZWxreU9YZGFVMGsyVjNsS2NHTXpUakZhVjFGMllWYzBkVm95T1RKTWJURjZZbGRWZEZaVlVrUlNWa2wwVmxWU1dsRlZNVWhUYWtGNFRVUkplazVxYXpGTmJuQTJUMVJCTlU5VWF6Uk5la2t3VG1sSmMwbHVWbnBhV0VwcldsaFNhR0ZYZUhwSmFYZHBZVmhPZW1SWFZtdE1NbXgxVEcxa2RtUnBOWFJaTWtWMFVURkNUbFpGVVhSV1ZHTjVUMVJCZDFJd2IzbE5SRWw2VlVaU1JFMVVUVFJPUkZVelNXbDNhVnBYTlRCaFdGSTFXa2RXTUZsWGJITmplVWx6U1cxYWNHSkhWbnBNYlZaMVpFZHNNR1ZYYkhwak0xWnNXa2RTZGxrelRXbE1RMHB3WXpOT01WcFhVWFpoVnpSMVlqTktia3h0Wkhwa1J6UjBVakZPVlZSclVYUk5hbEpDVVd0MFJGVjZTWGROZWs1RFRWWndWMGxwZDJsYWJXeHpXbGhOZFZwWE5UQmhXRkkxWkcxR01XSklVV2xZVTNkcFlWZEdNRWxxYjNoT2VsVXdUbFJaTTAxNmF6Sm1VUzQ1ZUhrd2VEaDNSMmN6WDBoVVMxaFBkell5UWxkV1lXVTFlVzlyWkVWdWIzRXpiWGhRTUVKWk4wOUpJaXdpYVdGMElqb3hOelUwTlRZM016azNmUS5tcVVXUjJick1HVUczdGlfRkNtM1ZodWpNbkZSRzlqX2ZLNmRqWkhYVFFvIiwiaWF0IjoxNzUwMzMxNTk2fQ.zbgGHVl7tey5WGY6SPjR5BoMKIFxZxCUlJx_yVfb_Ao"
+                                            },
+                                            "code": 200
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type": "object",
+                                "properties": {
+                                    "@entity": {
+                                        "type": "string",
+                                        "const": "in.co.sandbox.kyc.entitylocker.sdk.authorization.request"
+                                    },
+                                    "request_token": {
+                                        "type": "string"
+                                    }
+                                },
+                                "required": [
+                                    "@entity",
+                                    "request_token"
+                                ]
+                            }
+                        }
+                    }
+                }
+            },
+            "parameters": [
+                {
+                    "name": "session_id",
+                    "in": "path",
+                    "required": true,
+                    "description": "Session id",
+                    "schema": {
+                        "type": "string"
+                    }
+                }
+            ]
+        },
+        "/kyc/entitylocker-sdk/sessions/{session_id}/documents": {
+            "get": {
+                "summary": "Get Documents",
+                "tags": [
+                    "Entity Locker SDK"
+                ],
+                "parameters": [
+                    {
+                        "name": "Authorization",
+                        "in": "header",
+                        "required": true,
+                        "description": "SDK Resource Owner Token",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "x-api-key",
+                        "in": "header",
+                        "required": true,
+                        "description": "API key for identification",
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "200 - Success",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "code": {
+                                            "type": "integer"
+                                        },
+                                        "timestamp": {
+                                            "type": "integer"
+                                        },
+                                        "data": {
+                                            "type": "object",
+                                            "properties": {
+                                                "@entity": {
+                                                    "type": "string",
+                                                    "const": "org.quicko.paginated_list"
+                                                },
+                                                "items": {
+                                                    "type": "array",
+                                                    "items": {
+                                                        "type": "object",
+                                                        "properties": {
+                                                            "description": {
+                                                                "type": "string"
+                                                            },
+                                                            "@entity": {
+                                                                "type": "string",
+                                                                "const": "in.co.sandbox.kyc.entitylocker.document"
+                                                            },
+                                                            "name": {
+                                                                "type": "string"
+                                                            },
+                                                            "date": {
+                                                                "type": "integer"
+                                                            },
+                                                            "type": {
+                                                                "type": "string"
+                                                            },
+                                                            "size": {
+                                                                "type": "string"
+                                                            },
+                                                            "parent": {
+                                                                "type": "string"
+                                                            },
+                                                            "mime": {
+                                                                "type": "array",
+                                                                "items": {
+                                                                    "type": "string"
+                                                                }
+                                                            },
+                                                            "uri": {
+                                                                "type": "string"
+                                                            },
+                                                            "doc_type": {
+                                                                "type": "string",
+                                                                "enum": [
+                                                                    "company_master_details",
+                                                                    "gstn_details",
+                                                                    "udhyam_certificate"
+                                                                ]
+                                                            },
+                                                            "issuer_id": {
+                                                                "type": "string"
+                                                            },
+                                                            "issuer": {
+                                                                "type": "string"
+                                                            }
+                                                        }
+                                                    }
+                                                }
+                                            }
+                                        },
+                                        "transaction_id": {
+                                            "type": "string"
+                                        }
+                                    }
+                                },
+                                "examples": {
+                                    "200 - Success": {
+                                        "value": {
+                                            "code": 200,
+                                            "timestamp": 1754567402390,
+                                            "data": {
+                                                "@entity": "org.quicko.paginated_list",
+                                                "items": [
+                                                    {
+                                                        "description": "Company Master Details",
+                                                        "@entity": "in.co.sandbox.kyc.entitylocker.document",
+                                                        "name": "Company Master Details",
+                                                        "date": 1734546600000,
+                                                        "type": "file",
+                                                        "size": "",
+                                                        "parent": "",
+                                                        "mime": [
+                                                            "application/pdf"
+                                                        ],
+                                                        "uri": "in.gov.mca-CPMTD-U72900GJ2023PTC138457",
+                                                        "doc_type": "company_master_details",
+                                                        "issuer_id": "in.gov.mca",
+                                                        "issuer": "Ministry of Corporate Affairs (MCA), Govt. of India"
+                                                    },
+                                                    {
+                                                        "description": "GSTN Details",
+                                                        "@entity": "in.co.sandbox.kyc.entitylocker.document",
+                                                        "name": "GSTN Details",
+                                                        "date": 1738521000000,
+                                                        "type": "file",
+                                                        "size": "",
+                                                        "parent": "",
+                                                        "mime": [
+                                                            "application/json",
+                                                            "application/xml",
+                                                            "application/pdf"
+                                                        ],
+                                                        "uri": "in.org.gstn-GSTND-24ABKCS2033B1ZV",
+                                                        "doc_type": "gstn_details",
+                                                        "issuer_id": "in.org.gstn",
+                                                        "issuer": "Goods and Services Tax Network"
+                                                    },
+                                                    {
+                                                        "description": "Udyam Certificate",
+                                                        "@entity": "in.co.sandbox.kyc.entitylocker.document",
+                                                        "name": "Udyam Certificate",
+                                                        "date": 1738521000000,
+                                                        "type": "file",
+                                                        "size": "",
+                                                        "parent": "",
+                                                        "mime": [
+                                                            "application/json",
+                                                            "application/xml",
+                                                            "application/pdf"
+                                                        ],
+                                                        "uri": "in.gov.msme-UDCER-UDYAMGJ010236952zz9099983246",
+                                                        "doc_type": "udhyam_certificate",
+                                                        "issuer_id": "in.gov.msme",
+                                                        "issuer": "Ministry of Micro, Small and Medium Enterprises"
+                                                    }
+                                                ]
+                                            },
+                                            "transaction_id": "1516557e-dc3c-433b-b73e-f9a073219ef7"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "parameters": [
+                {
+                    "name": "session_id",
+                    "in": "path",
+                    "required": true,
+                    "description": "Session id",
+                    "schema": {
+                        "type": "string"
+                    }
+                }
+            ]
+        },
+        "/kyc/entitylocker-sdk/sessions/{session_id}/reset": {
+            "post": {
+                "summary": "Reset Session",
+                "tags": [
+                    "Entity Locker SDK"
+                ],
+                "parameters": [
+                    {
+                        "name": "Authorization",
+                        "in": "header",
+                        "required": true,
+                        "description": "SDK Token",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "x-api-key",
+                        "in": "header",
+                        "required": true,
+                        "description": "API key for identification",
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "200 OK",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "code": {
+                                            "type": "integer"
+                                        },
+                                        "timestamp": {
+                                            "type": "integer"
+                                        },
+                                        "transaction_id": {
+                                            "type": "string"
+                                        }
+                                    }
+                                },
+                                "examples": {
+                                    "200 - Success": {
+                                        "value": {
+                                            "code": 200,
+                                            "timestamp": 1754567402390,
+                                            "transaction_id": "1516557e-dc3c-433b-b73e-f9a073219ef7"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "parameters": [
+                {
+                    "name": "session_id",
+                    "in": "path",
+                    "required": true,
+                    "description": "Session id",
+                    "schema": {
+                        "type": "string"
+                    }
+                }
+            ]
+        }
+    }
+}
