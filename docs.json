@@ -159,10 +159,20 @@
 							{
 								"group": "Analytics",
 								"pages": [
-									"api-reference/gst/analytics/endpoints/reconcile_gstr_2a_submit_job",
-									"api-reference/gst/analytics/endpoints/reconcile_gstr_2a_poll_job",
-									"api-reference/gst/analytics/endpoints/reconcile_gstr_2b_submit_job",
-									"api-reference/gst/analytics/endpoints/reconcile_gstr_2b_poll_job"
+									{
+										"group": "GSTR-2A Reconciliation",
+										"pages": [
+											"api-reference/gst/analytics/endpoints/gstr-2a-reconciliation/submit_job",
+											"api-reference/gst/analytics/endpoints/gstr-2a-reconciliation/poll_job"
+										]
+									},
+									{
+										"group": "GSTR-2B Reconciliation",
+										"pages": [
+											"api-reference/gst/analytics/endpoints/gstr-2b-reconciliation/submit_job",
+											"api-reference/gst/analytics/endpoints/gstr-2b-reconciliation/poll_job"
+										]
+									}
 								]
 							}
 						]
