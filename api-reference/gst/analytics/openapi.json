@@ -1,5 +1,5 @@
 {
-	"openapi": "3.0.0",
+	"openapi": "3.1.0",
 	"info": {
 		"title": "analytics",
 		"version": "1.0.0",
@@ -69,7 +69,7 @@
 													"type": "string",
 													"description": "Fully-qualified entity type.",
 													"example": "in.co.sandbox.gst.analytics.gstr-2a_reconciliation.job",
-													"enum": ["in.co.sandbox.gst.analytics.gstr-2a_reconciliation.job"]
+													"const": "in.co.sandbox.gst.analytics.gstr-2a_reconciliation.job"
 												},
 												"job_id": {
 													"type": "string",
@@ -161,7 +161,7 @@
 								"properties": {
 									"@entity": {
 										"type": "string",
-										"enum": ["in.co.sandbox.gst.analytics.gstr-2a_reconciliation.request"]
+										"const": "in.co.sandbox.gst.analytics.gstr-2a_reconciliation.request"
 									},
 									"gstin": {
 										"type": "string",
@@ -251,7 +251,7 @@
 													"type": "string",
 													"description": "Fully-qualified entity type.",
 													"example": "in.co.sandbox.gst.analytics.gstr-2a_reconciliation.job",
-													"enum": ["in.co.sandbox.gst.analytics.gstr-2a_reconciliation.job"]
+													"const": "in.co.sandbox.gst.analytics.gstr-2a_reconciliation.job"
 												},
 												"job_id": {
 													"type": "string",
@@ -375,7 +375,7 @@
 													"type": "string",
 													"description": "Fully-qualified entity type.",
 													"example": "in.co.sandbox.gst.analytics.gstr-2b_reconciliation.job",
-													"enum": ["in.co.sandbox.gst.analytics.gstr-2b_reconciliation.job"]
+													"const": "in.co.sandbox.gst.analytics.gstr-2b_reconciliation.job"
 												},
 												"job_id": {
 													"type": "string",
@@ -467,7 +467,7 @@
 								"properties": {
 									"@entity": {
 										"type": "string",
-										"enum": ["in.co.sandbox.gst.analytics.gstr-2b_reconciliation.request"]
+										"const": "in.co.sandbox.gst.analytics.gstr-2b_reconciliation.request"
 									},
 									"gstin": {
 										"type": "string",
@@ -544,7 +544,7 @@
 													"type": "string",
 													"description": "Fully-qualified entity type.",
 													"example": "in.co.sandbox.gst.analytics.gstr-2b_reconciliation.job",
-													"enum": ["in.co.sandbox.gst.analytics.gstr-2b_reconciliation.job"]
+													"const": "in.co.sandbox.gst.analytics.gstr-2b_reconciliation.job"
 												},
 												"job_id": {
 													"type": "string",
