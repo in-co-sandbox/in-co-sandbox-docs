@@ -90,8 +90,8 @@
                 "tab": "API Reference",
                 "menu": [
                     {
-                        "item": "Get Started",
-                        "description": "Get started with Sandbox API",
+                        "item": "Authentication",
+                        "description": "Authenticate and get access to use Sandbox APIs",
                         "icon": "rocket",
                         "groups": [
                             {
@@ -109,64 +109,91 @@
                         "icon": "/static/svg/KYC.svg",
                         "groups": [
                             {
-                                "group": "Rest API",
+                                "group": "Aadhaar",
                                 "pages": [
                                     {
-                                        "group": "Aadhaar",
+                                        "group": "OKYC",
                                         "pages": [
                                             "api-reference/kyc/aadhaar/endpoints/generate_otp",
                                             "api-reference/kyc/aadhaar/endpoints/verify_otp"
                                         ]
-                                    },
+                                    }
+                                ]
+                            },
+                            {
+                                "group": "Bank",
+                                "pages": [
+                                    "api-reference/kyc/bank/endpoints/ifsc_verification",
+                                    "api-reference/kyc/bank/endpoints/penny_drop",
+                                    "api-reference/kyc/bank/endpoints/penny_less"
+                                ]
+                            },
+                            {
+                                "group": "Digilocker",
+                                "pages": [
+                                    "api-reference/kyc/digilocker/endpoints/initiate_session",
+                                    "api-reference/kyc/digilocker/endpoints/session_status",
+                                    "api-reference/kyc/digilocker/endpoints/fetch_document"
+                                ]
+                            },
+                            {
+                                "group": "Digilocker SDK",
+                                "pages": [
                                     {
-                                        "group": "Bank",
+                                        "group": "Getting Started",
                                         "pages": [
-                                            "api-reference/kyc/bank/endpoints/ifsc_verification",
-                                            "api-reference/kyc/bank/endpoints/penny_drop",
-                                            "api-reference/kyc/bank/endpoints/penny_less"
+                                            "api-reference/kyc/digilocker-sdk/getting-started/introduction"
                                         ]
                                     },
                                     {
-                                        "group": "Digilocker",
+                                        "group": "Platforms",
                                         "pages": [
-                                            "api-reference/kyc/digilocker/endpoints/initiate_session",
-                                            "api-reference/kyc/digilocker/endpoints/session_status",
-                                            "api-reference/kyc/digilocker/endpoints/fetch_document"
+                                            "api-reference/kyc/digilocker-sdk/getting-started/platforms/web",
+                                            "api-reference/kyc/digilocker-sdk/getting-started/platforms/android",
+                                            "api-reference/kyc/digilocker-sdk/getting-started/platforms/ios"
                                         ]
                                     },
                                     {
-                                        "group": "Digilocker SDK",
+                                        "group": "Endpoints",
                                         "pages": [
-                                            {
-                                                "group": "Integration",
-                                                "pages": [
-                                                    "api-reference/kyc/digilocker-sdk/integration/guide"
-                                                ]
-                                            },
-                                            {
-                                                "group": "Platforms",
-                                                "pages": [
-                                                    "api-reference/kyc/digilocker-sdk/integration/platforms/web",
-                                                    "api-reference/kyc/digilocker-sdk/integration/platforms/android",
-                                                    "api-reference/kyc/digilocker-sdk/integration/platforms/ios"
-                                                ]
-                                            },
-                                            {
-                                                "group": "Endpoints",
-                                                "pages": [
-                                                    "api-reference/kyc/digilocker-sdk/endpoints/create-session",
-                                                    "api-reference/kyc/digilocker-sdk/endpoints/get-session-status",
-                                                    "api-reference/kyc/digilocker-sdk/endpoints/get-document"
-                                                ]
-                                            }
-                                        ]
-                                    },
-                                    {
-                                        "group": "PAN",
-                                        "pages": [
-                                            "api-reference/kyc/pan/endpoints/verify_pan_details"
+                                            "api-reference/kyc/digilocker-sdk/endpoints/create-session",
+                                            "api-reference/kyc/digilocker-sdk/endpoints/get-session-status",
+                                            "api-reference/kyc/digilocker-sdk/endpoints/get-document"
                                         ]
                                     }
+                                ]
+                            },
+                            {
+                                "group": "EntityLocker SDK",
+                                "hidden": false,
+                                "pages": [
+                                    {
+                                        "group": "Endpoints",
+                                        "hidden": false,
+                                        "pages": [
+                                            "api-reference/kyc/entitylocker-sdk/endpoints/create_session",
+                                            "api-reference/kyc/entitylocker-sdk/endpoints/get_session_status",
+                                            "api-reference/kyc/entitylocker-sdk/endpoints/get_document"
+                                        ]
+                                    },
+                                    {
+                                        "group": "Internal Endpoints",
+                                        "hidden": false,
+                                        "pages": [
+                                            "api-reference/kyc/entitylocker-sdk/internal-apis/endpoints/initiate_session",
+                                            "api-reference/kyc/entitylocker-sdk/internal-apis/endpoints/get_authorization_url",
+                                            "api-reference/kyc/entitylocker-sdk/internal-apis/endpoints/authorization",
+                                            "api-reference/kyc/entitylocker-sdk/internal-apis/endpoints/get_documents",
+                                            "api-reference/kyc/entitylocker-sdk/internal-apis/endpoints/reset_session"
+                                        ]
+                                    }
+                                ]
+                            },
+                            {
+                                "group": "PAN",
+                                "pages": [
+                                    "api-reference/kyc/pan/endpoints/verify_pan_details",
+                                    "api-reference/kyc/pan/endpoints/pan_aadhaar_link_status"
                                 ]
                             }
                         ]
@@ -199,48 +226,8 @@
             },
             {
                 "tab": "Changelog",
-                "groups": [
-                    {
-                        "group": "2025",
-                        "pages": [
-                            "changelog/2025/july",
-                            "changelog/2025/june",
-                            "changelog/2025/january"
-                        ]
-                    },
-                    {
-                        "group": "2024",
-                        "pages": [
-                            "changelog/2024/december",
-                            "changelog/2024/november",
-                            "changelog/2024/october",
-                            "changelog/2024/september",
-                            "changelog/2024/july",
-                            "changelog/2024/june",
-                            "changelog/2024/may",
-                            "changelog/2024/april",
-                            "changelog/2024/january"
-                        ]
-                    },
-                    {
-                        "group": "2023",
-                        "pages": [
-                            "changelog/2023/october",
-                            "changelog/2023/september",
-                            "changelog/2023/july",
-                            "changelog/2023/june",
-                            "changelog/2023/may",
-                            "changelog/2023/february",
-                            "changelog/2023/january"
-                        ]
-                    },
-                    {
-                        "group": "2022",
-                        "pages": [
-                            "changelog/2022/december",
-                            "changelog/2022/november"
-                        ]
-                    }
+                "pages": [
+                    "changelog"
                 ]
             },
             {
