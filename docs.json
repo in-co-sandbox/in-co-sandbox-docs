@@ -1,279 +1,245 @@
 {
-    "$schema": "https://mintlify.com/docs.json",
-    "theme": "palm",
-    "name": "Sandbox Financial Technologies Private Limited",
-    "colors": {
-        "primary": "#151455",
-        "light": "#CFCEFF",
-        "dark": "#1B1B20"
-    },
-    "background": {
-        "decoration": "gradient"
-    },
-    "description": "End-to-end tax automation platform for businesses to verify tax ids, calculate & pay taxes, generate e-invoices, process tax documents, analyse & reconcile tax ledgers, prepare and file tax returns through SDKs & APIs.",
-    "logo": {
-        "light": "/static/logo/light.svg",
-        "dark": "/static/logo/dark.svg",
-        "href": "https://developer.sandbox.co.in/"
-    },
-    "favicon": {
-        "light": "/static/favicon/light.svg",
-        "dark": "/static/favicon/dark.svg"
-    },
-    "navbar": {
-        "links": [
-            {
-                "label": "Contact Sales",
-                "href": "https://sandbox.co.in/contact-sales?utm_source=in-co-sandbox-developer&utm_medium=direct&utm_campaign=in-co-sandbox-developer.header.contact-sales"
-            }
-        ],
-        "primary": {
-            "type": "button",
-            "label": "Sign Up",
-            "href": "https://accounts.sandbox.co.in/?utm_source=in-co-sandbox-developer&utm_medium=direct&utm_campaign=in-co-sandbox-developer.header.login"
-        }
-    },
-    "navigation": {
-        "tabs": [
-            {
-                "tab": "Guides",
-                "groups": [
-                    {
-                        "group": "Introduction",
-                        "pages": [
-                            "guides/introduction/about_sandbox",
-                            "guides/introduction/authentication"
-                        ]
-                    },
-                    {
-                        "group": "Get Started",
-                        "pages": [
-                            "guides/get-started/the_basics",
-                            "guides/get-started/versioning",
-                            "guides/get-started/response_caching",
-                            "guides/get-started/errors",
-                            "guides/get-started/rate_limit",
-                            "guides/get-started/webhooks",
-                            "guides/get-started/post_for_get",
-                            "guides/get-started/changelog"
-                        ]
-                    },
-                    {
-                        "group": "Products",
-                        "pages": [
-                            "guides/products/kyc",
-                            "guides/products/gst",
-                            "guides/products/tds",
-                            "guides/products/income_tax"
-                        ]
-                    },
-                    {
-                        "group": "Billing & Invoicing",
-                        "pages": [
-                            "guides/billing-and-invoicing/subscription",
-                            "guides/billing-and-invoicing/quota",
-                            "guides/billing-and-invoicing/overdraft",
-                            "guides/billing-and-invoicing/wallet",
-                            "guides/billing-and-invoicing/charges"
-                        ]
-                    },
-                    {
-                        "group": "Resources",
-                        "pages": [
-                            "guides/resources/postman_collection",
-                            "guides/resources/help_centre"
-                        ]
-                    }
-                ]
-            },
-            {
-                "tab": "API Reference",
-                "menu": [
-                    {
-                        "item": "Get Started",
-                        "description": "Get started with Sandbox API",
-                        "icon": "rocket",
-                        "groups": [
-                            {
-                                "group": "Auth",
-                                "icon": "square-terminal",
-                                "pages": [
-                                    "api-reference/authenticate"
-                                ]
-                            }
-                        ]
-                    },
-                    {
-                        "item": "KYC",
-                        "description": "Confirm Identities with confidence",
-                        "icon": "/static/svg/KYC.svg",
-                        "groups": [
-                            {
-                                "group": "Rest API",
-                                "pages": [
-                                    {
-                                        "group": "Aadhaar",
-                                        "pages": [
-                                            "api-reference/kyc/aadhaar/endpoints/generate_otp",
-                                            "api-reference/kyc/aadhaar/endpoints/verify_otp"
-                                        ]
-                                    },
-                                    {
-                                        "group": "Bank",
-                                        "pages": [
-                                            "api-reference/kyc/bank/endpoints/ifsc_verification",
-                                            "api-reference/kyc/bank/endpoints/penny_drop",
-                                            "api-reference/kyc/bank/endpoints/penny_less"
-                                        ]
-                                    },
-                                    {
-                                        "group": "Digilocker",
-                                        "pages": [
-                                            "api-reference/kyc/digilocker/endpoints/initiate_session",
-                                            "api-reference/kyc/digilocker/endpoints/session_status",
-                                            "api-reference/kyc/digilocker/endpoints/fetch_document"
-                                        ]
-                                    },
-                                    {
-                                        "group": "Digilocker SDK",
-                                        "pages": [
-                                            {
-                                                "group": "Integration",
-                                                "pages": [
-                                                    "api-reference/kyc/digilocker-sdk/integration/guide"
-                                                ]
-                                            },
-                                            {
-                                                "group": "Platforms",
-                                                "pages": [
-                                                    "api-reference/kyc/digilocker-sdk/integration/platforms/web",
-                                                    "api-reference/kyc/digilocker-sdk/integration/platforms/android",
-                                                    "api-reference/kyc/digilocker-sdk/integration/platforms/ios"
-                                                ]
-                                            },
-                                            {
-                                                "group": "Endpoints",
-                                                "pages": [
-                                                    "api-reference/kyc/digilocker-sdk/endpoints/create-session",
-                                                    "api-reference/kyc/digilocker-sdk/endpoints/get-session-status",
-                                                    "api-reference/kyc/digilocker-sdk/endpoints/get-document"
-                                                ]
-                                            }
-                                        ]
-                                    },
-                                    {
-                                        "group": "PAN",
-                                        "pages": [
-                                            "api-reference/kyc/pan/endpoints/verify_pan_details"
-                                        ]
-                                    }
-                                ]
-                            }
-                        ]
-                    },
-                    {
-                        "item": "GST",
-                        "description": "Simple and Secure GST Compliance",
-                        "icon": "/static/svg/GST.svg",
-                        "pages": [
-                            "api-reference/gst/index"
-                        ]
-                    },
-                    {
-                        "item": "TDS",
-                        "description": "Automate TDS on Salary & Non-Salary Payments",
-                        "icon": "/static/svg/TDS.svg",
-                        "pages": [
-                            "api-reference/tds/index"
-                        ]
-                    },
-                    {
-                        "item": "Income Tax",
-                        "description": "Direct tax compliance on auto-pilot",
-                        "icon": "/static/svg/IT.svg",
-                        "pages": [
-                            "api-reference/it/index"
-                        ]
-                    }
-                ]
-            },
-            {
-                "tab": "Changelog",
-                "groups": [
-                    {
-                        "group": "2025",
-                        "pages": [
-                            "changelog/2025/july",
-                            "changelog/2025/june",
-                            "changelog/2025/january"
-                        ]
-                    },
-                    {
-                        "group": "2024",
-                        "pages": [
-                            "changelog/2024/december",
-                            "changelog/2024/november",
-                            "changelog/2024/october",
-                            "changelog/2024/september",
-                            "changelog/2024/july",
-                            "changelog/2024/june",
-                            "changelog/2024/may",
-                            "changelog/2024/april",
-                            "changelog/2024/january"
-                        ]
-                    },
-                    {
-                        "group": "2023",
-                        "pages": [
-                            "changelog/2023/october",
-                            "changelog/2023/september",
-                            "changelog/2023/july",
-                            "changelog/2023/june",
-                            "changelog/2023/may",
-                            "changelog/2023/february",
-                            "changelog/2023/january"
-                        ]
-                    },
-                    {
-                        "group": "2022",
-                        "pages": [
-                            "changelog/2022/december",
-                            "changelog/2022/november"
-                        ]
-                    }
-                ]
-            },
-            {
-                "tab": "Knowledge Base",
-                "pages": [
-                    "knowledge-base/overview"
-                ]
-            },
-            {
-                "tab": "Help Centre",
-                "href": "https://help.sandbox.co.in/"
-            }
-        ]
-    },
-    "contextual": {
-        "options": [
-            "copy",
-            "view",
-            "chatgpt",
-            "claude",
-            "perplexity",
-            "mcp",
-            "cursor",
-            "vscode"
-        ]
-    },
-    "footer": {
-        "socials": {
-            "github": "https://github.com/in-co-sandbox",
-            "linkedin": "https://www.linkedin.com/showcase/sandboxapi",
-            "medium": "https://medium.com/blog-by-sandbox",
-            "youtube": "https://www.youtube.com/@sandboxapi",
-            "x": "https://twitter.com/sandbox_api"
-        }
-    }
+	"$schema": "https://mintlify.com/docs.json",
+	"theme": "palm",
+	"name": "Sandbox Financial Technologies Private Limited",
+	"colors": {
+		"primary": "#151455",
+		"light": "#CFCEFF",
+		"dark": "#1B1B20"
+	},
+	"background": {
+		"decoration": "gradient"
+	},
+	"description": "End-to-end tax automation platform for businesses to verify tax ids, calculate & pay taxes, generate e-invoices, process tax documents, analyse & reconcile tax ledgers, prepare and file tax returns through SDKs & APIs.",
+	"logo": {
+		"light": "/static/logo/light.svg",
+		"dark": "/static/logo/dark.svg",
+		"href": "https://developer.sandbox.co.in/"
+	},
+	"favicon": {
+		"light": "/static/favicon/light.svg",
+		"dark": "/static/favicon/dark.svg"
+	},
+	"navbar": {
+		"links": [
+			{
+				"label": "Contact Sales",
+				"href": "https://sandbox.co.in/contact-sales?utm_source=in-co-sandbox-developer&utm_medium=direct&utm_campaign=in-co-sandbox-developer.header.contact-sales"
+			}
+		],
+		"primary": {
+			"type": "button",
+			"label": "Sign Up",
+			"href": "https://accounts.sandbox.co.in/?utm_source=in-co-sandbox-developer&utm_medium=direct&utm_campaign=in-co-sandbox-developer.header.login"
+		}
+	},
+	"navigation": {
+		"tabs": [
+			{
+				"tab": "Guides",
+				"groups": [
+					{
+						"group": "Introduction",
+						"pages": ["guides/introduction/about_sandbox", "guides/introduction/authentication"]
+					},
+					{
+						"group": "Get Started",
+						"pages": [
+							"guides/get-started/the_basics",
+							"guides/get-started/versioning",
+							"guides/get-started/response_caching",
+							"guides/get-started/errors",
+							"guides/get-started/rate_limit",
+							"guides/get-started/webhooks",
+							"guides/get-started/post_for_get",
+							"guides/get-started/changelog"
+						]
+					},
+					{
+						"group": "Products",
+						"pages": ["guides/products/kyc", "guides/products/gst", "guides/products/tds", "guides/products/income_tax"]
+					},
+					{
+						"group": "Billing & Invoicing",
+						"pages": [
+							"guides/billing-and-invoicing/subscription",
+							"guides/billing-and-invoicing/quota",
+							"guides/billing-and-invoicing/overdraft",
+							"guides/billing-and-invoicing/wallet",
+							"guides/billing-and-invoicing/charges"
+						]
+					},
+					{
+						"group": "Resources",
+						"pages": ["guides/resources/postman_collection", "guides/resources/help_centre"]
+					}
+				]
+			},
+			{
+				"tab": "API Reference",
+				"menu": [
+					{
+						"item": "Get Started",
+						"description": "Get started with Sandbox API",
+						"icon": "rocket",
+						"groups": [
+							{
+								"group": "Auth",
+								"icon": "square-terminal",
+								"pages": ["api-reference/authenticate"]
+							}
+						]
+					},
+					{
+						"item": "KYC",
+						"description": "Confirm Identities with confidence",
+						"icon": "/static/svg/KYC.svg",
+						"groups": [
+							{
+								"group": "Rest API",
+								"pages": [
+									{
+										"group": "Aadhaar",
+										"pages": ["api-reference/kyc/aadhaar/endpoints/generate_otp", "api-reference/kyc/aadhaar/endpoints/verify_otp"]
+									},
+									{
+										"group": "Bank",
+										"pages": [
+											"api-reference/kyc/bank/endpoints/ifsc_verification",
+											"api-reference/kyc/bank/endpoints/penny_drop",
+											"api-reference/kyc/bank/endpoints/penny_less"
+										]
+									},
+									{
+										"group": "Digilocker",
+										"pages": [
+											"api-reference/kyc/digilocker/endpoints/initiate_session",
+											"api-reference/kyc/digilocker/endpoints/session_status",
+											"api-reference/kyc/digilocker/endpoints/fetch_document"
+										]
+									},
+									{
+										"group": "Digilocker SDK",
+										"pages": [
+											{
+												"group": "Integration",
+												"pages": ["api-reference/kyc/digilocker-sdk/integration/guide"]
+											},
+											{
+												"group": "Platforms",
+												"pages": [
+													"api-reference/kyc/digilocker-sdk/integration/platforms/web",
+													"api-reference/kyc/digilocker-sdk/integration/platforms/android",
+													"api-reference/kyc/digilocker-sdk/integration/platforms/ios"
+												]
+											},
+											{
+												"group": "Endpoints",
+												"pages": [
+													"api-reference/kyc/digilocker-sdk/endpoints/create-session",
+													"api-reference/kyc/digilocker-sdk/endpoints/get-session-status",
+													"api-reference/kyc/digilocker-sdk/endpoints/get-document"
+												]
+											}
+										]
+									},
+									{
+										"group": "PAN",
+										"pages": ["api-reference/kyc/pan/endpoints/verify_pan_details"]
+									}
+								]
+							}
+						]
+					},
+					{
+						"item": "GST",
+						"description": "Simple and Secure GST Compliance",
+						"icon": "/static/svg/GST.svg",
+						"groups": [
+							{
+								"group": "Analytics",
+								"pages": [
+									"api-reference/gst/analytics/endpoints/reconcile_gstr_2a_submit_job",
+									"api-reference/gst/analytics/endpoints/reconcile_gstr_2a_poll_job",
+									"api-reference/gst/analytics/endpoints/reconcile_gstr_2b_submit_job",
+									"api-reference/gst/analytics/endpoints/reconcile_gstr_2b_poll_job"
+								]
+							}
+						]
+					},
+					{
+						"item": "TDS",
+						"description": "Automate TDS on Salary & Non-Salary Payments",
+						"icon": "/static/svg/TDS.svg",
+						"pages": ["api-reference/tds/index"]
+					},
+					{
+						"item": "Income Tax",
+						"description": "Direct tax compliance on auto-pilot",
+						"icon": "/static/svg/IT.svg",
+						"pages": ["api-reference/it/index"]
+					}
+				]
+			},
+			{
+				"tab": "Changelog",
+				"groups": [
+					{
+						"group": "2025",
+						"pages": ["changelog/2025/july", "changelog/2025/june", "changelog/2025/january"]
+					},
+					{
+						"group": "2024",
+						"pages": [
+							"changelog/2024/december",
+							"changelog/2024/november",
+							"changelog/2024/october",
+							"changelog/2024/september",
+							"changelog/2024/july",
+							"changelog/2024/june",
+							"changelog/2024/may",
+							"changelog/2024/april",
+							"changelog/2024/january"
+						]
+					},
+					{
+						"group": "2023",
+						"pages": [
+							"changelog/2023/october",
+							"changelog/2023/september",
+							"changelog/2023/july",
+							"changelog/2023/june",
+							"changelog/2023/may",
+							"changelog/2023/february",
+							"changelog/2023/january"
+						]
+					},
+					{
+						"group": "2022",
+						"pages": ["changelog/2022/december", "changelog/2022/november"]
+					}
+				]
+			},
+			{
+				"tab": "Knowledge Base",
+				"pages": ["knowledge-base/overview"]
+			},
+			{
+				"tab": "Help Centre",
+				"href": "https://help.sandbox.co.in/"
+			}
+		]
+	},
+	"contextual": {
+		"options": ["copy", "view", "chatgpt", "claude", "perplexity", "mcp", "cursor", "vscode"]
+	},
+	"footer": {
+		"socials": {
+			"github": "https://github.com/in-co-sandbox",
+			"linkedin": "https://www.linkedin.com/showcase/sandboxapi",
+			"medium": "https://medium.com/blog-by-sandbox",
+			"youtube": "https://www.youtube.com/@sandboxapi",
+			"x": "https://twitter.com/sandbox_api"
+		}
+	}
 }
