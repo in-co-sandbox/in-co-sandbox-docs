@@ -25,6 +25,10 @@
 			{
 				"label": "Contact Sales",
 				"href": "https://sandbox.co.in/contact-sales?utm_source=in-co-sandbox-developer&utm_medium=direct&utm_campaign=in-co-sandbox-developer.header.contact-sales"
+			},
+			{
+				"label": "Help Centre",
+				"href": "https://help.sandbox.co.in/"
 			}
 		],
 		"primary": {
@@ -280,9 +284,37 @@
 				]
 			},
 			{
-				"tab": "Changelog",
-				"pages": [
-					"changelog"
+				"tab": "Recipes",
+				"menu": [
+					{
+						"item": "KYC",
+						"icon": "/static/svg/KYC.svg",
+						"pages": [
+							"recipes/kyc/index",
+							"recipes/kyc/digilocker_api_recipe"
+						]
+					},
+					{
+						"item": "GST",
+						"icon": "/static/svg/GST.svg",
+						"pages": [
+							"recipes/gst/index"
+						]
+					},
+					{
+						"item": "TDS",
+						"icon": "/static/svg/TDS.svg",
+						"pages": [
+							"recipes/tds/index"
+						]
+					},
+					{
+						"item": "IT",
+						"icon": "/static/svg/IT.svg",
+						"pages": [
+							"recipes/it/index"
+						]
+					}
 				]
 			},
 			{
@@ -292,8 +324,35 @@
 				]
 			},
 			{
-				"tab": "Help Centre",
-				"href": "https://help.sandbox.co.in/"
+				"tab": "Changelog",
+				"pages": [
+					"changelog"
+				]
+			},
+			{
+				"tab": "Postman Collections",
+				"menu": [
+					{
+						"item": "KYC",
+						"icon": "/static/svg/KYC.svg",
+						"href": "https://www.postman.com/in-co-sandbox/sandbox-api/collection/t61ohmi/kyc"
+					},
+					{
+						"item": "GST",
+						"icon": "/static/svg/GST.svg",
+						"href": "https://www.postman.com/in-co-sandbox/sandbox-api/collection/tdybepo/gst-analytics"
+					},
+					{
+						"item": "TDS",
+						"icon": "/static/svg/TDS.svg",
+						"href": "https://www.postman.com/in-co-sandbox/sandbox-api/collection/kxuf3b1/tds-analytics"
+					},
+					{
+						"item": "IT",
+						"icon": "/static/svg/IT.svg",
+						"href": "https://www.postman.com/in-co-sandbox/sandbox-api/collection/vi869sx/income-tax-calculator"
+					}
+				]
 			}
 		]
 	},
