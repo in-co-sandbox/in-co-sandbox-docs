@@ -291,7 +291,17 @@
 						"icon": "/static/svg/KYC.svg",
 						"pages": [
 							"recipes/kyc/index",
-							"recipes/kyc/digilocker_api_recipe"
+							{
+								"group": "DigiLocker",
+								"pages": [
+									{
+										"group": "Fetch Documents via DigiLocker",
+										"pages": [
+											"recipes/kyc/digilocker_api"
+										]
+									}
+								]
+							}
 						]
 					},
 					{

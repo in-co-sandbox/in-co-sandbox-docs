@@ -1,13 +1,13 @@
 ---
-title: "DigiLocker API Recipe"
+title: "DigiLocker API"
 description: "This recipe provides a step-by-step process to integrate DigiLocker APIs into your application."
 ---
 
 <Steps>
   <Step title="Initiate Session" stepNumber={1} titleSize="h2">
-    To begin the DigiLocker workflow, your application must first create a **session**.
+    To begin the DigiLocker workflow, your application must first initiate a **session**
+    using the [**Initiate Session**](../../api-reference/kyc/digilocker/endpoints/initiate_session) endpoint.
 
-    Use the [**Initiate Session**](../../api-reference/kyc/digilocker/endpoints/initiate_session) endpoint to create this session.\
     This endpoint initializes the consent process and returns essential details for user authorization.
 
     <Accordion title="cURL Request" defaultOpen>
@@ -49,7 +49,8 @@ description: "This recipe provides a step-by-step process to integrate DigiLocke
     This authorization step is **mandatory** before any document can be fetched.
   </Step>
   <Step title="Handle Session Success and Failure" titleSize="h2">
-    You can determine whether the user consented by periodically call the [****Session Status API ****](../../api-reference/kyc/digilocker/endpoints/session_status)using the `session_id`.
+    You can determine whether the user consented by periodically call the \
+    [**Session Status API**](../../api-reference/kyc/digilocker/endpoints/session_status) using the `session_id`.
 
     <Accordion title="cURL Request" defaultOpen>
       ```bash
