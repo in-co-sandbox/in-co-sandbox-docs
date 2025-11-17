@@ -3,11 +3,14 @@
   "info": {
     "title": "compliance",
     "version": "1.0.0",
-    "description": "**GST Compliance API** enables businesses to automate compliance requirements like [Taxpayer verification](https://developer.sandbox.co.in/reference/search-gstin-api), [GSTR Filing](https://developer.sandbox.co.in/reference/gst-taxpayer-authentication), [Generating e-Invoices](https://developer.sandbox.co.in/reference/e-invoice-authentication-api), and [E-Way Bills](https://developer.sandbox.co.in/reference/e-way-bill-authentication-api).\n\nWe provide these APIs from GSTN-authorised GST Suvidha Providers, handling the encryption-decryption and signing so you don't have to handle the complexities."
+    "description": "**GST Compliance API** enables businesses to automate compliance requirements like [Taxpayer verification](https://developer.sandbox.co.in/reference/search-gstin-api), [GSTR Filing](https://developer.sandbox.co.in/reference/gst-taxpayer-authentication), [Generating E-Invoices](https://developer.sandbox.co.in/reference/e-invoice-authentication-api), and [E-Way Bills](https://developer.sandbox.co.in/reference/e-way-bill-authentication-api).\n\nWe provide these APIs from GSTN-authorised GST Suvidha Providers, handling the encryption-decryption and signing so you don't have to handle the complexities."
   },
   "servers": [
     {
-      "url": "{{sandbox_host}}"
+      "url": "https://api.sandbox.co.in"
+    },
+    {
+      "url": "https://test-api.sandbox.co.in"
     }
   ],
   "paths": {
@@ -16883,8 +16886,8 @@
         "summary": "Submit Job",
         "tags": [
           "Taxpayer",
-          "e-Invoice",
-          "Sales e-Invoices for return period"
+          "E-Invoice",
+          "Sales E-Invoices for return period"
         ],
         "parameters": [
           {
@@ -17077,8 +17080,8 @@
         "summary": "Poll Job",
         "tags": [
           "Taxpayer",
-          "e-Invoice",
-          "Sales e-Invoices for return period"
+          "E-Invoice",
+          "Sales E-Invoices for return period"
         ],
         "parameters": [
           {
@@ -17231,8 +17234,8 @@
         "summary": "Submit Job",
         "tags": [
           "Taxpayer",
-          "e-Invoice",
-          "Purchase e-Invoices for return period"
+          "E-Invoice",
+          "Purchase E-Invoices for return period"
         ],
         "parameters": [
           {
@@ -17425,8 +17428,8 @@
         "summary": "Poll Job",
         "tags": [
           "Taxpayer",
-          "e-Invoice",
-          "Purchase e-Invoices for return period"
+          "E-Invoice",
+          "Purchase E-Invoices for return period"
         ],
         "parameters": [
           {
@@ -17576,10 +17579,10 @@
     },
     "/gst/compliance/tax-payer/e-invoice/{irn}": {
       "get": {
-        "summary": "Get e-Invoice by IRN",
+        "summary": "Get E-Invoice by IRN",
         "tags": [
           "Taxpayer",
-          "e-Invoice"
+          "E-Invoice"
         ],
         "parameters": [
           {
@@ -17624,7 +17627,7 @@
         ],
         "responses": {
           "200": {
-            "description": "200 e-Invoice fetched",
+            "description": "200 E-Invoice fetched",
             "headers": {
               "Date": {
                 "schema": {
@@ -17745,9 +17748,9 @@
     },
     "/gst/compliance/e-invoice/tax-payer/authenticate": {
       "post": {
-        "summary": "e-Invoice Authentication",
+        "summary": "E-Invoice Authentication",
         "tags": [
-          "e-Invoice",
+          "E-Invoice",
           "Authentication"
         ],
         "parameters": [
@@ -17901,11 +17904,11 @@
                 "properties": {
                   "username": {
                     "type": "string",
-                    "description": "API username of taxpayer as set on e-Invoice portal"
+                    "description": "API username of taxpayer as set on E-Invoice portal"
                   },
                   "password": {
                     "type": "string",
-                    "description": "API password of taxpayer as set on e-Invoice portal"
+                    "description": "API password of taxpayer as set on E-Invoice portal"
                   },
                   "gstin": {
                     "type": "string",
@@ -17930,10 +17933,10 @@
     },
     "/gst/compliance/e-invoice/tax-payer/invoice": {
       "post": {
-        "summary": "Generate e-Invoice",
+        "summary": "Generate E-Invoice",
         "tags": [
-          "e-Invoice",
-          "e-Invoice"
+          "E-Invoice",
+          "E-Invoice"
         ],
         "parameters": [
           {
@@ -17953,7 +17956,7 @@
               "type": "string"
             },
             "required": true,
-            "description": "e-Invoice access token",
+            "description": "E-Invoice access token",
             "deprecated": false
           },
           {
@@ -18608,10 +18611,10 @@
         "operationId": "generate-e-invoice-api"
       },
       "get": {
-        "summary": "Get e-Invoice by document data",
+        "summary": "Get E-Invoice by document data",
         "tags": [
-          "e-Invoice",
-          "e-Invoice"
+          "E-Invoice",
+          "E-Invoice"
         ],
         "parameters": [
           {
@@ -18658,7 +18661,7 @@
               "type": "string"
             },
             "required": true,
-            "description": "e-Invoice access token",
+            "description": "E-Invoice access token",
             "deprecated": false
           },
           {
@@ -18766,10 +18769,10 @@
     },
     "/gst/compliance/e-invoice/pdf/generate": {
       "post": {
-        "summary": "Generate e-Invoice PDF",
+        "summary": "Generate E-Invoice PDF",
         "tags": [
-          "e-Invoice",
-          "e-Invoice"
+          "E-Invoice",
+          "E-Invoice"
         ],
         "parameters": [
           {
@@ -19022,7 +19025,7 @@
                   },
                   "signed_invoice": {
                     "type": "string",
-                    "description": "Signed e-Invoice"
+                    "description": "Signed E-Invoice"
                   }
                 }
               },
@@ -19039,16 +19042,16 @@
             }
           }
         },
-        "description": "Generate the PDF for the e-Invoice generated by passing the signed QR code and signed e-Invoice.",
+        "description": "Generate the PDF for the E-Invoice generated by passing the signed QR code and signed E-Invoice.",
         "operationId": "generate-e-invoice-pdf-api"
       }
     },
     "/gst/compliance/e-invoice/tax-payer/invoice/{irn}/cancel": {
       "post": {
-        "summary": "Cancel e-Invoice",
+        "summary": "Cancel E-Invoice",
         "tags": [
-          "e-Invoice",
-          "e-Invoice"
+          "E-Invoice",
+          "E-Invoice"
         ],
         "parameters": [
           {
@@ -19068,7 +19071,7 @@
               "type": "string"
             },
             "required": true,
-            "description": "e-Invoice access token",
+            "description": "E-Invoice access token",
             "deprecated": false
           },
           {
@@ -19192,7 +19195,7 @@
                 "properties": {
                   "Irn": {
                     "type": "string",
-                    "description": "IRN of e-invoice to be cancelled"
+                    "description": "IRN of E-Invoice to be cancelled"
                   },
                   "CnlRsn": {
                     "type": "string",
@@ -19247,7 +19250,7 @@
           "name": "authorization",
           "in": "header",
           "required": true,
-          "description": "e-Invoice access token",
+          "description": "E-Invoice access token",
           "deprecated": false,
           "schema": {}
         }
@@ -19255,10 +19258,10 @@
     },
     "/gst/compliance/e-invoice/tax-payer/invoice/{irn}": {
       "get": {
-        "summary": "Get e-Invoice by IRN",
+        "summary": "Get E-Invoice by IRN",
         "tags": [
-          "e-Invoice",
-          "e-Invoice"
+          "E-Invoice",
+          "E-Invoice"
         ],
         "parameters": [
           {
@@ -19278,7 +19281,7 @@
               "type": "string"
             },
             "required": true,
-            "description": "e-Invoice access token",
+            "description": "E-Invoice access token",
             "deprecated": false
           },
           {
@@ -19421,7 +19424,7 @@
           "name": "authorization",
           "in": "header",
           "required": true,
-          "description": "e-Invoice access token",
+          "description": "E-Invoice access token",
           "deprecated": false,
           "schema": {}
         }
@@ -19431,7 +19434,7 @@
       "post": {
         "summary": "Generate E-Way Bill by IRN",
         "tags": [
-          "e-Invoice",
+          "E-Invoice",
           "E-Way Bill"
         ],
         "parameters": [
@@ -19452,7 +19455,7 @@
               "type": "string"
             },
             "required": true,
-            "description": "e-Invoice access token",
+            "description": "E-Invoice access token",
             "deprecated": false
           },
           {
@@ -19682,7 +19685,7 @@
           "name": "authorization",
           "in": "header",
           "required": true,
-          "description": "e-Invoice access token",
+          "description": "E-Invoice access token",
           "deprecated": false,
           "schema": {}
         }
@@ -19690,7 +19693,7 @@
       "get": {
         "summary": "Get E-Way Bill by IRN",
         "tags": [
-          "e-Invoice",
+          "E-Invoice",
           "E-Way Bill"
         ],
         "parameters": [
@@ -19711,7 +19714,7 @@
               "type": "string"
             },
             "required": true,
-            "description": "e-Invoice access token",
+            "description": "E-Invoice access token",
             "deprecated": false
           },
           {
@@ -19830,7 +19833,7 @@
       "post": {
         "summary": "Search GSTIN Details",
         "tags": [
-          "e-Invoice"
+          "E-Invoice"
         ],
         "parameters": [
           {
@@ -19850,7 +19853,7 @@
               "type": "string"
             },
             "required": true,
-            "description": "e-Invoice access token",
+            "description": "E-Invoice access token",
             "deprecated": false
           },
           {

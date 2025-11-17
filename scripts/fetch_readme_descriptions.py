@@ -268,10 +268,14 @@ def main():
             parts = openapi_line.split()
             if len(parts) >= 3:
                 method = parts[-2]
-                endpoint_path = parts[-1]
+                endpoint_path = parts[-1].strip("'\"")  # Strip quotes from path
                 
                 # Create key with method and path for exact matching
                 api_key = f"{method.upper()} {endpoint_path}"
+                
+                # Show which file we're processing
+                file_name = mdx_file.name if hasattr(mdx_file, 'name') else str(mdx_file).split('/')[-1]
+                print(f"Processing {file_name}...", end=' ')
                 
                 # Get Readme slug variations using direct mapping and sitemap
                 readme_slug_variations = map_endpoint_to_readme_slug(api_key, endpoint_path, path_to_slug_map, sitemap_slugs)
