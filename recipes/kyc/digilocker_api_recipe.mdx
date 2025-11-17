@@ -1,3 +1,75 @@
 ---
 title: "DigiLocker API Recipe"
+description: "This recipe provides a step-by-step process to integrate DigiLocker APIs into your application."
 ---
+
+<Steps>
+  <Step title="Initiate Session" stepNumber={1} titleSize="h2">
+    To begin the DigiLocker workflow, your application must first create a **session**.
+
+    Use the [**Initiate Session**](../../api-reference/kyc/digilocker/endpoints/initiate_session) endpoint to create this session.\
+    This endpoint initializes the consent process and returns essential details for user authorization.
+
+    <Accordion title="cURL Request" defaultOpen>
+      ```bash
+          curl --request POST \
+            --url https://api.sandbox.co.in/kyc/digilocker/sessions/init \
+            --header 'Authorization: <authorization>' \
+            --header 'Content-Type: application/json' \
+            --header 'x-api-key: <x-api-key>' \
+            --data '{
+            "@entity": "in.co.sandbox.kyc.digilocker.session.request",
+            "flow": "signin",
+            "doc_types": [
+              "aadhaar",
+              "pan"
+            ],
+            "redirect_url": "https://sandbox.co.in"
+          }'
+      ```
+    </Accordion>
+    When the session is created successfully, you’ll receive:
+
+    <ParamField body="session_id" type="string" required>
+      A unique identifier used to track and fetch status for this specific DigiLocker consent session.
+    </ParamField>
+    <ParamField body="authorization_url" type="string" required>
+      The URL where the user should be redirected to grant consent for sharing their DigiLocker documents.
+    </ParamField>
+  </Step>
+  <Step title="Redirect the User to DigiLocker" titleSize="h2">
+    Once the session is initiated, redirect the user to the **authorization_url**.
+
+    At DigiLocker, the user will:
+
+    - Authenticate using their DigiLocker account
+    - Review permissions
+    - Grant consent for your application to access their documents
+
+    This authorization step is **mandatory** before any document can be fetched.
+  </Step>
+  <Step title="Handle Session Success and Failure" titleSize="h2">
+    You can determine whether the user consented by periodically call the [****Session Status API ****](../../api-reference/kyc/digilocker/endpoints/session_status)using the `session_id`.
+
+    <Accordion title="cURL Request" defaultOpen>
+      ```bash
+          curl --request GET \
+            --url https://api.sandbox.co.in/kyc/digilocker/sessions/{session_id}/status \
+            --header 'Authorization: <authorization>' \
+            --header 'x-api-key: <x-api-key>'
+      ```
+    </Accordion>
+  </Step>
+  <Step title="Fetch Documents" titleSize="h2">
+    Once the session status is **succeeded**, you may proceed to retrieve the user's DigiLocker documents using the [Fetch Document API](../../api-reference/kyc/digilocker/endpoints/fetch_document).
+
+    <Accordion title="cURL Request" defaultOpen>
+      ```bash
+      curl --request GET \
+      --url https://api.sandbox.co.in/kyc/digilocker/sessions/{session_id}/documents/{doc_type} \
+      --header 'Authorization: <authorization>' \
+      --header 'x-api-key: <x-api-key>'
+      ```
+    </Accordion>
+  </Step>
+</Steps>
