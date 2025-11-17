@@ -25,6 +25,10 @@
 			{
 				"label": "Contact Sales",
 				"href": "https://sandbox.co.in/contact-sales?utm_source=in-co-sandbox-developer&utm_medium=direct&utm_campaign=in-co-sandbox-developer.header.contact-sales"
+			},
+			{
+				"label": "Help Centre",
+				"href": "https://help.sandbox.co.in/"
 			}
 		],
 		"primary": {
@@ -40,6 +44,10 @@
 				"groups": [
 					{
 						"group": "Introduction",
+						"pages": [
+							"guides/introduction/about_sandbox",
+							"guides/introduction/authentication"
+						]
 						"pages": [
 							"guides/introduction/about_sandbox",
 							"guides/introduction/authentication"
@@ -66,6 +74,12 @@
 							"guides/products/tds",
 							"guides/products/income_tax"
 						]
+						"pages": [
+							"guides/products/kyc",
+							"guides/products/gst",
+							"guides/products/tds",
+							"guides/products/income_tax"
+						]
 					},
 					{
 						"group": "Billing & Invoicing",
@@ -79,6 +93,10 @@
 					},
 					{
 						"group": "Resources",
+						"pages": [
+							"guides/resources/postman_collection",
+							"guides/resources/help_centre"
+						]
 						"pages": [
 							"guides/resources/postman_collection",
 							"guides/resources/help_centre"
@@ -100,6 +118,9 @@
 								"pages": [
 									"api-reference/authenticate"
 								]
+								"pages": [
+									"api-reference/authenticate"
+								]
 							}
 						]
 					},
@@ -113,6 +134,10 @@
 								"pages": [
 									{
 										"group": "OKYC",
+										"pages": [
+											"api-reference/kyc/aadhaar/endpoints/generate_otp",
+											"api-reference/kyc/aadhaar/endpoints/verify_otp"
+										]
 										"pages": [
 											"api-reference/kyc/aadhaar/endpoints/generate_otp",
 											"api-reference/kyc/aadhaar/endpoints/verify_otp"
@@ -141,6 +166,9 @@
 								"pages": [
 									{
 										"group": "Getting Started",
+										"pages": [
+											"api-reference/kyc/digilocker-sdk/getting-started/introduction"
+										]
 										"pages": [
 											"api-reference/kyc/digilocker-sdk/getting-started/introduction"
 										]
@@ -195,6 +223,10 @@
 									"api-reference/kyc/pan/endpoints/verify_pan_details",
 									"api-reference/kyc/pan/endpoints/pan_aadhaar_link_status"
 								]
+								"pages": [
+									"api-reference/kyc/pan/endpoints/verify_pan_details",
+									"api-reference/kyc/pan/endpoints/pan_aadhaar_link_status"
+								]
 							}
 						]
 					},
@@ -218,6 +250,43 @@
 										"pages": [
 											"api-reference/gst/analytics/endpoints/gstr-2b-reconciliation/submit_job",
 											"api-reference/gst/analytics/endpoints/gstr-2b-reconciliation/poll_job"
+										]
+									}
+								]
+							},
+							{
+								"group": "Compliance",
+								"pages": [
+									{
+										"group": "E-Invoice",
+										"pages": [
+											"api-reference/gst/compliance/endpoints/e-invoice/generate_e-invoice",
+											"api-reference/gst/compliance/endpoints/e-invoice/get_e-invoice_status",
+											"api-reference/gst/compliance/endpoints/e-invoice/get_e-invoice_details"
+										]
+									},
+									{
+										"group": "E-Way Bill",
+										"pages": [
+											"api-reference/gst/compliance/endpoints/e-way-bill/generate_e-way-bill",
+											"api-reference/gst/compliance/endpoints/e-way-bill/get_e-way-bill_status",
+											"api-reference/gst/compliance/endpoints/e-way-bill/get_e-way-bill_details"
+										]
+									},
+									{
+										"group": "Public",
+										"pages": [
+											"api-reference/gst/compliance/endpoints/public/generate_public",
+											"api-reference/gst/compliance/endpoints/public/get_public_status",
+											"api-reference/gst/compliance/endpoints/public/get_public_details"
+										]
+									},
+									{
+										"group": "Taxpayer",
+										"pages": [
+											"api-reference/gst/compliance/endpoints/taxpayer/generate_taxpayer",
+											"api-reference/gst/compliance/endpoints/taxpayer/get_taxpayer_status",
+											"api-reference/gst/compliance/endpoints/taxpayer/get_taxpayer_details"
 										]
 									}
 								]
@@ -280,13 +349,54 @@
 						"pages": [
 							"api-reference/it/index"
 						]
+						"pages": [
+							"api-reference/it/index"
+						]
 					}
 				]
 			},
 			{
-				"tab": "Changelog",
-				"pages": [
-					"changelog"
+				"tab": "Recipes",
+				"menu": [
+					{
+						"item": "KYC",
+						"icon": "/static/svg/KYC.svg",
+						"pages": [
+							"recipes/kyc/index",
+							{
+								"group": "DigiLocker",
+								"pages": [
+									{
+										"group": "Fetch Documents via DigiLocker",
+										"pages": [
+											"recipes/kyc/digilocker_api"
+										]
+									}
+								]
+							}
+						]
+					},
+					{
+						"item": "GST",
+						"icon": "/static/svg/GST.svg",
+						"pages": [
+							"recipes/gst/index"
+						]
+					},
+					{
+						"item": "TDS",
+						"icon": "/static/svg/TDS.svg",
+						"pages": [
+							"recipes/tds/index"
+						]
+					},
+					{
+						"item": "IT",
+						"icon": "/static/svg/IT.svg",
+						"pages": [
+							"recipes/it/index"
+						]
+					}
 				]
 			},
 			{
@@ -296,12 +406,49 @@
 				]
 			},
 			{
-				"tab": "Help Centre",
-				"href": "https://help.sandbox.co.in/"
+				"tab": "Changelog",
+				"pages": [
+					"changelog"
+				]
+			},
+			{
+				"tab": "Postman Collections",
+				"menu": [
+					{
+						"item": "KYC",
+						"icon": "/static/svg/KYC.svg",
+						"href": "https://www.postman.com/in-co-sandbox/sandbox-api/collection/t61ohmi/kyc"
+					},
+					{
+						"item": "GST",
+						"icon": "/static/svg/GST.svg",
+						"href": "https://www.postman.com/in-co-sandbox/sandbox-api/collection/tdybepo/gst-analytics"
+					},
+					{
+						"item": "TDS",
+						"icon": "/static/svg/TDS.svg",
+						"href": "https://www.postman.com/in-co-sandbox/sandbox-api/collection/kxuf3b1/tds-analytics"
+					},
+					{
+						"item": "IT",
+						"icon": "/static/svg/IT.svg",
+						"href": "https://www.postman.com/in-co-sandbox/sandbox-api/collection/vi869sx/income-tax-calculator"
+					}
+				]
 			}
 		]
 	},
 	"contextual": {
+		"options": [
+			"copy",
+			"view",
+			"chatgpt",
+			"claude",
+			"perplexity",
+			"mcp",
+			"cursor",
+			"vscode"
+		]
 		"options": [
 			"copy",
 			"view",
