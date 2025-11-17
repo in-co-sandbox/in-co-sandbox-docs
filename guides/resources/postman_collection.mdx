@@ -1,0 +1,126 @@
+---
+title: "Postman Collections"
+---
+
+> Download and import Sandbox API collections to test APIs directly in Postman with pre-configured requests and environments.
+
+Sandbox provides comprehensive Postman collections for all API products, making it easy to test and integrate APIs. Each collection includes pre-configured requests, sample data, and environment variables to get you started.
+
+## Available collections
+
+<CardGroup cols={2}>
+  <Card title="KYC APIs" icon="/static/svg/KYC.svg" href="https://www.postman.com/in-co-sandbox/sandbox-api/collection/t61ohmi/kyc">
+    Instant identity verification for secure and scalable growth.
+  </Card>
+  <Card title="GST APIs" icon="/static/svg/GST.svg" href="https://www.postman.com/in-co-sandbox/sandbox-api/collection/tdybepo/gst-analytics">
+    Managing a business is complex, but GST doesn’t have to be.
+  </Card>
+  <Card title="TDS APIs" icon="/static/svg/TDS.svg" href="https://www.postman.com/in-co-sandbox/sandbox-api/collection/kxuf3b1/tds-analytics">
+    Deduct accurately, convert data for filing, and submit returns on time.
+  </Card>
+  <Card title="IT APIs" icon="/static/svg/IT.svg" href="https://www.postman.com/in-co-sandbox/sandbox-api/collection/vi869sx/income-tax-calculator">
+    Transform tax filing from an annual compliance headache into an effortless value-add.
+  </Card>
+</CardGroup>
+
+## Getting started
+
+To import a Postman collection, choose your preferred method:
+
+<Tabs>
+  <Tab title="Fork Collection (Recommended)">
+    1. Click on any collection link above.
+    2. Click the **Fork** button in Postman.
+    3. Choose your workspace.
+    4. The collection will be available in your workspace with automatic updates.
+  </Tab>
+
+  <Tab title="Download and Import">
+    1. Download the collection JSON file from the workspace.
+    2. Open Postman.
+    3. Click **Import** → **Upload Files**.
+    4. Select the downloaded JSON file.
+  </Tab>
+</Tabs>
+
+To configure your environment variables:
+
+1. Create a new environment in Postman.
+2. Add the following variables:
+   * `base_url`: Set to `https://test-api.sandbox.co.in` (test) or `https://api.sandbox.co.in` (production)
+   * `x-api-key`: Sandbox API Key
+   * `x-api-secret`: Sandbox API Secret
+
+<Warning>
+  Never share your production credentials. Use test credentials for testing and development.
+</Warning>
+
+The following examples show the environment variable configuration for both environments:
+
+Test:
+
+```json  theme={"dark"}
+{
+  "base_url": "https://test-api.sandbox.co.in",
+  "x-api-key": "Sandbox API Key",
+  "x-api-secret": "Sandbox API Secret",
+}
+```
+
+Production:
+
+```json  theme={"dark"}
+{
+  "base_url": "https://api.sandbox.co.in",
+  "x-api-key": "Sandbox API Key",
+  "x-api-secret": "Sandbox API Secret",
+}
+```
+
+To test your first request:
+
+1. Select your environment from the dropdown in the top-right corner.
+2. Choose a simple request like "Get Order" or "Create Order."
+3. Review the request parameters and body.
+4. Click **Send** to execute the request.
+
+## Features and best practices
+
+Each Postman collection includes the following features:
+
+* Pre-configured requests with correct HTTP methods and headers.
+* Sample request bodies with placeholder data.
+* Environment variables for dynamic URLs and authentication.
+* Example data including test card numbers and mock account details.
+* Test scripts for automatic response validation.
+
+Collections automatically handle authentication using your credentials. Tokens are generated and refreshed as needed, so you don't need to manually manage authorisation headers.
+
+Use environment variables for dynamic data, update placeholder values with real test data, and keep sensitive information in environment variables rather than in requests.
+
+Review response status codes and error messages, check the **Tests** tab for automated validations, and use the **Console** view to debug request/response details.
+
+## Support
+
+If you need help with Postman collections or API integration, you can use the following resources:
+
+* Documentation: Review the detailed [API documentation](/api-reference/authenticate).
+* Support form: Submit a ticket through the [support form](https://merchant.cashfree.com/merchants/landing?env=prod\&raise_issue=1) for technical assistance.
+* Support: Contact the [developer support team](mailto:developers@cashfree.com).
+* Community: Join the [developer community](https://discord.gg/ed9VWDnrh7).
+
+<div class="hidden" data-table-of-contents="bottom">
+  <p class="mt-4 font-medium flex items-center gap-2 related-docs-heading">
+    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" class="w-4 h-4">
+      <path d="M3 4h7a2 2 0 0 1 2 2v13a2 2 0 0 0-2-2H3z" />
+
+      <path d="M21 4h-7a2 2 0 0 0-2 2v13a2 2 0 0 1 2-2h7z" />
+    </svg>
+
+    <span>Related topics</span>
+  </p>
+
+  <ul>
+    <li><a href="/api-reference/authenticate">Authentication Overview</a></li>
+  </ul>
+</div>

@@ -1,0 +1,16 @@
+---
+title: "Webhooks"
+description: "Description of your new file."
+---
+
+Webhooks are a one-way web application that can send information to another application when a specific event happens. For e.g., if you have subscribed to the `tds.206-ab.done` event, you will receive a webhook event every time your 206AB Job is done.
+
+### **Configuring Webhooks**
+
+You can easily configure Webhooks conveniently from the subscription settings.
+
+### **Validating Webhooks**
+
+If the Webhook secret is defined, it is utilized to generate a hash signature for each payload. The secret is a user-determined string chosen during the configuration of Webhook Notifications.
+
+With each request, this hash signature is passed under the `x-sandbox-signature` in the request header using base64 encoding that can be validated at your end by reproducing the same hash key using the HMAC-SHA256 algorithm.

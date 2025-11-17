@@ -1,0 +1,149 @@
+---
+title: "Web"
+description: "This integration guide provides a step-by-step process to integrate the Digilocker SDK into your web application."
+---
+
+<Steps>
+  <Step title="Create a Session" stepNumber={1} titleSize="h2">
+    Before initializing the SDK, you must create a **unique session**.\
+    Each SDK instance requires its own session to ensure secure and independent interactions.
+
+    Use the [Create Session](../../endpoints/create-session) endpoint to generate this session.\
+    This is a **server-side API call** that uses [Sandbox Authentication](/api-reference/authenticate) to validate your credentials.
+
+    Once created, you’ll receive a `session_id`, which you’ll need when initializing the SDK on the client side.
+  </Step>
+  <Step title="Integrate the SDK on the Client Side" titleSize="h2">
+    After creating the session, the next step is to integrate the DigiLocker SDK into your client-side application.\
+    You’ll add a “Fetch with DigiLocker” button that triggers the DigiLocker flow.
+
+    <AccordionGroup>
+      <Accordion title="2.1 Example: “Fetch with DigiLocker” Button" defaultOpen>
+        ```html expandable
+        
+        <script src="https://sdk.sandbox.co.in/kyc/digilocker/sdk.js"></script>
+        
+        <script>
+          function launch() {
+            // Define a custom event listener to handle SDK events
+            class EventListener extends DigilockerSDK.EventListener {
+              constructor(callback) {
+                super();
+                this.callback = callback;
+              }
+              onEvent(event) {
+                if (this.callback) {
+                  this.callback(event);
+                }
+              }
+            }
+            
+            // Define a callback function to process events from the SDK
+            const handleEvent = (event) => {
+              console.log("Received event:", event);
+            };
+        
+            // Initialize the event listener with your callback
+            const eventListener = new EventListener(handleEvent);
+            DigilockerSDK.setEventListener(eventListener);
+        
+        
+            // Set your API key
+            DigilockerSDK.setAPIKey("YOUR_API_KEY");
+        
+            // Configure the SDK options
+            const options = {
+              session_id: "a7fac865-61a9-4589-b80c....", // Replace with your session ID from Step 1
+              brand: {
+                name: "MoneyApp", // Your business or app name
+                logo_url: "https://example.com/your_logo", // Publicly accessible URL of your logo
+              },
+              theme: {
+                mode: "light", // Options: "light" or "dark"
+                seed: "#3D6838", // Primary color for theme customization
+              },
+            };
+        
+            // Launch the DigiLocker SDK
+            DigilockerSDK.open(options);
+          }
+        </script>
+        
+        <button onclick="launch()">Fetch with DigiLocker</button>
+        ```
+      </Accordion>
+      <Accordion title="2.2 SDK Options" defaultOpen>
+        ```json
+        {
+          "session_id": "a7fac865-61a9-4589-b80c....",
+          "brand": {
+            "name": "MoneyApp",
+            "logo_url": "https://example.com/your_logo"
+          },
+          "theme": {
+            "mode": "light",
+            "seed": "#3D6838"
+          }
+        }
+        ```
+
+        <ParamField body="session_id" type="string" required placeholder="a7fac865-61a9-4589-b80c....">
+          Unique session id generated when Create Session API is called.
+        </ParamField>
+        <ParamField body="brand" type="object" required>
+          Configuration for branding displayed in the DigiLocker interface.
+
+          <Expandable title="child attributes">
+            <ParamField body="name" type="string" required>
+              Display name of your business or app shown during the DigiLocker flow.
+            </ParamField>
+            <ParamField body="logo_url" type="string" required>
+              Publicly accessible HTTPS URL of your logo displayed within the SDK.
+            </ParamField>
+          </Expandable>
+        </ParamField>
+        <ParamField body="theme" type="object" required>
+          Appearance configuration for the SDK.
+
+          <Expandable title="child attributes">
+            <ParamField body="mode" type="string" required>
+              Sets the overall appearance of the SDK. Accepts `"light"` or `"dark"`.
+            </ParamField>
+            <ParamField body="seed" type="string" required>
+              Primary brand color used in the SDK interface. Accepts a hex code.
+            </ParamField>
+          </Expandable>
+        </ParamField>
+      </Accordion>
+    </AccordionGroup>
+  </Step>
+  <Step title="Handle Session Success and Failure" titleSize="h2">
+    After a user interacts with the DigiLocker SDK, various **events** are emitted that indicate the outcome of the session — whether it succeeded, failed, or was canceled.
+
+    Your event listener (defined earlier) receives these events. You can handle them as follows:
+
+    ```javascript
+    const handleEvent = (event) => {
+      console.log("Event received:", event);
+      
+      switch (event.type) {
+        case "in.co.sandbox.kyc.digilocker_sdk.session.completed":
+          // The documents were fetched from digilocker successfully
+          // Proceed with your application flow
+          break;
+    
+        case "in.co.sandbox.kyc.digilocker_sdk.session.closed":
+          // The user closed or exited out of the sdk
+          break;
+    
+        default:
+          console.log("Unhandled event:", event);
+      }
+    };
+    ```
+
+    To programmatically verify the final status of a session, you can call the  [Session Status](../../endpoints/get-session-status) endpoint from your backend.
+
+    This is useful for confirming completion or troubleshooting unexpected results, especially in cases where the client event might have been interrupted.
+  </Step>
+</Steps>
