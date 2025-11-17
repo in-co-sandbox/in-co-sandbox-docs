@@ -207,7 +207,27 @@
 						"item": "TDS",
 						"description": "Automate TDS on Salary & Non-Salary Payments",
 						"icon": "/static/svg/TDS.svg",
-						"pages": ["api-reference/tds/index"]
+						"pages": [{
+							"group": "Reports",
+							"pages": [
+								{
+									"group": "TDS",
+									"pages": [
+										"api-reference/tds/reports/tds-reports/endpoints/submit_job",
+										"api-reference/tds/reports/tds-reports/endpoints/poll_job",
+										"api-reference/tds/reports/tds-reports/endpoints/fetch_jobs"
+									]
+								},
+								{
+									"group": "TCS",
+									"pages": [
+										"api-reference/tds/reports/tcs-reports/endpoints/submit_job",
+										"api-reference/tds/reports/tcs-reports/endpoints/poll_job",
+										"api-reference/tds/reports/tcs-reports/endpoints/fetch_jobs"
+									]
+								}
+							]
+						}]
 					},
 					{
 						"item": "Income Tax",
