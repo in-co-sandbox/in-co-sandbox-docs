@@ -40,7 +40,10 @@
 				"groups": [
 					{
 						"group": "Introduction",
-						"pages": ["guides/introduction/about_sandbox", "guides/introduction/authentication"]
+						"pages": [
+							"guides/introduction/about_sandbox",
+							"guides/introduction/authentication"
+						]
 					},
 					{
 						"group": "Get Started",
@@ -57,7 +60,12 @@
 					},
 					{
 						"group": "Products",
-						"pages": ["guides/products/kyc", "guides/products/gst", "guides/products/tds", "guides/products/income_tax"]
+						"pages": [
+							"guides/products/kyc",
+							"guides/products/gst",
+							"guides/products/tds",
+							"guides/products/income_tax"
+						]
 					},
 					{
 						"group": "Billing & Invoicing",
@@ -71,7 +79,10 @@
 					},
 					{
 						"group": "Resources",
-						"pages": ["guides/resources/postman_collection", "guides/resources/help_centre"]
+						"pages": [
+							"guides/resources/postman_collection",
+							"guides/resources/help_centre"
+						]
 					}
 				]
 			},
@@ -86,7 +97,9 @@
 							{
 								"group": "Auth",
 								"icon": "square-terminal",
-								"pages": ["api-reference/authenticate"]
+								"pages": [
+									"api-reference/authenticate"
+								]
 							}
 						]
 					},
@@ -100,7 +113,10 @@
 								"pages": [
 									{
 										"group": "OKYC",
-										"pages": ["api-reference/kyc/aadhaar/endpoints/generate_otp", "api-reference/kyc/aadhaar/endpoints/verify_otp"]
+										"pages": [
+											"api-reference/kyc/aadhaar/endpoints/generate_otp",
+											"api-reference/kyc/aadhaar/endpoints/verify_otp"
+										]
 									}
 								]
 							},
@@ -125,7 +141,9 @@
 								"pages": [
 									{
 										"group": "Getting Started",
-										"pages": ["api-reference/kyc/digilocker-sdk/getting-started/introduction"]
+										"pages": [
+											"api-reference/kyc/digilocker-sdk/getting-started/introduction"
+										]
 									},
 									{
 										"group": "Platforms",
@@ -173,7 +191,10 @@
 							},
 							{
 								"group": "PAN",
-								"pages": ["api-reference/kyc/pan/endpoints/verify_pan_details", "api-reference/kyc/pan/endpoints/pan_aadhaar_link_status"]
+								"pages": [
+									"api-reference/kyc/pan/endpoints/verify_pan_details",
+									"api-reference/kyc/pan/endpoints/pan_aadhaar_link_status"
+								]
 							}
 						]
 					},
@@ -207,43 +228,72 @@
 						"item": "TDS",
 						"description": "Automate TDS on Salary & Non-Salary Payments",
 						"icon": "/static/svg/TDS.svg",
-						"pages": [{
-							"group": "Reports",
-							"pages": [
-								{
-									"group": "TDS",
-									"pages": [
-										"api-reference/tds/reports/tds-reports/endpoints/submit_job",
-										"api-reference/tds/reports/tds-reports/endpoints/poll_job",
-										"api-reference/tds/reports/tds-reports/endpoints/fetch_jobs"
-									]
-								},
-								{
-									"group": "TCS",
-									"pages": [
-										"api-reference/tds/reports/tcs-reports/endpoints/submit_job",
-										"api-reference/tds/reports/tcs-reports/endpoints/poll_job",
-										"api-reference/tds/reports/tcs-reports/endpoints/fetch_jobs"
-									]
-								}
-							]
-						}]
+						"pages": [
+							{
+								"group": "Reports",
+								"pages": [
+									{
+										"group": "TDS",
+										"pages": [
+											"api-reference/tds/reports/tds-reports/endpoints/submit_job",
+											"api-reference/tds/reports/tds-reports/endpoints/poll_job",
+											"api-reference/tds/reports/tds-reports/endpoints/fetch_jobs"
+										]
+									},
+									{
+										"group": "TCS",
+										"pages": [
+											"api-reference/tds/reports/tcs-reports/endpoints/submit_job",
+											"api-reference/tds/reports/tcs-reports/endpoints/poll_job",
+											"api-reference/tds/reports/tcs-reports/endpoints/fetch_jobs"
+										]
+									}
+								]
+							},
+							{
+								"group": "Analytics",
+								"pages": [
+									{
+										"group": "TDS",
+										"pages": [
+											"api-reference/tds/analytics/tds-analytics/endpoints/submit_job",
+											"api-reference/tds/analytics/tds-analytics/endpoints/poll_job",
+											"api-reference/tds/analytics/tds-analytics/endpoints/fetch_jobs"
+										]
+									},
+									{
+										"group": "TCS",
+										"pages": [
+											"api-reference/tds/analytics/tcs-analytics/endpoints/submit_job",
+											"api-reference/tds/analytics/tcs-analytics/endpoints/poll_job",
+											"api-reference/tds/analytics/tcs-analytics/endpoints/fetch_jobs"
+										]
+									}
+								]
+							}
+						]
 					},
 					{
 						"item": "Income Tax",
 						"description": "Direct tax compliance on auto-pilot",
 						"icon": "/static/svg/IT.svg",
-						"pages": ["api-reference/it/index"]
+						"pages": [
+							"api-reference/it/index"
+						]
 					}
 				]
 			},
 			{
 				"tab": "Changelog",
-				"pages": ["changelog"]
+				"pages": [
+					"changelog"
+				]
 			},
 			{
 				"tab": "Knowledge Base",
-				"pages": ["knowledge-base/overview"]
+				"pages": [
+					"knowledge-base/overview"
+				]
 			},
 			{
 				"tab": "Help Centre",
@@ -252,7 +302,16 @@
 		]
 	},
 	"contextual": {
-		"options": ["copy", "view", "chatgpt", "claude", "perplexity", "mcp", "cursor", "vscode"]
+		"options": [
+			"copy",
+			"view",
+			"chatgpt",
+			"claude",
+			"perplexity",
+			"mcp",
+			"cursor",
+			"vscode"
+		]
 	},
 	"footer": {
 		"socials": {
