@@ -1,5 +1,1602 @@
 ---
-title: "PUT Request"
-description: ""
+title: "PUT Request (Foreign Securities)"
 openapi: "../../../../../openapi.json POST /it/calculator/tax-pnl/securities/foreign"
+description: "Once the job is successfully created, upload the payload using HTTP PUT method on generated presigned url."
 ---
+
+# **JSON Payload**
+
+This API accepts payload in following formats:
+
+## **Tradebook**
+
+> Click [**<u>here </u>**](https://developer.sandbox.co.in/reference/foreign-securities-tax-pl-calculator-request-tradebook)to learn more about this JSON Payload
+
+```
+{
+    "name": "tradebook_workbook",
+    "@entity": "workbook",
+    "sheets": [
+        {
+            "name": "client_details_sheet",
+            "@entity": "sheet",
+            "blocks": [
+                {
+                    "name": "client_details_list",
+                    "@entity": "list",
+                    "items": [
+                        {
+                            "name":
+                            "n"
+                        },
+                        {
+                            "pan":
+                            "FKFPS2020A"
+                        },
+                        {
+                            "client_id":
+                            293932
+                        },
+                        {
+                            "country":
+                            "India"
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "name": "stock_sheet",
+            "@entity": "sheet",
+            "blocks": [
+                {
+                    "name": "stock_tradebook_table",
+                    "@entity": "table",
+                    "header": [
+                        "isin",
+                        "trade_id",
+                        "symbol",
+                        "quantity",
+                        "date",
+                        "price",
+                        "transaction_type",
+                        "transfer_expenses",
+                        "label",
+                        "product_type"
+                    ],
+                    "rows": [
+                        [
+                            "INE03Q201024",
+                            "KZUG2ZMGMH4WFE2C9RMG",
+                            "AMAZON",
+                            10,
+                            1711929600000,
+                            55,
+                            "buy",
+                            7,
+                            null,
+                            "intraday"
+                        ],
+                        [
+                            "INE767A01016",
+                            "ZVQAT2PZ1RSLYWWYZTXP",
+                            "APPLE",
+                            50,
+                            1672531200000,
+                            46,
+                            "buy",
+                            5,
+                            null,
+                            "delivery"
+                        ],
+                        [
+                            "INE00E101023",
+                            "VTHPFZ7KXVG5LMNZNBHT",
+                            "ALPHABET",
+                            25,
+                            1264982400000,
+                            160,
+                            "buy",
+                            16,
+                            null,
+                            "delivery"
+                        ],
+                        [
+                            "INE462A01022",
+                            "SUNMAQYIBRDSM4Y2TVW9",
+                            "META",
+                            20,
+                            1711929600000,
+                            280,
+                            "buy",
+                            21,
+                            null,
+                            "delivery"
+                        ],
+                        [
+                            "INE002A01018",
+                            "CJ1CLC4YCBFEZ4CVDNMH",
+                            "AMAZON",
+                            10,
+                            1711929600000,
+                            155,
+                            "sell",
+                            8,
+                            null,
+                            "intraday"
+                        ],
+                        [
+                            "INE462A01022",
+                            "PEB6U5ERJBDTNFSLPOI2",
+                            "APPLE",
+                            40,
+                            1714521600000,
+                            40,
+                            "sell",
+                            11,
+                            null,
+                            "delivery"
+                        ],
+                        [
+                            "INE03Q201024",
+                            "8BARHLFV3FZVGYTSJ012",
+                            "ALPHABET",
+                            30,
+                            1735516800000,
+                            189,
+                            "sell",
+                            1,
+                            null,
+                            "delivery"
+                        ],
+                        [
+                            "INE002A01018",
+                            "CYX9TQSTWUYK8C9Z7BCE",
+                            "META",
+                            15,
+                            1738368000000,
+                            260,
+                            "sell",
+                            0,
+                            null,
+                            "delivery"
+                        ]
+                    ]
+                },
+                {
+                    "name": "reference_data_table",
+                    "@entity": "table",
+                    "header": [
+                        "isin",
+                        "symbol",
+                        "address",
+                        "country",
+                        "zip_code",
+                        "52_week_high",
+                        "closing_value"
+                    ],
+                    "rows": [
+                        [
+                            "INE03Q201024",
+                            "AMAZON",
+                            "x",
+                            "USA",
+                            12345645,
+                            1000,
+                            1200
+                        ],
+                        [
+                            "INE767A01016",
+                            "APPLE",
+                            "x",
+                            "USA",
+                            12345645,
+                            1000,
+                            1200
+                        ],
+                        [
+                            "INE00E101023",
+                            "ALPHABET",
+                            "x",
+                            "USA",
+                            12345645,
+                            1000,
+                            1200
+                        ],
+                        [
+                            "INE462A01022",
+                            "META",
+                            "x",
+                            "USA",
+                            12345645,
+                            1000,
+                            1200
+                        ]
+                    ]
+                },
+                {
+                    "name": "dividend_table",
+                    "@entity": "table",
+                    "header": [
+                        "isin",
+                        "symbol",
+                        "quantity",
+                        "date",
+                        "dividend_amount",
+                        "currency",
+                        "tax_withheld"
+                    ],
+                    "rows": [
+                        [
+                            "INE03Q201024",
+                            "AMAZON",
+                            1,
+                            1711929600000,
+                            100,
+                            "USD",
+                            5
+                        ]
+                    ]
+                }
+            ]
+        },
+        {
+            "name": "dr_sheet",
+            "@entity": "sheet",
+            "blocks": [
+                {
+                    "name": "dr_tradebook_table",
+                    "@entity": "table",
+                    "header": [
+                        "isin",
+                        "trade_id",
+                        "symbol",
+                        "quantity",
+                        "date",
+                        "price",
+                        "transaction_type",
+                        "transfer_expenses",
+                        "label",
+                        "product_type"
+                    ],
+                    "rows": [
+                        [
+                            "INE03Q201024",
+                            "KZUG2ZMGMH4WFE2C9RMG",
+                            "FACEBOOK",
+                            10,
+                            1711929600000,
+                            640,
+                            "buy",
+                            7,
+                            null,
+                            "intraday"
+                        ],
+                        [
+                            "INE767A01016",
+                            "ZVQAT2PZ1RSLYWWYZTXP",
+                            "BERKSHIRE",
+                            50,
+                            1672531200000,
+                            270,
+                            "buy",
+                            5,
+                            null,
+                            "delivery"
+                        ],
+                        [
+                            "INE00E101023",
+                            "VTHPFZ7KXVG5LMNZNBHT",
+                            "GAMESTOP",
+                            25,
+                            1264982400000,
+                            72,
+                            "buy",
+                            16,
+                            null,
+                            "delivery"
+                        ],
+                        [
+                            "INE462A01022",
+                            "SUNMAQYIBRDSM4Y2TVW9",
+                            "GOOGL",
+                            20,
+                            1711929600000,
+                            45,
+                            "buy",
+                            21,
+                            null,
+                            "delivery"
+                        ],
+                        [
+                            "INE002A01018",
+                            "CJ1CLC4YCBFEZ4CVDNMH",
+                            "FACEBOOK",
+                            10,
+                            1711929600000,
+                            660,
+                            "sell",
+                            8,
+                            null,
+                            "intraday"
+                        ],
+                        [
+                            "INE462A01022",
+                            "PEB6U5ERJBDTNFSLPOI2",
+                            "BERKSHIRE",
+                            40,
+                            1714521600000,
+                            300,
+                            "sell",
+                            11,
+                            null,
+                            "delivery"
+                        ],
+                        [
+                            "INE03Q201024",
+                            "8BARHLFV3FZVGYTSJ012",
+                            "GAMESTOP",
+                            30,
+                            1735516800000,
+                            40,
+                            "sell",
+                            1,
+                            null,
+                            "delivery"
+                        ],
+                        [
+                            "INE002A01018",
+                            "CYX9TQSTWUYK8C9Z7BCE",
+                            "GOOGL",
+                            15,
+                            1738368000000,
+                            54,
+                            "sell",
+                            0,
+                            null,
+                            "delivery"
+                        ]
+                    ]
+                },
+                {
+                    "name": "reference_data_table",
+                    "@entity": "table",
+                    "header": [
+                        "isin",
+                        "symbol",
+                        "address",
+                        "country",
+                        "zip_code",
+                        "52_week_high",
+                        "closing_value"
+                    ],
+                    "rows": [
+                        [
+                            "INE03Q201024",
+                            "KZUG2ZMGMH4WFE2C9RMG",
+                            "x",
+                            "USA",
+                            12345645,
+                            1000,
+                            1200
+                        ],
+                        [
+                            "INE767A01016",
+                            "ZVQAT2PZ1RSLYWWYZTXP",
+                            "x",
+                            "USA",
+                            12345645,
+                            1000,
+                            1200
+                        ],
+                        [
+                            "INE00E101023",
+                            "VTHPFZ7KXVG5LMNZNBHT",
+                            "x",
+                            "USA",
+                            12345645,
+                            1000,
+                            1200
+                        ],
+                        [
+                            "INE462A01022",
+                            "SUNMAQYIBRDSM4Y2TVW9",
+                            "x",
+                            "USA",
+                            12345645,
+                            1000,
+                            1200
+                        ]
+                    ]
+                },
+                {
+                    "name": "dividend_table",
+                    "@entity": "table",
+                    "header": [
+                        "isin",
+                        "symbol",
+                        "quantity",
+                        "date",
+                        "dividend_amount",
+                        "currency",
+                        "tax_withheld"
+                    ],
+                    "rows": [
+                        [
+                            "INE03Q201024",
+                            "KZUG2ZMGMH4WFE2C9RMG",
+                            4,
+                            1738368000000,
+                            60,
+                            "USD",
+                            5
+                        ]
+                    ]
+                }
+            ]
+        },
+        {
+            "name": "mutual_fund_sheet",
+            "@entity": "sheet",
+            "blocks": [
+                {
+                    "name": "mutual_fund_tradebook_table",
+                    "@entity": "table",
+                    "header": [
+                        "isin",
+                        "trade_id",
+                        "scheme_name",
+                        "scheme_type",
+                        "quantity",
+                        "date",
+                        "price",
+                        "transaction_type",
+                        "transfer_expenses",
+                        "label"
+                    ],
+                    "rows": [
+                        [
+                            "INE03Q201024",
+                            "KZUG2ZMGMH4WFE2C9RMG",
+                            "Fidelity",
+                            "equity",
+                            10,
+                            1711929600000,
+                            640,
+                            "buy",
+                            4,
+                            null
+                        ],
+                        [
+                            "INE767A01016",
+                            "ZVQAT2PZ1RSLYWWYZTXP",
+                            "Blackrock",
+                            "debt",
+                            50,
+                            1672531200000,
+                            270,
+                            "buy",
+                            1,
+                            null
+                        ],
+                        [
+                            "INE002A01018",
+                            "CJ1CLC4YCBFEZ4CVDNMH",
+                            "Fidelity",
+                            "equity",
+                            10,
+                            1711929600000,
+                            660,
+                            "sell",
+                            0,
+                            null
+                        ],
+                        [
+                            "INE462A01022",
+                            "PEB6U5ERJBDTNFSLPOI2",
+                            "Blackrock",
+                            "debt",
+                            40,
+                            1714521600000,
+                            300,
+                            "sell",
+                            2,
+                            null
+                        ]
+                    ]
+                },
+                {
+                    "name": "reference_data_table",
+                    "@entity": "table",
+                    "header": [
+                        "isin",
+                        "symbol",
+                        "address",
+                        "country",
+                        "zip_code",
+                        "52_week_high",
+                        "closing_value"
+                    ],
+                    "rows": []
+                },
+                {
+                    "name": "dividend_table",
+                    "@entity": "table",
+                    "header": [
+                        "isin",
+                        "symbol",
+                        "quantity",
+                        "date",
+                        "dividend_amount",
+                        "currency",
+                        "tax_withheld"
+                    ],
+                    "rows": []
+                }
+            ]
+        },
+        {
+            "name": "etf_sheet",
+            "@entity": "sheet",
+            "blocks": [
+                {
+                    "name": "etf_tradebook_table",
+                    "@entity": "table",
+                    "header": [
+                        "isin",
+                        "trade_id",
+                        "scheme_name",
+                        "scheme_type",
+                        "quantity",
+                        "date",
+                        "price",
+                        "transaction_type",
+                        "transfer_expenses",
+                        "label",
+                        "product_type"
+                    ],
+                    "rows": [
+                        [
+                            "INE03Q201024",
+                            "KZUG2ZMGMH4WFE2C9RMG",
+                            "Fidelity",
+                            "equity",
+                            10,
+                            1711929600000,
+                            640,
+                            "buy",
+                            4,
+                            null,
+                            "intraday"
+                        ],
+                        [
+                            "INE767A01016",
+                            "ZVQAT2PZ1RSLYWWYZTXP",
+                            "Blackrock",
+                            "debt",
+                            50,
+                            1672531200000,
+                            270,
+                            "buy",
+                            1,
+                            null,
+                            "delivery"
+                        ],
+                        [
+                            "INE002A01018",
+                            "CJ1CLC4YCBFEZ4CVDNMH",
+                            "Fidelity",
+                            "equity",
+                            10,
+                            1711929600000,
+                            660,
+                            "sell",
+                            0,
+                            null,
+                            "intraday"
+                        ],
+                        [
+                            "INE462A01022",
+                            "PEB6U5ERJBDTNFSLPOI2",
+                            "Blackrock",
+                            "debt",
+                            40,
+                            1714521600000,
+                            300,
+                            "sell",
+                            2,
+                            null,
+                            "delivery"
+                        ]
+                    ]
+                },
+                {
+                    "name": "reference_data_table",
+                    "@entity": "table",
+                    "header": [
+                        "isin",
+                        "symbol",
+                        "address",
+                        "country",
+                        "zip_code",
+                        "52_week_high",
+                        "closing_value"
+                    ],
+                    "rows": []
+                },
+                {
+                    "name": "dividend_table",
+                    "@entity": "table",
+                    "header": [
+                        "isin",
+                        "symbol",
+                        "quantity",
+                        "date",
+                        "dividend_amount",
+                        "currency",
+                        "tax_withheld"
+                    ],
+                    "rows": []
+                }
+            ]
+        },
+            {
+      "name": "interest_income_sheet",
+      "@entity": "sheet",
+      "blocks": [
+        {
+          "name": "interest_income_table",
+          "@entity": "table",
+          "header": [
+            "description",
+            "date",
+            "amount",
+            "amount_inr",
+            "currency",
+            "tax_witheld",
+            "tax_witheld_inr"
+          ],
+          "rows": [
+            [
+              "GG",
+              1463356800000,
+              8,
+              null,
+              "USD",
+              0.12,
+              null
+            ],
+            [
+              "WP",
+              1692316800000,
+              54,
+              null,
+              "EUR",
+              2,
+              null
+            ]
+          ]
+        }
+      ]
+    }
+    ]
+}
+```
+
+## **Tradewise PnL**
+
+> Click [**<u>here </u>**](https://developer.sandbox.co.in/reference/foreign-securities-tax-pl-calculator-request-tradewise-settlement)to learn more about this JSON Payload
+
+```
+{
+    "name": "tradewise_settlement_workbook",
+    "@entity": "workbook",
+    "sheets": [
+        {
+            "name": "stock_sheet",
+            "@entity": "sheet",
+            "blocks": [
+                {
+                    "name": "reference_data_table",
+                    "@entity": "table",
+                    "header": [
+                        "isin",
+                        "symbol",
+                        "address",
+                        "country",
+                        "zip_code",
+                        "52_week_high",
+                        "closing_value"
+                    ],
+                    "rows": [
+                        [
+                            "US0378331022",
+                            "AMAZON",
+                            "ENGLAND",
+                            "ENGLAND",
+                            null,
+                            120,
+                            120
+                        ],
+                        [
+                            "US0378331023",
+                            "INTEL",
+                            "USA",
+                            "USA",
+                            null,
+                            66,
+                            50
+                        ]
+                    ]
+                },
+                {
+                    "name": "dividend_table",
+                    "@entity": "table",
+                    "header": [
+                        "isin",
+                        "symbol",
+                        "quantity",
+                        "date",
+                        "dividend_amount",
+                        "dividend_amount_inr",
+                        "currency",
+                        "tax_withheld",
+                        "tax_withheld_inr"
+                    ],
+                    "rows": [
+                        [
+                            "US0378331033",
+                            "Meta",
+                            1,
+                            1463356800000,
+                            55,
+                            null,
+                            "USD",
+                            3,
+                            null
+                        ]
+                    ]
+                },
+                {
+                    "name": "stock_tradewise_holding_table",
+                    "@entity": "table",
+                    "header": [
+                        "isin",
+                        "symbol",
+                        "quantity",
+                        "buy_date",
+                        "buy_price",
+                        "buy_price_inr",
+                        "currency",
+                        "transaction_type",
+                        "label",
+                        "last_traded_price"
+                    ],
+                    "rows": [
+                        [
+                            "US0378331022",
+                            "AMAZON",
+                            20,
+                            1463356800000,
+                            56,
+                            null,
+                            "POUND",
+                            "buy",
+                            null,
+                            100
+                        ],
+                        [
+                            "US0378331023",
+                            "INTEL",
+                            35,
+                            1692316800000,
+                            88,
+                            null,
+                            "USD",
+                            "buy",
+                            null,
+                            45
+                        ]
+                    ]
+                },
+                {
+                    "name": "stock_tradewise_open_sell_table",
+                    "@entity": "table",
+                    "header": [
+                        "isin",
+                        "symbol",
+                        "quantity",
+                        "sell_date",
+                        "sell_price",
+                        "sell_price_inr",
+                        "currency",
+                        "transaction_type",
+                        "label",
+                        "last_traded_price"
+                    ],
+                    "rows": [
+                        [
+                            "US0378331012",
+                            "MONSTER",
+                            1,
+                            1650412800000,
+                            800,
+                            null,
+                            "DIRHAM",
+                            "sell",
+                            null,
+                            700
+                        ],
+                        [
+                            "US0378331013",
+                            "TSLA",
+                            56,
+                            1692403200000,
+                            95,
+                            null,
+                            "CAD",
+                            "sell",
+                            null,
+                            150
+                        ]
+                    ]
+                },
+                {
+                    "name": "stock_tradewise_settlement_table",
+                    "@entity": "table",
+                    "header": [
+                        "isin",
+                        "symbol",
+                        "quantity",
+                        "buy_trade_id",
+                        "buy_date",
+                        "buy_price",
+                        "sell_trade_id",
+                        "sell_date",
+                        "sell_price",
+                        "currency",
+                        "transfer_expenses",
+                        "nature_of_settlement",
+                        "product_type"
+                    ],
+                    "rows": [
+                        [
+                            "US0378331005",
+                            "Apple",
+                            645,
+                            "CJ1CLC4YCBFEZ4CVDNMH",
+                            1463356800000,
+                            136,
+                            "CYX9TQSTWUYK8C9Z7BCE",
+                            1650412800000,
+                            580,
+                            "USD",
+                            25,
+                            "trade",
+                            "intraday"
+                        ],
+                        [
+                            "US0378331008",
+                            "NVIDIA",
+                            254,
+                            "VQLDME6IOJZR95BDEKQ9",
+                            1692316800000,
+                            1290.98,
+                            "VXFUFI5Q9HH7FEJPLV3B",
+                            1692403200000,
+                            1301.78,
+                            "EUR",
+                            21,
+                            "trade",
+                            "delivery"
+                        ]
+                    ]
+                },
+                {
+                    "name": "stock_tradewise_transfer_table",
+                    "@entity": "table",
+                    "header": [
+                        "isin",
+                        "symbol",
+                        "quantity",
+                        "transfer_date",
+                        "price",
+                        "currency",
+                        "transfer_type",
+                        "nature_of_transfer",
+                        "transfer_value",
+                        "transfer_expense"
+                    ],
+                    "rows": []
+                }
+            ]
+        },
+        {
+            "name": "dr_sheet",
+            "@entity": "sheet",
+            "blocks": [
+                {
+                    "name": "reference_data_table",
+                    "@entity": "table",
+                    "header": [
+                        "isin",
+                        "symbol",
+                        "address",
+                        "country",
+                        "zip_code",
+                        "52_week_high",
+                        "closing_value"
+                    ],
+                    "rows": [
+                        [
+                            "US0378331022",
+                            "AMAZON",
+                            "ENGLAND",
+                            "ENGLAND",
+                            null,
+                            120,
+                            120
+                        ],
+                        [
+                            "US0378331023",
+                            "INTEL",
+                            "USA",
+                            "USA",
+                            null,
+                            66,
+                            50
+                        ]
+                    ]
+                },
+                {
+                    "name": "dividend_table",
+                    "@entity": "table",
+                    "header": [
+                        "isin",
+                        "symbol",
+                        "quantity",
+                        "date",
+                        "dividend_amount",
+                        "dividend_amount_inr",
+                        "currency",
+                        "tax_withheld",
+                        "tax_withheld_inr"
+                    ],
+                    "rows": [
+                        [
+                            "US0378331033",
+                            "Alphabet",
+                            1,
+                            1463356800000,
+                            55,
+                            null,
+                            "USD",
+                            3,
+                            null
+                        ]
+                    ]
+                },
+                {
+                    "name": "dr_tradewise_holding_table",
+                    "@entity": "table",
+                    "header": [
+                        "isin",
+                        "symbol",
+                        "quantity",
+                        "buy_date",
+                        "buy_price",
+                        "buy_price_inr",
+                        "currency",
+                        "transaction_type",
+                        "label",
+                        "last_traded_price"
+                    ],
+                    "rows": [
+                        [
+                            "US0378331022",
+                            "MSFT",
+                            20,
+                            1463356800000,
+                            56,
+                            null,
+                            "POUND",
+                            "buy",
+                            null,
+                            100
+                        ]
+                    ]
+                },
+                {
+                    "name": "dr_tradewise_open_sell_table",
+                    "@entity": "table",
+                    "header": [
+                        "isin",
+                        "symbol",
+                        "quantity",
+                        "sell_date",
+                        "sell_price",
+                        "sell_price_inr",
+                        "currency",
+                        "transaction_type",
+                        "label",
+                        "last_traded_price"
+                    ],
+                    "rows": [
+                        [
+                            "US0378331012",
+                            "MONSTER",
+                            1,
+                            1650412800000,
+                            800,
+                            null,
+                            "DIRHAM",
+                            "sell",
+                            null,
+                            700
+                        ]
+                    ]
+                },
+                {
+                    "name": "dr_tradewise_settlement_table",
+                    "@entity": "table",
+                    "header": [
+                        "isin",
+                        "symbol",
+                        "quantity",
+                        "buy_trade_id",
+                        "buy_date",
+                        "buy_price",
+                        "sell_trade_id",
+                        "sell_date",
+                        "sell_price",
+                        "currency",
+                        "transfer_expenses",
+                        "nature_of_settlement",
+                        "product_type"
+                    ],
+                    "rows": [
+                        [
+                            "US0378331005",
+                            "Apple",
+                            645,
+                            "CJ1CLC4YCBFEZ4CVDNMH",
+                            1463356800000,
+                            136,
+                            "CYX9TQSTWUYK8C9Z7BCE",
+                            1650412800000,
+                            580,
+                            "USD",
+                            25,
+                            "trade",
+                            "intraday"
+                        ],
+                        [
+                            "US0378331008",
+                            "NVIDIA",
+                            254,
+                            "VQLDME6IOJZR95BDEKQ9",
+                            1692316800000,
+                            1290.98,
+                            "VXFUFI5Q9HH7FEJPLV3B",
+                            1692403200000,
+                            1301.78,
+                            "EUR",
+                            21,
+                            "trade",
+                            "delivery"
+                        ]
+                    ]
+                },
+                {
+                    "name": "dr_tradewise_transfer_table",
+                    "@entity": "table",
+                    "header": [
+                        "isin",
+                        "symbol",
+                        "quantity",
+                        "transfer_date",
+                        "price",
+                        "currency",
+                        "transfer_type",
+                        "nature_of_transfer",
+                        "transfer_value",
+                        "transfer_expense"
+                    ],
+                    "rows": []
+                }
+            ]
+        },
+        {
+            "name": "mutual_fund_sheet",
+            "@entity": "sheet",
+            "blocks": [
+                {
+                    "name": "reference_data_table",
+                    "@entity": "table",
+                    "header": [
+                        "isin",
+                        "symbol",
+                        "address",
+                        "country",
+                        "zip_code",
+                        "52_week_high",
+                        "closing_value"
+                    ],
+                    "rows": [
+                        [
+                            "US0378331022",
+                            "AMAZON",
+                            "ENGLAND",
+                            "ENGLAND",
+                            null,
+                            120,
+                            120
+                        ],
+                        [
+                            "US0378331023",
+                            "INTEL",
+                            "USA",
+                            "USA",
+                            null,
+                            66,
+                            50
+                        ]
+                    ]
+                },
+                {
+                    "name": "dividend_table",
+                    "@entity": "table",
+                    "header": [
+                        "isin",
+                        "symbol",
+                        "quantity",
+                        "date",
+                        "dividend_amount",
+                        "dividend_amount_inr",
+                        "currency",
+                        "tax_withheld",
+                        "tax_withheld_inr"
+                    ],
+                    "rows": [
+                        [
+                            "US0378331033",
+                            "Alphabet",
+                            2,
+                            1463356800000,
+                            55,
+                            null,
+                            "USD",
+                            3,
+                            null
+                        ]
+                    ]
+                },
+                {
+                    "name": "mutual_fund_tradewise_holding_table",
+                    "@entity": "table",
+                    "header": [
+                        "isin",
+                        "scheme_name",
+                        "scheme_type",
+                        "quantity",
+                        "buy_date",
+                        "buy_price",
+                        "buy_price_inr",
+                        "currency",
+                        "transaction_type",
+                        "label",
+                        "last_traded_price"
+                    ],
+                    "rows": [
+                        [
+                            "US0378331022",
+                            "MSFT",
+                            "equity",
+                            20,
+                            1463356800000,
+                            56,
+                            null,
+                            "POUND",
+                            "buy",
+                            null,
+                            100
+                        ],
+                        [
+                            "US0378331322",
+                            "Fidelity",
+                            "debt",
+                            1,
+                            1463356800000,
+                            5,
+                            null,
+                            "USD",
+                            "buy",
+                            null,
+                            12
+                        ]
+                    ]
+                },
+                {
+                    "name": "mutual_fund_tradewise_open_sell_table",
+                    "@entity": "table",
+                    "header": [
+                        "isin",
+                        "scheme_name",
+                        "scheme_type",
+                        "quantity",
+                        "sell_date",
+                        "sell_price",
+                        "sell_price_inr",
+                        "currency",
+                        "transaction_type",
+                        "label",
+                        "last_traded_price"
+                    ],
+                    "rows": [
+                        [
+                            "US0378331022",
+                            "MSFT",
+                            "equity",
+                            20,
+                            1463356800000,
+                            56,
+                            null,
+                            "POUND",
+                            "sell",
+                            null,
+                            100
+                        ],
+                        [
+                            "US0378331322",
+                            "Fidelity",
+                            "debt",
+                            1,
+                            1463356800000,
+                            5,
+                            null,
+                            "USD",
+                            "sell",
+                            null,
+                            12
+                        ]
+                    ]
+                },
+                {
+                    "name": "mutual_fund_tradewise_settlement_table",
+                    "@entity": "table",
+                    "header": [
+                        "isin",
+                        "scheme_name",
+                        "scheme_type",
+                        "quantity",
+                        "buy_trade_id",
+                        "buy_date",
+                        "buy_price",
+                        "sell_trade_id",
+                        "sell_date",
+                        "sell_price",
+                        "currency",
+                        "transfer_expenses",
+                        "nature_of_settlement"
+                    ],
+                    "rows": [
+                        [
+                            "US0378331005",
+                            "INV",
+                            "equity",
+                            645,
+                            "CJ1CLC4YCBFEZ4CVDNMH",
+                            1463356800000,
+                            136,
+                            "CYX9TQSTWUYK8C9Z7BCE",
+                            1650412800000,
+                            580,
+                            "USD",
+                            25,
+                            "trade"
+                        ],
+                        [
+                            "US0378331008",
+                            "FRO",
+                            "debt",
+                            254,
+                            "VQLDME6IOJZR95BDEKQ9",
+                            1692316800000,
+                            1290.98,
+                            "VXFUFI5Q9HH7FEJPLV3B",
+                            1692403200000,
+                            1301.78,
+                            "EUR",
+                            21,
+                            "trade"
+                        ]
+                    ]
+                },
+                {
+                    "name": "mutual_fund_tradewise_transfer_table",
+                    "@entity": "table",
+                    "header": [
+                        "isin",
+                        "scheme_name",
+                        "scheme_type",
+                        "quantity",
+                        "transfer_date",
+                        "price",
+                        "currency",
+                        "transfer_type",
+                        "nature_of_transfer",
+                        "transfer_value",
+                        "transfer_expense"
+                    ],
+                    "rows": []
+                }
+            ]
+        },
+        {
+            "name": "etf_sheet",
+            "@entity": "sheet",
+            "blocks": [
+                {
+                    "name": "reference_data_table",
+                    "@entity": "table",
+                    "header": [
+                        "isin",
+                        "symbol",
+                        "address",
+                        "country",
+                        "zip_code",
+                        "52_week_high",
+                        "closing_value"
+                    ],
+                    "rows": [
+                        [
+                            "US0378331022",
+                            "AMAZON",
+                            "ENGLAND",
+                            "ENGLAND",
+                            null,
+                            120,
+                            120
+                        ],
+                        [
+                            "US0378331023",
+                            "INTEL",
+                            "USA",
+                            "USA",
+                            null,
+                            66,
+                            50
+                        ]
+                    ]
+                },
+                {
+                    "name": "dividend_table",
+                    "@entity": "table",
+                    "header": [
+                        "isin",
+                        "symbol",
+                        "quantity",
+                        "date",
+                        "dividend_amount",
+                        "dividend_amount_inr",
+                        "currency",
+                        "tax_withheld",
+                        "tax_withheld_inr"
+                    ],
+                    "rows": [
+                        [
+                            "US0378331033",
+                            "Alphabet",
+                            2,
+                            1463356800000,
+                            55,
+                            null,
+                            "USD",
+                            3,
+                            null
+                        ]
+                    ]
+                },
+                {
+                    "name": "etf_tradewise_holding_table",
+                    "@entity": "table",
+                    "header": [
+                        "isin",
+                        "scheme_name",
+                        "scheme_type",
+                        "quantity",
+                        "buy_date",
+                        "buy_price",
+                        "buy_price_inr",
+                        "transaction_type",
+                        "label",
+                        "last_traded_price"
+                    ],
+                    "rows": [
+                        [
+                            "US0378331022",
+                            "MSFT",
+                            "equity",
+                            20,
+                            1463356800000,
+                            56,
+                            null,
+                            "POUND",
+                            "buy",
+                            null
+                        ],
+                        [
+                            "US0378331322",
+                            "Fidelity",
+                            "debt",
+                            1,
+                            1463356800000,
+                            5,
+                            null,
+                            "USD",
+                            "buy",
+                            null
+                        ]
+                    ]
+                },
+                {
+                    "name": "etf_tradewise_open_sell_table",
+                    "@entity": "table",
+                    "header": [
+                        "isin",
+                        "scheme_name",
+                        "scheme_type",
+                        "quantity",
+                        "sell_date",
+                        "sell_price",
+                        "sell_price_inr",
+                        "currency",
+                        "transaction_type",
+                        "label",
+                        "last_traded_price"
+                    ],
+                    "rows": [
+                        [
+                            "US0378331022",
+                            "MSFT",
+                            "equity",
+                            20,
+                            1463356800000,
+                            56,
+                            null,
+                            "POUND",
+                            "sell",
+                            null,
+                            100
+                        ],
+                        [
+                            "US0378331322",
+                            "Fidelity",
+                            "debt",
+                            1,
+                            1463356800000,
+                            5,
+                            null,
+                            "USD",
+                            "sell",
+                            null,
+                            12
+                        ]
+                    ]
+                },
+                {
+                    "name": "etf_tradewise_settlement_table",
+                    "@entity": "table",
+                    "header": [
+                        "isin",
+                        "scheme_name",
+                        "scheme_type",
+                        "quantity",
+                        "buy_trade_id",
+                        "buy_date",
+                        "buy_price",
+                        "sell_trade_id",
+                        "sell_date",
+                        "sell_price",
+                        "currency",
+                        "transfer_expenses",
+                        "nature_of_settlement",
+                        "product_type"
+                    ],
+                    "rows": [
+                        [
+                            "US0378331005",
+                            "INV",
+                            "equity",
+                            645,
+                            "CJ1CLC4YCBFEZ4CVDNMH",
+                            1463356800000,
+                            136,
+                            "CYX9TQSTWUYK8C9Z7BCE",
+                            1650412800000,
+                            580,
+                            "USD",
+                            25,
+                            "trade",
+                            "intraday"
+                        ],
+                        [
+                            "US0378331008",
+                            "FRO",
+                            "debt",
+                            254,
+                            "VQLDME6IOJZR95BDEKQ9",
+                            1692316800000,
+                            1290.98,
+                            "VXFUFI5Q9HH7FEJPLV3B",
+                            1692403200000,
+                            1301.78,
+                            "EUR",
+                            21,
+                            "trade",
+                            "delivery"
+                        ]
+                    ]
+                },
+                {
+                    "name": "etf_tradewise_transfer_table",
+                    "@entity": "table",
+                    "header": [
+                        "isin",
+                        "scheme_name",
+                        "scheme_type",
+                        "quantity",
+                        "transfer_date",
+                        "price",
+                        "currency",
+                        "transfer_type",
+                        "nature_of_transfer",
+                        "transfer_value",
+                        "transfer_expense"
+                    ],
+                    "rows": []
+                }
+            ]
+        },
+        {
+            "name": "interest_income_sheet",
+            "@entity": "sheet",
+            "blocks": [
+                {
+                    "name": "interest_income_table",
+                    "@entity": "table",
+                    "header": [
+                        "description",
+                        "date",
+                        "amount",
+                        "amount_inr",
+                        "currency",
+                        "tax_witheld",
+                        "tax_witheld_inr"
+                    ],
+                    "rows": [
+                        [
+                            "GG",
+                            1463356800000,
+                            8,
+                            null,
+                            "USD",
+                            0.12,
+                            null
+                        ],
+                        [
+                            "WP",
+                            1692316800000,
+                            54,
+                            null,
+                            "EUR",
+                            2,
+                            null
+                        ]
+                    ]
+                }
+            ]
+        }
+    ]
+}
+```
