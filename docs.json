@@ -232,8 +232,8 @@
 										"group": "Public",
 										"pages": [
 											"api-reference/gst/compliance/endpoints/public/search_gstin",
-											"api-reference/gst/compliance/endpoints/public/search_pan",
-											"api-reference/gst/compliance/endpoints/public/track_gstrs"
+											"api-reference/gst/compliance/endpoints/public/track_gstrs",
+											"api-reference/gst/compliance/endpoints/public/search_pan_state_code"
 										]
 									},
 									{
@@ -242,127 +242,128 @@
 											{
 												"group": "Authentication",
 												"pages": [
-													"api-reference/gst/compliance/endpoints/taxpayer/authentication/generate_evc_otp",
 													"api-reference/gst/compliance/endpoints/taxpayer/authentication/generate_otp",
-													"api-reference/gst/compliance/endpoints/taxpayer/authentication/logout",
+													"api-reference/gst/compliance/endpoints/taxpayer/authentication/verify_otp",
 													"api-reference/gst/compliance/endpoints/taxpayer/authentication/refresh_session",
-													"api-reference/gst/compliance/endpoints/taxpayer/authentication/verify"
+													"api-reference/gst/compliance/endpoints/taxpayer/authentication/generate_evc_otp",
+													"api-reference/gst/compliance/endpoints/taxpayer/authentication/logout"
+												]
+											},
+											{
+												"group": "GSTR-1 Documents",
+												"pages": [
+													"api-reference/gst/compliance/endpoints/taxpayer/gstr-1/documents/at",
+													"api-reference/gst/compliance/endpoints/taxpayer/gstr-1/documents/ata",
+													"api-reference/gst/compliance/endpoints/taxpayer/gstr-1/documents/b2b",
+													"api-reference/gst/compliance/endpoints/taxpayer/gstr-1/documents/b2ba",
+													"api-reference/gst/compliance/endpoints/taxpayer/gstr-1/documents/b2cl",
+													"api-reference/gst/compliance/endpoints/taxpayer/gstr-1/documents/b2cla",
+													"api-reference/gst/compliance/endpoints/taxpayer/gstr-1/documents/b2cs",
+													"api-reference/gst/compliance/endpoints/taxpayer/gstr-1/documents/b2csa",
+													"api-reference/gst/compliance/endpoints/taxpayer/gstr-1/documents/cdnr",
+													"api-reference/gst/compliance/endpoints/taxpayer/gstr-1/documents/cdnra",
+													"api-reference/gst/compliance/endpoints/taxpayer/gstr-1/documents/cdnur",
+													"api-reference/gst/compliance/endpoints/taxpayer/gstr-1/documents/cdnura",
+													"api-reference/gst/compliance/endpoints/taxpayer/gstr-1/documents/doc_issue",
+													"api-reference/gst/compliance/endpoints/taxpayer/gstr-1/documents/exp",
+													"api-reference/gst/compliance/endpoints/taxpayer/gstr-1/documents/expa",
+													"api-reference/gst/compliance/endpoints/taxpayer/gstr-1/documents/get_hsn",
+													"api-reference/gst/compliance/endpoints/taxpayer/gstr-1/documents/nil"
+												]
+											},
+											{
+												"group": "File GSTR-1",
+												"pages": [
+													"api-reference/gst/compliance/endpoints/taxpayer/gstr-1/file/save",
+													"api-reference/gst/compliance/endpoints/taxpayer/common/gstr_return_status",
+													"api-reference/gst/compliance/endpoints/taxpayer/gstr-1/file/new_proceed",
+													"api-reference/gst/compliance/endpoints/taxpayer/authentication/generate_evc_otp",
+													"api-reference/gst/compliance/endpoints/taxpayer/gstr-1/file/file",
+													"api-reference/gst/compliance/endpoints/taxpayer/gstr-1/file/reset"
+												]
+											},
+											{
+												"group": "GSTR-2A",
+												"pages": [
+													"api-reference/gst/compliance/endpoints/taxpayer/gstr-2a/amdhist",
+													"api-reference/gst/compliance/endpoints/taxpayer/gstr-2a/b2b",
+													"api-reference/gst/compliance/endpoints/taxpayer/gstr-2a/b2ba",
+													"api-reference/gst/compliance/endpoints/taxpayer/gstr-2a/cdn",
+													"api-reference/gst/compliance/endpoints/taxpayer/gstr-2a/cdna",
+													"api-reference/gst/compliance/endpoints/taxpayer/gstr-2a/document",
+													"api-reference/gst/compliance/endpoints/taxpayer/gstr-2a/impg",
+													"api-reference/gst/compliance/endpoints/taxpayer/gstr-2a/impgsez",
+													"api-reference/gst/compliance/endpoints/taxpayer/gstr-2a/isd",
+													"api-reference/gst/compliance/endpoints/taxpayer/gstr-2a/tcs",
+													"api-reference/gst/compliance/endpoints/taxpayer/gstr-2a/tds"
+												]
+											},
+											{
+												"group": "GSTR-2B",
+												"pages": [
+													"api-reference/gst/compliance/endpoints/taxpayer/gstr-2b/document",
+													"api-reference/gst/compliance/endpoints/taxpayer/gstr-2b/regenerate_gstr_2b",
+													"api-reference/gst/compliance/endpoints/taxpayer/gstr-2b/gstr_2b_regeneration_status"
+												]
+											},
+											{
+												"group": "File GSTR-3B",
+												"pages": [
+													"api-reference/gst/compliance/endpoints/taxpayer/gstr-3b/gstr_3b_details",
+													"api-reference/gst/compliance/endpoints/taxpayer/gstr-3b/save",
+													"api-reference/gst/compliance/endpoints/taxpayer/common/gstr_return_status",
+													"api-reference/gst/compliance/endpoints/taxpayer/gstr-3b/offset_liability",
+													"api-reference/gst/compliance/endpoints/taxpayer/authentication/generate_evc_otp",
+													"api-reference/gst/compliance/endpoints/taxpayer/gstr-3b/file"
+												]
+											},
+											{
+												"group": "GSTR-9",
+												"pages": [
+													"api-reference/gst/compliance/endpoints/taxpayer/gstr-9/auto_calculated_details",
+													"api-reference/gst/compliance/endpoints/taxpayer/gstr-9/section_8a_details",
+													"api-reference/gst/compliance/endpoints/taxpayer/gstr-9/save",
+													"api-reference/gst/compliance/endpoints/taxpayer/common/gstr_return_status",
+													"api-reference/gst/compliance/endpoints/taxpayer/gstr-9/gstr_9_details",
+													"api-reference/gst/compliance/endpoints/taxpayer/gstr-9/proceed",
+													"api-reference/gst/compliance/endpoints/taxpayer/authentication/generate_evc_otp",
+													"api-reference/gst/compliance/endpoints/taxpayer/gstr-9/file"
+												]
+											},
+											{
+												"group": "Filing Preference",
+												"pages": [
+													"api-reference/gst/compliance/endpoints/taxpayer/common/get_filing_preference",
+													"api-reference/gst/compliance/endpoints/taxpayer/common/save_filing_preference"
+												]
+											},
+											{
+												"group": "Ledgers",
+												"pages": [
+													"api-reference/gst/compliance/endpoints/taxpayer/ledgers/cash_itc_balance_ledger",
+													"api-reference/gst/compliance/endpoints/taxpayer/ledgers/cash_ledger",
+													"api-reference/gst/compliance/endpoints/taxpayer/ledgers/itc_ledger",
+													"api-reference/gst/compliance/endpoints/taxpayer/ledgers/return_liability_ledger"
 												]
 											},
 											{
 												"group": "E-Invoice",
 												"pages": [
 													"api-reference/gst/compliance/endpoints/taxpayer/e-invoice/e_invoice",
-													"api-reference/gst/compliance/endpoints/taxpayer/e-invoice/get_invoice_by_irn",
-													"api-reference/gst/compliance/endpoints/taxpayer/e-invoice/get_purchase_invoices",
-													"api-reference/gst/compliance/endpoints/taxpayer/e-invoice/get_sales_invoices"
+													"api-reference/gst/compliance/endpoints/taxpayer/e-invoice/list_purchase_invoices_job",
+													"api-reference/gst/compliance/endpoints/taxpayer/e-invoice/list_purchase_invoices_job_status",
+													"api-reference/gst/compliance/endpoints/taxpayer/e-invoice/list_sales_invoices_job",
+													"api-reference/gst/compliance/endpoints/taxpayer/e-invoice/list_sales_invoices_job_status"												
 												]
 											},
 											{
-												"group": "GSTR-1",
+												"group": "Invoice Management System (IMS)",
 												"pages": [
-													"api-reference/gst/compliance/endpoints/taxpayer/gstr-1/at/at",
-													"api-reference/gst/compliance/endpoints/taxpayer/gstr-1/ata/ata",
-													"api-reference/gst/compliance/endpoints/taxpayer/gstr-1/b2b/b2b",
-													"api-reference/gst/compliance/endpoints/taxpayer/gstr-1/b2ba/b2ba",
-													"api-reference/gst/compliance/endpoints/taxpayer/gstr-1/b2cl/b2cl",
-													"api-reference/gst/compliance/endpoints/taxpayer/gstr-1/b2cla/b2cla",
-													"api-reference/gst/compliance/endpoints/taxpayer/gstr-1/b2cs/b2cs",
-													"api-reference/gst/compliance/endpoints/taxpayer/gstr-1/b2csa/b2csa",
-													"api-reference/gst/compliance/endpoints/taxpayer/gstr-1/cdnr/cdnr",
-													"api-reference/gst/compliance/endpoints/taxpayer/gstr-1/cdnra/cdnra",
-													"api-reference/gst/compliance/endpoints/taxpayer/gstr-1/cdnur/cdnur",
-													"api-reference/gst/compliance/endpoints/taxpayer/gstr-1/cdnura/cdnura",
-													"api-reference/gst/compliance/endpoints/taxpayer/gstr-1/doc-issue/doc_issue",
-													"api-reference/gst/compliance/endpoints/taxpayer/gstr-1/exp/exp",
-													"api-reference/gst/compliance/endpoints/taxpayer/gstr-1/expa/expa",
-													"api-reference/gst/compliance/endpoints/taxpayer/gstr-1/file",
-													"api-reference/gst/compliance/endpoints/taxpayer/gstr-1/gstr_1",
-													"api-reference/gst/compliance/endpoints/taxpayer/gstr-1/hsn/get_hsn",
-													"api-reference/gst/compliance/endpoints/taxpayer/gstr-1/nil/nil",
-													"api-reference/gst/compliance/endpoints/taxpayer/gstr-1/reset"
-												]
-											},
-											{
-												"group": "GSTR-2A",
-												"pages": [
-													"api-reference/gst/compliance/endpoints/taxpayer/gstr-2a/amdhist/amdhist",
-													"api-reference/gst/compliance/endpoints/taxpayer/gstr-2a/b2b/b2b",
-													"api-reference/gst/compliance/endpoints/taxpayer/gstr-2a/b2ba/b2ba",
-													"api-reference/gst/compliance/endpoints/taxpayer/gstr-2a/cdn/cdn",
-													"api-reference/gst/compliance/endpoints/taxpayer/gstr-2a/cdna/cdna",
-													"api-reference/gst/compliance/endpoints/taxpayer/gstr-2a/gstr_2a",
-													"api-reference/gst/compliance/endpoints/taxpayer/gstr-2a/impg/impg",
-													"api-reference/gst/compliance/endpoints/taxpayer/gstr-2a/impgsez/impgsez",
-													"api-reference/gst/compliance/endpoints/taxpayer/gstr-2a/isd/isd",
-													"api-reference/gst/compliance/endpoints/taxpayer/gstr-2a/tcs/tcs",
-													"api-reference/gst/compliance/endpoints/taxpayer/gstr-2a/tds/tds"
-												]
-											},
-											{
-												"group": "GSTR-2B",
-												"pages": [
-													"api-reference/gst/compliance/endpoints/taxpayer/gstr-2b/gstr_2b",
-													"api-reference/gst/compliance/endpoints/taxpayer/gstr-2b/regenerate"
-												]
-											},
-											{
-												"group": "GSTR-3B",
-												"pages": [
-													"api-reference/gst/compliance/endpoints/taxpayer/gstr-3b/auto_liability_calc",
-													"api-reference/gst/compliance/endpoints/taxpayer/gstr-3b/file",
-													"api-reference/gst/compliance/endpoints/taxpayer/gstr-3b/gstr_3b",
-													"api-reference/gst/compliance/endpoints/taxpayer/gstr-3b/offset_liability",
-													"api-reference/gst/compliance/endpoints/taxpayer/gstr-3b/validate"
-												]
-											},
-											{
-												"group": "GSTR-4 Annual",
-												"pages": [
-													"api-reference/gst/compliance/endpoints/taxpayer/gstr-4-annual/get_in_out_supply",
-													"api-reference/gst/compliance/endpoints/taxpayer/gstr-4-annual/get_summary",
-													"api-reference/gst/compliance/endpoints/taxpayer/gstr-4-annual/get_tdscmp_summary",
-													"api-reference/gst/compliance/endpoints/taxpayer/gstr-4-annual/gstr_4_annual",
-													"api-reference/gst/compliance/endpoints/taxpayer/gstr-4-annual/proceed"
-												]
-											},
-											{
-												"group": "GSTR-9",
-												"pages": [
-													"api-reference/gst/compliance/endpoints/taxpayer/gstr-9/file",
-													"api-reference/gst/compliance/endpoints/taxpayer/gstr-9/get_auto_calculated",
-													"api-reference/gst/compliance/endpoints/taxpayer/gstr-9/get_table_8a",
-													"api-reference/gst/compliance/endpoints/taxpayer/gstr-9/gstr_9",
-													"api-reference/gst/compliance/endpoints/taxpayer/gstr-9/save"
-												]
-											},
-											{
-												"group": "GSTR Common",
-												"pages": [
-													"api-reference/gst/compliance/endpoints/taxpayer/gstr-common/download",
-													"api-reference/gst/compliance/endpoints/taxpayer/gstr-common/get_preference",
-													"api-reference/gst/compliance/endpoints/taxpayer/gstr-common/get_status",
-													"api-reference/gst/compliance/endpoints/taxpayer/gstr-common/new_proceed",
-													"api-reference/gst/compliance/endpoints/taxpayer/gstr-common/proceed"
-												]
-											},
-											{
-												"group": "Invoices",
-												"pages": [
-													"api-reference/gst/compliance/endpoints/taxpayer/invoices/get_count",
-													"api-reference/gst/compliance/endpoints/taxpayer/invoices/get_status",
+													"api-reference/gst/compliance/endpoints/taxpayer/invoices/invoice_count",
 													"api-reference/gst/compliance/endpoints/taxpayer/invoices/invoices",
+													"api-reference/gst/compliance/endpoints/taxpayer/invoices/save",
 													"api-reference/gst/compliance/endpoints/taxpayer/invoices/reset",
-													"api-reference/gst/compliance/endpoints/taxpayer/invoices/save"
-												]
-											},
-											{
-												"group": "Ledgers",
-												"pages": [
-													"api-reference/gst/compliance/endpoints/taxpayer/ledgers/get_balance_ledger",
-													"api-reference/gst/compliance/endpoints/taxpayer/ledgers/get_cash_ledger",
-													"api-reference/gst/compliance/endpoints/taxpayer/ledgers/get_itc_ledger",
-													"api-reference/gst/compliance/endpoints/taxpayer/ledgers/get_tax_ledger"
+													"api-reference/gst/compliance/endpoints/taxpayer/invoices/status"
 												]
 											}
 										]
