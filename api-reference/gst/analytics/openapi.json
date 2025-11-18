@@ -7,14 +7,19 @@
 	},
 	"servers": [
 		{
-			"url": "{{sandbox_host}}"
+			"url": "https://api.sanbdox.co.in"
+		},
+		{
+			"url": "https://test-api.sanbdox.co.in"
 		}
 	],
 	"paths": {
 		"/gst/analytics/gstr-2a-reconciliation": {
 			"post": {
 				"summary": "Reconcile GSTR-2A Job",
-				"tags": ["GSTR-2A Reconciliation"],
+				"tags": [
+					"GSTR-2A Reconciliation"
+				],
 				"parameters": [
 					{
 						"name": "authorization",
@@ -100,19 +105,29 @@
 												"filing_preference": {
 													"type": "string",
 													"description": "Filing preference used for the job.",
-													"enum": ["monthly"],
+													"enum": [
+														"monthly"
+													],
 													"example": "monthly"
 												},
 												"reconciliation_criteria": {
 													"type": "string",
 													"description": "Matching criteria used for reconciliation.",
-													"enum": ["strict"],
+													"enum": [
+														"strict"
+													],
 													"example": "strict"
 												},
 												"status": {
 													"type": "string",
 													"description": "Current status of the job.",
-													"enum": ["created", "queued", "in_progress", "succeeded", "failed"],
+													"enum": [
+														"created",
+														"queued",
+														"in_progress",
+														"succeeded",
+														"failed"
+													],
 													"example": "created"
 												},
 												"gstr_2a_url": {
@@ -177,7 +192,13 @@
 										"type": "string"
 									}
 								},
-								"required": ["@entity", "gstin", "year", "month", "reconciliation_criteria"]
+								"required": [
+									"@entity",
+									"gstin",
+									"year",
+									"month",
+									"reconciliation_criteria"
+								]
 							}
 						}
 					}
@@ -185,7 +206,9 @@
 			},
 			"get": {
 				"summary": "Reconcile GSTR-2A Job Status",
-				"tags": ["GSTR-2A Reconciliation"],
+				"tags": [
+					"GSTR-2A Reconciliation"
+				],
 				"parameters": [
 					{
 						"name": "job_id",
@@ -282,19 +305,29 @@
 												"filing_preference": {
 													"type": "string",
 													"description": "Filing preference used for the job.",
-													"enum": ["monthly"],
+													"enum": [
+														"monthly"
+													],
 													"example": "monthly"
 												},
 												"reconciliation_criteria": {
 													"type": "string",
 													"description": "Matching criteria used for reconciliation.",
-													"enum": ["strict"],
+													"enum": [
+														"strict"
+													],
 													"example": "strict"
 												},
 												"status": {
 													"type": "string",
 													"description": "Current status of the job.",
-													"enum": ["created", "queued", "in_progress", "succeeded", "failed"],
+													"enum": [
+														"created",
+														"queued",
+														"in_progress",
+														"succeeded",
+														"failed"
+													],
 													"example": "created"
 												},
 												"reconciliation_report_url": {
@@ -326,7 +359,9 @@
 		"/gst/analytics/gstr-2b-reconciliation": {
 			"post": {
 				"summary": "Reconcile GSTR-2B Job",
-				"tags": ["GSTR-2B Reconciliation"],
+				"tags": [
+					"GSTR-2B Reconciliation"
+				],
 				"parameters": [
 					{
 						"name": "authorization",
@@ -406,19 +441,29 @@
 												"filing_preference": {
 													"type": "string",
 													"description": "Filing preference used for the job.",
-													"enum": ["monthly"],
+													"enum": [
+														"monthly"
+													],
 													"example": "monthly"
 												},
 												"reconciliation_criteria": {
 													"type": "string",
 													"description": "Matching criteria used for reconciliation.",
-													"enum": ["strict"],
+													"enum": [
+														"strict"
+													],
 													"example": "strict"
 												},
 												"status": {
 													"type": "string",
 													"description": "Current status of the job.",
-													"enum": ["created", "queued", "in_progress", "succeeded", "failed"],
+													"enum": [
+														"created",
+														"queued",
+														"in_progress",
+														"succeeded",
+														"failed"
+													],
 													"example": "created"
 												},
 												"gstr_2b_url": {
@@ -481,10 +526,18 @@
 									},
 									"reconciliation_criteria": {
 										"type": "string",
-										"enum": ["strict"]
+										"enum": [
+											"strict"
+										]
 									}
 								},
-								"required": ["@entity", "gstin", "year", "month", "reconciliation_criteria"]
+								"required": [
+									"@entity",
+									"gstin",
+									"year",
+									"month",
+									"reconciliation_criteria"
+								]
 							}
 						}
 					}
@@ -492,7 +545,9 @@
 			},
 			"get": {
 				"summary": "Reconcile GSTR-2B Job Status",
-				"tags": ["GSTR-2B Reconciliation"],
+				"tags": [
+					"GSTR-2B Reconciliation"
+				],
 				"parameters": [
 					{
 						"name": "job_id",
@@ -575,19 +630,29 @@
 												"filing_preference": {
 													"type": "string",
 													"description": "Filing preference used for the job.",
-													"enum": ["monthly"],
+													"enum": [
+														"monthly"
+													],
 													"example": "monthly"
 												},
 												"reconciliation_criteria": {
 													"type": "string",
 													"description": "Matching criteria used for reconciliation.",
-													"enum": ["strict"],
+													"enum": [
+														"strict"
+													],
 													"example": "strict"
 												},
 												"status": {
 													"type": "string",
 													"description": "Current status of the job.",
-													"enum": ["created", "queued", "in_progress", "succeeded", "failed"],
+													"enum": [
+														"created",
+														"queued",
+														"in_progress",
+														"succeeded",
+														"failed"
+													],
 													"example": "created"
 												},
 												"reconciliation_report_url": {
