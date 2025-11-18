@@ -8,10 +8,10 @@
   },
   "servers": [
     {
-      "url": "https://api.sanbdox.co.in"
+      "url": "https://api.sandbox.co.in"
     },
     {
-      "url": "https://test-api.sanbdox.co.in"
+      "url": "https://test-api.sandbox.co.in"
     }
   ],
   "paths": {
@@ -466,7 +466,7 @@
                               ]
                             },
                             "rgdt": {
-                              "type": "Date",
+                              "type": "string",
                               "example": "05/05/2017",
                               "description": "Lst Updated Date"
                             },
@@ -1548,37 +1548,37 @@
                                   "arn": {
                                     "type": "string",
                                     "example": "AA330820000343Z",
-                                    "title": "Arn"
+                                    "description": "Acknowledgment Reference Number"
                                   },
                                   "dof": {
                                     "type": "string",
                                     "example": "01-02-2023",
-                                    "title": "Dof"
+                                    "description": "Date of Filing"
                                   },
                                   "mof": {
                                     "type": "string",
                                     "example": "GSP",
-                                    "title": "Mof"
+                                    "description": "Mode of Filing"
                                   },
                                   "ret_prd": {
                                     "type": "string",
                                     "example": "082020",
-                                    "title": "Ret_prd"
+                                    "description": "Return period"
                                   },
                                   "rtntype": {
                                     "type": "string",
                                     "example": "GSTR1",
-                                    "title": "Rtntype"
+                                    "description": "Return Type"
                                   },
                                   "status": {
                                     "type": "string",
                                     "example": "Filed",
-                                    "title": "Status"
+                                    "description": "Status of return filing"
                                   },
                                   "valid": {
                                     "type": "string",
                                     "example": "Y",
-                                    "title": "Valid"
+                                    "description": "Whether filed return is valid"
                                   }
                                 }
                               },
