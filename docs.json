@@ -169,7 +169,6 @@
 							},
 							{
 								"group": "EntityLocker SDK",
-								"hidden": false,
 								"pages": [
 									{
 										"group": "Endpoints",
@@ -182,7 +181,7 @@
 									},
 									{
 										"group": "Internal Endpoints",
-										"hidden": false,
+										"hidden": true,
 										"pages": [
 											"api-reference/kyc/entitylocker-sdk/internal-apis/endpoints/initiate_session",
 											"api-reference/kyc/entitylocker-sdk/internal-apis/endpoints/get_authorization_url",
@@ -539,6 +538,7 @@
 						"item": "Bank",
 						"description": "Bank APIs",
 						"icon": "/static/svg/Bank.svg",
+						"hidden": true,
 						"groups": [
 							{
 								"group": "Virtual Account",
@@ -589,41 +589,75 @@
 				"menu": [
 					{
 						"item": "KYC",
-						"icon": "/static/svg/KYC.svg",
 						"pages": [
-							"recipes/kyc/index",
+							"recipes/kyc/introduction",
 							{
 								"group": "DigiLocker",
 								"pages": [
-									{
-										"group": "Fetch Documents via DigiLocker",
-										"pages": [
-											"recipes/kyc/digilocker_api"
-										]
-									}
+									"recipes/kyc/digilocker/digilocker_api_recipe"
 								]
 							}
 						]
 					},
 					{
 						"item": "GST",
-						"icon": "/static/svg/GST.svg",
 						"pages": [
-							"recipes/gst/index"
+							"recipes/gst/introduction",
+							{
+								"group": "File",
+								"pages": [
+									"recipes/gst/file/file_gstr_1",
+									"recipes/gst/file/file_gst_return_3B",
+									"recipes/gst/file/file_gstr_9",
+									"recipes/gst/file/file_nil_gstr_1",
+									"recipes/gst/file/file_nil_gstr_3B"
+								]
+							},
+							{
+								"group": "Taxpayer",
+								"pages": [
+									"recipes/gst/taxpayer/generate_gst_tax_payer_session",
+									"recipes/gst/taxpayer/get_einvoice_older_than_3_days"
+								]
+							},
+							{
+								"group": "e-Invoice",
+								"pages": [
+									"recipes/gst/e-invoice/generate_gst_einvoice_session",
+									"recipes/gst/e-invoice/generate_einvoice"
+								]
+							},
+							{
+								"group": "E-Way Bill",
+								"pages": [
+									"recipes/gst/e-way-bill/generate_gst_ewaybill_session"
+								]
+							}
 						]
 					},
 					{
 						"item": "TDS",
-						"icon": "/static/svg/TDS.svg",
 						"pages": [
-							"recipes/tds/index"
+							"recipes/tds/introduction",
+							{
+								"group": "Form 24Q",
+								"pages": [
+									"recipes/tds/form-24q/prepare_form_24q",
+									"recipes/tds/form-24q/file_form_24q"
+								]
+							},
+							{
+								"group": "Form 16",
+								"pages": [
+									"recipes/tds/form-16/generate_form_16_certificates"
+								]
+							}
 						]
 					},
 					{
 						"item": "IT",
-						"icon": "/static/svg/IT.svg",
 						"pages": [
-							"recipes/it/index"
+							"recipes/it/introduction"
 						]
 					}
 				]
@@ -645,22 +679,18 @@
 				"menu": [
 					{
 						"item": "KYC",
-						"icon": "/static/svg/KYC.svg",
 						"href": "https://www.postman.com/in-co-sandbox/sandbox-api/collection/t61ohmi/kyc"
 					},
 					{
 						"item": "GST",
-						"icon": "/static/svg/GST.svg",
 						"href": "https://www.postman.com/in-co-sandbox/sandbox-api/collection/tdybepo/gst-analytics"
 					},
 					{
 						"item": "TDS",
-						"icon": "/static/svg/TDS.svg",
 						"href": "https://www.postman.com/in-co-sandbox/sandbox-api/collection/kxuf3b1/tds-analytics"
 					},
 					{
 						"item": "IT",
-						"icon": "/static/svg/IT.svg",
 						"href": "https://www.postman.com/in-co-sandbox/sandbox-api/collection/vi869sx/income-tax-calculator"
 					}
 				]
