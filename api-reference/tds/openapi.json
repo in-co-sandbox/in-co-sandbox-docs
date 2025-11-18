@@ -1,0 +1,981 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+      "title": "reports",
+      "version": "1.0.0",
+      "description": ""
+    },
+    "servers": [
+        {
+            "url": "https://api.sandbox.co.in"
+        },
+        {
+            "url": "https://test-api.sandbox.co.in"
+        }
+    ],
+    "paths": {
+      "/tds/reports/txt": {
+        "post": {
+          "summary": "Create TDS Reports Job",
+          "tags": [
+            "TDS"
+          ],
+          "parameters": [
+            {
+              "name": "Authorization",
+              "in": "header",
+              "required": true,
+              "description": "JWT access token",
+              "deprecated": false,
+              "schema": {
+                "type": "string"
+              }
+            },
+            {
+              "name": "x-api-key",
+              "in": "header",
+              "required": true,
+              "description": "API key for identification",
+              "deprecated": false,
+              "schema": {
+                "type": "string"
+              }
+            },
+            {
+              "name": "x-api-version",
+              "in": "header",
+              "required": false,
+              "deprecated": false,
+              "schema": {}
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "200 Form 26Q Job created",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "type": "object",
+                    "properties": {
+                      "code": {
+                        "type": "integer"
+                      },
+                      "timestamp": {
+                        "type": "integer"
+                      },
+                      "transaction_id": {
+                        "type": "string"
+                      },
+                      "data": {
+                        "type": "object",
+                        "properties": {
+                          "@entity": {
+                            "type": "string",
+                            "enum": [
+                              "in.co.sandbox.tds.reports.job"
+                            ]
+                          },
+                          "job_id": {
+                            "type": "string"
+                          },
+                          "tan": {
+                            "type": "string"
+                          },
+                          "quarter": {
+                            "type": "string"
+                          },
+                          "form": {
+                            "type": "string"
+                          },
+                          "financial_year": {
+                            "type": "string"
+                          },
+                          "previous_receipt_number": {
+                            "type": "string"
+                          },
+                          "status": {
+                            "type": "string"
+                          },
+                          "created_at": {
+                            "type": "integer"
+                          },
+                          "json_url": {
+                            "type": "string",
+                            "format": "uri"
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            },
+            "422": {
+              "description": "422 Invalid TAN",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "type": "object",
+                    "properties": {
+                      "code": {
+                        "type": "integer"
+                      },
+                      "timestamp": {
+                        "type": "integer"
+                      },
+                      "transaction_id": {
+                        "type": "string"
+                      },
+                      "message": {
+                        "type": "string"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "requestBody": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "@entity": {
+                      "type": "string",
+                      "enum": [
+                        "in.co.sandbox.tds.reports.request"
+                      ]
+                    },
+                    "financial_year": {
+                      "description": "Financial Year for which TDS is being filed. (eg. FY 2024-25)",
+                      "example": "FY 2024-25",
+                      "type": "string"
+                    },
+                    "form": {
+                      "description": "TDS return form",
+                      "type": "string",
+                      "enum": [
+                        "24Q",
+                        "26Q",
+                        "27Q"
+                      ]
+                    },
+                    "quarter": {
+                      "description": "Quarter for which TDS is being filed",
+                      "type": "string",
+                      "enum": [
+                        "Q1",
+                        "Q2",
+                        "Q3",
+                        "Q4"
+                      ]
+                    },
+                    "tan": {
+                      "description": "TAN of deductor. Regular Expression: [A-Z]{4}[0-9]{5}[A-Z]{1}",
+                      "example": "AHMA09719B",
+                      "type": "string",
+                      "pattern": "[A-Z]{4}[0-9]{5}[A-Z]{1}"
+                    },
+                    "previous_receipt_number": {
+                      "description": "Receipt Number of previously filed TDS Return",
+                      "example": "123456789123456",
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "@entity",
+                    "financial_year",
+                    "form",
+                    "quarter",
+                    "tan"
+                  ]
+                }
+              }
+            }
+          }
+        },
+        "get": {
+          "summary": "Fetch TDS Reports Job",
+          "tags": [
+            "TDS"
+          ],
+          "parameters": [
+            {
+              "name": "job_id",
+              "in": "query",
+              "required": false,
+              "description": "Unique identifier of the job",
+              "deprecated": false,
+              "schema": {}
+            },
+            {
+              "name": "Authorization",
+              "in": "header",
+              "required": false,
+              "description": "JWT access token",
+              "deprecated": false,
+              "schema": {}
+            },
+            {
+              "name": "x-api-key",
+              "in": "header",
+              "required": false,
+              "description": "API key for identification",
+              "deprecated": false,
+              "schema": {}
+            },
+            {
+              "name": "x-api-version",
+              "in": "header",
+              "required": false,
+              "deprecated": false,
+              "schema": {}
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "200 Job Created",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "type": "object",
+                    "properties": {
+                      "code": {
+                        "type": "integer"
+                      },
+                      "timestamp": {
+                        "type": "integer"
+                      },
+                      "transaction_id": {
+                        "type": "string"
+                      },
+                      "data": {
+                        "type": "object",
+                        "properties": {
+                          "@entity": {
+                            "type": "string",
+                            "enum": [
+                              "in.co.sandbox.tds.reports.job"
+                            ]
+                          },
+                          "job_id": {
+                            "type": "string"
+                          },
+                          "tan": {
+                            "type": "string"
+                          },
+                          "quarter": {
+                            "type": "string"
+                          },
+                          "form": {
+                            "type": "string"
+                          },
+                          "financial_year": {
+                            "type": "string"
+                          },
+                          "previous_receipt_number": {
+                            "type": "string"
+                          },
+                          "status": {
+                            "type": "string"
+                          },
+                          "created_at": {
+                            "type": "integer"
+                          },
+                          "updated_at": {
+                            "type": "integer"
+                          },
+                          "txt_url": {
+                            "type": "string"
+                          },
+                          "validation_url": {
+                            "type": "string"
+                          },
+                          "message": {
+                            "type": "string"
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            },
+            "500": {
+              "description": "521 Data not found",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "type": "object",
+                    "properties": {
+                      "code": {
+                        "type": "integer"
+                      },
+                      "timestamp": {
+                        "type": "integer"
+                      },
+                      "transaction_id": {
+                        "type": "string"
+                      },
+                      "message": {
+                        "type": "string"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "/tds/reports/txt/search": {
+        "post": {
+          "summary": "Fetch Jobs",
+          "tags": [
+            "TDS"
+          ],
+          "parameters": [
+            {
+              "name": "authorization",
+              "in": "header",
+              "required": true,
+              "description": "JWT access token",
+              "deprecated": false,
+              "schema": {
+                "type": "string"
+              }
+            },
+            {
+              "name": "x-api-key",
+              "in": "header",
+              "required": true,
+              "description": "API key for identification",
+              "deprecated": false,
+              "schema": {
+                "type": "string"
+              }
+            },
+            {
+              "name": "x-api-version",
+              "in": "header",
+              "required": false,
+              "deprecated": false,
+              "schema": {}
+            }
+          ],
+          "responses": {
+            "default": {
+              "description": "200 Jobs fetched",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "type": "object",
+                    "properties": {
+                      "code": {
+                        "type": "integer"
+                      },
+                      "timestamp": {
+                        "type": "integer"
+                      },
+                      "transaction_id": {
+                        "type": "string"
+                      },
+                      "data": {
+                        "type": "object",
+                        "properties": {
+                          "@entity": {
+                            "type": "string"
+                          },
+                          "items": {
+                            "type": "array",
+                            "items": {
+                              "type": "object",
+                              "properties": {
+                                "@entity": {
+                                  "type": "string"
+                                },
+                                "job_id": {
+                                  "type": "string"
+                                },
+                                "tan": {
+                                  "type": "string"
+                                },
+                                "financial_year": {
+                                  "type": "string"
+                                },
+                                "quarter": {
+                                  "type": "string"
+                                },
+                                "form": {
+                                  "type": "string"
+                                },
+                                "previous_receipt_number": {
+                                  "type": "string",
+                                  "format": "utc-millisec"
+                                },
+                                "created_at": {
+                                  "type": "integer"
+                                },
+                                "updated_at": {
+                                  "type": "integer"
+                                },
+                                "status": {
+                                  "type": "string"
+                                }
+                              }
+                            }
+                          },
+                          "last_evaluated_key": {
+                            "type": "string"
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "requestBody": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "@entity": {
+                      "type": "string",
+                      "enum": [
+                        "in.co.sandbox.tds.reports.jobs.search"
+                      ]
+                    },
+                    "tan": {
+                      "description": "TAN of deductor. Regular Expression: [A-Z]{4}[0-9]{5}[A-Z]{1}",
+                      "example": "AHMA09719B",
+                      "type": "string"
+                    },
+                    "quarter": {
+                      "description": "Quarter for which TDS is being filed",
+                      "type": "string",
+                      "enum": [
+                        "Q1",
+                        "Q2",
+                        "Q3",
+                        "Q4"
+                      ]
+                    },
+                    "form": {
+                      "description": "TDS return form",
+                      "type": "string",
+                      "enum": [
+                        "24Q",
+                        "26Q",
+                        "27Q"
+                      ]
+                    },
+                    "financial_year": {
+                      "description": "Financial Year for which TDS is being filed. (eg. FY 2024-25)",
+                      "example": "FY 2024-25",
+                      "type": "string"
+                    },
+                    "from_date": {
+                      "description": "Date from which jobs are to be fetched. Value in EPOCH timestamp",
+                      "type": "integer"
+                    },
+                    "to_date": {
+                      "description": "Date till which jobs are to be fetched. Value in EPOCH timestamp",
+                      "type": "integer"
+                    },
+                    "page_size": {
+                      "description": "Number of records in the API response. Maximum allowed size is 50",
+                      "type": "integer"
+                    },
+                    "last_evaluated_key": {
+                      "description": "Base64 encoding of the stringified JSON object, which includes x-api-key, created_at, and job_id",
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "@entity"
+                  ]
+                }
+              }
+            }
+          }
+        }
+      },
+      "/tcs/reports/txt": {
+        "post": {
+          "summary": "Create TCS Reports Job",
+          "tags": [
+            "TCS"
+          ],
+          "parameters": [
+            {
+              "name": "authorization",
+              "in": "header",
+              "required": true,
+              "description": "JWT access token",
+              "deprecated": false,
+              "schema": {
+                "type": "string"
+              }
+            },
+            {
+              "name": "x-api-key",
+              "in": "header",
+              "required": true,
+              "description": "API key for identification",
+              "deprecated": false,
+              "schema": {
+                "type": "string"
+              }
+            },
+            {
+              "name": "x-api-version",
+              "in": "header",
+              "required": false,
+              "deprecated": false,
+              "schema": {}
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "200 Job created",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "type": "object",
+                    "properties": {
+                      "code": {
+                        "type": "integer"
+                      },
+                      "timestamp": {
+                        "type": "integer"
+                      },
+                      "transaction_id": {
+                        "type": "string"
+                      },
+                      "data": {
+                        "type": "object",
+                        "properties": {
+                          "@entity": {
+                            "type": "string",
+                            "enum": [
+                              "in.co.sandbox.tcs.reports.job"
+                            ]
+                          },
+                          "job_id": {
+                            "type": "string"
+                          },
+                          "tan": {
+                            "type": "string"
+                          },
+                          "quarter": {
+                            "type": "string"
+                          },
+                          "financial_year": {
+                            "type": "string"
+                          },
+                          "previous_receipt_number": {
+                            "type": "string"
+                          },
+                          "status": {
+                            "type": "string"
+                          },
+                          "created_at": {
+                            "type": "integer"
+                          },
+                          "json_url": {
+                            "type": "string",
+                            "format": "uri"
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            },
+            "default": {
+              "description": "422 Invalid TAN",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "type": "object",
+                    "properties": {
+                      "code": {
+                        "type": "integer"
+                      },
+                      "timestamp": {
+                        "type": "integer"
+                      },
+                      "transaction_id": {
+                        "type": "string"
+                      },
+                      "message": {
+                        "type": "string"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "requestBody": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "@entity": {
+                      "type": "string",
+                      "enum": [
+                        "in.co.sandbox.tcs.reports.request"
+                      ]
+                    },
+                    "financial_year": {
+                      "description": "Financial Year for which TCS is being filed",
+                      "example": "FY 2024-25",
+                      "type": "string"
+                    },
+                    "quarter": {
+                      "description": "Quarter for which TCS is being filed",
+                      "type": "string",
+                      "enum": [
+                        "Q1",
+                        "Q2",
+                        "Q3",
+                        "Q4"
+                      ]
+                    },
+                    "previous_receipt_number": {
+                      "description": "Receipt Number of previously filed TCS Return",
+                      "example": "123456789123456",
+                      "type": "string"
+                    },
+                    "tan": {
+                      "description": "TAN of collectee. Regular Expression: [A-Z]{4}[0-9]{5}[A-Z]{1}",
+                      "example": "AHMA09719B",
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "@entity",
+                    "financial_year",
+                    "quarter",
+                    "tan"
+                  ]
+                }
+              }
+            }
+          }
+        },
+        "get": {
+          "summary": "Fetch TCS Reports status",
+          "tags": [
+            "TCS"
+          ],
+          "parameters": [
+            {
+              "name": "job_id",
+              "in": "query",
+              "required": true,
+              "description": "Unique identifier of the job",
+              "deprecated": false,
+              "schema": {
+                "type": "string"
+              }
+            },
+            {
+              "name": "authorization",
+              "in": "header",
+              "required": true,
+              "description": "JWT access token",
+              "deprecated": false,
+              "schema": {
+                "type": "string"
+              }
+            },
+            {
+              "name": "x-api-key",
+              "in": "header",
+              "required": true,
+              "description": "API key for identification",
+              "deprecated": false,
+              "schema": {
+                "type": "string"
+              }
+            },
+            {
+              "name": "x-api-version",
+              "in": "header",
+              "schema": {
+                "type": "string"
+              }
+            },
+            {
+              "name": "x-api-transaction-id",
+              "in": "header",
+              "schema": {
+                "type": "string"
+              }
+            },
+            {
+              "name": "x-workspace-id",
+              "in": "header",
+              "schema": {
+                "type": "integer"
+              }
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "job created",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "type": "object",
+                    "properties": {
+                      "code": {
+                        "type": "integer"
+                      },
+                      "timestamp": {
+                        "type": "integer"
+                      },
+                      "transaction_id": {
+                        "type": "string"
+                      },
+                      "data": {
+                        "type": "object",
+                        "properties": {
+                          "@entity": {
+                            "type": "string"
+                          },
+                          "job_id": {
+                            "type": "string"
+                          },
+                          "tan": {
+                            "type": "string"
+                          },
+                          "quarter": {
+                            "type": "string"
+                          },
+                          "financial_year": {
+                            "type": "string"
+                          },
+                          "previous_receipt_number": {
+                            "type": "string"
+                          },
+                          "status": {
+                            "type": "string"
+                          },
+                          "created_at": {
+                            "type": "integer"
+                          },
+                          "updated_at": {
+                            "type": "integer"
+                          },
+                          "txt_url": {
+                            "type": "string"
+                          },
+                          "validation_url": {
+                            "type": "string"
+                          },
+                          "message": {
+                            "type": "string"
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            },
+            "500": {
+              "description": "data not found",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "type": "object",
+                    "properties": {
+                      "code": {
+                        "type": "integer"
+                      },
+                      "timestamp": {
+                        "type": "integer"
+                      },
+                      "transaction_id": {
+                        "type": "string"
+                      },
+                      "message": {
+                        "type": "string"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "/tcs/reports/txt/search": {
+        "post": {
+          "summary": "Fetch Jobs",
+          "tags": [
+            "TCS"
+          ],
+          "parameters": [
+            {
+              "name": "authorization",
+              "in": "header",
+              "required": true,
+              "description": "JWT access token",
+              "deprecated": false,
+              "schema": {
+                "type": "string"
+              }
+            },
+            {
+              "name": "x-api-key",
+              "in": "header",
+              "required": true,
+              "description": "API key for identification",
+              "deprecated": false,
+              "schema": {
+                "type": "string"
+              }
+            },
+            {
+              "name": "x-api-version",
+              "in": "header",
+              "required": false,
+              "deprecated": false,
+              "schema": {}
+            }
+          ],
+          "responses": {
+            "default": {
+              "description": "200 Jobs fetched",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "type": "object",
+                    "properties": {
+                      "code": {
+                        "type": "integer"
+                      },
+                      "timestamp": {
+                        "type": "integer"
+                      },
+                      "transaction_id": {
+                        "type": "string"
+                      },
+                      "data": {
+                        "type": "object",
+                        "properties": {
+                          "@entity": {
+                            "type": "string"
+                          },
+                          "items": {
+                            "type": "array",
+                            "items": {
+                              "type": "object",
+                              "properties": {
+                                "@entity": {
+                                  "type": "string"
+                                },
+                                "job_id": {
+                                  "type": "string"
+                                },
+                                "tan": {
+                                  "type": "string"
+                                },
+                                "quarter": {
+                                  "type": "string"
+                                },
+                                "financial_year": {
+                                  "type": "string"
+                                },
+                                "previous_receipt_number": {
+                                  "type": "string",
+                                  "format": "utc-millisec"
+                                },
+                                "status": {
+                                  "type": "string"
+                                },
+                                "created_at": {
+                                  "type": "integer"
+                                }
+                              }
+                            }
+                          },
+                          "last_evaluated_key": {
+                            "type": "string"
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "requestBody": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "@entity": {
+                      "type": "string",
+                      "enum": [
+                        "in.co.sandbox.tcs.reports.jobs.search"
+                      ]
+                    },
+                    "tan": {
+                      "description": "TAN of deductor. Regular Expression: [A-Z]{4}[0-9]{5}[A-Z]{1}",
+                      "type": "string",
+                      "example": "AHMA09719B",
+                      "pattern": "[A-Z]{4}[0-9]{5}[A-Z]{1}"
+                    },
+                    "quarter": {
+                      "description": "Quarter for which TDS is being filed",
+                      "type": "string",
+                      "enum": [
+                        "Q1",
+                        "Q2",
+                        "Q3",
+                        "Q4"
+                      ]
+                    },
+                    "financial_year": {
+                      "description": "Financial Year for which TDS is being filed. (eg. FY 2024-25)",
+                      "example": "FY 2024-25",
+                      "type": "string"
+                    },
+                    "from_date": {
+                      "description": "Date from which jobs are to be fetched. Value in EPOCH timestamp",
+                      "type": "integer"
+                    },
+                    "to_date": {
+                      "description": "Date till which jobs are to be fetched. Value in EPOCH timestamp",
+                      "type": "integer"
+                    },
+                    "page_size": {
+                      "description": "Number of records in the API response. Maximum allowed size is 50",
+                      "type": "integer"
+                    },
+                    "last_evaluated_key": {
+                      "description": "Base64 encoding of the stringified JSON object, which includes x-api-key, created_at, and job_id",
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
