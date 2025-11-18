@@ -26,8 +26,22 @@
         <ResponseField name="name" type="string">
           Allowed value : `payer_list`
         </ResponseField>
-        <ResponseField name="items" type="array">
+        <ResponseField name="items" type="array<object>">
           Allowed value : `items`
+          <Expandable title="items">
+            <ResponseField name="name" type="string"></ResponseField>
+            <ResponseField name="tan" type="string"></ResponseField>
+            <ResponseField name="pan" type="string"></ResponseField>
+            <ResponseField name="branch" type="string"></ResponseField>
+            <ResponseField name="gstin" type="string"></ResponseField>
+            <ResponseField name="street" type="string"></ResponseField>
+            <ResponseField name="area" type="string"></ResponseField>
+            <ResponseField name="city" type="string"></ResponseField>
+            <ResponseField name="state" type="string"></ResponseField>
+            <ResponseField name="postal_code" type="string"></ResponseField>
+            <ResponseField name="email" type="string"></ResponseField>
+            <ResponseField name="mobile" type="string"></ResponseField>
+          </Expandable>
         </ResponseField>
       </Expandable>
       <Expandable title="responsible_person_list">
@@ -37,8 +51,20 @@
         <ResponseField name="name" type="string">
           Allowed value : `responsible_person_list`
         </ResponseField>
-        <ResponseField name="items" type="array">
+        <ResponseField name="items" type="array<object>">
           Allowed value : `items`
+          <Expandable title="items">
+            <ResponseField name="designation" type="string"></ResponseField>
+            <ResponseField name="name" type="string"></ResponseField>
+            <ResponseField name="pan" type="string"></ResponseField>
+            <ResponseField name="street" type="string"></ResponseField>
+            <ResponseField name="area" type="string"></ResponseField>
+            <ResponseField name="city" type="string"></ResponseField>
+            <ResponseField name="state" type="string"></ResponseField>
+            <ResponseField name="postal_code" type="string"></ResponseField>
+            <ResponseField name="email" type="string"></ResponseField>
+            <ResponseField name="mobile" type="string"></ResponseField>
+          </Expandable>
         </ResponseField>
       </Expandable>
     </ResponseField>
@@ -46,11 +72,11 @@
 
     <Expandable title="payee_sheet">
     <ResponseField name="@entity" type="string">
-  Allowed value : `sheet`
-</ResponseField>
+      Allowed value : `sheet`
+    </ResponseField>
     <ResponseField name="name" type="string">
-  Allowed value : `payee_sheet`
-</ResponseField>
+      Allowed value : `payee_sheet`
+    </ResponseField>
     <ResponseField name="blocks" type="array">
         Allowed value : `blocks`
       <Expandable title="payee_table">
