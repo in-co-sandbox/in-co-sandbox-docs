@@ -25,6 +25,10 @@
 			{
 				"label": "Contact Sales",
 				"href": "https://sandbox.co.in/contact-sales?utm_source=in-co-sandbox-developer&utm_medium=direct&utm_campaign=in-co-sandbox-developer.header.contact-sales"
+			},
+			{
+				"label": "Help Centre",
+				"href": "https://help.sandbox.co.in/"
 			}
 		],
 		"primary": {
@@ -221,6 +225,43 @@
 										]
 									}
 								]
+							},
+							{
+								"group": "Compliance",
+								"pages": [
+									{
+										"group": "E-Invoice",
+										"pages": [
+											"api-reference/gst/compliance/endpoints/e-invoice/generate_e-invoice",
+											"api-reference/gst/compliance/endpoints/e-invoice/get_e-invoice_status",
+											"api-reference/gst/compliance/endpoints/e-invoice/get_e-invoice_details"
+										]
+									},
+									{
+										"group": "E-Way Bill",
+										"pages": [
+											"api-reference/gst/compliance/endpoints/e-way-bill/generate_e-way-bill",
+											"api-reference/gst/compliance/endpoints/e-way-bill/get_e-way-bill_status",
+											"api-reference/gst/compliance/endpoints/e-way-bill/get_e-way-bill_details"
+										]
+									},
+									{
+										"group": "Public",
+										"pages": [
+											"api-reference/gst/compliance/endpoints/public/generate_public",
+											"api-reference/gst/compliance/endpoints/public/get_public_status",
+											"api-reference/gst/compliance/endpoints/public/get_public_details"
+										]
+									},
+									{
+										"group": "Taxpayer",
+										"pages": [
+											"api-reference/gst/compliance/endpoints/taxpayer/generate_taxpayer",
+											"api-reference/gst/compliance/endpoints/taxpayer/get_taxpayer_status",
+											"api-reference/gst/compliance/endpoints/taxpayer/get_taxpayer_details"
+										]
+									}
+								]
 							}
 						]
 					},
@@ -283,7 +324,7 @@
 										]
 									},
 									{
-										"group": "generate fvu",
+										"group": "Generate FVU",
 										"pages": [
 											"api-reference/tds/compliance/generate-fvu/endpoints/submit_job",
 											"api-reference/tds/compliance/generate-fvu/endpoints/poll_job",
@@ -291,7 +332,7 @@
 										]
 									},
 									{
-										"group": "e-file",
+										"group": "E-File",
 										"pages": [
 											"api-reference/tds/compliance/e-file/endpoints/submit_job",
 											"api-reference/tds/compliance/e-file/endpoints/poll_job",
@@ -299,7 +340,7 @@
 										]
 									},
 									{
-										"group": "download csi",
+										"group": "Download CSI",
 										"pages": [
 											"api-reference/tds/compliance/download-csi/endpoints/generate_otp",
 											"api-reference/tds/compliance/download-csi/endpoints/verify_otp"
@@ -320,9 +361,47 @@
 				]
 			},
 			{
-				"tab": "Changelog",
-				"pages": [
-					"changelog"
+				"tab": "Recipes",
+				"menu": [
+					{
+						"item": "KYC",
+						"icon": "/static/svg/KYC.svg",
+						"pages": [
+							"recipes/kyc/index",
+							{
+								"group": "DigiLocker",
+								"pages": [
+									{
+										"group": "Fetch Documents via DigiLocker",
+										"pages": [
+											"recipes/kyc/digilocker_api"
+										]
+									}
+								]
+							}
+						]
+					},
+					{
+						"item": "GST",
+						"icon": "/static/svg/GST.svg",
+						"pages": [
+							"recipes/gst/index"
+						]
+					},
+					{
+						"item": "TDS",
+						"icon": "/static/svg/TDS.svg",
+						"pages": [
+							"recipes/tds/index"
+						]
+					},
+					{
+						"item": "IT",
+						"icon": "/static/svg/IT.svg",
+						"pages": [
+							"recipes/it/index"
+						]
+					}
 				]
 			},
 			{
@@ -332,8 +411,35 @@
 				]
 			},
 			{
-				"tab": "Help Centre",
-				"href": "https://help.sandbox.co.in/"
+				"tab": "Changelog",
+				"pages": [
+					"changelog"
+				]
+			},
+			{
+				"tab": "Postman Collections",
+				"menu": [
+					{
+						"item": "KYC",
+						"icon": "/static/svg/KYC.svg",
+						"href": "https://www.postman.com/in-co-sandbox/sandbox-api/collection/t61ohmi/kyc"
+					},
+					{
+						"item": "GST",
+						"icon": "/static/svg/GST.svg",
+						"href": "https://www.postman.com/in-co-sandbox/sandbox-api/collection/tdybepo/gst-analytics"
+					},
+					{
+						"item": "TDS",
+						"icon": "/static/svg/TDS.svg",
+						"href": "https://www.postman.com/in-co-sandbox/sandbox-api/collection/kxuf3b1/tds-analytics"
+					},
+					{
+						"item": "IT",
+						"icon": "/static/svg/IT.svg",
+						"href": "https://www.postman.com/in-co-sandbox/sandbox-api/collection/vi869sx/income-tax-calculator"
+					}
+				]
 			}
 		]
 	},
