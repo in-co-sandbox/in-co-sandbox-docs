@@ -438,23 +438,26 @@
 						"icon": "/static/svg/TDS.svg",
 						"pages": [
 							{
-								"group": "Reports",
+								"group": "Calculator",
 								"pages": [
 									{
 										"group": "TDS",
 										"pages": [
-											"api-reference/tds/reports/tds-reports/endpoints/submit_job",
-											"api-reference/tds/resources/form26q_workbook",
-											"api-reference/tds/reports/tds-reports/endpoints/poll_job",
-											"api-reference/tds/reports/tds-reports/endpoints/fetch_jobs"
+											{
+												"group": "Salary Payments",
+												"pages": [
+													"api-reference/tds/calculator/tds-calculator/endpoints/submit_job_salary",
+													"api-reference/tds/calculator/tds-calculator/endpoints/poll_job_salary"
+												]
+											},
+											"api-reference/tds/calculator/tds-calculator/endpoints/non_salary",
+											"api-reference/tds/calculator/tds-calculator/endpoints/salary_sync"
 										]
 									},
 									{
 										"group": "TCS",
 										"pages": [
-											"api-reference/tds/reports/tcs-reports/endpoints/submit_job",
-											"api-reference/tds/reports/tcs-reports/endpoints/poll_job",
-											"api-reference/tds/reports/tcs-reports/endpoints/fetch_jobs"
+											"api-reference/tds/calculator/tcs-calculator/endpoints/calculator"
 										]
 									}
 								]
@@ -476,6 +479,33 @@
 											"api-reference/tds/analytics/tcs-analytics/endpoints/submit_job",
 											"api-reference/tds/analytics/tcs-analytics/endpoints/poll_job",
 											"api-reference/tds/analytics/tcs-analytics/endpoints/fetch_jobs"
+										]
+									}
+								]
+							},
+							{
+								"group": "Reports",
+								"pages": [
+									{
+										"group": "TDS",
+										"pages": [
+											{
+												"group": "Create Job",
+												"pages": [
+													"api-reference/tds/reports/tds-reports/endpoints/submit_job",
+													"api-reference/tds/resources/non_salary_payments"
+												]
+											},
+											"api-reference/tds/reports/tds-reports/endpoints/poll_job",
+											"api-reference/tds/reports/tds-reports/endpoints/fetch_jobs"
+										]
+									},
+									{
+										"group": "TCS",
+										"pages": [
+											"api-reference/tds/reports/tcs-reports/endpoints/submit_job",
+											"api-reference/tds/reports/tcs-reports/endpoints/poll_job",
+											"api-reference/tds/reports/tcs-reports/endpoints/fetch_jobs"
 										]
 									}
 								]
