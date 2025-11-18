@@ -3,11 +3,14 @@
   "info": {
     "title": "compliance",
     "version": "1.0.0",
-    "description": "**GST Compliance API** enables businesses to automate compliance requirements like [Taxpayer verification](https://developer.sandbox.co.in/reference/search-gstin-api), [GSTR Filing](https://developer.sandbox.co.in/reference/gst-taxpayer-authentication), [Generating e-Invoices](https://developer.sandbox.co.in/reference/e-invoice-authentication-api), and [E-Way Bills](https://developer.sandbox.co.in/reference/e-way-bill-authentication-api).\n\nWe provide these APIs from GSTN-authorised GST Suvidha Providers, handling the encryption-decryption and signing so you don't have to handle the complexities."
+    "description": "**GST Compliance API** enables businesses to automate compliance requirements like [Taxpayer verification](https://developer.sandbox.co.in/reference/search-gstin-api), [GSTR Filing](https://developer.sandbox.co.in/reference/gst-taxpayer-authentication), [Generating E-Invoices](https://developer.sandbox.co.in/reference/e-invoice-authentication-api), and [E-Way Bills](https://developer.sandbox.co.in/reference/e-way-bill-authentication-api).\n\nWe provide these APIs from GSTN-authorised GST Suvidha Providers, handling the encryption-decryption and signing so you don't have to handle the complexities."
   },
   "servers": [
     {
-      "url": "{{sandbox_host}}"
+      "url": "https://api.sandbox.co.in"
+    },
+    {
+      "url": "https://test-api.sandbox.co.in"
     }
   ],
   "paths": {
@@ -13008,556 +13011,6 @@
         }
       ]
     },
-    "/gst/compliance/tax-payer/gstrs/gstr-4-annual/summary": {
-      "get": {
-        "summary": "Get GSTR-4 Annual Summary",
-        "tags": [
-          "Taxpayer",
-          "Returns",
-          "File GSTR-4"
-        ],
-        "parameters": [
-          {
-            "name": "financial_period",
-            "in": "query",
-            "description": "eg. FY 2021-22",
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "x-api-key",
-            "in": "header",
-            "schema": {
-              "type": "string"
-            },
-            "required": true,
-            "description": "API key for identification",
-            "deprecated": false
-          },
-          {
-            "name": "x-api-version",
-            "in": "header",
-            "schema": {
-              "type": "string"
-            },
-            "required": false,
-            "description": "API version",
-            "deprecated": false
-          },
-          {
-            "name": "authorization",
-            "in": "header",
-            "schema": {
-              "type": "string"
-            },
-            "required": true,
-            "description": "Taxpayer access token",
-            "deprecated": false
-          }
-        ],
-        "responses": {}
-      }
-    },
-    "/gst/compliance/tax-payer/gstrs/gstr-4-annual/in-out-supply": {
-      "get": {
-        "summary": "Get GSTR-4 Annual Inward Outward Supply",
-        "tags": [
-          "Taxpayer",
-          "Returns",
-          "File GSTR-4"
-        ],
-        "parameters": [
-          {
-            "name": "financial_period",
-            "in": "query",
-            "description": "eg. 2021-22",
-            "schema": {
-              "type": "integer"
-            }
-          },
-          {
-            "name": "x-api-key",
-            "in": "header",
-            "schema": {
-              "type": "string"
-            },
-            "required": true,
-            "description": "API key for identification",
-            "deprecated": false
-          },
-          {
-            "name": "x-api-version",
-            "in": "header",
-            "schema": {
-              "type": "string"
-            },
-            "required": false,
-            "description": "API version",
-            "deprecated": false
-          },
-          {
-            "name": "authorization",
-            "in": "header",
-            "schema": {
-              "type": "string"
-            },
-            "required": true,
-            "description": "Taxpayer access token",
-            "deprecated": false
-          }
-        ],
-        "responses": {}
-      }
-    },
-    "/gst/compliance/tax-payer/gstrs/gstr-4-annual/tdscmp-summary": {
-      "get": {
-        "summary": "Get GSTR-4 Annual CMP 08 and TDSTCS Summary",
-        "tags": [
-          "Taxpayer",
-          "Returns",
-          "File GSTR-4"
-        ],
-        "parameters": [
-          {
-            "name": "financial_period",
-            "in": "query",
-            "description": "eg. 2021-22",
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "x-api-key",
-            "in": "header",
-            "schema": {
-              "type": "string"
-            },
-            "required": true,
-            "description": "API key for identification",
-            "deprecated": false
-          },
-          {
-            "name": "x-api-version",
-            "in": "header",
-            "schema": {
-              "type": "string"
-            },
-            "required": false,
-            "description": "API version",
-            "deprecated": false
-          },
-          {
-            "name": "authorization",
-            "in": "header",
-            "schema": {
-              "type": "string"
-            },
-            "required": true,
-            "description": "Taxpayer access token",
-            "deprecated": false
-          }
-        ],
-        "responses": {}
-      }
-    },
-    "/gst/compliance/tax-payer/gstrs/gstr-4-annual/{year}/{month}": {
-      "post": {
-        "summary": "Save GSTR-4 Annual",
-        "tags": [
-          "Taxpayer",
-          "Returns",
-          "File GSTR-4"
-        ],
-        "parameters": [
-          {
-            "name": "x-api-key",
-            "in": "header",
-            "schema": {
-              "type": "string"
-            },
-            "required": true,
-            "description": "API key for identification",
-            "deprecated": false
-          },
-          {
-            "name": "x-api-version",
-            "in": "header",
-            "schema": {
-              "type": "string"
-            },
-            "required": false,
-            "description": "API version",
-            "deprecated": false
-          },
-          {
-            "name": "authorization",
-            "in": "header",
-            "schema": {
-              "type": "string"
-            },
-            "required": true,
-            "description": "Taxpayer access token",
-            "deprecated": false
-          }
-        ],
-        "responses": {},
-        "requestBody": {
-          "content": {
-            "application/json": {
-              "schema": {
-                "type": "object",
-                "properties": {
-                  "gstin": {
-                    "type": "string"
-                  },
-                  "agg_turnover": {
-                    "type": "integer"
-                  },
-                  "fp": {
-                    "type": "string",
-                    "format": "color"
-                  },
-                  "isnil": {
-                    "type": "string"
-                  },
-                  "isreset": {
-                    "type": "string"
-                  },
-                  "b2bor": {
-                    "type": "array",
-                    "items": {
-                      "type": "object",
-                      "properties": {
-                        "ctin": {
-                          "type": "string"
-                        },
-                        "pos": {
-                          "type": "string",
-                          "format": "utc-millisec"
-                        },
-                        "itms": {
-                          "type": "array",
-                          "items": {
-                            "type": "object",
-                            "properties": {
-                              "rt": {
-                                "type": "integer"
-                              },
-                              "txval": {
-                                "type": "integer"
-                              },
-                              "iamt": {
-                                "type": "integer"
-                              },
-                              "camt": {
-                                "type": "integer"
-                              },
-                              "samt": {
-                                "type": "integer"
-                              },
-                              "csamt": {
-                                "type": "integer"
-                              }
-                            }
-                          }
-                        }
-                      }
-                    }
-                  },
-                  "b2br": {
-                    "type": "array",
-                    "items": {
-                      "type": "object",
-                      "properties": {
-                        "ctin": {
-                          "type": "string"
-                        },
-                        "pos": {
-                          "type": "string",
-                          "format": "utc-millisec"
-                        },
-                        "itms": {
-                          "type": "array",
-                          "items": {
-                            "type": "object",
-                            "properties": {
-                              "rt": {
-                                "type": "integer"
-                              },
-                              "txval": {
-                                "type": "integer"
-                              },
-                              "iamt": {
-                                "type": "integer"
-                              },
-                              "camt": {
-                                "type": "integer"
-                              },
-                              "samt": {
-                                "type": "integer"
-                              },
-                              "csamt": {
-                                "type": "integer"
-                              }
-                            }
-                          }
-                        }
-                      }
-                    }
-                  },
-                  "b2bur": {
-                    "type": "array",
-                    "items": {
-                      "type": "object",
-                      "properties": {
-                        "rchrg": {
-                          "type": "string"
-                        },
-                        "itms": {
-                          "type": "array",
-                          "items": {
-                            "type": "object",
-                            "properties": {
-                              "samt": {
-                                "type": "integer"
-                              },
-                              "csamt": {
-                                "type": "integer"
-                              },
-                              "rt": {
-                                "type": "integer"
-                              },
-                              "txval": {
-                                "type": "integer"
-                              },
-                              "camt": {
-                                "type": "integer"
-                              },
-                              "iamt": {
-                                "type": "integer"
-                              }
-                            }
-                          }
-                        },
-                        "pos": {
-                          "type": "string",
-                          "format": "utc-millisec"
-                        },
-                        "trdnm": {
-                          "type": "string"
-                        },
-                        "sply_ty": {
-                          "type": "string"
-                        },
-                        "cpan": {
-                          "type": "string"
-                        }
-                      }
-                    }
-                  },
-                  "imps": {
-                    "type": "array",
-                    "items": {
-                      "type": "object",
-                      "properties": {
-                        "itms": {
-                          "type": "array",
-                          "items": {
-                            "type": "object",
-                            "properties": {
-                              "csamt": {
-                                "type": "integer"
-                              },
-                              "rt": {
-                                "type": "integer"
-                              },
-                              "txval": {
-                                "type": "integer"
-                              },
-                              "iamt": {
-                                "type": "integer"
-                              }
-                            }
-                          }
-                        },
-                        "pos": {
-                          "type": "string",
-                          "format": "utc-millisec"
-                        }
-                      }
-                    }
-                  },
-                  "outsupply": {
-                    "type": "array",
-                    "items": {
-                      "type": "object",
-                      "properties": {
-                        "rt": {
-                          "type": "integer"
-                        },
-                        "txval": {
-                          "type": "integer"
-                        }
-                      }
-                    }
-                  }
-                }
-              }
-            }
-          }
-        }
-      },
-      "parameters": [
-        {
-          "name": "year",
-          "in": "path",
-          "required": true,
-          "description": "Year e.g. 2020",
-          "schema": {
-            "type": "string"
-          }
-        },
-        {
-          "name": "month",
-          "in": "path",
-          "required": true,
-          "description": "Month e.g. 01",
-          "schema": {
-            "type": "string"
-          }
-        },
-        {
-          "name": "x-api-key",
-          "in": "header",
-          "required": true,
-          "description": "API key for identification",
-          "deprecated": false,
-          "schema": {}
-        },
-        {
-          "name": "x-api-version",
-          "in": "header",
-          "required": false,
-          "description": "API version",
-          "deprecated": false,
-          "schema": {}
-        },
-        {
-          "name": "authorization",
-          "in": "header",
-          "required": true,
-          "description": "Taxpayer access token",
-          "deprecated": false,
-          "schema": {}
-        }
-      ]
-    },
-    "/gst/compliance/tax-payer/gstrs/gstr-4-annual/{year}/{month}/proceed": {
-      "post": {
-        "summary": "GSTR-4 Annual Proceed to File",
-        "tags": [
-          "Taxpayer",
-          "Returns",
-          "File GSTR-4"
-        ],
-        "parameters": [
-          {
-            "name": "x-api-key",
-            "in": "header",
-            "schema": {
-              "type": "string"
-            },
-            "required": true,
-            "description": "API key for identification",
-            "deprecated": false
-          },
-          {
-            "name": "x-api-version",
-            "in": "header",
-            "schema": {
-              "type": "string"
-            },
-            "required": false,
-            "description": "API version",
-            "deprecated": false
-          },
-          {
-            "name": "authorization",
-            "in": "header",
-            "schema": {
-              "type": "string"
-            },
-            "required": true,
-            "description": "Taxpayer access token",
-            "deprecated": false
-          }
-        ],
-        "responses": {},
-        "requestBody": {
-          "content": {
-            "application/json": {
-              "schema": {
-                "type": "object",
-                "properties": {
-                  "gstin": {
-                    "type": "string"
-                  },
-                  "ret_period": {
-                    "type": "string",
-                    "format": "color"
-                  }
-                }
-              }
-            }
-          }
-        }
-      },
-      "parameters": [
-        {
-          "name": "year",
-          "in": "path",
-          "required": true,
-          "description": "Year e.g. 2020",
-          "schema": {
-            "type": "string"
-          }
-        },
-        {
-          "name": "month",
-          "in": "path",
-          "required": true,
-          "description": "Month e.g. 01",
-          "schema": {
-            "type": "string"
-          }
-        },
-        {
-          "name": "x-api-key",
-          "in": "header",
-          "required": true,
-          "description": "API key for identification",
-          "deprecated": false,
-          "schema": {}
-        },
-        {
-          "name": "x-api-version",
-          "in": "header",
-          "required": false,
-          "description": "API version",
-          "deprecated": false,
-          "schema": {}
-        },
-        {
-          "name": "authorization",
-          "in": "header",
-          "required": true,
-          "description": "Taxpayer access token",
-          "deprecated": false,
-          "schema": {}
-        }
-      ]
-    },
     "/gst/compliance/tax-payer/gstrs/gstr-9/auto-calculated": {
       "get": {
         "summary": "GSTR-9 Auto Calculated Details",
@@ -16883,8 +16336,8 @@
         "summary": "Submit Job",
         "tags": [
           "Taxpayer",
-          "e-Invoice",
-          "Sales e-Invoices for return period"
+          "E-Invoice",
+          "Sales E-Invoices for return period"
         ],
         "parameters": [
           {
@@ -17077,8 +16530,8 @@
         "summary": "Poll Job",
         "tags": [
           "Taxpayer",
-          "e-Invoice",
-          "Sales e-Invoices for return period"
+          "E-Invoice",
+          "Sales E-Invoices for return period"
         ],
         "parameters": [
           {
@@ -17231,8 +16684,8 @@
         "summary": "Submit Job",
         "tags": [
           "Taxpayer",
-          "e-Invoice",
-          "Purchase e-Invoices for return period"
+          "E-Invoice",
+          "Purchase E-Invoices for return period"
         ],
         "parameters": [
           {
@@ -17425,8 +16878,8 @@
         "summary": "Poll Job",
         "tags": [
           "Taxpayer",
-          "e-Invoice",
-          "Purchase e-Invoices for return period"
+          "E-Invoice",
+          "Purchase E-Invoices for return period"
         ],
         "parameters": [
           {
@@ -17576,10 +17029,10 @@
     },
     "/gst/compliance/tax-payer/e-invoice/{irn}": {
       "get": {
-        "summary": "Get e-Invoice by IRN",
+        "summary": "Get E-Invoice by IRN",
         "tags": [
           "Taxpayer",
-          "e-Invoice"
+          "E-Invoice"
         ],
         "parameters": [
           {
@@ -17624,7 +17077,7 @@
         ],
         "responses": {
           "200": {
-            "description": "200 e-Invoice fetched",
+            "description": "200 E-Invoice fetched",
             "headers": {
               "Date": {
                 "schema": {
@@ -17745,9 +17198,9 @@
     },
     "/gst/compliance/e-invoice/tax-payer/authenticate": {
       "post": {
-        "summary": "e-Invoice Authentication",
+        "summary": "E-Invoice Authentication",
         "tags": [
-          "e-Invoice",
+          "E-Invoice",
           "Authentication"
         ],
         "parameters": [
@@ -17901,11 +17354,11 @@
                 "properties": {
                   "username": {
                     "type": "string",
-                    "description": "API username of taxpayer as set on e-Invoice portal"
+                    "description": "API username of taxpayer as set on E-Invoice portal"
                   },
                   "password": {
                     "type": "string",
-                    "description": "API password of taxpayer as set on e-Invoice portal"
+                    "description": "API password of taxpayer as set on E-Invoice portal"
                   },
                   "gstin": {
                     "type": "string",
@@ -17930,10 +17383,10 @@
     },
     "/gst/compliance/e-invoice/tax-payer/invoice": {
       "post": {
-        "summary": "Generate e-Invoice",
+        "summary": "Generate E-Invoice",
         "tags": [
-          "e-Invoice",
-          "e-Invoice"
+          "E-Invoice",
+          "E-Invoice"
         ],
         "parameters": [
           {
@@ -17953,7 +17406,7 @@
               "type": "string"
             },
             "required": true,
-            "description": "e-Invoice access token",
+            "description": "E-Invoice access token",
             "deprecated": false
           },
           {
@@ -18608,10 +18061,10 @@
         "operationId": "generate-e-invoice-api"
       },
       "get": {
-        "summary": "Get e-Invoice by document data",
+        "summary": "Get E-Invoice by document data",
         "tags": [
-          "e-Invoice",
-          "e-Invoice"
+          "E-Invoice",
+          "E-Invoice"
         ],
         "parameters": [
           {
@@ -18658,7 +18111,7 @@
               "type": "string"
             },
             "required": true,
-            "description": "e-Invoice access token",
+            "description": "E-Invoice access token",
             "deprecated": false
           },
           {
@@ -18766,10 +18219,10 @@
     },
     "/gst/compliance/e-invoice/pdf/generate": {
       "post": {
-        "summary": "Generate e-Invoice PDF",
+        "summary": "Generate E-Invoice PDF",
         "tags": [
-          "e-Invoice",
-          "e-Invoice"
+          "E-Invoice",
+          "E-Invoice"
         ],
         "parameters": [
           {
@@ -19022,7 +18475,7 @@
                   },
                   "signed_invoice": {
                     "type": "string",
-                    "description": "Signed e-Invoice"
+                    "description": "Signed E-Invoice"
                   }
                 }
               },
@@ -19039,16 +18492,16 @@
             }
           }
         },
-        "description": "Generate the PDF for the e-Invoice generated by passing the signed QR code and signed e-Invoice.",
+        "description": "Generate the PDF for the E-Invoice generated by passing the signed QR code and signed E-Invoice.",
         "operationId": "generate-e-invoice-pdf-api"
       }
     },
     "/gst/compliance/e-invoice/tax-payer/invoice/{irn}/cancel": {
       "post": {
-        "summary": "Cancel e-Invoice",
+        "summary": "Cancel E-Invoice",
         "tags": [
-          "e-Invoice",
-          "e-Invoice"
+          "E-Invoice",
+          "E-Invoice"
         ],
         "parameters": [
           {
@@ -19068,7 +18521,7 @@
               "type": "string"
             },
             "required": true,
-            "description": "e-Invoice access token",
+            "description": "E-Invoice access token",
             "deprecated": false
           },
           {
@@ -19192,7 +18645,7 @@
                 "properties": {
                   "Irn": {
                     "type": "string",
-                    "description": "IRN of e-invoice to be cancelled"
+                    "description": "IRN of E-Invoice to be cancelled"
                   },
                   "CnlRsn": {
                     "type": "string",
@@ -19247,7 +18700,7 @@
           "name": "authorization",
           "in": "header",
           "required": true,
-          "description": "e-Invoice access token",
+          "description": "E-Invoice access token",
           "deprecated": false,
           "schema": {}
         }
@@ -19255,10 +18708,10 @@
     },
     "/gst/compliance/e-invoice/tax-payer/invoice/{irn}": {
       "get": {
-        "summary": "Get e-Invoice by IRN",
+        "summary": "Get E-Invoice by IRN",
         "tags": [
-          "e-Invoice",
-          "e-Invoice"
+          "E-Invoice",
+          "E-Invoice"
         ],
         "parameters": [
           {
@@ -19278,7 +18731,7 @@
               "type": "string"
             },
             "required": true,
-            "description": "e-Invoice access token",
+            "description": "E-Invoice access token",
             "deprecated": false
           },
           {
@@ -19421,7 +18874,7 @@
           "name": "authorization",
           "in": "header",
           "required": true,
-          "description": "e-Invoice access token",
+          "description": "E-Invoice access token",
           "deprecated": false,
           "schema": {}
         }
@@ -19431,7 +18884,7 @@
       "post": {
         "summary": "Generate E-Way Bill by IRN",
         "tags": [
-          "e-Invoice",
+          "E-Invoice",
           "E-Way Bill"
         ],
         "parameters": [
@@ -19452,7 +18905,7 @@
               "type": "string"
             },
             "required": true,
-            "description": "e-Invoice access token",
+            "description": "E-Invoice access token",
             "deprecated": false
           },
           {
@@ -19682,7 +19135,7 @@
           "name": "authorization",
           "in": "header",
           "required": true,
-          "description": "e-Invoice access token",
+          "description": "E-Invoice access token",
           "deprecated": false,
           "schema": {}
         }
@@ -19690,7 +19143,7 @@
       "get": {
         "summary": "Get E-Way Bill by IRN",
         "tags": [
-          "e-Invoice",
+          "E-Invoice",
           "E-Way Bill"
         ],
         "parameters": [
@@ -19711,7 +19164,7 @@
               "type": "string"
             },
             "required": true,
-            "description": "e-Invoice access token",
+            "description": "E-Invoice access token",
             "deprecated": false
           },
           {
@@ -19830,7 +19283,7 @@
       "post": {
         "summary": "Search GSTIN Details",
         "tags": [
-          "e-Invoice"
+          "E-Invoice"
         ],
         "parameters": [
           {
@@ -19850,7 +19303,7 @@
               "type": "string"
             },
             "required": true,
-            "description": "e-Invoice access token",
+            "description": "E-Invoice access token",
             "deprecated": false
           },
           {
