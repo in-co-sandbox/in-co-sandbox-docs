@@ -249,65 +249,166 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "type": "object",
-                  "properties": {
-                    "code": {
-                      "type": "integer"
-                    },
-                    "timestamp": {
-                      "type": "integer"
-                    },
-                    "transaction_id": {
-                      "type": "string"
-                    },
-                    "data": {
+                  "oneOf": [
+                    {
+                      "title": "Job Queued",
                       "type": "object",
                       "properties": {
-                        "@entity": {
-                          "type": "string",
-                          "enum": [
-                            "in.co.sandbox.tds.reports.job"
-                          ]
-                        },
-                        "job_id": {
-                          "type": "string"
-                        },
-                        "tan": {
-                          "type": "string"
-                        },
-                        "quarter": {
-                          "type": "string"
-                        },
-                        "form": {
-                          "type": "string"
-                        },
-                        "financial_year": {
-                          "type": "string"
-                        },
-                        "previous_receipt_number": {
-                          "type": "string"
-                        },
-                        "status": {
-                          "type": "string"
-                        },
-                        "created_at": {
+                        "code": {
                           "type": "integer"
                         },
-                        "updated_at": {
+                        "timestamp": {
                           "type": "integer"
                         },
-                        "txt_url": {
+                        "transaction_id": {
                           "type": "string"
                         },
-                        "validation_url": {
+                        "data": {
+                          "type": "object",
+                          "properties": {
+                            "@entity": {
+                              "type": "string"
+                            },
+                            "job_id": {
+                              "type": "string"
+                            },
+                            "tan": {
+                              "type": "string"
+                            },
+                            "quarter": {
+                              "type": "string"
+                            },
+                            "form": {
+                              "type": "string"
+                            },
+                            "financial_year": {
+                              "type": "string"
+                            },
+                            "previous_receipt_number": {
+                              "type": "string"
+                            },
+                            "status": {
+                              "type": "string"
+                            },
+                            "created_at": {
+                              "type": "integer"
+                            },
+                            "updated_at": {
+                              "type": "integer"
+                            }
+                          }
+                        }
+                      }
+                    },
+                    {
+                      "title": "Job Succeeded",
+                      "type": "object",
+                      "properties": {
+                        "code": {
+                          "type": "integer"
+                        },
+                        "timestamp": {
+                          "type": "integer"
+                        },
+                        "transaction_id": {
                           "type": "string"
                         },
-                        "message": {
+                        "data": {
+                          "type": "object",
+                          "properties": {
+                            "@entity": {
+                              "type": "string"
+                            },
+                            "job_id": {
+                              "type": "string"
+                            },
+                            "tan": {
+                              "type": "string"
+                            },
+                            "quarter": {
+                              "type": "string"
+                            },
+                            "form": {
+                              "type": "string"
+                            },
+                            "financial_year": {
+                              "type": "string"
+                            },
+                            "previous_receipt_number": {
+                              "type": "string"
+                            },
+                            "status": {
+                              "type": "string"
+                            },
+                            "created_at": {
+                              "type": "integer"
+                            },
+                            "updated_at": {
+                              "type": "integer"
+                            },
+                            "txt_url": {
+                              "type": "string",
+                              "format": "uri"
+                            }
+                          }
+                        }
+                      }
+                    },
+                    {
+                      "title": "Job Failed",
+                      "type": "object",
+                      "properties": {
+                        "code": {
+                          "type": "integer"
+                        },
+                        "timestamp": {
+                          "type": "integer"
+                        },
+                        "transaction_id": {
                           "type": "string"
+                        },
+                        "data": {
+                          "type": "object",
+                          "properties": {
+                            "@entity": {
+                              "type": "string"
+                            },
+                            "job_id": {
+                              "type": "string"
+                            },
+                            "tan": {
+                              "type": "string"
+                            },
+                            "quarter": {
+                              "type": "string"
+                            },
+                            "form": {
+                              "type": "string"
+                            },
+                            "financial_year": {
+                              "type": "string"
+                            },
+                            "previous_receipt_number": {
+                              "type": "string"
+                            },
+                            "status": {
+                              "type": "string"
+                            },
+                            "created_at": {
+                              "type": "integer"
+                            },
+                            "updated_at": {
+                              "type": "integer"
+                            },
+                            "validation_report_url": {
+                              "type": "string",
+                              "format": "uri"
+                            }
+                          }
                         }
                       }
                     }
-                  }
+                  ]
                 }
               }
             }
@@ -712,59 +813,157 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "type": "object",
-                  "properties": {
-                    "code": {
-                      "type": "integer"
-                    },
-                    "timestamp": {
-                      "type": "integer"
-                    },
-                    "transaction_id": {
-                      "type": "string"
-                    },
-                    "data": {
+                  "oneOf": [
+                    {
+                      "title": "Job Queued",
                       "type": "object",
                       "properties": {
-                        "@entity": {
-                          "type": "string"
-                        },
-                        "job_id": {
-                          "type": "string"
-                        },
-                        "tan": {
-                          "type": "string"
-                        },
-                        "quarter": {
-                          "type": "string"
-                        },
-                        "financial_year": {
-                          "type": "string"
-                        },
-                        "previous_receipt_number": {
-                          "type": "string"
-                        },
-                        "status": {
-                          "type": "string"
-                        },
-                        "created_at": {
+                        "code": {
                           "type": "integer"
                         },
-                        "updated_at": {
+                        "timestamp": {
                           "type": "integer"
                         },
-                        "txt_url": {
+                        "transaction_id": {
                           "type": "string"
                         },
-                        "validation_url": {
+                        "data": {
+                          "type": "object",
+                          "properties": {
+                            "@entity": {
+                              "type": "string"
+                            },
+                            "job_id": {
+                              "type": "string"
+                            },
+                            "tan": {
+                              "type": "string"
+                            },
+                            "quarter": {
+                              "type": "string"
+                            },
+                            "financial_year": {
+                              "type": "string"
+                            },
+                            "previous_receipt_number": {
+                              "type": "string"
+                            },
+                            "status": {
+                              "type": "string"
+                            },
+                            "created_at": {
+                              "type": "integer"
+                            },
+                            "updated_at": {
+                              "type": "integer"
+                            }
+                          }
+                        }
+                      }
+                    },
+                    {
+                      "title": "Job Succeeded",
+                      "type": "object",
+                      "properties": {
+                        "code": {
+                          "type": "integer"
+                        },
+                        "timestamp": {
+                          "type": "integer"
+                        },
+                        "transaction_id": {
                           "type": "string"
                         },
-                        "message": {
+                        "data": {
+                          "type": "object",
+                          "properties": {
+                            "@entity": {
+                              "type": "string"
+                            },
+                            "job_id": {
+                              "type": "string"
+                            },
+                            "tan": {
+                              "type": "string"
+                            },
+                            "quarter": {
+                              "type": "string"
+                            },
+                            "financial_year": {
+                              "type": "string"
+                            },
+                            "previous_receipt_number": {
+                              "type": "string"
+                            },
+                            "status": {
+                              "type": "string"
+                            },
+                            "created_at": {
+                              "type": "integer"
+                            },
+                            "updated_at": {
+                              "type": "integer"
+                            },
+                            "txt_url": {
+                              "type": "string",
+                              "format": "uri"
+                            }
+                          }
+                        }
+                      }
+                    },
+                    {
+                      "title": "Job Failed",
+                      "type": "object",
+                      "properties": {
+                        "code": {
+                          "type": "integer"
+                        },
+                        "timestamp": {
+                          "type": "integer"
+                        },
+                        "transaction_id": {
                           "type": "string"
+                        },
+                        "data": {
+                          "type": "object",
+                          "properties": {
+                            "@entity": {
+                              "type": "string"
+                            },
+                            "job_id": {
+                              "type": "string"
+                            },
+                            "tan": {
+                              "type": "string"
+                            },
+                            "quarter": {
+                              "type": "string"
+                            },
+                            "financial_year": {
+                              "type": "string"
+                            },
+                            "previous_receipt_number": {
+                              "type": "string"
+                            },
+                            "status": {
+                              "type": "string"
+                            },
+                            "created_at": {
+                              "type": "integer"
+                            },
+                            "updated_at": {
+                              "type": "integer"
+                            },
+                            "validation_report_url": {
+                              "type": "string",
+                              "format": "uri"
+                            }
+                          }
                         }
                       }
                     }
-                  }
+                  ]
                 }
               }
             }
