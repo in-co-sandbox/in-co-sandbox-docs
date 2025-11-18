@@ -100,9 +100,21 @@
             </ResponseField>
           </Expandable>
         </ResponseField>
-        <ResponseField name="rows" type="array<array<primitive>>">
+        <ResponseField name="rows" type="array<array<string|number|boolean|null>">
           Allowed value : `rows` \
-          Contains values defined in the headers in the same order.
+          Contains values defined in the headers. Make sure to maintain the order of headers.
+
+          <Expandable title="child attributes">
+            <ResponseField name="sr_no" type="number">
+              Allowed value : `sr_no`
+            </ResponseField>
+            <ResponseField name="pan" type="string">
+              Allowed value : `pan`
+            </ResponseField>
+            <ResponseField name="name" type="string">
+              Allowed value : `name`
+            </ResponseField>
+          </Expandable>
         </ResponseField>
       </Expandable>
     </ResponseField>
@@ -159,9 +171,33 @@
             </ResponseField>
           </Expandable>
         </ResponseField>
-        <ResponseField name="rows" type="array<array<primitive>>">
+        <ResponseField name="rows" type="array<array<string|number|boolean|null>">
           Allowed value : `rows` \
-          Contains values defined in the headers in the same order.
+          Contains values defined in the headers. Make sure to maintain the order of headers.
+
+          <Expandable title="child attributes">
+            <ResponseField name="challan_serial" type="string">
+            </ResponseField>
+            <ResponseField name="bsr_code" type="string">
+            </ResponseField>
+            <ResponseField name="paid_date_epoch" type="number">
+            </ResponseField>
+            <ResponseField name="minor_head" type="string">
+            </ResponseField>
+            <ResponseField name="tds_amount" type="number">
+            </ResponseField>
+            <ResponseField name="surcharge" type="number">
+            </ResponseField>
+            <ResponseField name="heath_and_education_cess" type="number">
+            </ResponseField>
+            <ResponseField name="interest" type="number">
+            </ResponseField>
+            <ResponseField name="late_filing_fees" type="number">
+            </ResponseField>
+            <ResponseField name="other_penalty" type="number">
+            </ResponseField>
+          </Expandable>
+
         </ResponseField>
       </Expandable>
     </ResponseField>
@@ -241,9 +277,47 @@
             </ResponseField> 
           </Expandable>
         </ResponseField>
-        <ResponseField name="rows" type="array<array<primitive>>">
+        <ResponseField name="rows" type="array<array<string|number|boolean|null>">
           Allowed value : `rows` \
-          Contains values defined in the headers in the same order.
+          Contains values defined in the headers. Make sure to maintain the order of headers.
+          <Expandable title="child attributes">
+            <ResponseField name="payee_sr_no" type="number">
+            </ResponseField>
+            <ResponseField name="challan_serial" type="string">
+            </ResponseField>
+            <ResponseField name="bsr_code" type="string">
+            </ResponseField>
+            <ResponseField name="nature_of_payment" type="string">
+            </ResponseField>
+            <ResponseField name="payment_amount" type="number">
+            </ResponseField>
+            <ResponseField name="payment_date_epoch" type="number">
+            </ResponseField>
+            <ResponseField name="tds_amount" type="number">
+            </ResponseField>
+            <ResponseField name="surcharge" type="number">
+            </ResponseField>
+            <ResponseField name="health_and_education_cess" type="number">
+            </ResponseField>
+            <ResponseField name="deduction_date_epoch" type="number">
+            </ResponseField>
+            <ResponseField name="reason_for_lower_or_higher_deduction" type="number">
+            </ResponseField>
+            <ResponseField name="certificate_number" type="number">
+            </ResponseField>
+            <ResponseField name="amount_of_cash_withdrawal_more_than_1_crore_us_194N" type="number">
+            </ResponseField>
+            <ResponseField name="amount_of_cash_withdrawal_between_20_lakhs_and_1_crore_us_194N_for_non_filers" type="number">
+            </ResponseField>
+            <ResponseField name="amount_of_cash_withdrawal_more_than_1_crore_us_194N_for_non_filers" type="number">
+            </ResponseField>
+            <ResponseField name="amount_of_cash_withdrawal_more_than_3_crore_us_194N_for_co-operative_societies" type="number">
+            </ResponseField>
+            <ResponseField name="amount_of_cash_withdrawal_between_20_lakhs_and_3_crore_us_194N_for_non_filers" type="number">
+            </ResponseField>
+            <ResponseField name="amount_of_cash_withdrawal_more_than_3_crore_us_194N_for_non_filers" type="number">
+            </ResponseField> 
+          </Expandable>
         </ResponseField>
       </Expandable>
     </ResponseField>
