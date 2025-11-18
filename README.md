@@ -1,16 +1,38 @@
-# Mintlify Starter Kit
+# Sandbox Documentation
 
-Use the starter kit to get your docs deployed and ready to customize.
+This repository contains the documentation for Sandbox APIs, organized into the following sections:
 
-Click the green **Use this template** button at the top of this repo to copy the Mintlify starter kit. The starter kit contains examples with
+## Documentation Structure
 
-- Guide pages
-- Navigation
-- Customizations
-- API reference pages
-- Use of popular components
+### 📚 Guides
+Comprehensive guides covering:
+- **Introduction**: About Sandbox and authentication
+- **Get Started**: Basics, versioning, response caching, errors, rate limits, webhooks, and more
+- **Products**: KYC, GST, TDS, and Income Tax product guides
+- **Billing & Invoicing**: Subscription, quota, overdraft, wallet, and charges
+- **Resources**: Postman collections, SDKs, and help center
 
-**[Follow the full quickstart guide](https://starter.mintlify.com/quickstart)**
+### 🔌 API Reference
+Complete API documentation organized by product:
+- **Authentication**: API authentication endpoints
+- **KYC**: Aadhaar, Bank, DigiLocker, EntityLocker SDK, PAN verification APIs
+- **GST**: Analytics and Compliance APIs (Public, Taxpayer, E-Invoice, E-Way Bill)
+- **TDS**: Reports, Analytics, and Compliance APIs
+- **Income Tax**: Tax calculation and compliance APIs
+- **Bank**: Virtual Account APIs
+
+### 🍳 Recipes
+Step-by-step recipes and examples for:
+- **KYC**: DigiLocker API integration examples
+- **GST**: GST workflow recipes
+- **TDS**: TDS compliance recipes
+- **IT**: Income Tax calculation recipes
+
+### 📝 Changelog
+Track all API updates, new features, improvements, and deprecations in the changelog.
+
+### 📖 Knowledge Base
+Access the knowledge base for additional resources and ecosystem information.
 
 ## Development
 
