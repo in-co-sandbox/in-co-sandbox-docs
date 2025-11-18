@@ -17,6 +17,7 @@
 		"/gst/analytics/gstr-2a-reconciliation": {
 			"post": {
 				"summary": "Reconcile GSTR-2A Job",
+				"description": "Create GSTR-2A reconciliation job and get two signed URLs to upload GSTR-2A and purchase ledger.",
 				"tags": [
 					"GSTR-2A Reconciliation"
 				],
@@ -176,20 +177,30 @@
 								"properties": {
 									"@entity": {
 										"type": "string",
-										"const": "in.co.sandbox.gst.analytics.gstr-2a_reconciliation.request"
+										"const": "in.co.sandbox.gst.analytics.gstr-2a_reconciliation.request",
+										"description": "Entity name"
 									},
 									"gstin": {
 										"type": "string",
-										"pattern": "^([0-9]{2}[0-9A-Z]{13})$"
+										"pattern": "^([0-9]{2}[0-9A-Z]{13})$",
+										"description": "GSTIN of the taxpayer"
 									},
 									"year": {
-										"type": "integer"
+										"type": "integer",
+										"description": "Year e.g. 2020"
 									},
 									"month": {
-										"type": "integer"
+										"type": "integer",
+										"description": "Month e.g. 10"
 									},
 									"reconciliation_criteria": {
-										"type": "string"
+										"type": "string",
+										"enum": [
+											"strict",
+											"moderate",
+											"flexible"
+										],
+										"description": "Preference for the reconciliation strictness. Possible values: strict, moderate, flexible"
 									}
 								},
 								"required": [
@@ -206,6 +217,7 @@
 			},
 			"get": {
 				"summary": "Reconcile GSTR-2A Job Status",
+				"description": "Fetch GSTR-2A reconciliation job status and download reconciliation report on job's successful completion.",
 				"tags": [
 					"GSTR-2A Reconciliation"
 				],
@@ -214,7 +226,7 @@
 						"name": "job_id",
 						"in": "query",
 						"required": true,
-						"description": "ID of the reconciliation job (UUID)",
+						"description": "Job id of the created job",
 						"deprecated": false,
 						"schema": {
 							"type": "string",
@@ -359,6 +371,7 @@
 		"/gst/analytics/gstr-2b-reconciliation": {
 			"post": {
 				"summary": "Reconcile GSTR-2B Job",
+				"description": "Submit GSTR-2B reconciliation job and get two signed URLs to upload GSTR-2B and purchase ledger.",
 				"tags": [
 					"GSTR-2B Reconciliation"
 				],
@@ -512,23 +525,30 @@
 								"properties": {
 									"@entity": {
 										"type": "string",
-										"const": "in.co.sandbox.gst.analytics.gstr-2b_reconciliation.request"
+										"const": "in.co.sandbox.gst.analytics.gstr-2b_reconciliation.request",
+										"description": "Entity name"
 									},
 									"gstin": {
 										"type": "string",
-										"pattern": "^([0-9]{2}[0-9A-Z]{13})$"
+										"pattern": "^([0-9]{2}[0-9A-Z]{13})$",
+										"description": "GSTIN of the taxpayer"
 									},
 									"year": {
-										"type": "integer"
+										"type": "integer",
+										"description": "Year e.g. 2020"
 									},
 									"month": {
-										"type": "integer"
+										"type": "integer",
+										"description": "Month e.g. 10"
 									},
 									"reconciliation_criteria": {
 										"type": "string",
 										"enum": [
-											"strict"
-										]
+											"strict",
+											"moderate",
+											"flexible"
+										],
+										"description": "Preference for the reconciliation strictness. Possible values: strict, moderate, flexible"
 									}
 								},
 								"required": [
@@ -545,6 +565,7 @@
 			},
 			"get": {
 				"summary": "Reconcile GSTR-2B Job Status",
+				"description": "Poll GSTR-2B reconciliation job status and download reconciliation report on job's successful completion.",
 				"tags": [
 					"GSTR-2B Reconciliation"
 				],
@@ -552,6 +573,8 @@
 					{
 						"name": "job_id",
 						"in": "query",
+						"required": true,
+						"description": "Job id of the created job",
 						"schema": {
 							"type": "string"
 						}
