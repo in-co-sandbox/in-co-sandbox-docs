@@ -524,6 +524,53 @@
 						"pages": [
 							"api-reference/it/index"
 						]
+					},
+					{
+						"item": "Bank",
+						"description": "Bank APIs",
+						"icon": "/static/svg/Bank.svg",
+						"groups": [
+							{
+								"group": "Virtual Account",
+								"pages": [
+									{
+										"group": "Accounts",
+										"pages": [
+											"api-reference/bank/virtual-account/accounts/endpoints/create_virtual_account",
+											"api-reference/bank/virtual-account/accounts/endpoints/fetch_virtual_account",
+											"api-reference/bank/virtual-account/accounts/endpoints/fetch_all_virtual_accounts",
+											"api-reference/bank/virtual-account/accounts/endpoints/fetch_virtual_account_balance",
+											"api-reference/bank/virtual-account/accounts/endpoints/patch_virtual_account",
+											"api-reference/bank/virtual-account/accounts/endpoints/delete_virtual_account"
+										]
+									},
+									{
+										"group": "Statements",
+										"pages": [
+											"api-reference/bank/virtual-account/statements/endpoints/submit_virtual_account_statement_job",
+											"api-reference/bank/virtual-account/statements/endpoints/poll_virtual_account_statement_job"
+										]
+									},
+									{
+										"group": "Payments",
+										"pages": [
+											"api-reference/bank/virtual-account/payments/endpoints/generate_static_qr_string",
+											"api-reference/bank/virtual-account/payments/endpoints/generate_dynamic_qr_string",
+											"api-reference/bank/virtual-account/payments/endpoints/generate_upi_collect_pay_request",
+											"api-reference/bank/virtual-account/payments/endpoints/request_payout"
+										]
+									},
+									{
+										"group": "Transactions",
+										"pages": [
+											"api-reference/bank/virtual-account/transactions/endpoints/fetch_transaction",
+											"api-reference/bank/virtual-account/transactions/endpoints/fetch_all_transactions",
+											"api-reference/bank/virtual-account/transactions/endpoints/cancel_transaction"
+										]
+									}
+								]
+							}
+						]
 					}
 				]
 			},
