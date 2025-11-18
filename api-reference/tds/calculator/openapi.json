@@ -1,0 +1,1104 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+        "title": "calculator",
+        "version": "1.0.0",
+        "description": ""
+    },
+    "servers": [
+        {
+            "url": "https://api.sandbox.co.in"
+        },
+        {
+            "url": "https://test-api.sandbox.co.in"
+        }
+    ],
+    "paths": {
+        "/tds/calculator/non-salary": {
+            "post": {
+                "summary": "Calculate TDS on Non-Salary Payments",
+                "tags": [
+                    "Non-salary Payments"
+                ],
+                "parameters": [
+                    {
+                        "name": "x-api-key",
+                        "in": "header",
+                        "required": true,
+                        "description": "API key for identification",
+                        "deprecated": false,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "authorization",
+                        "in": "header",
+                        "required": true,
+                        "description": "JWT access token",
+                        "deprecated": false,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "x-api-version",
+                        "in": "header",
+                        "description": "API Version",
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "200 TDS Calculated for 194BA",
+                        "headers": {
+                            "Date": {
+                                "schema": {
+                                    "type": "string"
+                                }
+                            },
+                            "Content-Length": {
+                                "schema": {
+                                    "type": "integer"
+                                }
+                            },
+                            "Connection": {
+                                "schema": {
+                                    "type": "string"
+                                }
+                            },
+                            "x-amzn-RequestId": {
+                                "schema": {
+                                    "type": "string"
+                                }
+                            },
+                            "Access-Control-Allow-Origin": {
+                                "schema": {
+                                    "type": "string"
+                                }
+                            },
+                            "Access-Control-Allow-Headers": {
+                                "schema": {
+                                    "type": "string"
+                                }
+                            },
+                            "x-amz-apigw-id": {
+                                "schema": {
+                                    "type": "string"
+                                }
+                            },
+                            "X-Requested-With": {
+                                "schema": {
+                                    "type": "string"
+                                }
+                            },
+                            "X-Amzn-Trace-Id": {
+                                "schema": {
+                                    "type": "string"
+                                }
+                            }
+                        },
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "transaction_id": {
+                                            "type": "string"
+                                        },
+                                        "code": {
+                                            "type": "integer"
+                                        },
+                                        "data": {
+                                            "type": "object",
+                                            "properties": {
+                                                "deduction_rate": {
+                                                    "type": "integer"
+                                                },
+                                                "is_206ab_applicable": {
+                                                    "type": "boolean"
+                                                },
+                                                "code": {
+                                                    "type": "string"
+                                                },
+                                                "credit_amount": {
+                                                    "type": "integer"
+                                                },
+                                                "due_date": {
+                                                    "type": "integer"
+                                                },
+                                                "deduction_amount": {
+                                                    "type": "integer"
+                                                },
+                                                "section": {
+                                                    "type": "string"
+                                                },
+                                                "is_pan_available": {
+                                                    "type": "boolean"
+                                                },
+                                                "@entity": {
+                                                    "type": "string"
+                                                },
+                                                "credit_date": {
+                                                    "type": "integer"
+                                                },
+                                                "threshold_amount": {
+                                                    "type": "integer"
+                                                },
+                                                "is_pan_operative": {
+                                                    "type": "boolean"
+                                                },
+                                                "nature_of_payment": {
+                                                    "type": "string"
+                                                },
+                                                "residential_status": {
+                                                    "type": "string"
+                                                },
+                                                "deductee_type": {
+                                                    "type": "string"
+                                                },
+                                                "category": {
+                                                    "type": "string"
+                                                }
+                                            }
+                                        },
+                                        "timestamp": {
+                                            "type": "integer"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "400 Request body not valid",
+                        "headers": {
+                            "Date": {
+                                "schema": {
+                                    "type": "string"
+                                }
+                            },
+                            "Content-Length": {
+                                "schema": {
+                                    "type": "integer"
+                                }
+                            },
+                            "Connection": {
+                                "schema": {
+                                    "type": "string"
+                                }
+                            },
+                            "x-amzn-RequestId": {
+                                "schema": {
+                                    "type": "integer"
+                                }
+                            },
+                            "x-amzn-Remapped-x-amzn-RequestId": {
+                                "schema": {
+                                    "type": "string"
+                                }
+                            },
+                            "x-amzn-Remapped-Content-Length": {
+                                "schema": {
+                                    "type": "integer"
+                                }
+                            },
+                            "x-amzn-Remapped-Connection": {
+                                "schema": {
+                                    "type": "string"
+                                }
+                            },
+                            "x-amz-apigw-id": {
+                                "schema": {
+                                    "type": "string"
+                                }
+                            },
+                            "X-Amzn-Trace-Id": {
+                                "schema": {
+                                    "type": "string"
+                                }
+                            },
+                            "x-amzn-Remapped-Date": {
+                                "schema": {
+                                    "type": "string"
+                                }
+                            }
+                        },
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "transaction_id": {
+                                            "type": "string"
+                                        },
+                                        "code": {
+                                            "type": "integer"
+                                        },
+                                        "message": {
+                                            "type": "string"
+                                        },
+                                        "timestamp": {
+                                            "type": "integer"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "422": {
+                        "description": "422 - Unprocessable Entity",
+                        "headers": {
+                            "Date": {
+                                "schema": {
+                                    "type": "string"
+                                }
+                            },
+                            "Content-Length": {
+                                "schema": {
+                                    "type": "integer"
+                                }
+                            },
+                            "Connection": {
+                                "schema": {
+                                    "type": "string"
+                                }
+                            },
+                            "x-amzn-RequestId": {
+                                "schema": {
+                                    "type": "string"
+                                }
+                            },
+                            "x-amzn-Remapped-x-amzn-RequestId": {
+                                "schema": {
+                                    "type": "integer"
+                                }
+                            },
+                            "x-amzn-Remapped-Content-Length": {
+                                "schema": {
+                                    "type": "integer"
+                                }
+                            },
+                            "x-amzn-Remapped-Connection": {
+                                "schema": {
+                                    "type": "string"
+                                }
+                            },
+                            "x-amz-apigw-id": {
+                                "schema": {
+                                    "type": "string"
+                                }
+                            },
+                            "X-Amzn-Trace-Id": {
+                                "schema": {
+                                    "type": "string"
+                                }
+                            },
+                            "x-amzn-Remapped-Date": {
+                                "schema": {
+                                    "type": "string"
+                                }
+                            }
+                        },
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "transaction_id": {
+                                            "type": "string"
+                                        },
+                                        "code": {
+                                            "type": "integer"
+                                        },
+                                        "message": {
+                                            "type": "string"
+                                        },
+                                        "timestamp": {
+                                            "type": "integer"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "500 Reference data not found",
+                        "headers": {
+                            "Date": {
+                                "schema": {
+                                    "type": "string"
+                                }
+                            },
+                            "Content-Length": {
+                                "schema": {
+                                    "type": "integer"
+                                }
+                            },
+                            "Connection": {
+                                "schema": {
+                                    "type": "string"
+                                }
+                            },
+                            "x-amzn-RequestId": {
+                                "schema": {
+                                    "type": "string"
+                                }
+                            },
+                            "x-amzn-Remapped-x-amzn-RequestId": {
+                                "schema": {
+                                    "type": "integer"
+                                }
+                            },
+                            "x-amzn-Remapped-Content-Length": {
+                                "schema": {
+                                    "type": "integer"
+                                }
+                            },
+                            "x-amzn-Remapped-Connection": {
+                                "schema": {
+                                    "type": "string"
+                                }
+                            },
+                            "x-amz-apigw-id": {
+                                "schema": {
+                                    "type": "string"
+                                }
+                            },
+                            "X-Amzn-Trace-Id": {
+                                "schema": {
+                                    "type": "string"
+                                }
+                            },
+                            "x-amzn-Remapped-Date": {
+                                "schema": {
+                                    "type": "string"
+                                }
+                            }
+                        },
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "transaction_id": {
+                                            "type": "string"
+                                        },
+                                        "code": {
+                                            "type": "integer"
+                                        },
+                                        "message": {
+                                            "type": "string"
+                                        },
+                                        "timestamp": {
+                                            "type": "integer"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type": "object",
+                                "properties": {
+                                    "@entity": {
+                                        "type": "string",
+                                        "enum": [
+                                            "in.co.sandbox.tds.calculator.non_salary.request"
+                                        ]
+                                    },
+                                    "deductee_type": {
+                                        "description": "Type of Deductee Possible Values: individual, huf, company, firm, trust, local_authority, body_of_individuals, association_of_persons, artificial_judicial_person",
+                                        "type": "string"
+                                    },
+                                    "is_pan_available": {
+                                        "description": "Is the PAN available with the deductee? Possible Values: true, or false,",
+                                        "type": "boolean"
+                                    },
+                                    "residential_status": {
+                                        "description": "Residential Status of the deductee. Possible Values: resident or non_resident",
+                                        "type": "string"
+                                    },
+                                    "is_206ab_applicable": {
+                                        "description": "Whether the deductee is a specified person u/s 206ab. Possible Values: true or false",
+                                        "type": "boolean"
+                                    },
+                                    "is_pan_operative": {
+                                        "description": "Whether the PAN of the deductee is Operative. Possible Values: true or false",
+                                        "type": "boolean"
+                                    },
+                                    "nature_of_payment": {
+                                        "description": "Type of the payment being made. Refer to Nature of Payments for enums",
+                                        "type": "string"
+                                    },
+                                    "credit_amount": {
+                                        "description": "Payment amount (in INR)",
+                                        "type": "integer"
+                                    },
+                                    "credit_date": {
+                                        "description": "Date of payment in EPOCH",
+                                        "type": "integer"
+                                    }
+                                },
+                                "required": [
+                                    "@entity",
+                                    "deductee_type",
+                                    "is_pan_available",
+                                    "residential_status",
+                                    "is_206ab_applicable",
+                                    "is_pan_operative",
+                                    "nature_of_payment",
+                                    "credit_amount",
+                                    "credit_date"
+                                ]
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/tcs/calculator": {
+            "post": {
+                "summary": "Calculate TCS on Payments",
+                "tags": [
+                    "TCS Payments"
+                ],
+                "parameters": [
+                    {
+                        "name": "authorization",
+                        "in": "header",
+                        "required": false,
+                        "description": "JWT access token",
+                        "deprecated": false,
+                        "schema": {}
+                    },
+                    {
+                        "name": "x-api-key",
+                        "in": "header",
+                        "required": false,
+                        "description": "API key for identification",
+                        "deprecated": false,
+                        "schema": {}
+                    },
+                    {
+                        "name": "x-api-version",
+                        "in": "header",
+                        "required": false,
+                        "description": "API Version",
+                        "deprecated": false,
+                        "schema": {}
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "200 - Success",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "code": {
+                                            "type": "integer"
+                                        },
+                                        "timestamp": {
+                                            "type": "integer"
+                                        },
+                                        "transaction_id": {
+                                            "type": "string"
+                                        },
+                                        "data": {
+                                            "type": "object",
+                                            "properties": {
+                                                "@entity": {
+                                                    "type": "string"
+                                                },
+                                                "collectee_type": {
+                                                    "type": "string"
+                                                },
+                                                "is_pan_available": {
+                                                    "type": "boolean"
+                                                },
+                                                "is_206cca_applicable": {
+                                                    "type": "boolean"
+                                                },
+                                                "is_pan_operative": {
+                                                    "type": "boolean"
+                                                },
+                                                "residential_status": {
+                                                    "type": "string"
+                                                },
+                                                "section": {
+                                                    "type": "string"
+                                                },
+                                                "code": {
+                                                    "type": "string"
+                                                },
+                                                "category": {
+                                                    "type": "string"
+                                                },
+                                                "nature_of_payment": {
+                                                    "type": "string"
+                                                },
+                                                "payment_amount": {
+                                                    "type": "integer"
+                                                },
+                                                "payment_date": {
+                                                    "type": "integer"
+                                                },
+                                                "collection_rate": {
+                                                    "type": "integer"
+                                                },
+                                                "threshold_amount": {
+                                                    "type": "integer"
+                                                },
+                                                "due_date": {
+                                                    "type": "integer"
+                                                },
+                                                "collection_amount": {
+                                                    "type": "integer"
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "400 Request body not valid",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "transaction_id": {
+                                            "type": "string"
+                                        },
+                                        "code": {
+                                            "type": "integer"
+                                        },
+                                        "message": {
+                                            "type": "string"
+                                        },
+                                        "timestamp": {
+                                            "type": "integer"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "422": {
+                        "description": "422 Missing collectee type",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "transaction_id": {
+                                            "type": "string"
+                                        },
+                                        "code": {
+                                            "type": "integer"
+                                        },
+                                        "message": {
+                                            "type": "string"
+                                        },
+                                        "timestamp": {
+                                            "type": "integer"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "500 Reference data not found",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "transaction_id": {
+                                            "type": "string"
+                                        },
+                                        "code": {
+                                            "type": "integer"
+                                        },
+                                        "message": {
+                                            "type": "string"
+                                        },
+                                        "timestamp": {
+                                            "type": "integer"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type": "object",
+                                "properties": {
+                                    "@entity": {
+                                        "type": "string",
+                                        "enum": [
+                                            "in.co.sandbox.tcs.calculator.request"
+                                        ]
+                                    },
+                                    "collectee_type": {
+                                        "description": "Type of Collectee Possible Values: individual, huf, company, firm, trust, local_authority, body_of_individuals, association_of_persons, artificial_judicial_person",
+                                        "type": "string"
+                                    },
+                                    "is_pan_available": {
+                                        "description": "Is the PAN available with the deductee? Possible Values: true, or false,",
+                                        "type": "boolean"
+                                    },
+                                    "residential_status": {
+                                        "type": "string",
+                                        "description": "Residential Status of the deductee. Possible Values: resident or non_resident"
+                                    },
+                                    "is_206cca_applicable": {
+                                        "type": "boolean",
+                                        "description": "Whether the deductee is a specified person u/s 206cca. Possible Values: true or false"
+                                    },
+                                    "is_pan_operative": {
+                                        "description": "Whether the PAN of the deductee is Operative. Possible Values: true or false",
+                                        "type": "boolean"
+                                    },
+                                    "nature_of_payment": {
+                                        "description": "Type of the payment being collected. Refer to Nature of payments for enums",
+                                        "type": "string"
+                                    },
+                                    "payment_amount": {
+                                        "description": "Payment amount inclusive of GST (in INR)",
+                                        "type": "number"
+                                    },
+                                    "payment_date": {
+                                        "description": "Date of payment in EPOCH",
+                                        "type": "number"
+                                    }
+                                },
+                                "required": [
+                                    "@entity",
+                                    "collectee_type",
+                                    "is_pan_available",
+                                    "residential_status",
+                                    "is_206cca_applicable",
+                                    "is_pan_operative",
+                                    "nature_of_payment",
+                                    "payment_amount",
+                                    "payment_date"
+                                ]
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/tds/calculator/salary": {
+            "post": {
+                "summary": "Create TDS Calculation Job",
+                "tags": [
+                    "Salary Payments",
+                    "Bulk TDS Calculator for Salary Payments"
+                ],
+                "parameters": [
+                    {
+                        "name": "financial_year",
+                        "in": "query",
+                        "required": true,
+                        "deprecated": false,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "authorization",
+                        "in": "header",
+                        "required": true,
+                        "description": "JWT access token",
+                        "deprecated": false,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "x-api-key",
+                        "in": "header",
+                        "required": true,
+                        "description": "API key for identification",
+                        "deprecated": false,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "x-api-version",
+                        "in": "header",
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "200 Job created",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "code": {
+                                            "type": "integer"
+                                        },
+                                        "timestamp": {
+                                            "type": "integer"
+                                        },
+                                        "transaction_id": {
+                                            "type": "string"
+                                        },
+                                        "data": {
+                                            "type": "object",
+                                            "properties": {
+                                                "@entity": {
+                                                    "type": "string"
+                                                },
+                                                "financial_year": {
+                                                    "type": "string"
+                                                },
+                                                "job_id": {
+                                                    "type": "string"
+                                                },
+                                                "status": {
+                                                    "type": "string"
+                                                },
+                                                "created_at": {
+                                                    "type": "integer"
+                                                },
+                                                "json_url": {
+                                                    "type": "string",
+                                                    "format": "uri"
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "get": {
+                "summary": "Fetch TDS Calculation Status",
+                "tags": [
+                    "Salary Payments",
+                    "Bulk TDS Calculator for Salary Payments"
+                ],
+                "parameters": [
+                    {
+                        "name": "job_id",
+                        "in": "query",
+                        "required": true,
+                        "description": "Unique identifier of a job",
+                        "deprecated": false,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "authorization",
+                        "in": "header",
+                        "required": true,
+                        "deprecated": false,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "x-api-key",
+                        "in": "header",
+                        "required": true,
+                        "deprecated": false,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "x-api-version",
+                        "in": "header",
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "200 - Success",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "code": {
+                                            "type": "integer"
+                                        },
+                                        "timestamp": {
+                                            "type": "integer"
+                                        },
+                                        "transaction_id": {
+                                            "type": "string"
+                                        },
+                                        "data": {
+                                            "type": "object",
+                                            "properties": {
+                                                "@entity": {
+                                                    "type": "string"
+                                                },
+                                                "financial_year": {
+                                                    "type": "string"
+                                                },
+                                                "job_id": {
+                                                    "type": "string"
+                                                },
+                                                "status": {
+                                                    "type": "string"
+                                                },
+                                                "created_at": {
+                                                    "type": "integer"
+                                                },
+                                                "updated_at": {
+                                                    "type": "integer"
+                                                },
+                                                "tds_on_salary_workbook_url": {
+                                                    "type": "string",
+                                                    "format": "uri"
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/tds/calculator/salary/sync": {
+            "post": {
+                "summary": "Calculate TDS on Salary Payments",
+                "tags": [
+                    "Salary Payments"
+                ],
+                "parameters": [
+                    {
+                        "name": "financial_year",
+                        "in": "query",
+                        "required": true,
+                        "deprecated": false,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "Authorization",
+                        "in": "header",
+                        "required": true,
+                        "description": "JWT access token",
+                        "deprecated": false,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "x-api-key",
+                        "in": "header",
+                        "required": true,
+                        "description": "API key for identification",
+                        "deprecated": false,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "x-api-version",
+                        "in": "header",
+                        "required": false,
+                        "deprecated": false,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "200 Success",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "code": {
+                                            "type": "integer"
+                                        },
+                                        "timestamp": {
+                                            "type": "integer"
+                                        },
+                                        "transaction_id": {
+                                            "type": "string"
+                                        },
+                                        "data": {
+                                            "type": "object",
+                                            "properties": {
+                                                "name": {
+                                                    "type": "string"
+                                                },
+                                                "@entity": {
+                                                    "type": "string"
+                                                },
+                                                "sheets": {
+                                                    "type": "array",
+                                                    "items": {
+                                                        "type": "object",
+                                                        "properties": {
+                                                            "name": {
+                                                                "type": "string"
+                                                            },
+                                                            "@entity": {
+                                                                "type": "string"
+                                                            },
+                                                            "items": {
+                                                                "type": "array",
+                                                                "items": {
+                                                                    "type": "array",
+                                                                    "items": {
+                                                                        "type": "string"
+                                                                    }
+                                                                }
+                                                            }
+                                                        }
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "400 Invalid request body",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "code": {
+                                            "type": "integer"
+                                        },
+                                        "timestamp": {
+                                            "type": "integer"
+                                        },
+                                        "transaction_id": {
+                                            "type": "string"
+                                        },
+                                        "message": {
+                                            "type": "string"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "422": {
+                        "description": "422 Invalid Financial Year",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "code": {
+                                            "type": "integer"
+                                        },
+                                        "timestamp": {
+                                            "type": "integer"
+                                        },
+                                        "transaction_id": {
+                                            "type": "string"
+                                        },
+                                        "message": {
+                                            "type": "string"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type": "object",
+                                "properties": {
+                                    "name": {
+                                        "type": "string"
+                                    },
+                                    "@entity": {
+                                        "type": "string"
+                                    },
+                                    "sheets": {
+                                        "type": "array",
+                                        "items": {
+                                            "type": "object",
+                                            "properties": {
+                                                "name": {
+                                                    "type": "string"
+                                                },
+                                                "@entity": {
+                                                    "type": "string"
+                                                },
+                                                "blocks": {
+                                                    "type": "array",
+                                                    "items": {
+                                                        "type": "object",
+                                                        "properties": {
+                                                            "name": {
+                                                                "type": "string"
+                                                            },
+                                                            "@entity": {
+                                                                "type": "string"
+                                                            },
+                                                            "items": {
+                                                                "type": "array",
+                                                                "items": {
+                                                                    "type": "array",
+                                                                    "items": {
+                                                                        "type": "string"
+                                                                    }
+                                                                }
+                                                            }
+                                                        }
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
