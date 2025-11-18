@@ -273,8 +273,75 @@
 						"item": "Income Tax",
 						"description": "Direct tax compliance on auto-pilot",
 						"icon": "/static/svg/IT.svg",
-						"pages": [
-							"api-reference/it/index"
+						"groups": [
+							{
+								"group": "Overview",
+								"pages": [
+									"api-reference/it/index"
+								]
+							},
+							{
+								"group": "Calculator",
+								"pages": [
+									{
+										"group": "Tax P&L",
+										"pages": [
+											{
+												"group": "Securities",
+												"pages": [
+													{
+														"group": "Domestic",
+														"pages": [
+															"api-reference/it/calculator/tax_pnl/securities/domestic/endpoints/submit_job",
+															"api-reference/it/calculator/tax_pnl/securities/domestic/endpoints/put_request",
+															"api-reference/it/calculator/tax_pnl/securities/domestic/endpoints/job_status"
+														]
+													},
+													{
+														"group": "Foreign",
+														"pages": [
+															"api-reference/it/calculator/tax_pnl/securities/foreign/endpoints/submit_job",
+															"api-reference/it/calculator/tax_pnl/securities/foreign/endpoints/put_request",
+															"api-reference/it/calculator/tax_pnl/securities/foreign/endpoints/job_status"
+														]
+													}
+												]
+											},
+											{
+												"group": "Crypto",
+												"pages": [
+													{
+														"group": "Tax P&L",
+														"pages": [
+															"api-reference/it/calculator/tax_pnl/crypto/endpoints/submit_job",
+															"api-reference/it/calculator/tax_pnl/crypto/endpoints/put_request",
+															"api-reference/it/calculator/tax_pnl/crypto/endpoints/job_status"
+														]
+													}
+												]
+											}
+										]
+									}
+								]
+							},
+							{
+								"group": "Reporting",
+								"pages": [
+									{
+										"group": "Securities",
+										"pages": [
+											{
+												"group": "Domestic",
+												"pages": [
+													"api-reference/it/report/securities/domestic/endpoints/submit_job",
+													"api-reference/it/report/securities/domestic/endpoints/put_request",
+													"api-reference/it/report/securities/domestic/endpoints/job_status"
+												]
+											}
+										]
+									}
+								]
+							}
 						]
 					}
 				]

@@ -1,0 +1,180 @@
+---
+title: "Submit Job — Tax P&L (Domestic Securities)"
+description: "Submit an asynchronous job to compute Tax Profit & Loss (P&L) for domestic securities."
+openapi: '../../../../../openapi.json POST /it/calculator/tax-pnl/securities/domestic'
+---
+
+import { Callout, Tabs, Tab, CodeBlock } from 'mintlify/components'
+
+# Submit Job — Tax P&L for Domestic Securities
+
+POST https://api.sandbox.co.in/it/calculator/tax-pnl/securities/domestic
+
+<Callout tone="note">
+This endpoint submits an asynchronous job to compute Tax P&L for domestic securities. The service accepts tradebook or scrip/trade-wise inputs, validates them and schedules a job. Poll the corresponding job status endpoint to get the result when the job completes.
+</Callout>
+
+## Authentication
+
+All requests must be authenticated. Typical headers:
+
+- `Authorization: Bearer <JWT access token>`
+- `x-api-key: <your-api-key>`
+- `Content-Type: application/json`
+
+## Headers
+
+The following HTTP headers are commonly required for this endpoint:
+
+| Header | Required | Description |
+|--------|----------|-------------|
+| Authorization | yes | Bearer JWT access token. Example: `Authorization: Bearer <token>` |
+| x-api-key | yes | Your API key for identification |
+| x-api-version | no | API version string (optional) |
+| Content-Type | yes | `application/json` |
+
+## Query parameters
+
+The endpoint accepts a small set of query parameters to control input/output modes and the financial year. Job-specific data (tradebooks, trades, etc.) should still be provided in the request body or via a presigned `tradebook_url` as shown in the Request section.
+
+| Parameter | Type | Required | Description |
+|-----------|------|----------|-------------|
+| `input` | string | required | Input format. Possible values: `tradebook`, `tradewise_settlement`, `scripwise_settlement`. |
+| `output` | string | required | Output/report type. Possible values: `tradewise_tax_pnl`, `scripwise_tax_pnl`. |
+| `financial_year` | string | optional | Financial year in `FY 20XX-XX` format. Defaults to `FY 2024-25` if not provided. |
+
+If additional optional query parameters (for example, for notifications or alternative report formats) are added to the live API, they will be documented in the API Reference UI and OpenAPI spec.
+
+## Request (high level)
+
+The request body accepts a job submission payload. The exact schema (required fields and entity names) is available in the API Reference UI / OpenAPI; the example below is representative:
+
+```json
+{
+  "@entity": "in.co.sandbox.it.calculator.tax-pnl.securities.domestic.request",
+  "client_id": "your-client-id",
+  "input_format": "tradebook",            
+  "tradebook_url": "https://s3...",      
+  "year": 2024,
+  "filing_preference": "monthly"
+}
+```
+
+Notes:
+- `input_format` can be `tradebook`, `tradewise` or `scripwise` depending on how you provide trades.
+- For large inputs you can provide a presigned `tradebook_url` instead of embedding the full payload.
+
+## Responses
+
+On success the endpoint returns a job resource describing the submitted job. The shape below is a representative example — consult the live API for exact fields.
+
+```json
+{
+  "code": 200,
+  "data": {
+    "@entity": "in.co.sandbox.it.calculator.tax-pnl.securities.domestic.job",
+    "job_id": "d3d19997-c48a-4867-95b9-5a77c3567098",
+    "status": "created",
+    "created_at": 1710739200000
+  },
+  "timestamp": 1710739200000
+}
+```
+
+Typical job statuses:
+- `created` — accepted and queued
+- `in_progress` — processing
+- `succeeded` — finished; report available via a presigned URL returned by the poll job endpoint
+- `failed` — processing failed; check the job details for error messages
+
+## Examples
+
+<Tabs>
+  <Tab label="cURL">
+
+```bash
+curl -X POST "https://api.sandbox.co.in/it/calculator/tax-pnl/securities/domestic" \
+  -H "Authorization: Bearer $TOKEN" \
+  -H "x-api-key: $API_KEY" \
+  -H "Content-Type: application/json" \
+  -d '{
+    "@entity": "in.co.sandbox.it.calculator.tax-pnl.securities.domestic.request",
+    "input_format": "tradebook",
+    "tradebook_url": "https://s3.amazonaws.com/your-bucket/your-tradebook.json",
+    "year": 2024
+  }'
+```
+
+  </Tab>
+
+  <Tab label="Node.js">
+
+```javascript
+import fetch from 'node-fetch';
+
+const res = await fetch('https://api.sandbox.co.in/it/calculator/tax-pnl/securities/domestic', {
+  method: 'POST',
+  headers: {
+    'Authorization': `Bearer ${process.env.TOKEN}`,
+    'x-api-key': process.env.API_KEY,
+    'Content-Type': 'application/json'
+  },
+  body: JSON.stringify({
+    '@entity': 'in.co.sandbox.it.calculator.tax-pnl.securities.domestic.request',
+    input_format: 'tradebook',
+    tradebook_url: 'https://s3.amazonaws.com/your-bucket/your-tradebook.json',
+    year: 2024
+  })
+});
+
+const payload = await res.json();
+console.log(payload);
+```
+
+  </Tab>
+
+  <Tab label="Python">
+
+```python
+import os
+import requests
+
+resp = requests.post(
+  'https://api.sandbox.co.in/it/calculator/tax-pnl/securities/domestic',
+  headers={
+    'Authorization': f"Bearer {os.environ.get('TOKEN')}",
+    'x-api-key': os.environ.get('API_KEY'),
+    'Content-Type': 'application/json'
+  },
+  json={
+    '@entity': 'in.co.sandbox.it.calculator.tax-pnl.securities.domestic.request',
+    'input_format': 'tradebook',
+    'tradebook_url': 'https://s3.amazonaws.com/your-bucket/your-tradebook.json',
+    'year': 2024
+  }
+)
+
+print(resp.json())
+```
+
+  </Tab>
+</Tabs>
+
+## Polling the job status
+
+After submitting a job, poll the job status endpoint (see the API Reference: `Poll Job GET`) with the `job_id` to retrieve progress and the final report URL when the job completes.
+
+## Errors
+
+- 400 Bad Request — invalid payload
+- 401 Unauthorized — missing/invalid token or API key
+- 422 Unprocessable Entity — validation errors in the tradebook
+- 5xx — server errors; retry with backoff or contact support
+
+## Notes & best practices
+
+- For very large tradebooks prefer uploading to a storage bucket and passing a presigned `tradebook_url` rather than embedding all trades in the request body.
+- Use idempotency keys (where supported) from your client side when re-submitting similar jobs.
+- Monitor rate limits and use the async job flow for long-running computations.
+
+If you want, I can also extract the exact request/response schema from the Income Tax OpenAPI and generate fully accurate examples (cURL/Node/Python) and schema tables. Tell me if you'd like that and I will pull the OpenAPI and generate the detailed docs.
