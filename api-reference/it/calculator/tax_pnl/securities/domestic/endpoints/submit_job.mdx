@@ -1,7 +1,7 @@
 ---
 title: "Submit Job — Tax P&L (Domestic Securities)"
 description: "Submit an asynchronous job to compute Tax Profit & Loss (P&L) for domestic securities."
-openapi: '../../../../../openapi.json POST /it/calculator/tax-pnl/securities/domestic'
+openapi: "../../../../../openapi.json POST /it/calculator/tax-pnl/securities/domestic"
 ---
 
 import { Callout, Tabs, Tab, CodeBlock } from 'mintlify/components'
@@ -10,9 +10,9 @@ import { Callout, Tabs, Tab, CodeBlock } from 'mintlify/components'
 
 POST https://api.sandbox.co.in/it/calculator/tax-pnl/securities/domestic
 
-<Callout tone="note">
-This endpoint submits an asynchronous job to compute Tax P&L for domestic securities. The service accepts tradebook or scrip/trade-wise inputs, validates them and schedules a job. Poll the corresponding job status endpoint to get the result when the job completes.
-</Callout>
+<Info>
+  This endpoint submits an asynchronous job to compute Tax P&L for domestic securities. The service accepts tradebook or scrip/trade-wise inputs, validates them and schedules a job. Poll the corresponding job status endpoint to get the result when the job completes.
+</Info>
 
 ## Authentication
 
@@ -20,28 +20,28 @@ All requests must be authenticated. Typical headers:
 
 - `Authorization: Bearer <JWT access token>`
 - `x-api-key: <your-api-key>`
-- `Content-Type: application/json`
+- `Content-Type: application/json `
 
 ## Headers
 
 The following HTTP headers are commonly required for this endpoint:
 
-| Header | Required | Description |
-|--------|----------|-------------|
-| Authorization | yes | Bearer JWT access token. Example: `Authorization: Bearer <token>` |
-| x-api-key | yes | Your API key for identification |
-| x-api-version | no | API version string (optional) |
-| Content-Type | yes | `application/json` |
+| Header        | Required | Description                                                       |
+| ------------- | -------- | ----------------------------------------------------------------- |
+| Authorization | yes      | Bearer JWT access token. Example: `Authorization: Bearer <token>` |
+| x-api-key     | yes      | Your API key for identification                                   |
+| x-api-version | no       | API version string (optional)                                     |
+| Content-Type  | yes      | `application/json / application/xlsx`                             |
 
 ## Query parameters
 
 The endpoint accepts a small set of query parameters to control input/output modes and the financial year. Job-specific data (tradebooks, trades, etc.) should still be provided in the request body or via a presigned `tradebook_url` as shown in the Request section.
 
-| Parameter | Type | Required | Description |
-|-----------|------|----------|-------------|
-| `input` | string | required | Input format. Possible values: `tradebook`, `tradewise_settlement`, `scripwise_settlement`. |
-| `output` | string | required | Output/report type. Possible values: `tradewise_tax_pnl`, `scripwise_tax_pnl`. |
-| `financial_year` | string | optional | Financial year in `FY 20XX-XX` format. Defaults to `FY 2024-25` if not provided. |
+| Parameter        | Type   | Required | Description                                                                                 |
+| ---------------- | ------ | -------- | ------------------------------------------------------------------------------------------- |
+| `input`          | string | required | Input format. Possible values: `tradebook`, `tradewise_settlement`, `scripwise_settlement`. |
+| `output`         | string | required | Output/report type. Possible values: `tradewise_tax_pnl`, `scripwise_tax_pnl`.              |
+| `financial_year` | string | optional | Financial year in `FY 20XX-XX` format. Defaults to `FY 2024-25` if not provided.            |
 
 If additional optional query parameters (for example, for notifications or alternative report formats) are added to the live API, they will be documented in the API Reference UI and OpenAPI spec.
 
@@ -50,17 +50,16 @@ If additional optional query parameters (for example, for notifications or alter
 The request body accepts a job submission payload. The exact schema (required fields and entity names) is available in the API Reference UI / OpenAPI; the example below is representative:
 
 ```json
-{
-  "@entity": "in.co.sandbox.it.calculator.tax-pnl.securities.domestic.request",
-  "client_id": "your-client-id",
-  "input_format": "tradebook",            
-  "tradebook_url": "https://s3...",      
-  "year": 2024,
-  "filing_preference": "monthly"
-}
+curl --location --request POST 'https://api.sandbox.co.in/it/calculator/tax-pnl/securities/domestic?input=tradewise_settlement&output=tradewise_tax_pnl&financial_year=FY%202024-25' \
+--header 'x-accept-type: application/json' \
+--header 'x-api-key: **' \
+--header 'x-api-version: 1.0.0' \
+--header 'Authorization: e**** \
+--data ''
 ```
 
 Notes:
+
 - `input_format` can be `tradebook`, `tradewise` or `scripwise` depending on how you provide trades.
 - For large inputs you can provide a presigned `tradebook_url` instead of embedding the full payload.
 
@@ -82,6 +81,7 @@ On success the endpoint returns a job resource describing the submitted job. The
 ```
 
 Typical job statuses:
+
 - `created` — accepted and queued
 - `in_progress` — processing
 - `succeeded` — finished; report available via a presigned URL returned by the poll job endpoint
@@ -90,73 +90,65 @@ Typical job statuses:
 ## Examples
 
 <Tabs>
-  <Tab label="cURL">
-
-```bash
-curl -X POST "https://api.sandbox.co.in/it/calculator/tax-pnl/securities/domestic" \
-  -H "Authorization: Bearer $TOKEN" \
-  -H "x-api-key: $API_KEY" \
-  -H "Content-Type: application/json" \
-  -d '{
-    "@entity": "in.co.sandbox.it.calculator.tax-pnl.securities.domestic.request",
-    "input_format": "tradebook",
-    "tradebook_url": "https://s3.amazonaws.com/your-bucket/your-tradebook.json",
-    "year": 2024
-  }'
-```
-
+  <Tab title="Tab">
+    ```bash
+    curl -X POST "https://api.sandbox.co.in/it/calculator/tax-pnl/securities/domestic" \
+      -H "Authorization: Bearer $TOKEN" \
+      -H "x-api-key: $API_KEY" \
+      -H "Content-Type: application/json" \
+      -d '{
+        "@entity": "in.co.sandbox.it.calculator.tax-pnl.securities.domestic.request",
+        "input_format": "tradebook",
+        "tradebook_url": "https://s3.amazonaws.com/your-bucket/your-tradebook.json",
+        "year": 2024
+      }'
+    ```
   </Tab>
-
-  <Tab label="Node.js">
-
-```javascript
-import fetch from 'node-fetch';
-
-const res = await fetch('https://api.sandbox.co.in/it/calculator/tax-pnl/securities/domestic', {
-  method: 'POST',
-  headers: {
-    'Authorization': `Bearer ${process.env.TOKEN}`,
-    'x-api-key': process.env.API_KEY,
-    'Content-Type': 'application/json'
-  },
-  body: JSON.stringify({
-    '@entity': 'in.co.sandbox.it.calculator.tax-pnl.securities.domestic.request',
-    input_format: 'tradebook',
-    tradebook_url: 'https://s3.amazonaws.com/your-bucket/your-tradebook.json',
-    year: 2024
-  })
-});
-
-const payload = await res.json();
-console.log(payload);
-```
-
+  <Tab title="Tab">
+    ```javascript
+    import fetch from 'node-fetch';
+    
+    const res = await fetch('https://api.sandbox.co.in/it/calculator/tax-pnl/securities/domestic', {
+      method: 'POST',
+      headers: {
+        'Authorization': `Bearer ${process.env.TOKEN}`,
+        'x-api-key': process.env.API_KEY,
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+        '@entity': 'in.co.sandbox.it.calculator.tax-pnl.securities.domestic.request',
+        input_format: 'tradebook',
+        tradebook_url: 'https://s3.amazonaws.com/your-bucket/your-tradebook.json',
+        year: 2024
+      })
+    });
+    
+    const payload = await res.json();
+    console.log(payload);
+    ```
   </Tab>
-
-  <Tab label="Python">
-
-```python
-import os
-import requests
-
-resp = requests.post(
-  'https://api.sandbox.co.in/it/calculator/tax-pnl/securities/domestic',
-  headers={
-    'Authorization': f"Bearer {os.environ.get('TOKEN')}",
-    'x-api-key': os.environ.get('API_KEY'),
-    'Content-Type': 'application/json'
-  },
-  json={
-    '@entity': 'in.co.sandbox.it.calculator.tax-pnl.securities.domestic.request',
-    'input_format': 'tradebook',
-    'tradebook_url': 'https://s3.amazonaws.com/your-bucket/your-tradebook.json',
-    'year': 2024
-  }
-)
-
-print(resp.json())
-```
-
+  <Tab title="Tab">
+    ```python
+    import os
+    import requests
+    
+    resp = requests.post(
+      'https://api.sandbox.co.in/it/calculator/tax-pnl/securities/domestic',
+      headers={
+        'Authorization': f"Bearer {os.environ.get('TOKEN')}",
+        'x-api-key': os.environ.get('API_KEY'),
+        'Content-Type': 'application/json'
+      },
+      json={
+        '@entity': 'in.co.sandbox.it.calculator.tax-pnl.securities.domestic.request',
+        'input_format': 'tradebook',
+        'tradebook_url': 'https://s3.amazonaws.com/your-bucket/your-tradebook.json',
+        'year': 2024
+      }
+    )
+    
+    print(resp.json())
+    ```
   </Tab>
 </Tabs>
 
