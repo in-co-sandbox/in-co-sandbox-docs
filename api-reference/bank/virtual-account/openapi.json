@@ -1,0 +1,2846 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+      "title": "virtual bank",
+      "version": "1.0.0",
+      "description": ""
+    },
+    "servers": [
+        {
+            "url": "https://api.sandbox.co.in"
+        },
+        {
+            "url": "https://test-api.sandbox.co.in"
+        }
+    ],
+    "paths": {
+      "/bank/virtual/accounts/{account_number}/statements/jobs": {
+        "post": {
+          "summary": "Submit Job",
+          "tags": [
+            "Accounts",
+            "Virtual Account Statement"
+          ],
+          "parameters": [
+            {
+              "name": "x-api-key",
+              "in": "header",
+              "schema": {
+                "type": "string"
+              }
+            },
+            {
+              "name": "Authorization",
+              "in": "header",
+              "schema": {
+                "type": "string"
+              }
+            },
+            {
+              "name": "x-accept-type",
+              "in": "header",
+              "schema": {
+                "type": "string"
+              }
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "200",
+              "headers": {
+                "Date": {
+                  "schema": {
+                    "type": "string"
+                  }
+                },
+                "Content-Length": {
+                  "schema": {
+                    "type": "integer"
+                  }
+                },
+                "Connection": {
+                  "schema": {
+                    "type": "string"
+                  }
+                },
+                "x-amzn-RequestId": {
+                  "schema": {
+                    "type": "integer"
+                  }
+                },
+                "x-amzn-Remapped-x-amzn-RequestId": {
+                  "schema": {
+                    "type": "string"
+                  }
+                },
+                "Access-Control-Allow-Origin": {
+                  "schema": {
+                    "type": "string"
+                  }
+                },
+                "Content-Encoding": {
+                  "schema": {
+                    "type": "string"
+                  }
+                },
+                "Access-Control-Allow-Headers": {
+                  "schema": {
+                    "type": "string"
+                  }
+                },
+                "x-amzn-Remapped-Content-Length": {
+                  "schema": {
+                    "type": "integer"
+                  }
+                },
+                "x-amzn-Remapped-Connection": {
+                  "schema": {
+                    "type": "string"
+                  }
+                },
+                "x-amz-apigw-id": {
+                  "schema": {
+                    "type": "string"
+                  }
+                },
+                "X-Requested-With": {
+                  "schema": {
+                    "type": "string"
+                  }
+                },
+                "X-Amzn-Trace-Id": {
+                  "schema": {
+                    "type": "string"
+                  }
+                },
+                "x-amzn-Remapped-Date": {
+                  "schema": {
+                    "type": "string"
+                  }
+                }
+              },
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "type": "object",
+                    "properties": {
+                      "timestamp": {
+                        "type": "integer"
+                      },
+                      "transaction_id": {
+                        "type": "string"
+                      },
+                      "data": {
+                        "type": "object",
+                        "properties": {
+                          "id": {
+                            "type": "string"
+                          },
+                          "created_at": {
+                            "type": "integer"
+                          },
+                          "@entity": {
+                            "type": "string"
+                          },
+                          "status": {
+                            "type": "string"
+                          },
+                          "from": {
+                            "type": "integer"
+                          },
+                          "to": {
+                            "type": "integer"
+                          }
+                        }
+                      },
+                      "code": {
+                        "type": "integer"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "requestBody": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "@entity": {
+                      "type": "string"
+                    },
+                    "from": {
+                      "type": "integer"
+                    },
+                    "to": {
+                      "type": "integer"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "account_number",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ]
+      },
+      "/bank/virtual/accounts/{account_number}/statements/jobs/{job_id}": {
+        "get": {
+          "summary": "Poll Job",
+          "tags": [
+            "Accounts",
+            "Virtual Account Statement"
+          ],
+          "parameters": [
+            {
+              "name": "x-api-key",
+              "in": "header",
+              "schema": {
+                "type": "string"
+              }
+            },
+            {
+              "name": "Authorization",
+              "in": "header",
+              "schema": {
+                "type": "string"
+              }
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "Get Account Statement Job",
+              "headers": {
+                "Date": {
+                  "schema": {
+                    "type": "string"
+                  }
+                },
+                "Content-Length": {
+                  "schema": {
+                    "type": "integer"
+                  }
+                },
+                "Connection": {
+                  "schema": {
+                    "type": "string"
+                  }
+                },
+                "x-amzn-RequestId": {
+                  "schema": {
+                    "type": "integer"
+                  }
+                },
+                "x-amz-apigw-id": {
+                  "schema": {
+                    "type": "string"
+                  }
+                },
+                "X-Amzn-Trace-Id": {
+                  "schema": {
+                    "type": "string"
+                  }
+                }
+              },
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "type": "object",
+                    "properties": {
+                      "code": {
+                        "type": "integer"
+                      },
+                      "timestamp": {
+                        "type": "integer"
+                      },
+                      "transaction_id": {
+                        "type": "string"
+                      },
+                      "data": {
+                        "type": "object",
+                        "properties": {
+                          "@entity": {
+                            "type": "string"
+                          },
+                          "job_id": {
+                            "type": "string"
+                          },
+                          "status": {
+                            "type": "string"
+                          },
+                          "from": {
+                            "type": "integer"
+                          },
+                          "to": {
+                            "type": "integer"
+                          },
+                          "statement_url": {
+                            "type": "string",
+                            "format": "uri"
+                          },
+                          "created_at": {
+                            "type": "integer"
+                          },
+                          "updated_at": {
+                            "type": "integer"
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "account_number",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "job_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ]
+      },
+      "/bank/virtual/accounts/create": {
+        "post": {
+          "summary": "Create Virtual Account",
+          "tags": [
+            "Accounts"
+          ],
+          "parameters": [
+            {
+              "name": "account_number_preference",
+              "in": "query",
+              "description": "Preference for account number",
+              "schema": {
+                "type": "string"
+              }
+            },
+            {
+              "name": "name_on_account",
+              "in": "query",
+              "description": "Name on account",
+              "schema": {
+                "type": "string"
+              }
+            },
+            {
+              "name": "x-api-key",
+              "in": "header",
+              "required": true,
+              "deprecated": false,
+              "schema": {
+                "type": "string"
+              }
+            },
+            {
+              "name": "Authorization",
+              "in": "header",
+              "schema": {
+                "type": "string"
+              }
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "200",
+              "headers": {
+                "Date": {
+                  "schema": {
+                    "type": "string"
+                  }
+                },
+                "Content-Length": {
+                  "schema": {
+                    "type": "integer"
+                  }
+                },
+                "Connection": {
+                  "schema": {
+                    "type": "string"
+                  }
+                },
+                "x-amzn-RequestId": {
+                  "schema": {
+                    "type": "string"
+                  }
+                },
+                "x-amzn-Remapped-x-amzn-RequestId": {
+                  "schema": {
+                    "type": "integer"
+                  }
+                },
+                "Access-Control-Allow-Origin": {
+                  "schema": {
+                    "type": "string"
+                  }
+                },
+                "Content-Encoding": {
+                  "schema": {
+                    "type": "string"
+                  }
+                },
+                "Access-Control-Allow-Headers": {
+                  "schema": {
+                    "type": "string"
+                  }
+                },
+                "x-amzn-Remapped-Content-Length": {
+                  "schema": {
+                    "type": "integer"
+                  }
+                },
+                "x-amzn-Remapped-Connection": {
+                  "schema": {
+                    "type": "string"
+                  }
+                },
+                "x-amz-apigw-id": {
+                  "schema": {
+                    "type": "string"
+                  }
+                },
+                "X-Requested-With": {
+                  "schema": {
+                    "type": "string"
+                  }
+                },
+                "X-Amzn-Trace-Id": {
+                  "schema": {
+                    "type": "string"
+                  }
+                },
+                "x-amzn-Remapped-Date": {
+                  "schema": {
+                    "type": "string"
+                  }
+                }
+              },
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "type": "object",
+                    "properties": {
+                      "timestamp": {
+                        "type": "integer"
+                      },
+                      "transaction_id": {
+                        "type": "string"
+                      },
+                      "data": {
+                        "type": "object",
+                        "properties": {
+                          "@entity": {
+                            "type": "string"
+                          },
+                          "account_number": {
+                            "type": "string"
+                          },
+                          "ifsc": {
+                            "type": "string"
+                          },
+                          "bank_name": {
+                            "type": "string"
+                          },
+                          "status": {
+                            "type": "string"
+                          },
+                          "notes": {
+                            "type": "object"
+                          },
+                          "name": {
+                            "type": "string"
+                          },
+                          "created_at": {
+                            "type": "integer"
+                          }
+                        }
+                      },
+                      "code": {
+                        "type": "integer"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "requestBody": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object"
+                }
+              }
+            }
+          }
+        }
+      },
+      "/bank/virtual/accounts/{account_number}": {
+        "get": {
+          "summary": "Fetch Virtual Account",
+          "tags": [
+            "Accounts"
+          ],
+          "parameters": [
+            {
+              "name": "x-api-key",
+              "in": "header",
+              "schema": {
+                "type": "string"
+              }
+            },
+            {
+              "name": "Authorization",
+              "in": "header",
+              "schema": {
+                "type": "string"
+              }
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "200",
+              "headers": {
+                "Date": {
+                  "schema": {
+                    "type": "string"
+                  }
+                },
+                "Content-Length": {
+                  "schema": {
+                    "type": "integer"
+                  }
+                },
+                "Connection": {
+                  "schema": {
+                    "type": "string"
+                  }
+                },
+                "x-amzn-RequestId": {
+                  "schema": {
+                    "type": "integer"
+                  }
+                },
+                "x-amzn-Remapped-x-amzn-RequestId": {
+                  "schema": {
+                    "type": "integer"
+                  }
+                },
+                "Access-Control-Allow-Origin": {
+                  "schema": {
+                    "type": "string"
+                  }
+                },
+                "Content-Encoding": {
+                  "schema": {
+                    "type": "string"
+                  }
+                },
+                "Access-Control-Allow-Headers": {
+                  "schema": {
+                    "type": "string"
+                  }
+                },
+                "x-amzn-Remapped-Content-Length": {
+                  "schema": {
+                    "type": "integer"
+                  }
+                },
+                "x-amzn-Remapped-Connection": {
+                  "schema": {
+                    "type": "string"
+                  }
+                },
+                "x-amz-apigw-id": {
+                  "schema": {
+                    "type": "string"
+                  }
+                },
+                "X-Requested-With": {
+                  "schema": {
+                    "type": "string"
+                  }
+                },
+                "X-Amzn-Trace-Id": {
+                  "schema": {
+                    "type": "string"
+                  }
+                },
+                "x-amzn-Remapped-Date": {
+                  "schema": {
+                    "type": "string"
+                  }
+                }
+              },
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "type": "object",
+                    "properties": {
+                      "timestamp": {
+                        "type": "integer"
+                      },
+                      "transaction_id": {
+                        "type": "string"
+                      },
+                      "data": {
+                        "type": "object",
+                        "properties": {
+                          "@entity": {
+                            "type": "string"
+                          },
+                          "account_number": {
+                            "type": "string"
+                          },
+                          "ifsc": {
+                            "type": "string"
+                          },
+                          "bank_name": {
+                            "type": "string"
+                          },
+                          "external_id": {
+                            "type": "string"
+                          },
+                          "status": {
+                            "type": "string"
+                          },
+                          "notes": {
+                            "type": "object",
+                            "properties": {
+                              "test1": {
+                                "type": "string"
+                              }
+                            }
+                          },
+                          "name": {
+                            "type": "string"
+                          },
+                          "created_at": {
+                            "type": "integer"
+                          },
+                          "updated_at": {
+                            "type": "integer"
+                          }
+                        }
+                      },
+                      "code": {
+                        "type": "integer"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "account_number",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "patch": {
+          "summary": "Patch Virtual Account",
+          "tags": [
+            "Accounts"
+          ],
+          "parameters": [
+            {
+              "name": "x-api-key",
+              "in": "header",
+              "schema": {
+                "type": "string"
+              }
+            },
+            {
+              "name": "Authorization",
+              "in": "header",
+              "schema": {
+                "type": "string"
+              }
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "200",
+              "headers": {
+                "Date": {
+                  "schema": {
+                    "type": "string"
+                  }
+                },
+                "Content-Length": {
+                  "schema": {
+                    "type": "integer"
+                  }
+                },
+                "Connection": {
+                  "schema": {
+                    "type": "string"
+                  }
+                },
+                "x-amzn-RequestId": {
+                  "schema": {
+                    "type": "string"
+                  }
+                },
+                "x-amzn-Remapped-x-amzn-RequestId": {
+                  "schema": {
+                    "type": "integer"
+                  }
+                },
+                "Access-Control-Allow-Origin": {
+                  "schema": {
+                    "type": "string"
+                  }
+                },
+                "Content-Encoding": {
+                  "schema": {
+                    "type": "string"
+                  }
+                },
+                "Access-Control-Allow-Headers": {
+                  "schema": {
+                    "type": "string"
+                  }
+                },
+                "x-amzn-Remapped-Content-Length": {
+                  "schema": {
+                    "type": "integer"
+                  }
+                },
+                "x-amzn-Remapped-Connection": {
+                  "schema": {
+                    "type": "string"
+                  }
+                },
+                "x-amz-apigw-id": {
+                  "schema": {
+                    "type": "string"
+                  }
+                },
+                "X-Requested-With": {
+                  "schema": {
+                    "type": "string"
+                  }
+                },
+                "X-Amzn-Trace-Id": {
+                  "schema": {
+                    "type": "string"
+                  }
+                },
+                "x-amzn-Remapped-Date": {
+                  "schema": {
+                    "type": "string"
+                  }
+                }
+              },
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "type": "object",
+                    "properties": {
+                      "timestamp": {
+                        "type": "integer"
+                      },
+                      "transaction_id": {
+                        "type": "string"
+                      },
+                      "data": {
+                        "type": "object",
+                        "properties": {
+                          "@entity": {
+                            "type": "string"
+                          },
+                          "account_number": {
+                            "type": "string"
+                          },
+                          "ifsc": {
+                            "type": "string"
+                          },
+                          "bank_name": {
+                            "type": "string"
+                          },
+                          "external_id": {
+                            "type": "string"
+                          },
+                          "status": {
+                            "type": "string"
+                          },
+                          "notes": {
+                            "type": "object",
+                            "properties": {
+                              "test1": {
+                                "type": "string"
+                              }
+                            }
+                          },
+                          "name": {
+                            "type": "string"
+                          },
+                          "created_at": {
+                            "type": "integer"
+                          },
+                          "updated_at": {
+                            "type": "integer"
+                          }
+                        }
+                      },
+                      "code": {
+                        "type": "integer"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "requestBody": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "external_id": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "delete": {
+          "summary": "Delete Virtual Account",
+          "tags": [
+            "Accounts"
+          ],
+          "parameters": [
+            {
+              "name": "x-api-key",
+              "in": "header",
+              "schema": {
+                "type": "string"
+              }
+            },
+            {
+              "name": "Authorization",
+              "in": "header",
+              "schema": {
+                "type": "string"
+              }
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "200",
+              "headers": {
+                "Date": {
+                  "schema": {
+                    "type": "string"
+                  }
+                },
+                "Content-Length": {
+                  "schema": {
+                    "type": "integer"
+                  }
+                },
+                "Connection": {
+                  "schema": {
+                    "type": "string"
+                  }
+                },
+                "x-amzn-RequestId": {
+                  "schema": {
+                    "type": "string"
+                  }
+                },
+                "x-amzn-Remapped-x-amzn-RequestId": {
+                  "schema": {
+                    "type": "integer"
+                  }
+                },
+                "Access-Control-Allow-Origin": {
+                  "schema": {
+                    "type": "string"
+                  }
+                },
+                "Content-Encoding": {
+                  "schema": {
+                    "type": "string"
+                  }
+                },
+                "Access-Control-Allow-Headers": {
+                  "schema": {
+                    "type": "string"
+                  }
+                },
+                "x-amzn-Remapped-Content-Length": {
+                  "schema": {
+                    "type": "integer"
+                  }
+                },
+                "x-amzn-Remapped-Connection": {
+                  "schema": {
+                    "type": "string"
+                  }
+                },
+                "x-amz-apigw-id": {
+                  "schema": {
+                    "type": "string"
+                  }
+                },
+                "X-Requested-With": {
+                  "schema": {
+                    "type": "string"
+                  }
+                },
+                "X-Amzn-Trace-Id": {
+                  "schema": {
+                    "type": "string"
+                  }
+                },
+                "x-amzn-Remapped-Date": {
+                  "schema": {
+                    "type": "string"
+                  }
+                }
+              },
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "type": "object",
+                    "properties": {
+                      "timestamp": {
+                        "type": "integer"
+                      },
+                      "transaction_id": {
+                        "type": "string"
+                      },
+                      "code": {
+                        "type": "integer"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "/bank/virtual/accounts/{account_number}/balance": {
+        "get": {
+          "summary": "Fetch Virtual Account Balance",
+          "tags": [
+            "Accounts"
+          ],
+          "parameters": [
+            {
+              "name": "x-api-key",
+              "in": "header",
+              "schema": {
+                "type": "string"
+              }
+            },
+            {
+              "name": "Authorization",
+              "in": "header",
+              "description": "JWT Authorization token",
+              "schema": {
+                "type": "string"
+              }
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "200",
+              "headers": {
+                "Date": {
+                  "schema": {
+                    "type": "string"
+                  }
+                },
+                "Content-Length": {
+                  "schema": {
+                    "type": "integer"
+                  }
+                },
+                "Connection": {
+                  "schema": {
+                    "type": "string"
+                  }
+                },
+                "x-amzn-RequestId": {
+                  "schema": {
+                    "type": "integer"
+                  }
+                },
+                "x-amzn-Remapped-x-amzn-RequestId": {
+                  "schema": {
+                    "type": "string"
+                  }
+                },
+                "Access-Control-Allow-Origin": {
+                  "schema": {
+                    "type": "string"
+                  }
+                },
+                "Content-Encoding": {
+                  "schema": {
+                    "type": "string"
+                  }
+                },
+                "Access-Control-Allow-Headers": {
+                  "schema": {
+                    "type": "string"
+                  }
+                },
+                "x-amzn-Remapped-Content-Length": {
+                  "schema": {
+                    "type": "integer"
+                  }
+                },
+                "x-amzn-Remapped-Connection": {
+                  "schema": {
+                    "type": "string"
+                  }
+                },
+                "x-amz-apigw-id": {
+                  "schema": {
+                    "type": "string"
+                  }
+                },
+                "X-Requested-With": {
+                  "schema": {
+                    "type": "string"
+                  }
+                },
+                "X-Amzn-Trace-Id": {
+                  "schema": {
+                    "type": "string"
+                  }
+                },
+                "x-amzn-Remapped-Date": {
+                  "schema": {
+                    "type": "string"
+                  }
+                }
+              },
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "type": "object",
+                    "properties": {
+                      "timestamp": {
+                        "type": "integer"
+                      },
+                      "transaction_id": {
+                        "type": "string"
+                      },
+                      "data": {
+                        "type": "object",
+                        "properties": {
+                          "balance": {
+                            "type": "integer"
+                          }
+                        }
+                      },
+                      "code": {
+                        "type": "integer"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "account_number",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ]
+      },
+      "/bank/virtual/accounts": {
+        "get": {
+          "summary": "Fetch Virtual Accounts",
+          "tags": [
+            "Accounts"
+          ],
+          "parameters": [
+            {
+              "name": "external_id",
+              "in": "query",
+              "schema": {
+                "type": "string"
+              }
+            },
+            {
+              "name": "status",
+              "in": "query",
+              "schema": {
+                "type": "string"
+              }
+            },
+            {
+              "name": "x-api-key",
+              "in": "header",
+              "schema": {
+                "type": "string"
+              }
+            },
+            {
+              "name": "Authorization",
+              "in": "header",
+              "schema": {
+                "type": "string"
+              }
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "200",
+              "headers": {
+                "Date": {
+                  "schema": {
+                    "type": "string"
+                  }
+                },
+                "Content-Length": {
+                  "schema": {
+                    "type": "integer"
+                  }
+                },
+                "Connection": {
+                  "schema": {
+                    "type": "string"
+                  }
+                },
+                "x-amzn-RequestId": {
+                  "schema": {
+                    "type": "string"
+                  }
+                },
+                "x-amzn-Remapped-x-amzn-RequestId": {
+                  "schema": {
+                    "type": "string"
+                  }
+                },
+                "Access-Control-Allow-Origin": {
+                  "schema": {
+                    "type": "string"
+                  }
+                },
+                "Content-Encoding": {
+                  "schema": {
+                    "type": "string"
+                  }
+                },
+                "Access-Control-Allow-Headers": {
+                  "schema": {
+                    "type": "string"
+                  }
+                },
+                "x-amzn-Remapped-Content-Length": {
+                  "schema": {
+                    "type": "integer"
+                  }
+                },
+                "x-amzn-Remapped-Connection": {
+                  "schema": {
+                    "type": "string"
+                  }
+                },
+                "x-amz-apigw-id": {
+                  "schema": {
+                    "type": "string"
+                  }
+                },
+                "X-Requested-With": {
+                  "schema": {
+                    "type": "string"
+                  }
+                },
+                "X-Amzn-Trace-Id": {
+                  "schema": {
+                    "type": "string"
+                  }
+                },
+                "x-amzn-Remapped-Date": {
+                  "schema": {
+                    "type": "string"
+                  }
+                }
+              },
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "type": "object",
+                    "properties": {
+                      "timestamp": {
+                        "type": "integer"
+                      },
+                      "transaction_id": {
+                        "type": "string"
+                      },
+                      "data": {
+                        "type": "object",
+                        "properties": {
+                          "@entity": {
+                            "type": "string"
+                          },
+                          "items": {
+                            "type": "array",
+                            "items": {
+                              "type": "object",
+                              "properties": {
+                                "@entity": {
+                                  "type": "string"
+                                },
+                                "account_number": {
+                                  "type": "string"
+                                },
+                                "ifsc": {
+                                  "type": "string"
+                                },
+                                "bank_name": {
+                                  "type": "string"
+                                },
+                                "external_id": {
+                                  "type": "string"
+                                },
+                                "status": {
+                                  "type": "string"
+                                },
+                                "notes": {
+                                  "type": "object",
+                                  "properties": {
+                                    "test1": {
+                                      "type": "string"
+                                    }
+                                  }
+                                },
+                                "name": {
+                                  "type": "string"
+                                },
+                                "created_at": {
+                                  "type": "integer"
+                                },
+                                "updated_at": {
+                                  "type": "integer"
+                                }
+                              }
+                            }
+                          }
+                        }
+                      },
+                      "code": {
+                        "type": "integer"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "/bank/virtual/accounts/{account_number}/payments/payin/upi/generate-static-qr": {
+        "post": {
+          "summary": "Generate Static QR String",
+          "tags": [
+            "Payments"
+          ],
+          "parameters": [
+            {
+              "name": "x-api-key",
+              "in": "header",
+              "schema": {
+                "type": "string"
+              }
+            },
+            {
+              "name": "Authorization",
+              "in": "header",
+              "description": "JWT Authorization token",
+              "schema": {
+                "type": "string"
+              }
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "200",
+              "headers": {
+                "Date": {
+                  "schema": {
+                    "type": "string"
+                  }
+                },
+                "Content-Length": {
+                  "schema": {
+                    "type": "integer"
+                  }
+                },
+                "Connection": {
+                  "schema": {
+                    "type": "string"
+                  }
+                },
+                "x-amzn-RequestId": {
+                  "schema": {
+                    "type": "integer"
+                  }
+                },
+                "x-amzn-Remapped-x-amzn-RequestId": {
+                  "schema": {
+                    "type": "string"
+                  }
+                },
+                "Access-Control-Allow-Origin": {
+                  "schema": {
+                    "type": "string"
+                  }
+                },
+                "Content-Encoding": {
+                  "schema": {
+                    "type": "string"
+                  }
+                },
+                "Access-Control-Allow-Headers": {
+                  "schema": {
+                    "type": "string"
+                  }
+                },
+                "x-amzn-Remapped-Content-Length": {
+                  "schema": {
+                    "type": "integer"
+                  }
+                },
+                "x-amzn-Remapped-Connection": {
+                  "schema": {
+                    "type": "string"
+                  }
+                },
+                "x-amz-apigw-id": {
+                  "schema": {
+                    "type": "string"
+                  }
+                },
+                "X-Requested-With": {
+                  "schema": {
+                    "type": "string"
+                  }
+                },
+                "X-Amzn-Trace-Id": {
+                  "schema": {
+                    "type": "string"
+                  }
+                },
+                "x-amzn-Remapped-Date": {
+                  "schema": {
+                    "type": "string"
+                  }
+                }
+              },
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "type": "object",
+                    "properties": {
+                      "timestamp": {
+                        "type": "integer"
+                      },
+                      "transaction_id": {
+                        "type": "string"
+                      },
+                      "data": {
+                        "type": "object",
+                        "properties": {
+                          "qr_string": {
+                            "type": "string",
+                            "format": "uri"
+                          }
+                        }
+                      },
+                      "code": {
+                        "type": "integer"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "requestBody": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object"
+                }
+              }
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "account_number",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ]
+      },
+      "/bank/virtual/accounts/{account_number}/payments/payin/upi/generate-dynamic-qr": {
+        "post": {
+          "summary": "Generate Dynamic QR String",
+          "tags": [
+            "Payments"
+          ],
+          "parameters": [
+            {
+              "name": "x-api-key",
+              "in": "header",
+              "schema": {
+                "type": "string"
+              }
+            },
+            {
+              "name": "Authorization",
+              "in": "header",
+              "description": "JWT Authorization token",
+              "schema": {
+                "type": "string"
+              }
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "200",
+              "headers": {
+                "Date": {
+                  "schema": {
+                    "type": "string"
+                  }
+                },
+                "Content-Length": {
+                  "schema": {
+                    "type": "integer"
+                  }
+                },
+                "Connection": {
+                  "schema": {
+                    "type": "string"
+                  }
+                },
+                "x-amzn-RequestId": {
+                  "schema": {
+                    "type": "string"
+                  }
+                },
+                "x-amzn-Remapped-x-amzn-RequestId": {
+                  "schema": {
+                    "type": "integer"
+                  }
+                },
+                "Access-Control-Allow-Origin": {
+                  "schema": {
+                    "type": "string"
+                  }
+                },
+                "Content-Encoding": {
+                  "schema": {
+                    "type": "string"
+                  }
+                },
+                "Access-Control-Allow-Headers": {
+                  "schema": {
+                    "type": "string"
+                  }
+                },
+                "x-amzn-Remapped-Content-Length": {
+                  "schema": {
+                    "type": "integer"
+                  }
+                },
+                "x-amzn-Remapped-Connection": {
+                  "schema": {
+                    "type": "string"
+                  }
+                },
+                "x-amz-apigw-id": {
+                  "schema": {
+                    "type": "string"
+                  }
+                },
+                "X-Requested-With": {
+                  "schema": {
+                    "type": "string"
+                  }
+                },
+                "X-Amzn-Trace-Id": {
+                  "schema": {
+                    "type": "string"
+                  }
+                },
+                "x-amzn-Remapped-Date": {
+                  "schema": {
+                    "type": "string"
+                  }
+                }
+              },
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "type": "object",
+                    "properties": {
+                      "timestamp": {
+                        "type": "integer"
+                      },
+                      "transaction_id": {
+                        "type": "string"
+                      },
+                      "data": {
+                        "type": "object",
+                        "properties": {
+                          "qr_string": {
+                            "type": "string",
+                            "format": "uri"
+                          },
+                          "transaction_id": {
+                            "type": "string"
+                          }
+                        }
+                      },
+                      "code": {
+                        "type": "integer"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "requestBody": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "@entity": {
+                      "type": "string"
+                    },
+                    "amount": {
+                      "type": "integer"
+                    },
+                    "payment_details": {
+                      "type": "object",
+                      "properties": {
+                        "@entity": {
+                          "type": "string"
+                        },
+                        "description": {
+                          "type": "string"
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "account_number",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ]
+      },
+      "/bank/virtual/accounts/{account_number}/payments/payin/upi/collect": {
+        "post": {
+          "summary": "Collect UPI Pay Request",
+          "tags": [
+            "Payments"
+          ],
+          "parameters": [
+            {
+              "name": "x-api-key",
+              "in": "header",
+              "schema": {
+                "type": "string"
+              }
+            },
+            {
+              "name": "Authorization",
+              "in": "header",
+              "schema": {
+                "type": "string"
+              }
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "200",
+              "headers": {
+                "Date": {
+                  "schema": {
+                    "type": "string"
+                  }
+                },
+                "Content-Length": {
+                  "schema": {
+                    "type": "integer"
+                  }
+                },
+                "Connection": {
+                  "schema": {
+                    "type": "string"
+                  }
+                },
+                "x-amzn-RequestId": {
+                  "schema": {
+                    "type": "integer"
+                  }
+                },
+                "x-amzn-Remapped-x-amzn-RequestId": {
+                  "schema": {
+                    "type": "integer"
+                  }
+                },
+                "Access-Control-Allow-Origin": {
+                  "schema": {
+                    "type": "string"
+                  }
+                },
+                "Content-Encoding": {
+                  "schema": {
+                    "type": "string"
+                  }
+                },
+                "Access-Control-Allow-Headers": {
+                  "schema": {
+                    "type": "string"
+                  }
+                },
+                "x-amzn-Remapped-Content-Length": {
+                  "schema": {
+                    "type": "integer"
+                  }
+                },
+                "x-amzn-Remapped-Connection": {
+                  "schema": {
+                    "type": "string"
+                  }
+                },
+                "x-amz-apigw-id": {
+                  "schema": {
+                    "type": "string"
+                  }
+                },
+                "X-Requested-With": {
+                  "schema": {
+                    "type": "string"
+                  }
+                },
+                "X-Amzn-Trace-Id": {
+                  "schema": {
+                    "type": "string"
+                  }
+                },
+                "x-amzn-Remapped-Date": {
+                  "schema": {
+                    "type": "string"
+                  }
+                }
+              },
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "type": "object",
+                    "properties": {
+                      "timestamp": {
+                        "type": "integer"
+                      },
+                      "transaction_id": {
+                        "type": "string"
+                      },
+                      "data": {
+                        "type": "object",
+                        "properties": {
+                          "id": {
+                            "type": "string"
+                          },
+                          "description": {
+                            "type": "string"
+                          },
+                          "created_at": {
+                            "type": "integer"
+                          },
+                          "@entity": {
+                            "type": "string"
+                          },
+                          "notes": {
+                            "type": "object"
+                          },
+                          "payer": {
+                            "type": "object",
+                            "properties": {
+                              "@entity": {
+                                "type": "string"
+                              },
+                              "name": {
+                                "type": "string"
+                              },
+                              "bank_account": {
+                                "type": "object",
+                                "properties": {
+                                  "@entity": {
+                                    "type": "string"
+                                  },
+                                  "notes": {
+                                    "type": "object"
+                                  },
+                                  "upi_id": {
+                                    "type": "string"
+                                  }
+                                }
+                              }
+                            }
+                          },
+                          "payee": {
+                            "type": "object",
+                            "properties": {
+                              "@entity": {
+                                "type": "string"
+                              },
+                              "name": {
+                                "type": "string"
+                              },
+                              "bank_account": {
+                                "type": "object",
+                                "properties": {
+                                  "@entity": {
+                                    "type": "string"
+                                  },
+                                  "account_number": {
+                                    "type": "string"
+                                  },
+                                  "ifsc": {
+                                    "type": "string"
+                                  },
+                                  "notes": {
+                                    "type": "object"
+                                  },
+                                  "upi_id": {
+                                    "type": "string"
+                                  }
+                                }
+                              }
+                            }
+                          },
+                          "status": {
+                            "type": "string"
+                          },
+                          "mode": {
+                            "type": "string"
+                          },
+                          "type": {
+                            "type": "string"
+                          },
+                          "amount": {
+                            "type": "integer"
+                          },
+                          "fee": {
+                            "type": "integer"
+                          },
+                          "tax": {
+                            "type": "integer"
+                          }
+                        }
+                      },
+                      "code": {
+                        "type": "integer"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "requestBody": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "@entity": {
+                      "type": "string"
+                    },
+                    "payer": {
+                      "type": "object",
+                      "properties": {
+                        "@entity": {
+                          "type": "string"
+                        },
+                        "name": {
+                          "type": "string"
+                        },
+                        "bank_account": {
+                          "type": "object",
+                          "properties": {
+                            "@entity": {
+                              "type": "string"
+                            },
+                            "upi_id": {
+                              "type": "string"
+                            }
+                          }
+                        }
+                      }
+                    },
+                    "amount": {
+                      "type": "integer"
+                    },
+                    "payment_details": {
+                      "type": "object",
+                      "properties": {
+                        "@entity": {
+                          "type": "string"
+                        },
+                        "description": {
+                          "type": "string"
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "account_number",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ]
+      },
+      "/bank/virtual/accounts/{account_number}/payments/payout": {
+        "post": {
+          "summary": "Submit Payout",
+          "tags": [
+            "Payments"
+          ],
+          "parameters": [
+            {
+              "name": "x-api-key",
+              "in": "header",
+              "schema": {
+                "type": "string"
+              }
+            },
+            {
+              "name": "Authorization",
+              "in": "header",
+              "schema": {
+                "type": "string"
+              }
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "200",
+              "headers": {
+                "Date": {
+                  "schema": {
+                    "type": "string"
+                  }
+                },
+                "Content-Length": {
+                  "schema": {
+                    "type": "integer"
+                  }
+                },
+                "Connection": {
+                  "schema": {
+                    "type": "string"
+                  }
+                },
+                "x-amzn-RequestId": {
+                  "schema": {
+                    "type": "integer"
+                  }
+                },
+                "x-amzn-Remapped-x-amzn-RequestId": {
+                  "schema": {
+                    "type": "integer"
+                  }
+                },
+                "Access-Control-Allow-Origin": {
+                  "schema": {
+                    "type": "string"
+                  }
+                },
+                "Content-Encoding": {
+                  "schema": {
+                    "type": "string"
+                  }
+                },
+                "Access-Control-Allow-Headers": {
+                  "schema": {
+                    "type": "string"
+                  }
+                },
+                "x-amzn-Remapped-Content-Length": {
+                  "schema": {
+                    "type": "integer"
+                  }
+                },
+                "x-amzn-Remapped-Connection": {
+                  "schema": {
+                    "type": "string"
+                  }
+                },
+                "x-amz-apigw-id": {
+                  "schema": {
+                    "type": "string"
+                  }
+                },
+                "X-Requested-With": {
+                  "schema": {
+                    "type": "string"
+                  }
+                },
+                "X-Amzn-Trace-Id": {
+                  "schema": {
+                    "type": "string"
+                  }
+                },
+                "x-amzn-Remapped-Date": {
+                  "schema": {
+                    "type": "string"
+                  }
+                }
+              },
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "type": "object",
+                    "properties": {
+                      "timestamp": {
+                        "type": "integer"
+                      },
+                      "transaction_id": {
+                        "type": "string"
+                      },
+                      "data": {
+                        "type": "object",
+                        "properties": {
+                          "id": {
+                            "type": "string"
+                          },
+                          "description": {
+                            "type": "string"
+                          },
+                          "created_at": {
+                            "type": "integer"
+                          },
+                          "@entity": {
+                            "type": "string"
+                          },
+                          "notes": {
+                            "type": "object"
+                          },
+                          "payer": {
+                            "type": "object",
+                            "properties": {
+                              "@entity": {
+                                "type": "string"
+                              },
+                              "name": {
+                                "type": "string"
+                              },
+                              "bank_account": {
+                                "type": "object",
+                                "properties": {
+                                  "@entity": {
+                                    "type": "string"
+                                  },
+                                  "account_number": {
+                                    "type": "string"
+                                  },
+                                  "ifsc": {
+                                    "type": "string"
+                                  },
+                                  "notes": {
+                                    "type": "object"
+                                  }
+                                }
+                              }
+                            }
+                          },
+                          "payee": {
+                            "type": "object",
+                            "properties": {
+                              "@entity": {
+                                "type": "string"
+                              },
+                              "name": {
+                                "type": "string"
+                              },
+                              "bank_account": {
+                                "type": "object",
+                                "properties": {
+                                  "@entity": {
+                                    "type": "string"
+                                  },
+                                  "account_number": {
+                                    "type": "string",
+                                    "format": "utc-millisec"
+                                  },
+                                  "ifsc": {
+                                    "type": "string"
+                                  },
+                                  "notes": {
+                                    "type": "object"
+                                  }
+                                }
+                              }
+                            }
+                          },
+                          "status": {
+                            "type": "string"
+                          },
+                          "mode": {
+                            "type": "string"
+                          },
+                          "type": {
+                            "type": "string"
+                          },
+                          "amount": {
+                            "type": "integer"
+                          },
+                          "fee": {
+                            "type": "integer"
+                          },
+                          "tax": {
+                            "type": "integer"
+                          }
+                        }
+                      },
+                      "code": {
+                        "type": "integer"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "requestBody": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "@entity": {
+                      "type": "string"
+                    },
+                    "payee": {
+                      "type": "object",
+                      "properties": {
+                        "@entity": {
+                          "type": "string"
+                        },
+                        "name": {
+                          "type": "string"
+                        },
+                        "bank_account": {
+                          "type": "object",
+                          "properties": {
+                            "@entity": {
+                              "type": "string"
+                            },
+                            "account_number": {
+                              "type": "string",
+                              "format": "utc-millisec"
+                            },
+                            "ifsc": {
+                              "type": "string"
+                            }
+                          }
+                        }
+                      }
+                    },
+                    "amount": {
+                      "type": "integer"
+                    },
+                    "payment_details": {
+                      "type": "object",
+                      "properties": {
+                        "@entity": {
+                          "type": "string"
+                        },
+                        "description": {
+                          "type": "string"
+                        },
+                        "mode": {
+                          "type": "string"
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "account_number",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ]
+      },
+      "/bank/virtual/accounts/{account_number}/transactions/{transaction_id}": {
+        "get": {
+          "summary": "Fetch Transaction",
+          "tags": [
+            "Transactions"
+          ],
+          "parameters": [
+            {
+              "name": "x-api-key",
+              "in": "header",
+              "schema": {
+                "type": "string"
+              }
+            },
+            {
+              "name": "Authorization",
+              "in": "header",
+              "schema": {
+                "type": "string"
+              }
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "200",
+              "headers": {
+                "Date": {
+                  "schema": {
+                    "type": "string"
+                  }
+                },
+                "Content-Length": {
+                  "schema": {
+                    "type": "integer"
+                  }
+                },
+                "Connection": {
+                  "schema": {
+                    "type": "string"
+                  }
+                },
+                "x-amzn-RequestId": {
+                  "schema": {
+                    "type": "integer"
+                  }
+                },
+                "Content-Encoding": {
+                  "schema": {
+                    "type": "string"
+                  }
+                },
+                "x-amz-apigw-id": {
+                  "schema": {
+                    "type": "string"
+                  }
+                },
+                "X-Amzn-Trace-Id": {
+                  "schema": {
+                    "type": "string"
+                  }
+                }
+              },
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "type": "object",
+                    "properties": {
+                      "code": {
+                        "type": "integer"
+                      },
+                      "timestamp": {
+                        "type": "integer"
+                      },
+                      "transaction_id": {
+                        "type": "string"
+                      },
+                      "data": {
+                        "type": "object",
+                        "properties": {
+                          "id": {
+                            "type": "string"
+                          },
+                          "description": {
+                            "type": "string"
+                          },
+                          "created_at": {
+                            "type": "integer"
+                          },
+                          "@entity": {
+                            "type": "string"
+                          },
+                          "notes": {
+                            "type": "object"
+                          },
+                          "payee": {
+                            "type": "object",
+                            "properties": {
+                              "@entity": {
+                                "type": "string"
+                              },
+                              "name": {
+                                "type": "string"
+                              },
+                              "bank_account": {
+                                "type": "object",
+                                "properties": {
+                                  "@entity": {
+                                    "type": "string"
+                                  },
+                                  "account_number": {
+                                    "type": "string"
+                                  },
+                                  "ifsc": {
+                                    "type": "string"
+                                  },
+                                  "notes": {
+                                    "type": "object"
+                                  },
+                                  "upi_id": {
+                                    "type": "string"
+                                  }
+                                }
+                              }
+                            }
+                          },
+                          "status": {
+                            "type": "string"
+                          },
+                          "mode": {
+                            "type": "string"
+                          },
+                          "type": {
+                            "type": "string"
+                          },
+                          "amount": {
+                            "type": "integer"
+                          },
+                          "fee": {
+                            "type": "integer"
+                          },
+                          "tax": {
+                            "type": "integer"
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "account_number",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "transaction_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ]
+      },
+      "/bank/virtual/accounts/{account_number}/transactions": {
+        "get": {
+          "summary": "Fetch Transactions",
+          "tags": [
+            "Transactions"
+          ],
+          "parameters": [
+            {
+              "name": "from",
+              "in": "query",
+              "schema": {
+                "type": "integer"
+              }
+            },
+            {
+              "name": "to",
+              "in": "query",
+              "schema": {
+                "type": "string"
+              }
+            },
+            {
+              "name": "status",
+              "in": "query",
+              "schema": {
+                "type": "string"
+              }
+            },
+            {
+              "name": "reference_transaction_id",
+              "in": "query",
+              "schema": {
+                "type": "integer"
+              }
+            },
+            {
+              "name": "bank_reference_number",
+              "in": "query",
+              "schema": {
+                "type": "string"
+              }
+            },
+            {
+              "name": "limit",
+              "in": "query",
+              "schema": {
+                "type": "integer"
+              }
+            },
+            {
+              "name": "last_evaluated_key",
+              "in": "query",
+              "schema": {
+                "type": "string"
+              }
+            },
+            {
+              "name": "x-api-key",
+              "in": "header",
+              "schema": {
+                "type": "string"
+              }
+            },
+            {
+              "name": "Authorization",
+              "in": "header",
+              "schema": {
+                "type": "string"
+              }
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "200",
+              "headers": {
+                "Date": {
+                  "schema": {
+                    "type": "string"
+                  }
+                },
+                "Content-Length": {
+                  "schema": {
+                    "type": "integer"
+                  }
+                },
+                "Connection": {
+                  "schema": {
+                    "type": "string"
+                  }
+                },
+                "x-amzn-RequestId": {
+                  "schema": {
+                    "type": "integer"
+                  }
+                },
+                "x-amzn-Remapped-x-amzn-RequestId": {
+                  "schema": {
+                    "type": "string"
+                  }
+                },
+                "Access-Control-Allow-Origin": {
+                  "schema": {
+                    "type": "string"
+                  }
+                },
+                "Content-Encoding": {
+                  "schema": {
+                    "type": "string"
+                  }
+                },
+                "Access-Control-Allow-Headers": {
+                  "schema": {
+                    "type": "string"
+                  }
+                },
+                "x-amzn-Remapped-Content-Length": {
+                  "schema": {
+                    "type": "integer"
+                  }
+                },
+                "x-amzn-Remapped-Connection": {
+                  "schema": {
+                    "type": "string"
+                  }
+                },
+                "x-amz-apigw-id": {
+                  "schema": {
+                    "type": "string"
+                  }
+                },
+                "X-Requested-With": {
+                  "schema": {
+                    "type": "string"
+                  }
+                },
+                "X-Amzn-Trace-Id": {
+                  "schema": {
+                    "type": "string"
+                  }
+                },
+                "x-amzn-Remapped-Date": {
+                  "schema": {
+                    "type": "string"
+                  }
+                }
+              },
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "type": "object",
+                    "properties": {
+                      "timestamp": {
+                        "type": "integer"
+                      },
+                      "transaction_id": {
+                        "type": "string"
+                      },
+                      "data": {
+                        "type": "object",
+                        "properties": {
+                          "@entity": {
+                            "type": "string"
+                          },
+                          "items": {
+                            "type": "array",
+                            "items": {
+                              "type": "object",
+                              "properties": {
+                                "id": {
+                                  "type": "string"
+                                },
+                                "description": {
+                                  "type": "string"
+                                },
+                                "created_at": {
+                                  "type": "integer"
+                                },
+                                "@entity": {
+                                  "type": "string"
+                                },
+                                "notes": {
+                                  "type": "object"
+                                },
+                                "payer": {
+                                  "type": "object",
+                                  "properties": {
+                                    "@entity": {
+                                      "type": "string"
+                                    },
+                                    "name": {
+                                      "type": "string"
+                                    },
+                                    "bank_account": {
+                                      "type": "object",
+                                      "properties": {
+                                        "@entity": {
+                                          "type": "string"
+                                        },
+                                        "notes": {
+                                          "type": "object"
+                                        },
+                                        "upi_id": {
+                                          "type": "string"
+                                        }
+                                      }
+                                    }
+                                  }
+                                },
+                                "payee": {
+                                  "type": "object",
+                                  "properties": {
+                                    "@entity": {
+                                      "type": "string"
+                                    },
+                                    "name": {
+                                      "type": "string"
+                                    },
+                                    "bank_account": {
+                                      "type": "object",
+                                      "properties": {
+                                        "@entity": {
+                                          "type": "string"
+                                        },
+                                        "account_number": {
+                                          "type": "string"
+                                        },
+                                        "ifsc": {
+                                          "type": "string"
+                                        },
+                                        "notes": {
+                                          "type": "object"
+                                        },
+                                        "upi_id": {
+                                          "type": "string"
+                                        }
+                                      }
+                                    }
+                                  }
+                                },
+                                "status": {
+                                  "type": "string"
+                                },
+                                "mode": {
+                                  "type": "string"
+                                },
+                                "type": {
+                                  "type": "string"
+                                },
+                                "amount": {
+                                  "type": "integer"
+                                },
+                                "fee": {
+                                  "type": "integer"
+                                },
+                                "tax": {
+                                  "type": "integer"
+                                }
+                              }
+                            }
+                          },
+                          "last_evaluated_key": {
+                            "type": "string"
+                          }
+                        }
+                      },
+                      "code": {
+                        "type": "integer"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "account_number",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ]
+      },
+      "/bank/virtual/accounts/{account_number}/transactions/{transaction_id}/cancel": {
+        "post": {
+          "summary": "Cancel Transaction",
+          "tags": [
+            "Transactions"
+          ],
+          "parameters": [
+            {
+              "name": "x-api-key",
+              "in": "header",
+              "schema": {
+                "type": "string"
+              }
+            },
+            {
+              "name": "Authorization",
+              "in": "header",
+              "schema": {
+                "type": "string"
+              }
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "200",
+              "headers": {
+                "Date": {
+                  "schema": {
+                    "type": "string"
+                  }
+                },
+                "Content-Length": {
+                  "schema": {
+                    "type": "integer"
+                  }
+                },
+                "Connection": {
+                  "schema": {
+                    "type": "string"
+                  }
+                },
+                "x-amzn-RequestId": {
+                  "schema": {
+                    "type": "string"
+                  }
+                },
+                "x-amzn-Remapped-x-amzn-RequestId": {
+                  "schema": {
+                    "type": "string"
+                  }
+                },
+                "Access-Control-Allow-Origin": {
+                  "schema": {
+                    "type": "string"
+                  }
+                },
+                "Content-Encoding": {
+                  "schema": {
+                    "type": "string"
+                  }
+                },
+                "Access-Control-Allow-Headers": {
+                  "schema": {
+                    "type": "string"
+                  }
+                },
+                "x-amzn-Remapped-Content-Length": {
+                  "schema": {
+                    "type": "integer"
+                  }
+                },
+                "x-amzn-Remapped-Connection": {
+                  "schema": {
+                    "type": "string"
+                  }
+                },
+                "x-amz-apigw-id": {
+                  "schema": {
+                    "type": "string"
+                  }
+                },
+                "X-Requested-With": {
+                  "schema": {
+                    "type": "string"
+                  }
+                },
+                "X-Amzn-Trace-Id": {
+                  "schema": {
+                    "type": "string"
+                  }
+                },
+                "x-amzn-Remapped-Date": {
+                  "schema": {
+                    "type": "string"
+                  }
+                }
+              },
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "type": "object",
+                    "properties": {
+                      "timestamp": {
+                        "type": "integer"
+                      },
+                      "transaction_id": {
+                        "type": "string"
+                      },
+                      "data": {
+                        "type": "object",
+                        "properties": {
+                          "id": {
+                            "type": "string"
+                          },
+                          "description": {
+                            "type": "string"
+                          },
+                          "created_at": {
+                            "type": "integer"
+                          },
+                          "updated_at": {
+                            "type": "integer"
+                          },
+                          "@entity": {
+                            "type": "string"
+                          },
+                          "failure_reason": {
+                            "type": "string"
+                          },
+                          "notes": {
+                            "type": "object"
+                          },
+                          "payer": {
+                            "type": "object",
+                            "properties": {
+                              "@entity": {
+                                "type": "string"
+                              },
+                              "name": {
+                                "type": "string"
+                              },
+                              "bank_account": {
+                                "type": "object",
+                                "properties": {
+                                  "@entity": {
+                                    "type": "string"
+                                  },
+                                  "notes": {
+                                    "type": "object"
+                                  },
+                                  "upi_id": {
+                                    "type": "string"
+                                  }
+                                }
+                              }
+                            }
+                          },
+                          "payee": {
+                            "type": "object",
+                            "properties": {
+                              "@entity": {
+                                "type": "string"
+                              },
+                              "name": {
+                                "type": "string"
+                              },
+                              "bank_account": {
+                                "type": "object",
+                                "properties": {
+                                  "@entity": {
+                                    "type": "string"
+                                  },
+                                  "account_number": {
+                                    "type": "string"
+                                  },
+                                  "ifsc": {
+                                    "type": "string"
+                                  },
+                                  "notes": {
+                                    "type": "object"
+                                  },
+                                  "upi_id": {
+                                    "type": "string"
+                                  }
+                                }
+                              }
+                            }
+                          },
+                          "status": {
+                            "type": "string"
+                          },
+                          "mode": {
+                            "type": "string"
+                          },
+                          "type": {
+                            "type": "string"
+                          },
+                          "amount": {
+                            "type": "integer"
+                          },
+                          "fee": {
+                            "type": "integer"
+                          },
+                          "tax": {
+                            "type": "integer"
+                          }
+                        }
+                      },
+                      "code": {
+                        "type": "integer"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "account_number",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "transaction_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            }
+          }
+        ]
+      }
+    }
+  }
