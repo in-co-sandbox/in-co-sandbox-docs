@@ -1,0 +1,1201 @@
+{
+    "openapi": "3.1.0",
+    "info": {
+        "title": "analytics",
+        "version": "1.0.0",
+        "description": ""
+    },
+    "servers": [
+        {
+            "url": "https://api.sandbox.co.in"
+        },
+        {
+            "url": "https://test-api.sandbox.co.in"
+        }
+    ],
+    "paths": {
+        "/tds/analytics/potential-notices": {
+            "post": {
+                "summary": "Create TDS Potential Notice Job",
+                "tags": [
+                    "Potential Notices",
+                    "TDS"
+                ],
+                "parameters": [
+                    {
+                        "name": "x-api-key",
+                        "in": "header",
+                        "required": true,
+                        "description": "API key for identification",
+                        "deprecated": false,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "authorization",
+                        "in": "header",
+                        "required": true,
+                        "description": "JWT access token",
+                        "deprecated": false,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "x-api-version",
+                        "in": "header",
+                        "description": "API Version",
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "200 - Success",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "code": {
+                                            "type": "integer"
+                                        },
+                                        "timestamp": {
+                                            "type": "integer"
+                                        },
+                                        "transaction_id": {
+                                            "type": "string"
+                                        },
+                                        "data": {
+                                            "type": "object",
+                                            "properties": {
+                                                "@entity": {
+                                                    "type": "string",
+                                                    "enum": [
+                                                        "in.co.sandbox.tds.analytics.potential_notices.job"
+                                                    ]
+                                                },
+                                                "job_id": {
+                                                    "type": "string"
+                                                },
+                                                "tan": {
+                                                    "type": "string"
+                                                },
+                                                "quarter": {
+                                                    "type": "string"
+                                                },
+                                                "financial_year": {
+                                                    "type": "string"
+                                                },
+                                                "form": {
+                                                    "type": "string"
+                                                },
+                                                "status": {
+                                                    "type": "string"
+                                                },
+                                                "created_at": {
+                                                    "type": "integer"
+                                                },
+                                                "json_url": {
+                                                    "type": "string",
+                                                    "format": "uri"
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "422": {
+                        "description": "422 - Unprocessable Entity",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "code": {
+                                            "type": "integer"
+                                        },
+                                        "timestamp": {
+                                            "type": "integer"
+                                        },
+                                        "transaction_id": {
+                                            "type": "string"
+                                        },
+                                        "message": {
+                                            "type": "string"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type": "object",
+                                "properties": {
+                                    "@entity": {
+                                        "type": "string",
+                                        "const": "in.co.sandbox.tds.analytics.potential_notice.request"
+                                    },
+                                    "quarter": {
+                                        "type": "string",
+                                        "description": "Quarter for which TDS is being filed",
+                                        "enum": [
+                                            "Q1",
+                                            "Q2",
+                                            "Q3",
+                                            "Q4"
+                                        ]
+                                    },
+                                    "tan": {
+                                        "type": "string",
+                                        "description": "TAN of deductor. Regular Expression: [A-Z]{4}[0-9]{5}[A-Z]{1}",
+                                        "pattern": "[A-Z]{4}[0-9]{5}[A-Z]{1}"
+                                    },
+                                    "form": {
+                                        "type": "string",
+                                        "description": "TDS return form",
+                                        "enum": [
+                                            "24Q",
+                                            "26Q",
+                                            "27Q"
+                                        ]
+                                    },
+                                    "financial_year": {
+                                        "type": "string",
+                                        "description": "Financial Year for which TDS is being filed. (eg. FY 2024-25)",
+                                        "example": "FY 2024-25"
+                                    }
+                                },
+                                "required": [
+                                    "@entity",
+                                    "quarter",
+                                    "tan",
+                                    "form",
+                                    "financial_year"
+                                ]
+                            }
+                        }
+                    }
+                }
+            },
+            "get": {
+                "summary": "Fetch Potential Notice status",
+                "tags": [
+                    "Potential Notices",
+                    "TDS"
+                ],
+                "parameters": [
+                    {
+                        "name": "job_id",
+                        "in": "query",
+                        "required": true,
+                        "description": "Unique identifier of the job",
+                        "deprecated": false,
+                        "schema": {
+                            "type": "string",
+                            "format": "uuid"
+                        }
+                    },
+                    {
+                        "name": "x-api-key",
+                        "in": "header",
+                        "required": true,
+                        "description": "API key for identification",
+                        "deprecated": false,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "authorization",
+                        "in": "header",
+                        "required": true,
+                        "description": "JWT access token",
+                        "deprecated": false,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "x-api-version",
+                        "in": "header",
+                        "description": "API Version",
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "200 - Success",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "oneOf": [
+                                        {
+                                            "title": "Job Succeeded",
+                                            "type": "object",
+                                            "properties": {
+                                                "code": {
+                                                    "type": "integer"
+                                                },
+                                                "timestamp": {
+                                                    "type": "integer"
+                                                },
+                                                "transaction_id": {
+                                                    "type": "string"
+                                                },
+                                                "data": {
+                                                    "type": "object",
+                                                    "properties": {
+                                                        "@entity": {
+                                                            "type": "string",
+                                                            "const": "in.co.sandbox.tds.analytics.potential_notices.job"
+                                                        },
+                                                        "job_id": {
+                                                            "type": "string"
+                                                        },
+                                                        "tan": {
+                                                            "type": "string"
+                                                        },
+                                                        "quarter": {
+                                                            "type": "string"
+                                                        },
+                                                        "financial_year": {
+                                                            "type": "string"
+                                                        },
+                                                        "form": {
+                                                            "type": "string"
+                                                        },
+                                                        "status": {
+                                                            "type": "string"
+                                                        },
+                                                        "created_at": {
+                                                            "type": "integer"
+                                                        },
+                                                        "updated_at": {
+                                                            "type": "integer"
+                                                        },
+                                                        "potential_notice_report_url": {
+                                                            "type": "string",
+                                                            "format": "uri"
+                                                        }
+                                                    }
+                                                }
+                                            }
+                                        },
+                                        {
+                                            "title": "Job Failed",
+                                            "type": "object",
+                                            "properties": {
+                                                "code": {
+                                                    "type": "integer"
+                                                },
+                                                "timestamp": {
+                                                    "type": "integer"
+                                                },
+                                                "transaction_id": {
+                                                    "type": "string"
+                                                },
+                                                "data": {
+                                                    "type": "object",
+                                                    "properties": {
+                                                        "@entity": {
+                                                            "type": "string",
+                                                            "const": "in.co.sandbox.tds.analytics.potential_notices.job"
+                                                        },
+                                                        "job_id": {
+                                                            "type": "string"
+                                                        },
+                                                        "tan": {
+                                                            "type": "string"
+                                                        },
+                                                        "quarter": {
+                                                            "type": "string"
+                                                        },
+                                                        "financial_year": {
+                                                            "type": "string"
+                                                        },
+                                                        "form": {
+                                                            "type": "string"
+                                                        },
+                                                        "status": {
+                                                            "type": "string"
+                                                        },
+                                                        "created_at": {
+                                                            "type": "integer"
+                                                        },
+                                                        "updated_at": {
+                                                            "type": "integer"
+                                                        },
+                                                        "validation_report_url": {
+                                                            "type": "string",
+                                                            "format": "uri"
+                                                        }
+                                                    }
+                                                }
+                                            }
+                                        },
+                                        {
+                                            "title": "Job Queued",
+                                            "type": "object",
+                                            "properties": {
+                                                "code": {
+                                                    "type": "integer"
+                                                },
+                                                "timestamp": {
+                                                    "type": "integer"
+                                                },
+                                                "transaction_id": {
+                                                    "type": "string"
+                                                },
+                                                "data": {
+                                                    "type": "object",
+                                                    "properties": {
+                                                        "@entity": {
+                                                            "type": "string",
+                                                            "const": "in.co.sandbox.tds.analytics.potential_notices.job"
+                                                        },
+                                                        "job_id": {
+                                                            "type": "string"
+                                                        },
+                                                        "tan": {
+                                                            "type": "string"
+                                                        },
+                                                        "quarter": {
+                                                            "type": "string"
+                                                        },
+                                                        "financial_year": {
+                                                            "type": "string"
+                                                        },
+                                                        "form": {
+                                                            "type": "string"
+                                                        },
+                                                        "status": {
+                                                            "type": "string"
+                                                        },
+                                                        "created_at": {
+                                                            "type": "integer"
+                                                        },
+                                                        "updated_at": {
+                                                            "type": "integer"
+                                                        }
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    ]
+                                }
+                            }
+                        }
+                    },
+                    "422": {
+                        "description": "422 - Unprocessable Entity",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "code": {
+                                            "type": "integer"
+                                        },
+                                        "timestamp": {
+                                            "type": "integer"
+                                        },
+                                        "transaction_id": {
+                                            "type": "string"
+                                        },
+                                        "message": {
+                                            "type": "string"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "521": {
+                        "description": "521 - Data Not Found",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "code": {
+                                            "type": "integer"
+                                        },
+                                        "timestamp": {
+                                            "type": "integer"
+                                        },
+                                        "transaction_id": {
+                                            "type": "string"
+                                        },
+                                        "message": {
+                                            "type": "string"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/tds/analytics/potential-notices/search": {
+            "post": {
+                "summary": "Fetch Jobs",
+                "tags": [
+                    "Potential Notices",
+                    "TDS"
+                ],
+                "parameters": [
+                    {
+                        "name": "x-api-key",
+                        "in": "header",
+                        "required": true,
+                        "description": "API key for identification",
+                        "deprecated": false,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "authorization",
+                        "in": "header",
+                        "required": true,
+                        "description": "JWT access token",
+                        "deprecated": false,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "x-api-version",
+                        "in": "header",
+                        "description": "API Version",
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "default": {
+                        "description": "200 - Success",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "code": {
+                                            "type": "integer"
+                                        },
+                                        "timestamp": {
+                                            "type": "integer"
+                                        },
+                                        "transaction_id": {
+                                            "type": "string"
+                                        },
+                                        "data": {
+                                            "type": "object",
+                                            "properties": {
+                                                "@entity": {
+                                                    "type": "string",
+                                                    "const": "in.co.sandbox.tds.analytics.potential_notice.paginated_list"
+                                                },
+                                                "items": {
+                                                    "type": "array",
+                                                    "items": {
+                                                        "type": "object",
+                                                        "properties": {
+                                                            "@entity": {
+                                                                "type": "string",
+                                                                "const": "in.co.sandbox.tds.analytics.potential_notice.job"
+                                                            },
+                                                            "job_id": {
+                                                                "type": "string"
+                                                            },
+                                                            "tan": {
+                                                                "type": "string"
+                                                            },
+                                                            "financial_year": {
+                                                                "type": "string"
+                                                            },
+                                                            "quarter": {
+                                                                "type": "string"
+                                                            },
+                                                            "form": {
+                                                                "type": "string"
+                                                            },
+                                                            "created_at": {
+                                                                "type": "integer"
+                                                            },
+                                                            "updated_at": {
+                                                                "type": "integer"
+                                                            },
+                                                            "status": {
+                                                                "type": "string"
+                                                            },
+                                                            "return_receipt_number": {
+                                                                "type": "integer"
+                                                            }
+                                                        }
+                                                    }
+                                                },
+                                                "last_evaluated_key": {
+                                                    "type": "string"
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type": "object",
+                                "properties": {
+                                    "@entity": {
+                                        "type": "string",
+                                        "const": "in.co.sandbox.tds.analytics.potential_notice.jobs.search"
+                                    },
+                                    "tan": {
+                                        "type": "string",
+                                        "description": "TAN of deductor. Regular Expression: [A-Z]{4}[0-9]{5}[A-Z]{1}",
+                                        "pattern": "[A-Z]{4}[0-9]{5}[A-Z]{1}"
+                                    },
+                                    "quarter": {
+                                        "type": "string",
+                                        "description": "Quarter for which TDS is being filed",
+                                        "enum": [
+                                            "Q1",
+                                            "Q2",
+                                            "Q3",
+                                            "Q4"
+                                        ]
+                                    },
+                                    "form": {
+                                        "type": "string",
+                                        "description": "TDS return form",
+                                        "enum": [
+                                            "24Q",
+                                            "26Q",
+                                            "27Q"
+                                        ]
+                                    },
+                                    "financial_year": {
+                                        "type": "string",
+                                        "description": "Financial Year for which TDS is being filed. (eg. FY 2024-25)",
+                                        "example": "FY 2024-25"
+                                    },
+                                    "from_date": {
+                                        "type": "integer",
+                                        "description": "Date from which jobs are to be fetched. Value in EPOCH timestamp"
+                                    },
+                                    "to_date": {
+                                        "type": "integer",
+                                        "description": "Date till which jobs are to be fetched. Value in EPOCH timestamp"
+                                    },
+                                    "page_size": {
+                                        "type": "integer",
+                                        "maximum": 50,
+                                        "description": "Number of records in the API response. Maximum allowed size is 50"
+                                    },
+                                    "last_evaluated_key": {
+                                        "type": "string",
+                                        "description": "Base64 encoding of the stringified JSON object, which includes x-api-key, created_at, and job_id"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/tcs/analytics/potential-notices": {
+            "post": {
+                "summary": "Create TCS Potential Notice Job",
+                "tags": [
+                    "Potential Notices",
+                    "TCS"
+                ],
+                "parameters": [
+                    {
+                        "name": "x-api-key",
+                        "in": "header",
+                        "required": true,
+                        "description": "API key for identification",
+                        "deprecated": false,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "authorization",
+                        "in": "header",
+                        "required": true,
+                        "description": "JWT access token",
+                        "deprecated": false,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "x-api-version",
+                        "in": "header",
+                        "description": "API Version",
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "200 - Success",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "code": {
+                                            "type": "integer"
+                                        },
+                                        "timestamp": {
+                                            "type": "integer"
+                                        },
+                                        "transaction_id": {
+                                            "type": "string"
+                                        },
+                                        "data": {
+                                            "type": "object",
+                                            "properties": {
+                                                "@entity": {
+                                                    "type": "string",
+                                                    "const": "in.co.sandbox.tcs.analytics.potential_notices.job"
+                                                },
+                                                "job_id": {
+                                                    "type": "string"
+                                                },
+                                                "tan": {
+                                                    "type": "string"
+                                                },
+                                                "quarter": {
+                                                    "type": "string"
+                                                },
+                                                "financial_year": {
+                                                    "type": "string"
+                                                },
+                                                "status": {
+                                                    "type": "string"
+                                                },
+                                                "created_at": {
+                                                    "type": "integer"
+                                                },
+                                                "json_url": {
+                                                    "type": "string",
+                                                    "format": "uri"
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "422": {
+                        "description": "422 - Unprocessable Entity",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "code": {
+                                            "type": "integer"
+                                        },
+                                        "timestamp": {
+                                            "type": "integer"
+                                        },
+                                        "transaction_id": {
+                                            "type": "string"
+                                        },
+                                        "message": {
+                                            "type": "string"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type": "object",
+                                "properties": {
+                                    "@entity": {
+                                        "type": "string",
+                                        "const": "in.co.sandbox.tcs.analytics.potential_notice.request"
+                                    },
+                                    "quarter": {
+                                        "type": "string",
+                                        "description": "Quarter for which TDS is being filed",
+                                        "enum": [
+                                            "Q1",
+                                            "Q2",
+                                            "Q3",
+                                            "Q4"
+                                        ]
+                                    },
+                                    "tan": {
+                                        "type": "string",
+                                        "description": "TAN of deductor. Regular Expression: [A-Z]{4}[0-9]{5}[A-Z]{1}",
+                                        "pattern": "[A-Z]{4}[0-9]{5}[A-Z]{1}"
+                                    },
+                                    "financial_year": {
+                                        "type": "string",
+                                        "description": "Financial Year for which TDS is being filed. (eg. FY 2024-25)",
+                                        "example": "FY 2024-25"
+                                    }
+                                },
+                                "required": [
+                                    "@entity",
+                                    "quarter",
+                                    "tan",
+                                    "financial_year"
+                                ]
+                            }
+                        }
+                    }
+                }
+            },
+            "get": {
+                "summary": "Fetch Potential Notice status",
+                "tags": [
+                    "Potential Notices",
+                    "TCS"
+                ],
+                "parameters": [
+                    {
+                        "name": "job_id",
+                        "in": "query",
+                        "required": true,
+                        "description": "Unique identifier of the job",
+                        "deprecated": false,
+                        "schema": {
+                            "type": "string",
+                            "format": "uuid"
+                        }
+                    },
+                    {
+                        "name": "x-api-key",
+                        "in": "header",
+                        "required": true,
+                        "description": "API key for identification",
+                        "deprecated": false,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "authorization",
+                        "in": "header",
+                        "required": true,
+                        "description": "JWT access token",
+                        "deprecated": false,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "x-api-version",
+                        "in": "header",
+                        "description": "API Version",
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "200 - Success",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "oneOf": [
+                                        {
+                                            "title": "Job Succeeded",
+                                            "type": "object",
+                                            "properties": {
+                                                "code": {
+                                                    "type": "integer"
+                                                },
+                                                "timestamp": {
+                                                    "type": "integer"
+                                                },
+                                                "transaction_id": {
+                                                    "type": "string"
+                                                },
+                                                "data": {
+                                                    "type": "object",
+                                                    "properties": {
+                                                        "@entity": {
+                                                            "type": "string",
+                                                            "const": "in.co.sandbox.tcs.analytics.potential_notices.job"
+                                                        },
+                                                        "job_id": {
+                                                            "type": "string"
+                                                        },
+                                                        "tan": {
+                                                            "type": "string"
+                                                        },
+                                                        "quarter": {
+                                                            "type": "string"
+                                                        },
+                                                        "financial_year": {
+                                                            "type": "string"
+                                                        },
+                                                        "status": {
+                                                            "type": "string"
+                                                        },
+                                                        "created_at": {
+                                                            "type": "integer"
+                                                        },
+                                                        "updated_at": {
+                                                            "type": "integer"
+                                                        },
+                                                        "potential_notice_report_url": {
+                                                            "type": "string",
+                                                            "format": "uri"
+                                                        }
+                                                    }
+                                                }
+                                            }
+                                        },
+                                        {
+                                            "title": "Job Failed",
+                                            "type": "object",
+                                            "properties": {
+                                                "code": {
+                                                    "type": "integer"
+                                                },
+                                                "timestamp": {
+                                                    "type": "integer"
+                                                },
+                                                "transaction_id": {
+                                                    "type": "string"
+                                                },
+                                                "data": {
+                                                    "type": "object",
+                                                    "properties": {
+                                                        "@entity": {
+                                                            "type": "string",
+                                                            "const": "in.co.sandbox.tcs.analytics.potential_notices.job"
+                                                        },
+                                                        "job_id": {
+                                                            "type": "string"
+                                                        },
+                                                        "tan": {
+                                                            "type": "string"
+                                                        },
+                                                        "quarter": {
+                                                            "type": "string"
+                                                        },
+                                                        "financial_year": {
+                                                            "type": "string"
+                                                        },
+                                                        "status": {
+                                                            "type": "string"
+                                                        },
+                                                        "created_at": {
+                                                            "type": "integer"
+                                                        },
+                                                        "updated_at": {
+                                                            "type": "integer"
+                                                        },
+                                                        "validation_report_url": {
+                                                            "type": "string",
+                                                            "format": "uri"
+                                                        }
+                                                    }
+                                                }
+                                            }
+                                        },
+                                        {
+                                            "title": "Job Queued",
+                                            "type": "object",
+                                            "properties": {
+                                                "code": {
+                                                    "type": "integer"
+                                                },
+                                                "timestamp": {
+                                                    "type": "integer"
+                                                },
+                                                "transaction_id": {
+                                                    "type": "string"
+                                                },
+                                                "data": {
+                                                    "type": "object",
+                                                    "properties": {
+                                                        "@entity": {
+                                                            "type": "string",
+                                                            "const": "in.co.sandbox.tcs.analytics.potential_notices.job"
+                                                        },
+                                                        "job_id": {
+                                                            "type": "string"
+                                                        },
+                                                        "tan": {
+                                                            "type": "string"
+                                                        },
+                                                        "quarter": {
+                                                            "type": "string"
+                                                        },
+                                                        "financial_year": {
+                                                            "type": "string"
+                                                        },
+                                                        "status": {
+                                                            "type": "string"
+                                                        },
+                                                        "created_at": {
+                                                            "type": "integer"
+                                                        },
+                                                        "updated_at": {
+                                                            "type": "integer"
+                                                        }
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    ]
+                                }
+                            }
+                        }
+                    },
+                    "422": {
+                        "description": "422 - Unprocessable Entity",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "code": {
+                                            "type": "integer"
+                                        },
+                                        "timestamp": {
+                                            "type": "integer"
+                                        },
+                                        "transaction_id": {
+                                            "type": "string"
+                                        },
+                                        "message": {
+                                            "type": "string"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "521": {
+                        "description": "521 - Data Not Found",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "code": {
+                                            "type": "integer"
+                                        },
+                                        "timestamp": {
+                                            "type": "integer"
+                                        },
+                                        "transaction_id": {
+                                            "type": "string"
+                                        },
+                                        "message": {
+                                            "type": "string"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/tcs/analytics/potential-notices/search": {
+            "post": {
+                "summary": "Fetch Jobs",
+                "tags": [
+                    "Potential Notices",
+                    "TCS"
+                ],
+                "parameters": [
+                    {
+                        "name": "x-api-key",
+                        "in": "header",
+                        "required": true,
+                        "description": "API key for identification",
+                        "deprecated": false,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "authorization",
+                        "in": "header",
+                        "required": true,
+                        "description": "JWT access token",
+                        "deprecated": false,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "x-api-version",
+                        "in": "header",
+                        "description": "API Version",
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "200 - Success",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "code": {
+                                            "type": "integer"
+                                        },
+                                        "timestamp": {
+                                            "type": "integer"
+                                        },
+                                        "transaction_id": {
+                                            "type": "string"
+                                        },
+                                        "data": {
+                                            "type": "object",
+                                            "properties": {
+                                                "@entity": {
+                                                    "type": "string",
+                                                    "const": "in.co.sandbox.tcs.analytics.potential_notice.paginated_list"
+                                                },
+                                                "items": {
+                                                    "type": "array",
+                                                    "items": {
+                                                        "type": "object",
+                                                        "properties": {
+                                                            "@entity": {
+                                                                "type": "string",
+                                                                "const": "in.co.sandbox.tcs.analytics.potential_notices.job"
+                                                            },
+                                                            "job_id": {
+                                                                "type": "string"
+                                                            },
+                                                            "tan": {
+                                                                "type": "string"
+                                                            },
+                                                            "financial_year": {
+                                                                "type": "string"
+                                                            },
+                                                            "quarter": {
+                                                                "type": "string"
+                                                            },
+                                                            "form": {
+                                                                "type": "string"
+                                                            },
+                                                            "created_at": {
+                                                                "type": "integer"
+                                                            },
+                                                            "updated_at": {
+                                                                "type": "integer"
+                                                            },
+                                                            "status": {
+                                                                "type": "string"
+                                                            },
+                                                            "return_receipt_number": {
+                                                                "type": "integer"
+                                                            }
+                                                        }
+                                                    }
+                                                },
+                                                "last_evaluated_key": {
+                                                    "type": "string"
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type": "object",
+                                "properties": {
+                                    "@entity": {
+                                        "type": "string",
+                                        "const": "in.co.sandbox.tds.analytics.potential_notice.jobs.search"
+                                    },
+                                    "tan": {
+                                        "type": "string",
+                                        "description": "TAN of deductor. Regular Expression: [A-Z]{4}[0-9]{5}[A-Z]{1}",
+                                        "pattern": "[A-Z]{4}[0-9]{5}[A-Z]{1}"
+                                    },
+                                    "quarter": {
+                                        "type": "string",
+                                        "description": "Quarter for which TDS is being filed",
+                                        "enum": [
+                                            "Q1",
+                                            "Q2",
+                                            "Q3",
+                                            "Q4"
+                                        ]
+                                    },
+                                    "financial_year": {
+                                        "type": "string",
+                                        "description": "Financial Year for which TDS is being filed. (eg. FY 2024-25)",
+                                        "example": "FY 2024-25"
+                                    },
+                                    "from_date": {
+                                        "type": "integer",
+                                        "description": "Date from which jobs are to be fetched. Value in EPOCH timestamp"
+                                    },
+                                    "to_date": {
+                                        "type": "integer",
+                                        "description": "Date till which jobs are to be fetched. Value in EPOCH timestamp"
+                                    },
+                                    "page_size": {
+                                        "type": "integer",
+                                        "maximum": 50,
+                                        "description": "Number of records in the API response. Maximum allowed size is 50"
+                                    },
+                                    "last_evaluated_key": {
+                                        "type": "string",
+                                        "description": "Base64 encoding of the stringified JSON object, which includes x-api-key, created_at, and job_id"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
