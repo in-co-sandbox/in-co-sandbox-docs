@@ -7,7 +7,10 @@
   },
   "servers": [
     {
-      "url": "{{sandbox_host}}"
+      "url": "https://api.sandbox.co.in"
+    },
+    {
+      "url": "https://test-api.sandbox.co.in"
     }
   ],
   "paths": {
@@ -1221,7 +1224,99 @@
             }
           }
         ],
-        "responses": {}
+        "responses": {
+          "200": {
+            "description": "200 - Fetch all accounts",
+            "headers": {
+              "Date": {
+                "deprecated": false,
+                "schema": {}
+              },
+              "Content-Length": {
+                "deprecated": false,
+                "schema": {}
+              },
+              "Connection": {
+                "deprecated": false,
+                "schema": {}
+              },
+              "x-amzn-RequestId": {
+                "deprecated": false,
+                "schema": {}
+              },
+              "content-encoding": {
+                "deprecated": false,
+                "schema": {}
+              },
+              "x-amz-apigw-id": {
+                "deprecated": false,
+                "schema": {}
+              },
+              "X-Amzn-Trace-Id": {
+                "deprecated": false,
+                "schema": {}
+              }
+            },
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "code": {
+                      "type": "integer"
+                    },
+                    "timestamp": {
+                      "type": "integer"
+                    },
+                    "data": {
+                      "type": "object",
+                      "properties": {
+                        "@entity": {
+                          "type": "string"
+                        },
+                        "items": {
+                          "type": "array",
+                          "items": {
+                            "type": "object",
+                            "properties": {
+                              "@entity": {
+                                "type": "string"
+                              },
+                              "account_number": {
+                                "type": "string"
+                              },
+                              "ifsc": {
+                                "type": "string"
+                              },
+                              "bank_name": {
+                                "type": "string"
+                              },
+                              "status": {
+                                "type": "string"
+                              },
+                              "notes": {
+                                "type": "object"
+                              },
+                              "name": {
+                                "type": "string"
+                              },
+                              "created_at": {
+                                "type": "integer"
+                              }
+                            }
+                          }
+                        }
+                      }
+                    },
+                    "transaction_id": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
       }
     },
     "/bank/virtual/accounts/{account_number}/payments/payin/upi/generate-static-qr": {
