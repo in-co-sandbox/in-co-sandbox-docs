@@ -1,0 +1,67 @@
+---
+title: "Built by Sandbox — Vendor Onboarding on eCommerce Platforms"
+description: "Description of your new file."
+---
+
+<Frame>
+  ![41.webp](/images/41.webp)
+</Frame>
+
+The eCommerce business is booming! The ability to reach pan-India customers has always attracted businesses to become vendors on the numerous eCommerce platforms. However, the recent restriction of physical movement has only accelerated the pace of such digital transformation.
+
+With such an influx of sellers, quality control and fraud prevention have become a key pain point for the various eCommerce platforms. In this second post of the “[<u>Built by Sandbox</u>](https://medium.com/blog-by-sandbox/built-with-sandbox-payroll-tax-compliance-91473f0169c2)” series, let’s discuss how eCommerce websites are using Sandbox APIs to verify vendors before onboarding them.
+
+## **Pain Point — Do you know your vendors?**
+
+Ecommerce websites, as we all know act as a marketplace for sellers and buyers to congregate and trade. But, with thousands of sellers trying to come on to such a platform, it becomes painful for eCommerce players to confirm that the vendors and their products are genuine.
+
+Before Sandbox, an eCommerce site would use various methods to authenticate the sellers. However, the **pain point** was that these methods were offline, slow, and tedious. Therefore, we needed solutions that could fasten the process and even better, automate it!
+
+## **So, how can that be solved?**
+
+Background verification can be done using [<u>Sandbox’s proprietary APIs,</u>](http://sandbox.co.in/) such as Search GSTIN, GSTIN verification using OTP, MCA data verification, etc.
+
+Let’s deep dive and take look at how eCommerce businesses can automate the verification process using Sandbox APIs.
+
+### **1. GST verification using OTP API**
+
+[<u>GST verification using OTP API</u>](https://docs.sandbox.co.in/compliance-apis/portal-api/gstin-verification-api) is one of Sandbox’s Star APIs.
+
+During the onboarding process, the eCommerce requests the GSTIN from the seller. With the received GSTIN, the GST verification API is called. The API then generates an OTP and sends it to the mobile number & email id registered to the GSTIN. This contact information is derived from the GST Portal.
+
+<Frame>
+  ![42.webp](/images/42.webp)
+</Frame>
+
+This process makes sure it is a genuine seller with the correct GSTIN details of the business trying to onboard. Now the cherry on the cake here is, authentication happens in real-time and without any offline activity.
+
+### **2. Search GSTIN API**
+
+The [<u>Search GSTIN APIs</u>](https://docs.sandbox.co.in/compliance-apis/public-api/search-gstin) take the GSTIN of the vendor and provides the latest information about the vendor as per the GST Portal, such as the registered name, address, last updated, composite or regular taxpayer, etc.
+
+This information then can be used to cross-check the details provided by the vendor and hence authenticate the vendor.
+
+### **3. Track GST Return API**
+
+In this [<u>Track GST Return API</u>](https://docs.sandbox.co.in/compliance-apis/public-api/track-gst-return), similarly, the GSTIN & financial year is taken in as input parameters. The Sandbox client then receives the past GSTR filing data of the vendor with GSTIN.
+
+It helps eCommerce websites to verify past GST compliance of the vendor and know If the vendor has filed his returns on time.
+
+### **4. MCA Master Data Verification**
+
+Now, with S[<u>andbox MCA APIs</u>](https://docs.sandbox.co.in/master-data-api/master-data-apis), eCommerce platforms can check the details of the business with CIN or LLPIN as input parameters.
+
+The API returns crucial information about the business and the information could be used to verify and authenticate the vendor trying to onboard.
+
+Similarly, director details can be fetched for verifying the director of such a body corporate.
+
+### **5. PAN verification**
+
+Some vendors, especially MSMEs, can be sole proprietors without any GST or Company registration. Therefore, for such individuals, verification can be done using PAN details. If the category mentioned in their PAN can provide the necessary information to onboard such MSMEs onto the eCommerce platform.
+
+## **Why Integrate with Sandbox**
+
+Sandbox integrations have enabled stock brokerages to fintech startups to stay tax compliant & also has fastened their background verifications. We realized that the lack of such a seamless journey or human error in such processes can be a source of worry to businesses.
+
+Therefore, Sandbox APIs add value by having the latest Tax compliance & KYC verifications. So our clients focus on developing their products and platforms, while Sandbox takes care of their compliance.\
+All this by simple plug & play integration!

@@ -1,0 +1,91 @@
+---
+title: "Build with Sandbox: Tax Payment APIs"
+description: "Description of your new file."
+---
+
+## **Introduction**
+
+It is evident that India Inc is exponentially growing and pulling individuals and businesses onto its digital platform. Hence, such platforms couldn’t rely on slow and inefficient tax compliance processes. So when we at [**<u>Quicko </u>**](http://quicko.com/)realized the dearth of tech-enabled tax compliance platforms, we decided to develop India’s first Tax Compliance API Platform — [**<u>Sandbox</u>**](http://sandbox.co.in/).
+
+[**<u>Sandbox</u>**](http://sandbox.co.in/) aims to simplify compliance for growing businesses by providing easy-to-integrate Tax Compliance APIs for FinTech, Stock Brokerages, Banks, E-Commerce, and much more.
+
+Sandbox provides APIs which cover the entire gamut of Tax Compliance requirements of Goods & Services Tax (GST), Tax Deducted at Source (TDS), and Know Your Customer (KYC).
+
+## **Tax Payments APIs on Sandbox**
+
+<Frame caption="Seamlessly integrate tax payments into your web apps and mobile applications">
+  ![1.webp](/images/1.webp)
+</Frame>
+
+### **Direct and Indirect Taxes**
+
+<Frame caption="Various types of taxes that are paid in India">
+  ![2.webp](/images/2.webp)
+</Frame>
+
+There are two main categories of taxes: Direct tax and Indirect tax.
+
+## **Direct taxes**
+
+Direct taxes are paid straight to the tax authorities of the Government of India by the taxpayers.
+
+Such taxes fall under the jurisdiction of the Central Board of Direct Taxes (CBDT).
+
+Example: Income Tax, Corporate Tax, Capital Gains Tax, etcetera.
+
+## **Indirect taxes**
+
+Indirect taxes are levied on goods and services, manufacture, sale, import, etc.\
+It is added to the price of the goods and services, by the seller.
+
+Example: Goods and Service Tax (GST)
+
+The Tax Payment APIs by Sandbox let you pay your taxes conveniently. The taxpayer need not switch between government portals for the same.
+
+## **Advantages of Sandbox Tax Payment APIs**
+
+- They can be easily integrated with the back-office workflows, without any disruption in the current workflows.
+- The APIs support payment methods like UPI and net banking as well, making it a payment-friendly API.
+- Challan and payment status are provided instantly.
+- Challan can be downloaded anytime.
+
+### **Create Tax Payment API workflow**
+
+<Frame>
+  ![3.webp](/images/3.webp)
+</Frame>
+
+**STEP 1: **[**<u>Create Virtual Account</u>**](https://developer.sandbox.co.in/reference/create-new-account)
+
+Using the Virtual Account APIs, you can create a new virtual account. You can either create a VA for each and every customer or can create one pooled account.
+
+Virtual Accounts help solve the problem statement of automated reconciliation.
+
+**STEP 2: **[**<u>Fund Virtual Account</u>**](https://developer.sandbox.co.in/reference/collect-payment)
+
+Using Sandbox’s payment APIs, you can create a [<u>UPI payment request</u>](https://developer.sandbox.co.in/reference/collect-payment) on approval of which your virtual account will be funded.
+
+**STEP 3: **[**<u>Pay Tax</u>**](https://developer.sandbox.co.in/reference/pay-tax)
+
+The tax payment API is an asynchronous API that returns a transaction Id along with a tax payment Id. These entities can be used to poll the tax payment status, alternatively, you can also configure postback which will notify you whenever the tax payment is completed. Using this API you can pay direct tax to the Income Tax Department
+
+The below types of direct tax payments are supported
+
+1. Self Assessment Tax Payment
+2. Tax Deducted at Source Payment
+3. Advance Tax Payment
+4. Tax Collected at Source Payment
+
+**STEP 4: **[**<u>Get Challan</u>**](https://developer.sandbox.co.in/reference/download-challan)
+
+This API Endpoint lets you download the Tax payment challan after successful payment
+
+You need to pass in the ‘account_number’ and ‘tax_payment_id’ and in the response, you will get the S3 URL of the tax challan PDF, challan serial number, and BSR code.
+
+## **How to get started with Tax Payment APIs on Sandbox**
+
+Sandbox APIs enable seamless integration of Tax Compliance Workflows and all you have to do is [<u>Sign up for a free trial</u>](https://dashboard.sandbox.co.in/#/start-trial) or [<u>Get in touch with Us</u>](https://sandbox.co.in/contact-sales/)!
+
+Reach out to us and we’ll share all the details that you need to seamlessly integrate Tax Payments into your workflows!
+
+Develop, Integrate & Grow!
