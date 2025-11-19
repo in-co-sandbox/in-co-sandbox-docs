@@ -1,0 +1,389 @@
+---
+title: "Tradewise Settlements | Foreign Securities"
+---
+
+## Client Details Sheet
+
+### Client Details List
+
+| Param | Type | Required | Description |
+| :--- | :--- | :--- | :--- |
+| name | `string` | Yes | [cite_start]Name of the client [cite: 276] |
+| pan | `string` | Yes | [cite_start]PAN of the client [cite: 278] |
+| client\_id | `string` | Yes | [cite_start]Client ID for the client [cite: 280] |
+| country | `string` | Yes | [cite_start]Country where investments were made [cite: 282] |
+| tin | `string` | Yes | [cite_start]TIN for the country or passport number [cite: 284] |
+| currency | `string` | Yes | [cite_start]The 3 letter currency code for the price based on ISO 421 [cite: 286] |
+
+---
+
+## Stock Sheet
+
+### Reference Data Table
+
+| Param | Type | Required | Description |
+| :--- | :--- | :--- | :--- |
+| isin | `string` | No | [cite_start]ISIN is the international security identification number [cite: 291] |
+| symbol | `string` | Yes | [cite_start]Symbol or description of fund [cite: 293] |
+| address | `string` | No | [cite_start]Address of the company [cite: 295] |
+| country | `string` | Yes | [cite_start]Country of the company [cite: 297] |
+| zip\_code | `string` | Yes | [cite_start]Zip code of the address [cite: 299] |
+| 52\_week\_high | `number` | Yes | [cite_start]52 week high price for the symbol for the FY [cite: 301] |
+| closing\_value | `number` | [cite_start]Yes | closing value for the symbol [cite: 303] |
+
+### Dividend Table
+
+| Param | Type | Required | Description |
+| :--- | :--- | :--- | :--- |
+| isin | `string` | No | [cite_start]ISIN is the international security identification number [cite: 308] |
+| symbol | `string` | Yes | [cite_start]Symbol or description of equity share [cite: 310] |
+| quantity | `number` | Yes | [cite_start]Trading quantity [cite: 312] |
+| date | `number` | Yes | [cite_start]Transaction epoch timestamp [cite: 314] |
+| dividend\_amount | `number` | Yes | [cite_start]Dividend amount received [cite: 316] |
+| currency | `string` | Yes | [cite_start]The 3 letter currency code for the price based on ISO 4217 [cite: 318] |
+| tax\_withheld | `number` | Yes | [cite_start]TDS amount deducted on the dividend [cite: 319] |
+
+### Stock Tradewise Holding Table
+
+| Param | Type | Description |
+| :--- | :--- | :--- |
+| isin | `string` | ISIN is the international security identification number |
+| symbol | `string` | Symbol or description of equity share |
+| quantity | `number` | Trading quantity |
+| buy\_date | `number` | [cite_start]The date on which the equity share was bought [cite: 321] |
+| buy\_price | `number` | Price at which a unit was bought |
+| currency | `string` | The 3 letter currency code for the price based on ISO 421 |
+| transaction\_type | `string` | Indicates whether the order is : \n`buy` , `sell`, `send`, `receive` Or `trade`, |
+| label | `string` | Refer to [label](https://developer.sandbox.co.in/docs/domestic-securities-tradebook-payload#annexure-1-corporate-actions) for possible values |
+| last\_traded\_price | `string` | [cite_start]Last traded market price of the equity share. [cite: 323] |
+
+### Stock Tradewise Open Sell Table
+
+| Param | Type | Description |
+| :--- | :--- | :--- |
+| isin | `string` | ISIN is the international security identification number |
+| symbol | `string` | Total value of the all the transactions |
+| quantity | `number` | [cite_start]The realized profit or loss on the trade without considering transfer expenses [cite: 324] |
+| sell\_date | `number` | The date on which the equity share was sold |
+| sell\_price | `number` | Price at which a unit was sold |
+| currency | `string` | The 3 letter currency code for the price based on ISO 421 |
+| transaction\_type | `string` | [cite_start]Indicates whether the order is : \n`buy` , `sell`, `send`, `receive` Or `trade`, [cite: 325] |
+| label | `string` | Refer to [label](https://developer.sandbox.co.in/docs/domestic-securities-tradebook-payload#annexure-1-corporate-actions) for possible values |
+| last\_traded\_price | `number` | [cite_start]Last traded market price of the equity share. [cite: 326] |
+
+### Stock Tradewise Settlement Table
+
+| Param | Type | Description |
+| :--- | :--- | :--- |
+| isin | `string` | ISIN is the international security identification number |
+| symbol | `string` | Symbol or description of equity share |
+| quantity | `number` | [cite_start]Trading quantity [cite: 327] |
+| buy\_trade\_id | `string` | Transaction ID of the buy transaction |
+| buy\_date | `number` | The date on which the equity share was bought |
+| buy\_price | `number` | Price at which a unit was bought |
+| sell\_trade\_id | `string` | Transaction ID of the sell transaction |
+| sell\_date | `number` | [cite_start]The date on which the equity share was sold [cite: 328] |
+| sell\_price | `number` | Price at which a unit was sold |
+| currency | `string` | The 3 letter currency code for the price based on ISO 421 |
+| transfer\_expenses | `number` | expense relating to the transfer of shares |
+| nature\_of\_settlement | `string` | The nature of the settlement of transaction |
+| product\_type | `string` | [cite_start]Indicates whether the order is : \n`delivery` , `intraday` [cite: 329] |
+
+### Stock Tradewise Transfer Table
+
+| Param | Type | Description |
+| :--- | :--- | :--- |
+| isin | `string` | [cite_start]ISIN is the international security identification number [cite: 333] |
+| symbol | `string` | [cite_start]Symbol or description of equity share [cite: 335] |
+| quantity | `number` | [cite_start]Trading quantity [cite: 337] |
+| transfer\_date | [cite_start]`number` | date of transfer [cite: 339] |
+| price | [cite_start]`number` | price at which the asset was transferred [cite: 341] |
+| currency | `string` | [cite_start]The 3 letter currency code for the price based on ISO 421 [cite: 343] |
+| transfer\_type | [cite_start]`number` | expense relating to the transfer of shares [cite: 344] |
+| nature\_of\_transfer | `string` | [cite_start]The nature of the settlement of transaction [cite: 345] |
+| transfer\_value | [cite_start]`number` | total value of transfers made [cite: 346] |
+| transfer\_expense | [cite_start]`number` | expenses incurred while transferring the asset. [cite: 347] |
+
+---
+
+## DR Sheet
+
+### Reference Data Table
+
+| Param | Type | Required | Description |
+| :--- | :--- | :--- | :--- |
+| isin | `string` | No | [cite_start]ISIN is the international security identification number [cite: 352] |
+| symbol | `string` | Yes | [cite_start]Symbol or description of fund [cite: 354] |
+| address | `string` | No | [cite_start]Address of the company [cite: 356] |
+| country | `string` | Yes | [cite_start]Country of the company [cite: 358] |
+| zip\_code | `string` | Yes | [cite_start]Zip code of the address [cite: 360] |
+| 52\_week\_high | `number` | Yes | [cite_start]52 week high price for the symbol for the FY [cite: 362] |
+| closing\_value | `number` | [cite_start]Yes | closing value for the symbol [cite: 364] |
+
+### Dividend Table
+
+| Param | Type | Required | Description |
+| :--- | :--- | :--- | :--- |
+| isin | `string` | No | [cite_start]ISIN is the international security identification number [cite: 368] |
+| symbol | `string` | Yes | [cite_start]Symbol or description of equity share [cite: 371] |
+| quantity | `number` | Yes | [cite_start]Trading quantity [cite: 373] |
+| date | `number` | Yes | [cite_start]Transaction epoch timestamp [cite: 375] |
+| dividend\_amount | `number` | Yes | [cite_start]Dividend amount received [cite: 377] |
+| currency | `string` | Yes | [cite_start]The 3 letter currency code for the price based on ISO 4217 [cite: 379] |
+| tax\_withheld | `number` | Yes | [cite_start]TDS amount deducted on the dividend [cite: 380] |
+
+### DR Tradewise Holding Table
+
+| Param | Type | Description |
+| :--- | :--- | :--- |
+| isin | `string` | ISIN is the international security identification number |
+| symbol | `string` | Symbol or description of equity share |
+| quantity | `number` | Trading quantity |
+| buy\_date | `number` | [cite_start]The date on which the equity share was bought [cite: 382] |
+| buy\_price | `number` | Price at which a unit was bought |
+| currency | `string` | The 3 letter currency code for the price based on ISO 421 |
+| transaction\_type | `string` | Indicates whether the order is : \n`buy` , `sell`, `send`, `receive` Or `trade`, |
+| label | `string` | Refer to [label](https://developer.sandbox.co.in/docs/domestic-securities-tradebook-payload#annexure-1-corporate-actions) for possible values |
+| last\_traded\_price | `string` | [cite_start]Last traded market price of the equity share. [cite: 384] |
+
+### DR Tradewise Open Sell Table
+
+| Param | Type | Description |
+| :--- | :--- | :--- |
+| isin | `string` | ISIN is the international security identification number |
+| symbol | `string` | Total value of the all the transactions |
+| quantity | `number` | [cite_start]The realized profit or loss on the trade without considering transfer expenses [cite: 385] |
+| sell\_date | `number` | The date on which the equity share was sold |
+| sell\_price | `number` | Price at which a unit was sold |
+| currency | `string` | The 3 letter currency code for the price based on ISO 421 |
+| transaction\_type | `string` | [cite_start]Indicates whether the order is : \n`buy` , `sell`, `send`, `receive` Or `trade`, [cite: 386] |
+| label | `string` | Refer to [label](https://developer.sandbox.co.in/docs/domestic-securities-tradebook-payload#annexure-1-corporate-actions) for possible values |
+| last\_traded\_price | `number` | [cite_start]Last traded market price of the equity share. [cite: 387] |
+
+### DR Tradewise Settlement Table
+
+| Param | Type | Description |
+| :--- | :--- | :--- |
+| isin | `string` | ISIN is the international security identification number |
+| symbol | `string` | Symbol or description of equity share |
+| quantity | `number` | [cite_start]Trading quantity [cite: 388] |
+| buy\_trade\_id | `string` | Transaction ID of the buy transaction |
+| buy\_date | `number` | The date on which the equity share was bought |
+| buy\_price | `number` | Price at which a unit was bought |
+| sell\_trade\_id | `string` | Transaction ID of the sell transaction |
+| sell\_date | `number` | [cite_start]The date on which the equity share was sold [cite: 389] |
+| sell\_price | `number` | Price at which a unit was sold |
+| currency | `string` | The 3 letter currency code for the price based on ISO 421 |
+| transfer\_expenses | `number` | expense relating to the transfer of shares |
+| nature\_of\_settlement | `string` | The nature of the settlement of transaction |
+| product\_type | `string` | [cite_start]Indicates whether the order is : \n`delivery` , `intraday` [cite: 390] |
+
+### DR Tradewise Transfer Table
+
+| Param | Type | Description |
+| :--- | :--- | :--- |
+| isin | `string` | [cite_start]ISIN is the international security identification number [cite: 394] |
+| symbol | `string` | [cite_start]Symbol or description of equity share [cite: 396] |
+| quantity | `number` | [cite_start]Trading quantity [cite: 398] |
+| transfer\_date | [cite_start]`number` | date of transfer [cite: 400] |
+| price | [cite_start]`number` | price at which the asset was transferred [cite: 402] |
+| currency | `string` | [cite_start]The 3 letter currency code for the price based on ISO 421 [cite: 404] |
+| transfer\_type | [cite_start]`number` | expense relating to the transfer of shares [cite: 405] |
+| nature\_of\_transfer | `string` | [cite_start]The nature of the settlement of transaction [cite: 406] |
+| transfer\_value | [cite_start]`number` | total value of transfers made [cite: 407] |
+| transfer\_expense | [cite_start]`number` | expenses incurred while transferring the asset. [cite: 408] |
+
+---
+
+## Mutual Fund Sheet
+
+### Reference Data Table
+
+| Param | Type | Required | Description |
+| :--- | :--- | :--- | :--- |
+| isin | `string` | No | [cite_start]ISIN is the international security identification number [cite: 413] |
+| scheme\_name | `string` | Yes | [cite_start]Symbol or description of fund [cite: 415] |
+| address | `string` | No | [cite_start]Address of the company [cite: 417] |
+| country | `string` | Yes | [cite_start]Country of the company [cite: 419] |
+| zip\_code | `string` | Yes | [cite_start]Zip code of the address [cite: 421] |
+| 52\_week\_high | `number` | Yes | [cite_start]52 week high price for the symbol for the FY [cite: 423] |
+| closing\_value | `number` | [cite_start]Yes | closing value for the symbol [cite: 425] |
+
+### Dividend Table
+
+| Param | Type | Required | Description |
+| :--- | :--- | :--- | :--- |
+| isin | `string` | No | [cite_start]ISIN is the international security identification number [cite: 430] |
+| scheme\_name | `string` | Yes | [cite_start]Symbol or description of fund [cite: 432] |
+| quantity | `number` | Yes | [cite_start]Trading quantity [cite: 434] |
+| date | `number` | Yes | [cite_start]Transaction epoch timestamp [cite: 436] |
+| dividend\_amount | `number` | Yes | [cite_start]Dividend amount received [cite: 438] |
+| currency | `string` | Yes | [cite_start]The 3 letter currency code for the price based on ISO 4217 [cite: 440] |
+| tax\_withheld | `number` | Yes | [cite_start]TDS amount deducted on the dividend [cite: 441] |
+
+### Mutual Fund Tradewise Holding Table
+
+| Param | Type | Description |
+| :--- | :--- | :--- |
+| isin | `string` | ISIN is the international security identification number |
+| scheme\_name | `string` | Symbol or description of fund |
+| quantity | `number` | Trading quantity |
+| buy\_date | `number` | [cite_start]The date on which the fund was bought [cite: 443] |
+| buy\_price | `number` | Price at which a unit was bought |
+| currency | `string` | The 3 letter currency code for the price based on ISO 421 |
+| transaction\_type | `string` | Indicates whether the order is : \n`buy` , `sell`, `send`, `receive` Or `trade`, |
+| label | `string` | Refer to [label](https://developer.sandbox.co.in/docs/domestic-securities-tradebook-payload#annexure-1-corporate-actions) for possible values |
+| last\_traded\_price | `string` | [cite_start]Last traded market price of the equity share. [cite: 445] |
+
+### Mutual Fund Tradewise Open Sell Table
+
+| Param | Type | Description |
+| :--- | :--- | :--- |
+| isin | `string` | ISIN is the international security identification number |
+| scheme\_name | `string` | Symbol or description of fund |
+| quantity | `number` | [cite_start]Trading quantity [cite: 446] |
+| sell\_date | `number` | The date on which the fund was sold |
+| sell\_price | `number` | Price at which a unit was sold |
+| currency | `string` | The 3 letter currency code for the price based on ISO 421 |
+| transaction\_type | `string` | [cite_start]Indicates whether the order is : \n`buy` , `sell`, `send`, `receive` Or `trade`, [cite: 447] |
+| label | `string` | Refer to [label](https://developer.sandbox.co.in/docs/domestic-securities-tradebook-payload#annexure-1-corporate-actions) for possible values |
+| last\_traded\_price | `number` | [cite_start]Last traded market price of the equity share. [cite: 448] |
+
+### Mutual Fund Tradewise Settlement Table
+
+| Param | Type | Description |
+| :--- | :--- | :--- |
+| isin | `string` | ISIN is the international security identification number |
+| scheme\_name | `string` | name of the fund |
+| asset\_class | `string` | [cite_start]Fund's asset class, possible values: \n`equity`, `debt`, `other` [cite: 449] |
+| quantity | `number` | Trading quantity |
+| buy\_trade\_id | `string` | Transaction ID of the buy transaction |
+| buy\_date | `number` | The date on which the fund was bought |
+| buy\_price | `number` | Price at which a unit was bought |
+| sell\_trade\_id | `string` | [cite_start]Transaction ID of the sell transaction [cite: 450] |
+| sell\_date | `number` | The date on which the fund was sold |
+| sell\_price | `number` | Price at which a unit was sold |
+| currency | `string` | The 3 letter currency code for the price based on ISO 421 |
+| transfer\_expenses | `number` | expense relating to the transfer of shares |
+| nature\_of\_settlement | `string` | [cite_start]The nature of the settlement of transaction [cite: 451] |
+
+### Mutual Fund Tradewise Transfer Table
+
+| Param | Type | Description |
+| :--- | :--- | :--- |
+| isin | `string` | [cite_start]ISIN is the international security identification number [cite: 455] |
+| scheme\_name | `string` | [cite_start]Symbol or description of equity share [cite: 457] |
+| quantity | `number` | [cite_start]Trading quantity [cite: 459] |
+| transfer\_date | [cite_start]`number` | date of transfer [cite: 461] |
+| price | [cite_start]`number` | price at which the asset was transferred [cite: 463] |
+| currency | `string` | [cite_start]The 3 letter currency code for the price based on ISO 421 [cite: 465] |
+| transfer\_type | [cite_start]`number` | expense relating to the transfer of shares [cite: 466] |
+| nature\_of\_transfer | `string` | [cite_start]The nature of the settlement of transaction [cite: 467] |
+| transfer\_value | [cite_start]`number` | total value of transfers made [cite: 468] |
+| transfer\_expense | [cite_start]`number` | expenses incurred while transferring the asset. [cite: 469] |
+
+---
+
+## ETF Sheet
+
+### Reference Data Table
+
+| Param | Type | Required | Description |
+| :--- | :--- | :--- | :--- |
+| isin | `string` | No | [cite_start]ISIN is the international security identification number [cite: 474] |
+| scheme\_name | `string` | Yes | [cite_start]Symbol or description of fund [cite: 476] |
+| address | `string` | No | [cite_start]Address of the company [cite: 478] |
+| country | `string` | Yes | [cite_start]Country of the company [cite: 480] |
+| zip\_code | `string` | Yes | [cite_start]Zip code of the address [cite: 482] |
+| 52\_week\_high | `number` | Yes | [cite_start]52 week high price for the symbol for the FY [cite: 484] |
+| closing\_value | `number` | [cite_start]Yes | closing value for the symbol [cite: 486] |
+
+### Dividend Table
+
+| Param | Type | Required | Description |
+| :--- | :--- | :--- | :--- |
+| isin | `string` | No | [cite_start]ISIN is the international security identification number [cite: 491] |
+| scheme\_name | `string` | Yes | [cite_start]Symbol or description of fund [cite: 493] |
+| quantity | `number` | Yes | [cite_start]Trading quantity [cite: 495] |
+| date | `number` | Yes | [cite_start]Transaction epoch timestamp [cite: 497] |
+| dividend\_amount | `number` | Yes | [cite_start]Dividend amount received [cite: 499] |
+| currency | `string` | Yes | [cite_start]The 3 letter currency code for the price based on ISO 4217 [cite: 501] |
+| tax\_withheld | `number` | Yes | [cite_start]TDS amount deducted on the dividend [cite: 502] |
+
+### ETF Tradewise Holding Table
+
+| Param | Type | Description |
+| :--- | :--- | :--- |
+| isin | `string` | ISIN is the international security identification number |
+| scheme\_name | `string` | Symbol or description of fund |
+| quantity | `number` | Trading quantity |
+| buy\_date | `number` | [cite_start]The date on which the fund was bought [cite: 504] |
+| buy\_price | `number` | Price at which a unit was bought |
+| transaction\_type | `string` | Indicates whether the order is : \n`buy` , `sell`, `send`, `receive` Or `trade`, |
+| label | `string` | Refer to [label](https://developer.sandbox.co.in/reference/annexures#annexure-1-labels) for possible values |
+| last\_traded\_price | `string` | [cite_start]Last traded market price of the equity share. [cite: 505] |
+
+### ETF Tradewise Open Sell Table
+
+| Param | Type | Description |
+| :--- | :--- | :--- |
+| isin | `string` | ISIN is the international security identification number |
+| scheme\_name | `string` | Symbol or description of fund |
+| quantity | `number` | [cite_start]Trading quantity [cite: 506] |
+| sell\_date | `number` | The date on which the fund was sold |
+| sell\_price | `number` | Price at which a unit was sold |
+| transaction\_type | `string` | Indicates whether the order is : \n`buy` , `sell`, `send`, `receive` Or `trade`, |
+| label | `string` | Refer to [label](https://developer.sandbox.co.in/reference/annexures#annexure-1-labels) for possible values |
+| last\_traded\_price | `number` | [cite_start]Last traded market price of the equity share. [cite: 508] |
+
+### ETF Tradewise Settlement Table
+
+| Param | Type | Description |
+| :--- | :--- | :--- |
+| isin | `string` | ISIN is the international security identification number |
+| symbol | `string` | Symbol or description of equity share |
+| quantity | `number` | [cite_start]Trading quantity [cite: 509] |
+| buy\_trade\_id | `string` | Transaction ID of the buy transaction |
+| buy\_date | `number` | The date on which the equity share was bought |
+| buy\_price | `number` | Price at which a unit was bought |
+| sell\_trade\_id | `string` | Transaction ID of the sell transaction |
+| sell\_date | `number` | [cite_start]The date on which the equity share was sold [cite: 510] |
+| sell\_price | `number` | Price at which a unit was sold |
+| transfer\_expenses | `number` | expense relating to the transfer of shares |
+| nature\_of\_settlement | `string` | The nature of the settlement of transaction |
+| product\_type | `string` | Indicates whether the order is : \n`delivery` , `intraday` |
+
+### ETF Tradewise Transfer Table
+
+| Param | Type | Description |
+| :--- | :--- | :--- |
+| isin | `string` | [cite_start]ISIN is the international security identification number [cite: 515] |
+| scheme\_name | `string` | [cite_start]Symbol or description of equity share [cite: 517] |
+| quantity | `number` | [cite_start]Trading quantity [cite: 519] |
+| transfer\_date | [cite_start]`number` | date of transfer [cite: 521] |
+| price | [cite_start]`number` | price at which the asset was transferred [cite: 523] |
+| currency | `string` | [cite_start]The 3 letter currency code for the price based on ISO 421 [cite: 525] |
+| transfer\_type | [cite_start]`number` | expense relating to the transfer of shares [cite: 526] |
+| nature\_of\_transfer | `string` | [cite_start]The nature of the settlement of transaction [cite: 527] |
+| transfer\_value | [cite_start]`number` | total value of transfers made [cite: 528] |
+| transfer\_expense | [cite_start]`number` | expenses incurred while transferring the asset. [cite: 529] |
+
+---
+
+## Interest Income Sheet
+
+### Interest Table
+
+| Param | Type | Required | Description |
+| :--- | :--- | :--- | :--- |
+| description | `string` | No | [cite_start]Description of interest credit [cite: 533] |
+| date | `number` | Yes | [cite_start]Transaction ID of the particular entry [cite: 535] |
+| amount | `number` | Yes | [cite_start]Interest amount received [cite: 537] |
+| amount\_inr | `number` | No | [cite_start]Interest in INR [cite: 539] |
+| currency | `string` | Yes | [cite_start]The 3 letter currency code for the price based on ISO 4217 [cite: 541] |
+| tax\_withheld | `number` | Yes | [cite_start]TDS amount deducted on the interest [cite: 542] |
+| tax\_withheld\_inr | `number` | No | [cite_start]TDS in INR [cite: 544] |
+
+---
+
+Would you like me to focus on a specific sheet or table for further clarification or transformation?

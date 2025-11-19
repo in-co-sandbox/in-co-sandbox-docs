@@ -1,0 +1,286 @@
+# Tradebook: Domestic Securities
+
+Reference sheet for preparing domestic securities tradebooks across asset classes. Each section outlines the expected schema for trades, last traded prices, dividends, and other expenses. Use these tables to validate or map broker exports before uploading to Sandbox Income Tax Annexures.
+
+## Stock Sheet
+
+### Stock Tradebook Table
+
+| Param | Type | Required | Description |
+| :---- | :--- | :------- | :---------- |
+| trade_id | `string` | No | Transaction ID of the trade |
+| isin | `string` | No | International Securities Identification Number |
+| symbol | `string` | Yes | Symbol or description of equity stock |
+| is_listed | `boolean` | Yes | Indicates if the stock is listed on public markets |
+| is_stt_paid | `boolean` | Yes | Whether security transaction tax was paid |
+| quantity | `number` | Yes | Trading quantity |
+| date | `number` | Yes | Transaction epoch timestamp |
+| price | `number` | Yes | Unit price of the equity stock |
+| transaction_type | `string` | Yes | `buy`, `sell`, `send`, `receive`, or `trade` |
+| fmv | `number` | No | Fair market value as on 31/01/2018 |
+| brokerage | `number` | No | Brokerage expense |
+| clearing_charges | `number` | No | Charges levied by the clearing house |
+| exchange_transaction_charges | `number` | No | Exchange transaction charges |
+| sebi_turnover_fees | `number` | No | SEBI turnover fees |
+| stt | `number` | No | Security Transaction Tax paid |
+| stamp_duty | `number` | No | Stamp duty paid on transfer |
+| sgst | `number` | No | State GST |
+| cgst | `number` | No | Central GST |
+| igst | `number` | No | Integrated GST |
+| other_transfer_expenses | `number` | No | Any other transfer-related expense |
+| label | `string` | No | See `Annexure 1 Labels` for allowed values |
+| product_type | `string` | Yes | `delivery` or `intraday` |
+
+### Stock Last Traded Price List
+
+| Param | Type | Required | Description |
+| :---- | :--- | :------- | :---------- |
+| symbol | `string` | Yes | Symbol or description of security |
+| price | `number` | Yes | Latest traded price |
+
+### Stock Dividend Table
+
+| Param | Type | Required | Description |
+| :---- | :--- | :------- | :---------- |
+| isin | `string` | Yes | International Securities Identification Number |
+| symbol | `string` | Yes | Symbol or description of security |
+| quantity | `number` | Yes | Trading quantity |
+| date | `number` | Yes | Transaction epoch timestamp |
+| dividend_per_share | `number` | Yes | Dividend received per share |
+| dividend_amount | `number` | Yes | Total dividend received |
+| tax_withheld | `number` | Yes | Tax deducted on dividend income |
+
+## Mutual Fund Sheet
+
+### Mutual Fund Tradebook Table
+
+| Param | Type | Required | Description |
+| :---- | :--- | :------- | :---------- |
+| trade_id | `string` | No | Transaction ID of the trade |
+| isin | `string` | Yes | International Securities Identification Number |
+| scheme_name | `string` | Yes | Symbol or name of the mutual fund |
+| asset_class | `string` | Yes | `equity`, `debt`, or `other` |
+| is_listed | `boolean` | Yes | Indicates if the scheme is listed |
+| is_stt_paid | `boolean` | Yes | Whether STT was paid |
+| quantity | `number` | Yes | Trading quantity |
+| date | `number` | Yes | Transaction epoch timestamp (ms) |
+| price | `number` | Yes | Transaction price |
+| transaction_type | `string` | Yes | `buy`, `sell`, `send`, `receive`, or `trade` |
+| fmv | `number` | No | Fair market value as on 31/01/2018 |
+| transfer_expenses | `number` | No | Any other transfer expense |
+| label | `string` | No | See `Annexure 1 Labels` for allowed values |
+
+### Mutual Fund Last Traded Price List
+
+| Param | Type | Required | Description |
+| :---- | :--- | :------- | :---------- |
+| symbol | `string` | Yes | Symbol or description of security |
+| price | `number` | Yes | Latest traded price |
+
+### Mutual Fund Dividend Table
+
+| Param | Type | Required | Description |
+| :---- | :--- | :------- | :---------- |
+| isin | `string` | Yes | International Securities Identification Number |
+| symbol | `string` | Yes | Symbol or description of security |
+| quantity | `number` | Yes | Trading quantity |
+| date | `number` | Yes | Transaction epoch timestamp |
+| dividend_per_share | `number` | Yes | Dividend received per share |
+| dividend_amount | `number` | Yes | Total dividend received |
+| tax_withheld | `number` | Yes | Tax deducted on dividend income |
+
+## ETF Sheet
+
+### ETF Tradebook Table
+
+| Param | Type | Required | Description |
+| :---- | :--- | :------- | :---------- |
+| trade_id | `string` | No | Transaction ID of the trade |
+| isin | `string` | No | International Securities Identification Number |
+| scheme_name | `string` | Yes | Symbol or description of the ETF |
+| asset_class | `string` | Yes | `equity`, `debt`, or `other` |
+| is_listed | `boolean` | Yes | Indicates if the ETF is listed |
+| is_stt_paid | `boolean` | Yes | Whether STT was paid |
+| quantity | `number` | Yes | Trading quantity |
+| date | `number` | Yes | Transaction epoch timestamp |
+| price | `number` | Yes | Unit price of the ETF |
+| transaction_type | `string` | Yes | `buy`, `sell`, `send`, `receive`, or `trade` |
+| fmv | `number` | No | Fair market value as on 31/01/2018 |
+| brokerage | `number` | No | Brokerage expense |
+| clearing_charges | `number` | No | Charges levied by the clearing house |
+| exchange_transaction_charges | `number` | No | Exchange transaction charges |
+| sebi_turnover_fees | `number` | No | SEBI turnover fees |
+| stt | `number` | No | Security Transaction Tax paid |
+| stamp_duty | `number` | No | Stamp duty paid on transfer |
+| sgst | `number` | No | State GST |
+| cgst | `number` | No | Central GST |
+| igst | `number` | No | Integrated GST |
+| other_transfer_expenses | `number` | No | Any other transfer-related expense |
+| label | `string` | No | See `Annexure 1 Labels` for allowed values |
+| product_type | `string` | Yes | `delivery` or `intraday` |
+
+### ETF Last Traded Price List
+
+| Param | Type | Required | Description |
+| :---- | :--- | :------- | :---------- |
+| symbol | `string` | Yes | Symbol or description of security |
+| price | `number` | Yes | Latest traded price |
+
+### ETF Dividend Table
+
+| Param | Type | Required | Description |
+| :---- | :--- | :------- | :---------- |
+| isin | `string` | Yes | International Securities Identification Number |
+| symbol | `string` | Yes | Symbol or description of security |
+| quantity | `number` | Yes | Trading quantity |
+| date | `number` | Yes | Transaction epoch timestamp |
+| dividend_per_share | `number` | Yes | Dividend received per share |
+| dividend_amount | `number` | Yes | Total dividend received |
+| tax_withheld | `number` | Yes | Tax deducted on dividend income |
+
+## Future Sheet
+
+### Future Tradebook Table
+
+| Param | Type | Required | Description |
+| :---- | :--- | :------- | :---------- |
+| trade_id | `string` | No | Transaction ID of the trade |
+| isin | `string` | Yes | International Securities Identification Number |
+| contract_name | `string` | Yes | Contract name |
+| asset_class | `string` | Yes | `equity`, `currency`, or `commodity` |
+| quantity | `number` | Yes | Trading quantity |
+| date | `number` | Yes | Transaction epoch timestamp |
+| price | `number` | Yes | Transaction price |
+| transaction_type | `string` | Yes | `buy` or `sell` |
+| brokerage | `number` | No | Brokerage expense |
+| clearing_charges | `number` | No | Charges levied by the clearing house |
+| exchange_transaction_charges | `number` | No | Exchange transaction charges |
+| sebi_turnover_fees | `number` | No | SEBI turnover fees |
+| stt | `number` | No | Security Transaction Tax |
+| stamp_duty | `number` | No | Stamp duty paid on transfer |
+| sgst | `number` | No | State GST |
+| cgst | `number` | No | Central GST |
+| igst | `number` | No | Integrated GST |
+| other_transfer_expenses | `number` | No | Any other transfer-related expense |
+| label | `string` | No | See `Annexure 1 Labels` for allowed values |
+
+### Future Last Traded Price List
+
+| Param | Type | Required | Description |
+| :---- | :--- | :------- | :---------- |
+| symbol | `string` | Yes | Symbol or description of security |
+| price | `number` | Yes | Latest traded price |
+
+## Option Sheet
+
+### Option Tradebook Table
+
+| Param | Type | Required | Description |
+| :---- | :--- | :------- | :---------- |
+| trade_id | `string` | No | Transaction ID of the trade |
+| isin | `string` | Yes | International Securities Identification Number |
+| contract_name | `string` | Yes | Contract name |
+| asset_class | `string` | Yes | `equity`, `currency`, or `commodity` |
+| quantity | `number` | Yes | Trading quantity |
+| date | `number` | Yes | Transaction epoch timestamp |
+| price | `number` | Yes | Transaction price |
+| transaction_type | `string` | Yes | `buy` or `sell` |
+| brokerage | `number` | No | Brokerage expense |
+| clearing_charges | `number` | No | Charges levied by the clearing house |
+| exchange_transaction_charges | `number` | No | Exchange transaction charges |
+| sebi_turnover_fees | `number` | No | SEBI turnover fees |
+| stt | `number` | No | Security Transaction Tax |
+| stamp_duty | `number` | No | Stamp duty paid on transfer |
+| sgst | `number` | No | State GST |
+| cgst | `number` | No | Central GST |
+| igst | `number` | No | Integrated GST |
+| other_transfer_expenses | `number` | No | Any other transfer-related expense |
+| label | `string` | No | See `Annexure 1 Labels` for allowed values |
+
+### Option Last Traded Price List
+
+| Param | Type | Required | Description |
+| :---- | :--- | :------- | :---------- |
+| symbol | `string` | Yes | Symbol or description of security |
+| price | `number` | Yes | Latest traded price |
+
+## Bond Tradebook Sheet
+
+### Bond Tradebook Table
+
+| Param | Type | Required | Description |
+| :---- | :--- | :------- | :---------- |
+| trade_id | `string` | No | Transaction ID of the trade |
+| isin | `string` | Yes | International Securities Identification Number |
+| security_name | `string` | Yes | Symbol or description of the bond |
+| is_listed | `boolean` | Yes | Indicates if the bond is listed |
+| quantity | `number` | Yes | Trading quantity |
+| date | `number` | Yes | Transaction epoch timestamp (ms) |
+| price | `number` | Yes | Unit price of the bond |
+| transaction_type | `string` | Yes | `buy`, `sell`, `send`, `receive`, or `trade` |
+| brokerage | `number` | No | Brokerage expense |
+| clearing_charges | `number` | No | Charges levied by the clearing house |
+| exchange_transaction_charges | `number` | No | Exchange transaction charges |
+| sebi_turnover_fees | `number` | No | SEBI turnover fees |
+| stamp_duty | `number` | No | Stamp duty paid on transfer |
+| sgst | `number` | No | State GST |
+| cgst | `number` | No | Central GST |
+| igst | `number` | No | Integrated GST |
+| other_transfer_expenses | `number` | No | Any other transfer-related expense |
+| label | `string` | No | See `Annexure 1 Labels` for allowed values |
+
+### Bond Last Traded Price List
+
+| Param | Type | Required | Description |
+| :---- | :--- | :------- | :---------- |
+| symbol | `string` | Yes | Symbol or description of security |
+| price | `number` | Yes | Latest traded price |
+
+## Debenture Sheet
+
+### Debenture Tradebook Table
+
+| Param | Type | Required | Description |
+| :---- | :--- | :------- | :---------- |
+| trade_id | `string` | No | Transaction ID of the trade |
+| isin | `string` | Yes | International Securities Identification Number |
+| security_name | `string` | Yes | Symbol or description of the debenture |
+| is_listed | `boolean` | Yes | Indicates if the debenture is listed |
+| quantity | `number` | Yes | Trading quantity |
+| date | `number` | Yes | Transaction epoch timestamp (ms) |
+| price | `number` | Yes | Unit price of the debenture |
+| transaction_type | `string` | Yes | `buy`, `sell`, `send`, `receive`, or `trade` |
+| brokerage | `number` | No | Brokerage expense |
+| clearing_charges | `number` | No | Charges levied by the clearing house |
+| exchange_transaction_charges | `number` | No | Exchange transaction charges |
+| sebi_turnover_fees | `number` | No | SEBI turnover fees |
+| stamp_duty | `number` | No | Stamp duty paid on transfer |
+| sgst | `number` | No | State GST |
+| cgst | `number` | No | Central GST |
+| igst | `number` | No | Integrated GST |
+| other_transfer_expenses | `number` | No | Any other transfer-related expense |
+| label | `string` | No | See `Annexure 1 Labels` for allowed values |
+
+### Debenture Last Traded Price List
+
+| Param | Type | Required | Description |
+| :---- | :--- | :------- | :---------- |
+| symbol | `string` | Yes | Symbol or description of security |
+| price | `number` | Yes | Latest traded price |
+
+## Other Charges Sheet
+
+| Param | Type | Required | Description |
+| :---- | :--- | :------- | :---------- |
+| dp_charges | `number` | No | Depository participant charges |
+| amc | `number` | No | Annual maintenance charges |
+| call_trade_charges | `number` | No | Call & trade charges |
+| buyback_application_charges | `number` | No | Buyback application charges |
+| pledging_charges | `number` | No | Pledging charges |
+| auto_square_off_charge | `number` | No | Auto square-off charge |
+| delayed_payment_charge | `number` | No | Delayed payment charges |
+| account_opening_charge | `number` | No | Account opening charges |
+| interest_charge | `number` | No | Interest charges |
+| margin_shortfall_penalty | `number` | No | Margin shortfall penalty |
+| any_other | `number` | No | Any other charge |
+
