@@ -137,6 +137,631 @@
         "security": []
       }
     },
+    "/it/calculator/tax-pnl/securities/foreign": {
+      "post": {
+        "summary": "Submit Tax P&L Job",
+        "tags": [
+          "tax-pnl",
+          "securities",
+          "foreign"
+        ],
+        "parameters": [
+          {
+            "name": "input",
+            "in": "query",
+            "required": false,
+            "deprecated": false,
+            "schema": {}
+          },
+          {
+            "name": "output",
+            "in": "query",
+            "required": false,
+            "deprecated": false,
+            "schema": {}
+          },
+          {
+            "name": "financial_year",
+            "in": "query",
+            "required": false,
+            "deprecated": false,
+            "schema": {}
+          },
+          {
+            "name": "x-accept-type",
+            "in": "header",
+            "required": false,
+            "description": "application/json or application/xlsx",
+            "deprecated": false,
+            "schema": {}
+          },
+          {
+            "name": "x-api-key",
+            "in": "header",
+            "required": false,
+            "deprecated": false,
+            "schema": {}
+          },
+          {
+            "name": "x-api-version",
+            "in": "header",
+            "required": false,
+            "deprecated": false,
+            "schema": {}
+          },
+          {
+            "name": "Authorization",
+            "in": "header",
+            "required": false,
+            "deprecated": false,
+            "schema": {}
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "headers": {
+              "Date": {
+                "schema": {
+                  "type": "string"
+                }
+              },
+              "Content-Length": {
+                "schema": {
+                  "type": "integer"
+                }
+              },
+              "Connection": {
+                "schema": {
+                  "type": "string"
+                }
+              },
+              "x-amzn-RequestId": {
+                "schema": {
+                  "type": "string"
+                }
+              },
+              "x-amz-apigw-id": {
+                "schema": {
+                  "type": "string"
+                }
+              },
+              "X-Amzn-Trace-Id": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            },
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "transaction_id": {
+                      "type": "string"
+                    },
+                    "code": {
+                      "type": "integer"
+                    },
+                    "data": {
+                      "type": "object",
+                      "properties": {
+                        "job_id": {
+                          "type": "string"
+                        },
+                        "url": {
+                          "type": "string",
+                          "format": "uri"
+                        }
+                      }
+                    },
+                    "timestamp": {
+                      "type": "string",
+                      "format": "utc-millisec"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid Params",
+            "headers": {
+              "Date": {
+                "schema": {
+                  "type": "string"
+                }
+              },
+              "Content-Length": {
+                "schema": {
+                  "type": "integer"
+                }
+              },
+              "Connection": {
+                "schema": {
+                  "type": "string"
+                }
+              },
+              "x-amzn-RequestId": {
+                "schema": {
+                  "type": "string"
+                }
+              },
+              "x-amzn-ErrorType": {
+                "schema": {
+                  "type": "string"
+                }
+              },
+              "x-amz-apigw-id": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            },
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string",
+                      "format": "style"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "data": {
+                    "type": "array",
+                    "items": {
+                      "type": "object",
+                      "properties": {
+                        "section": {
+                          "type": "string"
+                        },
+                        "description": {
+                          "type": "string"
+                        },
+                        "scheme": {
+                          "type": "string"
+                        },
+                        "assessee": {
+                          "type": "string"
+                        },
+                        "allowable": {
+                          "type": "string"
+                        },
+                        "allowable_percentage": {
+                          "type": "string",
+                          "format": "color"
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "get": {
+        "summary": "Get Job Status",
+        "tags": [
+          "tax-pnl",
+          "securities",
+          "foreign"
+        ],
+        "parameters": [
+          {
+            "name": "job_id",
+            "in": "query",
+            "description": "(Required) ",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "Authorization",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "x-api-key",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "x-api-version",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "headers": {
+              "Date": {
+                "schema": {
+                  "type": "string"
+                }
+              },
+              "Content-Length": {
+                "schema": {
+                  "type": "integer"
+                }
+              },
+              "Connection": {
+                "schema": {
+                  "type": "string"
+                }
+              },
+              "x-amzn-RequestId": {
+                "schema": {
+                  "type": "string"
+                }
+              },
+              "x-amz-apigw-id": {
+                "schema": {
+                  "type": "string"
+                }
+              },
+              "X-Amzn-Trace-Id": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            },
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "transaction_id": {
+                      "type": "string"
+                    },
+                    "code": {
+                      "type": "integer"
+                    },
+                    "data": {
+                      "type": "object",
+                      "properties": {
+                        "status": {
+                          "type": "string"
+                        }
+                      }
+                    },
+                    "timestamp": {
+                      "type": "string",
+                      "format": "utc-millisec"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid Param",
+            "headers": {
+              "Date": {
+                "schema": {
+                  "type": "string"
+                }
+              },
+              "Content-Length": {
+                "schema": {
+                  "type": "integer"
+                }
+              },
+              "Connection": {
+                "schema": {
+                  "type": "string"
+                }
+              },
+              "x-amzn-RequestId": {
+                "schema": {
+                  "type": "string"
+                }
+              },
+              "x-amzn-ErrorType": {
+                "schema": {
+                  "type": "string"
+                }
+              },
+              "x-amz-apigw-id": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            },
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string",
+                      "format": "style"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/it/calculator/crypto/tax-pnl": {
+      "post": {
+        "summary": "Submit Tax P&L Job",
+        "tags": [
+          "tax-pnl",
+          "crypto",
+          "tax-pnl"
+        ],
+        "parameters": [
+          {
+            "name": "report",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "from",
+            "in": "query",
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "name": "to",
+            "in": "query",
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "name": "x-accept-type",
+            "in": "header",
+            "description": "application/json or application/xlsx",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "x-api-key",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "x-api-version",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "Authorization",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "code": {
+                      "type": "integer"
+                    },
+                    "timestamp": {
+                      "type": "integer"
+                    },
+                    "transaction_id": {
+                      "type": "string"
+                    },
+                    "data": {
+                      "type": "object",
+                      "properties": {
+                        "@entity": {
+                          "type": "string"
+                        },
+                        "job_id": {
+                          "type": "string"
+                        },
+                        "report": {
+                          "type": "string"
+                        },
+                        "from": {
+                          "type": "integer"
+                        },
+                        "to": {
+                          "type": "integer"
+                        },
+                        "status": {
+                          "type": "string"
+                        },
+                        "tradebook_url": {
+                          "type": "string",
+                          "format": "uri"
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Invalid report",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "code": {
+                      "type": "integer"
+                    },
+                    "timestamp": {
+                      "type": "integer"
+                    },
+                    "transaction_id": {
+                      "type": "string"
+                    },
+                    "message": {
+                      "type": "string",
+                      "format": "style"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "get": {
+        "summary": "Poll Tax P&L Job",
+        "tags": [
+          "tax-pnl",
+          "crypto",
+          "tax-pnl"
+        ],
+        "parameters": [
+          {
+            "name": "job_id",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "x-accept-type",
+            "in": "header",
+            "description": "application/json or application/xlsx",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "x-api-key",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "x-api-version",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "Authorization",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "code": {
+                      "type": "integer"
+                    },
+                    "timestamp": {
+                      "type": "integer"
+                    },
+                    "transaction_id": {
+                      "type": "string"
+                    },
+                    "data": {
+                      "type": "object",
+                      "properties": {
+                        "@entity": {
+                          "type": "string"
+                        },
+                        "job_id": {
+                          "type": "string"
+                        },
+                        "report": {
+                          "type": "string"
+                        },
+                        "from": {
+                          "type": "integer"
+                        },
+                        "to": {
+                          "type": "integer"
+                        },
+                        "status": {
+                          "type": "string"
+                        },
+                        "tax_pnl_workbook_url": {
+                          "type": "string",
+                          "format": "uri"
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "521": {
+            "description": "Data not found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "code": {
+                      "type": "integer"
+                    },
+                    "timestamp": {
+                      "type": "integer"
+                    },
+                    "transaction_id": {
+                      "type": "string"
+                    },
+                    "message": {
+                      "type": "string",
+                      "format": "style"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },  
     "/form-26as/pdf": {
       "post": {
         "summary": "Read Form 26AS Document",
@@ -9814,14 +10439,15 @@
     "/it/calculator/tax-pnl/securities/domestic": {
       "post": {
         "summary": "Submit Job",
-        "description": "",
-        "operationId": "submit-job-calculator-domestic-securities",
+        "tags": [
+          "tax-pnl",
+          "securities",
+          "domestic"
+        ],
         "parameters": [
           {
             "name": "input",
             "in": "query",
-            "description": "Possible input: `tradebook`, `tradewise_settlement` or `scripwise_settlement`",
-            "required": true,
             "schema": {
               "type": "string"
             }
@@ -9829,8 +10455,13 @@
           {
             "name": "output",
             "in": "query",
-            "description": "Possible values: `tradewise_tax_pnl`, `scripwise_tax_pnl`",
-            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "financial_year",
+            "in": "query",
             "schema": {
               "type": "string"
             }
@@ -9838,19 +10469,9 @@
           {
             "name": "x-accept-type",
             "in": "header",
-            "description": "Whether to generate a Excel sheet as output   Possible values: `application/json`, `application/xlsx`",
+            "description": "application/json or application/xlsx",
             "schema": {
-              "type": "string",
-              "default": "`application/json`"
-            }
-          },
-          {
-            "name": "financial_year",
-            "in": "query",
-            "description": "Financial year in 'FY 20XX-XX' format",
-            "schema": {
-              "type": "string",
-              "default": "FY 2024-25"
+              "type": "string"
             }
           },
           {
@@ -9875,67 +10496,103 @@
             }
           }
         ],
+        "responses": {}
+      },
+      "get": {
+        "summary": "Get Job Status",
+        "tags": [
+          "tax-pnl",
+          "securities",
+          "domestic"
+        ],
+        "parameters": [
+          {
+            "name": "job_id",
+            "in": "query",
+            "required": false,
+            "description": "(Required) ",
+            "deprecated": false,
+            "schema": {}
+          },
+          {
+            "name": "Authorization",
+            "in": "header",
+            "required": false,
+            "deprecated": false,
+            "schema": {}
+          },
+          {
+            "name": "x-api-key",
+            "in": "header",
+            "required": false,
+            "deprecated": false,
+            "schema": {}
+          },
+          {
+            "name": "x-api-version",
+            "in": "header",
+            "required": false,
+            "deprecated": false,
+            "schema": {}
+          }
+        ],
         "responses": {
           "200": {
-            "description": "200",
+            "description": "Success",
+            "headers": {
+              "Date": {
+                "schema": {
+                  "type": "string"
+                }
+              },
+              "Content-Length": {
+                "schema": {
+                  "type": "integer"
+                }
+              },
+              "Connection": {
+                "schema": {
+                  "type": "string"
+                }
+              },
+              "x-amzn-RequestId": {
+                "schema": {
+                  "type": "string"
+                }
+              },
+              "x-amz-apigw-id": {
+                "schema": {
+                  "type": "string"
+                }
+              },
+              "X-Amzn-Trace-Id": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            },
             "content": {
               "application/json": {
-                "examples": {
-                  "Result": {
-                    "value": "{\n    \"code\": 200,\n    \"timestamp\": 1745916897705,\n    \"data\": {\n        \"created_at\": 1745916897924,\n        \"updated_at\": 1745916897924,\n        \"@entity\": \"in.co.sandbox.it.calculator.tax_pnl.securities.job\",\n        \"security_type\": \"domestic\",\n        \"url\": \"https://in-co-sbox-it-calc-tax-pnl-2025-sec-prod1.s3.ap-south-1.amazonaws.com/domestic/358ca3ab-5e0d-490f-8795-a6396cdd6db2/workbook.input?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Credential=AKIAUZPNLLKRBDF6264H%2F20250429%2Fap-south-1%2Fs3%2Faws4_request&X-Amz-Date=20250429T085457Z&X-Amz-Expires=86400&X-Amz-Signature=c7bfa07dab2febb4eccd69265f77b1ac5d08ea41df277bf2fbc9e7d6cc26a9bf&X-Amz-SignedHeaders=host&x-amz-checksum-crc32=AAAAAA%3D%3D&x-amz-sdk-checksum-algorithm=CRC32&x-id=PutObject\",\n        \"status\": \"created\",\n        \"job_id\": \"358ca3ab-5e0d-490f-8795-a6396cdd6db2\"\n    },\n    \"transaction_id\": \"358ca3ab-5e0d-490f-8795-a6396cdd6db2\"\n}"
-                  }
-                },
                 "schema": {
                   "type": "object",
                   "properties": {
-                    "code": {
-                      "type": "integer",
-                      "example": 200,
-                      "default": 0
+                    "transaction_id": {
+                      "type": "string"
                     },
-                    "timestamp": {
-                      "type": "integer",
-                      "example": 1745916897705,
-                      "default": 0
+                    "code": {
+                      "type": "integer"
                     },
                     "data": {
                       "type": "object",
                       "properties": {
-                        "created_at": {
-                          "type": "integer",
-                          "example": 1745916897924,
-                          "default": 0
-                        },
-                        "updated_at": {
-                          "type": "integer",
-                          "example": 1745916897924,
-                          "default": 0
-                        },
-                        "@entity": {
-                          "type": "string",
-                          "example": "in.co.sandbox.it.calculator.tax_pnl.securities.job"
-                        },
-                        "security_type": {
-                          "type": "string",
-                          "example": "domestic"
-                        },
-                        "url": {
-                          "type": "string",
-                          "example": "https://in-co-sbox-it-calc-tax-pnl-2025-sec-prod1.s3.ap-south-1.amazonaws.com/domestic/358ca3ab-5e0d-490f-8795-a6396cdd6db2/workbook.input?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Credential=AKIAUZPNLLKRBDF6264H%2F20250429%2Fap-south-1%2Fs3%2Faws4_request&X-Amz-Date=20250429T085457Z&X-Amz-Expires=86400&X-Amz-Signature=c7bfa07dab2febb4eccd69265f77b1ac5d08ea41df277bf2fbc9e7d6cc26a9bf&X-Amz-SignedHeaders=host&x-amz-checksum-crc32=AAAAAA%3D%3D&x-amz-sdk-checksum-algorithm=CRC32&x-id=PutObject"
-                        },
                         "status": {
-                          "type": "string",
-                          "example": "created"
-                        },
-                        "job_id": {
-                          "type": "string",
-                          "example": "358ca3ab-5e0d-490f-8795-a6396cdd6db2"
+                          "type": "string"
                         }
                       }
                     },
-                    "transaction_id": {
+                    "timestamp": {
                       "type": "string",
-                      "example": "358ca3ab-5e0d-490f-8795-a6396cdd6db2"
+                      "format": "utc-millisec"
                     }
                   }
                 }
@@ -9943,38 +10600,53 @@
             }
           },
           "400": {
-            "description": "400",
+            "description": "Invalid Param",
+            "headers": {
+              "Date": {
+                "schema": {
+                  "type": "string"
+                }
+              },
+              "Content-Length": {
+                "schema": {
+                  "type": "integer"
+                }
+              },
+              "Connection": {
+                "schema": {
+                  "type": "string"
+                }
+              },
+              "x-amzn-RequestId": {
+                "schema": {
+                  "type": "string"
+                }
+              },
+              "x-amzn-ErrorType": {
+                "schema": {
+                  "type": "string"
+                }
+              },
+              "x-amz-apigw-id": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            },
             "content": {
               "application/json": {
-                "examples": {
-                  "Result": {
-                    "value": "{\n    \"message\": \"Missing required request parameters: [output, input]\"\n}"
-                  }
-                },
                 "schema": {
                   "type": "object",
                   "properties": {
                     "message": {
                       "type": "string",
-                      "example": "Missing required request parameters: [output, input]"
+                      "format": "style"
                     }
                   }
                 }
               }
             }
           }
-        },
-        "deprecated": false,
-        "x-readme": {
-          "code-samples": [
-            {
-              "language": "curl",
-              "code": "curl --location --request POST 'https://api.sandbox.co.in/it/calculator/tax-pnl/securities/domestic?input=tradewise_settlement&output=tradewise_tax_pnl&financial_year=FY%202024-25' \\\n--header 'x-accept-type: application/json' \\\n--header 'x-api-key: **' \\\n--header 'x-api-version: 1.0.0' \\\n--header 'Authorization: e**** \\\n--data ''"
-            }
-          ],
-          "samples-languages": [
-            "curl"
-          ]
         }
       }
     },
@@ -10151,255 +10823,6 @@
             {
               "language": "curl",
               "code": "curl --location 'https://prod1-api.sandbox.co.in/it/calculator/tax-pnl/securities/domestic?job_id=65c1363a-be5a-472d-8157-1f4fc07277e6' \\\n--header 'Authorization: **** \\\n--header 'x-api-key: ****' \\\n--header 'x-api-version: 1.0.0'"
-            }
-          ],
-          "samples-languages": [
-            "curl"
-          ]
-        }
-      }
-    },
-    "/it/calculator/tax-pnl/securities/foreign": {
-      "post": {
-        "summary": "Submit Job",
-        "description": "",
-        "operationId": "submit-job-it-calculator-securities-foreign",
-        "parameters": [
-          {
-            "name": "input",
-            "in": "query",
-            "description": "Possible input: `tradebook`, `tradewise_settlement` or `scripwise_settlement`",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "output",
-            "in": "query",
-            "description": "Possible values: `tradewise_pnl`, `scripwise_pnl`",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "x-accept-type",
-            "in": "header",
-            "description": "Whether to generate a excel sheet as output   Possible values: `application/json`, `application/xlsx`",
-            "schema": {
-              "type": "string",
-              "default": "`application/json`"
-            }
-          },
-          {
-            "name": "financial_year",
-            "in": "query",
-            "description": "Financial year in 'FY 20XX-XX' format",
-            "schema": {
-              "type": "string",
-              "default": "FY 2024-25"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "200",
-            "content": {
-              "text/plain": {
-                "examples": {
-                  "Result": {
-                    "value": "{\n    \"code\": 200,\n    \"timestamp\": 1745496475310,\n    \"data\": {\n        \"created_at\": 1745496491123,\n        \"updated_at\": 1745496491123,\n        \"@entity\": \"in.co.sandbox.it.calculator.tax_pnl.securities.job\",\n        \"security_type\": \"foreign\",\n        \"url\": \"https://in-co-sbox-it-calc-tax-pnl-2025-sec-prod1.s3.ap-south-1.amazonaws.com/foreign/13331868-ae3e-4cf5-8b59-2573d3307916/workbook.input?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Credential=AKIAUZPNLLKRBDF6264H%2F20250424%2Fap-south-1%2Fs3%2Faws4_request&X-Amz-Date=20250424T120811Z&X-Amz-Expires=86400&X-Amz-Signature=d71a6c9b73373637f9513523956086c859cdaf96af48d6666210de2d701b6e93&X-Amz-SignedHeaders=host&x-amz-checksum-crc32=AAAAAA%3D%3D&x-amz-sdk-checksum-algorithm=CRC32&x-id=PutObject\",\n        \"status\": \"created\",\n        \"job_id\": \"13331868-ae3e-4cf5-8b59-2573d3307916\"\n    },\n    \"transaction_id\": \"13331868-ae3e-4cf5-8b59-2573d3307916\"\n}"
-                  }
-                },
-                "schema": {
-                  "type": "object",
-                  "properties": {
-                    "code": {
-                      "type": "integer",
-                      "example": 200,
-                      "default": 0
-                    },
-                    "timestamp": {
-                      "type": "integer",
-                      "example": 1745496475310,
-                      "default": 0
-                    },
-                    "data": {
-                      "type": "object",
-                      "properties": {
-                        "created_at": {
-                          "type": "integer",
-                          "example": 1745496491123,
-                          "default": 0
-                        },
-                        "updated_at": {
-                          "type": "integer",
-                          "example": 1745496491123,
-                          "default": 0
-                        },
-                        "@entity": {
-                          "type": "string",
-                          "example": "in.co.sandbox.it.calculator.tax_pnl.securities.job"
-                        },
-                        "security_type": {
-                          "type": "string",
-                          "example": "foreign"
-                        },
-                        "url": {
-                          "type": "string",
-                          "example": "https://in-co-sbox-it-calc-tax-pnl-2025-sec-prod1.s3.ap-south-1.amazonaws.com/foreign/13331868-ae3e-4cf5-8b59-2573d3307916/workbook.input?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Credential=AKIAUZPNLLKRBDF6264H%2F20250424%2Fap-south-1%2Fs3%2Faws4_request&X-Amz-Date=20250424T120811Z&X-Amz-Expires=86400&X-Amz-Signature=d71a6c9b73373637f9513523956086c859cdaf96af48d6666210de2d701b6e93&X-Amz-SignedHeaders=host&x-amz-checksum-crc32=AAAAAA%3D%3D&x-amz-sdk-checksum-algorithm=CRC32&x-id=PutObject"
-                        },
-                        "status": {
-                          "type": "string",
-                          "example": "created"
-                        },
-                        "job_id": {
-                          "type": "string",
-                          "example": "13331868-ae3e-4cf5-8b59-2573d3307916"
-                        }
-                      }
-                    },
-                    "transaction_id": {
-                      "type": "string",
-                      "example": "13331868-ae3e-4cf5-8b59-2573d3307916"
-                    }
-                  }
-                }
-              }
-            }
-          },
-          "400": {
-            "description": "400",
-            "content": {
-              "application/json": {
-                "examples": {
-                  "Result": {
-                    "value": "{}"
-                  }
-                },
-                "schema": {
-                  "type": "object",
-                  "properties": {}
-                }
-              }
-            }
-          }
-        },
-        "deprecated": false,
-        "x-readme": {
-          "code-samples": [
-            {
-              "language": "curl",
-              "code": "curl --location --request POST 'https://prod1-api.sandbox.co.in/it/calculator/tax-pnl/securities/foreign?input=tradewise_settlement&output=tradewise_tax_pnl&financial_year=FY%202024-25' \\\n--header 'x-accept-type: application/xlsx' \\\n--header 'x-api-key: **' \\\n--header 'x-api-version: 1.0.0' \\\n--header 'Authorization: ***"
-            }
-          ],
-          "samples-languages": [
-            "curl"
-          ]
-        }
-      },
-      "get": {
-        "summary": "Job Status",
-        "description": "",
-        "operationId": "job-status-it-calculator-securities-foreign",
-        "parameters": [
-          {
-            "name": "job_id",
-            "in": "query",
-            "description": "Job ID from previously generate request",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "200",
-            "content": {
-              "application/json": {
-                "examples": {
-                  "Result": {
-                    "value": "{\n    \"code\": 200,\n    \"timestamp\": 1745400622658,\n    \"data\": {\n        \"created_at\": 1745400571310,\n        \"updated_at\": 1745400571310,\n        \"@entity\": \"in.co.sandbox.it.calculator.tax_pnl.securities.job\",\n        \"security_type\": \"foreign\",\n        \"status\": \"created\",\n        \"job_id\": \"b4136c75-f405-4cf7-b7bf-12a0ef687399\"\n    },\n    \"transaction_id\": \"41549844-43dc-4bdd-a4a1-7e54baf15c8b\"\n}"
-                  }
-                },
-                "schema": {
-                  "type": "object",
-                  "properties": {
-                    "code": {
-                      "type": "integer",
-                      "example": 200,
-                      "default": 0
-                    },
-                    "timestamp": {
-                      "type": "integer",
-                      "example": 1745400622658,
-                      "default": 0
-                    },
-                    "data": {
-                      "type": "object",
-                      "properties": {
-                        "created_at": {
-                          "type": "integer",
-                          "example": 1745400571310,
-                          "default": 0
-                        },
-                        "updated_at": {
-                          "type": "integer",
-                          "example": 1745400571310,
-                          "default": 0
-                        },
-                        "@entity": {
-                          "type": "string",
-                          "example": "in.co.sandbox.it.calculator.tax_pnl.securities.job"
-                        },
-                        "security_type": {
-                          "type": "string",
-                          "example": "foreign"
-                        },
-                        "status": {
-                          "type": "string",
-                          "example": "created"
-                        },
-                        "job_id": {
-                          "type": "string",
-                          "example": "b4136c75-f405-4cf7-b7bf-12a0ef687399"
-                        }
-                      }
-                    },
-                    "transaction_id": {
-                      "type": "string",
-                      "example": "41549844-43dc-4bdd-a4a1-7e54baf15c8b"
-                    }
-                  }
-                }
-              }
-            }
-          },
-          "400": {
-            "description": "400",
-            "content": {
-              "application/json": {
-                "examples": {
-                  "Result": {
-                    "value": "{}"
-                  }
-                },
-                "schema": {
-                  "type": "object",
-                  "properties": {}
-                }
-              }
-            }
-          }
-        },
-        "deprecated": false,
-        "x-readme": {
-          "code-samples": [
-            {
-              "language": "curl",
-              "code": "curl --location 'https://prod1-api.sandbox.co.in/it/calculator/tax-pnl/securities/foreign?job_id=b4136c75-f405-4cf7-b7bf-12a0ef687399' \\\n--header 'Authorization: ****\n--header 'x-api-key: *** \\\n--header 'x-api-version: 1.0.0'"
             }
           ],
           "samples-languages": [
@@ -10591,256 +11014,6 @@
             {
               "language": "curl",
               "code": "curl --location 'http://api.sandbox.co.in/it/calculator/securities/foreign/tax-pnl?job_id=49f15670-1516-4e4f-9821-9dff154d3154' \\\n--header 'Authorization: xxxxxxxxxxxxxx' \\\n--header 'x-api-version: 1.0.0' \\\n--header 'x-api-key: xxxxxxxxxxxxxx' \\\n--header 'Content-Type: application/json'"
-            }
-          ],
-          "samples-languages": [
-            "curl"
-          ]
-        }
-      }
-    },
-    "/it/calculator/crypto/tax-pnl": {
-      "get": {
-        "summary": "Job Status",
-        "description": "",
-        "operationId": "job-status-it-calculator-crypto",
-        "parameters": [
-          {
-            "name": "job_id",
-            "in": "query",
-            "description": "Job ID from previously generated request",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "200",
-            "content": {
-              "application/json": {
-                "examples": {
-                  "Success": {
-                    "value": " {\n    \"code\": 200,\n    \"timestamp\": 1676979940157,\n    \"transaction_id\": \"c01f847c-c42e-4577-9d01-a7208401a922\",\n    \"data\": {\n        \"@entity\": \"in.co.sandbox.it.calculator.cryto.tax_pnl.job\",\n        \"job_id\": \"c01f847c-c42e-4577-9d01-a7208401a922\",\n        \"report\": \"tradewise\",\n        \"from\": 1682945614000,\n        \"to\": 1683291214000,\n        \"status\": \"succeeded\",\n        \"tax_pnl_workbook_url\": \"https://in-co-sandbox-it-calculator-crypto-tax-pnl-dev.s3.ap-south-1.amazonaws.com/tax_pnl_workbook.json\"\n    }\n}"
-                  },
-                  "Queued": {
-                    "value": "{\n    \"code\": 200,\n    \"timestamp\": 1676979940157,\n    \"transaction_id\": \"c01f847c-c42e-4577-9d01-a7208401a922\",\n    \"data\": {\n        \"@entity\": \"in.co.sandbox.it.calculator.cryto.tax_pnl.job\",\n        \"job_id\": \"2aa54d2b-68f6-4871-866a-4eba957a8672\",\n        \"report\": \"tradewise\",\n        \"from\": 1682945614000,\n        \"to\": 1683291214000,\n        \"status\": \"queued\"\n    }\n}"
-                  },
-                  "failed": {
-                    "value": "{\n    \"code\": 200,\n    \"timestamp\": 1665427380314,\n    \"transaction_id\": \"c01f847c-c42e-4577-9d01-a7208401a922\",\n    \"data\": {\n        \"@entity\": \"in.co.sandbox.it.calculator.cryto.tax_pnl.job\",\n        \"job_id\": \"6e8d1908-c062-4846-a811-8f73054acd65\",\n        \"report\": \"tradewise\",\n        \"from\": 1682945614000,\n        \"to\": 1683291214000,\n        \"status\": \"failed\",\n        \"message\": \"Sell quantity is more than buy quantity for : MATIC\"\n    }\n}"
-                  }
-                },
-                "schema": {
-                  "oneOf": [
-                    {
-                      "title": "Success",
-                      "type": "object",
-                      "properties": {
-                        "code": {
-                          "type": "integer",
-                          "example": 200,
-                          "default": 0
-                        },
-                        "timestamp": {
-                          "type": "integer",
-                          "example": 1676979940157,
-                          "default": 0
-                        },
-                        "transaction_id": {
-                          "type": "string",
-                          "example": "c01f847c-c42e-4577-9d01-a7208401a922"
-                        },
-                        "data": {
-                          "type": "object",
-                          "properties": {
-                            "@entity": {
-                              "type": "string",
-                              "example": "in.co.sandbox.it.calculator.cryto.tax_pnl.job"
-                            },
-                            "job_id": {
-                              "type": "string",
-                              "example": "c01f847c-c42e-4577-9d01-a7208401a922"
-                            },
-                            "report": {
-                              "type": "string",
-                              "example": "tradewise"
-                            },
-                            "from": {
-                              "type": "integer",
-                              "example": 1682945614000,
-                              "default": 0
-                            },
-                            "to": {
-                              "type": "integer",
-                              "example": 1683291214000,
-                              "default": 0
-                            },
-                            "status": {
-                              "type": "string",
-                              "example": "succeeded"
-                            },
-                            "tax_pnl_workbook_url": {
-                              "type": "string",
-                              "example": "https://in-co-sandbox-it-calculator-crypto-tax-pnl-dev.s3.ap-south-1.amazonaws.com/tax_pnl_workbook.json"
-                            }
-                          }
-                        }
-                      }
-                    },
-                    {
-                      "title": "Queued",
-                      "type": "object",
-                      "properties": {
-                        "code": {
-                          "type": "integer",
-                          "example": 200,
-                          "default": 0
-                        },
-                        "timestamp": {
-                          "type": "integer",
-                          "example": 1676979940157,
-                          "default": 0
-                        },
-                        "transaction_id": {
-                          "type": "string",
-                          "example": "c01f847c-c42e-4577-9d01-a7208401a922"
-                        },
-                        "data": {
-                          "type": "object",
-                          "properties": {
-                            "@entity": {
-                              "type": "string",
-                              "example": "in.co.sandbox.it.calculator.cryto.tax_pnl.job"
-                            },
-                            "job_id": {
-                              "type": "string",
-                              "example": "2aa54d2b-68f6-4871-866a-4eba957a8672"
-                            },
-                            "report": {
-                              "type": "string",
-                              "example": "tradewise"
-                            },
-                            "from": {
-                              "type": "integer",
-                              "example": 1682945614000,
-                              "default": 0
-                            },
-                            "to": {
-                              "type": "integer",
-                              "example": 1683291214000,
-                              "default": 0
-                            },
-                            "status": {
-                              "type": "string",
-                              "example": "queued"
-                            }
-                          }
-                        }
-                      }
-                    },
-                    {
-                      "title": "failed",
-                      "type": "object",
-                      "properties": {
-                        "code": {
-                          "type": "integer",
-                          "example": 200,
-                          "default": 0
-                        },
-                        "timestamp": {
-                          "type": "integer",
-                          "example": 1665427380314,
-                          "default": 0
-                        },
-                        "transaction_id": {
-                          "type": "string",
-                          "example": "c01f847c-c42e-4577-9d01-a7208401a922"
-                        },
-                        "data": {
-                          "type": "object",
-                          "properties": {
-                            "@entity": {
-                              "type": "string",
-                              "example": "in.co.sandbox.it.calculator.cryto.tax_pnl.job"
-                            },
-                            "job_id": {
-                              "type": "string",
-                              "example": "6e8d1908-c062-4846-a811-8f73054acd65"
-                            },
-                            "report": {
-                              "type": "string",
-                              "example": "tradewise"
-                            },
-                            "from": {
-                              "type": "integer",
-                              "example": 1682945614000,
-                              "default": 0
-                            },
-                            "to": {
-                              "type": "integer",
-                              "example": 1683291214000,
-                              "default": 0
-                            },
-                            "status": {
-                              "type": "string",
-                              "example": "failed"
-                            },
-                            "message": {
-                              "type": "string",
-                              "example": "Sell quantity is more than buy quantity for : MATIC"
-                            }
-                          }
-                        }
-                      }
-                    }
-                  ]
-                }
-              }
-            }
-          },
-          "521": {
-            "description": "521",
-            "content": {
-              "application/json": {
-                "examples": {
-                  "Data not found": {
-                    "value": "{\n    \"code\": 521,\n    \"timestamp\": 1672226687297,\n    \"transaction_id\": \"a4d95225-1802-475b-a990-e57af523ea6e\",\n    \"message\": \"Data not found: 7baed565-4dc2-46a1-89c2-be35a0a38081\"\n}"
-                  }
-                },
-                "schema": {
-                  "type": "object",
-                  "properties": {
-                    "code": {
-                      "type": "integer",
-                      "example": 521,
-                      "default": 0
-                    },
-                    "timestamp": {
-                      "type": "integer",
-                      "example": 1672226687297,
-                      "default": 0
-                    },
-                    "transaction_id": {
-                      "type": "string",
-                      "example": "a4d95225-1802-475b-a990-e57af523ea6e"
-                    },
-                    "message": {
-                      "type": "string",
-                      "example": "Data not found: 7baed565-4dc2-46a1-89c2-be35a0a38081"
-                    }
-                  }
-                }
-              }
-            }
-          }
-        },
-        "deprecated": false,
-        "x-readme": {
-          "code-samples": [
-            {
-              "language": "curl",
-              "code": "curl --location 'http://api.sandbox.co.in/it/calculator/crypto/tax-pnl?job_id=49f15670-1516-4e4f-9821-9dff154d3154' \\\n--header 'Authorization: xxxxxxxxxxxxxx' \\\n--header 'x-api-version: 1.0.0' \\\n--header 'x-api-key: xxxxxxxxxxxxxx' \\\n--header 'Content-Type: application/json'"
             }
           ],
           "samples-languages": [
