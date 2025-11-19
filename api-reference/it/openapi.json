@@ -137,6 +137,281 @@
         "security": []
       }
     },
+    "/form-26as/pdf": {
+      "post": {
+        "summary": "Read Form 26AS Document",
+        "description": "",
+        "operationId": "read-form-26as-document-api",
+        "parameters": [
+          {
+            "name": "email",
+            "in": "query",
+            "description": "email id",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "password",
+            "in": "query",
+            "description": "Password of encrypted Form 26AS",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "Authorization",
+            "in": "header",
+            "description": "JWT Authorization token",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "x-api-key",
+            "in": "header",
+            "description": "Public key required to authorize API access.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "x-api-version",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "default": "1.0"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "200",
+            "content": {
+              "application/json": {
+                "examples": {
+                  "Result": {
+                    "value": "{\n    \"Part VI\": [],\n    \"financial_year\": \"2022-23\",\n    \"assessment_year\": \"2023-24\",\n    \"name\": \"TONY STARK\",\n    \"Part II\": [\n        {\n            \"deduction_wise\": [\n                [\n                    \"sr_no\",\n                    \"section\",\n                    \"transaction_date\",\n                    \"date_of_booking\",\n                    \"remarks\",\n                    \"amount_paid_credited\",\n                    \"tax_deducted\",\n                    \"tds_deposited\"\n                ],\n                [\n                    \"1\",\n                    \"194\",\n                    \"22-Jul-2022\",\n                    \"30-Oct-2022\",\n                    \"-\",\n                    \"11582.50\",\n                    \"0.00\",\n                    \"0.00\"\n                ]\n            ],\n            \"total_amount_paid_credited\": \"11582.50\",\n            \"name_of_deductor\": \"UBA Ltd.\",\n            \"total_tax_deducted\": \"0.00\",\n            \"sr_no\": \"1\",\n            \"total_tds_deposited\": \"0.00\",\n            \"tan_of_deductor\": \"HRAB00275C\"\n        },\n        {\n            \"deduction_wise\": [\n                [\n                    \"sr_no\",\n                    \"section\",\n                    \"transaction_date\",\n                    \"date_of_booking\",\n                    \"remarks\",\n                    \"amount_paid_credited\",\n                    \"tax_deducted\",\n                    \"tds_deposited\"\n                ],\n                [\n                    \"1\",\n                    \"193\",\n                    \"30-Jun-2022\",\n                    \"02-Aug-2022\",\n                    \"-\",\n                    \"413.00\",\n                    \"0.00\",\n                    \"0.00\"\n                ],\n                [\n                    \"2\",\n                    \"194\",\n                    \"30-Jun-2022\",\n                    \"02-Aug-2022\",\n                    \"-\",\n                    \"413.00\",\n                    \"0.00\",\n                    \"0.00\"\n                ],\n                [\n                    \"3\",\n                    \"193\",\n                    \"30-Jun-2022\",\n                    \"02-Aug-2022\",\n                    \"B\",\n                    \"-413.00\",\n                    \"0.00\",\n                    \"0.00\"\n                ]\n            ],\n            \"total_amount_paid_credited\": \"413.00\",\n            \"name_of_deductor\": \"Jio Finance Ltd.\",\n            \"total_tax_deducted\": \"0.00\",\n            \"sr_no\": \"2\",\n            \"total_tds_deposited\": \"0.00\",\n            \"tan_of_deductor\": \"ANDC03708F\"\n        }\n    ],\n    \"Part III\": [],\n    \"Part V\": [],\n    \"pan\": \"ACPPA2608F\",\n    \"Part I\": [\n        {\n            \"deduction_wise\": [\n                [\n                    \"sr_no\",\n                    \"section\",\n                    \"transaction_date\",\n                    \"status_of_booking\",\n                    \"date_of_booking\",\n                    \"remarks\",\n                    \"amount_paid_credited\",\n                    \"tax_deducted\",\n                    \"tds_deposited\"\n                ],\n                [\n                    \"1\",\n                    \"194\",\n                    \"09-Nov-2022\",\n                    \"F\",\n                    \"08-Feb-2023\",\n                    \"-\",\n                    \"6912.00\",\n                    \"691.00\",\n                    \"691.00\"\n                ],\n                [\n                    \"2\",\n                    \"194\",\n                    \"25-Jul-2022\",\n                    \"F\",\n                    \"31-Oct-2022\",\n                    \"-\",\n                    \"5031.00\",\n                    \"504.00\",\n                    \"504.00\"\n                ]\n            ],\n            \"total_amount_paid_credited\": \"11943.00\",\n            \"name_of_deductor\": \"STARK INDUSTRIES\",\n            \"total_tax_deducted\": \"1195.00\",\n            \"sr_no\": \"1\",\n            \"total_tds_deposited\": \"1195.00\",\n            \"tan_of_deductor\": \"AHMS41521B\"\n        },\n        {\n            \"deduction_wise\": [\n                [\n                    \"sr_no\",\n                    \"section\",\n                    \"transaction_date\",\n                    \"status_of_booking\",\n                    \"date_of_booking\",\n                    \"remarks\",\n                    \"amount_paid_credited\",\n                    \"tax_deducted\",\n                    \"tds_deposited\"\n                ],\n                [\n                    \"1\",\n                    \"194\",\n                    \"02-Dec-2022\",\n                    \"F\",\n                    \"29-Jan-2023\",\n                    \"-\",\n                    \"516.00\",\n                    \"0.00\",\n                    \"0.00\"\n                ]\n            ],\n            \"total_amount_paid_credited\": \"\",\n            \"name_of_deductor\": \"PEARSON SPECTER LITT\",\n            \"total_tax_deducted\": \"\",\n            \"sr_no\": \"\",\n            \"total_tds_deposited\": \"\",\n            \"tan_of_deductor\": \"CMBF04227G\"\n        },\n        {\n            \"deduction_wise\": [\n                [\n                    \"sr_no\",\n                    \"section\",\n                    \"transaction_date\",\n                    \"status_of_booking\",\n                    \"date_of_booking\",\n                    \"remarks\",\n                    \"amount_paid_credited\",\n                    \"tax_deducted\",\n                    \"tds_deposited\"\n                ],\n                [\n                    \"1\",\n                    \"194\",\n                    \"23-Nov-2022\",\n                    \"F\",\n                    \"07-Feb-2023\",\n                    \"-\",\n                    \"1692.00\",\n                    \"0.00\",\n                    \"0.00\"\n                ]\n            ],\n            \"total_amount_paid_credited\": \"1692.00\",\n            \"name_of_deductor\": \"PEARSON HARDMAN\",\n            \"total_tax_deducted\": \"0.00\",\n            \"sr_no\": \"3\",\n            \"total_tds_deposited\": \"0.00\",\n            \"tan_of_deductor\": \"CMBF04227K\"\n        },\n        {\n            \"deduction_wise\": [\n                [\n                    \"sr_no\",\n                    \"section\",\n                    \"transaction_date\",\n                    \"status_of_booking\",\n                    \"date_of_booking\",\n                    \"remarks\",\n                    \"amount_paid_credited\",\n                    \"tax_deducted\",\n                    \"tds_deposited\"\n                ],\n                [\n                    \"1\",\n                    \"194\",\n                    \"10-Nov-2022\",\n                    \"F\",\n                    \"31-Jan-2023\",\n                    \"-\",\n                    \"450.00\",\n                    \"0.00\",\n                    \"0.00\"\n                ]\n            ]\n        },\n        {\n            \"deduction_wise\": [\n                [\n                    \"sr_no\",\n                    \"section\",\n                    \"transaction_date\",\n                    \"status_of_booking\",\n                    \"date_of_booking\",\n                    \"remarks\",\n                    \"amount_paid_credited\",\n                    \"tax_deducted\",\n                    \"tds_deposited\"\n                ],\n                [\n                    \"1\",\n                    \"194\",\n                    \"20-Jul-2022\",\n                    \"F\",\n                    \"03-Nov-2022\",\n                    \"-\",\n                    \"1332.87\",\n                    \"0.00\",\n                    \"0.00\"\n                ],\n                [\n                    \"2\",\n                    \"194\",\n                    \"20-Jul-2022\",\n                    \"F\",\n                    \"03-Nov-2022\",\n                    \"-\",\n                    \"1332.87\",\n                    \"0.00\",\n                    \"0.00\"\n                ],\n                [\n                    \"3\",\n                    \"194\",\n                    \"20-Jul-2022\",\n                    \"F\",\n                    \"03-Nov-2022\",\n                    \"B\",\n                    \"-1332.87\",\n                    \"0.00\",\n                    \"0.00\"\n                ],\n                [\n                    \"4\",\n                    \"194\",\n                    \"20-Jul-2022\",\n                    \"F\",\n                    \"03-Nov-2022\",\n                    \"-\",\n                    \"1332.87\",\n                    \"0.00\",\n                    \"0.00\"\n                ],\n                [\n                    \"5\",\n                    \"194\",\n                    \"20-Jul-2022\",\n                    \"F\",\n                    \"03-Nov-2022\",\n                    \"B\",\n                    \"-1332.87\",\n                    \"0.00\",\n                    \"0.00\"\n                ],\n                [\n                    \"6\",\n                    \"194\",\n                    \"20-Jul-2022\",\n                    \"F\",\n                    \"03-Nov-2022\",\n                    \"-\",\n                    \"1332.87\",\n                    \"0.00\",\n                    \"0.00\"\n                ],\n                [\n                    \"7\",\n                    \"194\",\n                    \"20-Jul-2022\",\n                    \"F\",\n                    \"03-Nov-2022\",\n                    \"B\",\n                    \"-1332.87\",\n                    \"0.00\",\n                    \"0.00\"\n                ]\n            ]\n        }\n    ],\n    \"Part IV\": []\n}"
+                  }
+                },
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "Part VI": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+
+                        }
+                      }
+                    },
+                    "financial_year": {
+                      "type": "string",
+                      "example": "2022-23"
+                    },
+                    "assessment_year": {
+                      "type": "string",
+                      "example": "2023-24"
+                    },
+                    "name": {
+                      "type": "string",
+                      "example": "TONY STARK"
+                    },
+                    "Part II": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "deduction_wise": {
+                            "type": "array",
+                            "items": {
+                              "type": "array",
+                              "items": {
+                                "type": "string",
+                                "example": "sr_no"
+                              }
+                            }
+                          },
+                          "total_amount_paid_credited": {
+                            "type": "string",
+                            "example": "11582.50"
+                          },
+                          "name_of_deductor": {
+                            "type": "string",
+                            "example": "UBA Ltd."
+                          },
+                          "total_tax_deducted": {
+                            "type": "string",
+                            "example": "0.00"
+                          },
+                          "sr_no": {
+                            "type": "string",
+                            "example": "1"
+                          },
+                          "total_tds_deposited": {
+                            "type": "string",
+                            "example": "0.00"
+                          },
+                          "tan_of_deductor": {
+                            "type": "string",
+                            "example": "HRAB00275C"
+                          }
+                        }
+                      }
+                    },
+                    "Part III": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+
+                        }
+                      }
+                    },
+                    "Part V": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+
+                        }
+                      }
+                    },
+                    "pan": {
+                      "type": "string",
+                      "example": "ACPPA2608F"
+                    },
+                    "Part I": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "deduction_wise": {
+                            "type": "array",
+                            "items": {
+                              "type": "array",
+                              "items": {
+                                "type": "string",
+                                "example": "sr_no"
+                              }
+                            }
+                          },
+                          "total_amount_paid_credited": {
+                            "type": "string",
+                            "example": "11943.00"
+                          },
+                          "name_of_deductor": {
+                            "type": "string",
+                            "example": "STARK INDUSTRIES"
+                          },
+                          "total_tax_deducted": {
+                            "type": "string",
+                            "example": "1195.00"
+                          },
+                          "sr_no": {
+                            "type": "string",
+                            "example": "1"
+                          },
+                          "total_tds_deposited": {
+                            "type": "string",
+                            "example": "1195.00"
+                          },
+                          "tan_of_deductor": {
+                            "type": "string",
+                            "example": "AHMS41521B"
+                          }
+                        }
+                      }
+                    },
+                    "Part IV": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "500",
+            "content": {
+              "application/json": {
+                "examples": {
+                  "Incorrect Password": {
+                    "value": "{\n  \"status\": 500,\n  \"message\": \"Invalid password\"\n}"
+                  },
+                  "Password Protected": {
+                    "value": "{\n  \"status\": 500,\n  \"message\": \"Form 26AS is password protected\"\n}"
+                  },
+                  "Failure": {
+                    "value": "{\n  \"status\": 500,\n  \"message\": \"Unable to read Form 26AS\"\n}"
+                  }
+                },
+                "schema": {
+                  "oneOf": [
+                    {
+                      "title": "Incorrect Password",
+                      "type": "object",
+                      "properties": {
+                        "status": {
+                          "type": "integer",
+                          "example": 500,
+                          "default": 0
+                        },
+                        "message": {
+                          "type": "string",
+                          "example": "Invalid password"
+                        }
+                      }
+                    },
+                    {
+                      "title": "Password Protected",
+                      "type": "object",
+                      "properties": {
+                        "status": {
+                          "type": "integer",
+                          "example": 500,
+                          "default": 0
+                        },
+                        "message": {
+                          "type": "string",
+                          "example": "Form 26AS is password protected"
+                        }
+                      }
+                    },
+                    {
+                      "title": "Failure",
+                      "type": "object",
+                      "properties": {
+                        "status": {
+                          "type": "integer",
+                          "example": 500,
+                          "default": 0
+                        },
+                        "message": {
+                          "type": "string",
+                          "example": "Unable to read Form 26AS"
+                        }
+                      }
+                    }
+                  ]
+                }
+              }
+            }
+          }
+        },
+        "deprecated": false
+      }
+    },
     "/calculators/income-tax/advance-tax/old": {
       "post": {
         "summary": "Calculate Advance Tax - Old Regime",
