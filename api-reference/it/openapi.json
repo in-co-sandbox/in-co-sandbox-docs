@@ -1037,6 +1037,442 @@
         "deprecated": false
       }
     },
+        "/it/ocr/form-26as/pdf": {
+      "post": {
+        "summary": "Form26AS Read",
+        "tags": [
+          "form26AS"
+        ],
+        "parameters": [
+          {
+            "name": "x-api-key",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "Authorization",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "200 OK",
+            "headers": {
+              "Date": {
+                "schema": {
+                  "type": "string"
+                }
+              },
+              "Content-Length": {
+                "schema": {
+                  "type": "integer"
+                }
+              },
+              "Connection": {
+                "schema": {
+                  "type": "string"
+                }
+              },
+              "x-amzn-RequestId": {
+                "schema": {
+                  "type": "string"
+                }
+              },
+              "x-amzn-Remapped-x-amzn-RequestId": {
+                "schema": {
+                  "type": "string"
+                }
+              },
+              "access-control-allow-origin": {
+                "schema": {
+                  "type": "string"
+                }
+              },
+              "access-control-allow-headers": {
+                "schema": {
+                  "type": "string"
+                }
+              },
+              "x-amzn-Remapped-Content-Length": {
+                "schema": {
+                  "type": "integer"
+                }
+              },
+              "x-amzn-Remapped-Connection": {
+                "schema": {
+                  "type": "string"
+                }
+              },
+              "x-amz-apigw-id": {
+                "schema": {
+                  "type": "string"
+                }
+              },
+              "access-control-allow-methods": {
+                "schema": {
+                  "type": "string"
+                }
+              },
+              "X-Amzn-Trace-Id": {
+                "schema": {
+                  "type": "string"
+                }
+              },
+              "x-amzn-Remapped-Date": {
+                "schema": {
+                  "type": "string"
+                }
+              },
+              "access-control-max-age": {
+                "schema": {
+                  "type": "integer"
+                }
+              }
+            },
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "transaction_id": {
+                      "type": "string"
+                    },
+                    "code": {
+                      "type": "integer"
+                    },
+                    "data": {
+                      "type": "object",
+                      "properties": {
+                        "Part VI": {
+                          "type": "array",
+                          "items": {}
+                        },
+                        "financial_year": {
+                          "type": "string"
+                        },
+                        "assessment_year": {
+                          "type": "string"
+                        },
+                        "name": {
+                          "type": "string"
+                        },
+                        "Part II": {
+                          "type": "array",
+                          "items": {}
+                        },
+                        "Part III": {
+                          "type": "array",
+                          "items": {}
+                        },
+                        "Part V": {
+                          "type": "array",
+                          "items": {}
+                        },
+                        "pan": {
+                          "type": "string"
+                        },
+                        "Part I": {
+                          "type": "array",
+                          "items": {
+                            "type": "object",
+                            "properties": {
+                              "deduction_wise": {
+                                "type": "array",
+                                "items": {
+                                  "type": "array",
+                                  "items": {
+                                    "type": "string"
+                                  }
+                                }
+                              },
+                              "total_amount_paid_credited": {
+                                "type": "string",
+                                "format": "utc-millisec"
+                              },
+                              "name_of_deductor": {
+                                "type": "string"
+                              },
+                              "total_tax_deducted": {
+                                "type": "string",
+                                "format": "utc-millisec"
+                              },
+                              "sr_no": {
+                                "type": "string",
+                                "format": "utc-millisec"
+                              },
+                              "total_tds_deposited": {
+                                "type": "string",
+                                "format": "utc-millisec"
+                              },
+                              "tan_of_deductor": {
+                                "type": "string"
+                              }
+                            }
+                          }
+                        },
+                        "Part IV": {
+                          "type": "array",
+                          "items": {}
+                        }
+                      }
+                    },
+                    "timestamp": {
+                      "type": "integer"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/it/ocr/form-16/pdf/classify": {
+      "post": {
+        "summary": "Form16 Classify",
+        "tags": [
+          "form16"
+        ],
+        "parameters": [
+          {
+            "name": "x-api-key",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "Authorization",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "x-api-transaction-id",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "x-request-time",
+            "in": "header",
+            "schema": {
+              "type": "integer"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "200 OK (Part A)",
+            "headers": {
+              "Date": {
+                "schema": {
+                  "type": "string"
+                }
+              },
+              "Content-Length": {
+                "schema": {
+                  "type": "integer"
+                }
+              },
+              "Connection": {
+                "schema": {
+                  "type": "string"
+                }
+              },
+              "x-amzn-RequestId": {
+                "schema": {
+                  "type": "string"
+                }
+              },
+              "x-amzn-Remapped-x-amzn-RequestId": {
+                "schema": {
+                  "type": "string"
+                }
+              },
+              "access-control-allow-origin": {
+                "schema": {
+                  "type": "string"
+                }
+              },
+              "access-control-allow-headers": {
+                "schema": {
+                  "type": "string"
+                }
+              },
+              "x-amzn-Remapped-Content-Length": {
+                "schema": {
+                  "type": "integer"
+                }
+              },
+              "x-amzn-Remapped-Connection": {
+                "schema": {
+                  "type": "string"
+                }
+              },
+              "x-amz-apigw-id": {
+                "schema": {
+                  "type": "string"
+                }
+              },
+              "access-control-allow-methods": {
+                "schema": {
+                  "type": "string"
+                }
+              },
+              "X-Amzn-Trace-Id": {
+                "schema": {
+                  "type": "string"
+                }
+              },
+              "x-amzn-Remapped-Date": {
+                "schema": {
+                  "type": "string"
+                }
+              },
+              "access-control-max-age": {
+                "schema": {
+                  "type": "integer"
+                }
+              }
+            },
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "transaction_id": {
+                      "type": "string"
+                    },
+                    "code": {
+                      "type": "integer"
+                    },
+                    "data": {
+                      "type": "object",
+                      "properties": {
+                        "type": {
+                          "type": "string"
+                        },
+                        "version": {
+                          "type": "string",
+                          "format": "utc-millisec"
+                        }
+                      }
+                    },
+                    "timestamp": {
+                      "type": "integer"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "500 (Password Protected)",
+            "headers": {
+              "Date": {
+                "schema": {
+                  "type": "string"
+                }
+              },
+              "Content-Length": {
+                "schema": {
+                  "type": "integer"
+                }
+              },
+              "Connection": {
+                "schema": {
+                  "type": "string"
+                }
+              },
+              "x-amzn-RequestId": {
+                "schema": {
+                  "type": "string"
+                }
+              },
+              "x-amzn-Remapped-x-amzn-RequestId": {
+                "schema": {
+                  "type": "string"
+                }
+              },
+              "access-control-allow-origin": {
+                "schema": {
+                  "type": "string"
+                }
+              },
+              "access-control-allow-headers": {
+                "schema": {
+                  "type": "string"
+                }
+              },
+              "x-amzn-Remapped-Content-Length": {
+                "schema": {
+                  "type": "integer"
+                }
+              },
+              "x-amzn-Remapped-Connection": {
+                "schema": {
+                  "type": "string"
+                }
+              },
+              "x-amz-apigw-id": {
+                "schema": {
+                  "type": "string"
+                }
+              },
+              "access-control-allow-methods": {
+                "schema": {
+                  "type": "string"
+                }
+              },
+              "X-Amzn-Trace-Id": {
+                "schema": {
+                  "type": "string"
+                }
+              },
+              "x-amzn-Remapped-Date": {
+                "schema": {
+                  "type": "string"
+                }
+              },
+              "access-control-max-age": {
+                "schema": {
+                  "type": "integer"
+                }
+              }
+            },
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "transaction_id": {
+                      "type": "string"
+                    },
+                    "code": {
+                      "type": "integer"
+                    },
+                    "message": {
+                      "type": "string"
+                    },
+                    "timestamp": {
+                      "type": "integer"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/calculators/income-tax/advance-tax/old": {
       "post": {
         "summary": "Calculate Advance Tax - Old Regime",
@@ -11206,16 +11642,53 @@
       }
     },
     "/it/reports/tax-pnl/securities/domestic": {
-      "get": {
-        "summary": "Job Status",
-        "description": "",
-        "operationId": "it-reports-tax-pnl-securities-poll-job",
+      "post": {
+        "summary": "Submit Job",
+        "tags": [
+          "tax-pnl",
+          "securities",
+          "domestic"
+        ],
         "parameters": [
           {
-            "name": "job_id",
+            "name": "input",
             "in": "query",
-            "description": "Job ID from the previously generated request",
-            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "financial_year",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "x-accept-type",
+            "in": "header",
+            "description": "application/json or application/xlsx",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "x-api-key",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "x-api-version",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "Authorization",
+            "in": "header",
             "schema": {
               "type": "string"
             }
@@ -11224,193 +11697,240 @@
         "responses": {
           "200": {
             "description": "200",
+            "headers": {
+              "Date": {
+                "schema": {
+                  "type": "string"
+                }
+              },
+              "Content-Length": {
+                "schema": {
+                  "type": "integer"
+                }
+              },
+              "Connection": {
+                "schema": {
+                  "type": "string"
+                }
+              },
+              "x-amzn-RequestId": {
+                "schema": {
+                  "type": "string"
+                }
+              },
+              "Content-Encoding": {
+                "schema": {
+                  "type": "string"
+                }
+              },
+              "x-amz-apigw-id": {
+                "schema": {
+                  "type": "string"
+                }
+              },
+              "X-Amzn-Trace-Id": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            },
             "content": {
               "application/json": {
-                "examples": {
-                  "Job created": {
-                    "value": "{\n    \"transaction_id\": \"7d0e9b77-a112-49a9-a204-0eec00205d78\",\n    \"code\": 200,\n    \"data\": {\n        \"status\": \"created\"\n    },\n    \"timestamp\": 1691486144000\n}"
-                  },
-                  "Job Queued": {
-                    "value": "{\n    \"transaction_id\": \"7d0e9b77-a112-49a9-a204-0eec00205d78\",\n    \"code\": 200,\n    \"data\": {\n        \"status\": \"queued\"\n    },\n    \"timestamp\": 1691486144000\n}"
-                  },
-                  "Job In Progress": {
-                    "value": "{\n    \"transaction_id\": \"7d0e9b77-a112-49a9-a204-0eec00205d78\",\n    \"code\": 200,\n    \"data\": {\n        \"status\": \"in_progress\"\n    },\n    \"timestamp\": 1691486144000\n}"
-                  },
-                  "Job Succeeded": {
-                    "value": "{\n    \"transaction_id\": \"7d0e9b77-a112-49a9-a204-0eec00205d78\",\n    \"code\": 200,\n    \"data\": {\n        \"url\": \"https://s3.ap-south-1.amazonaws.com/in-co-sandbox-it-tax-pnl-computation-dev/49f15670-1516-4e4f-9821-9dff154d3154.output?X-Amz-Security-Token=IQoJb3JpZ2luX2VjEOH%2F%2F%2F%2F%2F%2F%2F%2F%2F%2FwEaCmFwLXNvdXRoLTEiRzBFAiAtZgVlemk1AHQryNnG3IMaAQUIlQaBV1AFTU2jWDyoEAIhAM36EduLVfUzxkqlABo5m3H3zbmfAYYLncp74Lg2wE9nKpUDCIr%2F%2F%2F%2F%2F%2F%2F%2F%2F%2FwEQABoMMDcyNzU1MzM1OTc4IgwHmtwaDnulLeLMy78q6QLz1ZGqr4zLcN4NGgPRswrnNug8srRtGGluWrJpoLO3MDV9Xzzk7z5bScCgzZHEaZxvCIMy6rH0sYEE8oDudPF2N7i0m7psTRAPYGDAz5i0mJi8N42JXrQSv4Aw%2BmbFs3%2FFVKoQzLOGErFv6%2BUDE8JA02fl7UQVyvDVJGLHGoed5wiQ2rrFp3qYoJdTvGSw4n2ymramBkE1NfrxH5P2DefvF9MpxpA6nHRsfKpzMjqfKh9O%2BCY2E07fPP8hn%2BkrWVuBFZWUdwT%2BLLcHGW5HsMPNZmqiRwSsDNhkGXtozt8HtydFcRWG%2B7ztijYItAxSrZrusv%2BmI1Oaverp1aXRViwsnBw1Qaeq2EilS6jkn0MX5d4nlYMcJ%2F0Ta3ros4fecY7Kyr7XYu3TnY%2FhnTxEBgU1SLW1MOJFh4Zzw6WQCtmTOw7a1X7wSLjjOIn7CLiYzkLsRGnTTdUVvN6csKqecN8mP9YFxrTeeiA3MMGPyKYGOp0By2viFjHJfVOWMO4r%2BV83y3ExgYl4FpHNkr1gwkYb77EWfxvtZdAp8WT0nFvTIP8asqtKiJSA5MLMk2l%2F59CI1bLg4y6Yudf6roDqDHtlMaKUEiP%2BUj4SZ6lDNcuUwFDX6e8fETm81BjpaJbbJMjkV6ELZz53IOIH9gEDxJCXDlhYyBxKzonD6Pzq4IgDYewsYAj0FVRcQsswSaifew%3D%3D&X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Date=20230808T091558Z&X-Amz-SignedHeaders=host&X-Amz-Expires=604795&X-Amz-Credential=ASIARB4EOKMVNYO3L7UO%2F20230808%2Fap-south-1%2Fs3%2Faws4_request&X-Amz-Signature=4504a7a7cefaf41037637f4c50a85976fc2ffbd4f391778af59edf62faf1f35d\",\n        \"status\": \"succeeded\"\n    },\n    \"timestamp\": 1691486144000\n}"
-                  },
-                  "Job Failed": {
-                    "value": "{\n    \"transaction_id\": \"7d0e9b77-a112-49a9-a204-0eec00205d78\",\n    \"code\": 200,\n    \"data\": {\n        \"status\": \"failed\"\n    },\n    \"timestamp\": 1691486144000\n}"
-                  }
-                },
                 "schema": {
-                  "oneOf": [
-                    {
-                      "title": "Job created",
+                  "type": "object",
+                  "properties": {
+                    "code": {
+                      "type": "integer"
+                    },
+                    "timestamp": {
+                      "type": "integer"
+                    },
+                    "data": {
                       "type": "object",
                       "properties": {
-                        "transaction_id": {
+                        "created_at": {
+                          "type": "integer"
+                        },
+                        "updated_at": {
+                          "type": "integer"
+                        },
+                        "@entity": {
+                          "type": "string"
+                        },
+                        "security_type": {
+                          "type": "string"
+                        },
+                        "url": {
                           "type": "string",
-                          "example": "7d0e9b77-a112-49a9-a204-0eec00205d78"
+                          "format": "uri"
                         },
-                        "code": {
-                          "type": "integer",
-                          "example": 200,
-                          "default": 0
+                        "status": {
+                          "type": "string"
                         },
-                        "data": {
-                          "type": "object",
-                          "properties": {
-                            "status": {
-                              "type": "string",
-                              "example": "created"
-                            }
-                          }
-                        },
-                        "timestamp": {
-                          "type": "integer",
-                          "example": 1691486144000,
-                          "default": 0
+                        "job_id": {
+                          "type": "string"
                         }
                       }
                     },
-                    {
-                      "title": "Job Queued",
-                      "type": "object",
-                      "properties": {
-                        "transaction_id": {
-                          "type": "string",
-                          "example": "7d0e9b77-a112-49a9-a204-0eec00205d78"
-                        },
-                        "code": {
-                          "type": "integer",
-                          "example": 200,
-                          "default": 0
-                        },
-                        "data": {
-                          "type": "object",
-                          "properties": {
-                            "status": {
-                              "type": "string",
-                              "example": "queued"
-                            }
-                          }
-                        },
-                        "timestamp": {
-                          "type": "integer",
-                          "example": 1691486144000,
-                          "default": 0
-                        }
-                      }
-                    },
-                    {
-                      "title": "Job In Progress",
-                      "type": "object",
-                      "properties": {
-                        "transaction_id": {
-                          "type": "string",
-                          "example": "7d0e9b77-a112-49a9-a204-0eec00205d78"
-                        },
-                        "code": {
-                          "type": "integer",
-                          "example": 200,
-                          "default": 0
-                        },
-                        "data": {
-                          "type": "object",
-                          "properties": {
-                            "status": {
-                              "type": "string",
-                              "example": "in_progress"
-                            }
-                          }
-                        },
-                        "timestamp": {
-                          "type": "integer",
-                          "example": 1691486144000,
-                          "default": 0
-                        }
-                      }
-                    },
-                    {
-                      "title": "Job Succeeded",
-                      "type": "object",
-                      "properties": {
-                        "transaction_id": {
-                          "type": "string",
-                          "example": "7d0e9b77-a112-49a9-a204-0eec00205d78"
-                        },
-                        "code": {
-                          "type": "integer",
-                          "example": 200,
-                          "default": 0
-                        },
-                        "data": {
-                          "type": "object",
-                          "properties": {
-                            "url": {
-                              "type": "string",
-                              "example": "https://s3.ap-south-1.amazonaws.com/in-co-sandbox-it-tax-pnl-computation-dev/49f15670-1516-4e4f-9821-9dff154d3154.output?X-Amz-Security-Token=IQoJb3JpZ2luX2VjEOH%2F%2F%2F%2F%2F%2F%2F%2F%2F%2FwEaCmFwLXNvdXRoLTEiRzBFAiAtZgVlemk1AHQryNnG3IMaAQUIlQaBV1AFTU2jWDyoEAIhAM36EduLVfUzxkqlABo5m3H3zbmfAYYLncp74Lg2wE9nKpUDCIr%2F%2F%2F%2F%2F%2F%2F%2F%2F%2FwEQABoMMDcyNzU1MzM1OTc4IgwHmtwaDnulLeLMy78q6QLz1ZGqr4zLcN4NGgPRswrnNug8srRtGGluWrJpoLO3MDV9Xzzk7z5bScCgzZHEaZxvCIMy6rH0sYEE8oDudPF2N7i0m7psTRAPYGDAz5i0mJi8N42JXrQSv4Aw%2BmbFs3%2FFVKoQzLOGErFv6%2BUDE8JA02fl7UQVyvDVJGLHGoed5wiQ2rrFp3qYoJdTvGSw4n2ymramBkE1NfrxH5P2DefvF9MpxpA6nHRsfKpzMjqfKh9O%2BCY2E07fPP8hn%2BkrWVuBFZWUdwT%2BLLcHGW5HsMPNZmqiRwSsDNhkGXtozt8HtydFcRWG%2B7ztijYItAxSrZrusv%2BmI1Oaverp1aXRViwsnBw1Qaeq2EilS6jkn0MX5d4nlYMcJ%2F0Ta3ros4fecY7Kyr7XYu3TnY%2FhnTxEBgU1SLW1MOJFh4Zzw6WQCtmTOw7a1X7wSLjjOIn7CLiYzkLsRGnTTdUVvN6csKqecN8mP9YFxrTeeiA3MMGPyKYGOp0By2viFjHJfVOWMO4r%2BV83y3ExgYl4FpHNkr1gwkYb77EWfxvtZdAp8WT0nFvTIP8asqtKiJSA5MLMk2l%2F59CI1bLg4y6Yudf6roDqDHtlMaKUEiP%2BUj4SZ6lDNcuUwFDX6e8fETm81BjpaJbbJMjkV6ELZz53IOIH9gEDxJCXDlhYyBxKzonD6Pzq4IgDYewsYAj0FVRcQsswSaifew%3D%3D&X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Date=20230808T091558Z&X-Amz-SignedHeaders=host&X-Amz-Expires=604795&X-Amz-Credential=ASIARB4EOKMVNYO3L7UO%2F20230808%2Fap-south-1%2Fs3%2Faws4_request&X-Amz-Signature=4504a7a7cefaf41037637f4c50a85976fc2ffbd4f391778af59edf62faf1f35d"
-                            },
-                            "status": {
-                              "type": "string",
-                              "example": "succeeded"
-                            }
-                          }
-                        },
-                        "timestamp": {
-                          "type": "integer",
-                          "example": 1691486144000,
-                          "default": 0
-                        }
-                      }
-                    },
-                    {
-                      "title": "Job Failed",
-                      "type": "object",
-                      "properties": {
-                        "transaction_id": {
-                          "type": "string",
-                          "example": "7d0e9b77-a112-49a9-a204-0eec00205d78"
-                        },
-                        "code": {
-                          "type": "integer",
-                          "example": 200,
-                          "default": 0
-                        },
-                        "data": {
-                          "type": "object",
-                          "properties": {
-                            "status": {
-                              "type": "string",
-                              "example": "failed"
-                            }
-                          }
-                        },
-                        "timestamp": {
-                          "type": "integer",
-                          "example": 1691486144000,
-                          "default": 0
-                        }
-                      }
+                    "transaction_id": {
+                      "type": "string"
                     }
-                  ]
+                  }
                 }
               }
             }
           }
-        },
-        "deprecated": false,
-        "x-readme": {
-          "code-samples": [
-            {
-              "language": "curl",
-              "code": "curl --location 'https://dev1-api.sandbox.co.in/it/reports/tax-pnl/securities/domestic' \\\n--header 'Authorization: {{access_token}} \\\n--header 'x-api-key: {{api_key}}' \\\n--header 'x-api-version: 1.0.0'"
+        }
+      },
+      "get": {
+        "summary": "Get Job",
+        "tags": [
+          "tax-pnl",
+          "securities",
+          "domestic"
+        ],
+        "parameters": [
+          {
+            "name": "job_id",
+            "in": "query",
+            "description": "(Required) ",
+            "schema": {
+              "type": "string"
             }
-          ],
-          "samples-languages": [
-            "curl"
-          ]
+          },
+          {
+            "name": "Authorization",
+            "in": "header",
+            "required": false,
+            "deprecated": false,
+            "schema": {}
+          },
+          {
+            "name": "x-api-key",
+            "in": "header",
+            "required": false,
+            "deprecated": false,
+            "schema": {}
+          },
+          {
+            "name": "x-api-version",
+            "in": "header",
+            "required": false,
+            "deprecated": false,
+            "schema": {}
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "headers": {
+              "Date": {
+                "schema": {
+                  "type": "string"
+                }
+              },
+              "Content-Length": {
+                "schema": {
+                  "type": "integer"
+                }
+              },
+              "Connection": {
+                "schema": {
+                  "type": "string"
+                }
+              },
+              "x-amzn-RequestId": {
+                "schema": {
+                  "type": "string"
+                }
+              },
+              "x-amz-apigw-id": {
+                "schema": {
+                  "type": "string"
+                }
+              },
+              "X-Amzn-Trace-Id": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            },
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "transaction_id": {
+                      "type": "string"
+                    },
+                    "code": {
+                      "type": "integer"
+                    },
+                    "data": {
+                      "type": "object",
+                      "properties": {
+                        "status": {
+                          "type": "string"
+                        }
+                      }
+                    },
+                    "timestamp": {
+                      "type": "string",
+                      "format": "utc-millisec"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid Param",
+            "headers": {
+              "Date": {
+                "schema": {
+                  "type": "string"
+                }
+              },
+              "Content-Length": {
+                "schema": {
+                  "type": "integer"
+                }
+              },
+              "Connection": {
+                "schema": {
+                  "type": "string"
+                }
+              },
+              "x-amzn-RequestId": {
+                "schema": {
+                  "type": "string"
+                }
+              },
+              "x-amzn-ErrorType": {
+                "schema": {
+                  "type": "string"
+                }
+              },
+              "x-amz-apigw-id": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            },
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string",
+                      "format": "style"
+                    }
+                  }
+                }
+              }
+            }
+          }
         }
       }
     },
@@ -12065,6 +12585,533 @@
         "deprecated": false
       }
     },
+     "/it/ocr/form-16/pdf": {
+      "post": {
+        "summary": "Form16 Read",
+        "tags": [
+          "form16"
+        ],
+        "parameters": [
+          {
+            "name": "password",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "x-api-key",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "Authorization",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "200 OK",
+            "headers": {
+              "Date": {
+                "schema": {
+                  "type": "string"
+                }
+              },
+              "Content-Length": {
+                "schema": {
+                  "type": "integer"
+                }
+              },
+              "Connection": {
+                "schema": {
+                  "type": "string"
+                }
+              },
+              "x-amzn-RequestId": {
+                "schema": {
+                  "type": "string"
+                }
+              },
+              "x-amzn-Remapped-x-amzn-RequestId": {
+                "schema": {
+                  "type": "string"
+                }
+              },
+              "access-control-allow-origin": {
+                "schema": {
+                  "type": "string"
+                }
+              },
+              "access-control-allow-headers": {
+                "schema": {
+                  "type": "string"
+                }
+              },
+              "x-amzn-Remapped-Content-Length": {
+                "schema": {
+                  "type": "integer"
+                }
+              },
+              "x-amzn-Remapped-Connection": {
+                "schema": {
+                  "type": "string"
+                }
+              },
+              "x-amz-apigw-id": {
+                "schema": {
+                  "type": "string"
+                }
+              },
+              "access-control-allow-methods": {
+                "schema": {
+                  "type": "string"
+                }
+              },
+              "X-Amzn-Trace-Id": {
+                "schema": {
+                  "type": "string"
+                }
+              },
+              "x-amzn-Remapped-Date": {
+                "schema": {
+                  "type": "string"
+                }
+              },
+              "access-control-max-age": {
+                "schema": {
+                  "type": "integer"
+                }
+              }
+            },
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "transaction_id": {
+                      "type": "string"
+                    },
+                    "code": {
+                      "type": "integer"
+                    },
+                    "data": {
+                      "type": "object",
+                      "properties": {
+                        "Part A": {
+                          "type": "object",
+                          "properties": {
+                            "tds": {
+                              "type": "array",
+                              "items": {
+                                "type": "array",
+                                "items": {
+                                  "type": "string"
+                                }
+                              }
+                            },
+                            "assessment_year": {
+                              "type": "string"
+                            },
+                            "employer": {
+                              "type": "object",
+                              "properties": {
+                                "tan": {
+                                  "type": "string"
+                                },
+                                "address": {
+                                  "type": "object",
+                                  "properties": {
+                                    "area": {
+                                      "type": "string"
+                                    },
+                                    "street": {
+                                      "type": "string"
+                                    },
+                                    "postal_code": {
+                                      "type": "string",
+                                      "format": "color"
+                                    }
+                                  }
+                                },
+                                "name": {
+                                  "type": "string"
+                                },
+                                "pan": {
+                                  "type": "string"
+                                }
+                              }
+                            },
+                            "employee": {
+                              "type": "object",
+                              "properties": {
+                                "address": {
+                                  "type": "object",
+                                  "properties": {
+                                    "area": {
+                                      "type": "string"
+                                    },
+                                    "street": {
+                                      "type": "string"
+                                    },
+                                    "postal_code": {
+                                      "type": "string",
+                                      "format": "color"
+                                    }
+                                  }
+                                },
+                                "last_name": {
+                                  "type": "string"
+                                },
+                                "pan": {
+                                  "type": "string"
+                                },
+                                "middle_name": {
+                                  "type": "string"
+                                },
+                                "first_name": {
+                                  "type": "string"
+                                }
+                              }
+                            }
+                          }
+                        },
+                        "Part B": {
+                          "type": "object",
+                          "properties": {
+                            "assessment_year": {
+                              "type": "string"
+                            },
+                            "employer": {
+                              "type": "object",
+                              "properties": {
+                                "tan": {
+                                  "type": "string"
+                                },
+                                "address": {
+                                  "type": "object",
+                                  "properties": {
+                                    "area": {
+                                      "type": "string"
+                                    },
+                                    "street": {
+                                      "type": "string"
+                                    },
+                                    "postal_code": {
+                                      "type": "string",
+                                      "format": "color"
+                                    }
+                                  }
+                                },
+                                "name": {
+                                  "type": "string"
+                                },
+                                "pan": {
+                                  "type": "string"
+                                }
+                              }
+                            },
+                            "employee": {
+                              "type": "object",
+                              "properties": {
+                                "address": {
+                                  "type": "object",
+                                  "properties": {
+                                    "area": {
+                                      "type": "string"
+                                    },
+                                    "street": {
+                                      "type": "string"
+                                    },
+                                    "postal_code": {
+                                      "type": "string",
+                                      "format": "color"
+                                    }
+                                  }
+                                },
+                                "last_name": {
+                                  "type": "string"
+                                },
+                                "pan": {
+                                  "type": "string"
+                                },
+                                "middle_name": {
+                                  "type": "string"
+                                },
+                                "first_name": {
+                                  "type": "string"
+                                }
+                              }
+                            },
+                            "details_of_salary_paid": {
+                              "type": "object",
+                              "properties": {
+                                "surcharge": {
+                                  "type": "integer"
+                                },
+                                "gross_salary": {
+                                  "type": "object",
+                                  "properties": {
+                                    "reported_total_amount_of_salary_received_from_other_employer": {
+                                      "type": "integer"
+                                    },
+                                    "profits_in_lieu_of_salary_us_17_3": {
+                                      "type": "integer"
+                                    },
+                                    "value_of_perquisites_us_17_2": {
+                                      "type": "integer"
+                                    },
+                                    "salary_as_per_provisions_contained_in_section_17_1": {
+                                      "type": "integer"
+                                    }
+                                  }
+                                },
+                                "gross_total_income": {
+                                  "type": "integer"
+                                },
+                                "tax_payable": {
+                                  "type": "integer"
+                                },
+                                "allowances_us_10": {
+                                  "type": "object",
+                                  "properties": {
+                                    "house_rent_allowance_us_10_13_a": {
+                                      "type": "integer"
+                                    },
+                                    "commuted_value_of_pension_us_10_10_a": {
+                                      "type": "integer"
+                                    },
+                                    "death_cum_retirement_gratuity_us_10_10": {
+                                      "type": "integer"
+                                    },
+                                    "total_amount_of_any_other_exemption_us_10": {
+                                      "type": "integer"
+                                    },
+                                    "total_amount_of_exemption_claimed_us_10": {
+                                      "type": "integer"
+                                    },
+                                    "travel_concession_or_assistance_us_10_5": {
+                                      "type": "integer"
+                                    },
+                                    "cash_equivalent_of_leave_salary_encashment_us_10_10_aa": {
+                                      "type": "integer"
+                                    }
+                                  }
+                                },
+                                "total_amount_of_deductions_us_16": {
+                                  "type": "integer"
+                                },
+                                "health_and_eduction_cess": {
+                                  "type": "integer"
+                                },
+                                "deduction_under_chapter_vi_a": {
+                                  "type": "object",
+                                  "properties": {
+                                    "deduction_us_80_ccc": {
+                                      "type": "object"
+                                    },
+                                    "deduction_us_80_tta": {
+                                      "type": "object"
+                                    },
+                                    "total_deduction_us_80_cce": {
+                                      "type": "object"
+                                    },
+                                    "deduction_us_80_ccd_2": {
+                                      "type": "object"
+                                    },
+                                    "deduction_us_80_ccd_1": {
+                                      "type": "object"
+                                    },
+                                    "deduction_us_80_d": {
+                                      "type": "object"
+                                    },
+                                    "deduction_us_80_ccd_1_b": {
+                                      "type": "object"
+                                    },
+                                    "deduction_us_80_e": {
+                                      "type": "object"
+                                    },
+                                    "deduction_us_80_g": {
+                                      "type": "object"
+                                    },
+                                    "deduction_us_80_c": {
+                                      "type": "object"
+                                    }
+                                  }
+                                },
+                                "rebate_us_87_a": {
+                                  "type": "integer"
+                                },
+                                "relief_us_89": {
+                                  "type": "integer"
+                                },
+                                "aggregate_deductible_amount_under_chapter_vi_a": {
+                                  "type": "integer"
+                                },
+                                "opting_out_of_taxation_us_115_bac": {
+                                  "type": "string"
+                                },
+                                "net_tax_payable": {
+                                  "type": "integer"
+                                },
+                                "tax_on_total_income": {
+                                  "type": "integer"
+                                },
+                                "total_amount_of_other_income_reported_by_employee": {
+                                  "type": "integer"
+                                },
+                                "other_income_reported_by_employee_us_192_2_b": {
+                                  "type": "object",
+                                  "properties": {
+                                    "income_under_the_head_other_sources_offered_for_tds": {
+                                      "type": "integer"
+                                    },
+                                    "income_from_house_property_reported_by_employee_offered_for_tds": {
+                                      "type": "integer"
+                                    }
+                                  }
+                                },
+                                "income_chargeable_under_the_head_salaries": {
+                                  "type": "integer"
+                                },
+                                "total_amount_of_salary_received_from_current_employer": {
+                                  "type": "integer"
+                                },
+                                "deduction_us_16": {
+                                  "type": "object",
+                                  "properties": {
+                                    "entertainment_allowance_us_16_ii": {
+                                      "type": "integer"
+                                    },
+                                    "standard_deduction_us_16_ia": {
+                                      "type": "integer"
+                                    },
+                                    "tax_on_employment_us_16_iii": {
+                                      "type": "integer"
+                                    }
+                                  }
+                                },
+                                "total_taxable_income": {
+                                  "type": "integer"
+                                }
+                              }
+                            }
+                          }
+                        }
+                      }
+                    },
+                    "timestamp": {
+                      "type": "integer"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "500 (Password Protected)",
+            "headers": {
+              "Date": {
+                "schema": {
+                  "type": "string"
+                }
+              },
+              "Content-Length": {
+                "schema": {
+                  "type": "integer"
+                }
+              },
+              "Connection": {
+                "schema": {
+                  "type": "string"
+                }
+              },
+              "x-amzn-RequestId": {
+                "schema": {
+                  "type": "string"
+                }
+              },
+              "x-amzn-Remapped-x-amzn-RequestId": {
+                "schema": {
+                  "type": "string"
+                }
+              },
+              "access-control-allow-origin": {
+                "schema": {
+                  "type": "string"
+                }
+              },
+              "access-control-allow-headers": {
+                "schema": {
+                  "type": "string"
+                }
+              },
+              "x-amzn-Remapped-Content-Length": {
+                "schema": {
+                  "type": "integer"
+                }
+              },
+              "x-amzn-Remapped-Connection": {
+                "schema": {
+                  "type": "string"
+                }
+              },
+              "x-amz-apigw-id": {
+                "schema": {
+                  "type": "string"
+                }
+              },
+              "access-control-allow-methods": {
+                "schema": {
+                  "type": "string"
+                }
+              },
+              "X-Amzn-Trace-Id": {
+                "schema": {
+                  "type": "string"
+                }
+              },
+              "x-amzn-Remapped-Date": {
+                "schema": {
+                  "type": "string"
+                }
+              },
+              "access-control-max-age": {
+                "schema": {
+                  "type": "integer"
+                }
+              }
+            },
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "transaction_id": {
+                      "type": "string"
+                    },
+                    "code": {
+                      "type": "integer"
+                    },
+                    "message": {
+                      "type": "string"
+                    },
+                    "timestamp": {
+                      "type": "integer"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/it/calculator/pnl/securities/domestic": {
       "post": {
         "summary": "Submit Job",
@@ -12216,141 +13263,6 @@
             "curl"
           ]
         }
-      }
-    },
-    "/it/reports/tax-pnl/securities/{security_type}": {
-      "post": {
-        "summary": "Submit Job",
-        "description": "Submit a job to prepare Tax P&L Reports for tradebook and tradewise settlements.",
-        "operationId": "it-reports-tax-pnl-securities-submit-job",
-        "parameters": [
-          {
-            "name": "security_type",
-            "in": "path",
-            "description": "Possible values: domestic",
-            "schema": {
-              "type": "string",
-              "default": "domestic"
-            },
-            "required": true
-          },
-          {
-            "name": "input",
-            "in": "query",
-            "description": "Possible values: tradebook, tradewise_settlement",
-            "required": true,
-            "schema": {
-              "type": "string",
-              "default": "tradebook"
-            }
-          },
-          {
-            "name": "financial_year",
-            "in": "query",
-            "description": "Financial year. E.g., FY 2023-24",
-            "required": true,
-            "schema": {
-              "type": "string",
-              "default": "FY 2023-24"
-            }
-          },
-          {
-            "name": "authorization",
-            "in": "header",
-            "description": "JWT access token",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "x-api-key",
-            "in": "header",
-            "description": "API key for identification",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "x-api-version",
-            "in": "header",
-            "description": "API version",
-            "schema": {
-              "type": "string",
-              "default": "1.0.0"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "200",
-            "content": {
-              "application/json": {
-                "examples": {
-                  "Result": {
-                    "value": "{\n    \"code\": 200,\n    \"timestamp\": 1747891175423,\n    \"data\": {\n        \"created_at\": 1747891176339,\n        \"updated_at\": 1747891176339,\n        \"@entity\": \"in.co.sandbox.it.reports.tax_pnl.securities.job\",\n        \"security_type\": \"domestic\",\n        \"url\": \"https://in-co-sandbox-it-reports-tax-pnl-sec-dev.s3.ap-south-1.amazonaws.com/domestic/9c6846f0-92db-4da3-b982-1b97967c320e/workbook.input?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Credential=AKIARB4EOKMVAV67SXUX%2F20250522%2Fap-south-1%2Fs3%2Faws4_request&X-Amz-Date=20250522T051936Z&X-Amz-Expires=86400&X-Amz-Signature=015b4acb06aa428915338c6f76a03aafe8af0e9ab56d90a4dbac1fd202efabfb&X-Amz-SignedHeaders=host&x-amz-checksum-crc32=AAAAAA%3D%3D&x-amz-sdk-checksum-algorithm=CRC32&x-id=PutObject\",\n        \"status\": \"created\",\n        \"job_id\": \"9c6846f0-92db-4da3-b982-1b97967c320e\"\n    },\n    \"transaction_id\": \"9c6846f0-92db-4da3-b982-1b97967c320e\"\n}"
-                  }
-                },
-                "schema": {
-                  "type": "object",
-                  "properties": {
-                    "code": {
-                      "type": "integer",
-                      "example": 200,
-                      "default": 0
-                    },
-                    "timestamp": {
-                      "type": "integer",
-                      "example": 1747891175423,
-                      "default": 0
-                    },
-                    "data": {
-                      "type": "object",
-                      "properties": {
-                        "created_at": {
-                          "type": "integer",
-                          "example": 1747891176339,
-                          "default": 0
-                        },
-                        "updated_at": {
-                          "type": "integer",
-                          "example": 1747891176339,
-                          "default": 0
-                        },
-                        "@entity": {
-                          "type": "string",
-                          "example": "in.co.sandbox.it.reports.tax_pnl.securities.job"
-                        },
-                        "security_type": {
-                          "type": "string",
-                          "example": "domestic"
-                        },
-                        "url": {
-                          "type": "string",
-                          "example": "https://in-co-sandbox-it-reports-tax-pnl-sec-dev.s3.ap-south-1.amazonaws.com/domestic/9c6846f0-92db-4da3-b982-1b97967c320e/workbook.input?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Credential=AKIARB4EOKMVAV67SXUX%2F20250522%2Fap-south-1%2Fs3%2Faws4_request&X-Amz-Date=20250522T051936Z&X-Amz-Expires=86400&X-Amz-Signature=015b4acb06aa428915338c6f76a03aafe8af0e9ab56d90a4dbac1fd202efabfb&X-Amz-SignedHeaders=host&x-amz-checksum-crc32=AAAAAA%3D%3D&x-amz-sdk-checksum-algorithm=CRC32&x-id=PutObject"
-                        },
-                        "status": {
-                          "type": "string",
-                          "example": "created"
-                        },
-                        "job_id": {
-                          "type": "string",
-                          "example": "9c6846f0-92db-4da3-b982-1b97967c320e"
-                        }
-                      }
-                    },
-                    "transaction_id": {
-                      "type": "string",
-                      "example": "9c6846f0-92db-4da3-b982-1b97967c320e"
-                    }
-                  }
-                }
-              }
-            }
-          }
-        },
-        "deprecated": false
       }
     }
   }
