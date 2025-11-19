@@ -1,0 +1,308 @@
+---
+title: "Scripwise Tax P&L | Foreign Securities"
+---
+## Tax P&L Summary Sheet
+
+### Asset Wise Summary Table
+
+| Param | Type | Description |
+| :--- | :--- | :--- |
+| asset\_class | `string` | Asset class |
+| asset\_type | `string` | Asset category |
+| income\_head | `string` | The income head of ITR under which the income of a specific income is to be reported |
+| income\_sub\_head | `string` | The income subhead of ITR under which the income of a specific income is to be reported |
+| holding\_period | `string` | The holding period of the asset could be either `long\_term` or `short\_term` |
+| turnover | `number` | Turnover of the transactions |
+| buy\_value | `number` | Sum of buy value for all trades of the asset |
+| cost\_of\_acquisition | `number` | Sum of cost of acquisition value for all trades of the asset |
+| sell\_value | `number` | Sum of sell value for all trades of the asset |
+| realized\_pnl | `number` | The realized profit or loss on trades without considering transfer expenses |
+| transfer\_expenses | `number` | Any expense relating to the transfer of assets |
+| net\_realized\_pnl | `number` | The realized profit or loss on trades after considering transfer expenses |
+| taxable\_pnl | `number` | The taxable amount |
+
+### Tax P&L Summary Table
+
+| Param | Type | Description |
+| :--- | :--- | :--- |
+| income\_head | `string` | The income head of ITR under which the income is to be reported |
+| income\_sub\_head | `string` | The income subhead of ITR under which the income is to be reported |
+| holding\_period | `string` | The holding period of the crypto. |
+| tax\_rate | `string` | The applicable tax rate for all trades. |
+| turnover | `number` | Turnover of the transactions for the asset |
+| buy\_value | `number` | Sum of buy value for all trades of the asset |
+| cost\_of\_acquisition | `number` | Sum of cost of acquisition value for all trades of the asset |
+| sell\_value | `number` | Sum of sell value for all trades of the asset |
+| realized\_pnl | `number` | Total realized profit or loss on the trades without considering expenses |
+| transfer\_expenses | `number` | Total expenses that occurred during the transfer of crypto, could be network fees, brokerage, or any other transaction fee. |
+| net\_realized\_pnl | `number` | Total realized profit or loss on the trades after considering expenses |
+| taxable\_pnl | `string` | The total taxable amount of all trades |
+
+---
+
+## Stock Scripwise Tax Pnl Sheet
+
+### Dividend Table
+
+| Param | Type | Required | Description |
+| :--- | :--- | :--- | :--- |
+| isin | `string` | No | ISIN is the international security identification number |
+| symbol | `string` | Yes | Symbol or description of equity share |
+| quantity | `number` | Yes | Trading quantity |
+| dividend\_amount | `number` | Yes | Dividend amount received |
+| tds | `number` | Yes | TDS amount deducted on the dividend |
+
+### Stock Scripwise Holding Table
+
+| Param | Type | Description |
+| :--- | :--- | :--- |
+| isin | `string` | ISIN is the international security identification number |
+| symbol | `string` | Symbol or description of equity share |
+| quantity | `number` | Trading quantity |
+| buy\_average | `number` | Price at which a unit was bought |
+| transaction\_type | `string` | Indicates whether the order is : \n`buy` , `sell`, `send`, `receive` Or `trade`, |
+| label | `string` | Refer to label for possible values |
+| last\_traded\_price | `string` | Last traded market price of the equity share. |
+| unrealized\_pnl | `string` | Unrealized pnl on the holding |
+
+### Stock Scripwise Open Sell Table
+
+| Param | Type | Description |
+| :--- | :--- | :--- |
+| isin | `string` | ISIN is the international security identification number |
+| symbol | `string` | Total value of the all the transactions |
+| quantity | `number` | The realized profit or loss on the trade without considering transfer expenses |
+| sell\_average | `number` | Price at which a unit was sold |
+| transaction\_type | `string` | Indicates whether the order is : \n`buy` , `sell`, `send`, `receive` Or `trade`, |
+| label | `string` | Refer to label for possible values |
+| last\_traded\_price | `number` | Last traded market price of the equity share. |
+| unrealized\_pnl | `number` | The unrealized profit or loss on the trade without considering transfer expenses |
+
+### Stock Intraday Scripwise Tax P&L Table
+
+| Param | Type | Description |
+| :--- | :--- | :--- |
+| isin | `string` | ISIN is the international security identification number |
+| symbol | `string` | Symbol or description of equity share |
+| quantity | `number` | Trading quantity |
+| buy\_average | `number` | Price at which a unit was bought |
+| sell\_average | `number` | Price at which a unit was sold |
+| transfer\_expenses | `number` | expense relating to the transfer of shares |
+| nature\_of\_settlement | `string` | The nature of the settlement of transaction |
+| realized\_pnl | `number` | The realized profit or loss on the trade without considering transfer expenses |
+| net\_realized\_pnl | `number` | The realized profit or loss on the trade after considering transfer expenses |
+| taxable\_pnl | `string` | The taxable amount of the trade |
+| turnover | `number` | Turnover of the transaction |
+| income\_head | `string` | The income head of ITR under which the income of a specific trade is to be reported |
+| income\_sub\_head | `string` | The income subhead of ITR under which the income of a specific trade is to be reported |
+| tax\_rate | `string` | The applicable tax rate for the trade. |
+
+### Stock Delivery Scripwise Tax P&L Table
+
+| Param | Type | Description |
+| :--- | :--- | :--- |
+| isin | `string` | ISIN is the international security identification number |
+| symbol | `string` | Symbol or description of equity share |
+| quantity | `number` | Trading quantity |
+| buy\_average | `number` | Price at which a unit was bought |
+| sell\_average | `number` | Price at which a unit was sold |
+| transfer\_expenses | `number` | expense relating to the transfer of shares |
+| nature\_of\_settlement | `string` | The nature of the settlement of transaction |
+| realized\_pnl | `number` | The realized profit or loss on the trade without considering transfer expenses |
+| net\_realized\_pnl | `number` | The realized profit or loss on the trade after considering transfer expenses |
+| taxable\_pnl | `string` | The taxable amount of the trade |
+| holding\_period | `string` | Holding period of the security. Possible values: \n`long\_term`, `short\_term` |
+| turnover | `number` | Turnover of the transaction |
+| income\_head | `string` | The income head of ITR under which the income of a specific trade is to be reported |
+| income\_sub\_head | `string` | The income subhead of ITR under which the income of a specific trade is to be reported |
+| tax\_rate | `string` | The applicable tax rate for the trade. |
+
+---
+
+## ADR Scripwise Tax PnL Sheet
+
+### ADR Scripwise Holding Table
+
+| Param | Type | Description |
+| :--- | :--- | :--- |
+| isin | `string` | ISIN is the international security identification number |
+| symbol | `string` | Symbol or description of equity share |
+| quantity | `number` | Trading quantity |
+| buy\_average | `number` | Price at which a unit was bought |
+| transaction\_type | `string` | Indicates whether the order is : \n`buy` , `sell`, `send`, `receive` Or `trade`, |
+| label | `string` | Refer to label for possible values |
+| last\_traded\_price | `string` | Last traded market price of the equity share. |
+| unrealized\_pnl | `string` | Unrealized pnl on the holding |
+
+### ADR Scripwise Open Sell Table
+
+| Param | Type | Description |
+| :--- | :--- | :--- |
+| isin | `string` | ISIN is the international security identification number |
+| symbol | `string` | Total value of the all the transactions |
+| quantity | `number` | The realized profit or loss on the trade without considering transfer expenses |
+| sell\_average | `number` | Price at which a unit was sold |
+| transaction\_type | `string` | Indicates whether the order is : \n`buy` , `sell`, `send`, `receive` Or `trade`, |
+| label | `string` | Refer to label for possible values |
+| last\_traded\_price | `number` | Last traded market price of the equity share. |
+| unrealized\_pnl | `number` | The unrealized profit or loss on the trade without considering transfer expenses |
+
+### ADR Intraday Scripwise Tax P&L Table
+
+| Param | Type | Description |
+| :--- | :--- | :--- |
+| isin | `string` | ISIN is the international security identification number |
+| symbol | `string` | Symbol or description of equity share |
+| quantity | `number` | Trading quantity |
+| buy\_average | `number` | Price at which a unit was bought |
+| sell\_average | `number` | Price at which a unit was sold |
+| transfer\_expenses | `number` | expense relating to the transfer of shares |
+| nature\_of\_settlement | `string` | The nature of the settlement of transaction |
+| realized\_pnl | `number` | The realized profit or loss on the trade without considering transfer expenses |
+| net\_realized\_pnl | `number` | The realized profit or loss on the trade after considering transfer expenses |
+| taxable\_pnl | `string` | The taxable amount of the trade |
+| turnover | `number` | Turnover of the transaction |
+| income\_head | `string` | The income head of ITR under which the income of a specific trade is to be reported |
+| income\_sub\_head | `string` | The income subhead of ITR under which the income of a specific trade is to be reported |
+| tax\_rate | `string` | The applicable tax rate for the trade. |
+
+### ADR Delivery Scripwise Tax P&L Table
+
+| Param | Type | Description |
+| :--- | :--- | :--- |
+| isin | `string` | ISIN is the international security identification number |
+| symbol | `string` | Symbol or description of equity share |
+| quantity | `number` | Trading quantity |
+| buy\_average | `number` | Price at which a unit was bought |
+| sell\_average | `number` | Price at which a unit was sold |
+| transfer\_expenses | `number` | expense relating to the transfer of shares |
+| nature\_of\_settlement | `string` | The nature of the settlement of transaction |
+| realized\_pnl | `number` | The realized profit or loss on the trade without considering transfer expenses |
+| net\_realized\_pnl | `number` | The realized profit or loss on the trade after considering transfer expenses |
+| taxable\_pnl | `string` | The taxable amount of the trade |
+| holding\_period | `string` | Holding period of the security. Possible values: \n`long\_term`, `short\_term` |
+| turnover | `number` | Turnover of the transaction |
+| income\_head | `string` | The income head of ITR under which the income of a specific trade is to be reported |
+| income\_sub\_head | `string` | The income subhead of ITR under which the income of a specific trade is to be reported |
+| tax\_rate | `string` | The applicable tax rate for the trade. |
+
+---
+
+## Mutual Fund Scripwise Tax PnL Sheet
+
+### Mutual Fund Scripwise Holding Table
+
+| Param | Type | Description |
+| :--- | :--- | :--- |
+| isin | `string` | ISIN is the international security identification number |
+| symbol | `string` | Symbol or description of equity share |
+| quantity | `number` | Trading quantity |
+| buy\_average | `number` | Price at which a unit was bought |
+| transaction\_type | `string` | Indicates whether the order is : \n`buy` , `sell`, `send`, `receive` Or `trade`, |
+| label | `string` | Refer to label for possible values |
+| last\_traded\_price | `string` | Last traded market price of the equity share. |
+| unrealized\_pnl | `string` | Unrealized pnl on the holding |
+
+### Mutual Fund Scripwise Open Sell Table
+
+| Param | Type | Description |
+| :--- | :--- | :--- |
+| isin | `string` | ISIN is the international security identification number |
+| symbol | `string` | Total value of the all the transactions |
+| quantity | `number` | The realized profit or loss on the trade without considering transfer expenses |
+| sell\_average | `number` | Price at which a unit was sold |
+| transaction\_type | `string` | Indicates whether the order is : \n`buy` , `sell`, `send`, `receive` Or `trade`, |
+| label | `string` | Refer to label for possible values |
+| last\_traded\_price | `number` | Last traded market price of the equity share. |
+| unrealized\_pnl | `number` | The unrealized profit or loss on the trade without considering transfer expenses |
+
+### Mutual Fund Scripwise Tax P&L Table
+
+| Param | Type | Description |
+| :--- | :--- | :--- |
+| isin | `string` | ISIN is the international security identification number |
+| scheme\_name | `string` | name of the fund |
+| asset\_class | `string` | Fund's asset class, possible values: \n`equity`, `debt`, `other` |
+| quantity | `number` | Trading quantity |
+| buy\_average | `number` | Price at which a unit was bought |
+| sell\_average | `number` | Price at which a unit was sold |
+| transfer\_expenses | `number` | expense relating to the transfer of shares |
+| nature\_of\_settlement | `string` | The nature of the settlement of transaction |
+| realized\_pnl | `number` | The realized profit or loss on the trade without considering transfer expenses |
+| net\_realized\_pnl | `number` | The realized profit or loss on the trade after considering transfer expenses |
+| taxable\_pnl | `string` | The taxable amount of the trade |
+| holding\_period | `string` | Holding period of the security. Possible values: \n`long\_term`, `short\_term` |
+| turnover | `number` | Turnover of the transaction |
+| income\_head | `string` | The income head of ITR under which the income of a specific trade is to be reported |
+| income\_sub\_head | `string` | The income subhead of ITR under which the income of a specific trade is to be reported |
+| tax\_rate | `string` | The applicable tax rate for the trade. |
+
+---
+
+## ETF Scripwise Tax PnL Sheet
+
+### ETF Scripwise Holding Table
+
+| Param | Type | Description |
+| :--- | :--- | :--- |
+| isin | `string` | ISIN is the international security identification number |
+| symbol | `string` | Symbol or description of equity share |
+| quantity | `number` | Trading quantity |
+| buy\_average | `number` | Price at which a unit was bought |
+| transaction\_type | `string` | Indicates whether the order is : \n`buy` , `sell`, `send`, `receive` Or `trade`, |
+| label | `string` | Refer to label for possible values |
+| last\_traded\_price | `string` | Last traded market price of the equity share. |
+| unrealized\_pnl | `string` | Unrealized pnl on the holding |
+
+### ETF Scripwise Open Sell Table
+
+| Param | Type | Description |
+| :--- | :--- | :--- |
+| isin | `string` | ISIN is the international security identification number |
+| symbol | `string` | Total value of the all the transactions |
+| quantity | `number` | The realized profit or loss on the trade without considering transfer expenses |
+| sell\_average | `number` | Price at which a unit was sold |
+| transaction\_type | `string` | Indicates whether the order is : \n`buy` , `sell`, `send`, `receive` Or `trade`, |
+| label | `string` | Refer to label for possible values |
+| last\_traded\_price | `number` | Last traded market price of the equity share. |
+| unrealized\_pnl | `number` | The unrealized profit or loss on the trade without considering transfer expenses |
+
+### ETF Intraday Scripwise Tax P&L Table
+
+| Param | Type | Description |
+| :--- | :--- | :--- |
+| isin | `string` | ISIN is the international security identification number |
+| symbol | `string` | Symbol or description of equity share |
+| quantity | `number` | Trading quantity |
+| buy\_average | `number` | Price at which a unit was bought |
+| sell\_average | `number` | Price at which a unit was sold |
+| transfer\_expenses | `number` | expense relating to the transfer of shares |
+| nature\_of\_settlement | `string` | The nature of the settlement of transaction |
+| realized\_pnl | `number` | The realized profit or loss on the trade without considering transfer expenses |
+| net\_realized\_pnl | `number` | The realized profit or loss on the trade after considering transfer expenses |
+| taxable\_pnl | `string` | The taxable amount of the trade |
+| turnover | `number` | Turnover of the transaction |
+| income\_head | `string` | The income head of ITR under which the income of a specific trade is to be reported |
+| income\_sub\_head | `string` | The income subhead of ITR under which the income of a specific trade is to be reported |
+| tax\_rate | `string` | The applicable tax rate for the trade. |
+
+### ETF Delivery Scripwise Tax P&L Table
+
+| Param | Type | Description |
+| :--- | :--- | :--- |
+| isin | `string` | ISIN is the international security identification number |
+| symbol | `string` | Symbol or description of equity share |
+| quantity | `number` | Trading quantity |
+| buy\_average | `number` | Price at which a unit was bought |
+| sell\_average | `number` | Price at which a unit was sold |
+| transfer\_expenses | `number` | expense relating to the transfer of shares |
+| nature\_of\_settlement | `string` | The nature of the settlement of transaction |
+| realized\_pnl | `number` | The realized profit or loss on the trade without considering transfer expenses |
+| net\_realized\_pnl | `number` | The realized profit or loss on the trade after considering transfer expenses |
+| taxable\_pnl | `string` | The taxable amount of the trade |
+| holding\_period | `string` | Holding period of the security. Possible values: \n`long\_term`, `short\_term` |
+| turnover | `number` | Turnover of the transaction |
+| income\_head | `string` | The income head of ITR under which the income of a specific trade is to be reported |
+| income\_sub\_head | `string` | The income subhead of ITR under which the income of a specific trade is to be reported |
+| tax\_rate | `string` | The applicable tax rate for the trade. |
+```

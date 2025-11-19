@@ -1,0 +1,200 @@
+---
+title: "Tradebook | Foreign Securities"
+---
+
+## Client Details Sheet
+
+### Client Details List
+
+| Param | Type | Required | Description |
+| :--- | :--- | :--- | :--- |
+| name | `string` | Yes | Name of the client |
+| pan | `string` | Yes | PAN of the client |
+| client\_id | `string` | Yes | Client ID for the client |
+| country | `string` | Yes | Country of residence |
+| currency | `string` | Yes | | Currency in which trade was placed | 
+
+---
+
+## Stock Sheet
+
+### Stock Tradebook Table
+
+| Param | Type | Required | Description |
+| :--- | :--- | :--- | :--- |
+| isin | `string` | No | ISIN is the international security identification number |
+| trade\_id | `string` | No | Transaction ID of the particular trade |
+| symbol | `string` | Yes | Symbol or description of equity stock |
+| quantity | `number` | Yes | Trading quantity |
+| date | `number` | Yes | Transaction epoch timestamp |
+| price | `number` | Yes | The unit price of the equity share |
+| transaction\_type | `string` | Yes | Indicates whether the order is : \n`buy` Or `sell`, |
+| transfer\_expenses | `number` | Yes | Any expense relating to the transfer of shares |
+| label | `string` | No | Refer to labels for possible values |
+| product\_type | `string` | Yes | Indicates whether the order is : \n`delivery` , `intraday` |
+
+### Reference Data Table
+
+| Param | Type | Required | Description |
+| :--- | :--- | :--- | :--- |
+| isin | `string` | No | ISIN is the international security identification number |
+| symbol | `string` | Yes | Symbol or description of equity share |
+| address | `string` | No | Address of the company |
+| country | `string` | Yes | Country of the company |
+| zip\_code | `string` | Yes | Zip code of the address |
+| 52\_week\_high | `number` | Yes | 52 week high price for the symbol for the FY |
+| closing\_value | `number` | Yes | closing value for the symbol |
+
+### Dividend Table
+
+| Param | Type | Required | Description |
+| :--- | :--- | :--- | :--- |
+| isin | `string` | No | ISIN is the international security identification number |
+| symbol | `string` | Yes | Symbol or description of equity share |
+| quantity | `number` | Yes | Trading quantity |
+| date | `number` | Yes | Transaction epoch timestamp |
+| dividend\_amount | `number` | Yes | Dividend amount received |
+| tax\_withheld | `number` | Yes | TDS amount deducted on the dividend |
+
+---
+
+## DR Sheet
+
+### DR Tradebook Table
+
+| Param | Type | Required | Description |
+| :--- | :--- | :--- | :--- |
+| isin | `string` | No | ISIN is the international security identification number |
+| trade\_id | `string` | No | Transaction ID of the particular trade |
+| symbol | `string` | Yes | Symbol or description of ADR |
+| quantity | `number` | Yes | Trading quantity |
+| date | `number` | Yes | Transaction epoch timestamp |
+| price | `number` | Yes | The unit price of the ADR |
+| transaction\_type | `string` | Yes | Indicates whether the order is : \n`buy` Or `sell`, |
+| transfer\_expenses | `number` | Yes | Any expense relating to the transfer of ADR |
+| label | `string` | No | Refer to labels for possible values |
+| product\_type | `string` | Yes | Indicates whether the order is : \n`delivery` , `intraday` |
+
+### Reference Data Table
+
+| Param | Type | Required | Description |
+| :--- | :--- | :--- | :--- |
+| isin | `string` | No | ISIN is the international security identification number |
+| symbol | `string` | Yes | Symbol or description of adr |
+| address | `string` | No | Address of the company |
+| country | `string` | Yes | Country of the company |
+| zip\_code | `string` | Yes | Zip code of the address |
+| 52\_week\_high | `number` | Yes | 52 week high price for the symbol for the FY |
+| closing\_value | `number` | Yes | closing value for the symbol |
+
+### Dividend Table
+
+| Param | Type | Required | Description |
+| :--- | :--- | :--- | :--- |
+| isin | `string` | No | ISIN is the international security identification number |
+| symbol | `string` | Yes | Symbol or description of adr |
+| quantity | `number` | Yes | Trading quantity |
+| date | `number` | Yes | Transaction epoch timestamp |
+| dividend\_amount | `number` | Yes | Dividend amount received |
+| tax\_withheld | `number` | Yes | TDS amount deducted on the dividend |
+
+---
+
+## Mutual Fund Sheet
+
+### Mutual Fund Tradebook Table
+
+| Param | Type | Required | Description |
+| :--- | :--- | :--- | :--- |
+| isin | `string` | No | ISIN is the international security identification number |
+| trade\_id | `string` | No | Transaction ID of the particular trade |
+| scheme\_name | `string` | Yes | Scheme name of the mutual fund |
+| scheme\_type | `string` | Yes | Scheme type, possible values \n`equity`, `debt`, `other` |
+| quantity | `number` | Yes | Trading quantity |
+| date | `number` | Yes | Transaction epoch timestamp |
+| price | `number` | Yes | The unit price of the mutual fund |
+| transaction\_type | `string` | Yes | Indicates whether the order is : \n`buy` Or `sell`, |
+| transfer\_expenses | `number` | Yes | Any expense relating to the transfer of Mutual funds |
+| label | `string` | No | Refer to labels for possible values |
+
+### Reference Data Table
+
+| Param | Type | Required | Description |
+| :--- | :--- | :--- | :--- |
+| isin | `string` | No | ISIN is the international security identification number |
+| symbol | `string` | Yes | Symbol or description of fund |
+| address | `string` | No | Address of the company |
+| country | `string` | Yes | Country of the company |
+| zip\_code | `string` | Yes | Zip code of the address |
+| 52\_week\_high | `number` | Yes | 52 week high price for the symbol for the FY |
+| closing\_value | `number` | Yes | closing value for the symbol |
+
+### Dividend Table
+
+| Param | Type | Required | Description |
+| :--- | :--- | :--- | :--- |
+| isin | `string` | No | ISIN is the international security identification number |
+| symbol | `string` | Yes | Symbol or description of fund |
+| quantity | `number` | Yes | Trading quantity |
+| date | `number` | Yes | Transaction epoch timestamp |
+| dividend\_amount | `number` | Yes | Dividend amount received |
+| tax\_withheld | `number` | Yes | TDS amount deducted on the dividend |
+
+---
+
+## ETF Sheet
+
+### ETF Tradebook Table
+
+| Param | Type | Required | Description |
+| :--- | :--- | :--- | :--- |
+| isin | `string` | No | ISIN is the international security identification number |
+| trade\_id | `string` | No | Transaction ID of the particular trade |
+| scheme\_name | `string` | Yes | Scheme name of the mutual fund |
+| scheme\_type | `string` | Yes | Scheme type, possible values \n`equity`, `debt`, `other` |
+| quantity | `number` | Yes | Trading quantity |
+| date | `number` | Yes | Transaction epoch timestamp |
+| price | `number` | Yes | The unit price of the mutual fund |
+| transaction\_type | `string` | Yes | Indicates whether the order is : \n`buy` Or `sell`, |
+| transfer\_expenses | `number` | Yes | Any expense relating to the transfer of Mutual funds |
+| label | `string` | No | Refer to labels for possible values |
+| product\_type | `string` | Yes | Indicates whether the order is : \n`delivery` , `intraday` |
+
+### Reference Data Table
+
+| Param | Type | Required | Description |
+| :--- | :--- | :--- | :--- |
+| isin | `string` | No | ISIN is the international security identification number |
+| symbol | `string` | Yes | Symbol or description of fund |
+| address | `string` | No | Address of the company |
+| country | `string` | Yes | Country of the company |
+| zip\_code | `string` | Yes | Zip code of the address |
+| 52\_week\_high | `number` | Yes | 52 week high price for the symbol for the FY |
+| closing\_value | `number` | Yes | closing value for the symbol |
+
+### Dividend Table
+
+| Param | Type | Required | Description |
+| :--- | :--- | :--- | :--- |
+| isin | `string` | No | ISIN is the international security identification number |
+| symbol | `string` | Yes | Symbol or description of fund |
+| quantity | `number` | Yes | Trading quantity |
+| date | `number` | Yes | Transaction epoch timestamp |
+| dividend\_amount | `number` | Yes | Dividend amount received |
+| tax\_withheld | `number` | Yes | TDS amount deducted on the dividend |
+
+---
+
+## Interest Income Sheet
+
+### Interest Income Table
+
+| Param | Type | Required | Description |
+| :--- | :--- | :--- | :--- |
+| description | `string` | No | Description of interest credit |
+| date | `number` | Yes | Transaction ID of the particular entry |
+| amount | `number` | Yes | Interest amount received |
+| amount\_inr | `number` | No | Interest in INR |
+| tax\_withheld | `number` | Yes | TDS amount deducted on the interest |
+| tax\_withheld\_inr | `number` | No | TDS in INR |
+```
