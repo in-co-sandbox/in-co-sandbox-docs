@@ -1,0 +1,634 @@
+---
+title: Salary Payments
+mode: "wide"
+---
+
+To generate the TXT file, you must pass the deduction-related details in a sheet JSON format. A sample payload is mentioned for your reference. Note that you can refer to the sample payload in the form of a workbook.
+
+
+
+
+  <Note>
+  Once the job is successfully created, upload the payload using HTTP PUT method on generated presigned url. [Read More](https://docs.aws.amazon.com/AmazonS3/latest/userguide/PresignedUrlUploadObject.html)
+  </Note>
+
+<Accordion title="Form 24Q Workbook (Q1 - Q3)">
+<ResponseField name="@entity" type="string">
+  Allowed value : `workbook`
+</ResponseField>
+
+<ResponseField name="name" type="string">
+  Allowed value : `form24q_workbook`
+</ResponseField>
+
+<ResponseField name="sheets" type="array">
+  Allowed value : `sheets`
+
+  <Expandable title="sheets">
+    <Expandable title="payer_sheet">
+    <ResponseField name="@entity" type="string">
+  Allowed value : `sheet`
+</ResponseField>
+    <ResponseField name="name" type="string">
+  Allowed value : `payer_sheet`
+</ResponseField>
+    <ResponseField name="blocks" type="array">
+        Allowed value : `blocks`
+      <Expandable title="payer_list">
+        <ResponseField name="@entity" type="string">
+          Allowed value : `list`
+        </ResponseField>
+        <ResponseField name="name" type="string">
+          Allowed value : `payer_list`
+        </ResponseField>
+        <ResponseField name="items" type="array<object>">
+          Allowed value : `items`
+          <Expandable title="items">
+            <ResponseField name="name" type="string"></ResponseField>
+            <ResponseField name="tan" type="string"></ResponseField>
+            <ResponseField name="pan" type="string"></ResponseField>
+            <ResponseField name="branch" type="string"></ResponseField>
+            <ResponseField name="gstin" type="string"></ResponseField>
+            <ResponseField name="street" type="string"></ResponseField>
+            <ResponseField name="area" type="string"></ResponseField>
+            <ResponseField name="city" type="string"></ResponseField>
+            <ResponseField name="state" type="string"></ResponseField>
+            <ResponseField name="postal_code" type="string"></ResponseField>
+            <ResponseField name="email" type="string"></ResponseField>
+            <ResponseField name="mobile" type="string"></ResponseField>
+          </Expandable>
+        </ResponseField>
+      </Expandable>
+      <Expandable title="responsible_person_list">
+        <ResponseField name="@entity" type="string">
+          Allowed value : `list`
+        </ResponseField>
+        <ResponseField name="name" type="string">
+          Allowed value : `responsible_person_list`
+        </ResponseField>
+        <ResponseField name="items" type="array<object>">
+          Allowed value : `items`
+          <Expandable title="items">
+            <ResponseField name="designation" type="string"></ResponseField>
+            <ResponseField name="name" type="string"></ResponseField>
+            <ResponseField name="pan" type="string"></ResponseField>
+            <ResponseField name="street" type="string"></ResponseField>
+            <ResponseField name="area" type="string"></ResponseField>
+            <ResponseField name="city" type="string"></ResponseField>
+            <ResponseField name="state" type="string"></ResponseField>
+            <ResponseField name="postal_code" type="string"></ResponseField>
+            <ResponseField name="email" type="string"></ResponseField>
+            <ResponseField name="mobile" type="string"></ResponseField>
+          </Expandable>
+        </ResponseField>
+      </Expandable>
+    </ResponseField>
+  </Expandable>
+
+    <Expandable title="payee_sheet">
+    <ResponseField name="@entity" type="string">
+      Allowed value : `sheet`
+    </ResponseField>
+    <ResponseField name="name" type="string">
+      Allowed value : `payee_sheet`
+    </ResponseField>
+    <ResponseField name="blocks" type="array">
+        Allowed value : `blocks`
+      <Expandable title="payee_table">
+        <ResponseField name="@entity" type="string">
+          Allowed value : `table`
+        </ResponseField>
+        <ResponseField name="name" type="string">
+          Allowed value : `payee_table`
+        </ResponseField>
+        <ResponseField name="header" type="array<string>">
+          Allowed value : `header`
+          <Expandable title="child attributes">
+            <ResponseField name="sr_no" type="string">
+              Allowed value : `sr_no`
+            </ResponseField>
+            <ResponseField name="pan" type="string">
+              Allowed value : `pan`
+            </ResponseField>
+            <ResponseField name="name" type="string">
+              Allowed value : `name`
+            </ResponseField>
+            <ResponseField name="opting_new_regime" type="string">
+              Allowed value : `opting_new_regime`
+            </ResponseField>
+            <ResponseField name="employee_category" type="string">
+              Allowed value : `employee_category`
+            </ResponseField>
+          </Expandable>
+        </ResponseField>
+        <ResponseField name="rows" type="array<array<string|number|boolean|null>">
+          Allowed value : `rows` \
+          Contains values defined in the headers. Make sure to maintain the order of headers.
+
+          <Expandable title="child attributes">
+            <ResponseField name="sr_no" type="number">
+            </ResponseField>
+            <ResponseField name="pan" type="string">
+            </ResponseField>
+            <ResponseField name="name" type="string">
+            </ResponseField>
+            <ResponseField name="opting_new_regime" type="boolean">
+            </ResponseField>
+            <ResponseField name="employee_category" type="string">
+            </ResponseField>
+          </Expandable>
+        </ResponseField>
+      </Expandable>
+    </ResponseField>
+
+  </Expandable>
+    <Expandable title="challan_sheet">
+    <ResponseField name="@entity" type="string">
+  Allowed value : `sheet`
+</ResponseField>
+    <ResponseField name="name" type="string">
+  Allowed value : `challan_sheet`
+</ResponseField>
+    <ResponseField name="blocks" type="array">
+        Allowed value : `blocks`
+      <Expandable title="challan_table">
+        <ResponseField name="@entity" type="string">
+          Allowed value : `table`
+        </ResponseField>
+        <ResponseField name="name" type="string">
+          Allowed value : `challan_table`
+        </ResponseField>
+        <ResponseField name="header" type="array<string>">
+          Allowed value : `header`
+          <Expandable title="child attributes">
+            <ResponseField name="challan_serial" type="string">
+              Allowed value : `challan_serial`
+            </ResponseField>
+            <ResponseField name="bsr_code" type="string">
+              Allowed value : `bsr_code`
+            </ResponseField>
+            <ResponseField name="paid_date_epoch" type="string">
+              Allowed value : `paid_date_epoch`
+            </ResponseField>
+            <ResponseField name="minor_head" type="string">
+              Allowed value : `minor_head`
+            </ResponseField>
+            <ResponseField name="tds_amount" type="string">
+              Allowed value : `tds_amount`
+            </ResponseField>
+            <ResponseField name="surcharge" type="string">
+              Allowed value : `surcharge`
+            </ResponseField>
+            <ResponseField name="heath_and_education_cess" type="string">
+              Allowed value : `heath_and_education_cess`
+            </ResponseField>
+            <ResponseField name="interest" type="string">
+              Allowed value : `interest`
+            </ResponseField>
+            <ResponseField name="late_filing_fees" type="string">
+              Allowed value : `late_filing_fees`
+            </ResponseField>
+            <ResponseField name="other_penalty" type="string">
+              Allowed value : `other_penalty`
+            </ResponseField>
+          </Expandable>
+        </ResponseField>
+        <ResponseField name="rows" type="array<array<string|number|boolean|null>">
+          Allowed value : `rows` \
+          Contains values defined in the headers. Make sure to maintain the order of headers.
+
+          <Expandable title="child attributes">
+            <ResponseField name="challan_serial" type="string">
+            </ResponseField>
+            <ResponseField name="bsr_code" type="string">
+            </ResponseField>
+            <ResponseField name="paid_date_epoch" type="number">
+            </ResponseField>
+            <ResponseField name="minor_head" type="string">
+            </ResponseField>
+            <ResponseField name="tds_amount" type="number">
+            </ResponseField>
+            <ResponseField name="surcharge" type="number">
+            </ResponseField>
+            <ResponseField name="heath_and_education_cess" type="number">
+            </ResponseField>
+            <ResponseField name="interest" type="number">
+            </ResponseField>
+            <ResponseField name="late_filing_fees" type="number">
+            </ResponseField>
+            <ResponseField name="other_penalty" type="number">
+            </ResponseField>
+          </Expandable>
+
+        </ResponseField>
+      </Expandable>
+    </ResponseField>
+  </Expandable>
+    <Expandable title="payment_sheet">
+    <ResponseField name="@entity" type="string">
+  Allowed value : `sheet`
+</ResponseField>
+    <ResponseField name="name" type="string">
+  Allowed value : `payment_sheet`
+</ResponseField>
+    <ResponseField name="blocks" type="array">
+        Allowed value : `blocks`
+      <Expandable title="payment_table">
+        <ResponseField name="@entity" type="string">
+          Allowed value : `table`
+        </ResponseField>
+        <ResponseField name="name" type="string">
+          Allowed value : `payment_table`
+        </ResponseField>
+        <ResponseField name="header" type="array<string>">
+          Allowed value : `header`
+          <Expandable title="child attributes">
+            <ResponseField name="payee_sr_no" type="string">
+              Allowed value : `payee_sr_no`
+            </ResponseField>
+            <ResponseField name="challan_serial" type="string">
+              Allowed value : `challan_serial`
+            </ResponseField>
+            <ResponseField name="bsr_code" type="string">
+              Allowed value  : `bsr_code`
+            </ResponseField>
+            <ResponseField name="nature_of_payment" type="string">
+              Allowed value  : `nature_of_payment`
+            </ResponseField>
+            <ResponseField name="payment_amount" type="string">
+              Allowed value  : `payment_amount`
+            </ResponseField>
+            <ResponseField name="payment_date_epoch" type="string">
+              Allowed value  : `payment_date_epoch`
+            </ResponseField>
+            <ResponseField name="tds_amount" type="string">
+              Allowed value  : `tds_amount`
+            </ResponseField>
+            <ResponseField name="surcharge" type="string">
+              Allowed value  : `surcharge`
+            </ResponseField>
+            <ResponseField name="health_and_education_cess" type="string">
+              Allowed value  : `health_and_education_cess`
+            </ResponseField>
+            <ResponseField name="deduction_date_epoch" type="string">
+              Allowed value  : `deduction_date_epoch`
+            </ResponseField>
+            <ResponseField name="reason_for_lower_or_higher_deduction" type="string">
+              Allowed value  : `reason_for_lower_or_higher_deduction`
+            </ResponseField>
+            <ResponseField name="certificate_number" type="string">
+              Allowed value  : `certificate_number`
+            </ResponseField>
+          </Expandable>
+        </ResponseField>
+        <ResponseField name="rows" type="array<array<string|number|boolean|null>">
+          Allowed value : `rows` \
+          Contains values defined in the headers. Make sure to maintain the order of headers.
+          <Expandable title="child attributes">
+            <ResponseField name="payee_sr_no" type="number">
+            </ResponseField>
+            <ResponseField name="challan_serial" type="string">
+            </ResponseField>
+            <ResponseField name="bsr_code" type="string">
+            </ResponseField>
+            <ResponseField name="nature_of_payment" type="string">
+            </ResponseField>
+            <ResponseField name="payment_amount" type="number">
+            </ResponseField>
+            <ResponseField name="payment_date_epoch" type="number">
+            </ResponseField>
+            <ResponseField name="tds_amount" type="number">
+            </ResponseField>
+            <ResponseField name="surcharge" type="number">
+            </ResponseField>
+            <ResponseField name="health_and_education_cess" type="number">
+            </ResponseField>
+            <ResponseField name="deduction_date_epoch" type="number">
+            </ResponseField>
+            <ResponseField name="reason_for_lower_or_higher_deduction" type="number">
+            </ResponseField>
+            <ResponseField name="certificate_number" type="number">
+            </ResponseField>
+          </Expandable>
+        </ResponseField>
+      </Expandable>
+    </ResponseField>
+  </Expandable>
+
+  </Expandable>
+</ResponseField>
+
+</Accordion>
+
+<Accordion title="Form 24Q Workbook (Q4)">
+<ResponseField name="@entity" type="string">
+  Allowed value : `workbook`
+</ResponseField>
+
+<ResponseField name="name" type="string">
+  Allowed value : `form24q_workbook`
+</ResponseField>
+
+<ResponseField name="sheets" type="array">
+  Allowed value : `sheets`
+
+  <Expandable title="sheets">
+    <Expandable title="payer_sheet">
+    <ResponseField name="@entity" type="string">
+  Allowed value : `sheet`
+</ResponseField>
+    <ResponseField name="name" type="string">
+  Allowed value : `payer_sheet`
+</ResponseField>
+    <ResponseField name="blocks" type="array">
+        Allowed value : `blocks`
+      <Expandable title="payer_list">
+        <ResponseField name="@entity" type="string">
+          Allowed value : `list`
+        </ResponseField>
+        <ResponseField name="name" type="string">
+          Allowed value : `payer_list`
+        </ResponseField>
+        <ResponseField name="items" type="array<object>">
+          Allowed value : `items`
+          <Expandable title="items">
+            <ResponseField name="name" type="string"></ResponseField>
+            <ResponseField name="tan" type="string"></ResponseField>
+            <ResponseField name="pan" type="string"></ResponseField>
+            <ResponseField name="branch" type="string"></ResponseField>
+            <ResponseField name="gstin" type="string"></ResponseField>
+            <ResponseField name="street" type="string"></ResponseField>
+            <ResponseField name="area" type="string"></ResponseField>
+            <ResponseField name="city" type="string"></ResponseField>
+            <ResponseField name="state" type="string"></ResponseField>
+            <ResponseField name="postal_code" type="string"></ResponseField>
+            <ResponseField name="email" type="string"></ResponseField>
+            <ResponseField name="mobile" type="string"></ResponseField>
+          </Expandable>
+        </ResponseField>
+      </Expandable>
+      <Expandable title="responsible_person_list">
+        <ResponseField name="@entity" type="string">
+          Allowed value : `list`
+        </ResponseField>
+        <ResponseField name="name" type="string">
+          Allowed value : `responsible_person_list`
+        </ResponseField>
+        <ResponseField name="items" type="array<object>">
+          Allowed value : `items`
+          <Expandable title="items">
+            <ResponseField name="designation" type="string"></ResponseField>
+            <ResponseField name="name" type="string"></ResponseField>
+            <ResponseField name="pan" type="string"></ResponseField>
+            <ResponseField name="street" type="string"></ResponseField>
+            <ResponseField name="area" type="string"></ResponseField>
+            <ResponseField name="city" type="string"></ResponseField>
+            <ResponseField name="state" type="string"></ResponseField>
+            <ResponseField name="postal_code" type="string"></ResponseField>
+            <ResponseField name="email" type="string"></ResponseField>
+            <ResponseField name="mobile" type="string"></ResponseField>
+          </Expandable>
+        </ResponseField>
+      </Expandable>
+    </ResponseField>
+  </Expandable>
+
+    <Expandable title="payee_sheet">
+    <ResponseField name="@entity" type="string">
+      Allowed value : `sheet`
+    </ResponseField>
+    <ResponseField name="name" type="string">
+      Allowed value : `payee_sheet`
+    </ResponseField>
+    <ResponseField name="blocks" type="array">
+        Allowed value : `blocks`
+      <Expandable title="payee_table">
+        <ResponseField name="@entity" type="string">
+          Allowed value : `table`
+        </ResponseField>
+        <ResponseField name="name" type="string">
+          Allowed value : `payee_table`
+        </ResponseField>
+        <ResponseField name="header" type="array<string>">
+          Allowed value : `header`
+          <Expandable title="child attributes">
+            <ResponseField name="sr_no" type="string">
+              Allowed value : `sr_no`
+            </ResponseField>
+            <ResponseField name="pan" type="string">
+              Allowed value : `pan`
+            </ResponseField>
+            <ResponseField name="name" type="string">
+              Allowed value : `name`
+            </ResponseField>
+            <ResponseField name="opting_new_regime" type="string">
+              Allowed value : `opting_new_regime`
+            </ResponseField>
+            <ResponseField name="employee_category" type="string">
+              Allowed value : `employee_category`
+            </ResponseField>
+          </Expandable>
+        </ResponseField>
+        <ResponseField name="rows" type="array<array<string|number|boolean|null>">
+          Allowed value : `rows` \
+          Contains values defined in the headers. Make sure to maintain the order of headers.
+
+          <Expandable title="child attributes">
+            <ResponseField name="sr_no" type="number">
+              Allowed value : `sr_no`
+            </ResponseField>
+            <ResponseField name="pan" type="string">
+              Allowed value : `pan`
+            </ResponseField>
+            <ResponseField name="name" type="string">
+              Allowed value : `name`
+            </ResponseField>
+            <ResponseField name="opting_new_regime" type="boolean">
+              Allowed value : `opting_new_regime`
+            </ResponseField>
+            <ResponseField name="employee_category" type="string">
+              Allowed value : `employee_category`
+            </ResponseField>
+          </Expandable>
+        </ResponseField>
+      </Expandable>
+    </ResponseField>
+
+  </Expandable>
+    <Expandable title="challan_sheet">
+    <ResponseField name="@entity" type="string">
+  Allowed value : `sheet`
+</ResponseField>
+    <ResponseField name="name" type="string">
+  Allowed value : `challan_sheet`
+</ResponseField>
+    <ResponseField name="blocks" type="array">
+        Allowed value : `blocks`
+      <Expandable title="challan_table">
+        <ResponseField name="@entity" type="string">
+          Allowed value : `table`
+        </ResponseField>
+        <ResponseField name="name" type="string">
+          Allowed value : `challan_table`
+        </ResponseField>
+        <ResponseField name="header" type="array<string>">
+          Allowed value : `header`
+          <Expandable title="child attributes">
+            <ResponseField name="challan_serial" type="string">
+              Allowed value : `challan_serial`
+            </ResponseField>
+            <ResponseField name="bsr_code" type="string">
+              Allowed value : `bsr_code`
+            </ResponseField>
+            <ResponseField name="paid_date_epoch" type="string">
+              Allowed value : `paid_date_epoch`
+            </ResponseField>
+            <ResponseField name="minor_head" type="string">
+              Allowed value : `minor_head`
+            </ResponseField>
+            <ResponseField name="tds_amount" type="string">
+              Allowed value : `tds_amount`
+            </ResponseField>
+            <ResponseField name="surcharge" type="string">
+              Allowed value : `surcharge`
+            </ResponseField>
+            <ResponseField name="heath_and_education_cess" type="string">
+              Allowed value : `heath_and_education_cess`
+            </ResponseField>
+            <ResponseField name="interest" type="string">
+              Allowed value : `interest`
+            </ResponseField>
+            <ResponseField name="late_filing_fees" type="string">
+              Allowed value : `late_filing_fees`
+            </ResponseField>
+            <ResponseField name="other_penalty" type="string">
+              Allowed value : `other_penalty`
+            </ResponseField>
+          </Expandable>
+        </ResponseField>
+        <ResponseField name="rows" type="array<array<string|number|boolean|null>">
+          Allowed value : `rows` \
+          Contains values defined in the headers. Make sure to maintain the order of headers.
+
+          <Expandable title="child attributes">
+            <ResponseField name="challan_serial" type="string">
+            </ResponseField>
+            <ResponseField name="bsr_code" type="string">
+            </ResponseField>
+            <ResponseField name="paid_date_epoch" type="number">
+            </ResponseField>
+            <ResponseField name="minor_head" type="string">
+            </ResponseField>
+            <ResponseField name="tds_amount" type="number">
+            </ResponseField>
+            <ResponseField name="surcharge" type="number">
+            </ResponseField>
+            <ResponseField name="heath_and_education_cess" type="number">
+            </ResponseField>
+            <ResponseField name="interest" type="number">
+            </ResponseField>
+            <ResponseField name="late_filing_fees" type="number">
+            </ResponseField>
+            <ResponseField name="other_penalty" type="number">
+            </ResponseField>
+          </Expandable>
+
+        </ResponseField>
+      </Expandable>
+    </ResponseField>
+  </Expandable>
+    <Expandable title="payment_sheet">
+    <ResponseField name="@entity" type="string">
+  Allowed value : `sheet`
+</ResponseField>
+    <ResponseField name="name" type="string">
+  Allowed value : `payment_sheet`
+</ResponseField>
+    <ResponseField name="blocks" type="array">
+        Allowed value : `blocks`
+      <Expandable title="payment_table">
+        <ResponseField name="@entity" type="string">
+          Allowed value : `table`
+        </ResponseField>
+        <ResponseField name="name" type="string">
+          Allowed value : `payment_table`
+        </ResponseField>
+        <ResponseField name="header" type="array<string>">
+          Allowed value : `header`
+          <Expandable title="child attributes">
+            <ResponseField name="payee_sr_no" type="string">
+              Allowed value : `payee_sr_no`
+            </ResponseField>
+            <ResponseField name="challan_serial" type="string">
+              Allowed value : `challan_serial`
+            </ResponseField>
+            <ResponseField name="bsr_code" type="string">
+              Allowed value  : `bsr_code`
+            </ResponseField>
+            <ResponseField name="nature_of_payment" type="string">
+              Allowed value  : `nature_of_payment`
+            </ResponseField>
+            <ResponseField name="payment_amount" type="string">
+              Allowed value  : `payment_amount`
+            </ResponseField>
+            <ResponseField name="payment_date_epoch" type="string">
+              Allowed value  : `payment_date_epoch`
+            </ResponseField>
+            <ResponseField name="tds_amount" type="string">
+              Allowed value  : `tds_amount`
+            </ResponseField>
+            <ResponseField name="surcharge" type="string">
+              Allowed value  : `surcharge`
+            </ResponseField>
+            <ResponseField name="health_and_education_cess" type="string">
+              Allowed value  : `health_and_education_cess`
+            </ResponseField>
+            <ResponseField name="deduction_date_epoch" type="string">
+              Allowed value  : `deduction_date_epoch`
+            </ResponseField>
+            <ResponseField name="reason_for_lower_or_higher_deduction" type="string">
+              Allowed value  : `reason_for_lower_or_higher_deduction`
+            </ResponseField>
+            <ResponseField name="certificate_number" type="string">
+              Allowed value  : `certificate_number`
+            </ResponseField>
+          </Expandable>
+        </ResponseField>
+        <ResponseField name="rows" type="array<array<string|number|boolean|null>">
+          Allowed value : `rows` \
+          Contains values defined in the headers. Make sure to maintain the order of headers.
+          <Expandable title="child attributes">
+            <ResponseField name="payee_sr_no" type="number">
+            </ResponseField>
+            <ResponseField name="challan_serial" type="string">
+            </ResponseField>
+            <ResponseField name="bsr_code" type="string">
+            </ResponseField>
+            <ResponseField name="nature_of_payment" type="string">
+            </ResponseField>
+            <ResponseField name="payment_amount" type="number">
+            </ResponseField>
+            <ResponseField name="payment_date_epoch" type="number">
+            </ResponseField>
+            <ResponseField name="tds_amount" type="number">
+            </ResponseField>
+            <ResponseField name="surcharge" type="number">
+            </ResponseField>
+            <ResponseField name="health_and_education_cess" type="number">
+            </ResponseField>
+            <ResponseField name="deduction_date_epoch" type="number">
+            </ResponseField>
+            <ResponseField name="reason_for_lower_or_higher_deduction" type="number">
+            </ResponseField>
+            <ResponseField name="certificate_number" type="number">
+            </ResponseField>
+          </Expandable>
+        </ResponseField>
+      </Expandable>
+    </ResponseField>
+  </Expandable>
+
+  </Expandable>
+</ResponseField>
+
+</Accordion>

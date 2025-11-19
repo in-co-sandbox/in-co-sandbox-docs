@@ -1,0 +1,968 @@
+---
+
+---
+This page serves as a repository of requests and response payloads, providing a convenient reference for the seamless integration of TDS APIs. Users can access the data from this page whenever needed for different API interactions.
+
+<SectionDivider />
+
+## Compliance API
+
+### Search TAN
+
+| Field          | Type   | Description                                                               | Example                                                       |
+| :------------- | :----- | :------------------------------------------------------------------------ | :------------------------------------------------------------ |
+| nameOrgn       | string | Name of the TAN Entity                                                    | RON DOE PRIVATE LIMITED                                       |
+| nameLast       | string | Last Name of TAN Entity if Individual                                     | DOE                                                           |
+| nameFirst      | string | First Name of TAN Entity if Individual                                    | JOHN                                                          |
+| nameMid        | string | Middle Name of TAN Entity if Individual                                   | RON                                                           |
+| addLine1       | string | Address Line 1                                                            | 1, ABC Tower,                                                 |
+| addLine2       | string | Address Line 2                                                            | Nr. ABC Tower                                                 |
+| addLine3       | string | Address Line 3                                                            | Opp. XYZ                                                      |
+| addLine4       | string | Address Line 4                                                            | ABCLMN Lane                                                   |
+| addLine5       | string | Address Line 5                                                            | Ahmedabad, India-380015                                       |
+| stateCd        | number | [State ](https://developer.sandbox.co.in/v3.0/docs/tds-master-data#state) | 9                                                             |
+| pin            | number | PIN Code of the address                                                   | 380015                                                        |
+| phoneNum       | string | Phone Number of the TAN Entity                                            | 99xxxxxx83                                                    |
+| dtTanAllotment | number | Date of TAN Allotment                                                     | 1499324427000                                                 |
+| emailId1       | string | Email ID corresponding to TAN Entity                                      | [AxxxxxxxxxxxxxR@GMAIL.COM](mailto:AxxxxxxxxxxxxxR@GMAIL.COM) |
+| emailId2       | string | Alternate Email ID corresponding to TAN Entity                            | [AxxxxxxxxxxxxxR@GMAIL.COM](mailto:AxxxxxxxxxxxxxR@GMAIL.COM) |
+
+<SubsectionSpacingWithDivider />
+
+### Section 206AB & 206CCA
+
+
+| Key | Type | Description | Example |
+| --- | --- | --- | --- |
+| pan | string | 10-character alphanumeric unique identifier for an income taxpayer | XXXPX1234A |
+| name | string | Name of Taxpayer (masked) | SXXXXJ MXXXXXXXXR |
+| pan_allotment_date | number | PAN allotment date | 1527100200000 |
+| financial_year | string | The financial year for which compliance check u/s 206AB & 206CCA is done. It will return the current financial year. | FY 2023-24 |
+| specified_person_us_206ab_&\_206cca | string | Flag for compliance check.  <br />Possible values:  <br />`y`  <br />`n`  <br />  <br />If `y`, then a higher TDS/TCS rate is to be applied for specified persons u/s 206AB & 206CCA. | y |
+| pan_status | string | Possible values:  <br />`operative`  <br />`inoperative`  <br />`na` | operative |
+
+### TDS Return (TXT & CSI)
+
+#### Submit Job
+
+
+| Key | Type | Description | Example |
+| --- | --- | --- | --- |
+| job_id | string | The ID of this job. It will be used later on to check the status. | f24cd229-42c8-43de-af79-8ce2d3c4c3db |
+| status | string | status of the job | created |
+| created_at | number | EPOCH timestamp of when job was created | 1701250588000 |
+| txt_url | string | Pre-signed URL where you need to upload txt file | https\://.......  <br />  <br />. |
+| csi_url | string | Pre signed URL where you need to upload csi file | https\://.....  <br />  <br />. |
+| tan | string | TAN of the deductor for which the TDS return is being filed | AHMJ01234A |
+| form | string | TDS return form type  | 26Q |
+| financial_year | string | Financial Year | FY 2023-24 |
+| quarter | string | Quarter | Q4 |
+
+#### Poll Job
+
+
+| Key | Type | Description | Example |
+| --- | --- | --- | --- |
+| job_id | string | ID of the particular `txt` and `csi` uploaded.  | f24cd229-42c8-43de-af79-8ce2d3c4c3db |
+| status | string | The status the particular `fvu` upload. Possible Values:  <br />`created`  <br />`queued`  <br />`failed`  <br />`succeeded` | succeeded |
+| tan | string | TAN of the deductor for which the TDS return is being filed | AHMJ01234A |
+| form | string | TDS return form type | 26Q |
+| financial_year | string | Financial Year | FY 2023-24 |
+| quarter | string | Quarter | Q4 |
+| filing_type | string | TDSR Filing Type.  | original |
+| receipt_number | number | TDSR filing receipt number | 123456789012345 |
+| receipt_url | string | Provides Acknowledgment of TDS Return. Will be visible only when the status is `succeeded` | https://s3.ap-south-1.amazonaws.com/efile.tds-compliance.sandbox.co.in/receipt.pdf |
+| fvu_url | string | Provides FVU File of TDS Return. Will be visible only when the status is `succeeded` | https://.... |
+| form27a_url | string | Provides Form 27A of TDS Return. Will be visible only when the status is `succeeded` | https://..... |
+| validation_url | string | Validation report in case FVU generation fails. Will be visible only when the status is `failed` | https://..... |
+| message | string | Reason for not e-filing TDS return. Will be visible only when the status is `failed`  <br />For possible values, refer to the [TIN-FC Error Codes & Messages](https://developer.sandbox.co.in/v3.0/docs/tds-master-data#tin-fc-error-codes--messages) | Regular Statement with the same TAN, Financial Year, FORM, and Quarter is already furnished |
+| created_at | number | EPOCH timestamp of when job was created | 1701250588000 |
+| updated_at | number | EPOCH timestamp of when job was last updated | 1701250698000 |
+
+
+### TDS Return (FVU & Form27A)
+
+#### Submit Job
+
+
+| Key | Type | Description | Example |
+| --- | --- | --- | --- |
+| job_id | string | The ID of this job. It will be used later on to check the status. | f24cd229-42c8-43de-af79-8ce2d3c4c3db |
+| status | string | status of the job | created |
+| created_at | number | EPOCH timestamp of when the job was created | 1701250588000 |
+| fvu_url | string | Pre-signed URL where you need to upload zip file of FVU and Form27A | https://.......  <br />  <br />. |
+| tan | string | TAN of the deductor for which the TDS return is being filed | AHMJ01234A |
+| form | string | TDS return form type  | 26Q |
+| financial_year | string | Financial Year | FY 2023-24 |
+| quarter | string | Quarter | Q4 |
+
+#### Poll Job
+
+
+| Key | Type | Description | Example |
+| --- | --- | --- | --- |
+| job_id | string | ID of the particular `txt` and `csi` uploaded.  | f24cd229-42c8-43de-af79-8ce2d3c4c3db |
+| status | string | The status the particular `fvu` upload. Possible Values:  <br />`created`  <br />`queued`  <br />`failed`  <br />`succeeded` | succeeded |
+| tan | string | TAN of the deductor for which the TDS return is being filed | AHMJ01234A |
+| form | string | TDS return form type | 26Q |
+| financial_year | string | Financial Year | FY 2023-24 |
+| quarter | string | Quarter | Q4 |
+| filing_type | string | TDSR Filing Type.  | original |
+| receipt_number | number | TDSR filing receipt number | 123456789012345 |
+| receipt_url | string | Provides Acknowledgment of TDS Return. Will be visible only when the status is `succeeded` | https://s3.ap-south-1.amazonaws.com/efile.tds-compliance.sandbox.co.in/receipt.pdf |
+| fvu_url | string | Provides FVU File of TDS Return. Will be visible only when the status is `succeeded` | https://.... |
+| form27a_url | string | Provides Form 27A of TDS Return. Will be visible only when the status is `succeeded` | https://..... |
+| message | string | Reason for not e-filing TDS return. Will be visible only when the status is `failed`  <br />For possible values, refer to the [TIN-FC Error Codes & Messages](https://developer.sandbox.co.in/v3.0/docs/tds-master-data#tin-fc-error-codes--messages) | Regular Statement with the same TAN, Financial Year, FORM, and Quarter is already furnished |
+| created_at | number | EPOCH timestamp of when job was created | 1701250588000 |
+| updated_at | number | EPOCH timestamp of when job was last updated | 1701250698000 |
+
+### Download Form16
+
+#### Submit Job
+
+| Param          | Type    | Description                                 | Example                              |
+| :------------- | :------ | :------------------------------------------ | :----------------------------------- |
+| job_id         | string  | Unique identifier of the job                | f24cd229-42c8-43de-af79-8ce2d3c4c3db |
+| tan            | string  | TAN of deductor                             | MUMR09719B                           |
+| financial_year | string  | Financial Year                              | FY 2023-24                           |
+| quarter        | string  | Quarter                                     | Q1                                   |
+| status         | string  | The status of the job submitted.            | created                              |
+| form           | string  | TDS return form type                        | 26Q                                  |
+| created_at     | number  | EPOCH timestamp of when the job was created | 1701250588000                        |
+| remember_me    | boolean | Whether to remember the credentials         | true                                 |
+
+#### Poll Job API
+
+
+| Param | Type | Description | Example |
+| --- | --- | --- | --- |
+| job_id | string | Unique identifier of the job | f24cd229-42c8-43de-af79-8ce2d3c4c3db |
+| tan | string | TAN of deductor | MUMR09719B |
+| quarter | string | Financial Year | FY 2023-24 |
+| financial_year | string | Quarter | Q1 |
+| form | string | TDS return form type | 26Q |
+| created_at | number | EPOCH timestamp of when the job was created | 1701250588000 |
+| updated_at | number | EPOCH timestamp of when the job was last updated | 1701250598000 |
+| remember_me | boolean | Whether to remember the credentials | true |
+| status | string | The status of the particular job.Possible Values:  <br />`created`  <br />`queued`  <br />`in_progress`  <br />`failed`  <br />`succeeded` | queued |
+| form16a_url | string | Link where we will provide the ZIP file of all the Form 16A in PDF format. Will be visible only when the status is `succeeded` | https://.  <br />  <br />.. |
+| form16_url | string | Link where we will provide the ZIP file of all the Form 16 in PDF format. Will be visible only when the status is `succeeded` | https://.  <br />  <br />.. |
+| message | string | Reason for not generating TDS certificates. Will be visible only when the status is `failed` | Invalid security captcha |
+
+## Report API
+
+### TDS Report
+
+#### TDS Report Submit Job API
+
+| Key                     | Type   | Description                                   |
+| :---------------------- | :----- | :-------------------------------------------- |
+| job_id                  | string | Unique Job ID to track the request            |
+| tan                     | string | TAN of Deductor                               |
+| quarter                 | string | Quarter for which TDS is being filed          |
+| financial_year          | string | Financial Year for which TDS is being filed   |
+| form                    | string | TDS Return Form                               |
+| previous_receipt_number | string | Receipt Number of previously filed TDS Return |
+| status                  | string | Status of the job                             |
+| json_url                | string | S3 URL to make the PUT request                |
+| created_at              | number | EPOCH timestamp of when the job was created   |
+
+<br />
+
+#### TDS Report Poll Job API
+
+
+| Key | Type | Description |
+| --- | --- | --- |
+| job_id | string | Unique Job ID to track the request |
+| tan | string | TAN of Deductor |
+| quarter | string | Quarter for which TDS is being filed |
+| financial_year | string | Financial Year for which TDS is being filed |
+| previous_receipt_number | string | Receipt Number of previously filed TDS Return |
+| status | string | Status of the job. Possible values:  <br />created, queued, succeeded, failed |
+| txt_url | string | Link from where you can download the generated TXT file. Will be provided when the status is succeeded |
+| validation_report_url | string | Link from where you can download the validation report. Will be provided when the status is failed |
+| created_at | number | EPOCH timestamp of when the job was created |
+| updated_at | number | EPOCH timestamp of when the job was last updated |
+
+
+<br />
+
+### TCS Report
+
+#### TCS Report Submit Job API
+
+| Key                     | Type   | Description                                   |
+| :---------------------- | :----- | :-------------------------------------------- |
+| job_id                  | string | Unique Job ID to track the request            |
+| tan                     | string | TAN of collectee                              |
+| quarter                 | string | Quarter for which TCS is being filed          |
+| financial_year          | string | Financial Year for which TCS is being filed   |
+| previous_receipt_number | string | Receipt Number of previously filed TCS Return |
+| status                  | string | Status of the job                             |
+| json_url                | string | S3 URL to make the PUT request                |
+| created_at              | number | EPOCH timestamp of when the job was created   |
+
+#### TCS Report Poll Job API
+
+
+| Key | Type | Description |
+| --- | --- | --- |
+| job_id | string | Unique Job ID to track the request |
+| tan | string | TAN of collectee |
+| quarter | string | Quarter for which TCS is being filed |
+| financial_year | string | Financial Year for which TCS is being filed |
+| previous_receipt_number | string | Receipt Number of previously filed TCS Return |
+| status | string | Status of the job. Possible values:  <br />created, queued, succeeded, failed |
+| txt_url | string | Link from where you can download the generated TXT file. Will be provided when the status is succeeded |
+| validation_report_url | string | Link from where you can download the validation report. Will be provided when the status is failed |
+| created_at | number | EPOCH timestamp of when the job was created |
+| updated_at | number | EPOCH timestamp of when the job was last updated |
+
+## Calculator API
+
+### Non-Salary Payments
+
+| Key                 | Type    | Description                                                                                                                                | Example             |
+| :------------------ | :------ | :----------------------------------------------------------------------------------------------------------------------------------------- | :------------------ |
+| deductee_type       | string  | Type of Deductee                                                                                                                           | company             |
+| is_pan_available    | boolean | Returns PAN status                                                                                                                         | false               |
+| is_206ab_applicable | boolean | Returns 206AB status                                                                                                                       | false               |
+| is_pan_operative    | boolean | Returns PAN operative                                                                                                                      | false               |
+| residential_status  | string  | Residential Status of the deductee                                                                                                         | resident            |
+| section             | string  | Section under which the tax is to be deducted                                                                                              | 194C                |
+| code                | string  | Code under which the tax is to be deducted                                                                                                 | 94C                 |
+| category            | string  | Category under which tax is to be deducted                                                                                                 | contractual_payment |
+| nature_of_payment   | string  | The kind of payment being made. View applicable [Nature of Payments](https://developer.sandbox.co.in/reference/tds-master-data#non-salary) | tender_fees         |
+| credit_amount       | number  | Payment amount (in INR)                                                                                                                    | 90500               |
+| credit_date         | number  | Date of payment in EPOCH Timestamp                                                                                                         | 1685577600000       |
+| deduction_rate      | number  | Applicable TDS rate                                                                                                                        | 20                  |
+| threshold_amount    | number  | The threshold amount after which TDS is applicable                                                                                         | 100000              |
+| due_date            | number  | Due date of depositing TDS in EPOCH Timestamp                                                                                              | 1688688000000       |
+| deduction_amount    | number  | TDS amount to be deducted                                                                                                                  | 0                   |
+
+### TCS Payments
+
+| Key                  | Type    | Description                                                                                                                         | Example                       |
+| :------------------- | :------ | :---------------------------------------------------------------------------------------------------------------------------------- | :---------------------------- |
+| deductee_type        | string  | Type of Deductee                                                                                                                    | individual                    |
+| is_pan_available     | boolean | Returns PAN status                                                                                                                  | false                         |
+| is_206cca_applicable | boolean | Returns 206AB status                                                                                                                | false                         |
+| is_pan_operative     | boolean | Returns PAN operative                                                                                                               | false                         |
+| residential_status   | string  | Residential Status of the deductee                                                                                                  | resident                      |
+| section              | string  | Section under which the tax is to be collected                                                                                      | 206C(1)                       |
+| code                 | string  | The code under which the tax is to be collected                                                                                     | 6CO                           |
+| category             | string  | Category under which tax is to be collected                                                                                         | overseas_tour_program_package |
+| nature_of_payment    | string  | The kind of payment being made. View applicable [Nature of Payments](https://developer.sandbox.co.in/reference/tds-master-data#tcs) | foreign_flight_tickets        |
+| payment_amount       | number  | Payment amount (in INR)                                                                                                             | 695000                        |
+| payment_date         | number  | Payment date in EPOCH                                                                                                               | 1685577600000                 |
+| collection_rate      | number  | Applicable TCS rate                                                                                                                 | 5                             |
+| threshold_amount     | number  | The threshold amount after which TCS is applicable                                                                                  | 0                             |
+| due_date             | number  | Due date of depositing TCS in EPOCH Timestamp                                                                                       | 1688688000000                 |
+| collection_amount    | number  | TCS amount to be collected                                                                                                          | 34750                         |
+
+<br />
+
+<SectionDivider />
+
+<br />
+
+## Analytics API
+
+### TDS Potential Notice
+
+#### Submit Job
+
+| Key            | Type   | Description                                         | Example                              |
+| :------------- | :----- | :-------------------------------------------------- | :----------------------------------- |
+| tan            | string | TAN of deductor                                     | AHMA09719B                           |
+| quarter        | string | Quarter                                             | Q4                                   |
+| financial_year | string | Financial Year                                      | FY 2023-24                           |
+| form           | string | TDS Return Form                                     | 26Q                                  |
+| job_id         | string | Unique identifier of the job                        | 1c1e4905-d07e-4c51-b8c5-1163050ded7f |
+| status         | string | Status of the job                                   | created                              |
+| created_at     | number | EPOCH timestamp of when the job was created         | 1716515767000                        |
+| json_url       | string | Pre-signed URL where the payload is to be submitted | https\://.....                       |
+
+#### Poll Job
+
+
+| Key | Type | Description | Example |
+| --- | --- | --- | --- |
+| tan | string | TAN of deductor | AHMA09719B |
+| quarter | string | Quarter | Q4 |
+| financial_year | string | Financial Year | FY 2023-24 |
+| form | string | TDS Return Form | 26Q |
+| job_id | string | Unique identifier of the job | 1c1e4905-d07e-4c51-b8c5-1163050ded7f |
+| status | string | Status of the job. Possible Values:  <br />`created`, `queued`, `succeeded`,`failed` | created |
+| created_at | number | EPOCH timestamp of when the job was created | 1716515767000 |
+| updated_at | number | EPOCH timestamp of when the job was last updated. Will be present when the status of the job is `queued`, `succeeded`,`failed` | 1716515787000 |
+| potential_notice_report_url | string | Pre-signed URL from where users can fetch the potential notice report in xlsx format. Will be present when the status of the job is `succeeded` | https://..... |
+| message | string | Error Message. Will be present when the status of the job is `failed` | Validation Error |
+| validation_report_url | string | Pre-signed URL from where users can fetch the validation report in xlsx format. Will be present when the status of the job is `failed` | https://..... |
+
+### TCS Potential Notice
+
+#### Submit Job
+
+| Key            | Type   | Description                                         | Example                              |
+| :------------- | :----- | :-------------------------------------------------- | :----------------------------------- |
+| tan            | string | TAN of collector                                    | AHMA09719B                           |
+| quarter        | string | Quarter                                             | Q4                                   |
+| financial_year | string | Financial Year                                      | FY 2023-24                           |
+| job_id         | string | Unique identifier of the job                        | 1c1e4905-d07e-4c51-b8c5-1163050ded7f |
+| status         | string | Status of the job                                   | created                              |
+| created_at     | number | EPOCH timestamp of when the job was created         | 1716515767000                        |
+| json_url       | string | Pre-signed URL where the payload is to be submitted | https\://.....                       |
+
+#### Poll Job
+
+
+| Key | Type | Description | Example |
+| --- | --- | --- | --- |
+| tan | string | TAN of collector | AHMA09719B |
+| quarter | string | Quarter | Q4 |
+| financial_year | string | Financial Year | FY 2023-24 |
+| job_id | string | Unique identifier of the job | 1c1e4905-d07e-4c51-b8c5-1163050ded7f |
+| status | string | Status of the job. Possible Values:  <br />`created`, `queued`, `succeeded`,`failed` | created |
+| created_at | number | EPOCH timestamp of when the job was created | 1716515767000 |
+| updated_at | number | EPOCH timestamp of when the job was last updated. Will be present when the status of the job is `queued`, `succeeded`,`failed` | 1716515787000 |
+| potential_notice_report_url | string | Pre-signed URL from where users can fetch the potential notice report in xlsx format. Will be present when the status of the job is `succeeded` | https://..... |
+| message | string | Error Message. Will be present when the status of the job is `failed` | Validation Error |
+| validation_report_url | string | Pre-signed URL from where users can fetch the validation report in xlsx format. Will be present when the status of the job is `failed` | https://..... |
+
+
+<br />
+
+<br />
+
+<br />
+
+<SectionDivider />
+
+## Workbooks
+
+<SubsectionSpacingWithDivider />
+
+### Form 24Q
+
+<br />
+
+#### Payer
+
+| Param       | Type        | Required | Validation                                                                                                                                | Description                                        |
+| :---------- | :---------- | :------- | ----------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------- |
+| name        | string      | Yes      | Max Length: 75                                                                                                                            | Name of the Payer                                  |
+| tan         | string      | Yes      | Pattern : [A-Z]{4}[0-9]{5}[A-Z]{1}                                                                                                        | TAN of the Payer                                   |
+| pan         | string      | Yes      | Pattern : [A-Z]{3}[PCFTGHLABJ]{1}[A-Z]{1}[0-9]{4}[A-Z]{1}                                                                                 | PAN of the Payer                                   |
+| gstin       | string      | No       | Pattern : [0-9]{2}[a-zA-Z]{5}[0-9]{4}[a-zA-Z]{1}[1-9A-Za-z]{1}[CZ]{1}[0-9a-zA-Z]{1}$\|^[0-9]{4}[a-zA-Z]{3}[0-9]{5}[uUnN]{2}[0-9a-zA-Z]{1} | GSTIN of the Payer                                 |
+| branch      | string      | Yes      | Max Length: 75                                                                                                                            | Branch details of the Payer if multiple locations. |
+| street      | string      | Yes      | Max Length: 25                                                                                                                            | Name of premise                                    |
+| area        | string      | Yes      | Max Length: 25                                                                                                                            | Area of location                                   |
+| city        | string      | Yes      | Max Length: 25                                                                                                                            | City of location                                   |
+| state       | enumeration | Yes      | [State](https://developer.sandbox.co.in/reference/tds-master-data#state)                                                                  | State of location                                  |
+| postal_code | string      | Yes      | Pattern : [0-9]{6}                                                                                                                        | Pincode of location                                |
+| email       | string      | Yes      | Max Length: 75                                                                                                                            | Primary email for contact                          |
+| mobile      | string      | Yes      | Pattern: [1-9]{1}[0-9]{9}                                                                                                                 | Primary mobile number for contact                  |
+
+##### Responsible Person
+
+| Param       | Type        | Required | Validation                                                               | Description                           |
+| :---------- | :---------- | :------- | ------------------------------------------------------------------------ | ------------------------------------- |
+| designation | string      | Yes      | Max Length: 20                                                           | Designation of the responsible person |
+| name        | string      | Yes      | Max Length: 75                                                           | Name of the responsible person        |
+| pan         | string      | Yes      | Pattern : [A-Z]{3}[PCFTGHLABJ]{1}[A-Z]{1}[0-9]{4}[A-Z]{1}                | PAN of the responsible person         |
+| street      | string      | Yes      | Max Length: 25                                                           | Name of the premise                   |
+| area        | string      | Yes      | Max Length: 25                                                           | Area of the location                  |
+| city        | string      | Yes      | Max Length: 25                                                           | City of location                      |
+| state       | enumeration | Yes      | [State](https://developer.sandbox.co.in/reference/tds-master-data#state) | State of location                     |
+| postal_code | string      | Yes      | Pattern : [0-9]{6}                                                       | Pincode of location                   |
+| email       | string      | Yes      | Max Length: 75                                                           | Primary email for contact             |
+| mobile      | string      | Yes      | Pattern: [1-9]{1}[0-9]{9}                                                | Primary mobile number for contact     |
+
+<br />
+
+#### Payee
+
+
+| Param | Type | Required | Validation | Description |
+| --- | --- | --- | --- | --- |
+| sr_no | number | Yes | \- | Serial Number |
+| pan | string | Yes | Pattern : [A-Z]{3}[PCFTGHLABJ]{1}[A-Z]{1}[0-9]{4}[A-Z]{1} | PAN of the Payee. If payee doesn't have PAN then possible values are  <br />`PANNOTAVBL`,`PANAPPLIED`, `PANINVALID`,  |
+| name | string | Yes | Max Length: 75 | Name of the Payee |
+| opting_new_regime | boolean | Yes | \- | Whether Employee has opted for taxation u/s 115BAC.  |
+| employee_category | enumeration | Yes | \- | Category of Employee, Possible Values:  <br />`women`, `senior_citizen`, `super_senior_citizen`, `general` |
+| is_pan_operative | boolean | No | Possible Values: `true`  <br />`false` | Whether the payee's PAN is operative. Only  <br />[\[For Potential Notices API\]](https://developer.sandbox.co.in/reference/potential-notice-check-api)  |
+
+<br />
+
+#### Challan
+
+
+| Param | Type | Required | Validation | Description |
+| --- | --- | --- | --- | --- |
+| challan_serial | string | Yes | Pattern : [0-9]{5} | Bank Challan No |
+| bsr_code | string | Yes | Pattern : [0-9]{7} | Bank-Branch Code/ Form 24G Receipt Number |
+| paid_date_epoch | number | Yes | Length: 13 | EPOCH timestamp of the challan paid date |
+| minor_head | enumeration | Yes | [Minor Head](https://developer.sandbox.co.in/reference/tds-master-data#form-24q-1) | Minor Head of challan |
+| tds_amount | number | Yes | Length: 15 | Income Tax |
+| surcharge | number | Yes | Length: 15 | Surcharge on Income Tax |
+| health_and_education_cess | number | Yes | Length: 15 | Education cess on Income Tax |
+| interest | number | Yes | Length: 15 | Interest levied upon late deduction |
+| late_filing_fees | number | Yes | Length: 15 | Penalty levied upon late filing |
+| other_penalty | number | Yes | Length: 15 | Any Other Penalty |
+| utilized_amount | number | No | Length: 15 | Total Amount of Challan Utilised  <br />in previous returns. Required  <br />[\[For Potential Notices API](https://developer.sandbox.co.in/reference/tcs-potential-notice-check-api) only |
+
+
+<br />
+
+#### Payment
+
+| Param                      | Type        | Required | Validation                                                                                       | Description                                                                                   |
+| :------------------------- | :---------- | :------- | ------------------------------------------------------------------------------------------------ | --------------------------------------------------------------------------------------------- |
+| payee_sr_no                | number      | Yes      | \-                                                                                               | Payee Serial Number                                                                           |
+| challan_serial             | string      | Yes      | Pattern : [0-9]{5}                                                                               | Bank Challan No                                                                               |
+| bsr_code                   | string      | Yes      | Pattern : [0-9]{7}                                                                               | Bank-Branch Code/ Form 24G Receipt Number                                                     |
+| nature_of_payment          | enumeration | Yes      | [Nature of Payment](https://developer.sandbox.co.in/reference/tds-master-data#salary)            | TDS section of deduction                                                                      |
+| payment_amount             | number      | Yes      | Length: 15,2                                                                                     | Payment amount                                                                                |
+| payment_date_epoch         | number      | Yes      | Length: 13                                                                                       | EPOCH timestamp of Payment date                                                               |
+| tds_amount                 | number      | Yes      | Length: 15,2                                                                                     | Tax amount of deduction                                                                       |
+| surcharge                  | number      | Yes      | Length: 15,2                                                                                     | Surcharge on Tax amount                                                                       |
+| health_and_education_cess  | number      | Yes      | Length: 15,2                                                                                     | Eduction of the Tax amount                                                                    |
+| deduction_date_epoch       | number      | Yes      | Length: 13                                                                                       | EPOCH timestamp of Deduction date                                                             |
+| reason_for_lower_deduction | enumeration | No       | [Reason for lower deduction](https://developer.sandbox.co.in/reference/tds-master-data#form-24q) | Reason for non-deduction / lower deduction/ higher deduction/threshold                        |
+| certificate_number         | string      | No       | Max Length: 10                                                                                   | Certificate number issued by the Assessing Officer u/s 197 for non-deduction/lower deduction. |
+
+<br />
+
+> 📘 Salary Detail sheet is required for Quarter 4 returns only
+
+#### Salary Detail
+
+
+| Param | Type | Required | Validation | Description |
+| --- | --- | --- | --- | --- |
+| payee_sr_no | number | Yes | \- | Payee Serial Number |
+| employment_from_date_epoch | number | For 192 Record Only | Length: 13 | Timestamp from when employed with the current employer in the current FY |
+| employment_to_date_epoch | number | For 192 Record Only | Length: 13 | Timestamp to which employed with the current employer in the current FY |
+| gross_salary_from_previous_employers | number | For 192 Record Only | Length: 15,2 | Total Taxable Amount on which TDS was deducted by the previous employer |
+| tds_by_previous_employers | number | For 192 Record Only | Length: 15,2 | TDS deducted by the previous employer in the current FY |
+| income_tax_payable | number | Yes | Length: 15,2 | Income Tax Payable by the employee |
+| surcharge | number | Yes | Length: 15,2 | Amount of Surcharge applicable |
+| cess | number | Yes | Length: 15,2 | Amount of Cess appliable |
+| tds_on_salary | number | For 192 Record Only | Length: 15,2 | Total TDS deducted by the current employer in the current FY |
+| salary_as_per_provisions_contained_in_section_17_1 | number | For 192 Record Only | Length: 15,2 | Gross Salary amount as per Section 17(1) |
+| value_of_perquisites_us_17_2 | number | For 192 Record Only | Length: 15,2 | Value of Perquisities as per Section 17(2) |
+| profits_in_lieu_of_salary_us_17_3 | number | For 192 Record Only | Length: 15,2 | Profits in lieu of Salary as per Section 17(3) |
+| travel_concession_or_assistance_us_10_5 | number | For 192 Record Only | Length: 15,2 | Travel concession or assistance as per Section 10 (5) |
+| death_cum_retirement_gratuity_us_10_10 | number | For 192 Record Only | Length: 15,2 | Death-cum-retirement gratuity amount as per Section 10(10) |
+| commuted_value_of_pension_us_10_10_a | number | For 192 Record Only | Length: 15,2 | Value of the commuted pension as per Section 10(10A) |
+| cash_equivalent_of_leave_salary_encashment_us_10_10_aa | number | For 192 Record Only | Length: 15,2 | Value of leave encashment as per Section 10(10AA) |
+| house_rent_allowance_us_10_13_a | number | For 192 Record Only | Length: 15,2 | Amount of house rent allowance as per Section 10(13A) |
+| other_special_allowances_under_section_10_14 | number | For 192 Record Only | Length: 15,2 |  |
+| landlord_1_name | string | No | Max Length: 75 | Name of landlord 1 when aggregate rent paid has exceeded INR 1 Lakh in the current FY |
+| landlord_1_pan | string | No | Pattern : [A-Z]{3}[PCFTGHLABJ]{1}[A-Z]{1}[0-9]{4}[A-Z]{1} | PAN of landlord 1 |
+| landlord_2_name | string | No | Max Length: 75 | Name of landlord 2 when aggregate rent paid has exceeded INR 1 Lakh in the current FY |
+| landlord_2_pan | string | No | Pattern : [A-Z]{3}[PCFTGHLABJ]{1}[A-Z]{1}[0-9]{4}[A-Z]{1} | PAN of landlord 2 |
+| landlord_3_name | string | No | Max Length: 75 | Name of landlord 3 when aggregate rent paid has exceeded INR 1 Lakh in the current FY |
+| landlord_3_pan | string | No | Pattern : [A-Z]{3}[PCFTGHLABJ]{1}[A-Z]{1}[0-9]{4}[A-Z]{1} | PAN of landlord 3 |
+| landlord_4_name | string | No | Max Length: 75 | Name of landlord 4 when aggregate rent paid has exceeded INR 1 Lakh in the current FY |
+| landlord_4_pan | string | No | Pattern : [A-Z]{3}[PCFTGHLABJ]{1}[A-Z]{1}[0-9]{4}[A-Z]{1} | PAN of landlord 4 |
+| total_amount_of_any_other_exemption_us_10 | number | For 192 Record Only | Length: 15,2 | Any other exemption under section 10 |
+| standard_deduction_us_16_ia | number | Yes | Length: 15,2 | Amount of Standard Deduction as per Section 16(ia) |
+| entertainment_allowance_us_16_ii | number | For 192 Record Only | Length: 15,2 | Amount of Entertainment Allowance as per Section 16(ii) |
+| tax_on_employment_us_16_iii | number | Yes | Length: 15,2 | Amount of Professional Tax as per Section 16(iii) |
+| income_from_house_property_reported_by_employee_offered_for_tds | number | For 192 Record Only | Length: 15,2  <br />Can have negative values | Income under the head house property offered for TDS for Section 192 (2B) (includes admissible loss) |
+| lender_1_name | string | No | Max Length: 75 | Name of Lender 1 if the interest on house loan claimed under section 24(b) |
+| lender_1_pan | string | No | Pattern : [A-Z]{3}[PCFTGHLABJ]{1}[A-Z]{1}[0-9]{4}[A-Z]{1} | PAN of lender 1 |
+| lender_2_name | string | No | Max Length: 75 | Name of Lender 2 if the interest on house loan claimed under section 24(b) |
+| lender_2_pan | string | No | Pattern : [A-Z]{3}[PCFTGHLABJ]{1}[A-Z]{1}[0-9]{4}[A-Z]{1} | PAN of lender 2 |
+| lender_3_name | string | No | Max Length: 75 | Name of Lender 3 if the interest on house loan claimed under section 24(b) |
+| lender_3_pan | string | No | Pattern : [A-Z]{3}[PCFTGHLABJ]{1}[A-Z]{1}[0-9]{4}[A-Z]{1} | PAN of lender 3 |
+| lender_4_name | string | No | Max Length: 75 | Name of Lender 4 if the interest on house loan claimed under section 24(b) |
+| lender_4_pan | string | No | Pattern : [A-Z]{3}[PCFTGHLABJ]{1}[A-Z]{1}[0-9]{4}[A-Z]{1} | PAN of lender 4 |
+| income_under_the_head_other_sources_offered_for_tds | number | For 192 Record Only | Length: 15,2 | Income under the head of other sources offer for TDS under Section 192 (2b) |
+| gross_amount_us_80_c | number | Yes | Length: 15,2 | The gross amount contributed u/s 80C |
+| deductible_amount_us_80_c | number | Yes | Length: 15,2 | The deductible amount u/s 80C |
+| gross_amount_us_80_ccc | number | Yes | Length: 15,2 | The gross amount contributed u/s 80CCC |
+| deductible_amount_us_80_ccc | number | Yes | Length: 15,2 | The deductible amount u/s 80CCC |
+| gross_amount_us_80_ccd_1 | number | Yes | Length: 15,2 | The gross amount contributed u/s 80CCD(1) |
+| deductible_amount_us_80_ccd_1 | number | Yes | Length: 15,2 | The deductible amount u/s 80CCD(1) |
+| gross_amount_us_80_ccd_1_b | number | Yes | Length: 15,2 | The gross amount contributed u/s 80CCD(1B) |
+| deductible_amount_us_80_ccd_1_b | number | Yes | Length: 15,2 | The deductible amount u/s 80CCD(1B) |
+| gross_amount_us_80_ccd_2 | number | For 192 Record Only | Length: 15,2 | The gross amount contributed u/s 80CCD(2)  |
+| deductible_amount_us_80_ccd_2 | number | For 192 Record Only | Length: 15,2 | The deductible amount u/s 80CCD(2) |
+| gross_amount_us_80_ccg | number | For 192 Record Only | Length: 15,2 | The gross amount contributed u/s 80CCG |
+| deductible_amount_us_80_ccg | number | For 192 Record Only | Length: 15,2 | The deductible amount u/s 80CCG |
+| gross_amount_us_80_cch | number | For 192 Record Only | Length: 15,2 |  |
+| deductible_amount_us_80_cch | number | For 192 Record Only | Length: 15,2 |  |
+| gross_amount_us_80_d | number | Yes | Length: 15,2 | The gross amount contributed u/s80D |
+| deductible_amount_us_80_d | number | Yes | Length: 15,2 | The deductible amount u/s 80D |
+| gross_amount_us_80_dd | number | For 194P Record Only | Length: 15,2 | The gross amount contributed u/s 80DD |
+| deductible_amount_us_80_dd | number | For 194P Record Only | Length: 15,2 | The deductible amount u/s 80DD |
+| qualifying_amount_us_80_dd | number | For 194P Record Only | Length: 15,2 | The deductible amount u/s 80DD |
+| gross_amount_us_80_e | number | Yes | Length: 15,2 | The gross amount contributed u/s80E |
+| deductible_amount_us_80_e | number | Yes | Length: 15,2 | The deductible amount u/s 80E |
+| gross_amount_us_80_ee | number | For 194P Record Only | Length: 15,2 | The gross amount contributed u/s80EE |
+| deductible_amount_us_80_ee | number | For 194P Record Only | Length: 15,2 | The deductible amount u/s 80EE |
+| qualifying_amount_us_80_ee | number | For 194P Record Only | Length: 15,2 | The deductible amount u/s 80EE |
+| gross_amount_us_80_eea | number | For 194P Record Only | Length: 15,2 | The gross amount contributed u/s80EEA |
+| deductible_amount_us_80_eea | number | For 194P Record Only | Length: 15,2 | The deductible amount u/s 80EEA |
+| qualifying_amount_us_80_eea | number | For 194P Record Only | Length: 15,2 | Qualifying amount u/s 80EEA |
+| gross_amount_us_80_g | number | Yes | Length: 15,2 | The gross amount contributed u/s80G |
+| deductible_amount_us_80_g | number | Yes | Length: 15,2 | The deductible amount u/s 80G |
+| qualifying_amount_us_80_g | number | Yes | Length: 15,2 | Qualifying amount u/s 80G |
+| gross_amount_us_80_gg | number | For 194P Record Only | Length: 15,2 | The gross amount contributed u/s80GG |
+| deductible_amount_us_80_gg | number | For 194P Record Only | Length: 15,2 | The deductible amount u/s 80GG |
+| qualifying_amount_us_80_gg | number | For 194P Record Only | Length: 15,2 | Qualifying amount u/s 80GG |
+| gross_amount_us_80_ggc | number | For 194P Record Only | Length: 15,2 | The gross amount contributed u/s80GGC |
+| deductible_amount_us_80_ggc | number | For 194P Record Only | Length: 15,2 | The deductible amount u/s 80GGC |
+| qualifying_amount_us_80_ggc | number | For 194P Record Only | Length: 15,2 | Qualifying amount u/s 80GGC |
+| gross_amount_us_80_tta | number | For 192 Record Only | Length: 15,2 | The gross amount contributed u/s80TTA |
+| deductible_amount_us_80_tta | number | For 192 Record Only | Length: 15,2 | The deductible amount u/s 80TTA |
+| qualifying_amount_us_80_tta | number | For 192 Record Only | Length: 15,2 | Qualifying amount u/s 80TTA |
+| gross_amount_us_80_ttb | number | For 194P Record Only | Length: 15,2 | The gross amount contributed u/s 80TTB |
+| deductible_amount_us_80_ttb | number | For 194P Record Only | Length: 15,2 | The deductible amount u/s 80TTB |
+| qualifying_amount_us_80_ttb | number | For 194P Record Only | Length: 15,2 | Qualifying amount u/s 80TTB |
+| gross_amount_us_80_u | number | For 194P Record Only | Length: 15,2 | The gross amount contributed u/s 80U |
+| deductible_amount_us_80_u | number | For 194P Record Only | Length : 15,2 | The deductible amount u/s 80U |
+| qualifying_amount_us_80_u | number | For 194P Record Only | Length : 15,2 | Qualifying amount u/s 80U |
+| gross_amount_for_other_deductions | number | Yes | Length : 15,2 | The gross amount for other deductions that are not mentioned |
+| deductible_amount_for_other_deductions | number | Yes | Length : 15,2 | The deductible amount for other deductions that are not mentioned |
+| qualifying_amount_for_other_deductions | number | Yes | Length : 15,2 | The deductible amount for other deductions that are not mentioned |
+| rebate_us_87_a | number | No | Length : 15,2 |  Rebate |
+| relief_us_89 | number | Yes | Length : 15,2 |  |
+| payments_from_super_annuation_fund | number | No | Length : 15,2 | Payment to employee from the superannuation fund |
+| name_of_fund | string | No | Max Length: 75 | Name of superannuation fund |
+| fund_contribution_from | number | No | Length: 13 | EPOCH Timestamp from when the employee contributed to the fund in the current FY |
+| fund_contribution_to | number | No | Length: 13 | EPOCH Timestamp to when the employee contributed to the fund in the current FY |
+| average_rate_of_deduction_of_tax | number | No | Length: 7,4 |  |
+| tds_on_repayment_from_super_annuation_fund | number | No | Length: 15,2 | Tax deducted in repayment from the superannuation fund |
+| gross_pension_under_194p | number | For 194P Record Only | Length : 15,2 | Gross pension reported u/s 194P |
+| interest_income_by_bank_under_194p | number | For 194P Record Only | Length: 15,2 | Interest income from bank reported u/s 194P |
+| net_tax_payable_under_194p | number | For 194P Record Only | Length: 15,2 | Net Tax Payable u/s194P |
+
+### Form 26Q
+
+<br />
+
+#### Payer
+
+| Param       | Type   | Required | Validation                                                                                                                                | Description                                        |
+| :---------- | :----- | :------- | ----------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------- |
+| name        | string | Yes      | Max Length : 75                                                                                                                           | Name of the Payer                                  |
+| tan         | string | Yes      | Pattern : [A-Z]{4}[0-9]{5}[A-Z]{1}                                                                                                        | TAN of the Payer                                   |
+| pan         | string | Yes      | Pattern : [A-Z]{3}[PCFTGHLABJ]{1}[A-Z]{1}[0-9]{4}[A-Z]{1}                                                                                 | PAN of the Payer                                   |
+| branch      | string | Yes      | Max Length : 75                                                                                                                           | Branch details of the Payer if multiple locations. |
+| gstin       | string | No       | Pattern : [0-9]{2}[a-zA-Z]{5}[0-9]{4}[a-zA-Z]{1}[1-9A-Za-z]{1}[CZ]{1}[0-9a-zA-Z]{1}$\|^[0-9]{4}[a-zA-Z]{3}[0-9]{5}[uUnN]{2}[0-9a-zA-Z]{1} | GSTIN of the Payer                                 |
+| street      | string | Yes      | Max Length : 25                                                                                                                           | Name of premise                                    |
+| area        | string | Yes      | Max Length : 25                                                                                                                           | Area of location                                   |
+| city        | string | Yes      | Max Length : 25                                                                                                                           | City of location                                   |
+| state       | enum   | Yes      | [State](https://developer.sandbox.co.in/reference/tds-master-data#state)                                                                  | State of location                                  |
+| postal_code | string | Yes      | Pattern : [0-9]{6}                                                                                                                        | Pincode of location                                |
+| email       | string | Yes      | Max Length : 75                                                                                                                           | Primary email for contact                          |
+| mobile      | string | Yes      | Pattern: [1-9]{1}[0-9]{9}                                                                                                                 | Primary mobile number for contact                  |
+
+##### Responsible Person
+
+| Param       | Type   | Required | Validation                                                               | Description                           |
+| :---------- | :----- | :------- | ------------------------------------------------------------------------ | ------------------------------------- |
+| designation | string | Yes      | Max Length : 20                                                          | Designation of the responsible person |
+| name        | string | Yes      | Max Length : 75                                                          | Name of the responsible person        |
+| pan         | string | Yes      | Pattern : [A-Z]{3}[PCFTGHLABJ]{1}[A-Z]{1}[0-9]{4}[A-Z]{1}                | PAN of the responsible person         |
+| street      | string | Yes      | Max Length : 25                                                          | Name of the premise                   |
+| area        | string | Yes      | Max Length : 25                                                          | Area of the location                  |
+| city        | string | Yes      | Max Length : 25                                                          | City of location                      |
+| state       | enum   | Yes      | [State](https://developer.sandbox.co.in/reference/tds-master-data#state) | State of location                     |
+| postal_code | string | Yes      | Pattern : [0-9]{6}                                                       | Pincode of location                   |
+| email       | string | Yes      | Max Length : 75                                                          | Primary email for contact             |
+| mobile      | string | Yes      | Pattern: [1-9]{1}[0-9]{9}                                                | Primary mobile number for contact     |
+
+<br />
+
+#### Payee
+
+
+| Param | Type | Required | Validation | Description |
+| --- | --- | --- | --- | --- |
+| sr_no | number | Yes | \- | Serial Number |
+| pan | string | Yes | Pattern : [A-Z]{3}[PCFTGHLABJ]{1}[A-Z]{1}[0-9]{4}[A-Z]{1} | PAN of the Payee. If payee doesn't have PAN then possible values are  <br />`PANNOTAVBL`,`PANAPPLIED`, `PANINVALID` |
+| name | string | Yes | Max Length: 75 | Name of the Payee |
+| is_206ab_applicable | boolean | No | Possible Values: `true`  <br />`false` | Whether 206AB applies to the payee. Only  <br />[\[For Potential Notices API\]](https://developer.sandbox.co.in/reference/potential-notice-check-api) |
+| is_pan_operative | boolean | No | Possible Values: `true`  <br />`false` | Whether the payee's PAN is operative. Only  <br />[\[For Potential Notices API\]](https://developer.sandbox.co.in/reference/potential-notice-check-api) |
+
+<br />
+
+#### Challan
+
+
+| Param | Type | Required | Validation | Description |
+| --- | --- | --- | --- | --- |
+| challan_serial | string | Yes | Pattern : [0-9]{5} | Bank Challan No |
+| bsr_code | string | Yes | Pattern : [0-9]{7} | Bank-Branch Code/ Form 24G Receipt Number |
+| paid_date_epoch | number | Yes | Length: 13 | EPOCH Timestamp of challan paid on date |
+| minor_head | enum | Yes | [Minor Head](https://developer.sandbox.co.in/reference/tds-master-data#form-26q-1) | Minor Head of challan |
+| tds_amount | number | Yes | Length: 15 | Income Tax |
+| surcharge | number | Yes | Length: 15 | Surcharge on Income Tax |
+| health_and_education_cess | number | Yes | Length: 15 | Education cess on Income Tax |
+| interest | number | Yes | Length: 15 | Interest levied upon late deduction |
+| late_filing_fees | number | Yes | Length: 15 | Penalty levied upon late filing |
+| other_penalty | number | Yes | Length: 15 | Any Other Penalty |
+| utilized_amount | number | Yes | Length: 15 | Total Amount of Challan Utilised  <br />in previous returns. Required for  <br />[\[For Potential Notices API\]](https://developer.sandbox.co.in/reference/potential-notice-check-api) |
+
+
+<br />
+
+#### Payment
+
+| Param                                                                          | Type   | Required | Validation                                                                                         | Description                                                                                   |
+| :----------------------------------------------------------------------------- | :----- | :------- | -------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------- |
+| payee_sr_no                                                                    | number | Yes      | \-                                                                                                 | Payee Serial Number                                                                           |
+| challan_serial                                                                 | string | Yes      | Pattern : [0-9]{5}                                                                                 | Bank Challan No                                                                               |
+| bsr_code                                                                       | string | Yes      | Pattern : [0-9]{7}                                                                                 | Bank-Branch Code/ Form 24G Receipt Number                                                     |
+| nature_of_payment                                                              | enum   | Yes      | [Nature of Payment](https://developer.sandbox.co.in/reference/tds-master-data#form-26q)            | TDS section of deduction                                                                      |
+| payment_amount                                                                 | number | Yes      | Length: 15,2                                                                                       | Payment amount                                                                                |
+| payment_date_epoch                                                             | number | Yes      | Length: 13                                                                                         | EPOCH Timestamp of Payment date                                                               |
+| tds_amount                                                                     | number | Yes      | Length: 15,2                                                                                       | Tax amount of deduction                                                                       |
+| surcharge                                                                      | number | Yes      | Length: 15,2                                                                                       | Surcharge on Tax amount                                                                       |
+| health_and_education_cess                                                      | number | Yes      | Length: 15,2                                                                                       | Health and Education Cess amount                                                              |
+| deduction_date_epoch                                                           | number | Yes      | Length: 13                                                                                         | EPOCH Timestamp of Deduction date                                                             |
+| reason_for_lower_deduction                                                     | enum   | No       | [Reason for lower deduction](https://developer.sandbox.co.in/reference/tds-master-data#form-26q-1) | Reason for non-deduction / lower deduction/ higher deduction/Threshold                        |
+| certificate_number                                                             | string | No       | Max Length: 10                                                                                     | Certificate number issued by the Assessing Officer u/s 197 for non-deduction/lower deduction. |
+| amount_of_cash_withdrawal_more_than_1_crore_us_194N                            | number | No       | Length: 15,2                                                                                       | Value to be mentioned if TDS deducted u/s 194N                                                |
+| amount_of_cash_withdrawal_between_20_lakhs_and_1_crore_us_194N_for_non_filers  | number | No       | Length: 15,2                                                                                       | Value to be mentioned if TDS deducted u/s 194NF, can be 0 if the amount is more than 1CR.     |
+| amount_of_cash_withdrawal_more_than_1_crore_us_194N_for_non_filers             | number | No       | Length: 15,2                                                                                       | Value to be mentioned if TDS deducted u/s 194NF, can be 0 if the amount is less than 1CR.     |
+| amount_of_cash_withdrawal_more_than_3_crore_us_194N_for_co-operative_societies | number | No       | Length: 15,2                                                                                       | Value to be mentioned if TDS deducted u/s 194NC                                               |
+| amount_of_cash_withdrawal_between_20_lakhs_and_3_crore_us_194N_for_non_filers  | number | No       | Length: 15,2                                                                                       | Value to be mentioned if TDS deducted u/s 194N-FT, can be 0 if the amount is more than 3CR.   |
+| amount_of_cash_withdrawal_more_than_3_crore_us_194N_for_non_filers             | number | No       | Length: 15,2                                                                                       | Value to be mentioned if TDS deducted u/s 194N-FT, can be 0 if the amount is less than 3CR.   |
+
+<SubsectionSpacingWithDivider />
+
+### Form 27Q
+
+<br />
+
+#### Payer
+
+| Param       | Type   | Required | Validation                                                                                                                                | Description                                        |
+| :---------- | :----- | :------- | ----------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------- |
+| name        | string | Yes      | Max Length: 75                                                                                                                            | Name of the Payer                                  |
+| tan         | string | Yes      | Pattern : [A-Z]{4}[0-9]{5}[A-Z]{1}                                                                                                        | TAN of the Payer                                   |
+| pan         | string | Yes      | Pattern : [A-Z]{3}[PCFTGHLABJ]{1}[A-Z]{1}[0-9]{4}[A-Z]{1}                                                                                 | PAN of the Payer                                   |
+| branch      | string | Yes      | Max Length: 75                                                                                                                            | Branch details of the Payer if multiple locations. |
+| gstin       | string | No       | Pattern : [0-9]{2}[a-zA-Z]{5}[0-9]{4}[a-zA-Z]{1}[1-9A-Za-z]{1}[CZ]{1}[0-9a-zA-Z]{1}$\|^[0-9]{4}[a-zA-Z]{3}[0-9]{5}[uUnN]{2}[0-9a-zA-Z]{1} | GSTIN of the Payer                                 |
+| street      | string | Yes      | Max Length: 25                                                                                                                            | Name of premise                                    |
+| area        | string | Yes      | Max Length: 25                                                                                                                            | Area of location                                   |
+| city        | string | Yes      | Max Length: 25                                                                                                                            | City of location                                   |
+| state       | enum   | Yes      | [State](https://developer.sandbox.co.in/reference/tds-master-data#state)                                                                  | State of location                                  |
+| postal_code | string | Yes      | Pattern : [0-9]{6}                                                                                                                        | Pincode of location                                |
+| email       | string | Yes      | Max Length: 75                                                                                                                            | Primary email for contact                          |
+| mobile      | string | Yes      | Pattern: [1-9]{1}[0-9]{9}                                                                                                                 | Primary mobile number for contact                  |
+
+##### Responsible Person List
+
+| Param       | Type   | Required | Validation                                                               | Description                           |
+| :---------- | :----- | :------- | ------------------------------------------------------------------------ | ------------------------------------- |
+| designation | string | Yes      | Max Length: 20                                                           | Designation of the responsible person |
+| name        | string | Yes      | Max Length: 75                                                           | Name of the responsible person        |
+| pan         | string | Yes      | Pattern : [A-Z]{3}[PCFTGHLABJ]{1}[A-Z]{1}[0-9]{4}[A-Z]{1}                | PAN of the responsible person         |
+| street      | string | Yes      | Max Length: 25                                                           | Name of the premise                   |
+| area        | string | Yes      | Max Length: 25                                                           | Area of the location                  |
+| city        | string | Yes      | Max Length: 25                                                           | City of location                      |
+| state       | enum   | Yes      | [State](https://developer.sandbox.co.in/reference/tds-master-data#state) | State of location                     |
+| postal_code | string | Yes      | Pattern : [0-9]{6}                                                       | Pincode of location                   |
+| email       | string | Yes      | Max Length: 75                                                           | Primary email for contact             |
+| mobile      | string | Yes      | Pattern: [1-9]{1}[0-9]{9}                                                | Primary mobile number for contact     |
+
+<br />
+
+#### Payee
+
+
+| Param | Type | Required | Validation | Description |
+| --- | --- | --- | --- | --- |
+| sr_no | number | Yes | \- | Serial Number |
+| pan | string | Yes | Pattern : [A-Z]{3}[PCFTGHLABJ]{1}[A-Z]{1}[0-9]{4}[A-Z]{1} | PAN of the Payee. If a payee doesn't have PAN then possible values are  <br />`PANNOTAVBL`,`PANAPPLIED`, `PANINVALID`,  |
+| name | string | Yes | Max Length: 75 | Name of the Payee |
+| opting_new_regime | boolean | Yes | Possible values:  <br />`True`  <br />`False` | Whether Employee has opted for taxation u/s 115BAC(1a). |
+| tax_identification  <br />\_number | string | Yes | Max Length: 25 | Tax Identification Number of Payee's jurisdiction |
+| street | string | Yes | Max Length: 25 | Name of the premise of location |
+| area | string | Yes | Max Length: 25 | Area of location |
+| city | string | Yes | Max Length: 25 | City of location |
+| state | string | Yes | Max Length: 25 | State of location |
+| postal_code | string | Yes | Max Length: 8 | Pincode of location |
+| country | enum | Yes | [Country](https://developer.sandbox.co.in/reference/tds-master-data#country) | Country of residance |
+| email | string | Yes | Max Length: 75 | Primary email for contact |
+| isd_code | number | Yes | Max Length: 5 | ISD code of the country |
+| mobile | string | Yes | Pattern: [1-9]{1}[0-9]{9} | Primary mobile number for contact |
+| is_206ab_applicable | Boolean | No | Possible Values: `true`  <br />`false` | Whether 206AB applies to the payee. Only  <br />[\[For Potential Notices API\]](https://developer.sandbox.co.in/reference/potential-notice-check-api)  |
+| is_pan_operative | Boolean | No | Possible Values: `true`  <br />`false` | Whether the payee's PAN is operative. Only  <br />[\[For Potential Notices API\]](https://developer.sandbox.co.in/reference/potential-notice-check-api)  |
+
+
+<br />
+
+#### Challan
+
+
+| Param | Type | Required | Validation | Description |
+| --- | --- | --- | --- | --- |
+| challan_serial | string | Yes | Pattern : [0-9]{5} | Bank Challan No |
+| bsr_code | string | Yes | Pattern : [0-9]{7} | Bank-Branch Code/ Form 24G Receipt Number |
+| paid_date_epoch | number | Yes | Length: 13 | Timestamp of challan paid date |
+| minor_head | enum | Yes | [Minor Head](https://developer.sandbox.co.in/reference/tds-master-data#form-27q-2) | Minor Head of challan |
+| tds_amount | number | Yes | Length: 15 | Income Tax |
+| surcharge | number | Yes | Length: 15 | Surcharge Amount |
+| health_and_education_cess | number | Yes | Length: 15 | Health and education cess amount |
+| interest | number | Yes | Length: 15 | Interest levied upon late deduction |
+| late_filing_fees | number | Yes | Length: 15 | Penalty levied upon late filing |
+| other_penalty | number | Yes | Length: 15 | Any Other Penalty |
+| utilized_amount | number | Yes | Length: 15 | Total Amount of Challan Utilised  <br />in previous returns. Required  <br />[\[For Potential Notices API\]](https://developer.sandbox.co.in/reference/potential-notice-check-api) only |
+
+
+<br />
+
+#### Payment
+
+| Param                                                                          | Type    | Required | Validation                                                                                              | Description                                                                                   |
+| :----------------------------------------------------------------------------- | :------ | :------- | ------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------- |
+| payee_sr_no                                                                    | number  | Yes      | \-                                                                                                      | Payee Serial Number                                                                           |
+| challan_serial                                                                 | string  | Yes      | Pattern : [0-9]{5}                                                                                      | Bank Challan No                                                                               |
+| bsr_code                                                                       | string  | Yes      | Pattern : [0-9]{7}                                                                                      | Bank-Branch Code/ Form 24G Receipt Number                                                     |
+| nature_of_payment                                                              | enum    | Yes      | [Nature of Payment](https://developer.sandbox.co.in/reference/tds-master-data#form-27q)                 | TDS section of deduction                                                                      |
+| payment_amount                                                                 | number  | Yes      | Length: 15,2                                                                                            | Payment amount                                                                                |
+| payment_date_epoch                                                             | number  | Yes      | Length: 13                                                                                              | EPOCH Timestamp of Payment date                                                               |
+| tds_amount                                                                     | number  | Yes      | Length: 15,2                                                                                            | Tax amount of deduction                                                                       |
+| surcharge                                                                      | number  | Yes      | Length: 15,2                                                                                            | Surcharge Amount                                                                              |
+| health_and_education_cess                                                      | number  | Yes      | Length: 15,2                                                                                            | Health and education cess amount                                                              |
+| deduction_date_epoch                                                           | number  | Yes      | Length: 13                                                                                              | EPOCH Timestamp of Deduction date                                                             |
+| applicability_of_tds_rate_under_dtaa                                           | boolean | Yes      | \-                                                                                                      | Whether the TDS rate is applicable under DTAA                                                 |
+| nature_of_remittance                                                           | string  | Yes      | [Nature of remittance](https://developer.sandbox.co.in/reference/tds-master-data#nature-of-remittances) | Nature of remittance                                                                          |
+| form_15ca_acknowledgement_number                                               | string  | No       | Max Length: 10                                                                                          | Form 15ca acknowledgement number                                                              |
+| grossing_up_indicator                                                          | enum    | No       | \-                                                                                                      | Possible values: `Y`, `N`                                                                     |
+| reason_for_lower_deduction                                                     | enum    | No       | [Reason for lower deduction](https://developer.sandbox.co.in/reference/tds-master-data#form-27q-1)      | Reason for non-deduction / lower deduction/ higher deduction/threshold                        |
+| certificate_number                                                             | string  | No       | Max Length: 10                                                                                          | Certificate number issued by the Assessing Officer u/s 197 for non-deduction/lower deduction. |
+| amount_of_cash_withdrawal_more_than_1_crore_us_194N                            | number  | No       | Length : 15,2                                                                                           | Value to be mentioned if TDS deducted u/s 194N                                                |
+| amount_of_cash_withdrawal_between_20_lakhs_and_1_crore_us_194N_for_non_filers  | number  | No       | Length : 15,2                                                                                           | Value to be mentioned if TDS deducted u/s 194NF, can be 0 if the amount is more than 1CR.     |
+| amount_of_cash_withdrawal_more_than_1_crore_us_194N_for_non_filers             | number  | No       | Length : 15,2                                                                                           | Value to be mentioned if TDS deducted u/s 194NF, can be 0 if the amount is less than 1CR.     |
+| amount_of_cash_withdrawal_more_than_3_crore_us_194N_for_co-operative_societies | number  | No       | Length : 15,2                                                                                           | Value to be mentioned if TDS deducted u/s 194NC                                               |
+| amount_of_cash_withdrawal_between_20_lakhs_and_3_crore_us_194N_for_non_filers  | number  | No       | Length : 15,2                                                                                           | Value to be mentioned if TDS deducted u/s 194N-FT, can be 0 if the amount is more than 3CR.   |
+| amount_of_cash_withdrawal_more_than_3_crore_us_194N_for_non_filers             | number  | No       | Length : 15,2                                                                                           | Value to be mentioned if TDS deducted u/s 194N-FT, can be 0 if the amount is less than 3CR.   |
+
+<SubsectionSpacingWithDivider />
+
+### Form 27EQ
+
+<br />
+
+#### payer_list
+
+| Key         | Type   | Required | Validation                                                                                                                                | Description                                        |
+| :---------- | :----- | :------- | ----------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------- |
+| name        | string | Yes      | Max Length: 75                                                                                                                            | Name of the Payer                                  |
+| tan         | string | Yes      | Pattern : [A-Z]{4}[0-9]{5}[A-Z]{1}                                                                                                        | TAN of the Payer                                   |
+| pan         | string | Yes      | Pattern : [A-Z]{3}[PCFTGHLABJ]{1}[A-Z]{1}[0-9]{4}[A-Z]{1}                                                                                 | PAN of the Payer                                   |
+| branch      | string | Yes      | Max Length: 75                                                                                                                            | Branch details of the Payer if multiple locations. |
+| gstin       | string | No       | Pattern : [0-9]{2}[a-zA-Z]{5}[0-9]{4}[a-zA-Z]{1}[1-9A-Za-z]{1}[CZ]{1}[0-9a-zA-Z]{1}$\|^[0-9]{4}[a-zA-Z]{3}[0-9]{5}[uUnN]{2}[0-9a-zA-Z]{1} | GSTIN of the Payer                                 |
+| street      | string | Yes      | Max Length: 25                                                                                                                            | Name of premise                                    |
+| area        | string | Yes      | Max Length: 25                                                                                                                            | Area of location                                   |
+| city        | string | Yes      | Max Length: 25                                                                                                                            | City of location                                   |
+| state       | enum   | Yes      | [State](https://developer.sandbox.co.in/reference/tds-master-data#state)                                                                  | State of location                                  |
+| postal_code | string | Yes      | Pattern : [0-9]{6}                                                                                                                        | Pincode of location                                |
+| email       | string | Yes      | Max Length: 75                                                                                                                            | Primary email for contact                          |
+| mobile      | string | Yes      | Pattern: [1-9]{1}[0-9]{9}                                                                                                                 | Primary mobile number for contact                  |
+
+<br />
+
+#### responsible_person_list
+
+| Key         | Type   | Required | Validation                                                               | Description                           |
+| :---------- | :----- | :------- | ------------------------------------------------------------------------ | ------------------------------------- |
+| designation | string | Yes      | Max Length: 20                                                           | Designation of the responsible person |
+| name        | string | Yes      | Max Length: 75                                                           | Name of the responsible person        |
+| pan         | string | Yes      | Pattern : [A-Z]{3}[PCFTGHLABJ]{1}[A-Z]{1}[0-9]{4}[A-Z]{1}                | PAN of the responsible person         |
+| street      | string | Yes      | Max Length: 25                                                           | Name of the premise                   |
+| area        | string | Yes      | Max Length: 25                                                           | Area of the location                  |
+| city        | string | Yes      | Max Length: 25                                                           | City of location                      |
+| state       | enum   | Yes      | [State](https://developer.sandbox.co.in/reference/tds-master-data#state) | State of location                     |
+| postal_code | string | Yes      | Pattern : [0-9]{6}                                                       | Pincode of location                   |
+| email       | string | Yes      | Max Length: 75                                                           | Primary email for contact             |
+| mobile      | string | Yes      | Pattern: [1-9]{1}[0-9]{9}                                                | Primary mobile number for contact     |
+
+<br />
+
+#### payee_table
+
+
+| Key | Type | Required | Validation | Description |
+| --- | --- | --- | --- | --- |
+| sr_no | number | Yes | \- | Serial Number |
+| pan | string | Yes | Pattern : [A-Z]{3}[PCFTGHLABJ]{1}[A-Z]{1}[0-9]{4}[A-Z]{1} | PAN of the Payee. If a payee doesn't have PAN then possible values are  <br />`PANNOTAVBL`,`PANAPPLIED`, `PANINVALID` |
+| name | string | Yes | Max Length: 75 | Name of the Payee |
+| nri | boolean | Yes | Possible Values: `true`  <br />`false` | Whether the Payee is a non-residential India |
+| permanent_establishment_in_india | boolean | Yes | Possible Values: `true`  <br />`false` | Where Payee has a permanent establishment in India |
+| opting_new_regime | boolean | Yes | Possible Values: `true`  <br />`false` | Whether Payee has opted for taxation u/s 115BAC(1a). |
+| is_206cca_applicable | boolean | No | Possible Values: `true`  <br />`false` | Whether 206CCA applies to the payee. Only  <br />[\[For Potential Notices API](https://developer.sandbox.co.in/reference/tcs-potential-notice-check-api)  |
+| is_pan_operative | boolean | No | Possible Values: `true`  <br />`false` | Whether the payee's PAN is operative. Only  <br />[\[For Potential Notices API](https://developer.sandbox.co.in/reference/tcs-potential-notice-check-api)  |
+
+<br />
+
+#### challan_table
+
+
+| Key | Type | Required | Validation | Description |
+| --- | --- | --- | --- | --- |
+| challan_serial | string | Yes | Pattern : [0-9]{5} | Bank Challan No |
+| bsr_code | string | Yes | Pattern : [0-9]{7} | Bank-Branch Code/ Form 24G Receipt Number |
+| paid_date_epoch | number | Yes | Length: 13 | Timestamp of challan paid on the date |
+| minor_head | enum | Yes | [Minor Head](https://developer.sandbox.co.in/reference/tds-master-data#form-27eq-2) | Minor Head of challan |
+| tcs_amount | number | Yes | Length: 15 | Income Tax |
+| surcharge | number | Yes | Length: 15 | Surcharge on Income Tax |
+| health_and_education_cess | number | Yes | Length: 15 | Health and education cess amount |
+| interest | number | Yes | Length: 15 | Interest levied upon late deduction |
+| late_filing_fees | number | Yes | Length: 15 | Penalty levied upon late filing |
+| other_penalty | number | Yes | Length: 15 | Any Other Penalty |
+| utilized_amount | number | Yes | Length: 15 | Total Amount of Challan Utilised  <br />in previous returns. Required  <br />[\[For Potential Notices API](https://developer.sandbox.co.in/reference/tcs-potential-notice-check-api) only |
+
+<br />
+
+#### payment_table
+
+| Key                         | Type   | Required | Validation                                                                                           | Description                                                                                     |
+| :-------------------------- | :----- | :------- | ---------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------- |
+| payee_sr_no                 | number | Yes      |                                                                                                      | Payee Serial Number                                                                             |
+| challan_serial              | string | Yes      | Pattern : [0-9]{5}                                                                                   | Bank Challan No                                                                                 |
+| bsr_code                    | string | Yes      | Pattern : [0-9]{7}                                                                                   | Bank-Branch Code/ Form 24G Receipt Number                                                       |
+| nature_of_payment           | enum   | Yes      | [nature of payment](https://developer.sandbox.co.in/reference/tds-master-data#tcs)                   | TCS section of the collection                                                                   |
+| total_value_of_purchase     | number | Yes      | Length: 15,2                                                                                         | Total value of purchase                                                                         |
+| payment_amount              | number | Yes      | Length: 15,2                                                                                         | amount received by the collectee                                                                |
+| payment_date_epoch          | number | Yes      | Length: 13                                                                                           | Timestamp of Purchase date/when the amount was received                                         |
+| tcs_amount                  | number | Yes      | Length: 15,2                                                                                         | Tax amount of collection                                                                        |
+| surcharge                   | number | Yes      | Length: 15,2                                                                                         | Surcharge on Tax amount                                                                         |
+| health_and_education_cess   | number | Yes      | Length: 15,2                                                                                         | Health and education cess amount                                                                |
+| collection_date_epoch       | number | Yes      | Length: 13                                                                                           | Timestamp of when tax was collected                                                             |
+| reason_for_lower_collection | enum   | No       | [Reason for lower collection](https://developer.sandbox.co.in/reference/tds-master-data#form-27eq-1) | Reason for non-collection/ lower collection/ higher collection/Threshold                        |
+| certificate_number          | number | No       | Max Length: 10                                                                                       | Certificate number issued by the Assessing Officer u/s 197 for non-collection/lower collection. |
+
+<br />
+
+<SubsectionSpacingWithDivider />
+
+<br />
+
+### Potential Notice Report
+
+#### summary_of_potential_notices_table
+
+
+| Key | Type | Description |
+| --- | --- | --- |
+| type_of_default | string | The type of notice that is possible for a tds/tcs return.  <br />Values include: short_payment, short_deduction, late_payment, late_deduction, late_filing_fee_u/s_234E |
+| is_applicable | string | Whether the default is applicable for this return. Possible Values "Y" or "N" |
+
+<br />
+
+#### penalty_summary_table
+
+
+| Key | Type | Description |
+| --- | --- | --- |
+| particular | string | The type of notice that is possible for a tds/tcs return.  <br />Values include: short_payment, short_deduction, late_payment, late_deduction, late_filing_fee_u/s_234E |
+| rate | string | The rate of penalty for a given notice |
+| amount | number | Amount of penalty payable for a given notice |
+
+<br />
+
+#### interest_summary_table
+
+| Key        | Type   | Description                                                                         |
+| :--------- | :----- | :---------------------------------------------------------------------------------- |
+| particular | string | The value would be: interest_amount                                                 |
+| actual     | number | The total amount of interest paid as per the return. Excludes Late filing fees.     |
+| required   | number | The required amount of interest payable for this return. Excludes Late filing fees. |
+| difference | number | Balance amount between actual and required.                                         |
+
+<br />
+
+#### deduction_summary_table
+
+| Key        | Type   | Description                                                           |
+| :--------- | :----- | :-------------------------------------------------------------------- |
+| particular | string | The value would be: deduction_amount                                  |
+| actual     | number | The total amount of deduction/collection as per the return.           |
+| required   | number | The required amount of deduction/collection required for this return. |
+| difference | number | Balance amount between actual and required.                           |
+
+<br />
+
+#### challan_summary_table
+
+| Key        | Type   | Description                                          |
+| :--------- | :----- | :--------------------------------------------------- |
+| particular | string | The value would be: challan_amount                   |
+| actual     | number | The total amount deposited as per the return.        |
+| required   | number | The required amount to be deposited for this return. |
+| difference | number | Balance amount between actual and required.          |
+
+<br />
+
+#### challan_utilization_summary_table
+
+| Key        | Type   | Description                                                |
+| :--------- | :----- | :--------------------------------------------------------- |
+| particular | string | The value would be: challan_amount                         |
+| actual     | number | The total challan amount utilized for this return          |
+| required   | number | The required challan amount to be utilized for this return |
+| difference | number | Balance amount between actual and required.                |
+
+<br />
+
+#### challan_table
+
+
+| Param | Type | Description |
+| --- | --- | --- |
+| challan_serial | string | Bank Challan No |
+| bsr_code | string | Bank-Branch Code/ Form 24G Receipt Number |
+| paid_date_epoch | number | EPOCH timestamp of the challan paid date |
+| minor_head | enumeration | Minor Head of challan |
+| tds_amount | number | Income Tax |
+| surcharge | number | Surcharge on Income Tax |
+| health_and_education_cess | number | Education cess on Income Tax |
+| interest | number | Interest levied upon late deduction |
+| late_filing_fees | number | Penalty levied upon late filing |
+| other_penalty | number | Any Other Penalty |
+| utilized_amount | number | Total Amount of Challan Utilised  <br />in previous returns.  |
+| notice | string | Type of notice applicable from this challan. Possible values: short_payment, late_payment, short_&\_late_payment |
+| notice_reason | string | Reason for the applicable notice |
+| challan_available | number | Challan amount available for this return after deducting the utilized amount. |
+| utilized_amount_in_payments | number | Challan amount utilized in the payment_sheet |
+| short_payment | number | The amount that exceeds the available challan for this return. |
+| challan_due_date | number | The date at which the challan should be deposited.  |
+| interest_payable | number | Penalty interest payable due to the notice |
+| additional_tds_to_be_deposited | number | Additional amount to be paid, which is the sum of the short_payment and interest_payable. |
+
+<br />
+
+#### payment_table
+
+| Param                            | Type        | Description                                                                                                            |
+| :------------------------------- | :---------- | ---------------------------------------------------------------------------------------------------------------------- |
+| payee_sr_no                      | number      | Payee Serial Number                                                                                                    |
+| challan_serial                   | string      | Bank Challan No                                                                                                        |
+| bsr_code                         | string      | Bank-Branch Code/ Form 24G Receipt Number                                                                              |
+| nature_of_payment                | enumeration | TDS section of deduction                                                                                               |
+| payment_amount                   | number      | Payment amount                                                                                                         |
+| payment_date_epoch               | number      | EPOCH timestamp of Payment date                                                                                        |
+| tds_amount                       | number      | Tax amount of deduction                                                                                                |
+| surcharge                        | number      | Surcharge on Tax amount                                                                                                |
+| health_and_education_cess        | number      | Health and education cess on the Tax amount                                                                            |
+| deduction_date_epoch             | number      | EPOCH timestamp of Deduction date                                                                                      |
+| reason_for_lower_deduction       | enumeration | Reason for non-deduction / lower deduction/ higher deduction/threshold                                                 |
+| certificate_number               | string      | Certificate number issued by the Assessing Officer u/s 197 for non-deduction/lower deduction.                          |
+| notice                           | string      | Type of notice applicable from this challan. Possible values: short_deduction, late_deduction, short_&\_late_deduction |
+| notice_reason                    | string      | Reason for the applicable notice                                                                                       |
+| tds_rate                         | number      | The rate at which tax is deducted in this return                                                                       |
+| tds_rate_as_per_it_act           | number      | The rate at which tax is to be deducted according to the Income Tax Act                                                |
+| tds_amount_payable_as_per_it_act | number      | Amount of TDS/TCS to be deducted/collected as per the Income Tax Act                                                   |
+| additional_tds_to_be_deducted    | number      | Additional TDS amount to be deducted for the mentioned payment                                                         |
+| interest_payable                 | number      | Penalty interest payable due to the notice                                                                             |
