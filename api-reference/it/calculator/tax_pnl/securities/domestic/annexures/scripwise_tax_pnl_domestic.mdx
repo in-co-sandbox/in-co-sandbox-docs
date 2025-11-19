@@ -1,0 +1,514 @@
+---
+title: "Scripwise Tax P&L | Domestic Securities"
+---
+
+## Tax Pnl Summary Sheet
+
+### Assetwise Summary Table
+
+| Param | Type | Required | Description |
+| :---- | :---- | :---- | :---- |
+| asset_class | `string` | Yes | Asset class of the securities, possible values  <br>`equity`, `debt`, `other` |
+| asset_type | `string` | Yes | Asset type of the instrument, possible values  <br>`stock`, `mutual_fund`, `etf`,`future`,`option`,`bond`,`debenture` |
+| income_head | `string` | Yes | Income head under which income from a particular asset type is taxed  <br>Possible values, `capital_gains`,`business_and_profession`,and `other` |
+| income_sub_head | `string` | Yes | Income sub-head of that income head, possible values  <br>`securities`, `other_capital_gains`,`speculative`,`non-speculative` |
+| tax_rate | `string` | Yes | The rate at which a particular income is to be taxed as per Income Tax Act. |
+| section | `string` | No | The section under which it will be taxed |
+| holding_period | `string` | Yes | Holding period, possible values  <br>`intraday`, `long_term`,  `short_term` |
+| turnover | `number` | Yes | Turnover or revenue from a particular asset type |
+| buy_value | `number` | Yes | Total purchase value  |
+| cost_of_acquisition | `number` | Yes | Total purchase value after considering its FMV as on 31.01.2018 |
+| sell_value | `number` | Yes | Total sale value |
+| realized_pnl | `number` | Yes | The realized profit or loss on the asset without considering transfer expenses |
+| transfer_expense | `number` | No | Any expense relating to the transfer of an asset. |
+| net_realized_pnl | `number` | Yes | The realized profit or loss on the asset after considering transfer expenses |
+| taxable_pnl | `number` | Yes | The profit after losses adjustment on which taxes are calculated. |
+
+### Tax Pnl Summary Table
+
+| Param | Type | Required | Description |
+| :---- | :---- | :---- | :---- |
+| income_head | `string` | Yes | Income head under which income from a particular asset type is taxed  <br>Possible values, `capital_gains`,`business_and_profession`, and `other` |
+| income_sub_head | `string` | Yes | Income sub-head of that income head, possible values  <br>`securities`, `other_capital_gains`,`speculative`,`non-speculative` |
+| holding_period | `string` | Yes | Holding period, possible values  <br>`intraday`, `long_term`,  `short_term` |
+| tax_rate | `string` | Yes | The rate at which a particular income is to be taxed as per Income Tax Act. |
+| turnover | `number` | Yes | Turnover or revenue from a particular income |
+| buy_value | `number` | Yes | Total purchase value  |
+| cost_of_acquisition | `number` | Yes | Total purchase value after considering FMV as of 31.01.2018 |
+| sell_value | `number` | Yes | Total sale value |
+| realized_pnl | `number` | Yes | The realized profit or loss without considering transfer expenses |
+| transfer_expense | `number` | No | Any expense relating to the transfer of an asset. |
+| net_realized_pnl | `number` | Yes | The realized profit or loss after considering transfer expenses |
+| taxable_pnl | `number` | Yes | The profit after losses adjustment on which taxes are to be calculated. |
+
+### Quarter-wise Tax Pnl Summary Table
+
+| Param | Type | Required | Description |
+| :---- | :---- | :---- | :---- |
+| quarter | `string` | Yes | A quarter of an F.Y., possible values  <br>`q1`, `q2`,`q3`, and `q4` |
+| income_head | `string` | Yes | Income head under which income from a particular asset type is taxed  <br>Possible values, `capital_gains`,`business_and_profession`, and `other` |
+| income_sub_head | `string` | Yes | Income sub-head of that income head, possible values  <br>`securities`, `other_capital_gains`,`speculative`,`non-speculative` |
+| holding_period | `string` | Yes | Holding period, possible values  <br>`intraday`, `long_term`,  `short_term` |
+| tax_rate | `string` | Yes | The rate at which a particular income is to be taxed as per Income Tax Act. |
+| turnover | `number` | Yes | Turnover or revenue from a particular income |
+| buy_value | `number` | Yes | Total purchase value  |
+| cost_of_acquisition | `number` | Yes | Total purchase value after considering FMV as of 31.01.2018 |
+| sell_value | `number` | Yes | Total sale value |
+| realized_pnl | `number` | Yes | The realized profit or loss without considering transfer expenses |
+| transfer_expense | `number` | No | Any expense relating to the transfer of an asset. |
+| net_realized_pnl | `number` | Yes | The realized profit or loss after considering transfer expenses |
+| taxable_pnl | `number` | Yes | The profit after losses adjustment on which taxes are to be calculated. |
+
+## Stock ScripwiseTax Pnl Sheet
+
+### Stock Delivery Scripwise Tax Pnl Table
+
+| Param | Type | Required | Description |
+| :---- | :---- | :---- | :---- |
+| id | `string` | Yes | Unique Identifier |
+| isin | `string` | Yes | ISIN is the international security identification number |
+| symbol | `string` | Yes | Symbol or description of stock |
+| is_listed | `boolean` | No | is the stock listed in public markets |
+| is_stt_paid | `boolean` | No | was security transaction tax paid on this trade |
+| quantity | `number` | Yes | Trading quantity |
+| buy_average | `number` | Yes | Price at which a unit was bought |
+| sell_average | `number` | Yes | Price at which a unit was sold |
+| cost_of_acquisition | `number` | Yes | cost of acquisition considered for calculating taxable pnl. |
+| brokerage | `number` | No | Brokerage expense |
+| clearing_charges | `number` | No | Charges charged by clearing house |
+| exchange_transaction_charges | `number` | No | Transaction charges by exchange |
+| sebi_turnover_fees | `number` | No | Turnover fees by SEBI |
+| stt | `number` | No | Security Transaction Tax |
+| stamp_duty | `number` | No | Stamp duty paid on transfer of stock |
+| sgst | `number` | No | State GST |
+| cgst | `number` | No | Central GST |
+| igst | `number` | No | Integrated GST |
+| other_transfer_expenses | `number` | No | Any other expense relating to the transfer of stock |
+| realized_pnl | `number` | Yes | The realized profit or loss on the trade without considering transfer expenses |
+| total_transfer_expenses | `number` | No | Any expense relating to the transfer of stock. |
+| net_realized_pnl | `number` | Yes | The realized profit or loss on the trade after considering transfer expenses |
+| taxable_pnl | `string` | Yes | The taxable amount of the trade |
+| holding_period | `string` | Yes | The holding period of the equity utual fund could be either `long_term` or `short_term` |
+| turnover | `number` | Yes | Turnover of the transaction |
+| income_head | `string` | Yes | The income head of ITR under which the income of a specific trade is to be reported |
+| income_sub_head | `string` | Yes | The income subhead of ITR under which the income of a specific trade is to be reported |
+| tax_rate | `string` | Yes | The applicable tax rate for the trade. |
+| section | `string` | No | The section under which it will be taxed |
+
+### Stock Intraday Scripwise Tax Pnl Table
+
+| Param | Type | Required | Description |
+| :---- | :---- | :---- | :---- |
+| id | `string` | Yes | Unique Identifier |
+| isin | `string` | Yes | ISIN is the international security identification number |
+| symbol | `string` | Yes | Symbol or description of stock |
+| quantity | `number` | Yes | Trading quantity |
+| buy_average | `number` | Yes | Price at which a unit was bought |
+| sell_average | `number` | Yes | Price at which a unit was sold |
+| brokerage | `number` | No | Brokerage expense |
+| clearing_charges | `number` | No | Charges charged by clearing house |
+| exchange_transaction_charges | `number` | No | Transaction charges by exchange |
+| sebi_turnover_fees | `number` | No | Turnover fees by SEBI |
+| stt | `number` | No | Security Transaction Tax |
+| stamp_duty | `number` | No | Stamp duty paid on transfer of stock |
+| sgst | `number` | No | State GST |
+| cgst | `number` | No | Central GST |
+| igst | `number` | No | Integrated GST |
+| other_transfer_expenses | `number` | No | Any other expense relating to the transfer of stock |
+| realized_pnl | `number` | Yes | The realized profit or loss on the trade without considering transfer expenses |
+| total_transfer_expenses | `number` | No | Any expense relating to the transfer of stock. |
+| net_realized_pnl | `number` | Yes | The realized profit or loss on the trade after considering transfer expenses |
+| taxable_pnl | `string` | Yes | The taxable amount of the trade |
+| turnover | `number` | Yes | Turnover of the transaction |
+| income_head | `string` | Yes | The income head of ITR under which the income of a specific trade is to be reported |
+| income_sub_head | `string` | Yes | The income subhead of ITR under which the income of a specific trade is to be reported |
+| tax_rate | `string` | Yes | The applicable tax rate for the trade. |
+
+### Stock Scripwise Holding Table
+
+| Param | Type | Required | Description |
+| :---- | :---- | :---- | :---- |
+| isin | `string` | Yes | ISIN is the international security identification number |
+| symbol | `string` | Yes | Symbol or description of equity share |
+| quantity | `number` | Yes | Trading quantity |
+| buy_average | `number` | Yes | Price at which a units were bought |
+| last_traded_price | `string` | No | Last traded market price of the equity share. |
+| unrealized_pnl | `string` | No | Unrealized pnl on the holding |
+
+### Stock Scripwise Open Sell Table
+
+| Param | Type | Required | Description |
+| :---- | :---- | :---- | :---- |
+| isin | `string` | Yes | ISIN is the international security identification number |
+| symbol | `string` | Yes | Total value of the all the transactions |
+| quantity | `number` | Yes | The realized profit or loss on the trade without considering transfer expenses |
+| sell_average | `number` | Yes | Price at which a units were sold |
+| last_traded_price | `number` | No | Last traded market price of the equity share. |
+| unrealized_pnl | `number` | No | The unrealized profit or loss on the trade without considering transfer expenses |
+
+## Mutual Fund Scripwise Tax Pnl Sheet
+
+### Mutual Fund Scripwise Tax PnL Table
+
+| Param | Type | Required | Description |
+| :---- | :---- | :---- | :---- |
+| id | `string` | Yes | Unique Identifier |
+| isin | `string` | Yes | ISIN is the international security identification number |
+| is_listed | `boolean` | No | is the stock listed in public markets |
+| is_stt_paid | `boolean` | No | was security transaction tax paid on this trade |
+| scheme_name | `string` | Yes | Symbol or description of equity share |
+| asset_class | `string` | Yes | Asset class of fund, possible values  <br>`equity`, `debt`, `other` |
+| quantity | `number` | Yes | Trading quantity |
+| buy_average | `number` | Yes | Price at which a units were bought |
+| sell_average | `number` | Yes | Price at which a units were sold |
+| cost_of_acquisition | `number` | Yes | cost of acquisition considered for calculating taxable pnl. |
+| realized_pnl | `number` | Yes | The realized profit or loss on the trade without considering transfer expenses |
+| transfer_expenses | `number` | Yes | Any expense relating to the transfer of shares. |
+| net_realized_pnl | `number` | Yes | The realized profit or loss on the trade after considering transfer expenses |
+| taxable_pnl | `string` | Yes | The taxable amount of the trade |
+| holding_period | `string` | Yes | The holding period of the mutual fund could be either `long_term` or `short_term` |
+| turnover | `number` | Yes | Turnover of the transaction |
+| income_head | `string` | Yes | The income head of ITR under which the income of a specific trade is to be reported |
+| income_sub_head | `string` | Yes | The income subhead of ITR under which the income of a specific trade is to be reported |
+| tax_rate | `string` | Yes | The applicable tax rate for the trade. |
+| section | `string` | No | The section under which it will be taxed |
+
+### Mutual Fund Scripwise Holding Table
+
+| Param | Type | Required | Description |
+| :---- | :---- | :---- | :---- |
+| isin | `string` | Yes | ISIN is the international security identification number |
+| scheme_name | `string` | Yes | Symbol or description of MF unit |
+| asset_class | `string` | Yes | Asset class of fund, possible values  <br>`equity`, `debt`, `other` |
+| quantity | `number` | Yes | Trading quantity |
+| buy_average | `number` | Yes | Price at which a units were bought |
+| last_traded_price | `string` | No | Last traded market price of the MF unit. |
+| unrealized_pnl | `string` | No | Unrealized pnl on the holding |
+
+### Mutual Fund Scripwise Open Sell Table
+
+| Param | Type | Required | Description |
+| :---- | :---- | :---- | :---- |
+| isin | `string` | Yes | ISIN is the international security identification number |
+| scheme_name | `string` | Yes | Symbol or description of MF unit |
+| asset_class | `string` | Yes | Asset class of fund, possible values  <br>`equity`, `debt`, `other` |
+| quantity | `number` | Yes | Trading quantity |
+| sell_average | `number` | Yes | Price at which a units were sold |
+| last_traded_price | `string` | No | Last traded market price of the MF unit. |
+| unrealized_pnl | `string` | No | Unrealized pnl on the holding |
+
+## ETF Scripwise Tax PnL Sheet
+
+### ETF Delivery Scripwise Tax PnL Table
+
+| Param | Type | Required | Description |
+| :---- | :---- | :---- | :---- |
+| id | `string` | Yes | Unique Identifier |
+| isin | `string` | Yes | ISIN is the international security identification number |
+| is_listed | `boolean` | No | is the stock listed in public markets |
+| is_stt_paid | `boolean` | No | was security transaction tax paid on this trade |
+| scheme_name | `string` | Yes | Symbol or description of equity share |
+| asset_class | `string` | Yes | Asset class of fund, possible values  <br>`equity`, `debt`, `other` |
+| quantity | `number` | Yes | Trading quantity |
+| buy_average | `number` | Yes | Price at which a unit was bought |
+| sell_average | `number` | Yes | Price at which a unit was sold |
+| cost_of_acquisition | `number` | Yes | cost of acquisition considered for calculating taxable pnl. |
+| brokerage | `number` | No | Brokerage expense |
+| clearing_charges | `number` | No | Charges charged by clearing house |
+| exchange_transaction_charges | `number` | No | Transaction charges by exchange |
+| sebi_turnover_fees | `number` | No | Turnover fees by SEBI |
+| stt | `number` | No | Security Transaction Tax |
+| stamp_duty | `number` | No | Stamp duty paid on transfer of shares |
+| sgst | `number` | No | State GST |
+| cgst | `number` | No | Central GST |
+| igst | `number` | No | Integrated GST |
+| other_transfer_expenses | `number` | No | Any other expense relating to the transfer of shares |
+| realized_pnl | `number` | Yes | The realized profit or loss on the trade without considering transfer expenses |
+| total_transfer_expenses | `number` | No | Any expense relating to the transfer of shares. |
+| net_realized_pnl | `number` | Yes | The realized profit or loss on the trade after considering transfer expenses |
+| taxable_pnl | `string` | Yes | The taxable amount of the trade |
+| holding_period | `string` | Yes | The holding period of the mutual fund could be either `long_term` or `short_term` |
+| turnover | `number` | Yes | Turnover of the transaction |
+| income_head | `string` | Yes | The income head of ITR under which the income of a specific trade is to be reported |
+| income_sub_head | `string` | Yes | The income subhead of ITR under which the income of a specific trade is to be reported |
+| tax_rate | `string` | Yes | The applicable tax rate for the trade. |
+| section | `string` | No | The section under which it will be taxed |
+
+### ETF Intraday Scripwise Tax PnL Table
+
+| Param | Type | Required | Description |
+| :---- | :---- | :---- | :---- |
+| id | `string` | Yes | Unique Identifier |
+| isin | `string` | Yes | ISIN is the international security identification number |
+| scheme_name | `string` | Yes | Symbol or description of equity share |
+| asset_class | `string` | Yes | Asset class of fund, possible values  <br>`equity`, `debt`, `other` |
+| quantity | `number` | Yes | Trading quantity |
+| buy_average | `number` | Yes | Price at which a unit was bought |
+| sell_average | `number` | Yes | Price at which a unit was sold |
+| brokerage | `number` | No | Brokerage expense |
+| clearing_charges | `number` | No | Charges charged by clearing house |
+| exchange_transaction_charges | `number` | No | Transaction charges by exchange |
+| sebi_turnover_fees | `number` | No | Turnover fees by SEBI |
+| stt | `number` | No | Security Transaction Tax |
+| stamp_duty | `number` | No | Stamp duty paid on transfer of shares |
+| sgst | `number` | No | State GST |
+| cgst | `number` | No | Central GST |
+| igst | `number` | No | Integrated GST |
+| other_transfer_expenses | `number` | No | Any other expense relating to the transfer of shares |
+| realized_pnl | `number` | Yes | The realized profit or loss on the trade without considering transfer expenses |
+| total_transfer_expenses | `number` | No | Any expense relating to the transfer of shares. |
+| net_realized_pnl | `number` | Yes | The realized profit or loss on the trade after considering transfer expenses |
+| taxable_pnl | `string` | Yes | The taxable amount of the trade |
+| turnover | `number` | Yes | Turnover of the transaction |
+| income_head | `string` | Yes | The income head of ITR under which the income of a specific trade is to be reported |
+| income_sub_head | `string` | Yes | The income subhead of ITR under which the income of a specific trade is to be reported |
+| tax_rate | `string` | Yes | The applicable tax rate for the trade. |
+
+### ETF Scripwise Holding Table
+
+| Param | Type | Required | Description |
+| :---- | :---- | :---- | :---- |
+| isin | `string` | Yes | ISIN is the international security identification number |
+| scheme_name | `string` | Yes | Symbol or description of ETF unit |
+| asset_class | `string` | Yes | Asset class of fund, possible values  <br>`equity`, `debt`, `other` |
+| quantity | `number` | Yes | Trading quantity |
+| buy_average | `number` | Yes | Price at which a unit was bought |
+| last_traded_price | `string` | No | Last traded market price of the ETF unit. |
+| unrealized_pnl | `string` | No | Unrealized pnl on the holding |
+
+### ETF Scripwise Open Sell Table
+
+| Param | Type | Required | Description |
+| :---- | :---- | :---- | :---- |
+| isin | `string` | Yes | ISIN is the international security identification number |
+| scheme_name | `string` | Yes | Symbol or description of ETF unit |
+| asset_class | `string` | Yes | Asset class of fund, possible values  <br>`equity`, `debt`, `other` |
+| quantity | `number` | Yes | Trading quantity |
+| sell_average | `number` | Yes | Price at which a unit was sold |
+| last_traded_price | `string` | No | Last traded market price of the ETF unit. |
+| unrealized_pnl | `string` | No | Unrealized pnl on the holding |
+
+## Future Scripwise Tax PnL Sheet
+
+### Future Scripwise Tax PnL Table
+
+| Param | Type | Required | Description |
+| :---- | :---- | :---- | :---- |
+| id | `string` | Yes | Unique Identifier |
+| contract_name | `string` | Yes | Name of contract |
+| asset_class | `string` | Yes | The asset class of the contract. Possible values  <br>`equity`, `currency` & `commodity` |
+| quantity | `number` | Yes | Trading quantity |
+| buy_average | `number` | Yes | Price at which a unit was bought |
+| sell_average | `number` | Yes | Price at which a unit was sold |
+| brokerage | `number` | No | Brokerage expense |
+| clearing_charges | `number` | No | Charges charged by clearing house |
+| exchange_transaction_charges | `number` | No | Transaction charges by exchange |
+| sebi_turnover_fees | `number` | No | Turnover fees by SEBI |
+| stt | `number` | No | Security Transaction Tax |
+| stamp_duty | `number` | No | Stamp duty paid on transfer of shares |
+| sgst | `number` | No | State GST |
+| cgst | `number` | No | Central GST |
+| igst | `number` | No | Integrated GST |
+| other_transfer_expenses | `number` | No | Any other expense relating to the transfer of shares |
+| realized_pnl | `number` | Yes | The realized profit or loss on the trade without considering transfer expenses |
+| total_transfer_expenses | `number` | No | Any expense relating to the transfer of shares. |
+| net_realized_pnl | `number` | Yes | The realized profit or loss on the trade after considering transfer expenses |
+| taxable_pnl | `string` | Yes | The taxable amount of the trade |
+| turnover | `number` | Yes | Turnover of the transaction |
+| income_head | `string` | Yes | The income head of ITR under which the income of a specific trade is to be reported |
+| income_sub_head | `string` | Yes | The income subhead of ITR under which the income of a specific trade is to be reported |
+| tax_rate | `string` | Yes | The applicable tax rate for the trade. |
+
+### Future Scripwise Open Position Table
+
+| Param | Type | Required | Description |
+| :---- | :---- | :---- | :---- |
+| contract_name | `string` | Yes | Name of contract |
+| asset_class | `string` | Yes | The asset class of the contract. Possible values  <br>`equity`, `currency` & `commodity` |
+| quantity | `number` | Yes | Trading quantity |
+| buy_average | `number` | Yes | Price at which a unit was bought |
+| last_traded_price | `string` | No | Last traded market price of the contract. |
+| unrealized_pnl | `string` | No | Unrealized pnl on the holding |
+
+### Future Scripwise Open Sell Table
+
+| Param | Type | Required | Description |
+| :---- | :---- | :---- | :---- |
+| contract_name | `string` | Yes | Name of contract |
+| asset_class | `string` | Yes | The asset class of the contract. Possible values  <br>`equity`, `currency` & `commodity` |
+| quantity | `number` | Yes | Trading quantity |
+| sell_average | `number` | Yes | Price at which a unit was sold |
+| last_traded_price | `string` | No | Last traded market price of the contract. |
+| unrealized_pnl | `string` | No | Unrealized pnl on the holding |
+
+## Option Scripwise Tax PnL Sheet
+
+### Option Scripwise Tax PnL Table
+
+| Param | Type | Required | Description |
+| :---- | :---- | :---- | :---- |
+| id | `string` | Yes | Unique Identifier |
+| contract_name | `string` | Yes | Name of contract |
+| option_type | `string` | Yes | Type of option. Possible values `call` and `put` |
+| asset_class | `string` | Yes | The asset class of the contract. Possible values  <br>`equity`, `currency` & `commodity` |
+| quantity | `number` | Yes | Trading quantity |
+| buy_average | `number` | Yes | Price at which a unit was bought |
+| sell_average | `number` | Yes | Price at which a unit was sold |
+| brokerage | `number` | No | Brokerage expense |
+| clearing_charges | `number` | No | Charges charged by clearing house |
+| exchange_transaction_charges | `number` | No | Transaction charges by exchange |
+| sebi_turnover_fees | `number` | No | Turnover fees by SEBI |
+| stt | `number` | No | Security Transaction Tax |
+| stamp_duty | `number` | No | Stamp duty paid on transfer of shares |
+| sgst | `number` | No | State GST |
+| cgst | `number` | No | Central GST |
+| igst | `number` | No | Integrated GST |
+| other_transfer_expenses | `number` | No | Any other expense relating to the transfer of shares |
+| realized_pnl | `number` | Yes | The realized profit or loss on the trade without considering transfer expenses |
+| total_transfer_expenses | `number` | No | Any expense relating to the transfer of shares. |
+| net_realized_pnl | `number` | Yes | The realized profit or loss on the trade after considering transfer expenses |
+| taxable_pnl | `string` | Yes | The taxable amount of the trade |
+| turnover | `number` | Yes | Turnover of the transaction |
+| income_head | `string` | Yes | The income head of ITR under which the income of a specific trade is to be reported |
+| income_sub_head | `string` | Yes | The income subhead of ITR under which the income of a specific trade is to be reported |
+| tax_rate | `string` | Yes | The applicable tax rate for the trade. |
+
+### Option Scripwise Open Position Table
+
+| Param | Type | Required | Description |
+| :---- | :---- | :---- | :---- |
+| contract_name | `string` | Yes | Name of contract |
+| option_type | `string` | Yes | Type of option. Possible values `call` and `put` |
+| asset_class | `string` | Yes | The asset class of the contract. Possible values  <br>`equity`, `currency` & `commodity` |
+| quantity | `number` | Yes | Trading quantity |
+| buy_average | `number` | Yes | Price at which a unit was bought |
+| last_traded_price | `string` | No | Last traded market price of the contract. |
+| unrealized_pnl | `string` | No | Unrealized pnl on the holding |
+
+### Option Scripwise Open Sell Table
+
+| Param | Type | Required | Description |
+| :---- | :---- | :---- | :---- |
+| contract_name | `string` | Yes | Name of contract |
+| option_type | `string` | Yes | Type of option. Possible values `call` and `put` |
+| asset_class | `string` | Yes | The asset class of the contract. Possible values  <br>`equity`, `currency` & `commodity` |
+| quantity | `number` | Yes | Trading quantity |
+| sell_average | `number` | Yes | Price at which a unit was sold |
+| last_traded_price | `string` | No | Last traded market price of the contract. |
+| unrealized_pnl | `string` | No | Unrealized pnl on the holding |
+
+## Bond Scripwise Tax PnL Sheet
+
+### Bond Delivery Scripwise Tax PnL Table
+
+| Param | Type | Required | Description |
+| :---- | :---- | :---- | :---- |
+| id | `string` | Yes | Unique Identifier |
+| isin | `string` | Yes | ISIN is the international security identification number |
+| security_name | `string` | Yes | Symbol or description of bond |
+| is_listed | `boolean` | No | is the bond listed in public markets |
+| is_stt_paid | `boolean` | No | was security transaction tax paid on this trade |
+| quantity | `number` | Yes | Trading quantity |
+| buy_average | `number` | Yes | Price at which a unit was bought |
+| sell_average | `number` | Yes | Price at which a unit was sold |
+| cost_of_acquisition | `number` | Yes | cost of acquisition considered for calculating taxable pnl. |
+| brokerage | `number` | No | Brokerage expense |
+| clearing_charges | `number` | No | Charges charged by clearing house |
+| exchange_transaction_charges | `number` | No | Transaction charges by exchange |
+| sebi_turnover_fees | `number` | No | Turnover fees by SEBI |
+| stt | `number` | No | Security Transaction Tax |
+| stamp_duty | `number` | No | Stamp duty paid on transfer of shares |
+| sgst | `number` | No | State GST |
+| cgst | `number` | No | Central GST |
+| igst | `number` | No | Integrated GST |
+| other_transfer_expenses | `number` | No | Any other expense relating to the transfer of shares |
+| realized_pnl | `number` | Yes | The realized profit or loss on the trade without considering transfer expenses |
+| total_transfer_expenses | `number` | No | Any expense relating to the transfer of shares. |
+| net_realized_pnl | `number` | Yes | The realized profit or loss on the trade after considering transfer expenses |
+| taxable_pnl | `string` | Yes | The taxable amount of the trade |
+| holding_period | `string` | Yes | The holding period of the mutual fund could be either `long_term` or `short_term` |
+| turnover | `number` | Yes | Turnover of the transaction |
+| income_head | `string` | Yes | The income head of ITR under which the income of a specific trade is to be reported |
+| income_sub_head | `string` | Yes | The income subhead of ITR under which the income of a specific trade is to be reported |
+| tax_rate | `string` | Yes | The applicable tax rate for the trade. |
+| section | `string` | No | The section under which it will be taxed |
+
+### Bond Scripwise Holding Table
+
+| Param | Type | Required | Description |
+| :---- | :---- | :---- | :---- |
+| isin | `string` | Yes | ISIN is the international security identification number |
+| security_name | `string` | Yes | Symbol or description of bond |
+| quantity | `number` | Yes | Trading quantity |
+| buy_average | `number` | Yes | Price at which a unit was bought |
+| last_traded_price | `string` | No | Last traded market price of the bond. |
+| unrealized_pnl | `string` | No | Unrealized pnl on the holding |
+
+### Bond Scripwise Open Sell Table
+
+| Param | Type | Required | Description |
+| :---- | :---- | :---- | :---- |
+| isin | `string` | Yes | ISIN is the international security identification number |
+| security_name | `string` | Yes | Symbol or description of bond |
+| quantity | `number` | Yes | Trading quantity |
+| sell_average | `number` | Yes | Price at which a unit was sold |
+| last_traded_price | `string` | No | Last traded market price of the bond. |
+| unrealized_pnl | `string` | No | Unrealized pnl on the holding |
+
+## Debenture Scripwise Tax PnL Sheet
+
+### Debenture Delivery Scripwise Tax PnL Table
+
+| Param | Type | Required | Description |
+| :---- | :---- | :---- | :---- |
+| id | `string` | Yes | Unique Identifier |
+| isin | `string` | Yes | ISIN is the international security identification number |
+| security_name | `string` | Yes | Symbol or description of debenture |
+| is_listed | `boolean` | No | is the debenture listed in public markets |
+| is_stt_paid | `boolean` | No | was security transaction tax paid on this trade |
+| quantity | `number` | Yes | Trading quantity |
+| buy_average | `number` | Yes | Price at which a unit was bought |
+| sell_average | `number` | Yes | Price at which a unit was sold |
+| cost_of_acquisition | `number` | Yes | cost of acquisition considered for calculating taxable pnl. |
+| brokerage | `number` | No | Brokerage expense |
+| clearing_charges | `number` | No | Charges charged by clearing house |
+| exchange_transaction_charges | `number` | No | Transaction charges by exchange |
+| sebi_turnover_fees | `number` | No | Turnover fees by SEBI |
+| stt | `number` | No | Security Transaction Tax |
+| stamp_duty | `number` | No | Stamp duty paid on transfer of shares |
+| sgst | `number` | No | State GST |
+| cgst | `number` | No | Central GST |
+| igst | `number` | No | Integrated GST |
+| other_transfer_expenses | `number` | No | Any other expense relating to the transfer of shares |
+| realized_pnl | `number` | Yes | The realized profit or loss on the trade without considering transfer expenses |
+| total_transfer_expenses | `number` | No | Any expense relating to the transfer of shares. |
+| net_realized_pnl | `number` | Yes | The realized profit or loss on the trade after considering transfer expenses |
+| taxable_pnl | `string` | Yes | The taxable amount of the trade |
+| holding_period | `string` | Yes | The holding period of the mutual fund could be either `long_term` or `short_term` |
+| turnover | `number` | Yes | Turnover of the transaction |
+| income_head | `string` | Yes | The income head of ITR under which the income of a specific trade is to be reported |
+| income_sub_head | `string` | Yes | The income subhead of ITR under which the income of a specific trade is to be reported |
+| tax_rate | `string` | Yes | The applicable tax rate for the trade. |
+| section | `string` | No | The section under which it will be taxed |
+
+### Debenture Scripwise Holding Table
+
+| Param | Type | Required | Description |
+| :---- | :---- | :---- | :---- |
+| isin | `string` | Yes | ISIN is the international security identification number |
+| security_name | `string` | Yes | Symbol or description of debenture |
+| quantity | `number` | Yes | Trading quantity |
+| buy_average | `number` | Yes | Price at which a unit was bought |
+| last_traded_price | `string` | No | Last traded market price of the debenture. |
+| unrealized_pnl | `string` | No | Unrealized pnl on the holding |
+
+### Debenture Scripwise Open Sell Table
+
+| Param | Type | Required | Description |
+| :---- | :---- | :---- | :---- |
+| isin | `string` | Yes | ISIN is the international security identification number |
+| security_name | `string` | Yes | Symbol or description of debenture |
+| quantity | `number` | Yes | Trading quantity |
+| sell_average | `number` | Yes | Price at which a unit was sold |
+| last_traded_price | `string` | No | Last traded market price of the debenture. |
+| unrealized_pnl | `string` | No | Unrealized pnl on the holding |

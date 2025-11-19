@@ -1,0 +1,775 @@
+---
+title: "Tradewise Tax P&L | Domestic Securities"
+---
+
+## Tax Pnl Summary Sheet
+
+### Asset Wise Summary Table
+
+| Param | Type | Required | Description |
+| :---- | :------- | :------- | :---------- |
+| Asset Class | `string` | Yes | Asset class of the securities |
+| Asset Type | `string` | Yes | Asset type of the instrument |
+| Income Head | `string` | Yes | Income head under which this is taxed |
+| Income Sub Head | `string` | Yes | Income sub-head of that income head |
+| Tax Rate | `string` | Yes | Rate at which this income is taxed |
+| Section | `string` | No | Section under which it is taxed |
+| Holding Period | `string` | Yes | Holding period (e.g. `intraday`, `short_term`, `long_term`) |
+| Turnover | `number` | Yes | Turnover or revenue |
+| Buy Value | `number` | Yes | Total purchase value |
+| Cost Of Acquisition | `number` | Yes | Purchase value after FMV adjustments |
+| Sell Value | `number` | Yes | Total sale value |
+| Realized Pnl | `number` | Yes | Profit/loss without transfer expenses |
+| Transfer Expenses | `number` | Yes | Expenses relating to the transfer |
+| Net Realized Pnl | `number` | Yes | Profit/loss after transfer expenses |
+| Taxable Pnl | `number` | Yes | Profit after loss adjustments |
+
+### Tax Pnl Summary Table
+
+| Param | Type | Required | Description |
+| :---- | :------- | :------- | :---------- |
+| Income Head | `string` | Yes | Income head under which this is taxed |
+| Income Sub Head | `string` | Yes | Income sub-head of that income head |
+| Holding Period | `string` | Yes | Holding period |
+| Tax Rate | `string` | Yes | Rate at which this income is taxed |
+| Turnover | `number` | Yes | Turnover or revenue |
+| Buy Value | `number` | Yes | Total purchase value |
+| Cost Of Acquisition | `number` | Yes | Purchase value after FMV adjustments |
+| Sell Value | `number` | Yes | Total sale value |
+| Realized Pnl | `number` | Yes | Profit/loss without transfer expenses |
+| Transfer Expenses | `number` | Yes | Expenses relating to the transfer |
+| Net Realized Pnl | `number` | Yes | Profit/loss after transfer expenses |
+| Taxable Pnl | `number` | Yes | Profit after loss adjustments |
+
+### Quarter Wise Tax Pnl Summary Table
+
+| Param | Type | Required | Description |
+| :---- | :------- | :------- | :---------- |
+| Quarter | `string` | Yes | Quarter identifier (e.g. `Q1`) |
+| Income Head | `string` | Yes | Income head |
+| Income Sub Head | `string` | Yes | Income sub-head |
+| Holding Period | `string` | Yes | Holding period |
+| Tax Rate | `string` | Yes | Applicable tax rate |
+| Turnover | `number` | Yes | Turnover or revenue |
+| Buy Value | `number` | Yes | Total purchase value |
+| Cost Of Acquisition | `number` | Yes | Purchase value after FMV adjustments |
+| Sell Value | `number` | Yes | Total sale value |
+| Realized Pnl | `number` | Yes | Profit/loss without transfer expenses |
+| Transfer Expenses | `number` | Yes | Expenses relating to the transfer |
+| Net Realized Pnl | `number` | Yes | Profit/loss after transfer expenses |
+| Taxable Pnl | `number` | Yes | Profit after loss adjustments |
+
+### Current Year Loss Adjustment Table
+
+| Param | Type | Required | Description |
+| :---- | :------- | :------- | :---------- |
+| Income Head | `string` | Yes | Income head |
+| Income Sub Head | `string` | Yes | Income sub-head |
+| Tax Rate | `string` | Yes | Applicable tax rate |
+| Holding Period | `string` | Yes | Holding period |
+| Section | `string` | No | Section under which it is taxed |
+| Taxable Loss | `number` | Yes | Loss amount |
+| Loss Set-Off Against Non-Speculative Business Income | `number` | Yes | Non-speculative business loss set-off |
+| Loss Set-Off Against Speculative Business Income | `number` | Yes | Speculative business loss set-off |
+| Loss Set-Off Against 15 Percent | `number` | Yes | Loss set-off at 15 % rate |
+| Loss Set-Off Against 30 Percent | `number` | Yes | Loss set-off at 30 % rate |
+| Loss Set-Off Against Slab Rate | `number` | Yes | Loss set-off at slab rate |
+| Loss Set-Off Against 10 Percent | `number` | Yes | Loss set-off at 10 % rate |
+| Loss Set-Off Against 20 Percent | `number` | Yes | Loss set-off at 20 % rate |
+| Loss Set-Off Against Other Income | `number` | Yes | Other income loss set-off |
+| Total Losses Set-Off | `number` | Yes | Sum of all loss set-offs |
+| Losses Remaining | `number` | Yes | Balance losses |
+
+### Current Year Income Adjustment Table
+
+| Param | Type | Required | Description |
+| :---- | :------- | :------- | :---------- |
+| Income Head | `string` | Yes | Income head |
+| Income Sub Head | `string` | Yes | Income sub-head |
+| Tax Rate | `string` | Yes | Applicable tax rate |
+| Holding Period | `string` | Yes | Holding period |
+| Section | `string` | No | Section under which it is taxed |
+| Taxable Income | `number` | Yes | Income amount |
+| Income Set-Off Against Non-Speculative Business Income | `number` | Yes | Non-speculative business income set-off |
+| Income Set-Off Against Other Income | `number` | Yes | Other business income set-off |
+| Income Set-Off Against 15 Percent | `number` | Yes | Income set-off at 15 % rate |
+| Income Set-Off Against 30 Percent | `number` | Yes | Income set-off at 30 % rate |
+| Income Set-Off Against Slab Rate | `number` | Yes | Income set-off at slab rate |
+| Income Set-Off Against 10 Percent | `number` | Yes | Income set-off at 10 % rate |
+| Income Set-Off Against 20 Percent | `number` | Yes | Income set-off at 20 % rate |
+| Income Set-Off Against 12.5 Percent | `number` | Yes | Income set-off at 12.5 % rate |
+| Net Taxable Income | `number` | Yes | Taxable income after set-offs |
+
+### Asset Wise Quarter Wise Tax Pnl Summary Table
+
+| Param | Type | Required | Description |
+| :---- | :------- | :------- | :---------- |
+| Quarter | `string` | Yes | Quarter identifier (e.g. `Q1`) |
+| Asset Class | `string` | Yes | Asset class of the securities |
+| Asset Type | `string` | Yes | Asset type of the instrument |
+| Income Head | `string` | Yes | Income head |
+| Income Sub Head | `string` | Yes | Income sub-head |
+| Tax Rate | `string` | Yes | Applicable tax rate |
+| Section | `string` | No | Section under which it is taxed |
+| Holding Period | `string` | Yes | Holding period |
+| Turnover | `number` | Yes | Turnover or revenue |
+| Buy Value | `number` | Yes | Total purchase value |
+| Cost Of Acquisition | `number` | Yes | Purchase value after FMV adjustments |
+| Sell Value | `number` | Yes | Total sale value |
+| Realized Pnl | `number` | Yes | Profit/loss without transfer expenses |
+| Transfer Expenses | `number` | Yes | Expenses relating to the transfer |
+| Net Realized Pnl | `number` | Yes | Profit/loss after transfer expenses |
+| Taxable Pnl | `number` | Yes | Profit after loss adjustments |
+
+### Accrued Capital Gains Table
+
+| Param | Type | Required | Description |
+| :---- | :------- | :------- | :---------- |
+| Quarter | `string` | Yes | Quarter identifier (e.g. `Q1`) |
+| Net Taxable STCG | `number` | Yes | Net taxable short-term capital gains |
+| Net Taxable LTCG | `number` | Yes | Net taxable long-term capital gains |
+| Net Taxable STCG 15 | `number` | Yes | Net taxable STCG at 15 % rate |
+| Net Taxable STCG 20 | `number` | Yes | Net taxable STCG at 20 % rate |
+| Net Taxable STCG 30 | `number` | Yes | Net taxable STCG at 30 % rate |
+| Net Taxable STCG Slab | `number` | Yes | Net taxable STCG at slab rate |
+| Net Taxable LTCG 10 | `number` | Yes | Net taxable LTCG at 10 % rate |
+| Net Taxable LTCG 10 112A | `number` | Yes | Net taxable LTCG at 10 % under section 112A |
+| Net Taxable LTCG 12.5 | `number` | Yes | Net taxable LTCG at 12.5 % rate |
+| Net Taxable LTCG 12.5 112A | `number` | Yes | Net taxable LTCG at 12.5 % under 112A |
+| Net Taxable LTCG 20 | `number` | Yes | Net taxable LTCG at 20 % rate |
+
+---
+
+## Stock Sheet
+
+### Stock Tradewise Transfer Table
+
+| Param | Type | Required | Description |
+| :---- | :------- | :------- | :---------- |
+| Isin | `string` | Yes | International Security Identification Number |
+| Symbol | `string` | Yes | Symbol or description of the equity stock |
+| Quantity | `number` | Yes | Trading quantity |
+| Transfer Date | `number` | Yes | Date on which the transfer completed |
+| Price | `number` | Yes | Price per unit transferred |
+| Transfer Type | `string` | Yes | Indicates whether the transfer is `IN` or `OUT` |
+| Nature Of Transfer | `string` | Yes | See [Nature of Settlement](https://developer.sandbox.co.in/reference/annexures#annexure-2-nature-of-settlement) |
+| Transfer Value | `number` | Yes | Total trading amount |
+| Transfer Expense | `number` | No | Expense relating to the transfer of stock |
+
+### Stock Transaction Summary Table
+
+| Param | Type | Required | Description |
+| :---- | :------- | :------- | :---------- |
+| Nature Of Transaction | `string` | Yes | See [Nature of Settlement](https://developer.sandbox.co.in/reference/annexures#annexure-2-nature-of-settlement) |
+| Total Transaction Value | `number` | Yes | Sum of all transaction values |
+| Realised Pnl | `number` | Yes | Profit/loss without transfer costs |
+| Transfer Expense | `number` | No | Expense relating to the transfer |
+| Net Realized Pnl | `number` | Yes | Profit/loss after transfer costs |
+
+### Stock Tradewise Holding Table
+
+| Param | Type | Required | Description |
+| :---- | :------- | :------- | :---------- |
+| Isin | `string` | Yes | International Security Identification Number |
+| Symbol | `string` | Yes | Symbol or description of the equity stock |
+| Quantity | `number` | Yes | Trading quantity |
+| Buy Date | `number` | Yes | Date on which the equity stock was bought |
+| Buy Price | `number` | Yes | Price per unit at buy |
+| Transaction Type | `string` | Yes | One of `buy`, `sell`, `send`, `receive`, or `trade` |
+| Label | `string` | No | See [Labels](https://developer.sandbox.co.in/reference/annexures#annexure-1-labels) |
+| Last Traded Price | `string` | No | Last market price of the equity stock |
+
+### Stock Tradewise Open Sell Table
+
+| Param | Type | Required | Description |
+| :---- | :------- | :------- | :---------- |
+| Isin | `string` | Yes | International Security Identification Number |
+| Symbol | `string` | Yes | Symbol or description of the equity stock |
+| Quantity | `number` | Yes | Trading quantity |
+| Sell Date | `number` | Yes | Date on which the equity stock was sold |
+| Sell Price | `number` | Yes | Price per unit at sell |
+| Transaction Type | `string` | Yes | One of `buy`, `sell`, `send`, `receive`, or `trade` |
+| Label | `string` | No | See [Labels](https://developer.sandbox.co.in/reference/annexures#annexure-1-labels) |
+| Last Traded Price | `number` | No | Last market price of the equity stock |
+
+### Stock Delivery Tradewise Tax P/L Table
+
+| Param | Type | Required | Description |
+| :---- | :-------- | :------- | :---------- |
+| Isin | `string` | Yes | International Security Identification Number |
+| Symbol | `string` | Yes | Symbol or description of the equity stock |
+| Is Listed | `boolean` | No | Whether the stock is listed |
+| Is Stt Paid | `boolean` | No | Whether STT was paid |
+| Quantity | `number` | Yes | Trading quantity |
+| Buy Trade Id | `string` | No | Buy transaction ID |
+| Buy Date | `number` | Yes | Date on which the equity share was bought |
+| Buy Price | `number` | Yes | Price per unit at buy |
+| Sell Trade Id | `string` | No | Sell transaction ID |
+| Sell Date | `number` | Yes | Date on which the stock was sold |
+| Sell Price | `number` | Yes | Price per unit at sell |
+| Fmv | `number` | No | Fair market value as on 31-01-2018 |
+| Cost Of Acquisition | `number` | No | Cost of acquisition |
+| Brokerage | `number` | No | Brokerage expense |
+| Clearing Charges | `number` | No | Clearing house charges |
+| Exchange Transaction Charges | `number` | No | Exchange fees |
+| Sebi Turnover Fees | `number` | No | SEBI turnover fees |
+| Stt | `number` | No | Security Transaction Tax |
+| Stamp Duty | `number` | No | Stamp duty |
+| Sgst | `number` | No | State GST |
+| Cgst | `number` | No | Central GST |
+| Igst | `number` | No | Integrated GST |
+| Other Transfer Expenses | `number` | No | Other transfer-related expenses |
+| Nature Of Settlement | `string` | No | Settlement nature |
+| Realized Pnl | `number` | Yes | Profit/loss without transfer costs |
+| Total Transfer Expenses | `number` | No | Sum of transfer-related expenses |
+| Net Realized Pnl | `number` | Yes | Profit/loss after transfer costs |
+| Taxable Pnl | `string` | Yes | Taxable amount |
+| Holding Period | `string` | Yes | `long_term` or `short_term` |
+| Turnover | `number` | Yes | Turnover |
+| Income Head | `string` | Yes | ITR income head |
+| Income Sub Head | `string` | Yes | ITR income sub-head |
+| Tax Rate | `string` | Yes | Applicable tax rate |
+
+### Stock Intraday Tradewise Tax P/L Table
+
+| Param | Type | Required | Description |
+| :---- | :------- | :------- | :---------- |
+| Isin | `string` | Yes | International Security Identification Number |
+| Symbol | `string` | Yes | Symbol or description of the equity stock |
+| Quantity | `number` | Yes | Trading quantity |
+| Buy Trade Id | `string` | No | Buy transaction ID |
+| Buy Date | `number` | Yes | Date on which the equity share was bought |
+| Buy Price | `number` | Yes | Price per unit at buy |
+| Sell Trade Id | `string` | No | Sell transaction ID |
+| Sell Date | `number` | Yes | Date on which the equity share was sold |
+| Sell Price | `number` | Yes | Price per unit at sell |
+| Brokerage | `number` | No | Brokerage expense |
+| Clearing Charges | `number` | No | Clearing house charges |
+| Exchange Transaction Charges | `number` | No | Exchange fees |
+| Sebi Turnover Fees | `number` | No | SEBI turnover fees |
+| Stt | `number` | No | Security Transaction Tax |
+| Stamp Duty | `number` | No | Stamp duty |
+| Sgst | `number` | No | State GST |
+| Cgst | `number` | No | Central GST |
+| Igst | `number` | No | Integrated GST |
+| Other Transfer Expenses | `number` | No | Other transfer-related expenses |
+| Realized Pnl | `number` | Yes | Profit/loss without transfer costs |
+| Total Transfer Expenses | `number` | No | Sum of transfer-related expenses |
+| Net Realized Pnl | `number` | Yes | Profit/loss after transfer costs |
+| Taxable Pnl | `string` | Yes | Taxable amount |
+| Turnover | `number` | Yes | Turnover |
+| Income Head | `string` | Yes | ITR income head |
+| Income Sub Head | `string` | Yes | ITR income sub-head |
+| Tax Rate | `string` | Yes | Applicable tax rate |
+
+---
+
+## Mutual Fund Sheet
+
+### Mutual Fund Tradewise Transfer Table
+
+| Param | Type | Required | Description |
+| :---- | :------- | :------- | :---------- |
+| Isin | `string` | Yes | International Security Identification Number |
+| Scheme Name | `string` | Yes | Symbol or description of the fund |
+| Asset Class | `string` | Yes | `equity`, `debt`, `other` |
+| Quantity | `number` | Yes | Trading quantity |
+| Transfer Date | `number` | Yes | Date on which the transfer completed |
+| Price | `number` | Yes | Price per unit transferred |
+| Transfer Type | `string` | Yes | `IN` or `OUT` |
+| Nature Of Transfer | `string` | Yes | See [Nature of Transfer](https://developer.sandbox.co.in/reference/annexures#annexure-2-nature-of-settlement) |
+| Transfer Value | `number` | Yes | Total trading amount |
+| Transfer Expense | `number` | No | Expense relating to the transfer of mutual funds |
+
+### Mutual Fund Transaction Summary Table
+
+| Param | Type | Required | Description |
+| :---- | :------- | :------- | :---------- |
+| Nature Of Transaction | `string` | Yes | See [Nature of Transfer](https://developer.sandbox.co.in/reference/annexures#annexure-2-nature-of-settlement) |
+| Total Transaction Value | `number` | Yes | Total value of all the transactions |
+| Realised Pnl | `number` | Yes | Profit/loss without transfer costs |
+| Transfer Expense | `number` | No | Expense relating to the transfer of mutual funds |
+| Net Realized Pnl | `number` | Yes | Profit/loss after transfer costs |
+
+### Mutual Fund Tradewise Holding Table
+
+| Param | Type | Required | Description |
+| :---- | :------- | :------- | :---------- |
+| Isin | `string` | Yes | International Security Identification Number |
+| Scheme Name | `string` | Yes | Symbol or description of MF unit |
+| Asset Class | `string` | Yes | `equity`, `debt`, `other` |
+| Quantity | `number` | Yes | Trading quantity |
+| Buy Date | `number` | Yes | Date on which the MF unit was bought |
+| Buy Price | `number` | Yes | Price per unit bought |
+| Transaction Type | `string` | Yes | `buy`, `sell`, `send`, `receive`, or `trade` |
+| Label | `string` | No | See [Labels](https://developer.sandbox.co.in/reference/annexures#annexure-1-labels) |
+| Last Traded Price | `string` | No | Last market price of the MF unit |
+| Unrealized Pnl | `string` | No | Unrealized profit/loss on the holding |
+
+### Mutual Fund Tradewise Open Sell Table
+
+| Param | Type | Required | Description |
+| :---- | :------- | :------- | :---------- |
+| Isin | `string` | Yes | International Security Identification Number |
+| Scheme Name | `string` | Yes | Symbol or description of MF unit |
+| Asset Class | `string` | Yes | `equity`, `debt`, `other` |
+| Quantity | `number` | Yes | Trading quantity |
+| Sell Date | `number` | Yes | Date on which the MF unit was sold |
+| Sell Price | `number` | Yes | Price per unit sold |
+| Transaction Type | `string` | Yes | `buy`, `sell`, `send`, `receive`, or `trade` |
+| Label | `string` | No | See [Labels](https://developer.sandbox.co.in/reference/annexures#annexure-1-labels) |
+| Last Traded Price | `string` | No | Last market price of the MF unit |
+| Unrealized Pnl | `string` | No | Unrealized profit/loss on the holding |
+
+### Mutual Fund Tradewise Tax P/L Table
+
+| Param | Type | Required | Description |
+| :---- | :-------- | :------- | :---------- |
+| Isin | `string` | Yes | International Security Identification Number |
+| Scheme Name | `string` | Yes | Symbol or description of fund |
+| Asset Class | `string` | Yes | `equity`, `debt`, `other` |
+| Is Listed | `boolean` | No | Is the fund listed in public markets |
+| Is Stt Paid | `boolean` | No | Was STT paid on this trade |
+| Quantity | `number` | Yes | Trading quantity |
+| Buy Trade Id | `string` | No | Buy transaction ID |
+| Buy Date | `number` | Yes | Date on which the fund was bought |
+| Buy Price | `number` | Yes | Price per unit bought |
+| Sell Trade Id | `string` | No | Sell transaction ID |
+| Sell Date | `number` | Yes | Date on which the fund was sold |
+| Sell Price | `number` | Yes | Price per unit sold |
+| Fmv | `number` | No | Fair market value as on 31-01-2018 |
+| Cost Of Acquisition | `number` | No | Cost of acquisition used for tax calculation |
+| Nature Of Settlement | `string` | No | Settlement nature |
+| Realized Pnl | `number` | Yes | Profit/loss without transfer costs |
+| Transfer Expenses | `number` | No | Transfer-related expenses |
+| Net Realized Pnl | `number` | Yes | Profit/loss after transfer costs |
+| Taxable Pnl | `string` | Yes | Taxable amount |
+| Holding Period | `string` | Yes | `long_term` or `short_term` |
+| Turnover | `number` | Yes | Turnover of the transaction |
+| Income Head | `string` | Yes | ITR income head |
+| Income Sub Head | `string` | Yes | ITR income sub-head |
+| Tax Rate | `string` | Yes | Applicable tax rate |
+| Section | `string` | No | Section under which taxed |
+
+---
+
+## ETF Sheet
+
+### ETF Tradewise Transfer Table
+
+| Param | Type | Required | Description |
+| :---- | :------- | :------- | :---------- |
+| Isin | `string` | Yes | International Security Identification Number |
+| Scheme Name | `string` | Yes | Symbol or description of fund |
+| Asset Class | `string` | Yes | `equity`, `debt`, `other` |
+| Quantity | `number` | Yes | Trading quantity |
+| Transfer Date | `number` | Yes | Date on which the transfer completed |
+| Price | `number` | Yes | Price per unit transferred |
+| Transfer Type | `string` | Yes | `IN` or `OUT` |
+| Nature Of Transfer | `string` | Yes | See [Nature of Transfer](https://developer.sandbox.co.in/reference/annexures#annexure-2-nature-of-settlement) |
+| Transfer Value | `number` | Yes | Total trading amount |
+| Transfer Expense | `number` | No | Expense relating to the transfer of ETF |
+
+### ETF Transaction Summary Table
+
+| Param | Type | Required | Description |
+| :---- | :------- | :------- | :---------- |
+| Nature Of Transaction | `string` | Yes | See [Nature of Transfer](https://developer.sandbox.co.in/reference/annexures#annexure-2-nature-of-settlement) |
+| Total Transaction Value | `number` | Yes | Total value of all the transactions |
+| Realised Pnl | `number` | Yes | Profit/loss without transfer costs |
+| Transfer Expense | `number` | No | Expense relating to the transfer of ETF |
+| Net Realized Pnl | `number` | Yes | Profit/loss after transfer costs |
+
+### ETF Tradewise Holding Table
+
+| Param | Type | Required | Description |
+| :---- | :------- | :------- | :---------- |
+| Isin | `string` | Yes | International Security Identification Number |
+| Scheme Name | `string` | Yes | Symbol or description of ETF |
+| Asset Class | `string` | Yes | `equity`, `debt`, `other` |
+| Quantity | `number` | Yes | Trading quantity |
+| Buy Date | `number` | Yes | Date on which the ETF was bought |
+| Buy Price | `number` | Yes | Price per unit bought |
+| Transaction Type | `string` | Yes | `buy`, `sell`, `send`, `receive`, or `trade` |
+| Label | `string` | No | See [Labels](https://developer.sandbox.co.in/reference/annexures#annexure-1-labels) |
+| Last Traded Price | `string` | No | Last market price of the unit |
+| Unrealized Pnl | `string` | No | Unrealized profit/loss on the holding |
+
+### ETF Tradewise Open Sell Table
+
+| Param | Type | Required | Description |
+| :---- | :------- | :------- | :---------- |
+| Isin | `string` | Yes | International Security Identification Number |
+| Scheme Name | `string` | Yes | Symbol or description of ETF |
+| Asset Class | `string` | Yes | `equity`, `debt`, `other` |
+| Quantity | `number` | Yes | Trading quantity |
+| Sell Date | `number` | Yes | Date on which the unit was sold |
+| Sell Price | `number` | Yes | Price per unit sold |
+| Transaction Type | `string` | Yes | `buy`, `sell`, `send`, `receive`, or `trade` |
+| Label | `string` | No | See [Labels](https://developer.sandbox.co.in/reference/annexures#annexure-1-labels) |
+| Last Traded Price | `string` | No | Last market price of the unit |
+| Unrealized Pnl | `string` | No | Unrealized profit/loss on the holding |
+
+### ETF Delivery Tradewise Tax P/L Table
+
+| Param | Type | Required | Description |
+| :---- | :-------- | :------- | :---------- |
+| Isin | `string` | Yes | International Security Identification Number |
+| Scheme Name | `string` | Yes | Symbol or description of ETF |
+| Asset Class | `string` | Yes | `equity`, `debt`, `other` |
+| Is Listed | `boolean` | No | Is the ETF listed |
+| Is Stt Paid | `boolean` | No | Was STT paid on this trade |
+| Quantity | `number` | Yes | Trading quantity |
+| Buy Trade Id | `string` | No | Buy transaction ID |
+| Buy Date | `number` | Yes | Date on which the ETF was bought |
+| Buy Price | `number` | Yes | Price per unit bought |
+| Sell Trade Id | `string` | No | Sell transaction ID |
+| Sell Date | `number` | Yes | Date on which the ETF was sold |
+| Sell Price | `number` | Yes | Price per unit sold |
+| Fmv | `number` | No | Fair market value as on 31-01-2018 |
+| Cost Of Acquisition | `number` | No | Cost of acquisition used for tax calculation |
+| Brokerage | `number` | No | Brokerage expense |
+| Clearing Charges | `number` | No | Clearing house charges |
+| Exchange Transaction Charges | `number` | No | Exchange fees |
+| Sebi Turnover Fees | `number` | No | SEBI turnover fees |
+| Stt | `number` | No | Security Transaction Tax |
+| Stamp Duty | `number` | No | Stamp duty |
+| Sgst | `number` | No | State GST |
+| Cgst | `number` | No | Central GST |
+| Igst | `number` | No | Integrated GST |
+| Other Transfer Expenses | `number` | No | Other transfer-related expenses |
+| Nature Of Settlement | `string` | No | Settlement nature |
+| Realized Pnl | `number` | Yes | Profit/loss without transfer costs |
+| Total Transfer Expenses | `number` | No | Sum of transfer-related expenses |
+| Net Realized Pnl | `number` | Yes | Profit/loss after transfer costs |
+| Taxable Pnl | `string` | Yes | Taxable amount |
+| Holding Period | `string` | Yes | `long_term` or `short_term` |
+| Turnover | `number` | Yes | Turnover |
+| Income Head | `string` | Yes | ITR income head |
+| Income Sub Head | `string` | Yes | ITR income sub-head |
+| Tax Rate | `string` | Yes | Applicable tax rate |
+| Section | `string` | No | Section under which taxed |
+
+### ETF Intraday Tradewise Tax P/L Table
+
+| Param | Type | Required | Description |
+| :---- | :------- | :------- | :---------- |
+| Isin | `string` | Yes | International Security Identification Number |
+| Scheme Name | `string` | Yes | Symbol or description of ETF |
+| Asset Class | `string` | Yes | `equity`, `debt`, `other` |
+| Quantity | `number` | Yes | Trading quantity |
+| Buy Trade Id | `string` | No | Buy transaction ID |
+| Buy Date | `number` | Yes | Date on which the ETF was bought |
+| Buy Price | `number` | Yes | Price per unit bought |
+| Sell Trade Id | `string` | No | Sell transaction ID |
+| Sell Date | `number` | Yes | Date on which the ETF was sold |
+| Sell Price | `number` | Yes | Price per unit sold |
+| Brokerage | `number` | No | Brokerage expense |
+| Clearing Charges | `number` | No | Clearing house charges |
+| Exchange Transaction Charges | `number` | No | Exchange fees |
+| Sebi Turnover Fees | `number` | No | SEBI turnover fees |
+| Stt | `number` | No | Security Transaction Tax |
+| Stamp Duty | `number` | No | Stamp duty |
+| Sgst | `number` | No | State GST |
+| Cgst | `number` | No | Central GST |
+| Igst | `number` | No | Integrated GST |
+| Other Transfer Expenses | `number` | No | Other transfer-related expenses |
+| Realized Pnl | `number` | Yes | Profit/loss without transfer costs |
+| Total Transfer Expenses | `number` | No | Sum of transfer-related expenses |
+| Net Realized Pnl | `number` | Yes | Profit/loss after transfer costs |
+| Taxable Pnl | `string` | Yes | Taxable amount |
+| Holding Period | `string` | Yes | `long_term` or `short_term` |
+| Turnover | `number` | Yes | Turnover |
+| Income Head | `string` | Yes | ITR income head |
+| Income Sub Head | `string` | Yes | ITR income sub-head |
+| Tax Rate | `string` | Yes | Applicable tax rate |
+
+---
+
+## Future Sheet
+
+### Future Tradewise Open Position Table
+
+| Param | Type | Required | Description |
+| :---- | :------- | :------- | :---------- |
+| Isin | `string` | Yes | International Security Identification Number |
+| Contract Name | `string` | Yes | Symbol or description of the contract |
+| Asset Class | `string` | Yes | `equity`, `currency`, or `commodity` |
+| Quantity | `number` | Yes | Trading quantity (negative = short) |
+| Trade Date | `number` | Yes | Date on which the contract was traded |
+| Trade Price | `number` | Yes | Price at which the contract was traded |
+| Transaction Type | `string` | Yes | `buy`, `sell`, `send`, `receive`, or `trade` |
+| Label | `string` | No | See [Labels](https://developer.sandbox.co.in/reference/annexures#annexure-1-labels) |
+| Last Traded Price | `number` | No | Last market price of the contract |
+| Unrealized Pnl | `string` | No | Unrealized profit/loss on the open position |
+
+### Future Tradewise Tax P/L Table
+
+| Param | Type | Required | Description |
+| :---- | :------- | :------- | :---------- |
+| Isin | `string` | Yes | International Security Identification Number |
+| Contract Name | `string` | Yes | Symbol or description of the contract |
+| Asset Class | `string` | Yes | `equity`, `currency`, or `commodity` |
+| Quantity | `number` | Yes | Trading quantity |
+| Buy Trade Id | `string` | No | Buy transaction ID |
+| Buy Date | `number` | Yes | Date on which the contract was bought |
+| Buy Price | `number` | Yes | Price per unit bought |
+| Sell Trade Id | `string` | No | Sell transaction ID |
+| Sell Date | `number` | Yes | Date on which the contract was sold |
+| Sell Price | `number` | Yes | Price per unit sold |
+| Brokerage | `number` | No | Brokerage expense |
+| Clearing Charges | `number` | No | Charges by clearing house |
+| Exchange Transaction Charges | `number` | No | Transaction charges by exchange |
+| Sebi Turnover Fees | `number` | No | SEBI turnover fees |
+| Stt | `number` | No | Security Transaction Tax |
+| Stamp Duty | `number` | No | Stamp duty paid on the contract |
+| Sgst | `number` | No | State GST |
+| Cgst | `number` | No | Central GST |
+| Igst | `number` | No | Integrated GST |
+| Other Transfer Expenses | `number` | No | Other transfer-related expenses |
+| Nature Of Settlement | `string` | No | Settlement nature |
+| Realized Pnl | `number` | Yes | Profit/loss without transfer costs |
+| Transfer Expenses | `number` | No | Transfer-related expenses |
+| Net Realized Pnl | `number` | Yes | Profit/loss after transfer costs |
+| Taxable Pnl | `string` | Yes | Taxable amount |
+| Turnover | `number` | Yes | Turnover of the transaction |
+| Income Head | `string` | Yes | ITR income head |
+| Income Sub Head | `string` | Yes | ITR income sub-head |
+| Tax Rate | `string` | Yes | Applicable tax rate |
+
+---
+
+## Option Sheet
+
+### Option Tradewise Open Position Table
+
+| Param | Type | Required | Description |
+| :---- | :------- | :------- | :---------- |
+| Isin | `string` | Yes | International Security Identification Number |
+| Contract Name | `string` | Yes | Symbol or description of the contract |
+| Asset Class | `string` | Yes | `equity`, `currency`, or `commodity` |
+| Quantity | `number` | Yes | Trading quantity (negative = short) |
+| Trade Date | `number` | Yes | Date on which the contract was traded |
+| Trade Price | `number` | Yes | Price at which the contract was traded |
+| Transaction Type | `string` | Yes | `buy`, `sell`, `send`, `receive`, or `trade` |
+| Label | `string` | No | See [Labels](https://developer.sandbox.co.in/reference/annexures#annexure-1-labels) |
+| Last Traded Price | `number` | No | Last market price of the contract |
+| Unrealized Pnl | `string` | No | Unrealized profit/loss on the open position |
+
+### Option Tradewise Tax P/L Table
+
+| Param | Type | Required | Description |
+| :---- | :------- | :------- | :---------- |
+| Isin | `string` | Yes | International Security Identification Number |
+| Contract Name | `string` | Yes | Name of the contract |
+| Asset Class | `string` | Yes | `equity`, `currency`, or `commodity` |
+| Quantity | `number` | Yes | Trading quantity |
+| Buy Trade Id | `string` | No | Buy transaction ID |
+| Buy Date | `number` | Yes | Date on which the contract was bought |
+| Buy Price | `number` | Yes | Price per unit bought |
+| Sell Trade Id | `string` | No | Sell transaction ID |
+| Sell Date | `number` | Yes | Date on which the contract was sold |
+| Sell Price | `number` | Yes | Price per unit sold |
+| Brokerage | `number` | No | Brokerage expense |
+| Clearing Charges | `number` | No | Charges by clearing house |
+| Exchange Transaction Charges | `number` | No | Transaction charges by exchange |
+| Sebi Turnover Fees | `number` | No | SEBI turnover fees |
+| Stt | `number` | No | Security Transaction Tax |
+| Stamp Duty | `number` | No | Stamp duty paid on contract |
+| Sgst | `number` | No | State GST |
+| Cgst | `number` | No | Central GST |
+| Igst | `number` | No | Integrated GST |
+| Other Transfer Expenses | `number` | No | Other transfer-related expenses |
+| Nature Of Settlement | `string` | No | Settlement nature |
+| Realized Pnl | `number` | Yes | Profit/loss without transfer costs |
+| Transfer Expenses | `number` | No | Transfer-related expenses |
+| Net Realized Pnl | `number` | Yes | Profit/loss after transfer costs |
+| Taxable Pnl | `string` | Yes | Taxable amount |
+| Turnover | `number` | Yes | Turnover of the transaction |
+| Income Head | `string` | Yes | ITR income head |
+| Income Sub Head | `string` | Yes | ITR income sub-head |
+| Tax Rate | `string` | Yes | Applicable tax rate |
+
+---
+
+## Bond Sheet
+
+### Bond Tradewise Transfer Table
+
+| Param | Type | Required | Description |
+| :---- | :------- | :------- | :---------- |
+| Isin | `string` | Yes | International Security Identification Number |
+| Security Name | `string` | Yes | Symbol or description of bond |
+| Quantity | `number` | Yes | Trading quantity |
+| Transfer Date | `number` | Yes | Date on which the transfer completed |
+| Price | `number` | Yes | Price per unit transferred |
+| Transfer Type | `string` | Yes | `IN` or `OUT` |
+| Nature Of Transfer | `string` | Yes | See [Nature of Transfer](https://developer.sandbox.co.in/reference/annexures#annexure-2-nature-of-settlement) |
+| Transfer Value | `number` | Yes | Total trading amount |
+| Transfer Expense | `number` | No | Expense relating to the transfer of bond |
+
+### Bond Transaction Summary Table
+
+| Param | Type | Required | Description |
+| :---- | :------- | :------- | :---------- |
+| Nature Of Transaction | `string` | Yes | See [Nature of Transfer](https://developer.sandbox.co.in/reference/annexures#annexure-2-nature-of-settlement) |
+| Total Transaction Value | `number` | Yes | Total value of all the transactions |
+| Realised Pnl | `number` | Yes | Profit/loss without transfer costs |
+| Transfer Expense | `number` | No | Expense relating to the transfer of bonds |
+| Net Realized Pnl | `number` | Yes | Profit/loss after transfer costs |
+
+### Bond Tradewise Holding Table
+
+| Param | Type | Required | Description |
+| :---- | :------- | :------- | :---------- |
+| Isin | `string` | Yes | International Security Identification Number |
+| Security Name | `string` | Yes | Symbol or description of bond |
+| Quantity | `number` | Yes | Trading quantity |
+| Buy Date | `number` | Yes | Date on which the bond was bought |
+| Buy Price | `number` | Yes | Price per unit bought |
+| Transaction Type | `string` | Yes | `buy`, `sell`, `send`, `receive`, or `trade` |
+| Label | `string` | No | See [Labels](https://developer.sandbox.co.in/reference/annexures#annexure-1-labels) |
+| Last Traded Price | `string` | No | Last market price of the bond |
+| Unrealized Pnl | `string` | No | Unrealized profit/loss on the holding |
+
+### Bond Tradewise Open Sell Table
+
+| Param | Type | Required | Description |
+| :---- | :------- | :------- | :---------- |
+| Isin | `string` | Yes | International Security Identification Number |
+| Security Name | `string` | Yes | Symbol or description of bond |
+| Quantity | `number` | Yes | Trading quantity |
+| Sell Date | `number` | Yes | Date on which the bond was sold |
+| Sell Price | `number` | Yes | Price per unit sold |
+| Transaction Type | `string` | Yes | `buy`, `sell`, `send`, `receive`, or `trade` |
+| Label | `string` | No | See [Labels](https://developer.sandbox.co.in/reference/annexures#annexure-1-labels) |
+| Last Traded Price | `string` | No | Last market price of the bond |
+| Unrealized Pnl | `string` | No | Unrealized profit/loss on the holding |
+
+### Bond Tradewise Tax P/L Table
+
+| Param | Type | Required | Description |
+| :---- | :-------- | :------- | :---------- |
+| Isin | `string` | Yes | International Security Identification Number |
+| Security Name | `string` | Yes | Symbol or description of bond |
+| Is Listed | `boolean` | No | Is the bond listed |
+| Quantity | `number` | Yes | Trading quantity |
+| Buy Trade Id | `string` | No | Buy transaction ID |
+| Buy Date | `number` | Yes | Date on which the bond was bought |
+| Buy Price | `number` | Yes | Price per unit bought |
+| Sell Trade Id | `string` | No | Sell transaction ID |
+| Sell Date | `number` | Yes | Date on which the bond was sold |
+| Sell Price | `number` | Yes | Price per unit sold |
+| Cost Of Acquisition | `number` | No | Cost of acquisition used for tax calculation |
+| Brokerage | `number` | No | Brokerage expense |
+| Clearing Charges | `number` | No | Clearing house charges |
+| Exchange Transaction Charges | `number` | No | Exchange fees |
+| Sebi Turnover Fees | `number` | No | SEBI turnover fees |
+| Stamp Duty | `number` | No | Stamp duty |
+| Sgst | `number` | No | State GST |
+| Cgst | `number` | No | Central GST |
+| Igst | `number` | No | Integrated GST |
+| Other Transfer Expenses | `number` | No | Other transfer-related expenses |
+| Nature Of Settlement | `string` | No | Settlement nature |
+| Realized Pnl | `number` | Yes | Profit/loss without transfer costs |
+| Transfer Expenses | `number` | No | Transfer-related expenses |
+| Net Realized Pnl | `number` | Yes | Profit/loss after transfer costs |
+| Taxable Pnl | `string` | Yes | Taxable amount |
+| Holding Period | `string` | Yes | `long_term` or `short_term` |
+| Turnover | `number` | Yes | Turnover |
+| Income Head | `string` | Yes | ITR income head |
+| Income Sub Head | `string` | Yes | ITR income sub-head |
+| Tax Rate | `string` | Yes | Applicable tax rate |
+| Section | `string` | No | Section under which taxed |
+
+---
+
+## Debenture Sheet
+
+### Debenture Tradewise Transfer Table
+
+| Param | Type | Required | Description |
+| :---- | :------- | :------- | :---------- |
+| Isin | `string` | Yes | International Security Identification Number |
+| Security Name | `string` | Yes | Symbol or description of debenture |
+| Quantity | `number` | Yes | Trading quantity |
+| Transfer Date | `number` | Yes | Date on which the transfer completed |
+| Price | `number` | Yes | Price per unit transferred |
+| Transfer Type | `string` | Yes | `IN` or `OUT` |
+| Nature Of Transfer | `string` | Yes | See [Nature of Transfer](https://developer.sandbox.co.in/reference/annexures#annexure-2-nature-of-settlement) |
+| Transfer Value | `number` | Yes | Total trading amount |
+| Transfer Expense | `number` | No | Expense relating to the transfer of debenture |
+
+### Debenture Transaction Summary Table
+
+| Param | Type | Required | Description |
+| :---- | :------- | :------- | :---------- |
+| Nature Of Transaction | `string` | Yes | See [Nature of Transfer](https://developer.sandbox.co.in/reference/annexures#annexure-2-nature-of-settlement) |
+| Total Transaction Value | `number` | Yes | Total value of all the transactions |
+| Realised Pnl | `number` | Yes | Profit/loss without transfer costs |
+| Transfer Expense | `number` | No | Expense relating to the transfer of debenture |
+| Net Realized Pnl | `number` | Yes | Profit/loss after transfer costs |
+
+### Debenture Tradewise Holding Table
+
+| Param | Type | Required | Description |
+| :---- | :------- | :------- | :---------- |
+| Isin | `string` | Yes | International Security Identification Number |
+| Security Name | `string` | Yes | Symbol or description of debenture |
+| Quantity | `number` | Yes | Trading quantity |
+| Buy Date | `number` | Yes | Date on which the debenture was bought |
+| Buy Price | `number` | Yes | Price per unit bought |
+| Transaction Type | `string` | Yes | `buy`, `sell`, `send`, `receive`, or `trade` |
+| Label | `string` | No | See [Labels](https://developer.sandbox.co.in/reference/annexures#annexure-1-labels) |
+| Last Traded Price | `string` | No | Last market price of the debenture |
+| Unrealized Pnl | `string` | No | Unrealized profit/loss on the holding |
+
+### Debenture Tradewise Open Sell Table
+
+| Param | Type | Required | Description |
+| :---- | :------- | :------- | :---------- |
+| Isin | `string` | Yes | International Security Identification Number |
+| Security Name | `string` | Yes | Symbol or description of debenture |
+| Quantity | `number` | Yes | Trading quantity |
+| Sell Date | `number` | Yes | Date on which the debenture was sold |
+| Sell Price | `number` | Yes | Price per unit sold |
+| Transaction Type | `string` | Yes | `buy`, `sell`, `send`, `receive`, or `trade` |
+| Label | `string` | No | See [Labels](https://developer.sandbox.co.in/reference/annexures#annexure-1-labels) |
+| Last Traded Price | `string` | No | Last market price of the debenture |
+| Unrealized Pnl | `string` | No | Unrealized profit/loss on the holding |
+
+### Debenture Tradewise Tax P/L Table
+
+| Param | Type | Required | Description |
+| :---- | :-------- | :------- | :---------- |
+| Isin | `string` | Yes | International Security Identification Number |
+| Security Name | `string` | Yes | Symbol or description of debenture |
+| Is Listed | `boolean` | No | Is the debenture listed |
+| Quantity | `number` | Yes | Trading quantity |
+| Buy Trade Id | `string` | No | Buy transaction ID |
+| Buy Date | `number` | Yes | Date on which the debenture was bought |
+| Buy Price | `number` | Yes | Price per unit bought |
+| Sell Trade Id | `string` | No | Sell transaction ID |
+| Sell Date | `number` | Yes | Date on which the debenture was sold |
+| Sell Price | `number` | Yes | Price per unit sold |
+| Cost Of Acquisition | `number` | No | Cost of acquisition used for tax calculation |
+| Brokerage | `number` | No | Brokerage expense |
+| Clearing Charges | `number` | No | Clearing house charges |
+| Exchange Transaction Charges | `number` | No | Exchange fees |
+| Sebi Turnover Fees | `number` | No | SEBI turnover fees |
+| Stamp Duty | `number` | No | Stamp duty |
+| Sgst | `number` | No | State GST |
+| Cgst | `number` | No | Central GST |
+| Igst | `number` | No | Integrated GST |
+| Other Transfer Expenses | `number` | No | Other transfer-related expenses |
+| Nature Of Settlement | `string` | No | Settlement nature |
+| Realized Pnl | `number` | Yes | Profit/loss without transfer costs |
+| Transfer Expenses | `number` | No | Transfer-related expenses |
+| Net Realized Pnl | `number` | Yes | Profit/loss after transfer costs |
+| Taxable Pnl | `string` | Yes | Taxable amount |
+| Holding Period | `string` | Yes | `long_term` or `short_term` |
+| Turnover | `number` | Yes | Turnover |
+| Income Head | `string` | Yes | ITR income head |
+| Income Sub Head | `string` | Yes | ITR income sub-head |
+| Tax Rate | `string` | Yes | Applicable tax rate |
+| Section | `string` | No | Section under which taxed |

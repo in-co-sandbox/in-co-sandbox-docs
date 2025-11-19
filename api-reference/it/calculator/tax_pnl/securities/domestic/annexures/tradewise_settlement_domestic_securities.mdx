@@ -1,0 +1,416 @@
+---
+title: "Tradewise Settlements | Domestic Securities"
+---
+
+# Tradewise: Domestic Securities
+
+Reference sheet for preparing domestic securities tradewise settlements across asset classes. Each section outlines the expected schema for trades, last traded prices, dividends, and other expenses. Use these tables to validate or map broker exports before uploading to Sandbox Income Tax Annexures.
+
+## Stock Sheet
+
+### Stock Tradewise Table
+| Param                        | Type      | Required | Description                                               |
+| :--------------------------- | :-------- | :------- | :-------------------------------------------------------- |
+| isin                         | `string`  | No       | International Security Identification Number              |
+| symbol                       | `string`  | Yes      | Symbol or description of equity share                     |
+| is_listed                    | `boolean` | Yes      | Indicates if the equity stock is listed on public markets |
+| is_stt_paid                  | `boolean` | Yes      | Whether STT was paid on this trade                        |
+| quantity                     | `number`  | Yes      | Trading quantity                                          |
+| buy_trade_id                 | `string`  | Yes      | Buy Trade ID                                              |
+| buy_date                     | `number`  | Yes      | Epoch timestamp of purchase                               |
+| buy_price                    | `number`  | Yes      | Buy price                                                 |
+| sell_trade_id                | `string`  | Yes      | Sell Trade ID                                             |
+| sell_date                    | `number`  | Yes      | Epoch timestamp of sale                                   |
+| sell_price                   | `number`  | Yes      | Sell price                                                |
+| fmv                          | `number`  | No       | Fair market value as on 31/01/2018                        |
+| brokerage                    | `number`  | No       | Brokerage expense                                         |
+| clearing_charges             | `number`  | No       | Clearing house charges                                    |
+| exchange_transaction_charges | `number`  | No       | Exchange transaction charges                              |
+| sebi_turnover_fees           | `number`  | No       | SEBI turnover fee                                         |
+| stt                          | `number`  | No       | Securities Transaction Tax                                |
+| stamp_duty                   | `number`  | No       | Stamp duty paid                                           |
+| sgst                         | `number`  | No       | State GST                                                 |
+| cgst                         | `number`  | No       | Central GST                                               |
+| igst                         | `number`  | No       | Integrated GST                                            |
+| other_transfer_expenses      | `number`  | No       | Other transfer-related expenses                           |
+| nature_of_settlement         | `string`  | No       | See Annexure 2: Nature of Settlement                      |
+| product_type                 | `string`  | Yes      | `delivery` or `intraday`                                  |
+
+
+### Stock Tradewise Table
+| Param              | Type     | Description                                  |
+| :----------------- | :------- | :------------------------------------------- |
+| isin               | `string` | International Security Identification Number |
+| symbol             | `string` | Symbol or description of equity stock        |
+| quantity           | `number` | Trading quantity                             |
+| transfer_date      | `number` | Date the transfer was completed              |
+| price              | `number` | Per-unit transfer price                      |
+| transfer_type      | `string` | `IN` or `OUT`                                |
+| nature_of_transfer | `string` | See Annexure 2: Nature of Settlement         |
+| transfer_value     | `number` | Total transfer value                         |
+| transfer_expense   | `number` | Transfer-related expenses                    |
+
+
+### Stock Tradewise Open Sell Table
+| Param             | Type     | Description                                  |
+| :---------------- | :------- | :------------------------------------------- |
+| isin              | `string` | International Security Identification Number |
+| symbol            | `string` | Symbol or description of equity stock        |
+| quantity          | `number` | Trading quantity                             |
+| sell_date         | `number` | Epoch timestamp of sale                      |
+| sell_price        | `number` | Per-unit sale price                          |
+| transaction_type  | `string` | `buy`, `sell`, `send`, `receive`, `trade`    |
+| label             | `string` | See Annexure 1 Labels                        |
+| last_traded_price | `number` | Last traded price                            |
+
+
+## Mutual Fund Tradewise Settlement Sheet
+
+### Mutual Fund Tradewise Settlement Table
+| Param                | Type      | Required | Description                                  |
+| :------------------- | :-------- | :------- | :------------------------------------------- |
+| isin                 | `string`  | No       | International Security Identification Number |
+| scheme_name          | `string`  | Yes      | Scheme name                                  |
+| asset_class          | `string`  | Yes      | `equity`, `debt`, `other`                    |
+| is_listed            | `boolean` | Yes      | Indicates if the MF is listed                |
+| is_stt_paid          | `boolean` | Yes      | STT payment status                           |
+| quantity             | `number`  | Yes      | Trading quantity                             |
+| buy_trade_id         | `string`  | Yes      | Buy Trade ID                                 |
+| buy_date             | `number`  | Yes      | Purchase timestamp                           |
+| buy_price            | `number`  | Yes      | Per-unit buy price                           |
+| sell_trade_id        | `string`  | Yes      | Sell Trade ID                                |
+| sell_date            | `number`  | Yes      | Sell timestamp                               |
+| sell_price           | `number`  | Yes      | Per-unit sell price                          |
+| fmv                  | `number`  | No       | FMV as on 31/01/2018                         |
+| transfer_expenses    | `number`  | No       | Transfer-related expenses                    |
+| nature_of_settlement | `string`  | No       | See Annexure 2                               |
+
+
+### Mutual Fund Tradewise Transfer Table
+| Param              | Type     | Description                                  |
+| :----------------- | :------- | :------------------------------------------- |
+| isin               | `string` | International Security Identification Number |
+| scheme_name        | `string` | Mutual fund scheme name                      |
+| asset_class        | `string` | Asset class                                  |
+| quantity           | `number` | Trading quantity                             |
+| transfer_date      | `number` | Date transfer completed                      |
+| price              | `number` | Per-unit transfer price                      |
+| transfer_type      | `string` | `IN` or `OUT`                                |
+| nature_of_transfer | `string` | See Annexure 2                               |
+| transfer_value     | `number` | Total value                                  |
+| transfer_expense   | `number` | Transfer expenses                            |
+
+
+### Mutual Fund Tradewise Holding Table
+| Param             | Type     | Description                                  |
+| :---------------- | :------- | :------------------------------------------- |
+| isin              | `string` | International Security Identification Number |
+| scheme_name       | `string` | Name of MF                                   |
+| type              | `string` | `equity`, `debt`, `other`                    |
+| quantity          | `number` | Units held                                   |
+| buy_date          | `number` | Buy date                                     |
+| buy_price         | `number` | Buy price                                    |
+| transaction_type  | `string` | `buy`, `sell`, `send`, `receive`, `trade`    |
+| label             | `string` | See Annexure 1                               |
+| last_traded_price | `number` | LTP                                          |
+
+
+### Mutual Fund Tradewise Open Sell Table
+| Param             | Type     | Description      |
+| :---------------- | :------- | :--------------- |
+| isin              | `string` | ISIN             |
+| scheme_name       | `string` | Scheme name      |
+| asset_class       | `string` | Asset class      |
+| quantity          | `number` | Trading quantity |
+| sell_date         | `number` | Sell date        |
+| sell_price        | `number` | Price sold       |
+| transaction_type  | `string` | Transaction type |
+| label             | `string` | See Annexure 1   |
+| last_traded_price | `number` | LTP              |
+
+
+## ETF Tradewise Settlement Sheet
+
+### ETF Tradewise Settlement Table
+| Param                        | Type      | Required | Description               |
+| :--------------------------- | :-------- | :------- | :------------------------ |
+| isin                         | `string`  | No       | ISIN                      |
+| scheme_name                  | `string`  | Yes      | ETF scheme name           |
+| asset_class                  | `string`  | Yes      | `equity`, `debt`, `other` |
+| is_listed                    | `boolean` | Yes      | Listed status             |
+| is_stt_paid                  | `boolean` | Yes      | STT status                |
+| quantity                     | `number`  | Yes      | Units traded              |
+| buy_trade_id                 | `string`  | Yes      | Buy Trade ID              |
+| buy_date                     | `number`  | Yes      | Buy timestamp             |
+| buy_price                    | `number`  | Yes      | Buy price                 |
+| sell_trade_id                | `string`  | Yes      | Sell Trade ID             |
+| sell_date                    | `number`  | Yes      | Sell timestamp            |
+| sell_price                   | `number`  | Yes      | Sell price                |
+| fmv                          | `number`  | No       | FMV                       |
+| brokerage                    | `number`  | No       | Brokerage                 |
+| clearing_charges             | `number`  | No       | Clearing charges          |
+| exchange_transaction_charges | `number`  | No       | Exchange charges          |
+| sebi_turnover_fees           | `number`  | No       | SEBI fees                 |
+| stt                          | `number`  | No       | STT                       |
+| stamp_duty                   | `number`  | No       | Stamp duty                |
+| sgst                         | `number`  | No       | SGST                      |
+| cgst                         | `number`  | No       | CGST                      |
+| igst                         | `number`  | No       | IGST                      |
+| other_transfer_expenses      | `number`  | No       | Transfer expenses         |
+| nature_of_settlement         | `string`  | No       | See Annexure 2            |
+| product_type                 | `string`  | Yes      | `delivery`, `intraday`    |
+
+
+### ETF Tradewise Transfer Table
+| Param              | Type     | Description         |
+| :----------------- | :------- | :------------------ |
+| isin               | `string` | ISIN                |
+| scheme_name        | `string` | ETF scheme name     |
+| asset_class        | `string` | Asset class         |
+| quantity           | `number` | Units transferred   |
+| transfer_date      | `number` | Transfer date       |
+| price              | `number` | Unit transfer price |
+| transfer_type      | `string` | `IN` or `OUT`       |
+| nature_of_transfer | `string` | See Annexure 2      |
+| transfer_value     | `number` | Total value         |
+| transfer_expense   | `number` | Transfer expense    |
+
+
+### ETF Tradewise Holding Table
+| Param             | Type     | Description      |
+| :---------------- | :------- | :--------------- |
+| isin              | `string` | ISIN             |
+| scheme_name       | `string` | ETF name         |
+| type              | `string` | Asset class      |
+| quantity          | `number` | Units held       |
+| buy_date          | `number` | Buy date         |
+| buy_price         | `number` | Buy price        |
+| transaction_type  | `string` | Transaction type |
+| label             | `string` | Label            |
+| last_traded_price | `number` | LTP              |
+
+
+### ETF Tradewise Open Sell Table
+| Param             | Type     | Description      |
+| :---------------- | :------- | :--------------- |
+| isin              | `string` | ISIN             |
+| scheme_name       | `string` | Scheme name      |
+| asset_class       | `string` | Asset class      |
+| quantity          | `number` | Quantity         |
+| sell_date         | `number` | Date sold        |
+| sell_price        | `number` | Price sold       |
+| transaction_type  | `string` | Transaction type |
+| label             | `string` | Label            |
+| last_traded_price | `number` | LTP              |
+
+
+## Future Tradewise Settlement Sheet
+
+### Future Tradewise Settlement Table
+| Param                        | Type     | Required | Description                       |
+| :--------------------------- | :------- | :------- | :-------------------------------- |
+| isin                         | `string` | No       | ISIN                              |
+| contract_name                | `string` | Yes      | Contract name                     |
+| asset_class                  | `string` | Yes      | `equity`, `currency`, `commodity` |
+| quantity                     | `number` | Yes      | Quantity                          |
+| buy_trade_id                 | `string` | Yes      | Buy Trade ID                      |
+| buy_date                     | `number` | Yes      | Buy date                          |
+| buy_price                    | `number` | Yes      | Buy price                         |
+| sell_trade_id                | `string` | Yes      | Sell Trade ID                     |
+| sell_date                    | `number` | Yes      | Sell date                         |
+| sell_price                   | `number` | Yes      | Sell price                        |
+| brokerage                    | `number` | No       | Brokerage                         |
+| clearing_charges             | `number` | No       | Clearing charges                  |
+| exchange_transaction_charges | `number` | No       | Exchange charges                  |
+| sebi_turnover_fees           | `number` | No       | SEBI fees                         |
+| stt                          | `number` | No       | STT                               |
+| stamp_duty                   | `number` | No       | Stamp duty                        |
+| sgst                         | `number` | No       | SGST                              |
+| cgst                         | `number` | No       | CGST                              |
+| igst                         | `number` | No       | IGST                              |
+| other_transfer_expenses      | `number` | No       | Other transfer expenses           |
+| nature_of_settlement         | `string` | No       | Nature of settlement              |
+
+
+### Future Tradewise Open Position Table
+| Param             | Type     | Description                                |
+| :---------------- | :------- | :----------------------------------------- |
+| isin              | `string` | ISIN                                       |
+| contract_name     | `string` | Contract name                              |
+| asset_class       | `string` | Asset class                                |
+| quantity          | `number` | Positive or negative quantity (short/long) |
+| trade_date        | `number` | Trade date                                 |
+| trade_price       | `number` | Trade price                                |
+| transaction_type  | `string` | Transaction type                           |
+| label             | `string` | Label                                      |
+| last_traded_price | `number` | LTP                                        |
+
+
+## Option Tradewise Settlement Sheet
+
+### Option Tradewise Settlement Table
+| Param                        | Type     | Required | Description          |
+| :--------------------------- | :------- | :------- | :------------------- |
+| isin                         | `string` | No       | ISIN                 |
+| contract_name                | `string` | Yes      | Contract name        |
+| asset_class                  | `string` | Yes      | Asset class          |
+| quantity                     | `number` | Yes      | Quantity             |
+| buy_trade_id                 | `string` | Yes      | Buy Trade ID         |
+| buy_date                     | `number` | Yes      | Buy date             |
+| buy_price                    | `number` | Yes      | Price                |
+| sell_trade_id                | `string` | Yes      | Sell Trade ID        |
+| sell_date                    | `number` | Yes      | Sell date            |
+| sell_price                   | `number` | Yes      | Sell price           |
+| brokerage                    | `number` | No       | Brokerage            |
+| clearing_charges             | `number` | No       | Clearing             |
+| exchange_transaction_charges | `number` | No       | Exchange charges     |
+| sebi_turnover_fees           | `number` | No       | SEBI fees            |
+| stt                          | `number` | No       | STT                  |
+| stamp_duty                   | `number` | No       | Stamp duty           |
+| sgst                         | `number` | No       | SGST                 |
+| cgst                         | `number` | No       | CGST                 |
+| igst                         | `number` | No       | IGST                 |
+| other_transfer_expenses      | `number` | No       | Transfer expenses    |
+| nature_of_settlement         | `string` | No       | Nature of settlement |
+
+
+### Option Tradewise Open Position Table
+| Param             | Type     | Description                   |
+| :---------------- | :------- | :---------------------------- |
+| isin              | `string` | ISIN                          |
+| contract_name     | `string` | Contract name                 |
+| asset_class       | `string` | Asset class                   |
+| quantity          | `number` | Positive or negative quantity |
+| trade_date        | `number` | Trade date                    |
+| trade_price       | `number` | Price                         |
+| transaction_type  | `string` | Transaction type              |
+| label             | `string` | Label                         |
+| last_traded_price | `number` | LTP                           |
+
+
+## Bond Tradewise Settlement Sheet
+
+### Bond Tradewise Settlement Table
+| Param                        | Type      | Required | Description       |
+| :--------------------------- | :-------- | :------- | :---------------- |
+| isin                         | `string`  | No       | ISIN              |
+| security_name                | `string`  | Yes      | Bond name         |
+| is_listed                    | `boolean` | Yes      | Listed status     |
+| quantity                     | `number`  | Yes      | Quantity          |
+| buy_trade_id                 | `string`  | Yes      | Buy Trade ID      |
+| buy_date                     | `number`  | Yes      | Buy date          |
+| buy_price                    | `number`  | Yes      | Price             |
+| sell_trade_id                | `string`  | Yes      | Sell Trade ID     |
+| sell_date                    | `number`  | Yes      | Sell date         |
+| sell_price                   | `number`  | Yes      | Sell price        |
+| fmv                          | `number`  | No       | FMV               |
+| brokerage                    | `number`  | No       | Brokerage         |
+| clearing_charges             | `number`  | No       | Clearing charges  |
+| exchange_transaction_charges | `number`  | No       | Charges           |
+| sebi_turnover_fees           | `number`  | No       | SEBI fees         |
+| stt                          | `number`  | No       | STT               |
+| stamp_duty                   | `number`  | No       | Stamp duty        |
+| sgst                         | `number`  | No       | SGST              |
+| cgst                         | `number`  | No       | CGST              |
+| igst                         | `number`  | No       | IGST              |
+| other_transfer_expenses      | `number`  | No       | Transfer expenses |
+| nature_of_settlement         | `string`  | No       | Nature            |
+
+
+### Bond Tradewise Transfer Table
+| Param              | Type     | Description      |
+| :----------------- | :------- | :--------------- |
+| isin               | `string` | ISIN             |
+| security_name      | `string` | Bond name        |
+| quantity           | `number` | Quantity         |
+| transfer_date      | `number` | Date transferred |
+| price              | `number` | Price            |
+| transfer_type      | `string` | `IN` or `OUT`    |
+| nature_of_transfer | `string` | Nature           |
+| transfer_value     | `number` | Value            |
+| transfer_expense   | `number` | Expenses         |
+
+
+### Bond Tradewise Open Sell Table
+| Param             | Type     | Description |
+| :---------------- | :------- | :---------- |
+| isin              | `string` | ISIN        |
+| symbol            | `string` | Bond        |
+| quantity          | `number` | Quantity    |
+| sell_date         | `number` | Date        |
+| sell_price        | `number` | Price       |
+| transaction_type  | `string` | Type        |
+| label             | `string` | Label       |
+| last_traded_price | `number` | LTP         |
+
+
+## Debenture Tradewise Settlement Sheet
+
+### Debenture Tradewise Settlement Table
+| Param                        | Type      | Required | Description    |
+| :--------------------------- | :-------- | :------- | :------------- |
+| isin                         | `string`  | No       | ISIN           |
+| security_name                | `string`  | Yes      | Debenture name |
+| is_listed                    | `boolean` | Yes      | Listed         |
+| quantity                     | `number`  | Yes      | Quantity       |
+| buy_trade_id                 | `string`  | Yes      | Buy ID         |
+| buy_date                     | `number`  | Yes      | Buy date       |
+| buy_price                    | `number`  | Yes      | Price          |
+| sell_trade_id                | `string`  | Yes      | Sell ID        |
+| sell_date                    | `number`  | Yes      | Sell date      |
+| sell_price                   | `number`  | Yes      | Price          |
+| fmv                          | `number`  | No       | FMV            |
+| brokerage                    | `number`  | No       | Brokerage      |
+| clearing_charges             | `number`  | No       | Clearing       |
+| exchange_transaction_charges | `number`  | No       | Exchange       |
+| sebi_turnover_fees           | `number`  | No       | SEBI fees      |
+| stt                          | `number`  | No       | STT            |
+| stamp_duty                   | `number`  | No       | Stamp duty     |
+| sgst                         | `number`  | No       | SGST           |
+| cgst                         | `number`  | No       | CGST           |
+| igst                         | `number`  | No       | IGST           |
+| other_transfer_expenses      | `number`  | No       | Transfer       |
+| nature_of_settlement         | `string`  | No       | Nature         |
+
+
+### Debenture Tradewise Transfer Table
+| Param              | Type     | Description    |
+| :----------------- | :------- | :------------- |
+| isin               | `string` | ISIN           |
+| security_name      | `string` | Debenture name |
+| quantity           | `number` | Quantity       |
+| transfer_date      | `number` | Date           |
+| price              | `number` | Price          |
+| transfer_type      | `string` | `IN`/`OUT`     |
+| nature_of_transfer | `string` | Nature         |
+| transfer_value     | `number` | Total value    |
+| transfer_expense   | `number` | Expenses       |
+
+
+### Debenture Tradewise Holding Table
+| Param             | Type     | Description |
+| :---------------- | :------- | :---------- |
+| isin              | `string` | ISIN        |
+| symbol            | `string` | Debenture   |
+| quantity          | `number` | Quantity    |
+| buy_date          | `number` | Buy date    |
+| buy_price         | `number` | Price       |
+| transaction_type  | `string` | Type        |
+| label             | `string` | Label       |
+| last_traded_price | `number` | LTP         |
+
+
+### Debenture Tradewise Open Sell Table
+| Param             | Type     | Description |
+| :---------------- | :------- | :---------- |
+| isin              | `string` | ISIN        |
+| symbol            | `string` | Debenture   |
+| quantity          | `number` | Quantity    |
+| sell_date         | `number` | Sell date   |
+| sell_price        | `number` | Price       |
+| transaction_type  | `string` | Type        |
+| label             | `string` | Label       |
+| last_traded_price | `number` | LTP         |
+
+
+

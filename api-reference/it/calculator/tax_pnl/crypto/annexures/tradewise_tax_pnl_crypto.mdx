@@ -1,0 +1,197 @@
+---
+title: "Tradewise Tax P&L | Crypto"
+---
+ 
+
+## Tax P&L Summary Sheet
+
+### Tax P&L Summary Table
+
+| Param | Type | Description |
+| :--- | :--- | :--- |
+| income\_head | `string` | The income head of ITR under which the income is to be reported |
+| income\_sub\_head | `string` | The income subhead of ITR under which the income is to be reported |
+| holding\_period | `string` | The holding period of the crypto. |
+| realized\_pnl | `number` | Total realized profit or loss on the trades without considering expenses |
+| transfer\_expenses | `number` | Total expenses that occurred during the transfer of crypto, could be network fees, brokerage, or any other transaction fee. |
+| net\_realized\_pnl | `number` | Total realized profit or loss on the trades after considering expenses |
+| taxable\_pnl | `string` | The total taxable amount of all trades |
+| tax\_rate | `string` | The applicable tax rate for all trades. |
+
+### Transaction Summary table
+
+| Param | Type | Description |
+| :--- | :--- | :--- |
+| nature\_of\_transaction | `string` | Nature of crypto transaction. \nPossible values: `mining\_reward`,`trading`,`staking\_reward`,`airdrop`,`interest` \n`payment\_send`,`payment\_receive`,`gift\_send`,`gift\_receive`,`fork`,`donation` \n`buy\_back`,`other\_income` |
+| total\_transaction\_value | `number` | The total value of crypto transactions that happened for a given nature of transaction. |
+| realized\_pnl | `number` | Total realized profit or loss on the trades without considering expenses |
+| transfer\_expenses | `number` | Total expenses that occurred during the transfer of crypto, could be network fees, brokerage, or any other transaction fee. |
+| net\_realized\_pnl | `number` | Total realized profit or loss on the trades after considering expenses |
+
+---
+
+## Cryptocurrency Spot Tradewise Tax PnL Sheet
+
+### Cryptocurrency Spot Tradewise Tax PnL table
+
+| Param | Type | Description |
+| :--- | :--- | :--- |
+| symbol | `string` | Symbol or description of crypto |
+| quantity | `number` | Trading quantity |
+| buy\_trade\_id | `string` | Transaction ID of the buy transaction |
+| buy\_date | `number` | The date on which the crypto was bought |
+| buy\_price | `number` | The price at which a unit was bought |
+| sell\_trade\_id | `string` | Transaction ID of the sell transaction |
+| sell\_date | `number` | The date on which the crypto was sold |
+| sell\_price | `number` | The price at which a unit was sold |
+| holding\_period | `string` | The holding period of the crypto could be either `long\_term` or `short\_term` |
+| realized\_pnl | `number` | The realized profit or loss on the trade without considering transfer expenses |
+| transfer\_expenses | `number` | The expenses that occurred during the transfer of crypto, could be network fees, brokerage, or any other transaction fee. |
+| net\_realized\_pnl | `number` | The realized profit or loss on the trade after considering transfer expenses |
+| nature\_of\_transaction | `string` | The nature of the crypto transaction could be either `trade` or `payment\_send` |
+| taxable\_pnl | `string` | The taxable amount of the trade |
+| income\_head | `string` | The income head of ITR under which the income of a specific trade is to be reported |
+| income\_sub\_head | `string` | The income subhead of ITR under which the income of a specific trade is to be reported |
+| tax\_rate | `string` | The applicable tax rate for the trade. |
+
+### Cryptocurrency Spot Tradewise Other Tax PnL Table
+
+| Param | Type | Description |
+| :--- | :--- | :--- |
+| symbol | `string` | Symbol or description of crypto |
+| quantity | `number` | Trading quantity |
+| buy\_trade\_id | `string` | Transaction ID of the buy transaction |
+| date\_of\_aquisation | `number` | The date on which the crypto was bought |
+| cost\_of\_aquisation | `number` | Total cost of acquisition of the crypto |
+| sell\_trade\_id | `string` | Transaction ID of the sell transaction |
+| date\_of\_transfer | `number` | The date on which the crypto was transferred out of the wallet |
+| consideration\_received | `number` | The fiat value of the consideration received on the transfer of the crypto. |
+| realized\_pnl | `number` | The realized profit or loss on the trade without considering expenses |
+| expenses | `number` | The expenses that occurred during the transfer of crypto, could be network fees, brokerage, or any other transaction fee. |
+| net\_realized\_pnl | `number` | The realized profit or loss on the trade after considering expenses |
+| nature\_of\_transaction | `string` | The nature of the crypto transaction. |
+| taxable\_pnl | `string` | The taxable amount of the trade |
+| turnover | `string` | Turnover of the transaction. |
+| income\_head | `string` | The income head of ITR under which the income of a specific trade is to be reported |
+| income\_sub\_head | `string` | The income subhead of ITR under which the income of a specific trade is to be reported |
+| tax\_rate | `string` | The applicable tax rate for the trade. |
+
+### Cryptocurrency Spot Tradewise Holding Table
+
+| Param | Type | Description |
+| :--- | :--- | :--- |
+| symbol | `number` | Symbol or description of crypto |
+| quantity | `number` | Trading quantity |
+| buy\_date | `string` | The date on which the crypto was bought |
+| buy\_price | `number` | The price at which a unit was bought |
+| last\_traded\_price | `number` | The last traded price of the unit |
+
+---
+
+## Cryptocurrency Future Tradewise Tax PnL Sheet
+
+### Cryptocurrency Future Tradewise Tax Pnl Table
+
+| Param | Type | Description |
+| :--- | :--- | :--- |
+| contract\_name | `string` | Symbol or description of crypto |
+| quantity | `number` | Trading quantity |
+| buy\_trade\_id | `string` | Transaction ID of the buy transaction |
+| buy\_date | `number` | The date on which the crypto was bought |
+| buy\_price | `number` | The price at which a unit was bought |
+| sell\_trade\_id | `string` | Transaction ID of the sell transaction |
+| sell\_date | `number` | The date on which the crypto was sold |
+| sell\_price | `number` | The price at which a unit was sold |
+| realized\_pnl | `number` | The realized profit or loss on the trade without considering transfer expenses |
+| transfer\_expenses | `number` | The expenses that occurred during the transfer of crypto, could be network fees, brokerage, or any other transaction fee. |
+| net\_realized\_pnl | `number` | The realized profit or loss on the trade after considering transfer expenses |
+| taxable\_pnl | `string` | The taxable amount of the trade |
+| income\_head | `string` | The income head of ITR under which the income of a specific trade is to be reported |
+| income\_sub\_head | `string` | The income subhead of ITR under which the income of a specific trade is to be reported |
+| tax\_rate | `string` | The applicable tax rate for the trade. |
+
+### Cryptocurrency Future Tradewise Open Position Table
+
+| Param | Type | Description |
+| :--- | :--- | :--- |
+| contract\_name | `number` | Symbol or description of the Futures contract |
+| quantity | `number` | Trading quantity |
+| buy\_date | `string` | The date on which the crypto was bought |
+| buy\_price | `number` | The price at which a unit was bought |
+| last\_traded\_price | `number` | The last traded price of the unit |
+
+---
+
+## Schedule VDA Sheet
+
+### Income from Transfer of VDA Table
+
+| Param | Type | Description |
+| :--- | :--- | :--- |
+| sr\_no | `number` | Seriral number of the entries |
+| date\_of\_acquisition | `number` | Original date on which the asset was acquired |
+| date\_of\_transfer | `number` | The date on which the asset was transferred |
+| income\_head | `string` | Taxable income head under which that asset is taxable |
+| cost\_of\_acquisition | `number` | The price at which the asset was originally bought. |
+| consideration\_received | `number` | The price received on transferring the asset. |
+
+### Income from VDA Summary List
+
+| Param | Type | Description |
+| :--- | :--- | :--- |
+| taxable\_capital\_gains\_income | `number` | Total income taxable under the head Capital gains |
+| taxable\_business\_and\_profession\_income | `number` | Total income taxable under the head Business and Profession |
+
+---
+
+# Annexures
+
+## Annexure 1: Definition of Transaction Type
+
+| Transaction Type | Definition |
+| :--- | :--- |
+| `buy` | OTC buy transaction on an exchange |
+| `sell` | OTC sell transaction on an exchange |
+| `trade` | Crypto to Crypto transaction on the Exchange |
+| `send` | Crypto sent out of the wallet |
+| `receive` | Crypto received in the wallet |
+
+## Annexure 2: Label
+
+| Label | Definition |
+| :--- | :--- |
+| `margin` | Amount blocked from the wallet for trading crypto futures |
+| `margin\_gain` | Any gains realized while trading in Crypto Futures |
+| `margin\_loss` | Any losses realized while trading in Crypto Futures |
+| `airdrop` | An unsolicited distribution of a cryptocurrency token or coin, usually for free |
+| `interest` | Cryptocurrency received in the form of Interest on the coins kept as a deposit |
+| `staking` | Lock crypto assets for a set period of time to help support the operation of a blockchain |
+| `staking\_reward` | The reward received for locked crypto assets for a set period of time |
+| `fork` | Crypto received due to hard fork |
+| `gift` | Crypto received as a gift in the wallet |
+| `lost` | Irrecoverable cryptocurrency from wallets |
+| `mining\_reward` | The crypto reward received on mining the coin |
+| `donation` | Defines a transaction that was donated to a charity |
+| `payment` | A transaction that was received as a payment for a good or service |
+| `other income` | Defines any other type of reward received |
+| `transfer` | Transaction between wallets owned by same user. |
+
+## Annexure 3: Nature of Transaction wise Tax Treatment
+
+| Nature of Transaction | Income Head | Tax Rate | Notes |
+| :--- | :--- | :--- | :--- |
+| `mining\_reward` | `business\_and\_profession` | `slab\_rate` | Tax is applicable on the fair market value of such asset. (as per the price in the open market on the valuation date). |
+| `interest` | `other` | `slab\_rate` | The complete value of interest is taxable and all kinds of expenses are disallowed. |
+| `trading` | `capital\_gains` | `30%` | Tax is applicable on the "Full value of consideration", less "Cost of acquisition". |
+| `staking\_reward` | `other` | `slab\_rate` | The total amount received as reward is taxable and all expenses are disallowed. |
+| `fork` | `other` | `slab\_rate` | The total amount received as reward is taxable and all expenses are disallowed. |
+| `gift\_recieved` | `other` | `slab\_rate` | The total amount received as gift is taxable at a slab rate |
+| `gift\_send` | NA | NA | Any cryptocurrency that was sent as a gift, would not be considered for taxation |
+| `lost` | NA | NA | Any irrecoverable cryptocurrency from wallets, would not be considered for taxation. |
+| `airdrop` | `other` | `slab\_rate` | The complete value of airdrop is taxable and all kinds of expenses are disallowed. |
+| `donation` | NA | NA | Any cryptocurrency that was donated to charity, would not be considered for taxation |
+| `payment\_received` | `other` | `slab\_rate` | Any crypto received as a payment is completely taxable and all expenses are disallowed. |
+| `payment\_send` | `capital\_gains` | `30%` | Tax is applicable on the "Full value of consideration" (as per the price in the open market on the payment date), less "Cost of acquisition". |
+| `other\_income` | `business\_and\_profession` | `30%` | Any other income generated from crypto is completely taxable and all expenses are disallowed. |
+| `transfer\_in` | NA | NA | Transfers between wallets owned by the same taxpayer are not taxable. |
+| `transfer\_out` | NA | NA | Transfers between wallets owned by the same taxpayer are not taxable. |

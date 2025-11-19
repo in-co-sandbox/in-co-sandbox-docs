@@ -1,0 +1,1130 @@
+---
+title: Non Salary Payments
+mode: "wide"
+---
+
+To generate the TXT file, you must pass the deduction-related details in a sheet JSON format. A sample payload is mentioned for your reference. Note that you can refer to the sample payload in the form of a workbook.
+
+
+
+  <Note>
+  Once the job is successfully created, upload the payload using HTTP PUT method on generated presigned url. [Read More](https://docs.aws.amazon.com/AmazonS3/latest/userguide/PresignedUrlUploadObject.html)
+  </Note>
+
+<ResponseField name="@entity" type="string">
+  Allowed value : `workbook`
+</ResponseField>
+
+<ResponseField name="name" type="string">
+  Allowed value : `form26q_workbook`
+</ResponseField>
+
+<ResponseField name="sheets" type="array">
+  Allowed value : `sheets`
+
+  <Expandable title="sheets">
+    <Expandable title="payer_sheet">
+    <ResponseField name="@entity" type="string">
+  Allowed value : `sheet`
+</ResponseField>
+    <ResponseField name="name" type="string">
+  Allowed value : `payer_sheet`
+</ResponseField>
+    <ResponseField name="blocks" type="array">
+        Allowed value : `blocks`
+      <Expandable title="payer_list">
+        <ResponseField name="@entity" type="string">
+          Allowed value : `list`
+        </ResponseField>
+        <ResponseField name="name" type="string">
+          Allowed value : `payer_list`
+        </ResponseField>
+        <ResponseField name="items" type="array<object>">
+          Allowed value : `items`
+          <Expandable title="items">
+            <ResponseField name="name" type="string" required>
+            Name of the Payer
+            </ResponseField>
+            <ResponseField name="tan" type="string">
+              TAN of the Payer
+            </ResponseField>
+            <ResponseField name="pan" type="string"></ResponseField>
+            <ResponseField name="branch" type="string"></ResponseField>
+            <ResponseField name="gstin" type="string"></ResponseField>
+            <ResponseField name="street" type="string"></ResponseField>
+            <ResponseField name="area" type="string"></ResponseField>
+            <ResponseField name="city" type="string"></ResponseField>
+            <ResponseField name="state" type="string"></ResponseField>
+            <ResponseField name="postal_code" type="string"></ResponseField>
+            <ResponseField name="email" type="string"></ResponseField>
+            <ResponseField name="mobile" type="string"></ResponseField>
+          </Expandable>
+        </ResponseField>
+      </Expandable>
+      <Expandable title="responsible_person_list">
+        <ResponseField name="@entity" type="string">
+          Allowed value : `list`
+        </ResponseField>
+        <ResponseField name="name" type="string">
+          Allowed value : `responsible_person_list`
+        </ResponseField>
+        <ResponseField name="items" type="array<object>">
+          Allowed value : `items`
+          <Expandable title="items">
+            <ResponseField name="designation" type="string"></ResponseField>
+            <ResponseField name="name" type="string"></ResponseField>
+            <ResponseField name="pan" type="string"></ResponseField>
+            <ResponseField name="street" type="string"></ResponseField>
+            <ResponseField name="area" type="string"></ResponseField>
+            <ResponseField name="city" type="string"></ResponseField>
+            <ResponseField name="state" type="string"></ResponseField>
+            <ResponseField name="postal_code" type="string"></ResponseField>
+            <ResponseField name="email" type="string"></ResponseField>
+            <ResponseField name="mobile" type="string"></ResponseField>
+          </Expandable>
+        </ResponseField>
+      </Expandable>
+    </ResponseField>
+  </Expandable>
+
+    <Expandable title="payee_sheet">
+    <ResponseField name="@entity" type="string">
+      Allowed value : `sheet`
+    </ResponseField>
+    <ResponseField name="name" type="string">
+      Allowed value : `payee_sheet`
+    </ResponseField>
+    <ResponseField name="blocks" type="array">
+        Allowed value : `blocks`
+      <Expandable title="payee_table">
+        <ResponseField name="@entity" type="string">
+          Allowed value : `table`
+        </ResponseField>
+        <ResponseField name="name" type="string">
+          Allowed value : `payee_table`
+        </ResponseField>
+        <ResponseField name="header" type="array<string>">
+          Allowed value : `header`
+          <Expandable title="child attributes">
+            <ResponseField name="sr_no" type="string">
+              Allowed value : `sr_no`
+            </ResponseField>
+            <ResponseField name="pan" type="string">
+              Allowed value : `pan`
+            </ResponseField>
+            <ResponseField name="name" type="string">
+              Allowed value : `name`
+            </ResponseField>
+          </Expandable>
+        </ResponseField>
+        <ResponseField name="rows" type="array<array<string|number|boolean|null>">
+          Allowed value : `rows` \
+          Contains values defined in the headers. Make sure to maintain the order of headers.
+
+          <Expandable title="child attributes">
+            <ResponseField name="sr_no" type="number">
+              
+            </ResponseField>
+            <ResponseField name="pan" type="string">
+              
+            </ResponseField>
+            <ResponseField name="name" type="string">
+              
+            </ResponseField>
+          </Expandable>
+        </ResponseField>
+      </Expandable>
+    </ResponseField>
+
+  </Expandable>
+    <Expandable title="challan_sheet">
+    <ResponseField name="@entity" type="string">
+  Allowed value : `sheet`
+</ResponseField>
+    <ResponseField name="name" type="string">
+  Allowed value : `challan_sheet`
+</ResponseField>
+    <ResponseField name="blocks" type="array">
+        Allowed value : `blocks`
+      <Expandable title="challan_table">
+        <ResponseField name="@entity" type="string">
+          Allowed value : `table`
+        </ResponseField>
+        <ResponseField name="name" type="string">
+          Allowed value : `challan_table`
+        </ResponseField>
+        <ResponseField name="header" type="array<string>">
+          Allowed value : `header`
+          <Expandable title="child attributes">
+            <ResponseField name="challan_serial" type="string">
+              Allowed value : `challan_serial`
+            </ResponseField>
+            <ResponseField name="bsr_code" type="string">
+              Allowed value : `bsr_code`
+            </ResponseField>
+            <ResponseField name="paid_date_epoch" type="string">
+              Allowed value : `paid_date_epoch`
+            </ResponseField>
+            <ResponseField name="minor_head" type="string">
+              Allowed value : `minor_head`
+            </ResponseField>
+            <ResponseField name="tds_amount" type="string">
+              Allowed value : `tds_amount`
+            </ResponseField>
+            <ResponseField name="surcharge" type="string">
+              Allowed value : `surcharge`
+            </ResponseField>
+            <ResponseField name="heath_and_education_cess" type="string">
+              Allowed value : `heath_and_education_cess`
+            </ResponseField>
+            <ResponseField name="interest" type="string">
+              Allowed value : `interest`
+            </ResponseField>
+            <ResponseField name="late_filing_fees" type="string">
+              Allowed value : `late_filing_fees`
+            </ResponseField>
+            <ResponseField name="other_penalty" type="string">
+              Allowed value : `other_penalty`
+            </ResponseField>
+          </Expandable>
+        </ResponseField>
+        <ResponseField name="rows" type="array<array<string|number|boolean|null>">
+          Allowed value : `rows` \
+          Contains values defined in the headers. Make sure to maintain the order of headers.
+
+          <Expandable title="child attributes">
+            <ResponseField name="challan_serial" type="string">
+            </ResponseField>
+            <ResponseField name="bsr_code" type="string">
+            </ResponseField>
+            <ResponseField name="paid_date_epoch" type="number">
+            </ResponseField>
+            <ResponseField name="minor_head" type="string">
+            </ResponseField>
+            <ResponseField name="tds_amount" type="number">
+            </ResponseField>
+            <ResponseField name="surcharge" type="number">
+            </ResponseField>
+            <ResponseField name="heath_and_education_cess" type="number">
+            </ResponseField>
+            <ResponseField name="interest" type="number">
+            </ResponseField>
+            <ResponseField name="late_filing_fees" type="number">
+            </ResponseField>
+            <ResponseField name="other_penalty" type="number">
+            </ResponseField>
+          </Expandable>
+
+        </ResponseField>
+      </Expandable>
+    </ResponseField>
+  </Expandable>
+    <Expandable title="payment_sheet">
+    <ResponseField name="@entity" type="string">
+  Allowed value : `sheet`
+</ResponseField>
+    <ResponseField name="name" type="string">
+  Allowed value : `payment_sheet`
+</ResponseField>
+    <ResponseField name="blocks" type="array">
+        Allowed value : `blocks`
+      <Expandable title="payment_table">
+        <ResponseField name="@entity" type="string">
+          Allowed value : `table`
+        </ResponseField>
+        <ResponseField name="name" type="string">
+          Allowed value : `payment_table`
+        </ResponseField>
+        <ResponseField name="header" type="array<string>">
+          Allowed value : `header`
+          <Expandable title="child attributes">
+            <ResponseField name="payee_sr_no" type="string">
+              Allowed value : `payee_sr_no`
+            </ResponseField>
+            <ResponseField name="challan_serial" type="string">
+              Allowed value : `challan_serial`
+            </ResponseField>
+            <ResponseField name="bsr_code" type="string">
+              Allowed value  : `bsr_code`
+            </ResponseField>
+            <ResponseField name="nature_of_payment" type="string">
+              Allowed value  : `nature_of_payment`
+            </ResponseField>
+            <ResponseField name="payment_amount" type="string">
+              Allowed value  : `payment_amount`
+            </ResponseField>
+            <ResponseField name="payment_date_epoch" type="string">
+              Allowed value  : `payment_date_epoch`
+            </ResponseField>
+            <ResponseField name="tds_amount" type="string">
+              Allowed value  : `tds_amount`
+            </ResponseField>
+            <ResponseField name="surcharge" type="string">
+              Allowed value  : `surcharge`
+            </ResponseField>
+            <ResponseField name="health_and_education_cess" type="string">
+              Allowed value  : `health_and_education_cess`
+            </ResponseField>
+            <ResponseField name="deduction_date_epoch" type="string">
+              Allowed value  : `deduction_date_epoch`
+            </ResponseField>
+            <ResponseField name="reason_for_lower_or_higher_deduction" type="string">
+              Allowed value  : `reason_for_lower_or_higher_deduction`
+            </ResponseField>
+            <ResponseField name="certificate_number" type="string">
+              Allowed value  : `certificate_number`
+            </ResponseField>
+            <ResponseField name="amount_of_cash_withdrawal_more_than_1_crore_us_194N" type="string">
+              Allowed value  : `amount_of_cash_withdrawal_more_than_1_crore_us_194N`
+            </ResponseField>
+            <ResponseField name="amount_of_cash_withdrawal_between_20_lakhs_and_1_crore_us_194N_for_non_filers" type="string">
+              Allowed value  : `amount_of_cash_withdrawal_between_20_lakhs_and_1_crore_us_194N_for_non_filers`
+            </ResponseField>
+            <ResponseField name="amount_of_cash_withdrawal_more_than_1_crore_us_194N_for_non_filers" type="string">
+              Allowed value  : `amount_of_cash_withdrawal_more_than_1_crore_us_194N_for_non_filers`
+            </ResponseField>
+            <ResponseField name="amount_of_cash_withdrawal_more_than_3_crore_us_194N_for_co-operative_societies" type="string">
+              Allowed value  : `amount_of_cash_withdrawal_more_than_3_crore_us_194N_for_co`
+            </ResponseField>
+            <ResponseField name="amount_of_cash_withdrawal_between_20_lakhs_and_3_crore_us_194N_for_non_filers" type="string">
+              Allowed value  : `amount_of_cash_withdrawal_between_20_lakhs_and_3_crore_us_194N_for_non_filers`
+            </ResponseField>
+            <ResponseField name="amount_of_cash_withdrawal_more_than_3_crore_us_194N_for_non_filers" type="string">
+              Allowed value  : `amount_of_cash_withdrawal_more_than_3_crore_us_194N_for_non_filers`
+            </ResponseField> 
+          </Expandable>
+        </ResponseField>
+        <ResponseField name="rows" type="array<array<string|number|boolean|null>">
+          Allowed value : `rows` \
+          Contains values defined in the headers. Make sure to maintain the order of headers.
+          <Expandable title="child attributes">
+            <ResponseField name="payee_sr_no" type="number">
+            </ResponseField>
+            <ResponseField name="challan_serial" type="string">
+            </ResponseField>
+            <ResponseField name="bsr_code" type="string">
+            </ResponseField>
+            <ResponseField name="nature_of_payment" type="string">
+            </ResponseField>
+            <ResponseField name="payment_amount" type="number">
+            </ResponseField>
+            <ResponseField name="payment_date_epoch" type="number">
+            </ResponseField>
+            <ResponseField name="tds_amount" type="number">
+            </ResponseField>
+            <ResponseField name="surcharge" type="number">
+            </ResponseField>
+            <ResponseField name="health_and_education_cess" type="number">
+            </ResponseField>
+            <ResponseField name="deduction_date_epoch" type="number">
+            </ResponseField>
+            <ResponseField name="reason_for_lower_or_higher_deduction" type="number">
+            </ResponseField>
+            <ResponseField name="certificate_number" type="number">
+            </ResponseField>
+            <ResponseField name="amount_of_cash_withdrawal_more_than_1_crore_us_194N" type="number">
+            </ResponseField>
+            <ResponseField name="amount_of_cash_withdrawal_between_20_lakhs_and_1_crore_us_194N_for_non_filers" type="number">
+            </ResponseField>
+            <ResponseField name="amount_of_cash_withdrawal_more_than_1_crore_us_194N_for_non_filers" type="number">
+            </ResponseField>
+            <ResponseField name="amount_of_cash_withdrawal_more_than_3_crore_us_194N_for_co-operative_societies" type="number">
+            </ResponseField>
+            <ResponseField name="amount_of_cash_withdrawal_between_20_lakhs_and_3_crore_us_194N_for_non_filers" type="number">
+            </ResponseField>
+            <ResponseField name="amount_of_cash_withdrawal_more_than_3_crore_us_194N_for_non_filers" type="number">
+            </ResponseField> 
+          </Expandable>
+        </ResponseField>
+      </Expandable>
+    </ResponseField>
+  </Expandable>
+
+  </Expandable>
+</ResponseField>
+
+    <Accordion title="Sample Workbook">
+    ```json
+    {
+    "name": "form26q_workbook",
+    "@entity": "workbook",
+    "sheets": [
+        {
+            "name": "payer_sheet",
+            "@entity": "sheet",
+            "blocks": [
+                {
+                    "name": "payer_list",
+                    "@entity": "list",
+                    "items": [
+                        {
+                            "name": "Acme Pvt Ltd"
+                        },
+                        {
+                            "tan": "AHMA00000C"
+                        },
+                        {
+                            "pan": "AAACA1234Z"
+                        },
+                        {
+                            "branch": "hq"
+                        },
+                        {
+                            "gstin": "24AAACA1234Z1ZP"
+                        },
+                        {
+                            "street": "A-901, Stark Tower"
+                        },
+                        {
+                            "area": "Relief Road"
+                        },
+                        {
+                            "city": "Ahmedabad"
+                        },
+                        {
+                            "state": "GUJARAT"
+                        },
+                        {
+                            "postal_code": "380001"
+                        },
+                        {
+                            "email": "email@gmail.com"
+                        },
+                        {
+                            "mobile": "9876543210"
+                        }
+                    ]
+                },
+                {
+                    "name": "responsible_person_list",
+                    "@entity": "list",
+                    "items": [
+                        {
+                            "designation": "Finance Manager"
+                        },
+                        {
+                            "name": "Tony Stark"
+                        },
+                        {
+                            "pan": "DKLPT3483J"
+                        },
+                        {
+                            "street": "A-901, Stark Tower"
+                        },
+                        {
+                            "area": "Relief Road"
+                        },
+                        {
+                            "city": "Ahmedabad"
+                        },
+                        {
+                            "state": "GUJARAT"
+                        },
+                        {
+                            "postal_code": "380001"
+                        },
+                        {
+                            "email": "email@gmail.com"
+                        },
+                        {
+                            "mobile": "9876543210"
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "name": "payee_sheet",
+            "@entity": "sheet",
+            "blocks": [
+                {
+                    "name": "payee_table",
+                    "@entity": "table",
+                    "header": [
+                        "sr_no",
+                        "pan",
+                        "name"
+                    ],
+                    "rows": [
+                        [
+                            1,
+                            "XXXCX1234A",
+                            "Aarav Sharma"
+                        ],
+                        [
+                            2,
+                            "XXXPX3456A",
+                            "Kavya Patel"
+                        ],
+                        [
+                            3,
+                            "XXXCX7890A",
+                            "Arjun Singhania"
+                        ],
+                        [
+                            4,
+                            "XXXCX1111A",
+                            "Priya Gupta"
+                        ],
+                        [
+                            5,
+                            "XXXCX2222A",
+                            "Siddharth Mehta"
+                        ],
+                        [
+                            6,
+                            "XXXPX3333A",
+                            "Ananya Khanna"
+                        ],
+                        [
+                            7,
+                            "XXXPX4444A",
+                            "Vikram Desai"
+                        ],
+                        [
+                            8,
+                            "XXXPX5555A",
+                            "Naina Reddy"
+                        ],
+                        [
+                            9,
+                            "XXXCX6666A",
+                            "Rohan Kapoor"
+                        ],
+                        [
+                            10,
+                            "XXXCX7777A",
+                            "Sanjana Choudhury"
+                        ],
+                        [
+                            11,
+                            "XXXPX8888A",
+                            "Aditya Joshi"
+                        ],
+                        [
+                            12,
+                            "XXXPX9999A",
+                            "Meera Verma"
+                        ],
+                        [
+                            13,
+                            "PANINVALID",
+                            "Rajiv Malhotra"
+                        ],
+                        [
+                            14,
+                            "XXXPX0000A",
+                            "Shruti Rao"
+                        ],
+                        [
+                            15,
+                            "XXXPZ1111A",
+                            "Mohan Iyer"
+                        ],
+                        [
+                            16,
+                            "PANNOTAVBL",
+                            "Preeti Sharma"
+                        ],
+                        [
+                            17,
+                            "XXXPZ1111A",
+                            "Rahul Chatterjee"
+                        ],
+                        [
+                            18,
+                            "XXXPZ2222A",
+                            "Divya Singh"
+                        ],
+                        [
+                            19,
+                            "XXXPZ3333A",
+                            "Karthik Krishnan"
+                        ],
+                        [
+                            20,
+                            "XXXPZ4444A",
+                            "Sonali Banerjee"
+                        ]
+                    ]
+                }
+            ]
+        },
+        {
+            "name": "challan_sheet",
+            "@entity": "sheet",
+            "blocks": [
+                {
+                    "name": "challan_table",
+                    "@entity": "table",
+                    "header": [
+                        "challan_serial",
+                        "bsr_code",
+                        "paid_date_epoch",
+                        "minor_head",
+                        "tds_amount",
+                        "surcharge",
+                        "heath_and_education_cess",
+                        "interest",
+                        "late_filing_fees",
+                        "other_penalty"
+                    ],
+                    "rows": [
+                        [
+                            "23486",
+                            "1234567",
+                            1699209000000,
+                            "tds_payable",
+                            110000,
+                            0,
+                            0,
+                            0,
+                            0,
+                            0
+                        ],
+                        [
+                            "34567",
+                            "1234567",
+                            1701369000000,
+                            "tds_payable",
+                            110000,
+                            0,
+                            0,
+                            0,
+                            0,
+                            0
+                        ],
+                        [
+                            "45688",
+                            "1234567",
+                            1704565800000,
+                            "tds_payable",
+                            420000,
+                            0,
+                            0,
+                            0,
+                            0,
+                            0
+                        ]
+                    ]
+                }
+            ]
+        },
+        {
+            "name": "payment_sheet",
+            "@entity": "sheet",
+            "blocks": [
+                {
+                    "name": "payment_table",
+                    "@entity": "table",
+                    "header": [
+                        "payee_sr_no",
+                        "challan_serial",
+                        "bsr_code",
+                        "nature_of_payment",
+                        "payment_amount",
+                        "payment_date_epoch",
+                        "tds_amount",
+                        "surcharge",
+                        "health_and_education_cess",
+                        "deduction_date_epoch",
+                        "reason_for_lower_or_higher_deduction",
+                        "certificate_number",
+                        "amount_of_cash_withdrawal_more_than_1_crore_us_194N",
+                        "amount_of_cash_withdrawal_between_20_lakhs_and_1_crore_us_194N_for_non_filers",
+                        "amount_of_cash_withdrawal_more_than_1_crore_us_194N_for_non_filers",
+                        "amount_of_cash_withdrawal_more_than_3_crore_us_194N_for_co-operative_societies",
+                        "amount_of_cash_withdrawal_between_20_lakhs_and_3_crore_us_194N_for_non_filers",
+                        "amount_of_cash_withdrawal_more_than_3_crore_us_194N_for_non_filers"
+                    ],
+                    "rows": [
+                        [
+                            1,
+                            "23486",
+                            "1234567",
+                            "sponsorship_fees",
+                            87999,
+                            1697740200000,
+                            17600,
+                            0,
+                            0,
+                            1697740200000
+                        ],
+                        [
+                            2,
+                            "23486",
+                            "1234567",
+                            "sales_and_marketing_services",
+                            35000,
+                            1697740200000,
+                            7000,
+                            0,
+                            0,
+                            1697740200000
+                        ],
+                        [
+                            3,
+                            "23486",
+                            "1234567",
+                            "advertisement_fee",
+                            45823,
+                            1697740200000,
+                            9164.6,
+                            0,
+                            0,
+                            1697740200000
+                        ],
+                        [
+                            4,
+                            "23486",
+                            "1234567",
+                            "sponsorship_fees",
+                            76000,
+                            1697740200000,
+                            1500,
+                            0,
+                            0,
+                            1697740200000
+                        ],
+                        [
+                            5,
+                            "23486",
+                            "1234567",
+                            "fees_for_technical_service",
+                            105000,
+                            1697740200000,
+                            2100,
+                            0,
+                            0,
+                            1697740200000
+                        ],
+                        [
+                            6,
+                            "23486",
+                            "1234567",
+                            "consulting_services",
+                            80000,
+                            1697740200000,
+                            8000,
+                            0,
+                            0,
+                            1697740200000
+                        ],
+                        [
+                            7,
+                            "23486",
+                            "1234567",
+                            "directors_fees",
+                            125000,
+                            1697740200000,
+                            25000,
+                            0,
+                            0,
+                            1697740200000
+                        ],
+                        [
+                            8,
+                            "23486",
+                            "1234567",
+                            "payments_to_sports_person_and_artists",
+                            150000,
+                            1697740200000,
+                            15000,
+                            0,
+                            0,
+                            1697740200000
+                        ],
+                        [
+                            9,
+                            "23486",
+                            "1234567",
+                            "sales_and_marketing_services",
+                            50000,
+                            1697740200000,
+                            10000,
+                            0,
+                            0,
+                            1697740200000
+                        ],
+                        [
+                            10,
+                            "23486",
+                            "1234567",
+                            "sales_and_marketing_services",
+                            110000,
+                            1697740200000,
+                            11000,
+                            0,
+                            0,
+                            1697740200000
+                        ],
+                        [
+                            1,
+                            "34567",
+                            "1234567",
+                            "sales_and_marketing_services",
+                            87999,
+                            1700418600000,
+                            17600,
+                            0,
+                            0,
+                            1700418600000
+                        ],
+                        [
+                            2,
+                            "34567",
+                            "1234567",
+                            "sales_and_marketing_services",
+                            35000,
+                            1700418600000,
+                            7000,
+                            0,
+                            0,
+                            1700418600000
+                        ],
+                        [
+                            3,
+                            "34567",
+                            "1234567",
+                            "advertisement_fee",
+                            45823,
+                            1700418600000,
+                            9164.6,
+                            0,
+                            0,
+                            1700418600000
+                        ],
+                        [
+                            4,
+                            "34567",
+                            "1234567",
+                            "sponsorship_fees",
+                            76000,
+                            1700418600000,
+                            1500,
+                            0,
+                            0,
+                            1700418600000
+                        ],
+                        [
+                            5,
+                            "34567",
+                            "1234567",
+                            "fees_for_technical_service",
+                            105000,
+                            1700418600000,
+                            2100,
+                            0,
+                            0,
+                            1700418600000
+                        ],
+                        [
+                            6,
+                            "34567",
+                            "1234567",
+                            "consulting_services",
+                            80000,
+                            1700418600000,
+                            8000,
+                            0,
+                            0,
+                            1700418600000
+                        ],
+                        [
+                            7,
+                            "34567",
+                            "1234567",
+                            "directors_fees",
+                            125000,
+                            1700418600000,
+                            25000,
+                            0,
+                            0,
+                            1700418600000
+                        ],
+                        [
+                            8,
+                            "34567",
+                            "1234567",
+                            "payments_to_sports_person_and_artists",
+                            150000,
+                            1700418600000,
+                            15000,
+                            0,
+                            0,
+                            1700418600000
+                        ],
+                        [
+                            9,
+                            "34567",
+                            "1234567",
+                            "sales_and_marketing_services",
+                            50000,
+                            1700418600000,
+                            10000,
+                            0,
+                            0,
+                            1700418600000
+                        ],
+                        [
+                            10,
+                            "34567",
+                            "1234567",
+                            "sales_and_marketing_services",
+                            110000,
+                            1700418600000,
+                            11000,
+                            0,
+                            0,
+                            1700418600000
+                        ],
+                        [
+                            1,
+                            "45688",
+                            "1234567",
+                            "sales_and_marketing_services",
+                            87999,
+                            1703010600000,
+                            17600,
+                            0,
+                            0,
+                            1703010600000
+                        ],
+                        [
+                            2,
+                            "45688",
+                            "1234567",
+                            "sales_and_marketing_services",
+                            35000,
+                            1703010600000,
+                            7000,
+                            0,
+                            0,
+                            1703010600000
+                        ],
+                        [
+                            3,
+                            "45688",
+                            "1234567",
+                            "advertisement_fee",
+                            45823,
+                            1703010600000,
+                            9164.6,
+                            0,
+                            0,
+                            1703010600000
+                        ],
+                        [
+                            4,
+                            "45688",
+                            "1234567",
+                            "sponsorship_fees",
+                            76000,
+                            1703010600000,
+                            1500,
+                            0,
+                            0,
+                            1703010600000
+                        ],
+                        [
+                            5,
+                            "45688",
+                            "1234567",
+                            "fees_for_technical_service",
+                            105000,
+                            1703010600000,
+                            2100,
+                            0,
+                            0,
+                            1703010600000
+                        ],
+                        [
+                            6,
+                            "45688",
+                            "1234567",
+                            "consulting_services",
+                            80000,
+                            1703010600000,
+                            8000,
+                            0,
+                            0,
+                            1703010600000
+                        ],
+                        [
+                            7,
+                            "45688",
+                            "1234567",
+                            "directors_fees",
+                            125000,
+                            1703010600000,
+                            25000,
+                            0,
+                            0,
+                            1703010600000
+                        ],
+                        [
+                            8,
+                            "45688",
+                            "1234567",
+                            "payments_to_sports_person_and_artists",
+                            150000,
+                            1703010600000,
+                            15000,
+                            0,
+                            0,
+                            1703010600000
+                        ],
+                        [
+                            9,
+                            "45688",
+                            "1234567",
+                            "sales_and_marketing_services",
+                            50000,
+                            1703010600000,
+                            10000,
+                            0,
+                            0,
+                            1703010600000
+                        ],
+                        [
+                            10,
+                            "45688",
+                            "1234567",
+                            "sales_and_marketing_services",
+                            110000,
+                            1703010600000,
+                            11000,
+                            0,
+                            0,
+                            1703010600000
+                        ],
+                        [
+                            11,
+                            "45688",
+                            "1234567",
+                            "winnings_from_online_games",
+                            150000,
+                            1703010600000,
+                            45000,
+                            0,
+                            0,
+                            1703010600000
+                        ],
+                        [
+                            12,
+                            "45688",
+                            "1234567",
+                            "winnings_from_online_games",
+                            200000,
+                            1703010600000,
+                            60000,
+                            0,
+                            0,
+                            1703010600000
+                        ],
+                        [
+                            13,
+                            "45688",
+                            "1234567",
+                            "winnings_from_online_games",
+                            80000,
+                            1703010600000,
+                            24000,
+                            0,
+                            0,
+                            1703010600000,
+                            "deduction_of_tax_at_higher_rate_due_to_non_availability_of_pan"
+                        ],
+                        [
+                            14,
+                            "45688",
+                            "1234567",
+                            "winnings_from_online_games",
+                            120000,
+                            1703010600000,
+                            30000,
+                            0,
+                            0,
+                            1703010600000
+                        ],
+                        [
+                            15,
+                            "45688",
+                            "1234567",
+                            "winnings_from_online_games",
+                            50000,
+                            1703010600000,
+                            10000,
+                            0,
+                            0,
+                            1703010600000
+                        ],
+                        [
+                            16,
+                            "45688",
+                            "1234567",
+                            "winnings_from_online_games",
+                            90000,
+                            1703010600000,
+                            25000,
+                            0,
+                            0,
+                            1703010600000,
+                            "deduction_of_tax_at_higher_rate_due_to_non_availability_of_pan"
+                        ],
+                        [
+                            17,
+                            "45688",
+                            "1234567",
+                            "winnings_from_online_games",
+                            40000,
+                            1703010600000,
+                            10000,
+                            0,
+                            0,
+                            1703010600000
+                        ],
+                        [
+                            18,
+                            "45688",
+                            "1234567",
+                            "winnings_from_online_games",
+                            110000,
+                            1703010600000,
+                            35000,
+                            0,
+                            0,
+                            1703010600000
+                        ],
+                        [
+                            19,
+                            "45688",
+                            "1234567",
+                            "winnings_from_online_games",
+                            100000,
+                            1703010600000,
+                            40000,
+                            0,
+                            0,
+                            1703010600000
+                        ],
+                        [
+                            20,
+                            "45688",
+                            "1234567",
+                            "winnings_from_online_games",
+                            60000,
+                            1703010600000,
+                            28000,
+                            0,
+                            0,
+                            1703010600000
+                        ]
+                    ]
+                }
+            ]
+        }
+    ]
+}
+      ```
+    </Accordion>
