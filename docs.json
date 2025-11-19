@@ -44,6 +44,7 @@
 				"groups": [
 					{
 						"group": "Introduction",
+						"icon": "book",
 						"pages": [
 							"guides/introduction/about_sandbox",
 							"guides/introduction/authentication"
@@ -51,6 +52,7 @@
 					},
 					{
 						"group": "Get Started",
+						"icon": "rocket-launch",
 						"pages": [
 							"guides/get-started/the_basics",
 							"guides/get-started/versioning",
@@ -64,6 +66,7 @@
 					},
 					{
 						"group": "Products",
+						"icon": "boxes-stacked",
 						"pages": [
 							"guides/products/kyc",
 							"guides/products/gst",
@@ -73,6 +76,7 @@
 					},
 					{
 						"group": "Billing & Invoicing",
+						"icon": "credit-card",
 						"pages": [
 							"guides/billing-and-invoicing/subscription",
 							"guides/billing-and-invoicing/quota",
@@ -83,6 +87,7 @@
 					},
 					{
 						"group": "Resources",
+						"icon": "books",
 						"pages": [
 							"guides/resources/postman_collection",
 							"guides/resources/help_centre"
@@ -96,7 +101,7 @@
 					{
 						"item": "Authentication",
 						"description": "Authenticate and get access to use Sandbox APIs",
-						"icon": "rocket",
+						"icon": "rocket-vertical",
 						"groups": [
 							{
 								"group": "Auth",
@@ -110,7 +115,7 @@
 					{
 						"item": "KYC",
 						"description": "Confirm Identities with confidence",
-						"icon": "/static/svg/KYC.svg",
+						"icon": "/static/svg/workload-icons/KYC.svg",
 						"groups": [
 							{
 								"group": "Aadhaar",
@@ -204,7 +209,7 @@
 					{
 						"item": "GST",
 						"description": "Simple and Secure GST Compliance",
-						"icon": "/static/svg/GST.svg",
+						"icon": "/static/svg/workload-icons/GST.svg",
 						"groups": [
 							{
 								"group": "Analytics",
@@ -372,67 +377,89 @@
 										"group": "E-Invoice",
 										"pages": [
 											"api-reference/gst/compliance/endpoints/e-invoice/authenticate",
-											"api-reference/gst/compliance/endpoints/e-invoice/cancel",
-											"api-reference/gst/compliance/endpoints/e-invoice/e_way_bill",
-											"api-reference/gst/compliance/endpoints/e-invoice/generate",
-											"api-reference/gst/compliance/endpoints/e-invoice/generate_invoice",
-											"api-reference/gst/compliance/endpoints/e-invoice/get_eway_bill_by_irn",
-											"api-reference/gst/compliance/endpoints/e-invoice/get_invoice_by_document",
-											"api-reference/gst/compliance/endpoints/e-invoice/get_invoice_by_irn",
-											"api-reference/gst/compliance/endpoints/e-invoice/pdf_generate",
+											"api-reference/gst/compliance/endpoints/e-invoice/generate_e_invoice",
+											"api-reference/gst/compliance/endpoints/e-invoice/generate_e_invoice_pdf",
+											"api-reference/gst/compliance/endpoints/e-invoice/cancel_e_invoice",
+											"api-reference/gst/compliance/endpoints/e-invoice/get_e_invoice",
+											"api-reference/gst/compliance/endpoints/e-invoice/get_e_invoice_by_document_data",
+											"api-reference/gst/compliance/endpoints/e-invoice/generate_e_way_bill",
+											"api-reference/gst/compliance/endpoints/e-invoice/get_e_way_bill",
 											"api-reference/gst/compliance/endpoints/e-invoice/search_gstin"
 										]
 									},
 									{
 										"group": "E-Way Bill",
 										"pages": [
-											{
-												"group": "Consignee",
-												"pages": [
-													"api-reference/gst/compliance/endpoints/e-way-bill/consignee/get_bills",
-													"api-reference/gst/compliance/endpoints/e-way-bill/consignee/reject"
-												]
-											},
+											"api-reference/gst/compliance/endpoints/e-way-bill/authenticate",
 											{
 												"group": "Consignor",
 												"pages": [
-													"api-reference/gst/compliance/endpoints/e-way-bill/consignor/cancel",
-													"api-reference/gst/compliance/endpoints/e-way-bill/consignor/consolidated_bill",
-													"api-reference/gst/compliance/endpoints/e-way-bill/consignor/consolidated_bill_regenerate",
-													"api-reference/gst/compliance/endpoints/e-way-bill/consignor/extend",
-													"api-reference/gst/compliance/endpoints/e-way-bill/consignor/generate_bill",
-													"api-reference/gst/compliance/endpoints/e-way-bill/consignor/get_bills",
-													"api-reference/gst/compliance/endpoints/e-way-bill/consignor/multi_vehicle",
-													"api-reference/gst/compliance/endpoints/e-way-bill/consignor/multi_vehicle_vehicle",
-													"api-reference/gst/compliance/endpoints/e-way-bill/consignor/regenerate",
-													"api-reference/gst/compliance/endpoints/e-way-bill/consignor/transporter",
-													"api-reference/gst/compliance/endpoints/e-way-bill/consignor/vehicle"
+													"api-reference/gst/compliance/endpoints/e-way-bill/consignor/generate_e_way_bill",
+													"api-reference/gst/compliance/endpoints/e-way-bill/consignor/get_e_way_bill_by_date",
+													"api-reference/gst/compliance/endpoints/e-way-bill/consignor/get_e_way_bill_by_document_data",
+													"api-reference/gst/compliance/endpoints/e-way-bill/consignor/cancel_e_way_bill",
+													"api-reference/gst/compliance/endpoints/e-way-bill/consignor/extend_validity",
+													"api-reference/gst/compliance/endpoints/e-way-bill/consignor/update_vehicle_details",
+													"api-reference/gst/compliance/endpoints/e-way-bill/consignor/update_transporter",
+													{
+														"group": "Consolidated E-Way Bill",
+														"pages": [
+															"api-reference/gst/compliance/endpoints/e-way-bill/consignor/consolidated-e-way-bill/consolidate_e_way_bill",
+															"api-reference/gst/compliance/endpoints/e-way-bill/consignor/consolidated-e-way-bill/get_consolidated_bill",
+															"api-reference/gst/compliance/endpoints/e-way-bill/consignor/consolidated-e-way-bill/regenerate_consolidated_bill"
+														]
+													},
+													{
+														"group": "Multi-Vehicle Movement",
+														"pages": [
+															"api-reference/gst/compliance/endpoints/e-way-bill/consignor/multi-vehicle-movement/initiate_multi_vehicle_movement",
+															"api-reference/gst/compliance/endpoints/e-way-bill/consignor/multi-vehicle-movement/add_vehicle",
+															"api-reference/gst/compliance/endpoints/e-way-bill/consignor/multi-vehicle-movement/update_vehicle"
+														]
+													}
 												]
 											},
 											{
-												"group": "Taxpayer",
+												"group": "Consignee",
 												"pages": [
-													"api-reference/gst/compliance/endpoints/e-way-bill/taxpayer/authenticate",
-													"api-reference/gst/compliance/endpoints/e-way-bill/taxpayer/generate_bill",
-													"api-reference/gst/compliance/endpoints/e-way-bill/taxpayer/get_error_list",
-													"api-reference/gst/compliance/endpoints/e-way-bill/taxpayer/get_hsn",
-													"api-reference/gst/compliance/endpoints/e-way-bill/taxpayer/search_gstin",
-													"api-reference/gst/compliance/endpoints/e-way-bill/taxpayer/search"
+													"api-reference/gst/compliance/endpoints/e-way-bill/consignee/get_e_way_bills_by_date",
+													"api-reference/gst/compliance/endpoints/e-way-bill/consignee/reject_e_way_bill"
 												]
 											},
 											{
 												"group": "Transporter",
 												"pages": [
-													"api-reference/gst/compliance/endpoints/e-way-bill/transporter/consolidated_bill",
-													"api-reference/gst/compliance/endpoints/e-way-bill/transporter/consolidated_bill_regenerate",
-													"api-reference/gst/compliance/endpoints/e-way-bill/transporter/extend",
-													"api-reference/gst/compliance/endpoints/e-way-bill/transporter/get_bills",
-													"api-reference/gst/compliance/endpoints/e-way-bill/transporter/list",
-													"api-reference/gst/compliance/endpoints/e-way-bill/transporter/multi_vehicle",
-													"api-reference/gst/compliance/endpoints/e-way-bill/transporter/multi_vehicle_vehicle",
-													"api-reference/gst/compliance/endpoints/e-way-bill/transporter/regenerate",
-													"api-reference/gst/compliance/endpoints/e-way-bill/transporter/transporter",
-													"api-reference/gst/compliance/endpoints/e-way-bill/transporter/vehicle"
+													"api-reference/gst/compliance/endpoints/e-way-bill/transporter/get_e_way_bills_by_date_and_state",
+													"api-reference/gst/compliance/endpoints/e-way-bill/transporter/list_e_way_bills_by_generator",
+													"api-reference/gst/compliance/endpoints/e-way-bill/transporter/extend_validity",
+													"api-reference/gst/compliance/endpoints/e-way-bill/transporter/update_vehicle_details",
+													"api-reference/gst/compliance/endpoints/e-way-bill/transporter/update_transporter",
+													{
+														"group": "Consolidated E-Way Bill",
+														"pages": [
+															"api-reference/gst/compliance/endpoints/e-way-bill/transporter/consolidated-e-way-bill/consolidate_e_way_bill",
+															"api-reference/gst/compliance/endpoints/e-way-bill/transporter/consolidated-e-way-bill/get_consolidated_bill",
+															"api-reference/gst/compliance/endpoints/e-way-bill/transporter/consolidated-e-way-bill/regenerate_consolidated_bill"
+														]
+													},
+													{
+														"group": "Multi-Vehicle Movement",
+														"pages": [
+															"api-reference/gst/compliance/endpoints/e-way-bill/transporter/multi-vehicle-movement/initiate_multi_vehicle_movement",
+															"api-reference/gst/compliance/endpoints/e-way-bill/transporter/multi-vehicle-movement/add_vehicle",
+															"api-reference/gst/compliance/endpoints/e-way-bill/transporter/multi-vehicle-movement/update_vehicle"
+														]
+													}
+												]
+											},
+											{
+												"group": "Common",
+												"pages": [
+													"api-reference/gst/compliance/endpoints/e-way-bill/common/get_e_way_bill",
+													"api-reference/gst/compliance/endpoints/e-way-bill/common/get_error_list",
+													"api-reference/gst/compliance/endpoints/e-way-bill/common/get_hsn_details",
+													"api-reference/gst/compliance/endpoints/e-way-bill/common/search_gstin",
+													"api-reference/gst/compliance/endpoints/e-way-bill/common/search_transporter"
 												]
 											}
 										]
@@ -444,7 +471,7 @@
 					{
 						"item": "TDS",
 						"description": "Automate TDS on Salary & Non-Salary Payments",
-						"icon": "/static/svg/TDS.svg",
+						"icon": "/static/svg/workload-icons/TDS.svg",
 						"pages": [
 							{
 								"group": "Calculator",
@@ -841,18 +868,6 @@
 			}
 		]
 	},
-	"openApiDataFiles": [
-		"api-reference/openapi.json",
-		"api-reference/kyc/openapi.json",
-		"api-reference/kyc/mca/openapi.json",
-		"api-reference/kyc/entitylocker-sdk/internal-apis/openapi.json",
-		"api-reference/gst/analytics/openapi.json",
-		"api-reference/gst/compliance/openapi.json",
-		"api-reference/tds/openapi.json",
-		"api-reference/tds/analytics/openapi.json",
-		"api-reference/tds/compliance/openapi.json",
-		"api-reference/bank/virtual-account/openapi.json"
-	],
 	"contextual": {
 		"options": [
 			"copy",
