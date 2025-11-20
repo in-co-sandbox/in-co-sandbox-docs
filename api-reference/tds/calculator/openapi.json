@@ -52,7 +52,7 @@
                 ],
                 "responses": {
                     "200": {
-                        "description": "200 TDS Calculated for 194BA",
+                        "description": "200 - OK",
                         "headers": {
                             "Date": {
                                 "schema": {
@@ -168,12 +168,139 @@
                                             "type": "integer"
                                         }
                                     }
+                                },
+                                "examples": {
+                                    "200 TDS Calculated for 194BA": {
+                                        "value": {
+                                            "transaction_id": "71aae9a5-88ce-4228-8718-7addc8bc722d",
+                                            "code": 200,
+                                            "data": {
+                                                "deduction_rate": 30,
+                                                "is_206ab_applicable": false,
+                                                "code": "9BA",
+                                                "credit_amount": 84232,
+                                                "due_date": 1696617000000,
+                                                "deduction_amount": 25270,
+                                                "section": "194BA",
+                                                "is_pan_available": true,
+                                                "@entity": "in.co.sandbox.tds.calculator.non_salary.response",
+                                                "credit_date": 1694131200000,
+                                                "threshold_amount": 0,
+                                                "is_pan_operative": false,
+                                                "nature_of_payment": "winnings_from_online_games",
+                                                "residential_status": "resident",
+                                                "deductee_type": "individual",
+                                                "category": "others"
+                                            },
+                                            "timestamp": 1728541084000
+                                        }
+                                    },
+                                    "200 TDS Calculated for 195": {
+                                        "value": {
+                                            "transaction_id": "13d8a609-1def-4f1d-8a72-2ec9858d974a",
+                                            "code": 200,
+                                            "data": {
+                                                "deduction_rate": 20.8,
+                                                "is_206ab_applicable": false,
+                                                "code": "195",
+                                                "credit_amount": 25000,
+                                                "due_date": 1701887400000,
+                                                "deduction_amount": 5200,
+                                                "section": "195",
+                                                "is_pan_available": true,
+                                                "@entity": "in.co.sandbox.tds.calculator.non_salary.response",
+                                                "credit_date": 1699315200000,
+                                                "threshold_amount": 0,
+                                                "is_pan_operative": true,
+                                                "nature_of_payment": "fees_for_technical_service",
+                                                "residential_status": "non_resident",
+                                                "deductee_type": "body_of_individuals",
+                                                "category": "fees_for_technical_service"
+                                            },
+                                            "timestamp": 1728541069000
+                                        }
+                                    },
+                                    "200 TDS Calculated for  194LC": {
+                                        "value": {
+                                            "transaction_id": "0e42c0ee-456e-4149-a62c-beda50187c67",
+                                            "code": 200,
+                                            "data": {
+                                                "deduction_rate": 5.2,
+                                                "is_206ab_applicable": false,
+                                                "code": "4LC",
+                                                "credit_amount": 7423,
+                                                "due_date": 1699295400000,
+                                                "deduction_amount": 386,
+                                                "section": "194LC",
+                                                "is_pan_available": true,
+                                                "@entity": "in.co.sandbox.tds.calculator.non_salary.response",
+                                                "credit_date": 1696636800000,
+                                                "threshold_amount": 0,
+                                                "is_pan_operative": true,
+                                                "nature_of_payment": "interest_payment_from_indian_company_or_business_trust",
+                                                "residential_status": "non_resident",
+                                                "deductee_type": "individual",
+                                                "category": "interest"
+                                            },
+                                            "timestamp": 1728541096000
+                                        }
+                                    },
+                                    "200 TDS Calculated for 194C": {
+                                        "value": {
+                                            "transaction_id": "ef8ee6f9-ad03-48ad-94a6-895a73fb9db5",
+                                            "code": 200,
+                                            "data": {
+                                                "deduction_rate": 1,
+                                                "is_206ab_applicable": true,
+                                                "code": "94C",
+                                                "credit_amount": 250000,
+                                                "due_date": 1701887400000,
+                                                "deduction_amount": 2500,
+                                                "section": "194C",
+                                                "is_pan_available": true,
+                                                "@entity": "in.co.sandbox.tds.calculator.non_salary.response",
+                                                "credit_date": 1699315200000,
+                                                "threshold_amount": 30000,
+                                                "is_pan_operative": true,
+                                                "nature_of_payment": "sales_and_marketing_services",
+                                                "residential_status": "resident",
+                                                "deductee_type": "individual",
+                                                "category": "contractual_payment"
+                                            },
+                                            "timestamp": 1728541002000
+                                        }
+                                    },
+                                    "200 - 200 TDS Calculated for 194C 1": {
+                                        "value": {
+                                            "transaction_id": "c19ff1d2-ac79-44fc-84b5-047fd2a77ead",
+                                            "code": 200,
+                                            "data": {
+                                                "deduction_rate": 20,
+                                                "is_206ab_applicable": false,
+                                                "code": "94C",
+                                                "credit_amount": 90500,
+                                                "due_date": 1688668200000,
+                                                "deduction_amount": 18100,
+                                                "section": "194C",
+                                                "is_pan_available": false,
+                                                "@entity": "in.co.sandbox.tds.calculator.non_salary.response",
+                                                "credit_date": 1685577600000,
+                                                "threshold_amount": 0,
+                                                "is_pan_operative": false,
+                                                "nature_of_payment": "tender_fees",
+                                                "residential_status": "resident",
+                                                "deductee_type": "company",
+                                                "category": "contractual_payment"
+                                            },
+                                            "timestamp": 1728541021000
+                                        }
+                                    }
                                 }
                             }
                         }
                     },
                     "400": {
-                        "description": "400 Request body not valid",
+                        "description": "400 - Bad Request",
                         "headers": {
                             "Date": {
                                 "schema": {
@@ -242,6 +369,16 @@
                                         },
                                         "timestamp": {
                                             "type": "integer"
+                                        }
+                                    }
+                                },
+                                "examples": {
+                                    "400 Request body not valid": {
+                                        "value": {
+                                            "transaction_id": "b19fb5c2-b88d-4436-b226-d388d9a01740",
+                                            "code": 400,
+                                            "message": "Request body not valid",
+                                            "timestamp": 1703168424000
                                         }
                                     }
                                 }
@@ -320,12 +457,102 @@
                                             "type": "integer"
                                         }
                                     }
+                                },
+                                "examples": {
+                                    "422 - Unprocessable Entity": {
+                                        "value": {
+                                            "transaction_id": "4ec93582-6325-45fa-8a80-4457a4b14efa",
+                                            "code": 422,
+                                            "message": "Invalid residential status",
+                                            "timestamp": 1703168329000
+                                        }
+                                    },
+                                    "422 Missing deductee type": {
+                                        "value": {
+                                            "transaction_id": "28c46f8c-fffb-40cf-b917-0b496feb36b4",
+                                            "code": 422,
+                                            "message": "Missing deductee type",
+                                            "timestamp": 1703168441000
+                                        }
+                                    },
+                                    "422 Invalid deductee type": {
+                                        "value": {
+                                            "transaction_id": "5139807c-9f9c-4e87-83b7-4d60ce0c8ac0",
+                                            "code": 422,
+                                            "message": "Invalid deductee type",
+                                            "timestamp": 1703168454000
+                                        }
+                                    },
+                                    "422 Missing pan available": {
+                                        "value": {
+                                            "transaction_id": "6616acff-34c0-4c73-b526-5715a8a79069",
+                                            "code": 422,
+                                            "message": "Missing pan available",
+                                            "timestamp": 1703168467000
+                                        }
+                                    },
+                                    "422 Missing residential status": {
+                                        "value": {
+                                            "transaction_id": "cb7c414d-1df3-47d9-a284-14598f82d78b",
+                                            "code": 422,
+                                            "message": "Missing residential status",
+                                            "timestamp": 1703168499000
+                                        }
+                                    },
+                                    "422 Invalid residential status": {
+                                        "value": {
+                                            "transaction_id": "598587c6-a5ae-43d3-b2a5-c050afdf5b99",
+                                            "code": 422,
+                                            "message": "Invalid residential status",
+                                            "timestamp": 1703168517000
+                                        }
+                                    },
+                                    "422 Missing nature of payment": {
+                                        "value": {
+                                            "transaction_id": "a2d8cc6c-3af4-4b7e-9848-9283353e3a31",
+                                            "code": 422,
+                                            "message": "Missing nature of payment",
+                                            "timestamp": 1703170833000
+                                        }
+                                    },
+                                    "422 Invalid nature of payment": {
+                                        "value": {
+                                            "transaction_id": "57773275-4f51-4987-8ce7-3f8d3b10b846",
+                                            "code": 422,
+                                            "message": "Invalid nature of payment",
+                                            "timestamp": 1703170858000
+                                        }
+                                    },
+                                    "422 Credit amount cannot be negative": {
+                                        "value": {
+                                            "transaction_id": "97c41038-162e-49a7-8bb2-d8b64542f0bf",
+                                            "code": 422,
+                                            "message": "Credit amount cannot be negative",
+                                            "timestamp": 1703170878000
+                                        }
+                                    },
+                                    "422 Missing credit amount": {
+                                        "value": {
+                                            "transaction_id": "70490c3b-477f-4537-b5cb-44ba7d9b612a",
+                                            "code": 422,
+                                            "message": "Missing credit amount",
+                                            "timestamp": 1703170910000
+                                        }
+                                    },
+                                    "422 Missing credit date": {
+                                        "value": {
+                                            "transaction_id": "8d6f398b-0afe-4303-944e-023673a65151",
+                                            "code": 422,
+                                            "message": "Missing credit date",
+                                            "timestamp": 1703170938000
+                                        }
+                                    }
                                 }
                             }
                         }
                     },
                     "500": {
-                        "description": "500 Reference data not found",
+                        "description": "500 - Internal Server Error",
                         "headers": {
                             "Date": {
                                 "schema": {
@@ -394,6 +621,16 @@
                                         },
                                         "timestamp": {
                                             "type": "integer"
+                                        }
+                                    }
+                                },
+                                "examples": {
+                                    "500 Reference data not found": {
+                                        "value": {
+                                            "transaction_id": "03e35453-dcec-4b33-a9dc-0c4714c9efba",
+                                            "code": 500,
+                                            "message": "Reference data not found",
+                                            "timestamp": 1703170954000
                                         }
                                     }
                                 }
@@ -497,7 +734,7 @@
                 ],
                 "responses": {
                     "200": {
-                        "description": "200 - Success",
+                        "description": "200 - OK",
                         "content": {
                             "application/json": {
                                 "schema": {
@@ -566,12 +803,139 @@
                                             }
                                         }
                                     }
+                                },
+                                "examples": {
+                                    "200 - Success": {
+                                        "value": {
+                                            "code": 200,
+                                            "timestamp": 1685577600000,
+                                            "transaction_id": "1eff4b29-c622-4486-8981-7caaea822e3d",
+                                            "data": {
+                                                "@entity": "in.co.sandbox.tcs.calculator.response",
+                                                "collectee_type": "individual",
+                                                "is_pan_available": true,
+                                                "is_206cca_applicable": true,
+                                                "is_pan_operative": true,
+                                                "residential_status": "resident",
+                                                "section": "206C(1G)",
+                                                "code": "6CQ",
+                                                "category": "remittance_under_lrs_for_purpose_other_than_for_purchase_of_overseas_tour_package_or_for_education_loan_taken_from_financial_institution_mentioned_under_section_80e",
+                                                "nature_of_payment": "foreign_remittance_for_other_purposes",
+                                                "payment_amount": 895345,
+                                                "payment_date": 1708926739000,
+                                                "collection_rate": 20,
+                                                "threshold_amount": 700000,
+                                                "due_date": 1709749800000,
+                                                "collection_amount": 39069
+                                            }
+                                        }
+                                    },
+                                    "200 TCS Calculated for 206C(1G)": {
+                                        "value": {
+                                            "code": 200,
+                                            "timestamp": 1763633943000,
+                                            "transaction_id": "db11de65-e36a-4b7a-ba7a-6590cabe5154",
+                                            "data": {
+                                                "@entity": "in.co.sandbox.tcs.calculator.response",
+                                                "deductee_type": "individual",
+                                                "is_pan_available": true,
+                                                "is_206cca_applicable": true,
+                                                "is_pan_operative": true,
+                                                "residential_status": "resident",
+                                                "section": "206C(1G)",
+                                                "code": "6CO",
+                                                "category": "overseas_tour_program_package",
+                                                "nature_of_payment": "foreign_flight_tickets",
+                                                "payment_amount": 775000,
+                                                "payment_date": 1698777000000,
+                                                "collection_rate": 20,
+                                                "threshold_amount": 700000,
+                                                "due_date": 1701887400000,
+                                                "collection_amount": 15000
+                                            }
+                                        }
+                                    },
+                                    "200 TCS Calculated for 206C(1F)": {
+                                        "value": {
+                                            "code": 200,
+                                            "timestamp": 1763633943000,
+                                            "transaction_id": "5f196dde-6e2c-4b73-8cc2-70ae87c51e66",
+                                            "data": {
+                                                "@entity": "in.co.sandbox.tcs.calculator.response",
+                                                "deductee_type": "individual",
+                                                "is_pan_available": true,
+                                                "is_206cca_applicable": false,
+                                                "is_pan_operative": true,
+                                                "residential_status": "resident",
+                                                "section": "206C(1F)",
+                                                "code": "6CL",
+                                                "category": "motor_vehicle_any_mode_of_payment",
+                                                "nature_of_payment": "sale_of_motor_vehicle",
+                                                "payment_amount": 1250000,
+                                                "payment_date": 1685577600000,
+                                                "collection_rate": 1,
+                                                "threshold_amount": 1000000,
+                                                "due_date": 1688668200000,
+                                                "collection_amount": 12500
+                                            }
+                                        }
+                                    },
+                                    "200 TCS Calculated for 206C(1)": {
+                                        "value": {
+                                            "code": 200,
+                                            "timestamp": 1763633943000,
+                                            "transaction_id": "c01778c3-a3f8-4f4b-863d-907f2d91b49c",
+                                            "data": {
+                                                "@entity": "in.co.sandbox.tcs.calculator.response",
+                                                "deductee_type": "individual",
+                                                "is_pan_available": true,
+                                                "is_206cca_applicable": true,
+                                                "is_pan_operative": true,
+                                                "residential_status": "resident",
+                                                "section": "206C(1)",
+                                                "code": "6CI",
+                                                "category": "tendu_leaves",
+                                                "nature_of_payment": "sale_of_tendu_leaves",
+                                                "payment_amount": 500000,
+                                                "payment_date": 1706639400000,
+                                                "collection_rate": 5,
+                                                "threshold_amount": 0,
+                                                "due_date": 1707244200000,
+                                                "collection_amount": 25000
+                                            }
+                                        }
+                                    },
+                                    "200 TCS Calculated for 206C(1H)": {
+                                        "value": {
+                                            "code": 200,
+                                            "timestamp": 1763633943000,
+                                            "transaction_id": "5c282d5f-2635-46c9-a299-9d529bab01c3",
+                                            "data": {
+                                                "@entity": "in.co.sandbox.tcs.calculator.response",
+                                                "deductee_type": "company",
+                                                "is_pan_available": true,
+                                                "is_206cca_applicable": false,
+                                                "is_pan_operative": true,
+                                                "residential_status": "resident",
+                                                "section": "206C(1H)",
+                                                "code": "6CR",
+                                                "category": "sale_of_goods",
+                                                "nature_of_payment": "sale_of_goods",
+                                                "payment_amount": 4500000,
+                                                "payment_date": 1707244200000,
+                                                "collection_rate": 0.1,
+                                                "threshold_amount": 5000000,
+                                                "due_date": 1709749800000,
+                                                "collection_amount": 0
+                                            }
+                                        }
+                                    }
                                 }
                             }
                         }
                     },
                     "400": {
-                        "description": "400 Request body not valid",
+                        "description": "400 - Bad Request",
                         "content": {
                             "application/json": {
                                 "schema": {
@@ -588,6 +952,16 @@
                                         },
                                         "timestamp": {
                                             "type": "integer"
+                                        }
+                                    }
+                                },
+                                "examples": {
+                                    "400 Request body not valid": {
+                                        "value": {
+                                            "transaction_id": "b19fb5c2-b88d-4436-b226-d388d9a01740",
+                                            "code": 400,
+                                            "message": "Request body not valid",
+                                            "timestamp": 1703168424000
                                         }
                                     }
                                 }
@@ -595,7 +969,7 @@
                         }
                     },
                     "422": {
-                        "description": "422 Missing collectee type",
+                        "description": "422 - Unprocessable Entity",
                         "content": {
                             "application/json": {
                                 "schema": {
@@ -614,12 +988,86 @@
                                             "type": "integer"
                                         }
                                     }
+                                },
+                                "examples": {
+                                    "422 Missing collectee type": {
+                                        "value": {
+                                            "transaction_id": "28c46f8c-fffb-40cf-b917-0b496feb36b4",
+                                            "code": 422,
+                                            "message": "Missing collectee type",
+                                            "timestamp": 1703168441000
+                                        }
+                                    },
+                                    "422 Invalid collectee type": {
+                                        "value": {
+                                            "transaction_id": "5139807c-9f9c-4e87-83b7-4d60ce0c8ac0",
+                                            "code": 422,
+                                            "message": "Invalid collectee type",
+                                            "timestamp": 1703168454000
+                                        }
+                                    },
+                                    "422 Missing pan available": {
+                                        "value": {
+                                            "transaction_id": "6616acff-34c0-4c73-b526-5715a8a79069",
+                                            "code": 422,
+                                            "message": "Missing pan available",
+                                            "timestamp": 1703168467000
+                                        }
+                                    },
+                                    "422 Missing residential status": {
+                                        "value": {
+                                            "transaction_id": "cb7c414d-1df3-47d9-a284-14598f82d78b",
+                                            "code": 422,
+                                            "message": "Missing residential status",
+                                            "timestamp": 1703168499000
+                                        }
+                                    },
+                                    "422 Invalid residential status": {
+                                        "value": {
+                                            "transaction_id": "598587c6-a5ae-43d3-b2a5-c050afdf5b99",
+                                            "code": 422,
+                                            "message": "Invalid residential status",
+                                            "timestamp": 1703168517000
+                                        }
+                                    },
+                                    "422 Missing nature of payment": {
+                                        "value": {
+                                            "transaction_id": "a2d8cc6c-3af4-4b7e-9848-9283353e3a31",
+                                            "code": 422,
+                                            "message": "Missing nature of payment",
+                                            "timestamp": 1703170833000
+                                        }
+                                    },
+                                    "422 Payment amount cannot be negative": {
+                                        "value": {
+                                            "transaction_id": "97c41038-162e-49a7-8bb2-d8b64542f0bf",
+                                            "code": 422,
+                                            "message": "payment amount cannot be negative",
+                                            "timestamp": 1703170878000
+                                        }
+                                    },
+                                    "422 Missing purchase amount": {
+                                        "value": {
+                                            "transaction_id": "70490c3b-477f-4537-b5cb-44ba7d9b612a",
+                                            "code": 422,
+                                            "message": "Missing payment amount",
+                                            "timestamp": 1703170910000
+                                        }
+                                    },
+                                    "422 Missing payment date": {
+                                        "value": {
+                                            "transaction_id": "8d6f398b-0afe-4303-944e-023673a65151",
+                                            "code": 422,
+                                            "message": "Missing payment date",
+                                            "timestamp": 1703170938000
+                                        }
+                                    }
                                 }
                             }
                         }
                     },
                     "500": {
-                        "description": "500 Reference data not found",
+                        "description": "500 - Internal Server Error",
                         "content": {
                             "application/json": {
                                 "schema": {
@@ -636,6 +1084,16 @@
                                         },
                                         "timestamp": {
                                             "type": "integer"
+                                        }
+                                    }
+                                },
+                                "examples": {
+                                    "500 Reference data not found": {
+                                        "value": {
+                                            "transaction_id": "03e35453-dcec-4b33-a9dc-0c4714c9efba",
+                                            "code": 500,
+                                            "message": "Reference data not found",
+                                            "timestamp": 1703170954000
                                         }
                                     }
                                 }
@@ -752,7 +1210,7 @@
                 ],
                 "responses": {
                     "200": {
-                        "description": "200 Job created",
+                        "description": "200 - OK",
                         "content": {
                             "application/json": {
                                 "schema": {
@@ -789,6 +1247,23 @@
                                                     "type": "string",
                                                     "format": "uri"
                                                 }
+                                            }
+                                        }
+                                    }
+                                },
+                                "examples": {
+                                    "200 Job created": {
+                                        "value": {
+                                            "code": 200,
+                                            "timestamp": 1685577600000,
+                                            "transaction_id": "cdf8b9a0-097b-40c4-a83d-5b765805045c",
+                                            "data": {
+                                                "@entity": "in.co.sandbox.tds.calculator.salary_details.job",
+                                                "financial_year": "FY 2024-25",
+                                                "job_id": "0cdd334c-c78e-4dea-91b5-ebb6542a8ec4",
+                                                "status": "created",
+                                                "created_at": 1685577600000,
+                                                "json_url": "https://test-api.sandbox.co.in/tds/calculator/salary/financial_year/0cdd334c-c78e-4dea-91b5-ebb6542a8ec4.json"
                                             }
                                         }
                                     }
@@ -843,7 +1318,7 @@
                 ],
                 "responses": {
                     "200": {
-                        "description": "200 - Success",
+                        "description": "200 - OK",
                         "content": {
                             "application/json": {
                                 "schema": {
@@ -883,6 +1358,69 @@
                                                     "type": "string",
                                                     "format": "uri"
                                                 }
+                                            }
+                                        }
+                                    }
+                                },
+                                "examples": {
+                                    "200 - Success": {
+                                        "value": {
+                                            "code": 200,
+                                            "timestamp": 1685577600000,
+                                            "transaction_id": "b36ba46e-9a58-470b-a6c1-4f36895dee7e",
+                                            "data": {
+                                                "@entity": "in.co.sandbox.tds.calculator.salary_details.job",
+                                                "financial_year": "FY 2024-25",
+                                                "job_id": "dba3e961-0602-4d20-a8ec-e4e21ac8dcac",
+                                                "status": "succeeded",
+                                                "created_at": 1726487871000,
+                                                "updated_at": 1726487881000,
+                                                "tds_on_salary_workbook_url": "https://in-co-sandbox-tds-calculator-salary-test.s3.ap-south-1.amazonaws.com/financial_year/c90c51a4-12c9-4795-8b46-4de0cb119947.xlsx"
+                                            }
+                                        }
+                                    },
+                                    "200 Job Created": {
+                                        "value": {
+                                            "code": 200,
+                                            "timestamp": 1763633943000,
+                                            "transaction_id": "06117371-7e2a-41d2-a819-1e05e4429833",
+                                            "data": {
+                                                "@entity": "in.co.sandbox.tds.calculator.salary_details.job",
+                                                "financial_year": "FY 2024-25",
+                                                "job_id": "e58b1b1e-bb42-4a24-8051-ba81e01434b8",
+                                                "status": "created",
+                                                "created_at": 1726487871000
+                                            }
+                                        }
+                                    },
+                                    "200 Job failed": {
+                                        "value": {
+                                            "code": 200,
+                                            "timestamp": 1685577600000,
+                                            "transaction_id": "eead196a-6a07-4440-a10f-cf5cd0c44c0d",
+                                            "data": {
+                                                "@entity": "in.co.sandbox.tds.calculator.salary_details.job",
+                                                "financial_year": "FY 2024-25",
+                                                "job_id": "613c3ef9-aabc-4efd-9274-acf555912395",
+                                                "status": "failed",
+                                                "created_at": 1726487871000,
+                                                "updated_at": 1726487881000,
+                                                "validation_url": "https://...."
+                                            }
+                                        }
+                                    },
+                                    "200 Queued": {
+                                        "value": {
+                                            "code": 200,
+                                            "timestamp": 1763633943000,
+                                            "transaction_id": "c50b0245-4212-4eff-a6d9-f75b416daf6e",
+                                            "data": {
+                                                "@entity": "in.co.sandbox.tds.calculator.salary_details.job",
+                                                "financial_year": "FY 2024-25",
+                                                "job_id": "9323c11e-6828-47f5-a273-8fc46866eb8a",
+                                                "status": "queued",
+                                                "created_at": 1726487871000,
+                                                "updated_at": 1726487881000
                                             }
                                         }
                                     }
@@ -941,7 +1479,7 @@
                 ],
                 "responses": {
                     "200": {
-                        "description": "200 Success",
+                        "description": "200 - OK",
                         "content": {
                             "application/json": {
                                 "schema": {
@@ -991,12 +1529,880 @@
                                             }
                                         }
                                     }
+                                },
+                                "examples": {
+                                    "200 Success": {
+                                        "value": {
+                                            "code": 200,
+                                            "timestamp": 1685577600000,
+                                            "transaction_id": "9430ede7-4316-407c-9f78-e9f0edb09933",
+                                            "data": {
+                                                "name": "tds_on_salary",
+                                                "@entity": "workbook",
+                                                "sheets": [
+                                                    {
+                                                        "name": "salary_details_new_regime_list",
+                                                        "@entity": "list",
+                                                        "items": [
+                                                            [
+                                                                "pan_status",
+                                                                "PANISVALID"
+                                                            ],
+                                                            [
+                                                                "employee_category",
+                                                                "general"
+                                                            ],
+                                                            [
+                                                                "gross_salary_from_previous_employers",
+                                                                0
+                                                            ],
+                                                            [
+                                                                "tds_by_previous_employers",
+                                                                0
+                                                            ],
+                                                            [
+                                                                "salary_as_per_provisions_contained_in_section_17_1",
+                                                                750000
+                                                            ],
+                                                            [
+                                                                "value_of_perquisites_us_17_2",
+                                                                0
+                                                            ],
+                                                            [
+                                                                "profits_in_lieu_of_salary_us_17_3",
+                                                                0
+                                                            ],
+                                                            [
+                                                                "travel_concession_or_assistance_us_10_5",
+                                                                0
+                                                            ],
+                                                            [
+                                                                "death_cum_retirement_gratuity_us_10_10",
+                                                                0
+                                                            ],
+                                                            [
+                                                                "commuted_value_of_pension_us_10_10_a",
+                                                                0
+                                                            ],
+                                                            [
+                                                                "cash_equivalent_of_leave_salary_encashment_us_10_10_aa",
+                                                                0
+                                                            ],
+                                                            [
+                                                                "house_rent_allowance_us_10_13_a",
+                                                                0
+                                                            ],
+                                                            [
+                                                                "other_special_allowances_under_section_10_14",
+                                                                0
+                                                            ],
+                                                            [
+                                                                "total_amount_of_any_other_exemption_us_10",
+                                                                0
+                                                            ],
+                                                            [
+                                                                "standard_deduction_us_16_ia",
+                                                                0
+                                                            ],
+                                                            [
+                                                                "entertainment_allowance_us_16_ii",
+                                                                0
+                                                            ],
+                                                            [
+                                                                "tax_on_employment_us_16_iii",
+                                                                0
+                                                            ],
+                                                            [
+                                                                "income_from_house_property_reported_by_employee_offered_for_tds",
+                                                                -200000
+                                                            ],
+                                                            [
+                                                                "income_under_the_head_other_sources_offered_for_tds",
+                                                                0
+                                                            ],
+                                                            [
+                                                                "gross_amount_us_80_c",
+                                                                0
+                                                            ],
+                                                            [
+                                                                "deductible_amount_us_80_c",
+                                                                0
+                                                            ],
+                                                            [
+                                                                "gross_amount_us_80_ccc",
+                                                                0
+                                                            ],
+                                                            [
+                                                                "deductible_amount_us_80_ccc",
+                                                                0
+                                                            ],
+                                                            [
+                                                                "gross_amount_us_80_ccd_1",
+                                                                0
+                                                            ],
+                                                            [
+                                                                "deductible_amount_us_80_ccd_1",
+                                                                0
+                                                            ],
+                                                            [
+                                                                "gross_amount_us_80_ccd_1_b",
+                                                                0
+                                                            ],
+                                                            [
+                                                                "deductible_amount_us_80_ccd_1_b",
+                                                                0
+                                                            ],
+                                                            [
+                                                                "gross_amount_us_80_ccd_2",
+                                                                0
+                                                            ],
+                                                            [
+                                                                "deductible_amount_us_80_ccd_2",
+                                                                0
+                                                            ],
+                                                            [
+                                                                "gross_amount_us_80_ccg",
+                                                                0
+                                                            ],
+                                                            [
+                                                                "deductible_amount_us_80_ccg",
+                                                                0
+                                                            ],
+                                                            [
+                                                                "gross_amount_us_80_cch",
+                                                                0
+                                                            ],
+                                                            [
+                                                                "deductible_amount_us_80_cch",
+                                                                0
+                                                            ],
+                                                            [
+                                                                "gross_amount_us_80_d",
+                                                                0
+                                                            ],
+                                                            [
+                                                                "deductible_amount_us_80_d",
+                                                                0
+                                                            ],
+                                                            [
+                                                                "gross_amount_us_80_e",
+                                                                0
+                                                            ],
+                                                            [
+                                                                "deductible_amount_us_80_e",
+                                                                0
+                                                            ],
+                                                            [
+                                                                "gross_amount_us_80_g",
+                                                                0
+                                                            ],
+                                                            [
+                                                                "deductible_amount_us_80_g",
+                                                                0
+                                                            ],
+                                                            [
+                                                                "qualifying_amount_us_80_g",
+                                                                0
+                                                            ],
+                                                            [
+                                                                "gross_amount_us_80_tta",
+                                                                0
+                                                            ],
+                                                            [
+                                                                "deductible_amount_us_80_tta",
+                                                                0
+                                                            ],
+                                                            [
+                                                                "qualifying_amount_us_80_tta",
+                                                                0
+                                                            ],
+                                                            [
+                                                                "gross_amount_for_other_deductions",
+                                                                0
+                                                            ],
+                                                            [
+                                                                "deductible_amount_for_other_deductions",
+                                                                0
+                                                            ],
+                                                            [
+                                                                "qualifying_amount_for_other_deductions",
+                                                                0
+                                                            ],
+                                                            [
+                                                                "income_tax_payable",
+                                                                0
+                                                            ],
+                                                            [
+                                                                "surcharge",
+                                                                0
+                                                            ],
+                                                            [
+                                                                "health_and_education_cess",
+                                                                0
+                                                            ],
+                                                            [
+                                                                "tds_on_salary",
+                                                                0
+                                                            ],
+                                                            [
+                                                                "relief_us_87_a",
+                                                                25000
+                                                            ]
+                                                        ]
+                                                    },
+                                                    {
+                                                        "name": "salary_details_old_regime_list",
+                                                        "@entity": "list",
+                                                        "items": [
+                                                            [
+                                                                "pan_status",
+                                                                "PANISVALID"
+                                                            ],
+                                                            [
+                                                                "employee_category",
+                                                                "general"
+                                                            ],
+                                                            [
+                                                                "gross_salary_from_previous_employers",
+                                                                0
+                                                            ],
+                                                            [
+                                                                "tds_by_previous_employers",
+                                                                0
+                                                            ],
+                                                            [
+                                                                "salary_as_per_provisions_contained_in_section_17_1",
+                                                                750000
+                                                            ],
+                                                            [
+                                                                "value_of_perquisites_us_17_2",
+                                                                0
+                                                            ],
+                                                            [
+                                                                "profits_in_lieu_of_salary_us_17_3",
+                                                                0
+                                                            ],
+                                                            [
+                                                                "travel_concession_or_assistance_us_10_5",
+                                                                0
+                                                            ],
+                                                            [
+                                                                "death_cum_retirement_gratuity_us_10_10",
+                                                                0
+                                                            ],
+                                                            [
+                                                                "commuted_value_of_pension_us_10_10_a",
+                                                                0
+                                                            ],
+                                                            [
+                                                                "cash_equivalent_of_leave_salary_encashment_us_10_10_aa",
+                                                                0
+                                                            ],
+                                                            [
+                                                                "house_rent_allowance_us_10_13_a",
+                                                                0
+                                                            ],
+                                                            [
+                                                                "other_special_allowances_under_section_10_14",
+                                                                0
+                                                            ],
+                                                            [
+                                                                "total_amount_of_any_other_exemption_us_10",
+                                                                0
+                                                            ],
+                                                            [
+                                                                "standard_deduction_us_16_ia",
+                                                                0
+                                                            ],
+                                                            [
+                                                                "entertainment_allowance_us_16_ii",
+                                                                0
+                                                            ],
+                                                            [
+                                                                "tax_on_employment_us_16_iii",
+                                                                0
+                                                            ],
+                                                            [
+                                                                "income_from_house_property_reported_by_employee_offered_for_tds",
+                                                                -200000
+                                                            ],
+                                                            [
+                                                                "income_under_the_head_other_sources_offered_for_tds",
+                                                                0
+                                                            ],
+                                                            [
+                                                                "gross_amount_us_80_c",
+                                                                0
+                                                            ],
+                                                            [
+                                                                "deductible_amount_us_80_c",
+                                                                0
+                                                            ],
+                                                            [
+                                                                "gross_amount_us_80_ccc",
+                                                                0
+                                                            ],
+                                                            [
+                                                                "deductible_amount_us_80_ccc",
+                                                                0
+                                                            ],
+                                                            [
+                                                                "gross_amount_us_80_ccd_1",
+                                                                0
+                                                            ],
+                                                            [
+                                                                "deductible_amount_us_80_ccd_1",
+                                                                0
+                                                            ],
+                                                            [
+                                                                "gross_amount_us_80_ccd_1_b",
+                                                                0
+                                                            ],
+                                                            [
+                                                                "deductible_amount_us_80_ccd_1_b",
+                                                                0
+                                                            ],
+                                                            [
+                                                                "gross_amount_us_80_ccd_2",
+                                                                0
+                                                            ],
+                                                            [
+                                                                "deductible_amount_us_80_ccd_2",
+                                                                0
+                                                            ],
+                                                            [
+                                                                "gross_amount_us_80_ccg",
+                                                                0
+                                                            ],
+                                                            [
+                                                                "deductible_amount_us_80_ccg",
+                                                                0
+                                                            ],
+                                                            [
+                                                                "gross_amount_us_80_cch",
+                                                                0
+                                                            ],
+                                                            [
+                                                                "deductible_amount_us_80_cch",
+                                                                0
+                                                            ],
+                                                            [
+                                                                "gross_amount_us_80_d",
+                                                                0
+                                                            ],
+                                                            [
+                                                                "deductible_amount_us_80_d",
+                                                                0
+                                                            ],
+                                                            [
+                                                                "gross_amount_us_80_e",
+                                                                0
+                                                            ],
+                                                            [
+                                                                "deductible_amount_us_80_e",
+                                                                0
+                                                            ],
+                                                            [
+                                                                "gross_amount_us_80_g",
+                                                                0
+                                                            ],
+                                                            [
+                                                                "deductible_amount_us_80_g",
+                                                                0
+                                                            ],
+                                                            [
+                                                                "qualifying_amount_us_80_g",
+                                                                0
+                                                            ],
+                                                            [
+                                                                "gross_amount_us_80_tta",
+                                                                0
+                                                            ],
+                                                            [
+                                                                "deductible_amount_us_80_tta",
+                                                                0
+                                                            ],
+                                                            [
+                                                                "qualifying_amount_us_80_tta",
+                                                                0
+                                                            ],
+                                                            [
+                                                                "gross_amount_for_other_deductions",
+                                                                0
+                                                            ],
+                                                            [
+                                                                "deductible_amount_for_other_deductions",
+                                                                0
+                                                            ],
+                                                            [
+                                                                "qualifying_amount_for_other_deductions",
+                                                                0
+                                                            ],
+                                                            [
+                                                                "income_tax_payable",
+                                                                0
+                                                            ],
+                                                            [
+                                                                "surcharge",
+                                                                0
+                                                            ],
+                                                            [
+                                                                "health_and_education_cess",
+                                                                0
+                                                            ],
+                                                            [
+                                                                "tds_on_salary",
+                                                                0
+                                                            ],
+                                                            [
+                                                                "relief_us_87_a",
+                                                                12500
+                                                            ]
+                                                        ]
+                                                    }
+                                                ]
+                                            }
+                                        }
+                                    },
+                                    "200 Success (2)": {
+                                        "value": {
+                                            "code": 200,
+                                            "timestamp": 1763633943000,
+                                            "transaction_id": "e657299f-cd93-46f6-a55c-c6d0939918c7",
+                                            "data": {
+                                                "name": "tds_on_salary",
+                                                "@entity": "workbook",
+                                                "sheets": [
+                                                    {
+                                                        "name": "salary_details_new_regime_list",
+                                                        "@entity": "list",
+                                                        "items": [
+                                                            [
+                                                                "pan_status",
+                                                                "PANISVALID"
+                                                            ],
+                                                            [
+                                                                "employee_category",
+                                                                "general"
+                                                            ],
+                                                            [
+                                                                "gross_salary_from_previous_employers",
+                                                                0
+                                                            ],
+                                                            [
+                                                                "tds_by_previous_employers",
+                                                                0
+                                                            ],
+                                                            [
+                                                                "salary_as_per_provisions_contained_in_section_17_1",
+                                                                750000
+                                                            ],
+                                                            [
+                                                                "value_of_perquisites_us_17_2",
+                                                                0
+                                                            ],
+                                                            [
+                                                                "profits_in_lieu_of_salary_us_17_3",
+                                                                0
+                                                            ],
+                                                            [
+                                                                "travel_concession_or_assistance_us_10_5",
+                                                                0
+                                                            ],
+                                                            [
+                                                                "death_cum_retirement_gratuity_us_10_10",
+                                                                0
+                                                            ],
+                                                            [
+                                                                "commuted_value_of_pension_us_10_10_a",
+                                                                0
+                                                            ],
+                                                            [
+                                                                "cash_equivalent_of_leave_salary_encashment_us_10_10_aa",
+                                                                0
+                                                            ],
+                                                            [
+                                                                "house_rent_allowance_us_10_13_a",
+                                                                0
+                                                            ],
+                                                            [
+                                                                "other_special_allowances_under_section_10_14",
+                                                                0
+                                                            ],
+                                                            [
+                                                                "total_amount_of_any_other_exemption_us_10",
+                                                                0
+                                                            ],
+                                                            [
+                                                                "standard_deduction_us_16_ia",
+                                                                50000
+                                                            ],
+                                                            [
+                                                                "entertainment_allowance_us_16_ii",
+                                                                0
+                                                            ],
+                                                            [
+                                                                "tax_on_employment_us_16_iii",
+                                                                0
+                                                            ],
+                                                            [
+                                                                "income_from_house_property_reported_by_employee_offered_for_tds",
+                                                                346500
+                                                            ],
+                                                            [
+                                                                "income_under_the_head_other_sources_offered_for_tds",
+                                                                0
+                                                            ],
+                                                            [
+                                                                "gross_amount_us_80_c",
+                                                                0
+                                                            ],
+                                                            [
+                                                                "deductible_amount_us_80_c",
+                                                                0
+                                                            ],
+                                                            [
+                                                                "gross_amount_us_80_ccc",
+                                                                0
+                                                            ],
+                                                            [
+                                                                "deductible_amount_us_80_ccc",
+                                                                0
+                                                            ],
+                                                            [
+                                                                "gross_amount_us_80_ccd_1",
+                                                                0
+                                                            ],
+                                                            [
+                                                                "deductible_amount_us_80_ccd_1",
+                                                                0
+                                                            ],
+                                                            [
+                                                                "gross_amount_us_80_ccd_1_b",
+                                                                0
+                                                            ],
+                                                            [
+                                                                "deductible_amount_us_80_ccd_1_b",
+                                                                0
+                                                            ],
+                                                            [
+                                                                "gross_amount_us_80_ccd_2",
+                                                                0
+                                                            ],
+                                                            [
+                                                                "deductible_amount_us_80_ccd_2",
+                                                                0
+                                                            ],
+                                                            [
+                                                                "gross_amount_us_80_ccg",
+                                                                0
+                                                            ],
+                                                            [
+                                                                "deductible_amount_us_80_ccg",
+                                                                0
+                                                            ],
+                                                            [
+                                                                "gross_amount_us_80_cch",
+                                                                0
+                                                            ],
+                                                            [
+                                                                "deductible_amount_us_80_cch",
+                                                                0
+                                                            ],
+                                                            [
+                                                                "gross_amount_us_80_d",
+                                                                0
+                                                            ],
+                                                            [
+                                                                "deductible_amount_us_80_d",
+                                                                0
+                                                            ],
+                                                            [
+                                                                "gross_amount_us_80_e",
+                                                                0
+                                                            ],
+                                                            [
+                                                                "deductible_amount_us_80_e",
+                                                                0
+                                                            ],
+                                                            [
+                                                                "gross_amount_us_80_g",
+                                                                0
+                                                            ],
+                                                            [
+                                                                "deductible_amount_us_80_g",
+                                                                0
+                                                            ],
+                                                            [
+                                                                "qualifying_amount_us_80_g",
+                                                                0
+                                                            ],
+                                                            [
+                                                                "gross_amount_us_80_tta",
+                                                                0
+                                                            ],
+                                                            [
+                                                                "deductible_amount_us_80_tta",
+                                                                0
+                                                            ],
+                                                            [
+                                                                "qualifying_amount_us_80_tta",
+                                                                0
+                                                            ],
+                                                            [
+                                                                "gross_amount_for_other_deductions",
+                                                                0
+                                                            ],
+                                                            [
+                                                                "deductible_amount_for_other_deductions",
+                                                                0
+                                                            ],
+                                                            [
+                                                                "qualifying_amount_for_other_deductions",
+                                                                0
+                                                            ],
+                                                            [
+                                                                "income_tax_payable",
+                                                                60975
+                                                            ],
+                                                            [
+                                                                "surcharge",
+                                                                0
+                                                            ],
+                                                            [
+                                                                "health_and_education_cess",
+                                                                2439
+                                                            ],
+                                                            [
+                                                                "tds_on_salary",
+                                                                63414
+                                                            ],
+                                                            [
+                                                                "relief_us_87_a",
+                                                                0
+                                                            ]
+                                                        ]
+                                                    },
+                                                    {
+                                                        "name": "salary_details_old_regime_list",
+                                                        "@entity": "list",
+                                                        "items": [
+                                                            [
+                                                                "pan_status",
+                                                                "PANISVALID"
+                                                            ],
+                                                            [
+                                                                "employee_category",
+                                                                "general"
+                                                            ],
+                                                            [
+                                                                "gross_salary_from_previous_employers",
+                                                                0
+                                                            ],
+                                                            [
+                                                                "tds_by_previous_employers",
+                                                                0
+                                                            ],
+                                                            [
+                                                                "salary_as_per_provisions_contained_in_section_17_1",
+                                                                750000
+                                                            ],
+                                                            [
+                                                                "value_of_perquisites_us_17_2",
+                                                                0
+                                                            ],
+                                                            [
+                                                                "profits_in_lieu_of_salary_us_17_3",
+                                                                0
+                                                            ],
+                                                            [
+                                                                "travel_concession_or_assistance_us_10_5",
+                                                                0
+                                                            ],
+                                                            [
+                                                                "death_cum_retirement_gratuity_us_10_10",
+                                                                0
+                                                            ],
+                                                            [
+                                                                "commuted_value_of_pension_us_10_10_a",
+                                                                0
+                                                            ],
+                                                            [
+                                                                "cash_equivalent_of_leave_salary_encashment_us_10_10_aa",
+                                                                0
+                                                            ],
+                                                            [
+                                                                "house_rent_allowance_us_10_13_a",
+                                                                0
+                                                            ],
+                                                            [
+                                                                "other_special_allowances_under_section_10_14",
+                                                                0
+                                                            ],
+                                                            [
+                                                                "total_amount_of_any_other_exemption_us_10",
+                                                                0
+                                                            ],
+                                                            [
+                                                                "standard_deduction_us_16_ia",
+                                                                50000
+                                                            ],
+                                                            [
+                                                                "entertainment_allowance_us_16_ii",
+                                                                0
+                                                            ],
+                                                            [
+                                                                "tax_on_employment_us_16_iii",
+                                                                0
+                                                            ],
+                                                            [
+                                                                "income_from_house_property_reported_by_employee_offered_for_tds",
+                                                                346500
+                                                            ],
+                                                            [
+                                                                "income_under_the_head_other_sources_offered_for_tds",
+                                                                0
+                                                            ],
+                                                            [
+                                                                "gross_amount_us_80_c",
+                                                                0
+                                                            ],
+                                                            [
+                                                                "deductible_amount_us_80_c",
+                                                                0
+                                                            ],
+                                                            [
+                                                                "gross_amount_us_80_ccc",
+                                                                0
+                                                            ],
+                                                            [
+                                                                "deductible_amount_us_80_ccc",
+                                                                0
+                                                            ],
+                                                            [
+                                                                "gross_amount_us_80_ccd_1",
+                                                                0
+                                                            ],
+                                                            [
+                                                                "deductible_amount_us_80_ccd_1",
+                                                                0
+                                                            ],
+                                                            [
+                                                                "gross_amount_us_80_ccd_1_b",
+                                                                0
+                                                            ],
+                                                            [
+                                                                "deductible_amount_us_80_ccd_1_b",
+                                                                0
+                                                            ],
+                                                            [
+                                                                "gross_amount_us_80_ccd_2",
+                                                                0
+                                                            ],
+                                                            [
+                                                                "deductible_amount_us_80_ccd_2",
+                                                                0
+                                                            ],
+                                                            [
+                                                                "gross_amount_us_80_ccg",
+                                                                0
+                                                            ],
+                                                            [
+                                                                "deductible_amount_us_80_ccg",
+                                                                0
+                                                            ],
+                                                            [
+                                                                "gross_amount_us_80_cch",
+                                                                0
+                                                            ],
+                                                            [
+                                                                "deductible_amount_us_80_cch",
+                                                                0
+                                                            ],
+                                                            [
+                                                                "gross_amount_us_80_d",
+                                                                0
+                                                            ],
+                                                            [
+                                                                "deductible_amount_us_80_d",
+                                                                0
+                                                            ],
+                                                            [
+                                                                "gross_amount_us_80_e",
+                                                                0
+                                                            ],
+                                                            [
+                                                                "deductible_amount_us_80_e",
+                                                                0
+                                                            ],
+                                                            [
+                                                                "gross_amount_us_80_g",
+                                                                0
+                                                            ],
+                                                            [
+                                                                "deductible_amount_us_80_g",
+                                                                0
+                                                            ],
+                                                            [
+                                                                "qualifying_amount_us_80_g",
+                                                                0
+                                                            ],
+                                                            [
+                                                                "gross_amount_us_80_tta",
+                                                                0
+                                                            ],
+                                                            [
+                                                                "deductible_amount_us_80_tta",
+                                                                0
+                                                            ],
+                                                            [
+                                                                "qualifying_amount_us_80_tta",
+                                                                0
+                                                            ],
+                                                            [
+                                                                "gross_amount_for_other_deductions",
+                                                                0
+                                                            ],
+                                                            [
+                                                                "deductible_amount_for_other_deductions",
+                                                                0
+                                                            ],
+                                                            [
+                                                                "qualifying_amount_for_other_deductions",
+                                                                0
+                                                            ],
+                                                            [
+                                                                "income_tax_payable",
+                                                                114450
+                                                            ],
+                                                            [
+                                                                "surcharge",
+                                                                0
+                                                            ],
+                                                            [
+                                                                "health_and_education_cess",
+                                                                4578
+                                                            ],
+                                                            [
+                                                                "tds_on_salary",
+                                                                119028
+                                                            ],
+                                                            [
+                                                                "relief_us_87_a",
+                                                                0
+                                                            ]
+                                                        ]
+                                                    }
+                                                ]
+                                            }
+                                        }
+                                    }
                                 }
                             }
                         }
                     },
                     "400": {
-                        "description": "400 Invalid request body",
+                        "description": "400 - Bad Request",
                         "content": {
                             "application/json": {
                                 "schema": {
@@ -1015,12 +2421,22 @@
                                             "type": "string"
                                         }
                                     }
+                                },
+                                "examples": {
+                                    "400 Invalid request body": {
+                                        "value": {
+                                            "code": 400,
+                                            "timestamp": 1685577600000,
+                                            "transaction_id": "082be84c-16b7-42d5-8a49-533ee0c47ceb",
+                                            "message": "Invalid request body"
+                                        }
+                                    }
                                 }
                             }
                         }
                     },
                     "422": {
-                        "description": "422 Invalid Financial Year",
+                        "description": "422 - Unprocessable Entity",
                         "content": {
                             "application/json": {
                                 "schema": {
@@ -1037,6 +2453,16 @@
                                         },
                                         "message": {
                                             "type": "string"
+                                        }
+                                    }
+                                },
+                                "examples": {
+                                    "422 Invalid Financial Year": {
+                                        "value": {
+                                            "code": 422,
+                                            "timestamp": 1685577600000,
+                                            "transaction_id": "caa8cddb-3ffa-4a7e-9510-65b9fdda9f89",
+                                            "message": "Invalid financial year: FY 2022-2"
                                         }
                                     }
                                 }
