@@ -3,16 +3,6 @@ title: Salary Payments
 mode: "wide"
 ---
 
-
-<Card
-  title="View Workbook"
-  icon="file-spreadsheet"
-  href="https://sheet-tools.quicko.org.in/sheet-visualiser?schema_url=https://raw.githubusercontent.com/in-co-sandbox/in-co-sandbox-docs/refs/heads/feature/tds-docs/data/tds/reports/forms/form26q_workbook.schema.json&data_url=https://raw.githubusercontent.com/in-co-sandbox/in-co-sandbox-docs/refs/heads/feature/tds-docs/data/tds/reports/forms/form26q_workbook.data.json"
-  arrow="true"
-  horizontal
->
-</Card>
-
 To generate the TXT file, you must pass the deduction-related details in a sheet JSON format. A sample payload is mentioned for your reference. Note that you can refer to the sample payload in the form of a workbook.
 
 
@@ -20,3 +10,22 @@ To generate the TXT file, you must pass the deduction-related details in a sheet
   <Note>
   Once the job is successfully created, upload the payload using HTTP PUT method on generated presigned url. [Read More](https://docs.aws.amazon.com/AmazonS3/latest/userguide/PresignedUrlUploadObject.html)
   </Note>
+<CardGroup>
+  <Card
+  title="View Workbook"
+  icon="file-spreadsheet"
+  href="https://sheet-tools.quicko.org.in/sheet-visualiser?schema_url=https://raw.githubusercontent.com/company-quicko/in-co-sandbox-tds/refs/heads/main/analytics/nodejs/lib/in-co-sandbox-tds-analytics-sheet-core/generated/schemas/form24q_workbook.json/form24q_workbook.schema.json?token=GHSAT0AAAAAADN7EI3MD5JTE6FWTWVRBNPK2I63MIA&data_url=https://raw.githubusercontent.com/in-co-sandbox/in-co-sandbox-docs/refs/heads/feature/tds-docs/data/tds/analytics/forms/form24q_workbook.data.json"
+  arrow="true"
+  horizontal
+>
+</Card>
+
+  <Card
+  title="View Schema"
+  icon="file-spreadsheet"
+  href="https://sheet-tools.quicko.org.in/sheet-visualiser?schema_url=https://raw.githubusercontent.com/company-quicko/in-co-sandbox-tds/refs/heads/main/analytics/nodejs/lib/in-co-sandbox-tds-analytics-sheet-core/generated/schemas/form24q_workbook.json/form24q_workbook.schema.json?token=GHSAT0AAAAAADN7EI3MD5JTE6FWTWVRBNPK2I63MIA"
+  arrow="true"
+  horizontal
+>
+</Card>
+</CardGroup>
