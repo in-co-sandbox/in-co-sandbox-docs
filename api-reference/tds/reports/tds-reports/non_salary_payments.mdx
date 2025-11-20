@@ -3,6 +3,16 @@ title: Non Salary Payments
 mode: "wide"
 ---
 
+
+<Card
+  title="View Workbook"
+  icon="file-spreadsheet"
+  href="https://sheet-tools-git-feature-source-url-org-quicko.vercel.app/sheet-schema-builder?source_url=https://raw.githubusercontent.com/in-co-sandbox/in-co-sandbox-docs/refs/heads/feature/tds-docs/data/tds/reports/forms/form26q_workbook.schema.json&data_url=https://raw.githubusercontent.com/in-co-sandbox/in-co-sandbox-docs/refs/heads/feature/tds-docs/data/tds/reports/forms/form26q_workbook.data.json"
+  arrow="true"
+  horizontal
+>
+</Card>
+
 To generate the TXT file, you must pass the deduction-related details in a sheet JSON format. A sample payload is mentioned for your reference. Note that you can refer to the sample payload in the form of a workbook.
 
 
@@ -42,8 +52,12 @@ To generate the TXT file, you must pass the deduction-related details in a sheet
         <ResponseField name="items" type="array<object>">
           Allowed value : `items`
           <Expandable title="items">
-            <ResponseField name="name" type="string"></ResponseField>
-            <ResponseField name="tan" type="string"></ResponseField>
+            <ResponseField name="name" type="string" required>
+            Name of the Payer
+            </ResponseField>
+            <ResponseField name="tan" type="string">
+              TAN of the Payer
+            </ResponseField>
             <ResponseField name="pan" type="string"></ResponseField>
             <ResponseField name="branch" type="string"></ResponseField>
             <ResponseField name="gstin" type="string"></ResponseField>
@@ -119,13 +133,13 @@ To generate the TXT file, you must pass the deduction-related details in a sheet
 
           <Expandable title="child attributes">
             <ResponseField name="sr_no" type="number">
-              Allowed value : `sr_no`
+              
             </ResponseField>
             <ResponseField name="pan" type="string">
-              Allowed value : `pan`
+              
             </ResponseField>
             <ResponseField name="name" type="string">
-              Allowed value : `name`
+              
             </ResponseField>
           </Expandable>
         </ResponseField>
@@ -342,9 +356,9 @@ To generate the TXT file, you must pass the deduction-related details in a sheet
     <Accordion title="Sample Workbook">
     ```json
     {
-      "name": "form26q_workbook",
-      "@entity": "workbook",
-      "sheets": [
+    "name": "form26q_workbook",
+    "@entity": "workbook",
+    "sheets": [
         {
             "name": "payer_sheet",
             "@entity": "sheet",

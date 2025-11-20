@@ -1,130 +1,108 @@
 ---
 mode: "wide"
 "og:title": "Sandbox API Docs | Tax API Stack for India by Quicko"
-
+"og:description": "Here you'll find guides, references, and resources to build with Sandbox. Let's get you started. API stack for Businesses to automate KYC, GST, TDS & Income Tax."
 ---
 
-<div
-  style={{
-    display: "flex",
-    flexDirection: "column",
-    justifyContent: "center",
-    alignItems: "center",
-    height: "20vh",
-    textAlign: "center",
-  }}
->
-  <h1 style={{ fontSize: "2.5rem", fontWeight: "600", marginBottom: "1rem" }}>
-    Documentation
-  </h1>
-  <p style={{ maxWidth: "600px", fontSize: "1.1rem", color: "#666" }}>
-    Explore our references, guides and recipes to integrate APIs and SDKs.
-  </p>
-</div>
+<div id="landing_page_background_div">
+  <div
+    style={{
+      display: "flex",
+      flexDirection: "column",
+      justifyContent: "center",
+      alignItems: "center",
+      height: "20vh",
+      textAlign: "center",
+    }}
+  >
+    <h1 style={{ fontSize: "2.5rem", fontWeight: "600", marginBottom: "0rem" }}>
+      Documentation
+    </h1>
+    <p style={{ maxWidth: "600px", fontSize: "1.1rem" }}>
+      Explore our references, guides and recipes to integrate\
+      Sandbox APIs and SDKs.
+    </p>
+  </div>
 
-<CardGroup cols={2}>
+  <CardGroup cols={2}>
+    <Card title="Quick Start" icon="rocket-launch" href="/components/columns" cta="Get Started">
+      Make your first Sandbox API call by following our step-by-step guide.
+    </Card>
 
-  <Card
-    title="Quick Start"
-    icon="rocket-launch"
-    href="/components/columns"
-    cta="Get Started">
-    This is an example of a card with an icon and a link. Clicking on this card brings you to the Columns page.
-  </Card>
+    <Card title="API Reference" icon="code" href="/components/columns" cta="View Reference">
+      Explore our API contracts, reusable code samples, and test scenarios.
+    </Card>
+  </CardGroup>
 
-  <Card
-    title="API Reference"
-    icon="code"
-    href="/components/columns"
-    cta="View Reference">
-    This is an example of a card with an icon and a link. Clicking on this card brings you to the Columns page.
-  </Card>
+  ---
 
-</CardGroup>
+  ## Products
 
----
-
-## Product
-
-<CardGroup cols={2}>
-
-  <Card
-    title="KYC"
-    icon="/static/svg/workload-icons/KYC.svg"
-    img = "/static/svg/landing/KYC.svg"
-    href="/components/columns">
-    Confirm Identities with confidence
-  </Card>
-
-  <Card
-    title="GST"
-    icon="/static/svg/workload-icons/GST.svg"
-    img = "/static/svg/landing/GST.svg"
-    href="/components/columns">
-    Simple and Secure GST Compliance
-  </Card>
-
-  <Card
-    title="TDS"
-    icon="/static/svg/workload-icons/TDS.svg"
-    img = "/static/svg/landing/TDS.svg"
-    href="/components/columns">
-    Automate TDS on Salary & Non-Salary Payments
-  </Card>
-
-  <Card
-    title="Income Tax"
-    icon="/static/svg/workload-icons/IT.svg"
-    img = "/static/svg/landing/IT.svg"
-    href="/components/columns">
-    Direct tax compliance on auto-pilot
-  </Card>
-
-</CardGroup>
-
----
-
-## Resources
-
-<CardGroup cols={3}>
-  <Card
-    title="Collections"
-    icon="book-bookmark"
-    href="/components/columns"
-    arrow="true">
-    Test Sandbox APIs with public Postman collections.
-  </Card>
+  <CardGroup cols={2}>
+    <Card
+      title="KYC"
+      horizontal
+      icon="/static/svg/workload-icons/KYC.svg"
+      img="/static/svg/landing/KYC.svg"
+      href="/components/columns"
+    >
+      Confirm Identities with confidence
+    </Card>
 
     <Card
-      title="SDKs & Clients"
-      icon="cube"
+      title="GST"
+      horizontal
+      icon="/static/svg/workload-icons/GST.svg"
+      img="/static/svg/landing/GST.svg"
       href="/components/columns"
-      arrow="true">
+    >
+      Simple and Secure GST Compliance
+    </Card>
+
+    <Card
+      title="TDS"
+      horizontal
+      icon="/static/svg/workload-icons/TDS.svg"
+      img="/static/svg/landing/TDS.svg"
+      href="/components/columns"
+    >
+      Automate TDS on Salary & Non-Salary Payments
+    </Card>
+
+    <Card
+      title="Income Tax"
+      horizontal
+      icon="/static/svg/workload-icons/IT.svg"
+      img="/static/svg/landing/IT.svg"
+      href="/components/columns"
+    >
+      Direct tax compliance on auto-pilot
+    </Card>
+  </CardGroup>
+
+  ---
+
+  ## Resources
+
+  <CardGroup cols={3}>
+    <Card title="Collections" icon="book-bookmark" href="/components/columns" arrow="true">
+      Test Sandbox APIs with public Postman collections.
+    </Card>
+
+    <Card title="SDKs & Clients" icon="cube" href="/components/columns" arrow="true">
       Expedite your go-live with our API clients.
     </Card>
 
-  <Card
-    title="Status"
-    icon="signal-stream"
-    href="/components/columns"
-    arrow="true">
-    Real-time monitoring of Sandbox API
-  </Card>
+    <Card title="Status" icon="signal-stream" href="/components/columns" arrow="true">
+      Real-time monitoring of Sandbox API to track uptime.
+    </Card>
 
-  <Card
-    title="Help Centre"
-    icon="book-open-lines"
-    href="/components/columns"
-    arrow="true">
-    Support for integration, billing, accounts, and more.
-  </Card>
+    <Card title="Help Centre" icon="book-open-lines" href="/components/columns" arrow="true">
+      Support for integration, billing, accounts, and more.
+    </Card>
 
-  <Card
-    title="Changelog"
-    arrow="true"
-    icon="book"
-    href="/components/columns">
-    Latest updates on new features, bug fixes & other developments
-  </Card>
-
-</CardGroup>
+    <Card title="Changelog" icon="book" href="/components/columns" arrow="true">
+      Latest updates on new features, bug fixes & other developments
+    </Card>
+  </CardGroup>
+</div>

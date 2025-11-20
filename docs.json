@@ -14,7 +14,7 @@
 	"logo": {
 		"light": "/static/logo/light.svg",
 		"dark": "/static/logo/dark.svg",
-		"href": "https://developer.sandbox.co.in/"
+		"href": "https://sandboxfinancialtechnologiesprivatelimited.mintlify.app/"
 	},
 	"favicon": {
 		"light": "/static/favicon/light.svg",
@@ -44,6 +44,7 @@
 				"groups": [
 					{
 						"group": "Introduction",
+						"icon": "book",
 						"pages": [
 							"guides/introduction/about_sandbox",
 							"guides/introduction/authentication"
@@ -51,6 +52,7 @@
 					},
 					{
 						"group": "Get Started",
+						"icon": "rocket-launch",
 						"pages": [
 							"guides/get-started/the_basics",
 							"guides/get-started/versioning",
@@ -64,6 +66,7 @@
 					},
 					{
 						"group": "Products",
+						"icon": "boxes-stacked",
 						"pages": [
 							"guides/products/kyc",
 							"guides/products/gst",
@@ -73,6 +76,7 @@
 					},
 					{
 						"group": "Billing & Invoicing",
+						"icon": "credit-card",
 						"pages": [
 							"guides/billing-and-invoicing/subscription",
 							"guides/billing-and-invoicing/quota",
@@ -83,6 +87,7 @@
 					},
 					{
 						"group": "Resources",
+						"icon": "books",
 						"pages": [
 							"guides/resources/postman_collection",
 							"guides/resources/help_centre"
@@ -96,7 +101,7 @@
 					{
 						"item": "Authentication",
 						"description": "Authenticate and get access to use Sandbox APIs",
-						"icon": "rocket",
+						"icon": "rocket-vertical",
 						"groups": [
 							{
 								"group": "Auth",
@@ -525,7 +530,9 @@
 												"group": "Create Job",
 												"pages": [
 													"api-reference/tds/reports/tds-reports/endpoints/submit_job",
-													"api-reference/tds/resources/non_salary_payments"
+													"api-reference/tds/reports/tds-reports/non_salary_payments",
+													"api-reference/tds/reports/tds-reports/salary_payments",
+													"api-reference/tds/reports/tds-reports/nri_payments"
 												]
 											},
 											"api-reference/tds/reports/tds-reports/endpoints/poll_job",
@@ -577,15 +584,134 @@
 										]
 									}
 								]
+							},
+							{
+								"group": "Annexures",
+								"pages": [
+									"api-reference/tds/annexures/tds_annexures"
+								]
 							}
 						]
 					},
 					{
 						"item": "Income Tax",
 						"description": "Direct tax compliance on auto-pilot",
-						"icon": "/static/svg/workload-icons/IT.svg",
-						"pages": [
-							"api-reference/it/index"
+						"icon": "/static/svg/IT.svg",
+						"groups": [
+							{
+								"group": "Calculator",
+								"pages": [
+									{
+										"group": "Tax P&L",
+										"pages": [
+											{
+												"group": "Securities",
+												"pages": [
+													{
+														"group": "Domestic",
+														"pages": [
+															"api-reference/it/calculator/tax_pnl/securities/domestic/endpoints/submit_job",
+															"api-reference/it/calculator/tax_pnl/securities/domestic/endpoints/put_request",
+															"api-reference/it/calculator/tax_pnl/securities/domestic/endpoints/job_status",
+															{
+																"group": "Annexures",
+																"pages": [
+																	"api-reference/it/calculator/tax_pnl/securities/domestic/annexures/tradebook_domestic_securities",
+																	"api-reference/it/calculator/tax_pnl/securities/domestic/annexures/tradewise_settlement_domestic_securities",
+																	"api-reference/it/calculator/tax_pnl/securities/domestic/annexures/tradewise_tax_pnl_domestic"
+																]
+															}
+														]
+													},
+													{
+														"group": "Foreign",
+														"pages": [
+															"api-reference/it/calculator/tax_pnl/securities/foreign/endpoints/submit_job",
+															"api-reference/it/calculator/tax_pnl/securities/foreign/endpoints/put_request",
+															"api-reference/it/calculator/tax_pnl/securities/foreign/endpoints/job_status",
+															{
+																"group": "Annexures",
+																"pages": [
+																	"api-reference/it/calculator/tax_pnl/securities/foreign/annexures/tradebook_foreign",
+																	"api-reference/it/calculator/tax_pnl/securities/foreign/annexures/tradewise_settlement_foreign",
+																	"api-reference/it/calculator/tax_pnl/securities/foreign/annexures/tradewise_tax_pnl_foreign",
+																	"api-reference/it/calculator/tax_pnl/securities/foreign/annexures/scripwise_tax_pnl_foreign"
+																]
+															}
+														]
+													}
+												]
+											},
+											{
+												"group": "Crypto",
+												"pages": [
+													{
+														"group": "Tax P&L",
+														"pages": [
+															"api-reference/it/calculator/tax_pnl/crypto/endpoints/submit_job",
+															"api-reference/it/calculator/tax_pnl/crypto/endpoints/put_request",
+															"api-reference/it/calculator/tax_pnl/crypto/endpoints/job_status",
+															{
+																"group": "Annexures",
+																"pages": [
+																	"api-reference/it/calculator/tax_pnl/crypto/annexures/tradebook_crypto",
+																	"api-reference/it/calculator/tax_pnl/crypto/annexures/tradewise_tax_pnl_crypto"																]
+															}
+														]
+													}
+												]
+											}
+										]
+									}
+								]
+							},
+							{
+								"group": "Reporting",
+								"pages": [
+									{
+										"group": "Tax PNL",
+										"pages": [
+											{
+												"group": "Securities",
+												"pages": [
+													{
+														"group": "Domestic",
+														"pages": [
+															"api-reference/it/report/tax_pnl/securities/domestic/endpoints/submit_job",
+															"api-reference/it/report/tax_pnl/securities/domestic/endpoints/put_request",
+															"api-reference/it/report/tax_pnl/securities/domestic/endpoints/job_status",
+															{
+																"group": "Annexures",
+																"pages": [
+																	"api-reference/it/report/tax_pnl/securities/domestic/annexures/tradebook_domestic",
+																	"api-reference/it/report/tax_pnl/securities/domestic/annexures/tradewise_domestic"
+																]
+															}
+														]
+													}
+												]
+											}
+										]
+									}
+								]
+							},
+							{
+								"group": "OCR",
+								"pages": [
+									{
+										"group": "Form 16",
+										"pages": [
+											"api-reference/it/ocr/form_16/endpoints/read_form_16"
+										]
+									},
+									{
+										"group": "Form 26AS",
+										"pages": [
+											"api-reference/it/ocr/form_26as/endpoints/read_form_26as"
+										]
+									}
+								]
+							}
 						]
 					},
 					{
