@@ -504,7 +504,15 @@
 									{
 										"group": "TDS",
 										"pages": [
-											"api-reference/tds/analytics/tds-analytics/endpoints/submit_job",
+											{
+												"group": "Create Job",
+												"pages": [
+													"api-reference/tds/analytics/tds-analytics/endpoints/submit_job",
+													"api-reference/tds/analytics/tds-analytics/non_salary_payments",
+													"api-reference/tds/analytics/tds-analytics/salary_payments",
+													"api-reference/tds/analytics/tds-analytics/nri_payments"
+												]		
+											},
 											"api-reference/tds/analytics/tds-analytics/endpoints/poll_job",
 											"api-reference/tds/analytics/tds-analytics/endpoints/fetch_jobs"
 										]
@@ -512,7 +520,13 @@
 									{
 										"group": "TCS",
 										"pages": [
-											"api-reference/tds/analytics/tcs-analytics/endpoints/submit_job",
+											{
+												"group": "Create Job",
+												"pages": [
+													"api-reference/tds/analytics/tcs-analytics/endpoints/submit_job",
+													"api-reference/tds/analytics/tcs-analytics/tcs_payments"
+												]
+											},
 											"api-reference/tds/analytics/tcs-analytics/endpoints/poll_job",
 											"api-reference/tds/analytics/tcs-analytics/endpoints/fetch_jobs"
 										]
@@ -541,7 +555,13 @@
 									{
 										"group": "TCS",
 										"pages": [
-											"api-reference/tds/reports/tcs-reports/endpoints/submit_job",
+											{
+												"group": "Create Job",
+												"pages": [
+													"api-reference/tds/reports/tcs-reports/endpoints/submit_job",
+													"api-reference/tds/reports/tcs-reports/tcs_payments"
+												]
+											},
 											"api-reference/tds/reports/tcs-reports/endpoints/poll_job",
 											"api-reference/tds/reports/tcs-reports/endpoints/fetch_jobs"
 										]
