@@ -1,0 +1,803 @@
+{
+    "name": "form27q_workbook",
+    "@entity": "workbook",
+    "sheets": [
+        {
+            "name": "payer_sheet",
+            "@entity": "sheet",
+            "blocks": [
+                {
+                    "name": "payer_list",
+                    "@entity": "list",
+                    "items": [
+                        {
+                            "name": "Acme Pvt Ltd"
+                        },
+                        {
+                            "tan": "AHMA00000C"
+                        },
+                        {
+                            "pan": "AAACA1234Z"
+                        },
+                        {
+                            "branch": "hq"
+                        },
+                        {
+                            "gstin": "24AAACA1234Z1ZP"
+                        },
+                        {
+                            "street": "A-901, Stark Tower"
+                        },
+                        {
+                            "area": "Relief Road"
+                        },
+                        {
+                            "city": "Ahmedabad"
+                        },
+                        {
+                            "state": "GUJARAT"
+                        },
+                        {
+                            "postal_code": "380001"
+                        },
+                        {
+                            "email": "email@gmail.com"
+                        },
+                        {
+                            "mobile": "9876543210"
+                        }
+                    ]
+                },
+                {
+                    "name": "responsible_person_list",
+                    "@entity": "list",
+                    "items": [
+                        {
+                            "designation": "Finance Manager"
+                        },
+                        {
+                            "name": "Tony Stark"
+                        },
+                        {
+                            "pan": "DKLPT3483J"
+                        },
+                        {
+                            "street": "A-901, Stark Tower"
+                        },
+                        {
+                            "area": "Relief Road"
+                        },
+                        {
+                            "city": "Ahmedabad"
+                        },
+                        {
+                            "state": "GUJARAT"
+                        },
+                        {
+                            "postal_code": "380001"
+                        },
+                        {
+                            "email": "email@gmail.com"
+                        },
+                        {
+                            "mobile": "9876543210"
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "name": "payee_sheet",
+            "@entity": "sheet",
+            "blocks": [
+                {
+                    "name": "payee_table",
+                    "@entity": "table",
+                    "header": [
+                        "sr_no",
+                        "pan",
+                        "name",
+                        "opting_new_regime",
+                        "tax_identification_number",
+                        "street",
+                        "area",
+                        "city",
+                        "state",
+                        "postal_code",
+                        "country",
+                        "email",
+                        "isd_code",
+                        "mobile"
+                    ],
+                    "rows": [
+                        [
+                            1,
+                            "XXXCX1234A",
+                            "Aarav Sharma",
+                            true,
+                            "INTERNATIONAL01",
+                            "Maple Avenue",
+                            "Whispering Pines",
+                            "Midway",
+                            "Midway",
+                            "000000",
+                            "MIDWAY ISLANDS",
+                            "1email@email.com",
+                            "1",
+                            "9999999999"
+                        ],
+                        [
+                            2,
+                            "XXXPX3456A",
+                            "Kavya Patel",
+                            false,
+                            "INTERNATIONAL02",
+                            "Elm Street",
+                            "Meadowbrook Heights",
+                            "Monte Carlo",
+                            "Monte Carlo",
+                            "000001",
+                            "MONACO",
+                            "1email@email.com",
+                            "377",
+                            "9999999999"
+                        ],
+                        [
+                            3,
+                            "XXXCX7890A",
+                            "Arjun Singhania",
+                            true,
+                            "INTERNATIONAL03",
+                            "Oak Lane",
+                            "Sunflower Valley",
+                            "Ulaanbaatar",
+                            "Ulaanbaatar",
+                            "000002",
+                            "MONGOLIA",
+                            "1email@email.com",
+                            "976",
+                            "9999999999"
+                        ],
+                        [
+                            4,
+                            "XXXCX1111A",
+                            "Priya Gupta",
+                            false,
+                            "INTERNATIONAL04",
+                            "Pine Terrace",
+                            "Lakeside Terrace",
+                            "Casablanca",
+                            "Casablanca",
+                            "000003",
+                            "MOROCCO",
+                            "1email@email.com",
+                            "212",
+                            "9999999999"
+                        ],
+                        [
+                            5,
+                            "XXXCX2222A",
+                            "Siddharth Mehta",
+                            true,
+                            "INTERNATIONAL05",
+                            "Cedar Court",
+                            "Pleasant Grove",
+                            "Maputo",
+                            "Maputo",
+                            "000004",
+                            "MOZAMBIQUE",
+                            "1email@email.com",
+                            "258",
+                            "9999999999"
+                        ],
+                        [
+                            6,
+                            "XXXPX3333A",
+                            "Ananya Khanna",
+                            false,
+                            "INTERNATIONAL06",
+                            "Birch Road",
+                            "Stonebridge Park",
+                            "Asunción",
+                            "Asunción",
+                            "000005",
+                            "PARAGUAY",
+                            "1email@email.com",
+                            "595",
+                            "9999999999"
+                        ],
+                        [
+                            7,
+                            "XXXPX4444A",
+                            "Vikram Desai",
+                            true,
+                            "INTERNATIONAL07",
+                            "Willow Way",
+                            "Pinecrest Heights",
+                            "Dubai",
+                            "Dubai",
+                            "000006",
+                            "UNITED ARAB EMIRATES",
+                            "1email@email.com",
+                            "971",
+                            "9999999999"
+                        ],
+                        [
+                            8,
+                            "XXXPX5555A",
+                            "Naina Reddy",
+                            false,
+                            "INTERNATIONAL08",
+                            "Sycamore Drive",
+                            "Willowbrook Meadows",
+                            "London",
+                            "London",
+                            "000007",
+                            "UNITED KINGDOM",
+                            "1email@email.com",
+                            "44",
+                            "9999999999"
+                        ],
+                        [
+                            9,
+                            "XXXCX6666A",
+                            "Rohan Kapoor",
+                            true,
+                            "INTERNATIONAL09",
+                            "Magnolia Boulevard",
+                            "Harborview Estates",
+                            "New York City",
+                            "New York City",
+                            "000008",
+                            "UNITED STATES OF AMERICA",
+                            "1email@email.com",
+                            "1",
+                            "9999999999"
+                        ],
+                        [
+                            10,
+                            "PANNOTAVBL",
+                            "Sanjana Choudhury",
+                            false,
+                            "INTERNATIONAL10",
+                            "Chestnut Lane",
+                            "Riverbend Gardens",
+                            "Harare",
+                            "Harare",
+                            "000009",
+                            "ZIMBABWE",
+                            "1email@email.com",
+                            "263",
+                            "9999999999"
+                        ]
+                    ]
+                }
+            ]
+        },
+        {
+            "name": "challan_sheet",
+            "@entity": "sheet",
+            "blocks": [
+                {
+                    "name": "challan_table",
+                    "@entity": "table",
+                    "header": [
+                        "challan_serial",
+                        "bsr_code",
+                        "paid_date_epoch",
+                        "minor_head",
+                        "tds_amount",
+                        "surcharge",
+                        "heath_and_education_cess",
+                        "interest",
+                        "late_filing_fees",
+                        "other_penalty"
+                    ],
+                    "rows": [
+                        [
+                            "12345",
+                            "1234567",
+                            1698815264000,
+                            "tds_payable",
+                            120000,
+                            0,
+                            0,
+                            0,
+                            0,
+                            0
+                        ],
+                        [
+                            "23486",
+                            "1234567",
+                            1702184864000,
+                            "tds_payable",
+                            120000,
+                            0,
+                            0,
+                            0,
+                            0,
+                            0
+                        ],
+                        [
+                            "45688",
+                            "1234567",
+                            1704565800000,
+                            "tds_payable",
+                            120000,
+                            0,
+                            0,
+                            5000,
+                            1000,
+                            0
+                        ]
+                    ]
+                }
+            ]
+        },
+        {
+            "name": "payment_sheet",
+            "@entity": "sheet",
+            "blocks": [
+                {
+                    "name": "payment_table",
+                    "@entity": "table",
+                    "header": [
+                        "payee_sr_no",
+                        "challan_serial",
+                        "bsr_code",
+                        "nature_of_payment",
+                        "payment_amount",
+                        "payment_date_epoch",
+                        "tds_amount",
+                        "surcharge",
+                        "health_and_education_cess",
+                        "deduction_date_epoch",
+                        "applicability_of_tds_rate_under_dtaa",
+                        "nature_of_remittance",
+                        "form_15ca_acknowledgement_number",
+                        "grossing_up_indicator",
+                        "reason_for_lower_deduction",
+                        "certificate_number",
+                        "amount_of_cash_withdrawal_more_than_1_crore_us_194N",
+                        "amount_of_cash_withdrawal_between_20_lakhs_and_1_crore_us_194N_for_non_filers",
+                        "amount_of_cash_withdrawal_more_than_1_crore_us_194N_for_non_filers",
+                        "amount_of_cash_withdrawal_more_than_3_crore_us_194N_for_co-operative_societies",
+                        "amount_of_cash_withdrawal_between_20_lakhs_and_3_crore_us_194N_for_non_filers",
+                        "amount_of_cash_withdrawal_more_than_3_crore_us_194N_for_non_filers"
+                    ],
+                    "rows": [
+                        [
+                            1,
+                            "12345",
+                            "1234567",
+                            "fees_for_technical_service",
+                            87999,
+                            1696444200000,
+                            19000,
+                            0,
+                            0,
+                            1696444200000,
+                            false,
+                            "fees_for_technical_services_or_included_services"
+                        ],
+                        [
+                            2,
+                            "12345",
+                            "1234567",
+                            "income_from_the_investment_made_by_nri_citizen",
+                            35000,
+                            1696444200000,
+                            8000,
+                            0,
+                            0,
+                            1696444200000,
+                            false,
+                            "investment_income"
+                        ],
+                        [
+                            3,
+                            "12345",
+                            "1234567",
+                            "interest_payment_on_infrastructure_debt_fund",
+                            45823,
+                            1696444200000,
+                            2383,
+                            0,
+                            0,
+                            1696444200000,
+                            false,
+                            "interest_payment"
+                        ],
+                        [
+                            4,
+                            "12345",
+                            "1234567",
+                            "dividend_payment_from_units_of_a_business_trust",
+                            76000,
+                            1696444200000,
+                            3500,
+                            0,
+                            0,
+                            1696444200000,
+                            false,
+                            "dividend"
+                        ],
+                        [
+                            5,
+                            "12345",
+                            "1234567",
+                            "fees_for_technical_service",
+                            105000,
+                            1696444200000,
+                            21800,
+                            0,
+                            0,
+                            1696444200000,
+                            false,
+                            "fees_for_technical_services_or_included_services"
+                        ],
+                        [
+                            6,
+                            "12345",
+                            "1234567",
+                            "income_from_the_investment_made_by_nri_citizen",
+                            80000,
+                            1696444200000,
+                            16500,
+                            0,
+                            0,
+                            1696444200000,
+                            false,
+                            "investment_income"
+                        ],
+                        [
+                            7,
+                            "12345",
+                            "1234567",
+                            "interest_payment_on_infrastructure_debt_fund",
+                            125000,
+                            1696444200000,
+                            6500,
+                            0,
+                            0,
+                            1696444200000,
+                            false,
+                            "interest_payment"
+                        ],
+                        [
+                            8,
+                            "12345",
+                            "1234567",
+                            "dividend_payment_from_units_of_a_business_trust",
+                            150000,
+                            1696444200000,
+                            15600,
+                            0,
+                            0,
+                            1696444200000,
+                            false,
+                            "dividend"
+                        ],
+                        [
+                            9,
+                            "12345",
+                            "1234567",
+                            "income_by_way_of_interest",
+                            50000,
+                            1696444200000,
+                            10400,
+                            0,
+                            0,
+                            1696444200000,
+                            false,
+                            "interest_payment"
+                        ],
+                        [
+                            10,
+                            "12345",
+                            "1234567",
+                            "income_by_way_of_interest",
+                            110000,
+                            1696444200000,
+                            15600,
+                            0,
+                            0,
+                            1696444200000,
+                            false,
+                            "interest_payment",
+                            null,
+                            null,
+                            "deduction_of_tax_at_higher_rate_due_to_non_availability_of_pan"
+                        ],
+                        [
+                            1,
+                            "23486",
+                            "1234567",
+                            "fees_for_technical_service",
+                            87999,
+                            1699122600000,
+                            19000,
+                            0,
+                            0,
+                            1699122600000,
+                            false,
+                            "fees_for_technical_services_or_included_services"
+                        ],
+                        [
+                            2,
+                            "23486",
+                            "1234567",
+                            "income_from_the_investment_made_by_nri_citizen",
+                            35000,
+                            1699122600000,
+                            8000,
+                            0,
+                            0,
+                            1699122600000,
+                            false,
+                            "investment_income"
+                        ],
+                        [
+                            3,
+                            "23486",
+                            "1234567",
+                            "interest_payment_on_infrastructure_debt_fund",
+                            45823,
+                            1699122600000,
+                            2383,
+                            0,
+                            0,
+                            1699122600000,
+                            false,
+                            "interest_payment"
+                        ],
+                        [
+                            4,
+                            "23486",
+                            "1234567",
+                            "dividend_payment_from_units_of_a_business_trust",
+                            76000,
+                            1699122600000,
+                            3500,
+                            0,
+                            0,
+                            1699122600000,
+                            false,
+                            "dividend"
+                        ],
+                        [
+                            5,
+                            "23486",
+                            "1234567",
+                            "fees_for_technical_service",
+                            105000,
+                            1699122600000,
+                            21800,
+                            0,
+                            0,
+                            1699122600000,
+                            false,
+                            "fees_for_technical_services_or_included_services"
+                        ],
+                        [
+                            6,
+                            "23486",
+                            "1234567",
+                            "income_from_the_investment_made_by_nri_citizen",
+                            80000,
+                            1699122600000,
+                            16500,
+                            0,
+                            0,
+                            1699122600000,
+                            false,
+                            "investment_income"
+                        ],
+                        [
+                            7,
+                            "23486",
+                            "1234567",
+                            "interest_payment_on_infrastructure_debt_fund",
+                            125000,
+                            1699122600000,
+                            6500,
+                            0,
+                            0,
+                            1699122600000,
+                            false,
+                            "interest_payment"
+                        ],
+                        [
+                            8,
+                            "23486",
+                            "1234567",
+                            "dividend_payment_from_units_of_a_business_trust",
+                            150000,
+                            1699122600000,
+                            15600,
+                            0,
+                            0,
+                            1699122600000,
+                            false,
+                            "dividend"
+                        ],
+                        [
+                            9,
+                            "23486",
+                            "1234567",
+                            "income_by_way_of_interest",
+                            50000,
+                            1699122600000,
+                            10400,
+                            0,
+                            0,
+                            1699122600000,
+                            false,
+                            "interest_payment"
+                        ],
+                        [
+                            10,
+                            "23486",
+                            "1234567",
+                            "income_by_way_of_interest",
+                            110000,
+                            1699122600000,
+                            15600,
+                            0,
+                            0,
+                            1699122600000,
+                            false,
+                            "interest_payment",
+                            null,
+                            null,
+                            "deduction_of_tax_at_higher_rate_due_to_non_availability_of_pan"
+                        ],
+                        [
+                            1,
+                            "45688",
+                            "1234567",
+                            "fees_for_technical_service",
+                            87999,
+                            1701714600000,
+                            19000,
+                            0,
+                            0,
+                            1701714600000,
+                            false,
+                            "fees_for_technical_services_or_included_services"
+                        ],
+                        [
+                            2,
+                            "45688",
+                            "1234567",
+                            "income_from_the_investment_made_by_nri_citizen",
+                            35000,
+                            1701714600000,
+                            8000,
+                            0,
+                            0,
+                            1701714600000,
+                            false,
+                            "investment_income"
+                        ],
+                        [
+                            3,
+                            "45688",
+                            "1234567",
+                            "interest_payment_on_infrastructure_debt_fund",
+                            45823,
+                            1701714600000,
+                            2383,
+                            0,
+                            0,
+                            1701714600000,
+                            false,
+                            "interest_payment"
+                        ],
+                        [
+                            4,
+                            "45688",
+                            "1234567",
+                            "dividend_payment_from_units_of_a_business_trust",
+                            76000,
+                            1701714600000,
+                            3500,
+                            0,
+                            0,
+                            1701714600000,
+                            false,
+                            "dividend"
+                        ],
+                        [
+                            5,
+                            "45688",
+                            "1234567",
+                            "fees_for_technical_service",
+                            105000,
+                            1701714600000,
+                            21800,
+                            0,
+                            0,
+                            1701714600000,
+                            false,
+                            "fees_for_technical_services_or_included_services"
+                        ],
+                        [
+                            6,
+                            "45688",
+                            "1234567",
+                            "income_from_the_investment_made_by_nri_citizen",
+                            80000,
+                            1701714600000,
+                            16500,
+                            0,
+                            0,
+                            1701714600000,
+                            false,
+                            "investment_income"
+                        ],
+                        [
+                            7,
+                            "45688",
+                            "1234567",
+                            "interest_payment_on_infrastructure_debt_fund",
+                            125000,
+                            1701714600000,
+                            6500,
+                            0,
+                            0,
+                            1701714600000,
+                            false,
+                            "interest_payment"
+                        ],
+                        [
+                            8,
+                            "45688",
+                            "1234567",
+                            "dividend_payment_from_units_of_a_business_trust",
+                            150000,
+                            1701714600000,
+                            15600,
+                            0,
+                            0,
+                            1701714600000,
+                            false,
+                            "dividend"
+                        ],
+                        [
+                            9,
+                            "45688",
+                            "1234567",
+                            "income_by_way_of_interest",
+                            50000,
+                            1701714600000,
+                            10400,
+                            0,
+                            0,
+                            1701714600000,
+                            false,
+                            "interest_payment"
+                        ],
+                        [
+                            10,
+                            "45688",
+                            "1234567",
+                            "income_by_way_of_interest",
+                            110000,
+                            1701714600000,
+                            15600,
+                            0,
+                            0,
+                            1701714600000,
+                            false,
+                            "interest_payment",
+                            null,
+                            null,
+                            "deduction_of_tax_at_higher_rate_due_to_non_availability_of_pan"
+                        ]
+                    ]
+                }
+            ]
+        }
+    ]
+}
