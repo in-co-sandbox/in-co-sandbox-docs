@@ -23,12 +23,14 @@
 	"navbar": {
 		"links": [
 			{
-				"label": "Contact Sales",
-				"href": "https://sandbox.co.in/contact-sales?utm_source=in-co-sandbox-developer&utm_medium=direct&utm_campaign=in-co-sandbox-developer.header.contact-sales"
+				"label": "Help Centre",
+				"icon": "life-ring",
+				"href": "https://help.sandbox.co.in/"
 			},
 			{
-				"label": "Help Centre",
-				"href": "https://help.sandbox.co.in/"
+				"label": "Contact Sales",
+				"icon": "phone",
+				"href": "https://sandbox.co.in/contact-sales?utm_source=in-co-sandbox-developer&utm_medium=direct&utm_campaign=in-co-sandbox-developer.header.contact-sales"
 			}
 		],
 		"primary": {
@@ -41,6 +43,7 @@
 		"tabs": [
 			{
 				"tab": "Guides",
+				"icon": "book-open",
 				"groups": [
 					{
 						"group": "Introduction",
@@ -85,19 +88,12 @@
 							"guides/billing-and-invoicing/wallet",
 							"guides/billing-and-invoicing/charges"
 						]
-					},
-					{
-						"group": "Resources",
-						"icon": "books",
-						"pages": [
-							"guides/resources/postman_collection",
-							"guides/resources/help_centre"
-						]
 					}
 				]
 			},
 			{
 				"tab": "API Reference",
+				"icon": "code",
 				"menu": [
 					{
 						"item": "Authentication",
@@ -214,6 +210,7 @@
 						"groups": [
 							{
 								"group": "Analytics",
+								"icon": "chart-mixed",
 								"pages": [
 									{
 										"group": "GSTR-2A Reconciliation",
@@ -235,6 +232,7 @@
 							},
 							{
 								"group": "Compliance",
+								"icon": "box-check",
 								"pages": [
 									{
 										"group": "Public",
@@ -482,6 +480,7 @@
 						"pages": [
 							{
 								"group": "Calculator",
+								"icon": "calculator",
 								"pages": [
 									{
 										"group": "TDS",
@@ -507,6 +506,7 @@
 							},
 							{
 								"group": "Analytics",
+								"icon": "chart-mixed",
 								"pages": [
 									{
 										"group": "TDS",
@@ -518,7 +518,7 @@
 													"api-reference/tds/analytics/tds-analytics/non_salary_payments",
 													"api-reference/tds/analytics/tds-analytics/salary_payments",
 													"api-reference/tds/analytics/tds-analytics/nri_payments"
-												]		
+												]
 											},
 											{
 												"group": "Poll Job",
@@ -556,6 +556,7 @@
 							},
 							{
 								"group": "Reports",
+								"icon": "file-text",
 								"pages": [
 									{
 										"group": "TDS",
@@ -591,15 +592,16 @@
 							},
 							{
 								"group": "Compliance",
+								"icon": "box-check",
 								"pages": [
 									{
 										"group": "Download Form16",
 										"pages": [
 											{
-												"group":"Create Job",
+												"group": "Create Job",
 												"pages": [
 													"api-reference/tds/compliance/certificate-form16(a)/endpoints/submit_job",
-														"api-reference/tds/compliance/certificate-form16(a)/credentials"
+													"api-reference/tds/compliance/certificate-form16(a)/credentials"
 												]
 											},
 											"api-reference/tds/compliance/certificate-form16(a)/endpoints/poll_job",
@@ -642,10 +644,11 @@
 					{
 						"item": "Income Tax",
 						"description": "Direct tax compliance on auto-pilot",
-						"icon": "/static/svg/IT.svg",
+						"icon": "/static/svg/workload-icons/IT.svg",
 						"groups": [
 							{
 								"group": "Calculator",
+								"icon": "calculator",
 								"pages": [
 									{
 										"group": "Tax P&L",
@@ -714,6 +717,7 @@
 							},
 							{
 								"group": "Reporting",
+								"icon": "file-text",
 								"pages": [
 									{
 										"group": "Tax PNL",
@@ -744,6 +748,7 @@
 							},
 							{
 								"group": "OCR",
+								"icon": "file-magnifying-glass",
 								"pages": [
 									{
 										"group": "Form 16",
@@ -813,9 +818,11 @@
 			},
 			{
 				"tab": "Recipes",
+				"icon": "flask",
 				"menu": [
 					{
 						"item": "KYC",
+						"description": "Quick recipes for fast, reliable identity checks.",
 						"pages": [
 							"recipes/kyc/introduction",
 							{
@@ -828,6 +835,7 @@
 					},
 					{
 						"item": "GST",
+						"description": "Easy steps for smooth, error-free GST workflows.",
 						"pages": [
 							"recipes/gst/introduction",
 							{
@@ -864,6 +872,7 @@
 					},
 					{
 						"item": "TDS",
+						"description": "Guides to set up seamless, automated TDS.",
 						"pages": [
 							"recipes/tds/introduction",
 							{
@@ -882,7 +891,8 @@
 						]
 					},
 					{
-						"item": "IT",
+						"item": "Income Tax",
+						"description": "Ready flows to automate your Income tax tasks.",
 						"pages": [
 							"recipes/it/introduction"
 						]
@@ -890,35 +900,35 @@
 				]
 			},
 			{
-				"tab": "Knowledge Base",
-				"pages": [
-					"knowledge-base/overview"
-				]
-			},
-			{
 				"tab": "Changelog",
+				"icon": "clock",
 				"pages": [
 					"changelog"
 				]
 			},
 			{
-				"tab": "Postman Collections",
+				"tab": "Resources",
+				"icon": "books",
 				"menu": [
 					{
-						"item": "KYC",
-						"href": "https://www.postman.com/in-co-sandbox/sandbox-api/collection/t61ohmi/kyc"
+						"item": "Postman Collections",
+						"icon": "book-bookmark",
+						"href": "https://www.postman.com/in-co-sandbox/sandbox-api"
 					},
 					{
-						"item": "GST",
-						"href": "https://www.postman.com/in-co-sandbox/sandbox-api/collection/tdybepo/gst-analytics"
+						"item": "SDKs & Clients",
+						"icon": "cube",
+						"href": "https://github.com/in-co-sandbox"
 					},
 					{
-						"item": "TDS",
+						"item": "Status",
+						"icon": "signal-stream",
+						"href": "https://status.api.sandbox.co.in/"
+					},
+					{
+						"item": "Customer Stories",
+						"icon": "users",
 						"href": "https://www.postman.com/in-co-sandbox/sandbox-api/collection/kxuf3b1/tds-analytics"
-					},
-					{
-						"item": "IT",
-						"href": "https://www.postman.com/in-co-sandbox/sandbox-api/collection/vi869sx/income-tax-calculator"
 					}
 				]
 			}
