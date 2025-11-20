@@ -43,8 +43,72 @@ const CUSTOM_STATUS_CODES = {
     '523': '523 - Invalid Lifecycle'
 };
 
-const OPENAPI_PATH = './api-reference/kyc/openapi.json';
-const POSTMAN_PATH = './api-reference/kyc/in-co-sandbox-kyc.postman_collection.json';
+// Parse command-line arguments
+function parseArguments() {
+    const args = process.argv.slice(2);
+    const parsedArgs = {
+        openapiPath: null,
+        postmanPath: null
+    };
+
+    for (let i = 0; i < args.length; i++) {
+        const arg = args[i];
+        const nextArg = args[i + 1];
+
+        if (arg === '--openapi-spec' && nextArg) {
+            parsedArgs.openapiPath = nextArg;
+            i++; // Skip next arg since we've consumed it
+        } else if (arg === '--postman-collection' && nextArg) {
+            parsedArgs.postmanPath = nextArg;
+            i++; // Skip next arg since we've consumed it
+        }
+    }
+
+    return parsedArgs;
+}
+
+// Validate required arguments
+function validateArguments(args) {
+    const errors = [];
+
+    if (!args.openapiPath) {
+        errors.push('Missing required argument: --openapi-spec');
+    }
+
+    if (!args.postmanPath) {
+        errors.push('Missing required argument: --postman-collection');
+    }
+
+    if (args.openapiPath && !fs.existsSync(args.openapiPath)) {
+        errors.push(`OpenAPI file not found: ${args.openapiPath}`);
+    }
+
+    if (args.postmanPath && !fs.existsSync(args.postmanPath)) {
+        errors.push(`Postman collection file not found: ${args.postmanPath}`);
+    }
+
+    if (errors.length > 0) {
+        console.error('❌ Error:\n');
+        errors.forEach(error => console.error(`  - ${error}`));
+        console.error('\n📖 Usage:');
+        console.error('  node enrich_openapi_from_postman.js --openapi-spec <path> --postman-collection <path>');
+        console.error('\n📝 Options:');
+        console.error('  --openapi-spec         Path to OpenAPI specification file');
+        console.error('  --postman-collection   Path to Postman collection file');
+        console.error('\n📄 Example:');
+        console.error('  node enrich_openapi_from_postman.js \\');
+        console.error('    --openapi-spec ./api-reference/kyc/openapi.json \\');
+        console.error('    --postman-collection ./api-reference/kyc/collection.json\n');
+        process.exit(1);
+    }
+}
+
+// Get paths from command-line arguments
+const CLI_ARGS = parseArguments();
+validateArguments(CLI_ARGS);
+
+const OPENAPI_PATH = CLI_ARGS.openapiPath;
+const POSTMAN_PATH = CLI_ARGS.postmanPath;
 
 // ============================================
 // UTILITY FUNCTIONS
