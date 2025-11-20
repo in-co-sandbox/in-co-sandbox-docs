@@ -1,9 +1,9 @@
 ---
 title: "Quickstart"
-description: "Get started with Sandbox APIs in minutes. Learn how to authenticate and make your first API call."
+description: "Learn how to authenticate and make your first API call."
 ---
 
-Getting started with Sandbox APIs is straightforward. This guide will walk you through the necessary steps to authenticate and make API calls using your API credentials.
+Getting started with Sandbox APIs is straightforward. This guide will walk you through 3 simple steps to authenticate and make API calls using your API credentials.
 
 ## Send your first API request
 <Steps titleSize="p">
@@ -18,28 +18,23 @@ Getting started with Sandbox APIs is straightforward. This guide will walk you t
   <Step title="Authenticate to get an access token">
     Call the [Authenticate API](/api-reference/authenticate) to generate an access token. You'll need to pass your API Key and API Secret in the request headers.
 
-    <CodeGroup>
       <CodeBlock language="bash" filename="Terminal">
 {`curl -X POST https://test-api.sandbox.code.in/authenticate \\
   -H "x-api-key: key_test_your_api_key" \\
   -H "x-api-secret: secret_test_your_api_secret" \\
   -H "Content-Type: application/json"`}
       </CodeBlock>
-    </CodeGroup>
 
-    <CodeGroup>
-      <CodeBlock language="json" filename="Response">
-{`{
+```json Response
+{
   "code": 200,
   "data": {
     "access_token": "eyJ0eXAiOiJKV1QiLCJhbGc..."
   },
   "timestamp": 1750687659809,
   "transaction_id": "3a31716a-6a4d-4670-83fe-849d8209e35a"
-}`}
-      </CodeBlock>
-    </CodeGroup>
-
+}
+```
     <Tip>
       **The access token has a validity of 24 hours. You can regenerate the token anytime using the Authenticate API.**
     </Tip>
@@ -56,31 +51,20 @@ Getting started with Sandbox APIs is straightforward. This guide will walk you t
       **The access token you generate is NOT a bearer token. Pass it in the `authorization` header without the `Bearer` keyword.**
     </Warning>
 
-    <CodeGroup>
       <CodeBlock language="bash" filename="Terminal">
-{`curl -X GET https://test-api.sandbox.code.in/api/v1/kyc/pan/verify \\
-  -H "x-api-key: key_test_your_api_key" \\
+{`curl -X POST https://test-api.sandbox.code.in/gst/compliance/public/gstin/search \\
+  -H "x-api-key: your_test_api_key" \\
   -H "authorization: eyJ0eXAiOiJKV1QiLCJhbGc..." \\
   -H "x-api-version: 1.0" \\
-  -H "Content-Type: application/json"`}
+  -H "Content-Type: application/json" \\
+  --data '{
+    "gstin": "05ABNTY3290P8ZB"
+  }'`}
       </CodeBlock>
-    </CodeGroup>
-  </Step>
 
-  <Step title="You're done!">
-    <AccordionGroup>
-      <Accordion title="What happened?">
-        <ol className="list-decimal list-inside space-y-3">
-          <li><strong>Authentication</strong>: Your Sandbox API credentials (API Key and API Secret) were used to authenticate and generate an access token.</li>
-          
-          <li><strong>Token generation</strong>: The Authenticate API returned a JWT access token that is valid for 24 hours. This token serves as a secure authorization method for making API requests.</li>
-          
-          <li><strong>API request</strong>: You successfully made an authenticated API call using the access token in the `authorization` header along with your API key.</li>
-          
-          <li><strong>Environment support</strong>: The same authentication workflow works for both Test and Production environments. Use the appropriate host URL based on your environment.</li>
-        </ol>
-      </Accordion>
-    </AccordionGroup>
+    <Tip>
+      You're done!
+    </Tip>
   </Step>
 </Steps>
 
