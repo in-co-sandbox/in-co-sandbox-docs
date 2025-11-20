@@ -110,29 +110,6 @@
                                             "type": "string"
                                         }
                                     }
-                                },
-                                "examples": {
-                                    "200 - Success": {
-                                        "value": {
-                                            "MICR": "302240007",
-                                            "BRANCH": "PARK STREET",
-                                            "ADDRESS": "3 PARK STREET M I ROAD M I ROAD",
-                                            "STATE": "RAJASTHAN",
-                                            "CONTACT": "+919875003333",
-                                            "UPI": true,
-                                            "RTGS": true,
-                                            "CITY": "JAIPUR",
-                                            "CENTRE": "JAIPUR",
-                                            "DISTRICT": "JAIPUR",
-                                            "NEFT": true,
-                                            "IMPS": true,
-                                            "SWIFT": "HDFCINBB",
-                                            "ISO3166": "IN-RJ",
-                                            "BANK": "HDFC Bank",
-                                            "BANKCODE": "HDFC",
-                                            "IFSC": "HDFC0001234"
-                                        }
-                                    }
                                 }
                             }
                         }
@@ -143,13 +120,6 @@
                             "application/json": {
                                 "schema": {
                                     "type": "string"
-                                },
-                                "examples": {
-                                    "404 - Not Found": {
-                                        "value": {
-                                            "message": "Not Found"
-                                        }
-                                    }
                                 }
                             }
                         }
@@ -275,125 +245,6 @@
                                             }
                                         }
                                     }
-                                },
-                                "examples": {
-                                    "200 - Success": {
-                                        "value": {
-                                            "code": 200,
-                                            "timestamp": 1762335242000,
-                                            "transaction_id": "b1c59449-5627-4f5a-9036-309f06d14c57",
-                                            "data": {
-                                                "@entity": "@in.co.sandbox.bank.account.penny_drop_verification_response",
-                                                "message": "Bank Account details verified successfully.",
-                                                "account_exists": true,
-                                                "name_at_bank": "John Doe",
-                                                "utr": "329613870973",
-                                                "amount_deposited": "1"
-                                            }
-                                        }
-                                    },
-                                    "200 - Invalid account number or ifsc provided": {
-                                        "value": {
-                                            "code": 200,
-                                            "timestamp": 1762335242000,
-                                            "transaction_id": "b1c59449-5627-4f5a-9036-309f06d14c57",
-                                            "data": {
-                                                "@entity": "@in.co.sandbox.bank.account.penny_drop_verification_response",
-                                                "message": "Invalid account number or ifsc provided",
-                                                "account_exists": false
-                                            }
-                                        }
-                                    },
-                                    "200 - Given account is an NRE account": {
-                                        "value": {
-                                            "code": 200,
-                                            "timestamp": 1698047469406,
-                                            "transaction_id": "33f8ce3e-ca54-4364-ae85-2f54bae21610",
-                                            "data": {
-                                                "@entity": "@in.co.sandbox.bank.account.penny_drop_verification_response",
-                                                "message": "Given account is an NRE account",
-                                                "account_exists": true
-                                            }
-                                        }
-                                    },
-                                    "200 - Account is blocked": {
-                                        "value": {
-                                            "code": 200,
-                                            "timestamp": 1762335242000,
-                                            "transaction_id": "b1c59449-5627-4f5a-9036-309f06d14c57",
-                                            "data": {
-                                                "@entity": "@in.co.sandbox.bank.account.penny_drop_verification_response",
-                                                "message": "Account is blocked",
-                                                "account_exists": true
-                                            }
-                                        }
-                                    },
-                                    "200 - IFSC is invalid": {
-                                        "value": {
-                                            "code": 200,
-                                            "timestamp": 1762335242000,
-                                            "transaction_id": "b1c59449-5627-4f5a-9036-309f06d14c57",
-                                            "data": {
-                                                "@entity": "@in.co.sandbox.bank.account.penny_drop_verification_response",
-                                                "message": "IFSC is invalid"
-                                            }
-                                        }
-                                    },
-                                    "200 - Source bank declined": {
-                                        "value": {
-                                            "code": 200,
-                                            "timestamp": 1762335242000,
-                                            "transaction_id": "b1c59449-5627-4f5a-9036-309f06d14c57",
-                                            "data": {
-                                                "@entity": "@in.co.sandbox.bank.account.penny_drop_verification_response",
-                                                "message": "Source bank declined"
-                                            }
-                                        }
-                                    },
-                                    "200 - Beneficiary bank offline": {
-                                        "value": {
-                                            "code": 200,
-                                            "timestamp": 1762335242000,
-                                            "transaction_id": "b1c59449-5627-4f5a-9036-309f06d14c57",
-                                            "data": {
-                                                "@entity": "@in.co.sandbox.bank.account.penny_drop_verification_response",
-                                                "message": "Beneficiary bank offline"
-                                            }
-                                        }
-                                    },
-                                    "200 - NPCI Unavailable": {
-                                        "value": {
-                                            "code": 200,
-                                            "timestamp": 1762335242000,
-                                            "transaction_id": "b1c59449-5627-4f5a-9036-309f06d14c57",
-                                            "data": {
-                                                "@entity": "@in.co.sandbox.bank.account.penny_drop_verification_response",
-                                                "message": "NPCI Unavailable"
-                                            }
-                                        }
-                                    },
-                                    "200 - IMPS Mode fail": {
-                                        "value": {
-                                            "code": 200,
-                                            "timestamp": 1762335242000,
-                                            "transaction_id": "b1c59449-5627-4f5a-9036-309f06d14c57",
-                                            "data": {
-                                                "@entity": "@in.co.sandbox.bank.account.penny_drop_verification_response",
-                                                "message": "IMPS Mode fail"
-                                            }
-                                        }
-                                    },
-                                    "200 - Failed at beneficiary bank": {
-                                        "value": {
-                                            "code": 200,
-                                            "timestamp": 1762335242000,
-                                            "transaction_id": "b1c59449-5627-4f5a-9036-309f06d14c57",
-                                            "data": {
-                                                "@entity": "@in.co.sandbox.bank.account.penny_drop_verification_response",
-                                                "message": "Failed at beneficiary bank"
-                                            }
-                                        }
-                                    }
                                 }
                             }
                         }
@@ -416,40 +267,6 @@
                                         },
                                         "message": {
                                             "type": "string"
-                                        }
-                                    }
-                                },
-                                "examples": {
-                                    "422 - Invalid IFSC pattern": {
-                                        "value": {
-                                            "code": 422,
-                                            "timestamp": 1762335242000,
-                                            "transaction_id": "3004036f-c3ba-458a-80d4-3cfc08a4ec91",
-                                            "message": "Invalid IFSC pattern"
-                                        }
-                                    },
-                                    "422 - Please provide a valid bank account": {
-                                        "value": {
-                                            "code": 422,
-                                            "timestamp": 1762335242000,
-                                            "transaction_id": "3004036f-c3ba-458a-80d4-3cfc08a4ec91",
-                                            "message": "Please provide a valid bank account"
-                                        }
-                                    },
-                                    "422 - Invalid IFSC provided": {
-                                        "value": {
-                                            "code": 422,
-                                            "timestamp": 1762335242000,
-                                            "transaction_id": "3004036f-c3ba-458a-80d4-3cfc08a4ec91",
-                                            "message": "Invalid IFSC provided"
-                                        }
-                                    },
-                                    "422 - Invalid bank account number or ifsc provided": {
-                                        "value": {
-                                            "code": 422,
-                                            "timestamp": 1762335242000,
-                                            "transaction_id": "3004036f-c3ba-458a-80d4-3cfc08a4ec91",
-                                            "message": "Invalid bank account number or ifsc provided"
                                         }
                                     }
                                 }
@@ -476,32 +293,6 @@
                                             "type": "string"
                                         }
                                     }
-                                },
-                                "examples": {
-                                    "500 - Failed at bank": {
-                                        "value": {
-                                            "code": 500,
-                                            "timestamp": 1762335242000,
-                                            "transaction_id": "9e64515a-9d67-46f6-80c4-2947da30dcb1",
-                                            "message": "Failed at bank"
-                                        }
-                                    },
-                                    "500 - Transaction failed": {
-                                        "value": {
-                                            "code": 500,
-                                            "timestamp": 1762335242000,
-                                            "transaction_id": "9e64515a-9d67-46f6-80c4-2947da30dcb1",
-                                            "message": "Transaction failed"
-                                        }
-                                    },
-                                    "500 - IMPS not supported on Beneficiary account": {
-                                        "value": {
-                                            "code": 500,
-                                            "timestamp": 1762335242000,
-                                            "transaction_id": "9e64515a-9d67-46f6-80c4-2947da30dcb1",
-                                            "message": "IMPS not supported on Beneficiary account"
-                                        }
-                                    }
                                 }
                             }
                         }
@@ -524,16 +315,6 @@
                                         },
                                         "message": {
                                             "type": "string"
-                                        }
-                                    }
-                                },
-                                "examples": {
-                                    "503 - Source Unavailable": {
-                                        "value": {
-                                            "code": 503,
-                                            "timestamp": 1762335242000,
-                                            "transaction_id": "9e64515a-9d67-46f6-80c4-2947da30dcb1",
-                                            "message": "Source Unavailable"
                                         }
                                     }
                                 }
@@ -662,78 +443,6 @@
                                             }
                                         }
                                     }
-                                },
-                                "examples": {
-                                    "200 - Success": {
-                                        "value": {
-                                            "code": 200,
-                                            "timestamp": 1762336462000,
-                                            "transaction_id": "b2238b0b-b7d9-4525-becc-30893a01370b",
-                                            "data": {
-                                                "@entity": "@in.co.sandbox.bank.account.penny_less_verification_response",
-                                                "account_exists": true,
-                                                "name_at_bank": "JOHN DOE"
-                                            }
-                                        }
-                                    },
-                                    "200 - Success Business": {
-                                        "value": {
-                                            "code": 200,
-                                            "timestamp": 1762336462000,
-                                            "transaction_id": "b2238b0b-b7d9-4525-becc-30893a01370b",
-                                            "data": {
-                                                "@entity": "@in.co.sandbox.bank.account.penny_less_verification_response",
-                                                "account_exists": true,
-                                                "name_at_bank": "JOHN DOE PVT LTD"
-                                            }
-                                        }
-                                    },
-                                    "200 - Invalid Account or IFSC": {
-                                        "value": {
-                                            "code": 200,
-                                            "timestamp": 1762336462000,
-                                            "transaction_id": "b2238b0b-b7d9-4525-becc-30893a01370b",
-                                            "data": {
-                                                "@entity": "@in.co.sandbox.bank.account.penny_less_verification_response",
-                                                "message": "Invalid account number or ifsc provided",
-                                                "account_exists": false
-                                            }
-                                        }
-                                    },
-                                    "200 - Beneficiary Bank Offline": {
-                                        "value": {
-                                            "code": 200,
-                                            "timestamp": 1762336462000,
-                                            "transaction_id": "b2238b0b-b7d9-4525-becc-30893a01370b",
-                                            "data": {
-                                                "@entity": "@in.co.sandbox.bank.account.penny_less_verification_response",
-                                                "message": "Beneficiary bank offline"
-                                            }
-                                        }
-                                    },
-                                    "200 - Account Blocked": {
-                                        "value": {
-                                            "code": 200,
-                                            "timestamp": 1762336462000,
-                                            "transaction_id": "b2238b0b-b7d9-4525-becc-30893a01370b",
-                                            "data": {
-                                                "@entity": "@in.co.sandbox.bank.account.penny_less_verification_response",
-                                                "message": "Account is blocked",
-                                                "account_exists": true
-                                            }
-                                        }
-                                    },
-                                    "200 - NRE Account": {
-                                        "value": {
-                                            "code": 200,
-                                            "timestamp": 1762336462000,
-                                            "transaction_id": "b2238b0b-b7d9-4525-becc-30893a01370b",
-                                            "data": {
-                                                "message": "Given account is an NRE account",
-                                                "account_exist": true
-                                            }
-                                        }
-                                    }
                                 }
                             }
                         }
@@ -758,16 +467,6 @@
                                             "type": "string"
                                         }
                                     }
-                                },
-                                "examples": {
-                                    "422 - Invalid IFSC pattern": {
-                                        "value": {
-                                            "code": 422,
-                                            "timestamp": 1762336462000,
-                                            "transaction_id": "3004036f-c3ba-458a-80d4-3cfc08a4ec91",
-                                            "message": "Invalid IFSC pattern"
-                                        }
-                                    }
                                 }
                             }
                         }
@@ -790,16 +489,6 @@
                                         },
                                         "message": {
                                             "type": "string"
-                                        }
-                                    }
-                                },
-                                "examples": {
-                                    "503 - Source Unavailable": {
-                                        "value": {
-                                            "code": 503,
-                                            "timestamp": 1762336462000,
-                                            "transaction_id": "9e64515a-9d67-46f6-80c4-2947da30dcb1",
-                                            "message": "Source Unavailable"
                                         }
                                     }
                                 }
@@ -924,40 +613,6 @@
                                             }
                                         }
                                     ]
-                                },
-                                "examples": {
-                                    "200 - OTP Generated": {
-                                        "value": {
-                                            "code": 200,
-                                            "timestamp": 1750331120324,
-                                            "transaction_id": "1b81baa5-2780-4b64-8bb8-37f3c915e9ae",
-                                            "data": {
-                                                "@entity": "in.co.sandbox.kyc.aadhaar.okyc.otp.response",
-                                                "reference_id": 1234567,
-                                                "message": "OTP sent successfully"
-                                            }
-                                        }
-                                    },
-                                    "200 - Invalid Aadhaar Card": {
-                                        "value": {
-                                            "code": 200,
-                                            "timestamp": 1750331120324,
-                                            "transaction_id": "1b81baa5-2780-4b64-8bb8-37f3c915e9ae",
-                                            "data": {
-                                                "@entity": "in.co.sandbox.kyc.aadhaar.okyc.otp.response",
-                                                "reference_id": 78829,
-                                                "message": "Invalid Aadhaar Card"
-                                            }
-                                        }
-                                    },
-                                    "200 - OTP Already Generated": {
-                                        "value": {
-                                            "code": 200,
-                                            "timestamp": 1750331120324,
-                                            "transaction_id": "1b81baa5-2780-4b64-8bb8-37f3c915e9ae",
-                                            "message": "OTP generated for this aadhaar, please try after 45 sec"
-                                        }
-                                    }
                                 }
                             }
                         }
@@ -982,16 +637,6 @@
                                             "type": "string"
                                         }
                                     }
-                                },
-                                "examples": {
-                                    "422 - Invalid Aadhaar number pattern": {
-                                        "value": {
-                                            "code": 422,
-                                            "timestamp": 1750331120324,
-                                            "transaction_id": "1b81baa5-2780-4b64-8bb8-37f3c915e9ae",
-                                            "message": "Invalid Aadhaar number pattern"
-                                        }
-                                    }
                                 }
                             }
                         }
@@ -1014,16 +659,6 @@
                                         },
                                         "message": {
                                             "type": "string"
-                                        }
-                                    }
-                                },
-                                "examples": {
-                                    "503 - Source Unavailable": {
-                                        "value": {
-                                            "code": 503,
-                                            "timestamp": 1750331120324,
-                                            "transaction_id": "1b81baa5-2780-4b64-8bb8-37f3c915e9ae",
-                                            "message": "Source Unavailable"
                                         }
                                     }
                                 }
@@ -1214,88 +849,6 @@
                                             }
                                         }
                                     }
-                                },
-                                "examples": {
-                                    "200 - Success": {
-                                        "value": {
-                                            "code": 200,
-                                            "timestamp": 1750331120324,
-                                            "transaction_id": "1b81baa5-2780-4b64-8bb8-37f3c915e9ae",
-                                            "data": {
-                                                "@entity": "in.co.sandbox.kyc.aadhaar.okyc",
-                                                "reference_id": 1234567,
-                                                "status": "VALID",
-                                                "message": "Aadhaar Card Exists",
-                                                "care_of": "S/O: Johnny Doe",
-                                                "full_address": "Mangal Kanaka Niwas, Main Cross 3rd, Bengaluru, Bengaluru-Karnataka, India ",
-                                                "date_of_birth": "21-04-1985",
-                                                "email_hash": "044917e2c4c62a439d068.......d9f71bbde10b1d227a914e",
-                                                "gender": "M",
-                                                "name": "John Doe",
-                                                "address": {
-                                                    "@entity": "in.co.sandbox.kyc.aadhaar.okyc.address",
-                                                    "country": "India",
-                                                    "district": "Bengaluru",
-                                                    "house": "Mangal Kanaka Niwas",
-                                                    "landmark": "",
-                                                    "pincode": "581615",
-                                                    "post_office": "Bengaluru",
-                                                    "state": "Karnataka",
-                                                    "street": "Main Cross 3rd",
-                                                    "subdistrict": "",
-                                                    "vtc": "Bengaluru"
-                                                },
-                                                "year_of_birth": "1985",
-                                                "mobile_hash": "044917e2c4c62a439d068.......d9f71bbde10b1d227a914e",
-                                                "photo": "data:image/jpeg;base64,/9j/4AAQSk.......mj/2Q==",
-                                                "share_code": "1234"
-                                            }
-                                        }
-                                    },
-                                    "200 - Invalid OTP": {
-                                        "value": {
-                                            "code": 200,
-                                            "timestamp": 1750331120324,
-                                            "transaction_id": "1b81baa5-2780-4b64-8bb8-37f3c915e9ae",
-                                            "data": {
-                                                "@entity": "in.co.sandbox.kyc.aadhaar.okyc",
-                                                "message": "Invalid OTP"
-                                            }
-                                        }
-                                    },
-                                    "200 - OTP Expired": {
-                                        "value": {
-                                            "code": 200,
-                                            "timestamp": 1750331120324,
-                                            "transaction_id": "1b81baa5-2780-4b64-8bb8-37f3c915e9ae",
-                                            "data": {
-                                                "@entity": "in.co.sandbox.kyc.aadhaar.okyc",
-                                                "message": "OTP Expired"
-                                            }
-                                        }
-                                    },
-                                    "200 - Request under process": {
-                                        "value": {
-                                            "code": 200,
-                                            "timestamp": 1750331120324,
-                                            "transaction_id": "1b81baa5-2780-4b64-8bb8-37f3c915e9ae",
-                                            "data": {
-                                                "@entity": "in.co.sandbox.kyc.aadhaar.okyc",
-                                                "message": "Request under process, please try after 30 seconds"
-                                            }
-                                        }
-                                    },
-                                    "200 - Invalid Reference ID": {
-                                        "value": {
-                                            "code": 200,
-                                            "timestamp": 1750331120324,
-                                            "transaction_id": "1b81baa5-2780-4b64-8bb8-37f3c915e9ae",
-                                            "data": {
-                                                "@entity": "in.co.sandbox.kyc.aadhaar.okyc",
-                                                "message": "Invalid Reference Id"
-                                            }
-                                        }
-                                    }
                                 }
                             }
                         }
@@ -1320,24 +873,6 @@
                                             "type": "string"
                                         }
                                     }
-                                },
-                                "examples": {
-                                    "422 - OTP missing in request": {
-                                        "value": {
-                                            "code": 422,
-                                            "timestamp": 1750331120324,
-                                            "transaction_id": "1b81baa5-2780-4b64-8bb8-37f3c915e9ae",
-                                            "message": "OTP missing in request"
-                                        }
-                                    },
-                                    "422 - Invalid Reference ID": {
-                                        "value": {
-                                            "code": 422,
-                                            "timestamp": 1750331120324,
-                                            "transaction_id": "1b81baa5-2780-4b64-8bb8-37f3c915e9ae",
-                                            "message": "Invalid Reference Id"
-                                        }
-                                    }
                                 }
                             }
                         }
@@ -1360,16 +895,6 @@
                                         },
                                         "message": {
                                             "type": "string"
-                                        }
-                                    }
-                                },
-                                "examples": {
-                                    "503 - Source Unavailable": {
-                                        "value": {
-                                            "code": 503,
-                                            "timestamp": 1750331120324,
-                                            "transaction_id": "1b81baa5-2780-4b64-8bb8-37f3c915e9ae",
-                                            "message": "Source Unavailable"
                                         }
                                     }
                                 }
@@ -1477,20 +1002,6 @@
                                         },
                                         "transaction_id": {
                                             "type": "string"
-                                        }
-                                    }
-                                },
-                                "examples": {
-                                    "200 - OK": {
-                                        "value": {
-                                            "code": 200,
-                                            "timestamp": 1751975600361,
-                                            "data": {
-                                                "@entity": "in.co.sandbox.kyc.digilocker.session.response",
-                                                "authorization_url": "https://digilocker.meripehchaan.gov.in/public/oauth2/1/authorize?response_type=code&client_id=IW55C7A3B0&state=e385432b-575c-4b6f-8928-79136dbc0d4f%7Cf1bd0342-cc1d-4051-8301-e8ee17e3a3c3%7Chttps%3A%2F%2Fdeveloper.sandbox.co.in%2F&code_verifier=ADlMHKsr~L8YIwLoIOGgwwRQoouE-m~Z9yu0KWstrsKrdAtUY2IkmOoDWZNn80_G&code_challenge=pnowXsaM5mBqNR3NfSfsaLBC2JYjoy2eRLOwKNVjFY8&code_challenge_method=S256&scope=files.issueddocs&redirect_uri=https%3A%2F%2Fdeveloper.sandbox.co.in%2F&pla=Y&dl_flow=signup&plsignup=Y&amr=driving_license%2Baadhaar%2Bpan%2Bemail%2Busername%2Bmobile%2Bother&verified_mobile=9004813042&req_doctype=PANCR%2CADHAR%2CDRVLC&consent_valid_till=1752061999",
-                                                "session_id": "f1bd0342-cc1d-4051-8301-e8ee17e3a3c3"
-                                            },
-                                            "transaction_id": "a11c4e00-fae1-4092-a55f-b4f0be92ffeb"
                                         }
                                     }
                                 }
@@ -1642,40 +1153,6 @@
                                         },
                                         "transaction_id": {
                                             "type": "string"
-                                        }
-                                    }
-                                },
-                                "examples": {
-                                    "200 - Session Created": {
-                                        "value": {
-                                            "code": 200,
-                                            "timestamp": 1752580258171,
-                                            "data": {
-                                                "id": "839fd8a0-d645-42e1-a904-bb43353b0139",
-                                                "created_at": 1752579445983,
-                                                "@entity": "in.co.sandbox.kyc.digilocker.session",
-                                                "status": "created"
-                                            },
-                                            "transaction_id": "800ff751-2191-4b7d-b20a-8301790a3e19"
-                                        }
-                                    },
-                                    "200 - Session Succeeded": {
-                                        "value": {
-                                            "code": 200,
-                                            "timestamp": 1751975475945,
-                                            "data": {
-                                                "id": "f1bd0342-cc1d-4051-8301-e8ee17e3a3c3",
-                                                "created_at": 1751975341292,
-                                                "updated_at": 1751975465494,
-                                                "@entity": "in.co.sandbox.kyc.digilocker.session",
-                                                "status": "succeeded",
-                                                "documents_consented": [
-                                                    "aadhaar",
-                                                    "pan",
-                                                    "driving_license"
-                                                ]
-                                            },
-                                            "transaction_id": "6daaaf0c-21f6-4e32-93b5-19ec4415d7fa"
                                         }
                                     }
                                 }
@@ -1940,21 +1417,6 @@
                                             "type": "integer"
                                         }
                                     }
-                                },
-                                "examples": {
-                                    "200 - OK": {
-                                        "value": {
-                                            "timestamp": 1750331120324,
-                                            "transaction_id": "5ccad959-0bf4-4472-a3dd-d57e2b61b5a9",
-                                            "data": {
-                                                "@entity": "in.co.sandbox.kyc.digilocker.sdk.session",
-                                                "id": "0454f149-26d0-41ef-9f14-c54f4b5f7b70",
-                                                "status": "created",
-                                                "created_at": 1750331120324
-                                            },
-                                            "code": 200
-                                        }
-                                    }
                                 }
                             }
                         }
@@ -1980,16 +1442,6 @@
                                         },
                                         "transaction_id": {
                                             "type": "string"
-                                        }
-                                    }
-                                },
-                                "examples": {
-                                    "400 - Invalid request body": {
-                                        "value": {
-                                            "code": 400,
-                                            "timestamp": 1760426007752,
-                                            "message": "Invalid request body",
-                                            "transaction_id": "f654ccdb-919f-486d-851d-0fc5d0050c17"
                                         }
                                     }
                                 }
@@ -2129,53 +1581,6 @@
                                             "type": "string"
                                         }
                                     }
-                                },
-                                "examples": {
-                                    "200 - Session Created": {
-                                        "value": {
-                                            "code": 200,
-                                            "timestamp": 1752580258171,
-                                            "data": {
-                                                "id": "839fd8a0-d645-42e1-a904-bb43353b0139",
-                                                "created_at": 1752579445983,
-                                                "@entity": "in.co.sandbox.kyc.digilocker.sdk.session",
-                                                "status": "created"
-                                            },
-                                            "transaction_id": "800ff751-2191-4b7d-b20a-8301790a3e19"
-                                        }
-                                    },
-                                    "200 - Session Expired": {
-                                        "value": {
-                                            "code": 200,
-                                            "timestamp": 1752580258171,
-                                            "data": {
-                                                "id": "839fd8a0-d645-42e1-a904-bb43353b0139",
-                                                "created_at": 1752579445983,
-                                                "updated_at": 1752579445983,
-                                                "@entity": "in.co.sandbox.kyc.digilocker.sdk.session",
-                                                "status": "expired"
-                                            },
-                                            "transaction_id": "800ff751-2191-4b7d-b20a-8301790a3e19"
-                                        }
-                                    },
-                                    "200 - Session Succeeded": {
-                                        "value": {
-                                            "code": 200,
-                                            "timestamp": 1754991910851,
-                                            "data": {
-                                                "@entity": "in.co.sandbox.kyc.digilocker.sdk.session",
-                                                "status": "succeeded",
-                                                "documents_consented": [
-                                                    "aadhaar",
-                                                    "pan"
-                                                ],
-                                                "id": "5ed01344-d9b2-4b44-b0c7-e2901c834999",
-                                                "created_at": 1754990307997,
-                                                "updated_at": 1754990726406
-                                            },
-                                            "transaction_id": "f29f1438-79e2-4090-854e-815d00620bd6"
-                                        }
-                                    }
                                 }
                             }
                         }
@@ -2295,31 +1700,6 @@
                                             "type": "string"
                                         }
                                     }
-                                },
-                                "examples": {
-                                    "200 - OK": {
-                                        "value": {
-                                            "code": 200,
-                                            "timestamp": 1751975529441,
-                                            "data": {
-                                                "files": [
-                                                    {
-                                                        "@entity": "org.quicko.drive.file",
-                                                        "url": "https://in-co-sandbox-kyc-digilocker-dev.s3.ap-south-1.amazonaws.com/non-persistent/e385432b-575c-4b6f-8928-79136dbc0d4f/4b4bf7aa-f4da-47a8-9b32-895edfc03630/in.gov.uidai-ADHAR-0d5fe4d692c73e23c59a694eaaabc75a.xml?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Credential={{vault:aws-access-key}}%2F20250708%2Fap-south-1%2Fs3%2Faws4_request&X-Amz-Date=20250708T115214Z&X-Amz-Expires=3600&X-Amz-Signature=8cc4b0e8eb3794601c7fdb7e85f3a6bb3a8e1842403c8aeae5c05b7af03bdadb&X-Amz-SignedHeaders=host&x-amz-checksum-mode=ENABLED&x-id=GetObject",
-                                                        "size": 16598,
-                                                        "metadata": {
-                                                            "ContentType": "application/xml",
-                                                            "issuer_id": "in.gov.uidai",
-                                                            "issuer": "Unique Identification Authority of India (UIDAI)",
-                                                            "LastModified": "09/05/2025",
-                                                            "description": "Aadhaar Card"
-                                                        }
-                                                    }
-                                                ]
-                                            },
-                                            "transaction_id": "a4d43b74-0f9c-480c-9300-f011100b674b"
-                                        }
-                                    }
                                 }
                             }
                         }
@@ -2342,16 +1722,6 @@
                                         },
                                         "transaction_id": {
                                             "type": "string"
-                                        }
-                                    }
-                                },
-                                "examples": {
-                                    "400 - Consent not provided": {
-                                        "value": {
-                                            "code": 400,
-                                            "timestamp": 1760432035872,
-                                            "message": "Consent for pan not provided",
-                                            "transaction_id": "3d1d2d37-3179-4a3c-8397-2287084d1de1"
                                         }
                                     }
                                 }
@@ -2378,16 +1748,6 @@
                                             "type": "string"
                                         }
                                     }
-                                },
-                                "examples": {
-                                    "521 - Data Not Found": {
-                                        "value": {
-                                            "code": 521,
-                                            "timestamp": 1760428752393,
-                                            "message": "Data not found for: 839fd8a0-d645-42e1-a904-bb43353b0139",
-                                            "transaction_id": "8be099b1-8d19-457e-b907-5b825740d9cc"
-                                        }
-                                    }
                                 }
                             }
                         }
@@ -2410,16 +1770,6 @@
                                         },
                                         "transaction_id": {
                                             "type": "string"
-                                        }
-                                    }
-                                },
-                                "examples": {
-                                    "523 - Invalid Session Lifecycle": {
-                                        "value": {
-                                            "code": 523,
-                                            "timestamp": 1760431743347,
-                                            "message": "Cannot get document due to invalid session lifecycle",
-                                            "transaction_id": "031c9d24-99c4-49cb-b4ba-11e8c3630f9f"
                                         }
                                     }
                                 }
@@ -3079,127 +2429,6 @@
                                             }
                                         }
                                     }
-                                },
-                                "examples": {
-                                    "200 - Sucess Individual": {
-                                        "value": {
-                                            "code": 200,
-                                            "timestamp": 1762337067000,
-                                            "transaction_id": "fe96c007-1130-428f-9c1c-c2a0fbf6a852",
-                                            "data": {
-                                                "@entity": "in.co.sandbox.kyc.pan_verification.response",
-                                                "pan": "XXXPX1234A",
-                                                "category": "individual",
-                                                "status": "valid",
-                                                "remarks": null,
-                                                "name_as_per_pan_match": true,
-                                                "date_of_birth_match": true,
-                                                "aadhaar_seeding_status": "y"
-                                            }
-                                        }
-                                    },
-                                    "200 - Sucess Individual Deceased": {
-                                        "value": {
-                                            "code": 200,
-                                            "timestamp": 1762337067000,
-                                            "transaction_id": "fe96c007-1130-428f-9c1c-c2a0fbf6a852",
-                                            "data": {
-                                                "@entity": "in.co.sandbox.kyc.pan_verification.response",
-                                                "pan": "XXXPX1234H",
-                                                "category": "individual",
-                                                "status": "valid",
-                                                "remarks": "Holder is Deceased",
-                                                "name_as_per_pan_match": true,
-                                                "date_of_birth_match": true,
-                                                "aadhaar_seeding_status": "n"
-                                            }
-                                        }
-                                    },
-                                    "200 - Success PAN Trust": {
-                                        "value": {
-                                            "code": 200,
-                                            "timestamp": 1762337067000,
-                                            "transaction_id": "fe96c007-1130-428f-9c1c-c2a0fbf6a852",
-                                            "data": {
-                                                "@entity": "in.co.sandbox.kyc.pan_verification.response",
-                                                "pan": "XXXTX1234P",
-                                                "category": "trust",
-                                                "status": "valid",
-                                                "remarks": "Liquidated",
-                                                "name_as_per_pan_match": true,
-                                                "date_of_birth_match": false,
-                                                "aadhaar_seeding_status": "na"
-                                            }
-                                        }
-                                    },
-                                    "200 - Success PAN Company": {
-                                        "value": {
-                                            "code": 200,
-                                            "timestamp": 1762337067000,
-                                            "transaction_id": "fe96c007-1130-428f-9c1c-c2a0fbf6a852",
-                                            "data": {
-                                                "@entity": "in.co.sandbox.kyc.pan_verification.response",
-                                                "pan": "XXXCX1234B",
-                                                "category": "company",
-                                                "status": "valid",
-                                                "remarks": "Merger",
-                                                "name_as_per_pan_match": true,
-                                                "date_of_birth_match": true,
-                                                "aadhaar_seeding_status": "na"
-                                            }
-                                        }
-                                    },
-                                    "200 - Success PAN AOP": {
-                                        "value": {
-                                            "code": 200,
-                                            "timestamp": 1762337067000,
-                                            "transaction_id": "fe96c007-1130-428f-9c1c-c2a0fbf6a852",
-                                            "data": {
-                                                "@entity": "in.co.sandbox.kyc.pan_verification.response",
-                                                "pan": "XXXAX2345A",
-                                                "category": "association_of_persons",
-                                                "status": "valid",
-                                                "remarks": null,
-                                                "name_as_per_pan_match": false,
-                                                "date_of_birth_match": false,
-                                                "aadhaar_seeding_status": "na"
-                                            }
-                                        }
-                                    },
-                                    "200 - Success PAN BOI": {
-                                        "value": {
-                                            "code": 200,
-                                            "timestamp": 1762337067000,
-                                            "transaction_id": "fe96c007-1130-428f-9c1c-c2a0fbf6a852",
-                                            "data": {
-                                                "@entity": "in.co.sandbox.kyc.pan_verification.response",
-                                                "pan": "XXXBX3456B",
-                                                "category": "body_of_individuals",
-                                                "status": "valid",
-                                                "remarks": null,
-                                                "name_as_per_pan_match": false,
-                                                "date_of_birth_match": true,
-                                                "aadhaar_seeding_status": "na"
-                                            }
-                                        }
-                                    },
-                                    "200 - Invalid PAN": {
-                                        "value": {
-                                            "code": 200,
-                                            "timestamp": 1762337067000,
-                                            "transaction_id": "fe96c007-1130-428f-9c1c-c2a0fbf6a852",
-                                            "data": {
-                                                "@entity": "in.co.sandbox.kyc.pan_verification.response",
-                                                "pan": "XXXFX1234J",
-                                                "category": "firm",
-                                                "status": "invalid",
-                                                "remarks": "Deleted",
-                                                "name_as_per_pan_match": false,
-                                                "date_of_birth_match": false,
-                                                "aadhaar_seeding_status": "na"
-                                            }
-                                        }
-                                    }
                                 }
                             }
                         }
@@ -3224,24 +2453,6 @@
                                             "type": "string"
                                         }
                                     }
-                                },
-                                "examples": {
-                                    "422 - Invalid PAN Pattern": {
-                                        "value": {
-                                            "code": 422,
-                                            "timestamp": 1762337067000,
-                                            "transaction_id": "fe96c007-1130-428f-9c1c-c2a0fbf6a852",
-                                            "message": "Invalid Pan pattern"
-                                        }
-                                    },
-                                    "422 - Consent Required": {
-                                        "value": {
-                                            "code": 422,
-                                            "timestamp": 1762337067000,
-                                            "transaction_id": "fe96c007-1130-428f-9c1c-c2a0fbf6a852",
-                                            "message": "Invalid parameter: Consent is required."
-                                        }
-                                    }
                                 }
                             }
                         }
@@ -3264,16 +2475,6 @@
                                         },
                                         "message": {
                                             "type": "string"
-                                        }
-                                    }
-                                },
-                                "examples": {
-                                    "503 - Source Unavailable": {
-                                        "value": {
-                                            "code": 503,
-                                            "timestamp": 1762337067000,
-                                            "transaction_id": "fe96c007-1130-428f-9c1c-c2a0fbf6a852",
-                                            "message": "Source Unavailable"
                                         }
                                     }
                                 }
@@ -3406,68 +2607,6 @@
                                             }
                                         }
                                     }
-                                },
-                                "examples": {
-                                    "200 - Success": {
-                                        "value": {
-                                            "code": 200,
-                                            "timestamp": 1762337789000,
-                                            "transaction_id": "993e8bd3-2e10-4769-9be8-80e05d6d38bc",
-                                            "data": {
-                                                "@entity": "in.co.sandbox.kyc.pan_aadhaar.status.response",
-                                                "aadhaar_seeding_status": "y",
-                                                "message": "Your PAN is linked to Aadhaar Number  XXXX XXXX 9999."
-                                            }
-                                        }
-                                    },
-                                    "200 - PAN-aadhaar not linked": {
-                                        "value": {
-                                            "code": 200,
-                                            "timestamp": 1762337789000,
-                                            "transaction_id": "993e8bd3-2e10-4769-9be8-80e05d6d38bc",
-                                            "data": {
-                                                "@entity": "in.co.sandbox.kyc.pan_aadhaar.status.response",
-                                                "aadhaar_seeding_status": "n",
-                                                "message": "PAN not linked with Aadhaar"
-                                            }
-                                        }
-                                    },
-                                    "200 - Invalid Aadhaar": {
-                                        "value": {
-                                            "code": 200,
-                                            "timestamp": 1762337789000,
-                                            "transaction_id": "993e8bd3-2e10-4769-9be8-80e05d6d38bc",
-                                            "data": {
-                                                "@entity": "in.co.sandbox.kyc.pan_aadhaar.status.response",
-                                                "aadhaar_seeding_status": "n",
-                                                "message": "Please enter a valid Aadhaar Number"
-                                            }
-                                        }
-                                    },
-                                    "200 - Invalid PAN": {
-                                        "value": {
-                                            "code": 200,
-                                            "timestamp": 1762337789000,
-                                            "transaction_id": "993e8bd3-2e10-4769-9be8-80e05d6d38bc",
-                                            "data": {
-                                                "@entity": "in.co.sandbox.kyc.pan_aadhaar.status.response",
-                                                "aadhaar_seeding_status": "n",
-                                                "message": "PAN does not exist"
-                                            }
-                                        }
-                                    },
-                                    "200 - PAN-Aadhaar linked elsewhere": {
-                                        "value": {
-                                            "code": 200,
-                                            "timestamp": 1762337789000,
-                                            "transaction_id": "993e8bd3-2e10-4769-9be8-80e05d6d38bc",
-                                            "data": {
-                                                "@entity": "in.co.sandbox.kyc.pan_aadhaar.status.response",
-                                                "aadhaar_seeding_status": "n",
-                                                "message": "Your Aadhaar Number is linked to some other PAN"
-                                            }
-                                        }
-                                    }
                                 }
                             }
                         }
@@ -3490,40 +2629,6 @@
                                         },
                                         "message": {
                                             "type": "string"
-                                        }
-                                    }
-                                },
-                                "examples": {
-                                    "422 - Individual pan required": {
-                                        "value": {
-                                            "code": 422,
-                                            "timestamp": 1762337926000,
-                                            "transaction_id": "f39bad42-58e1-4302-8901-9488b8030226",
-                                            "message": "Individuals PAN is required"
-                                        }
-                                    },
-                                    "422 - Invalid pan pattern": {
-                                        "value": {
-                                            "code": 422,
-                                            "timestamp": 1762337926000,
-                                            "transaction_id": "f39bad42-58e1-4302-8901-9488b8030226",
-                                            "message": "Invalid PAN pattern"
-                                        }
-                                    },
-                                    "422 - Consent is required": {
-                                        "value": {
-                                            "code": 422,
-                                            "timestamp": 1762337926000,
-                                            "transaction_id": "f39bad42-58e1-4302-8901-9488b8030226",
-                                            "message": "invalid parameter: Consent is required."
-                                        }
-                                    },
-                                    "422 - Reason cannot be empty": {
-                                        "value": {
-                                            "code": 422,
-                                            "timestamp": 1762337926000,
-                                            "transaction_id": "f39bad42-58e1-4302-8901-9488b8030226",
-                                            "message": "Reason cannot be empty"
                                         }
                                     }
                                 }
