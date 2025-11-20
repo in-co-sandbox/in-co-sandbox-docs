@@ -462,7 +462,7 @@ function injectExamples(openapi, matches) {
             let exampleName = baseName;
             let counter = 1;
             while (exampleNamesByStatus[statusCode].has(exampleName)) {
-                exampleName = `${baseName} (${counter})`;
+                exampleName = `${statusCode} - ${baseName} ${counter}`;
                 counter++;
             }
             exampleNamesByStatus[statusCode].add(exampleName);
