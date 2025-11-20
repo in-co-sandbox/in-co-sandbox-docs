@@ -32,7 +32,7 @@
                         }
                     },
                     {
-                        "name": "authorization",
+                        "name": "Authorization",
                         "in": "header",
                         "required": true,
                         "description": "JWT access token",
@@ -708,28 +708,32 @@
                 ],
                 "parameters": [
                     {
-                        "name": "authorization",
-                        "in": "header",
-                        "required": false,
-                        "description": "JWT access token",
-                        "deprecated": false,
-                        "schema": {}
-                    },
-                    {
                         "name": "x-api-key",
                         "in": "header",
-                        "required": false,
+                        "required": true,
                         "description": "API key for identification",
                         "deprecated": false,
-                        "schema": {}
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "Authorization",
+                        "in": "header",
+                        "required": true,
+                        "description": "JWT access token",
+                        "deprecated": false,
+                        "schema": {
+                            "type": "string"
+                        }
                     },
                     {
                         "name": "x-api-version",
                         "in": "header",
-                        "required": false,
                         "description": "API Version",
-                        "deprecated": false,
-                        "schema": {}
+                        "schema": {
+                            "type": "string"
+                        }
                     }
                 ],
                 "responses": {
@@ -1181,7 +1185,7 @@
                         }
                     },
                     {
-                        "name": "authorization",
+                        "name": "Authorization",
                         "in": "header",
                         "required": true,
                         "description": "JWT access token",
@@ -1291,9 +1295,10 @@
                         }
                     },
                     {
-                        "name": "authorization",
+                        "name": "Authorization",
                         "in": "header",
                         "required": true,
+                        "description": "JWT access token",
                         "deprecated": false,
                         "schema": {
                             "type": "string"

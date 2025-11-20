@@ -1,0 +1,881 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "type": "object",
+    "properties": {
+        "name": {
+            "type": "string",
+            "enum": [
+                "form27eq_workbook"
+            ]
+        },
+        "@entity": {
+            "type": "string",
+            "enum": [
+                "workbook"
+            ]
+        },
+        "sheets": {
+            "type": "array",
+            "items": {
+                "oneOf": [
+                    {
+                        "type": "object",
+                        "properties": {
+                            "name": {
+                                "type": "string",
+                                "enum": [
+                                    "payer_sheet"
+                                ]
+                            },
+                            "@entity": {
+                                "type": "string",
+                                "enum": [
+                                    "sheet"
+                                ]
+                            },
+                            "blocks": {
+                                "type": "array",
+                                "items": {
+                                    "oneOf": [
+                                        {
+                                            "type": "object",
+                                            "properties": {
+                                                "name": {
+                                                    "type": "string",
+                                                    "enum": [
+                                                        "payer_list"
+                                                    ]
+                                                },
+                                                "@entity": {
+                                                    "type": "string",
+                                                    "enum": [
+                                                        "list"
+                                                    ]
+                                                },
+                                                "items": {
+                                                    "type": "array",
+                                                    "items": {
+                                                        "type": "object",
+                                                        "properties": {
+                                                            "tan": {
+                                                                "type": "string",
+                                                                "pattern": "[A-Z]{4}[0-9]{5}[A-Z]{1}",
+                                                                "description": "TAN of the collector. Should be all capital"
+                                                            },
+                                                            "pan": {
+                                                                "type": "string",
+                                                                "pattern": "[A-Z]{3}[PCFTGHLABJ]{1}[A-Z]{1}[0-9]{4}[A-Z]{1}",
+                                                                "description": "PAN of the collector. Allow Enum: PANNOTREQD"
+                                                            },
+                                                            "name": {
+                                                                "type": "string",
+                                                                "pattern": "^(?![. ]+$)[^~!@#$%^&*()_+,/?;:’”[\\]{}\\\\]+$",
+                                                                "description": "Name of the collector"
+                                                            },
+                                                            "branch": {
+                                                                "type": "string",
+                                                                "pattern": "^(?![. ]+$)[^~!@#$%^&*()_+,/?;:’”[\\]{}\\\\]+$",
+                                                                "description": "Name of the collector's Branch"
+                                                            },
+                                                            "street": {
+                                                                "type": "string",
+                                                                "description": "No Special Characters"
+                                                            },
+                                                            "area": {
+                                                                "type": "string",
+                                                                "description": "No  Special Characters"
+                                                            },
+                                                            "city": {
+                                                                "type": "string",
+                                                                "description": "No  Special Characters"
+                                                            },
+                                                            "state": {
+                                                                "type": "string",
+                                                                "enum": [
+                                                                    "ANDAMAN AND NICOBAR ISLANDS",
+                                                                    "ANDHRA PRADESH",
+                                                                    "ARUNACHAL PRADESH",
+                                                                    "ASSAM",
+                                                                    "BIHAR",
+                                                                    "CHANDIGARH",
+                                                                    "DADRA & NAGAR HAVELI AND DAMAN & DIU",
+                                                                    "DELHI",
+                                                                    "GOA",
+                                                                    "GUJARAT",
+                                                                    "HARYANA",
+                                                                    "HIMACHAL PRADESH",
+                                                                    "JAMMU & KASHMIR",
+                                                                    "KARNATAKA",
+                                                                    "KERALA",
+                                                                    "LAKSHWADEEP",
+                                                                    "MADHYA PRADESH",
+                                                                    "MAHARASHTRA",
+                                                                    "MANIPUR",
+                                                                    "MEGHALAYA",
+                                                                    "MIZORAM",
+                                                                    "NAGALAND",
+                                                                    "ODISHA",
+                                                                    "PONDICHERRY",
+                                                                    "PUNJAB",
+                                                                    "RAJASTHAN",
+                                                                    "SIKKIM",
+                                                                    "TAMIL NADU",
+                                                                    "TRIPURA",
+                                                                    "UTTAR PRADESH",
+                                                                    "WEST BENGAL",
+                                                                    "CHHATTISGARH",
+                                                                    "UTTARAKHAND",
+                                                                    "JHARKHAND",
+                                                                    "TELANGANA",
+                                                                    "LADAKH"
+                                                                ],
+                                                                "description": "State where the collectorbelongs to."
+                                                            },
+                                                            "postal_code": {
+                                                                "type": "string",
+                                                                "pattern": "[0-9]{6}",
+                                                                "description": "Pincode of the collector's address"
+                                                            },
+                                                            "email": {
+                                                                "type": "string",
+                                                                "pattern": "^(?!@)(?=.*@)(?=.*\\.).+$",
+                                                                "description": "Email of the collector for communication"
+                                                            },
+                                                            "mobile": {
+                                                                "type": [
+                                                                    "string",
+                                                                    "null"
+                                                                ],
+                                                                "description": "Mobile Number of the collector for communiction"
+                                                            },
+                                                            "gstin": {
+                                                                "type": [
+                                                                    "string",
+                                                                    "null"
+                                                                ],
+                                                                "pattern": "[0-9]{2}[a-zA-Z]{5}[0-9]{4}[a-zA-Z]{1}[1-9A-Za-z]{1}[CZ]{1}[0-9a-zA-Z]{1}$|^[0-9]{4}[a-zA-Z]{3}[0-9]{5}[uUnNo]{2}[0-9a-zA-Z]{1}",
+                                                                "description": "GST Number of the collector (If available)"
+                                                            }
+                                                        },
+                                                        "additionalProperties": false
+                                                    }
+                                                }
+                                            },
+                                            "required": [
+                                                "name",
+                                                "@entity",
+                                                "items"
+                                            ]
+                                        },
+                                        {
+                                            "type": "object",
+                                            "properties": {
+                                                "name": {
+                                                    "type": "string",
+                                                    "enum": [
+                                                        "responsible_person_list"
+                                                    ]
+                                                },
+                                                "@entity": {
+                                                    "type": "string",
+                                                    "enum": [
+                                                        "list"
+                                                    ]
+                                                },
+                                                "items": {
+                                                    "type": "array",
+                                                    "items": {
+                                                        "type": "object",
+                                                        "properties": {
+                                                            "designation": {
+                                                                "type": "string",
+                                                                "pattern": "^(?![. ]+$)[^~!@#$%^&*()_+,/?;:’”[\\]{}\\\\]+$",
+                                                                "description": "Cannot be blank/only dots/only spaces or include following characters (`~!@#$%^&*( )_+,./?;:’”[{]}\\)"
+                                                            },
+                                                            "name": {
+                                                                "type": "string",
+                                                                "pattern": "^(?![. ]+$)[^~!@#$%^&*()_+,/?;:’”[\\]{}\\\\]+$",
+                                                                "description": "Cannot be blank/only dots/only spaces or include following characters (`~!@#$%^&*( )_+,./?;:’”[{]}\\)"
+                                                            },
+                                                            "street": {
+                                                                "type": "string",
+                                                                "description": "Noo Special Characters"
+                                                            },
+                                                            "area": {
+                                                                "type": "string",
+                                                                "description": "Noo Special Characters"
+                                                            },
+                                                            "city": {
+                                                                "type": "string",
+                                                                "description": "Noo Special Characters"
+                                                            },
+                                                            "state": {
+                                                                "type": "string",
+                                                                "enum": [
+                                                                    "ANDAMAN AND NICOBAR ISLANDS",
+                                                                    "ANDHRA PRADESH",
+                                                                    "ARUNACHAL PRADESH",
+                                                                    "ASSAM",
+                                                                    "BIHAR",
+                                                                    "CHANDIGARH",
+                                                                    "DADRA & NAGAR HAVELI AND DAMAN & DIU",
+                                                                    "DELHI",
+                                                                    "GOA",
+                                                                    "GUJARAT",
+                                                                    "HARYANA",
+                                                                    "HIMACHAL PRADESH",
+                                                                    "JAMMU & KASHMIR",
+                                                                    "KARNATAKA",
+                                                                    "KERALA",
+                                                                    "LAKSHWADEEP",
+                                                                    "MADHYA PRADESH",
+                                                                    "MAHARASHTRA",
+                                                                    "MANIPUR",
+                                                                    "MEGHALAYA",
+                                                                    "MIZORAM",
+                                                                    "NAGALAND",
+                                                                    "ODISHA",
+                                                                    "PONDICHERRY",
+                                                                    "PUNJAB",
+                                                                    "RAJASTHAN",
+                                                                    "SIKKIM",
+                                                                    "TAMIL NADU",
+                                                                    "TRIPURA",
+                                                                    "UTTAR PRADESH",
+                                                                    "WEST BENGAL",
+                                                                    "CHHATTISGARH",
+                                                                    "UTTARAKHAND",
+                                                                    "JHARKHAND",
+                                                                    "TELANGANA",
+                                                                    "LADAKH"
+                                                                ],
+                                                                "description": "State where the Responsible Person resides"
+                                                            },
+                                                            "postal_code": {
+                                                                "type": "string",
+                                                                "pattern": "[0-9]{6}",
+                                                                "description": "Pincode of the Responsbile Person's address"
+                                                            },
+                                                            "email": {
+                                                                "type": "string",
+                                                                "pattern": "^(?!@)(?=.*@)(?=.*\\.).+$",
+                                                                "description": "Email of the Responsible Person for communication"
+                                                            },
+                                                            "mobile": {
+                                                                "type": "string",
+                                                                "description": "Mobile Number of the Responsible Person for communiction"
+                                                            },
+                                                            "pan": {
+                                                                "type": "string",
+                                                                "pattern": "[A-Z]{3}[PCFTGHLABJ]{1}[A-Z]{1}[0-9]{4}[A-Z]{1}",
+                                                                "description": "PAN of the Responsible Person"
+                                                            }
+                                                        },
+                                                        "additionalProperties": false
+                                                    }
+                                                }
+                                            },
+                                            "required": [
+                                                "name",
+                                                "@entity",
+                                                "items"
+                                            ]
+                                        }
+                                    ]
+                                }
+                            }
+                        },
+                        "required": [
+                            "name",
+                            "@entity",
+                            "blocks"
+                        ]
+                    },
+                    {
+                        "type": "object",
+                        "properties": {
+                            "name": {
+                                "type": "string",
+                                "enum": [
+                                    "payee_sheet"
+                                ]
+                            },
+                            "@entity": {
+                                "type": "string",
+                                "enum": [
+                                    "sheet"
+                                ]
+                            },
+                            "blocks": {
+                                "type": "array",
+                                "items": {
+                                    "oneOf": [
+                                        {
+                                            "type": "object",
+                                            "properties": {
+                                                "name": {
+                                                    "type": "string",
+                                                    "enum": [
+                                                        "payee_table"
+                                                    ]
+                                                },
+                                                "@entity": {
+                                                    "type": "string",
+                                                    "enum": [
+                                                        "table"
+                                                    ]
+                                                },
+                                                "header": {
+                                                    "type": "array",
+                                                    "items": [
+                                                        {
+                                                            "type": "string",
+                                                            "enum": [
+                                                                "sr_no"
+                                                            ]
+                                                        },
+                                                        {
+                                                            "type": "string",
+                                                            "enum": [
+                                                                "pan"
+                                                            ]
+                                                        },
+                                                        {
+                                                            "type": "string",
+                                                            "enum": [
+                                                                "name"
+                                                            ]
+                                                        },
+                                                        {
+                                                            "type": "string",
+                                                            "enum": [
+                                                                "nri"
+                                                            ]
+                                                        },
+                                                        {
+                                                            "type": "string",
+                                                            "enum": [
+                                                                "permanent_establishment_in_india"
+                                                            ]
+                                                        },
+                                                        {
+                                                            "type": "string",
+                                                            "enum": [
+                                                                "opting_new_regime"
+                                                            ]
+                                                        }
+                                                    ],
+                                                    "additionalItems": false,
+                                                    "minItems": 6,
+                                                    "maxItems": 6
+                                                },
+                                                "rows": {
+                                                    "type": "array",
+                                                    "items": {
+                                                        "type": "array",
+                                                        "items": [
+                                                            {
+                                                                "type": "integer",
+                                                                "minimum": 1,
+                                                                "description": "Running Identifier of the Payee in the workboook"
+                                                            },
+                                                            {
+                                                                "type": "string",
+                                                                "pattern": "[A-Z]{3}[PCFTGHLABJ]{1}[A-Z]{1}[0-9]{4}[A-Z]{1}",
+                                                                "description": "PAN of the Payee. Allow \"PANNOTAVBL\", \"PANAPPLIED\", \"PANINVALID\""
+                                                            },
+                                                            {
+                                                                "type": "string",
+                                                                "description": "Name of the Payee"
+                                                            },
+                                                            {
+                                                                "type": "boolean",
+                                                                "enum": [
+                                                                    "true",
+                                                                    "false"
+                                                                ],
+                                                                "description": "Whether payee is a Non Resident Indian"
+                                                            },
+                                                            {
+                                                                "type": "boolean",
+                                                                "enum": [
+                                                                    "true",
+                                                                    "false"
+                                                                ],
+                                                                "description": "Whether payee's permanent establishment is in India"
+                                                            },
+                                                            {
+                                                                "type": "boolean",
+                                                                "enum": [
+                                                                    "true",
+                                                                    "false"
+                                                                ],
+                                                                "description": "Whether payee is opting for new regime"
+                                                            }
+                                                        ],
+                                                        "additionalItems": false,
+                                                        "minItems": 6,
+                                                        "maxItems": 6
+                                                    }
+                                                }
+                                            },
+                                            "required": [
+                                                "name",
+                                                "@entity",
+                                                "header",
+                                                "rows"
+                                            ]
+                                        }
+                                    ]
+                                }
+                            }
+                        },
+                        "required": [
+                            "name",
+                            "@entity",
+                            "blocks"
+                        ]
+                    },
+                    {
+                        "type": "object",
+                        "properties": {
+                            "name": {
+                                "type": "string",
+                                "enum": [
+                                    "challan_sheet"
+                                ]
+                            },
+                            "@entity": {
+                                "type": "string",
+                                "enum": [
+                                    "sheet"
+                                ]
+                            },
+                            "blocks": {
+                                "type": "array",
+                                "items": {
+                                    "oneOf": [
+                                        {
+                                            "type": "object",
+                                            "properties": {
+                                                "name": {
+                                                    "type": "string",
+                                                    "enum": [
+                                                        "challan_table"
+                                                    ]
+                                                },
+                                                "@entity": {
+                                                    "type": "string",
+                                                    "enum": [
+                                                        "table"
+                                                    ]
+                                                },
+                                                "header": {
+                                                    "type": "array",
+                                                    "items": [
+                                                        {
+                                                            "type": "string",
+                                                            "enum": [
+                                                                "challan_serial"
+                                                            ]
+                                                        },
+                                                        {
+                                                            "type": "string",
+                                                            "enum": [
+                                                                "bsr_code"
+                                                            ]
+                                                        },
+                                                        {
+                                                            "type": "string",
+                                                            "enum": [
+                                                                "paid_date"
+                                                            ]
+                                                        },
+                                                        {
+                                                            "type": "string",
+                                                            "enum": [
+                                                                "minor_head"
+                                                            ]
+                                                        },
+                                                        {
+                                                            "type": "string",
+                                                            "enum": [
+                                                                "tcs_amount"
+                                                            ]
+                                                        },
+                                                        {
+                                                            "type": "string",
+                                                            "enum": [
+                                                                "surcharge"
+                                                            ]
+                                                        },
+                                                        {
+                                                            "type": "string",
+                                                            "enum": [
+                                                                "health_and_education_cess"
+                                                            ]
+                                                        },
+                                                        {
+                                                            "type": "string",
+                                                            "enum": [
+                                                                "interest"
+                                                            ]
+                                                        },
+                                                        {
+                                                            "type": "string",
+                                                            "enum": [
+                                                                "late_filing_fees"
+                                                            ]
+                                                        },
+                                                        {
+                                                            "type": "string",
+                                                            "enum": [
+                                                                "other_penalty"
+                                                            ]
+                                                        }
+                                                    ],
+                                                    "additionalItems": false,
+                                                    "minItems": 10,
+                                                    "maxItems": 10
+                                                },
+                                                "rows": {
+                                                    "type": "array",
+                                                    "items": {
+                                                        "type": "array",
+                                                        "items": [
+                                                            {
+                                                                "type": "string",
+                                                                "pattern": "[0-9]{5}",
+                                                                "description": "Challan Serial Number"
+                                                            },
+                                                            {
+                                                                "type": "string",
+                                                                "pattern": "[0-9]{7}",
+                                                                "description": "BSR Code on the Challan"
+                                                            },
+                                                            {
+                                                                "type": "long",
+                                                                "description": "Date at which Challan was paid to the government"
+                                                            },
+                                                            {
+                                                                "type": "string",
+                                                                "enum": [
+                                                                    "tcs_payable",
+                                                                    "tcs_regular_assessment_raised_by_it_dept"
+                                                                ],
+                                                                "description": "Minor Head under which TDS is deposited"
+                                                            },
+                                                            {
+                                                                "type": "integer",
+                                                                "maximum": 999999999999999,
+                                                                "description": "Amount of TDS deposited through this challan"
+                                                            },
+                                                            {
+                                                                "type": "integer",
+                                                                "maximum": 999999999999999,
+                                                                "description": "Amount of Surcharge deposited through this challan"
+                                                            },
+                                                            {
+                                                                "type": "integer",
+                                                                "maximum": 999999999999999,
+                                                                "description": "Amount of Health and Education Cess deposited through this challan"
+                                                            },
+                                                            {
+                                                                "type": "integer",
+                                                                "maximum": 999999999999999,
+                                                                "description": "Amount of Interest deposited through this challan"
+                                                            },
+                                                            {
+                                                                "type": "integer",
+                                                                "maximum": 999999999999999,
+                                                                "description": "Amount of Late Filling Fees deposited through this challan"
+                                                            },
+                                                            {
+                                                                "type": "integer",
+                                                                "maximum": 999999999999999,
+                                                                "description": "Amount of Other Penaltydeposited through this challan"
+                                                            }
+                                                        ],
+                                                        "additionalItems": false,
+                                                        "minItems": 10,
+                                                        "maxItems": 10
+                                                    }
+                                                }
+                                            },
+                                            "required": [
+                                                "name",
+                                                "@entity",
+                                                "header",
+                                                "rows"
+                                            ]
+                                        }
+                                    ]
+                                }
+                            }
+                        },
+                        "required": [
+                            "name",
+                            "@entity",
+                            "blocks"
+                        ]
+                    },
+                    {
+                        "type": "object",
+                        "properties": {
+                            "name": {
+                                "type": "string",
+                                "enum": [
+                                    "payment_sheet"
+                                ]
+                            },
+                            "@entity": {
+                                "type": "string",
+                                "enum": [
+                                    "sheet"
+                                ]
+                            },
+                            "blocks": {
+                                "type": "array",
+                                "items": {
+                                    "oneOf": [
+                                        {
+                                            "type": "object",
+                                            "properties": {
+                                                "name": {
+                                                    "type": "string",
+                                                    "enum": [
+                                                        "payment_table"
+                                                    ]
+                                                },
+                                                "@entity": {
+                                                    "type": "string",
+                                                    "enum": [
+                                                        "table"
+                                                    ]
+                                                },
+                                                "header": {
+                                                    "type": "array",
+                                                    "items": [
+                                                        {
+                                                            "type": "string",
+                                                            "enum": [
+                                                                "payee_sr_no"
+                                                            ]
+                                                        },
+                                                        {
+                                                            "type": "string",
+                                                            "enum": [
+                                                                "challan_serial"
+                                                            ]
+                                                        },
+                                                        {
+                                                            "type": "string",
+                                                            "enum": [
+                                                                "bsr_code"
+                                                            ]
+                                                        },
+                                                        {
+                                                            "type": "string",
+                                                            "enum": [
+                                                                "nature_of_payment"
+                                                            ]
+                                                        },
+                                                        {
+                                                            "type": "string",
+                                                            "enum": [
+                                                                "total_value_of_purchase"
+                                                            ]
+                                                        },
+                                                        {
+                                                            "type": "string",
+                                                            "enum": [
+                                                                "payment_amount"
+                                                            ]
+                                                        },
+                                                        {
+                                                            "type": "string",
+                                                            "enum": [
+                                                                "payment_date"
+                                                            ]
+                                                        },
+                                                        {
+                                                            "type": "string",
+                                                            "enum": [
+                                                                "tcs_amount"
+                                                            ]
+                                                        },
+                                                        {
+                                                            "type": "string",
+                                                            "enum": [
+                                                                "surcharge"
+                                                            ]
+                                                        },
+                                                        {
+                                                            "type": "string",
+                                                            "enum": [
+                                                                "health_and_education_cess"
+                                                            ]
+                                                        },
+                                                        {
+                                                            "type": "string",
+                                                            "enum": [
+                                                                "collection_date"
+                                                            ]
+                                                        },
+                                                        {
+                                                            "type": "string",
+                                                            "enum": [
+                                                                "reason_for_lower_collection"
+                                                            ]
+                                                        },
+                                                        {
+                                                            "type": "string",
+                                                            "enum": [
+                                                                "certificate_number"
+                                                            ]
+                                                        }
+                                                    ],
+                                                    "additionalItems": false,
+                                                    "minItems": 13,
+                                                    "maxItems": 13
+                                                },
+                                                "rows": {
+                                                    "type": "array",
+                                                    "items": {
+                                                        "type": "array",
+                                                        "items": [
+                                                            {
+                                                                "type": "integer",
+                                                                "minimum": 1,
+                                                                "description": "Identifier of the Payee from the payee_sheet"
+                                                            },
+                                                            {
+                                                                "type": "string",
+                                                                "pattern": "[0-9]{5}",
+                                                                "description": "Challan Serial Number of the challan used to deposit TDS of this Payment"
+                                                            },
+                                                            {
+                                                                "type": "string",
+                                                                "pattern": "[0-9]{7}",
+                                                                "description": "BSR Code on the Challan used to deposit TDS of this Payment"
+                                                            },
+                                                            {
+                                                                "type": "string",
+                                                                "enum": [
+                                                                    "liquour_for_human_consumption",
+                                                                    "sale_of_timber_from_forest_lease",
+                                                                    "sale_of_timber_without_forest_lease",
+                                                                    "forest_produce_not_being_timber_or_tendu_leaves",
+                                                                    "scrap",
+                                                                    "lease_or_contract_or_license_for_parking_lot",
+                                                                    "lease_or_contract_or_license_for_toll_plaza",
+                                                                    "lease_or_contract_or_license_for_mining_and_quarrying",
+                                                                    "sale_of_tendu_leaves",
+                                                                    "sale_of_coal",
+                                                                    "sale_of_lignite",
+                                                                    "sale_of_iron_ore",
+                                                                    "cash_sale_of_bullion_and_jewellery",
+                                                                    "sale_of_motor_vehicle",
+                                                                    "cash_sale_of_goods",
+                                                                    "providing_any_services_other_than_ch_xvii_b",
+                                                                    "foreign_flight_tickets",
+                                                                    "international_hotel_bookings",
+                                                                    "foreign_travel_expenses",
+                                                                    "remittance_for_foreign_education_through_loan",
+                                                                    "remittance_for_foreign_education_or_medical_treatment",
+                                                                    "sale_of_goods",
+                                                                    "foreign_remittance_for_other_purposes"
+                                                                ],
+                                                                "description": "The kind of Payment made by the Payer to the Payee"
+                                                            },
+                                                            {
+                                                                "type": "number",
+                                                                "maximum": 1000000000000000
+                                                            },
+                                                            {
+                                                                "type": "number",
+                                                                "maximum": 1000000000000000,
+                                                                "description": "The Payment amount made to the Payee"
+                                                            },
+                                                            {
+                                                                "type": "long",
+                                                                "description": "Date of Payment"
+                                                            },
+                                                            {
+                                                                "type": "number",
+                                                                "maximum": 1000000000000000,
+                                                                "description": "TDS Deducted from the Payment Amount"
+                                                            },
+                                                            {
+                                                                "type": "number",
+                                                                "maximum": 1000000000000000,
+                                                                "description": "Surcharge Deducted from the Payment Amount"
+                                                            },
+                                                            {
+                                                                "type": "number",
+                                                                "maximum": 1000000000000000,
+                                                                "description": "Cess Deducted from the Payment Amount"
+                                                            },
+                                                            {
+                                                                "type": "long",
+                                                                "description": "Date at which the Deduction took place"
+                                                            },
+                                                            {
+                                                                "type": [
+                                                                    "string",
+                                                                    "null"
+                                                                ],
+                                                                "enum": [
+                                                                    "lower_collection_as_per_section_206c_9",
+                                                                    "no_collection_on_account_of_form_27c",
+                                                                    "collection_of_tax_at_a_higher_rate_due_to_non-availability_of_pan",
+                                                                    "no_collection_on_account_of_the_first_proviso_to_sub-section_1g_of_section_206c",
+                                                                    "no_collection_on_account_of_the_fourth_proviso_to_sub-section_1g_of_section_206c",
+                                                                    "no_collection_on_account_clause_i_or_clause_ii_of_the_fifth_proviso_to_sub-section_1g_or_in_view_of_notification_issued_under_clause_ii",
+                                                                    "no_collection_on_account_of_the_second_proviso_to_sub-section_ih_of_section_206c",
+                                                                    "no_collection_on_account_of_sub-clause_a_or_sub-clause_b_or_sub-clause_c_or_in_view_of_notification_issued_under_sub-clause_c_of_clause_a_of_the_explanation",
+                                                                    "collection_of_tax_at_a_higher_rate_in_view_of_section_206cca"
+                                                                ],
+                                                                "description": "Reason for Lower Deduction of TDS Amount than the prescribed rate in force"
+                                                            },
+                                                            {
+                                                                "type": [
+                                                                    "string",
+                                                                    "null"
+                                                                ],
+                                                                "description": "TDS Lower Deduction Certificate Number"
+                                                            }
+                                                        ],
+                                                        "additionalItems": false,
+                                                        "minItems": 13,
+                                                        "maxItems": 13
+                                                    }
+                                                }
+                                            },
+                                            "required": [
+                                                "name",
+                                                "@entity",
+                                                "header",
+                                                "rows"
+                                            ]
+                                        }
+                                    ]
+                                }
+                            }
+                        },
+                        "required": [
+                            "name",
+                            "@entity",
+                            "blocks"
+                        ]
+                    }
+                ]
+            }
+        }
+    },
+    "required": [
+        "name",
+        "@entity",
+        "sheets"
+    ]
+}
