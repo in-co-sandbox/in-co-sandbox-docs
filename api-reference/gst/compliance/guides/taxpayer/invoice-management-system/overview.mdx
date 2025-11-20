@@ -1,0 +1,28 @@
+---
+title: "Overview"
+description: "Learn about the Invoice Management System (IMS) and how to use IMS APIs to automate invoice management workflows."
+---
+
+The Invoice Management System (IMS) is a feature within India's Goods and Services Tax (GST) portal, introduced to streamline the management of invoices between suppliers and recipients. Launched on October 1, 2024, and operational for user actions from October 14, 2024, IMS allows recipient taxpayers to:
+
+- **Accept** invoices, confirming their validity for Input Tax Credit (ITC) claims.
+- **Reject** invoices, indicating discrepancies or errors.
+- **Mark invoices as Pending** for future review.
+
+If no action is taken on an invoice, it is automatically considered 'deemed accepted' and included in the recipient's GSTR-2B for ITC claims. This system enhances the accuracy of ITC claims, reduces errors, and improves overall GST compliance by providing a centralized platform for invoice management.
+
+## IMS APIs
+
+To facilitate and enable IMS workflows, Sandbox has integrated and released the following IMS APIs:
+
+1. [Get Invoice Count](/api-reference/gst/compliance/endpoints/taxpayer/invoices/invoice_count): Obtain the count of invoices along with their current status available on IMS.
+
+2. [Get Invoices](/api-reference/gst/compliance/endpoints/taxpayer/invoices/invoices): Fetch invoice objects with their status in real time.
+
+3. [Save Invoice Status](/api-reference/gst/compliance/endpoints/taxpayer/invoices/save): Save invoice status on IMS.
+
+4. [Reset Invoice Status](/api-reference/gst/compliance/endpoints/taxpayer/invoices/reset): Reset invoice status on IMS.
+
+5. [Check Invoice Status](/api-reference/gst/compliance/endpoints/taxpayer/invoices/status): Check status of action taken on invoices.
+
+These APIs enable businesses to integrate their systems with IMS, allowing for automated and efficient invoice management.
