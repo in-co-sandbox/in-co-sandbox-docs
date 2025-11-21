@@ -1,0 +1,571 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+        "title": "kyc-internal",
+        "version": "1.0.0",
+        "description": ""
+    },
+    "servers": [
+        {
+            "url": "{{sandbox_host}}"
+        },
+        {
+            "url": "{{digilocker_sdk_internal_api}}"
+        },
+        {
+            "url": "{{entitylocker_sdk_internal_api}}"
+        },
+        {
+            "url": "{{SBX_HOST}}"
+        },
+        {
+            "url": "{{cryptography_api_base_url}}"
+        },
+        {
+            "url": ""
+        }
+    ],
+    "paths": {
+        "/kyc/pan/search": {
+            "post": {
+                "summary": "Search PAN",
+                "tags": [
+                    "PAN"
+                ],
+                "parameters": [
+                    {
+                        "name": "authorization",
+                        "in": "header",
+                        "required": true,
+                        "deprecated": false,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "x-api-key",
+                        "in": "header",
+                        "required": true,
+                        "deprecated": false,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "Cache-Control",
+                        "in": "header",
+                        "required": false,
+                        "description": "pass unique everytime to get non-cached response",
+                        "deprecated": false,
+                        "schema": {}
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "200 - OK",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "code": {
+                                            "type": "integer"
+                                        },
+                                        "timestamp": {
+                                            "type": "integer"
+                                        },
+                                        "transaction_id": {
+                                            "type": "string"
+                                        },
+                                        "data": {
+                                            "type": "object",
+                                            "properties": {
+                                                "@entity": {
+                                                    "type": "string"
+                                                },
+                                                "status": {
+                                                    "type": "string"
+                                                },
+                                                "pan": {
+                                                    "type": "string"
+                                                },
+                                                "full_name": {
+                                                    "type": "string"
+                                                },
+                                                "category": {
+                                                    "type": "string"
+                                                },
+                                                "gender": {
+                                                    "type": "string"
+                                                },
+                                                "date_of_birth": {
+                                                    "type": "string"
+                                                },
+                                                "masked_aadhaar_number": {
+                                                    "type": "string"
+                                                },
+                                                "email": {
+                                                    "type": "string",
+                                                    "format": "email"
+                                                },
+                                                "mobile_number": {
+                                                    "type": "string"
+                                                },
+                                                "first_name": {
+                                                    "type": "string"
+                                                },
+                                                "middle_name": {
+                                                    "type": "string"
+                                                },
+                                                "last_name": {
+                                                    "type": "string"
+                                                },
+                                                "aadhaar_seeding_status": {
+                                                    "type": "string"
+                                                },
+                                                "address": {
+                                                    "type": "object",
+                                                    "properties": {
+                                                        "@entity": {
+                                                            "type": "string"
+                                                        },
+                                                        "full_address": {
+                                                            "type": "string"
+                                                        },
+                                                        "street": {
+                                                            "type": "string"
+                                                        },
+                                                        "city": {
+                                                            "type": "string"
+                                                        },
+                                                        "state": {
+                                                            "type": "string"
+                                                        },
+                                                        "pincode": {
+                                                            "type": "integer"
+                                                        },
+                                                        "country": {
+                                                            "type": "string"
+                                                        }
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
+                                },
+                                "examples": {
+                                    "successful response for individual": {
+                                        "value": {
+                                            "code": 200,
+                                            "timestamp": 1763727760000,
+                                            "transaction_id": "88ca194e-7853-4951-a239-26bb5b1fee67",
+                                            "data": {
+                                                "@entity": "in.co.sandbox.kyc.pan_search.response",
+                                                "status": "valid",
+                                                "pan": "XXXPX1234A",
+                                                "full_name": "AARAV SHARMA",
+                                                "category": "individual",
+                                                "gender": "male",
+                                                "date_of_birth": "21-04-1985",
+                                                "masked_aadhaar_number": "XXXXXXXXX012",
+                                                "email": "johndoe@email.com",
+                                                "mobile_number": "999999999",
+                                                "first_name": "JOHN",
+                                                "middle_name": "RONALD",
+                                                "last_name": "DOE",
+                                                "aadhaar_seeding_status": "y",
+                                                "address": {
+                                                    "@entity": "in.co.sandbox.kyc.pan_search.address",
+                                                    "full_address": "Mangal Kanaka Niwas, Main Cross 3rd, Bengaluru, Bengaluru-Karnataka, India ",
+                                                    "street": "Main Cross 3rd",
+                                                    "city": "Bengaluru",
+                                                    "state": "Karnataka",
+                                                    "pincode": 581615,
+                                                    "country": "India"
+                                                }
+                                            }
+                                        }
+                                    },
+                                    "successful response for company": {
+                                        "value": {
+                                            "code": 200,
+                                            "timestamp": 1717082916254,
+                                            "transaction_id": "0ef44ca0-ca3d-4a8d-8936-fb92ad63cedf",
+                                            "data": {
+                                                "@entity": "in.co.sandbox.kyc.pan_search.response",
+                                                "status": "valid",
+                                                "pan": "XXXCX1234A",
+                                                "full_name": "JOHN DOE TECHNOLOGIES PRIVATE LIMITED",
+                                                "category": "company",
+                                                "gender": null,
+                                                "date_of_birth": "02-10-2008",
+                                                "masked_aadhaar_number": null,
+                                                "email": "company@email.com",
+                                                "mobile_number": "111111111",
+                                                "aadhaar_seeding_status": "na",
+                                                "first_name": "JOHN DOE TECHNOLOGIES PRIVATE LIMITED",
+                                                "last_name": null,
+                                                "middle_name": null,
+                                                "address": {
+                                                    "@entity": "in.co.sandbox.kyc.pan_details.address",
+                                                    "full_address": "Quarter - A, Block - B Sample Area, ABC Street MUMBAI MAHARASTRA INDIA 700011",
+                                                    "street": "ABC Street",
+                                                    "city": "MUMBAI",
+                                                    "state": "MAHARASTRA",
+                                                    "pincode": 700011,
+                                                    "country": "India"
+                                                }
+                                            }
+                                        }
+                                    },
+                                    "invalid pan": {
+                                        "value": {
+                                            "code": 200,
+                                            "timestamp": 1763727760000,
+                                            "transaction_id": "c0e6f784-c0ec-4375-8b60-017d7570f59c",
+                                            "data": {
+                                                "@entity": "in.co.sandbox.kyc.pan_search.response",
+                                                "pan": "XXXFX1234J",
+                                                "category": "firm",
+                                                "status": "invalid"
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "422": {
+                        "description": "422 - Unprocessable Entity",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "code": {
+                                            "type": "integer"
+                                        },
+                                        "timestamp": {
+                                            "type": "integer"
+                                        },
+                                        "transaction_id": {
+                                            "type": "string"
+                                        },
+                                        "message": {
+                                            "type": "string"
+                                        }
+                                    }
+                                },
+                                "examples": {
+                                    "invalid pan pattern": {
+                                        "value": {
+                                            "code": 422,
+                                            "timestamp": 1763727760000,
+                                            "transaction_id": "65a16945-6293-47d9-931d-6e790fab226f",
+                                            "message": "Invalid Pan pattern"
+                                        }
+                                    },
+                                    "consent required": {
+                                        "value": {
+                                            "code": 422,
+                                            "timestamp": 1718020448513,
+                                            "transaction_id": "222fd34c-e55d-4b5a-9791-49887b23d2b8",
+                                            "message": "invalid parameter: Consent is required."
+                                        }
+                                    },
+                                    "reason cannot be empty": {
+                                        "value": {
+                                            "code": 422,
+                                            "timestamp": 1718020660106,
+                                            "transaction_id": "2a81a954-9242-4e48-9bb2-23eb234b1edf",
+                                            "message": "Reason cannot be empty"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type": "object",
+                                "properties": {
+                                    "@entity": {
+                                        "type": "string"
+                                    },
+                                    "pan": {
+                                        "type": "string"
+                                    },
+                                    "consent": {
+                                        "type": "string"
+                                    },
+                                    "reason": {
+                                        "type": "string"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/kyc/pan/basic": {
+            "post": {
+                "summary": "PAN Verification [Basic]",
+                "tags": [
+                    "Deprecated"
+                ],
+                "parameters": [
+                    {
+                        "name": "Authorization",
+                        "in": "header",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "x-api-key",
+                        "in": "header",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "version",
+                        "in": "header",
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "200 - OK",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "code": {
+                                            "type": "integer"
+                                        },
+                                        "timestamp": {
+                                            "type": "integer"
+                                        },
+                                        "transaction_id": {
+                                            "type": "string"
+                                        },
+                                        "data": {
+                                            "type": "object",
+                                            "properties": {
+                                                "@entity": {
+                                                    "type": "string"
+                                                },
+                                                "pan": {
+                                                    "type": "string"
+                                                },
+                                                "full_name": {
+                                                    "type": "string"
+                                                },
+                                                "status": {
+                                                    "type": "string"
+                                                },
+                                                "category": {
+                                                    "type": "string"
+                                                }
+                                            }
+                                        }
+                                    }
+                                },
+                                "examples": {
+                                    "Success (Individual)": {
+                                        "value": {
+                                            "code": 200,
+                                            "timestamp": 1688557921287,
+                                            "transaction_id": "ec2c8ac5-79d4-4ef2-a022-95da12d7d6c5",
+                                            "data": {
+                                                "@entity": "pan",
+                                                "pan": "XXXPX1234A",
+                                                "full_name": "JOHN RONALD DOE",
+                                                "status": "VALID",
+                                                "category": "Individual"
+                                            }
+                                        }
+                                    },
+                                    "PAN Verification [shivam]": {
+                                        "value": {
+                                            "code": 200,
+                                            "timestamp": 1710323346882,
+                                            "transaction_id": "e2a5c7e0-9f34-4a3b-a748-6382e09a62cc",
+                                            "data": {
+                                                "@entity": "in.co.sandbox.kyc.pan.response",
+                                                "pan": "KGJPK1169R",
+                                                "full_name": "SHIVAM KANSAGARA",
+                                                "status": "VALID",
+                                                "category": "Individual"
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "422": {
+                        "description": "422 - Unprocessable Entity",
+                        "headers": {
+                            "Date": {
+                                "schema": {
+                                    "type": "string"
+                                }
+                            },
+                            "Content-Length": {
+                                "schema": {
+                                    "type": "integer"
+                                }
+                            },
+                            "Connection": {
+                                "schema": {
+                                    "type": "string"
+                                }
+                            },
+                            "x-amzn-RequestId": {
+                                "schema": {
+                                    "type": "string"
+                                }
+                            },
+                            "x-amzn-Remapped-x-amzn-RequestId": {
+                                "schema": {
+                                    "type": "string"
+                                }
+                            },
+                            "x-amzn-Remapped-Content-Length": {
+                                "schema": {
+                                    "type": "integer"
+                                }
+                            },
+                            "x-amzn-Remapped-Connection": {
+                                "schema": {
+                                    "type": "string"
+                                }
+                            },
+                            "X-Cache": {
+                                "schema": {
+                                    "type": "string"
+                                }
+                            },
+                            "x-amz-apigw-id": {
+                                "schema": {
+                                    "type": "string"
+                                }
+                            },
+                            "X-Amzn-Trace-Id": {
+                                "schema": {
+                                    "type": "string"
+                                }
+                            },
+                            "x-amzn-Remapped-Date": {
+                                "schema": {
+                                    "type": "string"
+                                }
+                            }
+                        },
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "code": {
+                                            "type": "integer"
+                                        },
+                                        "timestamp": {
+                                            "type": "integer"
+                                        },
+                                        "transaction_id": {
+                                            "type": "string"
+                                        },
+                                        "message": {
+                                            "type": "string"
+                                        }
+                                    }
+                                },
+                                "examples": {
+                                    "Invalid PAN": {
+                                        "value": {
+                                            "code": 422,
+                                            "timestamp": 1707480990556,
+                                            "transaction_id": "8e4d4578-28d0-4f23-bf0f-3f1b5a0c2f7b",
+                                            "message": "Invalid Pan pattern"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "default": {
+                        "description": "PAN Verification [Basic]",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "code": {
+                                            "type": "integer"
+                                        },
+                                        "timestamp": {
+                                            "type": "integer"
+                                        },
+                                        "transaction_id": {
+                                            "type": "string"
+                                        },
+                                        "data": {
+                                            "type": "object",
+                                            "properties": {
+                                                "@entity": {
+                                                    "type": "string"
+                                                },
+                                                "pan": {
+                                                    "type": "string"
+                                                },
+                                                "full_name": {
+                                                    "type": "string"
+                                                },
+                                                "status": {
+                                                    "type": "string"
+                                                },
+                                                "category": {
+                                                    "type": "string"
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type": "object",
+                                "properties": {
+                                    "pan": {
+                                        "type": "string"
+                                    },
+                                    "consent": {
+                                        "type": "string"
+                                    },
+                                    "reason": {
+                                        "type": "string"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
