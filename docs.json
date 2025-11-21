@@ -844,33 +844,32 @@
 						"pages": [
 							"recipes/gst/introduction",
 							{
-								"group": "File",
+								"group": "Authentication",
 								"pages": [
-									"recipes/gst/file/file_gstr_1",
-									"recipes/gst/file/file_gst_return_3B",
-									"recipes/gst/file/file_gstr_9",
-									"recipes/gst/file/file_nil_gstr_1",
-									"recipes/gst/file/file_nil_gstr_3B"
+									"recipes/gst/authentication/generate_tax_payer_session",
+									"recipes/gst/authentication/generate_e_invoice_session",
+									"recipes/gst/authentication/generate_e_way_bill_session"
 								]
 							},
 							{
-								"group": "Taxpayer",
+								"group": "GSTR-1",
 								"pages": [
-									"recipes/gst/taxpayer/generate_gst_tax_payer_session",
-									"recipes/gst/taxpayer/get_einvoice_older_than_3_days"
+									"recipes/gst/gstr-1/file_gstr_1",
+									"recipes/gst/gstr-1/file_nil_gstr_1"
 								]
 							},
 							{
-								"group": "e-Invoice",
+								"group": "GSTR-3B",
 								"pages": [
-									"recipes/gst/e-invoice/generate_gst_einvoice_session",
-									"recipes/gst/e-invoice/generate_einvoice"
+									"recipes/gst/gstr-3b/file_gstr_3b",
+									"recipes/gst/gstr-3b/file_nil_gstr_3b"
 								]
 							},
 							{
-								"group": "E-Way Bill",
+								"group": "E-Invoice",
 								"pages": [
-									"recipes/gst/e-way-bill/generate_gst_ewaybill_session"
+									"recipes/gst/e-invoice/generate_e_invoice",
+									"recipes/gst/e-invoice/get_e_invoice_using_taxpayer_api"
 								]
 							}
 						]

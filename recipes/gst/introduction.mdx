@@ -1,41 +1,42 @@
 ---
-title: "Introduction"
-description: "These are the recipes for our GST workload"
+title: "Overview"
+description: Accelerate your GST workflows and stay compliant with streamlined, production-ready API recipes. 
 ---
 
-#### File Recipes
+As a developer, these recipes give you ready-made, step-by-step implementation patterns for building robust GST workflows. Instead of navigating scattered documentation, you get actionable code samples and API sequences for automating returns, validating compliance, and integrating GST logic into your business applications with confidence and efficiency.
+
+
+#### Authentication
 <CardGroup cols={2}>
-    <Card title="File GSTR-1" icon="hat-chef" href="./file/file_gstr_1">
+    <Card title="Generate Taxpayer Session" icon="hat-chef" href="/recipes/gst/authentication/generate_tax_payer_session">
     </Card>
-    <Card title="File GST Return-3B" icon="hat-chef" href="./file/file_gst_return_3B">
+    <Card title="Generate E-Invoice Session" icon="hat-chef" href="/recipes/gst/authentication/generate_e_invoice_session">
     </Card>
-    <Card title="File GSTR-9" icon="hat-chef" href="./file/file_gstr_9">
-    </Card>
-    <Card title="File Nil GSTR-1" icon="hat-chef" href="./file/file_nil_gstr_1">
-    </Card>
-    <Card title="File Nil GSTR-3B" icon="hat-chef" href="./file/file_nil_gstr_3B">
+    <Card title="Generate E-Way Bill Session" icon="hat-chef" href="/recipes/gst/authentication/generate_e_way_bill_session">
     </Card>
 </CardGroup>
 
-#### Taxpayer Recipes
+#### GSTR-1
 <CardGroup cols={2}>
-    <Card title="Generate GST Taxpayer Session" icon="hat-chef" href="./taxpayer/generate_gst_tax_payer_session">
+    <Card title="File GSTR-1" icon="hat-chef" href="/recipes/gst/gstr-1/file_gstr_1">
     </Card>
-    <Card title="Get e-Invoice older than 3 days" icon="hat-chef" href="./taxpayer/get_einvoice_older_than_3_days">
+    <Card title="File Nil GSTR-1" icon="hat-chef" href="/recipes/gst/gstr-1/file_nil_gstr_1">
     </Card>
 </CardGroup>
 
-#### E-Invoice Recipes
+#### GSTR-3B
 <CardGroup cols={2}>
-    <Card title="Generate GST e-Invoice Session" icon="hat-chef" href="./e-invoice/generate_gst_einvoice_session">
+    <Card title="File GSTR-3B" icon="hat-chef" href="/recipes/gst/gstr-3b/file_gstr_3b">
     </Card>
-    <Card title="Generate e-Invoice" icon="hat-chef" href="./e-invoice/generate_einvoice">
+    <Card title="File Nil GSTR-3B" icon="hat-chef" href="/recipes/gst/gstr-3b/file_nil_gstr_3b">
     </Card>
 </CardGroup>
 
-#### E-Way Bill Recipes
+#### E-Invoice
 <CardGroup cols={2}>
-    <Card title="Generate GST E-Way Bill Session" icon="hat-chef" href="./e-way-bill/generate_gst_ewaybill_session">
+    <Card title="Generate E-Invoice" icon="hat-chef" href="/recipes/gst/e-invoice/generate_e_invoice">
+    </Card>
+    <Card title="Get E-Invoices" icon="hat-chef" href="/recipes/gst/e-invoice/get_e_invoice_using_taxpayer_api">
     </Card>
 </CardGroup>
 
