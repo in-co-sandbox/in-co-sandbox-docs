@@ -14,7 +14,7 @@
 	"logo": {
 		"light": "/static/logo/light.svg",
 		"dark": "/static/logo/dark.svg",
-		"href": "https://sandboxfinancialtechnologiesprivatelimited.mintlify.app/"
+		"href": "https://developer.sandbox.co.in/"
 	},
 	"favicon": {
 		"light": "/static/favicon/light.svg",
@@ -36,7 +36,7 @@
 		"primary": {
 			"type": "button",
 			"label": "Sign Up",
-			"href": "https://accounts.sandbox.co.in/?utm_source=in-co-sandbox-developer&utm_medium=direct&utm_campaign=in-co-sandbox-developer.header.login"
+			"href": "https://accounts.sandbox.co.in/signup"
 		}
 	},
 	"navigation": {
@@ -285,7 +285,7 @@
 												"group": "File GSTR-1",
 												"pages": [
 													"api-reference/gst/compliance/endpoints/taxpayer/gstr-1/file/save",
-													"api-reference/gst/compliance/endpoints/taxpayer/common/gstr_return_status",
+													"api-reference/gst/compliance/endpoints/taxpayer/common/gst_return_status",
 													"api-reference/gst/compliance/endpoints/taxpayer/gstr-1/file/new_proceed",
 													"api-reference/gst/compliance/endpoints/taxpayer/authentication/generate_evc_otp",
 													"api-reference/gst/compliance/endpoints/taxpayer/gstr-1/file/file",
@@ -321,7 +321,7 @@
 												"pages": [
 													"api-reference/gst/compliance/endpoints/taxpayer/gstr-3b/gstr_3b_details",
 													"api-reference/gst/compliance/endpoints/taxpayer/gstr-3b/save",
-													"api-reference/gst/compliance/endpoints/taxpayer/common/gstr_return_status",
+													"api-reference/gst/compliance/endpoints/taxpayer/common/gst_return_status",
 													"api-reference/gst/compliance/endpoints/taxpayer/gstr-3b/offset_liability",
 													"api-reference/gst/compliance/endpoints/taxpayer/authentication/generate_evc_otp",
 													"api-reference/gst/compliance/endpoints/taxpayer/gstr-3b/file"
@@ -333,7 +333,7 @@
 													"api-reference/gst/compliance/endpoints/taxpayer/gstr-9/auto_calculated_details",
 													"api-reference/gst/compliance/endpoints/taxpayer/gstr-9/section_8a_details",
 													"api-reference/gst/compliance/endpoints/taxpayer/gstr-9/save",
-													"api-reference/gst/compliance/endpoints/taxpayer/common/gstr_return_status",
+													"api-reference/gst/compliance/endpoints/taxpayer/common/gst_return_status",
 													"api-reference/gst/compliance/endpoints/taxpayer/gstr-9/gstr_9_details",
 													"api-reference/gst/compliance/endpoints/taxpayer/gstr-9/proceed",
 													"api-reference/gst/compliance/endpoints/taxpayer/authentication/generate_evc_otp",
@@ -640,7 +640,8 @@
 							{
 								"group": "Annexures",
 								"pages": [
-									"api-reference/tds/annexures/tds_annexures"
+									"api-reference/tds/annexures/tds_annexures",
+									"api-reference/tds/annexures/master_data"
 								]
 							}
 						]
@@ -844,33 +845,32 @@
 						"pages": [
 							"recipes/gst/introduction",
 							{
-								"group": "File",
+								"group": "Authentication",
 								"pages": [
-									"recipes/gst/file/file_gstr_1",
-									"recipes/gst/file/file_gst_return_3B",
-									"recipes/gst/file/file_gstr_9",
-									"recipes/gst/file/file_nil_gstr_1",
-									"recipes/gst/file/file_nil_gstr_3B"
+									"recipes/gst/authentication/generate_tax_payer_session",
+									"recipes/gst/authentication/generate_e_invoice_session",
+									"recipes/gst/authentication/generate_e_way_bill_session"
 								]
 							},
 							{
-								"group": "Taxpayer",
+								"group": "GSTR-1",
 								"pages": [
-									"recipes/gst/taxpayer/generate_gst_tax_payer_session",
-									"recipes/gst/taxpayer/get_einvoice_older_than_3_days"
+									"recipes/gst/gstr-1/file_gstr_1",
+									"recipes/gst/gstr-1/file_nil_gstr_1"
 								]
 							},
 							{
-								"group": "e-Invoice",
+								"group": "GSTR-3B",
 								"pages": [
-									"recipes/gst/e-invoice/generate_gst_einvoice_session",
-									"recipes/gst/e-invoice/generate_einvoice"
+									"recipes/gst/gstr-3b/file_gstr_3b",
+									"recipes/gst/gstr-3b/file_nil_gstr_3b"
 								]
 							},
 							{
-								"group": "E-Way Bill",
+								"group": "E-Invoice",
 								"pages": [
-									"recipes/gst/e-way-bill/generate_gst_ewaybill_session"
+									"recipes/gst/e-invoice/generate_e_invoice",
+									"recipes/gst/e-invoice/get_e_invoice_using_taxpayer_api"
 								]
 							}
 						]
@@ -960,6 +960,11 @@
 			"x": "https://twitter.com/sandbox_api"
 		}
 	},
+	"integrations": {
+		"gtm": {
+			"tagId": "GTM-NWRF32W"
+		}
+	},
 	"seo": {
 		"metatags": {
 			"title": "Sandbox API Docs | Tax API Stack for India by Quicko",
@@ -975,10 +980,6 @@
 		}
 	},
 	"redirects": [
-		{
-			"source": "changelog",
-			"destination": "changelog"
-		},
 		{
 			"source": "changelog?page=1",
 			"destination": "changelog"
@@ -1929,7 +1930,7 @@
 		},
 		{
 			"source": "reference/gstr-1-summary-api",
-			"destination": "api-reference/gst/compliance/endpoints/taxpayer/common/gstr_return_status"
+			"destination": "api-reference/gst/compliance/endpoints/taxpayer/common/gst_return_status"
 		},
 		{
 			"source": "reference/gstr-2a-amdhist",
@@ -2009,7 +2010,7 @@
 		},
 		{
 			"source": "reference/gstr-status-api",
-			"destination": "api-reference/gst/compliance/endpoints/taxpayer/common/gstr_return_status"
+			"destination": "api-reference/gst/compliance/endpoints/taxpayer/common/gst_return_status"
 		},
 		{
 			"source": "reference/ifsc-verification-api",
