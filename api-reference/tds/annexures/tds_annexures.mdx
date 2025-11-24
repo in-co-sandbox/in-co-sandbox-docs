@@ -20,7 +20,7 @@ This page serves as a repository of requests and response payloads, providing a 
 | addLine3       | string | Address Line 3                                                            | Opp. XYZ                                                      |
 | addLine4       | string | Address Line 4                                                            | ABCLMN Lane                                                   |
 | addLine5       | string | Address Line 5                                                            | Ahmedabad, India-380015                                       |
-| stateCd        | number | [State ](https://developer.sandbox.co.in/v3.0/docs/tds-master-data#state) | 9                                                             |
+| stateCd        | number | [State ](https://developer.sandbox.co.in/v3.0/docs/master_data#state) | 9                                                             |
 | pin            | number | PIN Code of the address                                                   | 380015                                                        |
 | phoneNum       | string | Phone Number of the TAN Entity                                            | 99xxxxxx83                                                    |
 | dtTanAllotment | number | Date of TAN Allotment                                                     | 1499324427000                                                 |
@@ -75,7 +75,7 @@ This page serves as a repository of requests and response payloads, providing a 
 | fvu_url | string | Provides FVU File of TDS Return. Will be visible only when the status is `succeeded` | https://.... |
 | form27a_url | string | Provides Form 27A of TDS Return. Will be visible only when the status is `succeeded` | https://..... |
 | validation_url | string | Validation report in case FVU generation fails. Will be visible only when the status is `failed` | https://..... |
-| message | string | Reason for not e-filing TDS return. Will be visible only when the status is `failed`  <br />For possible values, refer to the [TIN-FC Error Codes & Messages](https://developer.sandbox.co.in/v3.0/docs/tds-master-data#tin-fc-error-codes--messages) | Regular Statement with the same TAN, Financial Year, FORM, and Quarter is already furnished |
+| message | string | Reason for not e-filing TDS return. Will be visible only when the status is `failed`  <br />For possible values, refer to the [TIN-FC Error Codes & Messages](https://developer.sandbox.co.in/v3.0/docs/master_data#tin-fc-error-codes-&-messages) | Regular Statement with the same TAN, Financial Year, FORM, and Quarter is already furnished |
 | created_at | number | EPOCH timestamp of when job was created | 1701250588000 |
 | updated_at | number | EPOCH timestamp of when job was last updated | 1701250698000 |
 
@@ -109,10 +109,10 @@ This page serves as a repository of requests and response payloads, providing a 
 | quarter | string | Quarter | Q4 |
 | filing_type | string | TDSR Filing Type.  | original |
 | receipt_number | number | TDSR filing receipt number | 123456789012345 |
-| receipt_url | string | Provides Acknowledgment of TDS Return. Will be visible only when the status is `succeeded` | https://s3.ap-south-1.amazonaws.com/efile.tds-compliance.sandbox.co.in/receipt.pdf |
+| receipt_url | string | Provides Acknowledgment of TDS Return. Will be visible only when the status is `succeeded` | pdf format |
 | fvu_url | string | Provides FVU File of TDS Return. Will be visible only when the status is `succeeded` | https://.... |
 | form27a_url | string | Provides Form 27A of TDS Return. Will be visible only when the status is `succeeded` | https://..... |
-| message | string | Reason for not e-filing TDS return. Will be visible only when the status is `failed`  <br />For possible values, refer to the [TIN-FC Error Codes & Messages](https://developer.sandbox.co.in/v3.0/docs/tds-master-data#tin-fc-error-codes--messages) | Regular Statement with the same TAN, Financial Year, FORM, and Quarter is already furnished |
+| message | string | Reason for not e-filing TDS return. Will be visible only when the status is `failed`  <br />For possible values, refer to the [TIN-FC Error Codes & Messages](https://developer.sandbox.co.in/v3.0/docs/master_data#tin-fc-error-codes-&-messages) | Regular Statement with the same TAN, Financial Year, FORM, and Quarter is already furnished |
 | created_at | number | EPOCH timestamp of when job was created | 1701250588000 |
 | updated_at | number | EPOCH timestamp of when job was last updated | 1701250698000 |
 
@@ -233,7 +233,7 @@ This page serves as a repository of requests and response payloads, providing a 
 | section             | string  | Section under which the tax is to be deducted                                                                                              | 194C                |
 | code                | string  | Code under which the tax is to be deducted                                                                                                 | 94C                 |
 | category            | string  | Category under which tax is to be deducted                                                                                                 | contractual_payment |
-| nature_of_payment   | string  | The kind of payment being made. View applicable [Nature of Payments](https://developer.sandbox.co.in/reference/tds-master-data#non-salary) | tender_fees         |
+| nature_of_payment   | string  | The kind of payment being made. View applicable [Nature of Payments](https://developer.sandbox.co.in/reference/master_data#non-salary) | tender_fees         |
 | credit_amount       | number  | Payment amount (in INR)                                                                                                                    | 90500               |
 | credit_date         | number  | Date of payment in EPOCH Timestamp                                                                                                         | 1685577600000       |
 | deduction_rate      | number  | Applicable TDS rate                                                                                                                        | 20                  |
@@ -253,7 +253,7 @@ This page serves as a repository of requests and response payloads, providing a 
 | section              | string  | Section under which the tax is to be collected                                                                                      | 206C(1)                       |
 | code                 | string  | The code under which the tax is to be collected                                                                                     | 6CO                           |
 | category             | string  | Category under which tax is to be collected                                                                                         | overseas_tour_program_package |
-| nature_of_payment    | string  | The kind of payment being made. View applicable [Nature of Payments](https://developer.sandbox.co.in/reference/tds-master-data#tcs) | foreign_flight_tickets        |
+| nature_of_payment    | string  | The kind of payment being made. View applicable [Nature of Payments](https://developer.sandbox.co.in/reference/master_data#tcs) | foreign_flight_tickets        |
 | payment_amount       | number  | Payment amount (in INR)                                                                                                             | 695000                        |
 | payment_date         | number  | Payment date in EPOCH                                                                                                               | 1685577600000                 |
 | collection_rate      | number  | Applicable TCS rate                                                                                                                 | 5                             |
@@ -360,7 +360,7 @@ This page serves as a repository of requests and response payloads, providing a 
 | street      | string      | Yes      | Max Length: 25                                                                                                                            | Name of premise                                    |
 | area        | string      | Yes      | Max Length: 25                                                                                                                            | Area of location                                   |
 | city        | string      | Yes      | Max Length: 25                                                                                                                            | City of location                                   |
-| state       | enumeration | Yes      | [State](https://developer.sandbox.co.in/reference/tds-master-data#state)                                                                  | State of location                                  |
+| state       | enumeration | Yes      | [State](https://developer.sandbox.co.in/reference/master_data#state)                                                                  | State of location                                  |
 | postal_code | string      | Yes      | Pattern : [0-9]{6}                                                                                                                        | Pincode of location                                |
 | email       | string      | Yes      | Max Length: 75                                                                                                                            | Primary email for contact                          |
 | mobile      | string      | Yes      | Pattern: [1-9]{1}[0-9]{9}                                                                                                                 | Primary mobile number for contact                  |
@@ -375,7 +375,7 @@ This page serves as a repository of requests and response payloads, providing a 
 | street      | string      | Yes      | Max Length: 25                                                           | Name of the premise                   |
 | area        | string      | Yes      | Max Length: 25                                                           | Area of the location                  |
 | city        | string      | Yes      | Max Length: 25                                                           | City of location                      |
-| state       | enumeration | Yes      | [State](https://developer.sandbox.co.in/reference/tds-master-data#state) | State of location                     |
+| state       | enumeration | Yes      | [State](https://developer.sandbox.co.in/reference/master_data#state) | State of location                     |
 | postal_code | string      | Yes      | Pattern : [0-9]{6}                                                       | Pincode of location                   |
 | email       | string      | Yes      | Max Length: 75                                                           | Primary email for contact             |
 | mobile      | string      | Yes      | Pattern: [1-9]{1}[0-9]{9}                                                | Primary mobile number for contact     |
@@ -404,7 +404,7 @@ This page serves as a repository of requests and response payloads, providing a 
 | challan_serial | string | Yes | Pattern : [0-9]{5} | Bank Challan No |
 | bsr_code | string | Yes | Pattern : [0-9]{7} | Bank-Branch Code/ Form 24G Receipt Number |
 | paid_date_epoch | number | Yes | Length: 13 | EPOCH timestamp of the challan paid date |
-| minor_head | enumeration | Yes | [Minor Head](https://developer.sandbox.co.in/reference/tds-master-data#form-24q-1) | Minor Head of challan |
+| minor_head | enumeration | Yes | [Minor Head](https://developer.sandbox.co.in/reference/master_data#form-24q-1) | Minor Head of challan |
 | tds_amount | number | Yes | Length: 15 | Income Tax |
 | surcharge | number | Yes | Length: 15 | Surcharge on Income Tax |
 | health_and_education_cess | number | Yes | Length: 15 | Education cess on Income Tax |
@@ -423,14 +423,14 @@ This page serves as a repository of requests and response payloads, providing a 
 | payee_sr_no                | number      | Yes      | \-                                                                                               | Payee Serial Number                                                                           |
 | challan_serial             | string      | Yes      | Pattern : [0-9]{5}                                                                               | Bank Challan No                                                                               |
 | bsr_code                   | string      | Yes      | Pattern : [0-9]{7}                                                                               | Bank-Branch Code/ Form 24G Receipt Number                                                     |
-| nature_of_payment          | enumeration | Yes      | [Nature of Payment](https://developer.sandbox.co.in/reference/tds-master-data#salary)            | TDS section of deduction                                                                      |
+| nature_of_payment          | enumeration | Yes      | [Nature of Payment](https://developer.sandbox.co.in/reference/master_data#salary)            | TDS section of deduction                                                                      |
 | payment_amount             | number      | Yes      | Length: 15,2                                                                                     | Payment amount                                                                                |
 | payment_date_epoch         | number      | Yes      | Length: 13                                                                                       | EPOCH timestamp of Payment date                                                               |
 | tds_amount                 | number      | Yes      | Length: 15,2                                                                                     | Tax amount of deduction                                                                       |
 | surcharge                  | number      | Yes      | Length: 15,2                                                                                     | Surcharge on Tax amount                                                                       |
 | health_and_education_cess  | number      | Yes      | Length: 15,2                                                                                     | Eduction of the Tax amount                                                                    |
 | deduction_date_epoch       | number      | Yes      | Length: 13                                                                                       | EPOCH timestamp of Deduction date                                                             |
-| reason_for_lower_deduction | enumeration | No       | [Reason for lower deduction](https://developer.sandbox.co.in/reference/tds-master-data#form-24q) | Reason for non-deduction / lower deduction/ higher deduction/threshold                        |
+| reason_for_lower_deduction | enumeration | No       | [Reason for lower deduction](https://developer.sandbox.co.in/reference/master_data#form-24q) | Reason for non-deduction / lower deduction/ higher deduction/threshold                        |
 | certificate_number         | string      | No       | Max Length: 10                                                                                   | Certificate number issued by the Assessing Officer u/s 197 for non-deduction/lower deduction. |
 
 <br />
@@ -558,7 +558,7 @@ This page serves as a repository of requests and response payloads, providing a 
 | street      | string | Yes      | Max Length : 25                                                                                                                           | Name of premise                                    |
 | area        | string | Yes      | Max Length : 25                                                                                                                           | Area of location                                   |
 | city        | string | Yes      | Max Length : 25                                                                                                                           | City of location                                   |
-| state       | enum   | Yes      | [State](https://developer.sandbox.co.in/reference/tds-master-data#state)                                                                  | State of location                                  |
+| state       | enum   | Yes      | [State](https://developer.sandbox.co.in/reference/master_data#state)                                                                  | State of location                                  |
 | postal_code | string | Yes      | Pattern : [0-9]{6}                                                                                                                        | Pincode of location                                |
 | email       | string | Yes      | Max Length : 75                                                                                                                           | Primary email for contact                          |
 | mobile      | string | Yes      | Pattern: [1-9]{1}[0-9]{9}                                                                                                                 | Primary mobile number for contact                  |
@@ -573,7 +573,7 @@ This page serves as a repository of requests and response payloads, providing a 
 | street      | string | Yes      | Max Length : 25                                                          | Name of the premise                   |
 | area        | string | Yes      | Max Length : 25                                                          | Area of the location                  |
 | city        | string | Yes      | Max Length : 25                                                          | City of location                      |
-| state       | enum   | Yes      | [State](https://developer.sandbox.co.in/reference/tds-master-data#state) | State of location                     |
+| state       | enum   | Yes      | [State](https://developer.sandbox.co.in/reference/master_data#state) | State of location                     |
 | postal_code | string | Yes      | Pattern : [0-9]{6}                                                       | Pincode of location                   |
 | email       | string | Yes      | Max Length : 75                                                          | Primary email for contact             |
 | mobile      | string | Yes      | Pattern: [1-9]{1}[0-9]{9}                                                | Primary mobile number for contact     |
@@ -601,7 +601,7 @@ This page serves as a repository of requests and response payloads, providing a 
 | challan_serial | string | Yes | Pattern : [0-9]{5} | Bank Challan No |
 | bsr_code | string | Yes | Pattern : [0-9]{7} | Bank-Branch Code/ Form 24G Receipt Number |
 | paid_date_epoch | number | Yes | Length: 13 | EPOCH Timestamp of challan paid on date |
-| minor_head | enum | Yes | [Minor Head](https://developer.sandbox.co.in/reference/tds-master-data#form-26q-1) | Minor Head of challan |
+| minor_head | enum | Yes | [Minor Head](https://developer.sandbox.co.in/reference/master_data#form-26q-1) | Minor Head of challan |
 | tds_amount | number | Yes | Length: 15 | Income Tax |
 | surcharge | number | Yes | Length: 15 | Surcharge on Income Tax |
 | health_and_education_cess | number | Yes | Length: 15 | Education cess on Income Tax |
@@ -620,14 +620,14 @@ This page serves as a repository of requests and response payloads, providing a 
 | payee_sr_no                                                                    | number | Yes      | \-                                                                                                 | Payee Serial Number                                                                           |
 | challan_serial                                                                 | string | Yes      | Pattern : [0-9]{5}                                                                                 | Bank Challan No                                                                               |
 | bsr_code                                                                       | string | Yes      | Pattern : [0-9]{7}                                                                                 | Bank-Branch Code/ Form 24G Receipt Number                                                     |
-| nature_of_payment                                                              | enum   | Yes      | [Nature of Payment](https://developer.sandbox.co.in/reference/tds-master-data#form-26q)            | TDS section of deduction                                                                      |
+| nature_of_payment                                                              | enum   | Yes      | [Nature of Payment](https://developer.sandbox.co.in/reference/master_data#form-26q)            | TDS section of deduction                                                                      |
 | payment_amount                                                                 | number | Yes      | Length: 15,2                                                                                       | Payment amount                                                                                |
 | payment_date_epoch                                                             | number | Yes      | Length: 13                                                                                         | EPOCH Timestamp of Payment date                                                               |
 | tds_amount                                                                     | number | Yes      | Length: 15,2                                                                                       | Tax amount of deduction                                                                       |
 | surcharge                                                                      | number | Yes      | Length: 15,2                                                                                       | Surcharge on Tax amount                                                                       |
 | health_and_education_cess                                                      | number | Yes      | Length: 15,2                                                                                       | Health and Education Cess amount                                                              |
 | deduction_date_epoch                                                           | number | Yes      | Length: 13                                                                                         | EPOCH Timestamp of Deduction date                                                             |
-| reason_for_lower_deduction                                                     | enum   | No       | [Reason for lower deduction](https://developer.sandbox.co.in/reference/tds-master-data#form-26q-1) | Reason for non-deduction / lower deduction/ higher deduction/Threshold                        |
+| reason_for_lower_deduction                                                     | enum   | No       | [Reason for lower deduction](https://developer.sandbox.co.in/reference/master_data#form-26q-1) | Reason for non-deduction / lower deduction/ higher deduction/Threshold                        |
 | certificate_number                                                             | string | No       | Max Length: 10                                                                                     | Certificate number issued by the Assessing Officer u/s 197 for non-deduction/lower deduction. |
 | amount_of_cash_withdrawal_more_than_1_crore_us_194N                            | number | No       | Length: 15,2                                                                                       | Value to be mentioned if TDS deducted u/s 194N                                                |
 | amount_of_cash_withdrawal_between_20_lakhs_and_1_crore_us_194N_for_non_filers  | number | No       | Length: 15,2                                                                                       | Value to be mentioned if TDS deducted u/s 194NF, can be 0 if the amount is more than 1CR.     |
@@ -654,7 +654,7 @@ This page serves as a repository of requests and response payloads, providing a 
 | street      | string | Yes      | Max Length: 25                                                                                                                            | Name of premise                                    |
 | area        | string | Yes      | Max Length: 25                                                                                                                            | Area of location                                   |
 | city        | string | Yes      | Max Length: 25                                                                                                                            | City of location                                   |
-| state       | enum   | Yes      | [State](https://developer.sandbox.co.in/reference/tds-master-data#state)                                                                  | State of location                                  |
+| state       | enum   | Yes      | [State](https://developer.sandbox.co.in/reference/master_data#state)                                                                  | State of location                                  |
 | postal_code | string | Yes      | Pattern : [0-9]{6}                                                                                                                        | Pincode of location                                |
 | email       | string | Yes      | Max Length: 75                                                                                                                            | Primary email for contact                          |
 | mobile      | string | Yes      | Pattern: [1-9]{1}[0-9]{9}                                                                                                                 | Primary mobile number for contact                  |
@@ -669,7 +669,7 @@ This page serves as a repository of requests and response payloads, providing a 
 | street      | string | Yes      | Max Length: 25                                                           | Name of the premise                   |
 | area        | string | Yes      | Max Length: 25                                                           | Area of the location                  |
 | city        | string | Yes      | Max Length: 25                                                           | City of location                      |
-| state       | enum   | Yes      | [State](https://developer.sandbox.co.in/reference/tds-master-data#state) | State of location                     |
+| state       | enum   | Yes      | [State](https://developer.sandbox.co.in/reference/master_data#state) | State of location                     |
 | postal_code | string | Yes      | Pattern : [0-9]{6}                                                       | Pincode of location                   |
 | email       | string | Yes      | Max Length: 75                                                           | Primary email for contact             |
 | mobile      | string | Yes      | Pattern: [1-9]{1}[0-9]{9}                                                | Primary mobile number for contact     |
@@ -691,7 +691,7 @@ This page serves as a repository of requests and response payloads, providing a 
 | city | string | Yes | Max Length: 25 | City of location |
 | state | string | Yes | Max Length: 25 | State of location |
 | postal_code | string | Yes | Max Length: 8 | Pincode of location |
-| country | enum | Yes | [Country](https://developer.sandbox.co.in/reference/tds-master-data#country) | Country of residance |
+| country | enum | Yes | [Country](https://developer.sandbox.co.in/reference/master_data#country) | Country of residance |
 | email | string | Yes | Max Length: 75 | Primary email for contact |
 | isd_code | number | Yes | Max Length: 5 | ISD code of the country |
 | mobile | string | Yes | Pattern: [1-9]{1}[0-9]{9} | Primary mobile number for contact |
@@ -709,7 +709,7 @@ This page serves as a repository of requests and response payloads, providing a 
 | challan_serial | string | Yes | Pattern : [0-9]{5} | Bank Challan No |
 | bsr_code | string | Yes | Pattern : [0-9]{7} | Bank-Branch Code/ Form 24G Receipt Number |
 | paid_date_epoch | number | Yes | Length: 13 | Timestamp of challan paid date |
-| minor_head | enum | Yes | [Minor Head](https://developer.sandbox.co.in/reference/tds-master-data#form-27q-2) | Minor Head of challan |
+| minor_head | enum | Yes | [Minor Head](https://developer.sandbox.co.in/reference/master_data#form-27q-2) | Minor Head of challan |
 | tds_amount | number | Yes | Length: 15 | Income Tax |
 | surcharge | number | Yes | Length: 15 | Surcharge Amount |
 | health_and_education_cess | number | Yes | Length: 15 | Health and education cess amount |
@@ -728,7 +728,7 @@ This page serves as a repository of requests and response payloads, providing a 
 | payee_sr_no                                                                    | number  | Yes      | \-                                                                                                      | Payee Serial Number                                                                           |
 | challan_serial                                                                 | string  | Yes      | Pattern : [0-9]{5}                                                                                      | Bank Challan No                                                                               |
 | bsr_code                                                                       | string  | Yes      | Pattern : [0-9]{7}                                                                                      | Bank-Branch Code/ Form 24G Receipt Number                                                     |
-| nature_of_payment                                                              | enum    | Yes      | [Nature of Payment](https://developer.sandbox.co.in/reference/tds-master-data#form-27q)                 | TDS section of deduction                                                                      |
+| nature_of_payment                                                              | enum    | Yes      | [Nature of Payment](https://developer.sandbox.co.in/reference/master_data#form-27q)                 | TDS section of deduction                                                                      |
 | payment_amount                                                                 | number  | Yes      | Length: 15,2                                                                                            | Payment amount                                                                                |
 | payment_date_epoch                                                             | number  | Yes      | Length: 13                                                                                              | EPOCH Timestamp of Payment date                                                               |
 | tds_amount                                                                     | number  | Yes      | Length: 15,2                                                                                            | Tax amount of deduction                                                                       |
@@ -736,10 +736,10 @@ This page serves as a repository of requests and response payloads, providing a 
 | health_and_education_cess                                                      | number  | Yes      | Length: 15,2                                                                                            | Health and education cess amount                                                              |
 | deduction_date_epoch                                                           | number  | Yes      | Length: 13                                                                                              | EPOCH Timestamp of Deduction date                                                             |
 | applicability_of_tds_rate_under_dtaa                                           | boolean | Yes      | \-                                                                                                      | Whether the TDS rate is applicable under DTAA                                                 |
-| nature_of_remittance                                                           | string  | Yes      | [Nature of remittance](https://developer.sandbox.co.in/reference/tds-master-data#nature-of-remittances) | Nature of remittance                                                                          |
+| nature_of_remittance                                                           | string  | Yes      | [Nature of remittance](https://developer.sandbox.co.in/reference/master_data#nature-of-remittances) | Nature of remittance                                                                          |
 | form_15ca_acknowledgement_number                                               | string  | No       | Max Length: 10                                                                                          | Form 15ca acknowledgement number                                                              |
 | grossing_up_indicator                                                          | enum    | No       | \-                                                                                                      | Possible values: `Y`, `N`                                                                     |
-| reason_for_lower_deduction                                                     | enum    | No       | [Reason for lower deduction](https://developer.sandbox.co.in/reference/tds-master-data#form-27q-1)      | Reason for non-deduction / lower deduction/ higher deduction/threshold                        |
+| reason_for_lower_deduction                                                     | enum    | No       | [Reason for lower deduction](https://developer.sandbox.co.in/reference/master_data#form-27q-1)      | Reason for non-deduction / lower deduction/ higher deduction/threshold                        |
 | certificate_number                                                             | string  | No       | Max Length: 10                                                                                          | Certificate number issued by the Assessing Officer u/s 197 for non-deduction/lower deduction. |
 | amount_of_cash_withdrawal_more_than_1_crore_us_194N                            | number  | No       | Length : 15,2                                                                                           | Value to be mentioned if TDS deducted u/s 194N                                                |
 | amount_of_cash_withdrawal_between_20_lakhs_and_1_crore_us_194N_for_non_filers  | number  | No       | Length : 15,2                                                                                           | Value to be mentioned if TDS deducted u/s 194NF, can be 0 if the amount is more than 1CR.     |
@@ -766,7 +766,7 @@ This page serves as a repository of requests and response payloads, providing a 
 | street      | string | Yes      | Max Length: 25                                                                                                                            | Name of premise                                    |
 | area        | string | Yes      | Max Length: 25                                                                                                                            | Area of location                                   |
 | city        | string | Yes      | Max Length: 25                                                                                                                            | City of location                                   |
-| state       | enum   | Yes      | [State](https://developer.sandbox.co.in/reference/tds-master-data#state)                                                                  | State of location                                  |
+| state       | enum   | Yes      | [State](https://developer.sandbox.co.in/reference/master_data#state)                                                                  | State of location                                  |
 | postal_code | string | Yes      | Pattern : [0-9]{6}                                                                                                                        | Pincode of location                                |
 | email       | string | Yes      | Max Length: 75                                                                                                                            | Primary email for contact                          |
 | mobile      | string | Yes      | Pattern: [1-9]{1}[0-9]{9}                                                                                                                 | Primary mobile number for contact                  |
@@ -783,7 +783,7 @@ This page serves as a repository of requests and response payloads, providing a 
 | street      | string | Yes      | Max Length: 25                                                           | Name of the premise                   |
 | area        | string | Yes      | Max Length: 25                                                           | Area of the location                  |
 | city        | string | Yes      | Max Length: 25                                                           | City of location                      |
-| state       | enum   | Yes      | [State](https://developer.sandbox.co.in/reference/tds-master-data#state) | State of location                     |
+| state       | enum   | Yes      | [State](https://developer.sandbox.co.in/reference/master_data#state) | State of location                     |
 | postal_code | string | Yes      | Pattern : [0-9]{6}                                                       | Pincode of location                   |
 | email       | string | Yes      | Max Length: 75                                                           | Primary email for contact             |
 | mobile      | string | Yes      | Pattern: [1-9]{1}[0-9]{9}                                                | Primary mobile number for contact     |
@@ -814,7 +814,7 @@ This page serves as a repository of requests and response payloads, providing a 
 | challan_serial | string | Yes | Pattern : [0-9]{5} | Bank Challan No |
 | bsr_code | string | Yes | Pattern : [0-9]{7} | Bank-Branch Code/ Form 24G Receipt Number |
 | paid_date_epoch | number | Yes | Length: 13 | Timestamp of challan paid on the date |
-| minor_head | enum | Yes | [Minor Head](https://developer.sandbox.co.in/reference/tds-master-data#form-27eq-2) | Minor Head of challan |
+| minor_head | enum | Yes | [Minor Head](https://developer.sandbox.co.in/reference/master_data#form-27eq-2) | Minor Head of challan |
 | tcs_amount | number | Yes | Length: 15 | Income Tax |
 | surcharge | number | Yes | Length: 15 | Surcharge on Income Tax |
 | health_and_education_cess | number | Yes | Length: 15 | Health and education cess amount |
@@ -832,7 +832,7 @@ This page serves as a repository of requests and response payloads, providing a 
 | payee_sr_no                 | number | Yes      |                                                                                                      | Payee Serial Number                                                                             |
 | challan_serial              | string | Yes      | Pattern : [0-9]{5}                                                                                   | Bank Challan No                                                                                 |
 | bsr_code                    | string | Yes      | Pattern : [0-9]{7}                                                                                   | Bank-Branch Code/ Form 24G Receipt Number                                                       |
-| nature_of_payment           | enum   | Yes      | [nature of payment](https://developer.sandbox.co.in/reference/tds-master-data#tcs)                   | TCS section of the collection                                                                   |
+| nature_of_payment           | enum   | Yes      | [nature of payment](https://developer.sandbox.co.in/reference/master_data#tcs)                   | TCS section of the collection                                                                   |
 | total_value_of_purchase     | number | Yes      | Length: 15,2                                                                                         | Total value of purchase                                                                         |
 | payment_amount              | number | Yes      | Length: 15,2                                                                                         | amount received by the collectee                                                                |
 | payment_date_epoch          | number | Yes      | Length: 13                                                                                           | Timestamp of Purchase date/when the amount was received                                         |
@@ -840,7 +840,7 @@ This page serves as a repository of requests and response payloads, providing a 
 | surcharge                   | number | Yes      | Length: 15,2                                                                                         | Surcharge on Tax amount                                                                         |
 | health_and_education_cess   | number | Yes      | Length: 15,2                                                                                         | Health and education cess amount                                                                |
 | collection_date_epoch       | number | Yes      | Length: 13                                                                                           | Timestamp of when tax was collected                                                             |
-| reason_for_lower_collection | enum   | No       | [Reason for lower collection](https://developer.sandbox.co.in/reference/tds-master-data#form-27eq-1) | Reason for non-collection/ lower collection/ higher collection/Threshold                        |
+| reason_for_lower_collection | enum   | No       | [Reason for lower collection](https://developer.sandbox.co.in/reference/master_data#form-27eq-1) | Reason for non-collection/ lower collection/ higher collection/Threshold                        |
 | certificate_number          | number | No       | Max Length: 10                                                                                       | Certificate number issued by the Assessing Officer u/s 197 for non-collection/lower collection. |
 
 <br />
