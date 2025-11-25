@@ -3,43 +3,40 @@ title: "Quickstart"
 description: "Learn how to authenticate and make your first API call."
 ---
 
-Getting started with Sandbox APIs is straightforward. This guide will walk you through 3 simple steps to authenticate and make API calls using your API credentials.
+Getting started with Sandbox APIs is seemless. This guide walks you through 3 simple steps to authenticate and make API calls using your API credentials.
 
 ## Send your first API request
-<Steps titleSize="p">
+
+<Steps>
   <Step title="Get your API credentials">
-    Login to [Sandbox Console](https://console.sandbox.co.in) and navigate to **Settings** → **API Keys** to get your API Key and API Secret. You have two separate sets for live and test environments, identified by the prefixes "live" and "test"
+    Login to [Sandbox Console](https://console.sandbox.co.in) and navigate to **Settings** → **API Keys** to get your API Key and API Secret. You have two separate sets for live and test environments, identified by the prefixes "live" and "test". Here's how to [generate your API keys](https://help.sandbox.co.in/portal/en/kb/articles/generate-your-api-keys). 
 
     <Tip>
       **Download your API key and API key secret when prompted, it's only shown once.**
     </Tip>
   </Step>
-
   <Step title="Authenticate to get an access token">
     Call the [Authenticate API](/api-reference/authenticate) to generate an access token. You'll need to pass your API Key and API Secret in the request headers.
 
-      <CodeBlock language="bash" filename="Terminal">
-{`curl -X POST https://test-api.sandbox.code.in/authenticate \\
-  -H "x-api-key: key_test_your_api_key" \\
-  -H "x-api-secret: secret_test_your_api_secret" \\
-  -H "Content-Type: application/json"`}
-      </CodeBlock>
+    ```bash Terminal
+    
+    ```
 
-```json Response
-{
-  "code": 200,
-  "data": {
-    "access_token": "eyJ0eXAiOiJKV1QiLCJhbGc..."
-  },
-  "timestamp": 1750687659809,
-  "transaction_id": "3a31716a-6a4d-4670-83fe-849d8209e35a"
-}
-```
+    ```json Response
+    {
+      "code": 200,
+      "data": {
+        "access_token": "eyJ0eXAiOiJKV1QiLCJhbGc..."
+      },
+      "timestamp": 1750687659809,
+      "transaction_id": "3a31716a-6a4d-4670-83fe-849d8209e35a"
+    }
+    ```
+
     <Tip>
       **The access token has a validity of 24 hours. You can regenerate the token anytime using the Authenticate API.**
     </Tip>
   </Step>
-
   <Step title="Make API calls with your access token">
     Now you can use the access token to call any Sandbox API. Include the following headers in your requests:
 
@@ -48,19 +45,11 @@ Getting started with Sandbox APIs is straightforward. This guide will walk you t
     - `x-api-version` (optional): API version (e.g., "1.0")
 
     <Warning>
-      **The access token you generate is NOT a bearer token. Pass it in the `authorization` header without the `Bearer` keyword.**
+      **``The access token you generate is NOT a bearer token. Pass it in the authorization header without the Bearer keyword.``**
     </Warning>
-
-      <CodeBlock language="bash" filename="Terminal">
-{`curl -X POST https://test-api.sandbox.code.in/gst/compliance/public/gstin/search \\
-  -H "x-api-key: your_test_api_key" \\
-  -H "authorization: eyJ0eXAiOiJKV1QiLCJhbGc..." \\
-  -H "x-api-version: 1.0" \\
-  -H "Content-Type: application/json" \\
-  --data '{
-    "gstin": "05ABNTY3290P8ZB"
-  }'`}
-      </CodeBlock>
+    ```bash Terminal
+    
+    ```
 
     <Tip>
       You're done!
@@ -70,10 +59,10 @@ Getting started with Sandbox APIs is straightforward. This guide will walk you t
 
 ## Environment Host URLs
 
-| **Environment** | **Host URL**                                    |
-| :-------------- | :---------------------------------------------- |
-| Test            | `https://test-api.sandbox.code.in`              |
-| Production      | `https://api.sandbox.code.in`                  |
+| **Environment** | **Host URL**                       |
+| :-------------- | :--------------------------------- |
+| Test            | `https://test-api.sandbox.code.in` |
+| Production      | `https://api.sandbox.code.in`      |
 
 <Info>
   The same workflow works for both Test and Production environments. Use the appropriate host URL based on your environment.
