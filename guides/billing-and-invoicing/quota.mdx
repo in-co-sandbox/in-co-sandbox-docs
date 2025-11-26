@@ -1,21 +1,31 @@
 ---
 title: "Quota"
-
 ---
 
-Quota is the number of API calls a customer can make in a given month without incurring additional charges. The quota is as per the plan a customer subscribes to. The quota is always on a monthly basis. 
+Quota refers to the number of API calls a customer can make each month without incurring additional charges. The quota allocated depends on the subscribed plan and always resets monthly.
 
 <Warning>
-  **The left-over quota does not carry forward to the next month.**
+  **The unused quota does not carry forward to the next month.**
 </Warning>
 
-Quota helps us provision resources for our customers who come in all sizes. Quota also ensures that one customer does not block all available resources and starve other customers of resources.
+Quota limits help us provision infrastructure efficiently across customers of all sizes and ensure fair access to resources for everyone.
 
-You can refer to the quota for the standard plans here:
+### **Consumption**
 
-| **Plan**   | **Pricing (Monthly)** | **Quota**          |
-| :--------- | :-------------------- | :----------------- |
-| Startup    | ₹999                  | 1,000 API Calls    |
-| Growth     | ₹9,999                | 30,000 API Calls   |
-| Unicorn    | ₹16,999               | 1,00,000 API Calls |
-| Enterprise | On Request            | On Request         |
+Not all API requests count toward your quota, and not all requests incur wallet charges. For example, failed requests with 5xx status codes neither consume quota nor deduct wallet balance.
+
+Below is a breakdown of when quota is consumed and when wallet charges apply.
+
+### **Quota Consumption**
+
+Quota is consumed only for successful API calls (200).
+
+### **Wallet Charges**
+
+Wallet charges apply only on successful API calls (200).
+
+### **Wallet Charges**
+
+Wallet charges are only applicable on 200 (successful) calls.
+
+You can view the quota limits for all standard plans on our [**Pricing page**](https://sandbox.co.in/pricing).
