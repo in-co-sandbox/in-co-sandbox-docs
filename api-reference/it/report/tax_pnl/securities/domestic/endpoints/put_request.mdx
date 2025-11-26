@@ -1,8 +1,19 @@
 ---
 title: "PUT Request"
-description: "Create a domestic securities Tax P&L reporting job. Provide the workbook type, financial year, and auth headers to receive the job_id, status metadata, and presigned upload URL."
-openapi: "/api-reference/it/openapi.json POST /it/reports/tax-pnl/securities/domestic"
+description: "Once the job is successfully created, upload the payload using HTTP PUT method on generated presigned url."
 ---
+## Overview
+
+After submitting a job, the API responds with a **presigned S3 URL**.  
+Use this URL to upload the workbook via an HTTP **PUT** request.
+
+
+> It's a **temporary AWS S3 presigned URL** generated uniquely for each job.
+## Example Presigned URL
+
+
+https://in-co-sandbox-it-reports-tax-pnl-sec-dev.s3.ap-south-1.amazonaws.com/{{file_path}}?{{signed_query_params}}
+
 
 # **JSON Payload**
 
