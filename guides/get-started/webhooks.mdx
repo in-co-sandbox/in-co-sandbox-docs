@@ -1,13 +1,15 @@
 ---
 title: "Webhooks"
-
 ---
 
-Webhooks are a one-way web application that can send information to another application when a specific event happens. For e.g., if you have subscribed to the `tds.206-ab.done` event, you will receive a webhook event every time your 206AB Job is done.
+Webhooks allow Sandbox to send real-time notifications to your application whenever specific events occur. They enable a one-way communication flow, whenever the event you’ve subscribed to is triggered, Sandbox delivers the corresponding payload directly to your endpoint.
+
+For example, if you subscribe to the `tds.206-ab.done` event, you will receive a webhook notification each time your 206AB job is completed.
 
 ### **Configuring Webhooks**
 
-You can easily configure Webhooks conveniently from the subscription settings.
+You can configure your webhook URL, subscribed events, and secret key directly on Sandbox. Once configured, Sandbox will automatically deliver event notifications to your specified endpoint.\
+Here's a guide on [How to Configure Webhooks](https://help.sandbox.co.in/portal/en/kb/articles/configure-a-webhook).
 
 ### **Validating Webhooks**
 
