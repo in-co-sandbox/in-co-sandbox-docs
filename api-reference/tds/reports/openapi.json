@@ -1150,6 +1150,54 @@
                             }
                         }
                     }
+                },
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type": "object",
+                                "properties": {
+                                    "@entity": {
+                                        "type": "string",
+                                        "enum": [
+                                            "in.co.sandbox.tcs.reports.request"
+                                        ]
+                                    },
+                                    "financial_year": {
+                                        "description": "Financial Year for which TCS is being filed",
+                                        "example": "FY 2024-25",
+                                        "type": "string"
+                                    },
+                                    "quarter": {
+                                        "description": "Quarter for which TCS is being filed",
+                                        "type": "string",
+                                        "enum": [
+                                            "Q1",
+                                            "Q2",
+                                            "Q3",
+                                            "Q4"
+                                        ]
+                                    },
+                                    "previous_receipt_number": {
+                                        "description": "Receipt Number of previously filed TCS Return",
+                                        "example": "123456789123456",
+                                        "type": "string"
+                                    },
+                                    "tan": {
+                                        "description": "TAN of collectee. Regular Expression: [A-Z]{4}[0-9]{5}[A-Z]{1}",
+                                        "example": "AHMA09719B",
+                                        "type": "string"
+                                    }
+                                },
+                                "required": [
+                                    "@entity",
+                                    "financial_year",
+                                    "quarter",
+                                    "tan"
+                                ]
+                            }
+                        }
+                    }
                 }
             },
             "get": {

@@ -3245,33 +3245,59 @@
                                 "type": "object",
                                 "properties": {
                                     "@entity": {
+                                        "enum": [
+                                            "in.co.sandbox.tds.compliance.e-file.search"
+                                        ],
                                         "type": "string"
                                     },
                                     "tan": {
+                                        "description": "TAN of deductor/collector. Regular Expression: [A-Z]{4}[0-9]{5}[A-Z]{1}",
                                         "type": "string"
                                     },
                                     "quarter": {
+                                        "description": "Quarter (e.g. Q2)",
+                                        "enum": [
+                                            "Q1",
+                                            "Q2",
+                                            "Q3",
+                                            "Q4"
+                                        ],
                                         "type": "string"
                                     },
                                     "form": {
+                                        "description": "TDS/TCS return form",
+                                        "enum": [
+                                            "27Q",
+                                            "24Q",
+                                            "26Q",
+                                            "27EQ"
+                                        ],
                                         "type": "string"
                                     },
                                     "financial_year": {
+                                        "description": "Financial Year (e.g. FY 2022-23)",
                                         "type": "string"
                                     },
                                     "from_date": {
+                                        "description": "Date from which jobs are to be fetched. Value in EPOCH timestamP",
                                         "type": "integer"
                                     },
                                     "to_date": {
+                                        "description": "Date till which jobs are to be fetched. Value in EPOCH timestamp",
                                         "type": "integer"
                                     },
                                     "page_size": {
+                                        "description": "Number of records in the API response. Maximum allowed size is 50",
                                         "type": "integer"
                                     },
                                     "last_evaluated_key": {
+                                        "description": "Base64 encoding of the stringified JSON object, which includes x-api-key, created_at, and job_id",
                                         "type": "string"
                                     }
-                                }
+                                },
+                                "required": [
+                                    "@entity"
+                                ]
                             }
                         }
                     }
