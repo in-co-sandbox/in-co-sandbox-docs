@@ -1,5 +1,5 @@
 ---
-title: "Tradewise Settlements | Domestic Securities"
+title: "Tradewise Settlements"
 ---
 
 Reference sheet for preparing domestic securities tradewise settlements across asset classes. Each section outlines the expected schema for trades, last traded prices, dividends, and other expenses. Use these tables to validate or map broker exports before uploading to Sandbox Income Tax Annexures.
@@ -31,7 +31,7 @@ Reference sheet for preparing domestic securities tradewise settlements across a
 | cgst                         | `number`  | No       | Central GST                                               |
 | igst                         | `number`  | No       | Integrated GST                                            |
 | other_transfer_expenses      | `number`  | No       | Other transfer-related expenses                           |
-| nature_of_settlement         | `string`  | No       | See Annexure 2: Nature of Settlement                      |
+| nature_of_settlement         | `string`  | No       | See [Annexure](/api-reference/it/calculator/tax_pnl/securities/domestic/annexures/labels)                      |
 | product_type                 | `string`  | Yes      | `delivery` or `intraday`                                  |
 
 
@@ -44,7 +44,7 @@ Reference sheet for preparing domestic securities tradewise settlements across a
 | transfer_date      | `number` | Date the transfer was completed              |
 | price              | `number` | Per-unit transfer price                      |
 | transfer_type      | `string` | `IN` or `OUT`                                |
-| nature_of_transfer | `string` | See Annexure 2: Nature of Settlement         |
+| nature_of_transfer | `string` | See [Annexure](/api-reference/it/calculator/tax_pnl/securities/domestic/annexures/labels)         |
 | transfer_value     | `number` | Total transfer value                         |
 | transfer_expense   | `number` | Transfer-related expenses                    |
 
@@ -58,7 +58,7 @@ Reference sheet for preparing domestic securities tradewise settlements across a
 | sell_date         | `number` | Epoch timestamp of sale                      |
 | sell_price        | `number` | Per-unit sale price                          |
 | transaction_type  | `string` | `buy`, `sell`, `send`, `receive`, `trade`    |
-| label             | `string` | See Annexure 1 Labels                        |
+| label             | `string` | See [label](/api-reference/it/calculator/tax_pnl/securities/domestic/annexures/labels)                       |
 | last_traded_price | `number` | Last traded price                            |
 
 
@@ -81,7 +81,7 @@ Reference sheet for preparing domestic securities tradewise settlements across a
 | sell_price           | `number`  | Yes      | Per-unit sell price                          |
 | fmv                  | `number`  | No       | FMV as on 31/01/2018                         |
 | transfer_expenses    | `number`  | No       | Transfer-related expenses                    |
-| nature_of_settlement | `string`  | No       | See Annexure 2                               |
+| nature_of_settlement | `string`  | No       | See [Annexure](/api-reference/it/calculator/tax_pnl/securities/domestic/annexures/labels)                              |
 
 
 ### Mutual Fund Tradewise Transfer Table
@@ -94,7 +94,7 @@ Reference sheet for preparing domestic securities tradewise settlements across a
 | transfer_date      | `number` | Date transfer completed                      |
 | price              | `number` | Per-unit transfer price                      |
 | transfer_type      | `string` | `IN` or `OUT`                                |
-| nature_of_transfer | `string` | See Annexure 2                               |
+| nature_of_transfer | `string` | See [Annexure](/api-reference/it/calculator/tax_pnl/securities/domestic/annexures/labels)                               |
 | transfer_value     | `number` | Total value                                  |
 | transfer_expense   | `number` | Transfer expenses                            |
 
@@ -109,7 +109,7 @@ Reference sheet for preparing domestic securities tradewise settlements across a
 | buy_date          | `number` | Buy date                                     |
 | buy_price         | `number` | Buy price                                    |
 | transaction_type  | `string` | `buy`, `sell`, `send`, `receive`, `trade`    |
-| label             | `string` | See Annexure 1                               |
+| label             | `string` | See [label](/api-reference/it/calculator/tax_pnl/securities/domestic/annexures/labels)                               |
 | last_traded_price | `number` | LTP                                          |
 
 
@@ -123,7 +123,7 @@ Reference sheet for preparing domestic securities tradewise settlements across a
 | sell_date         | `number` | Sell date        |
 | sell_price        | `number` | Price sold       |
 | transaction_type  | `string` | Transaction type |
-| label             | `string` | See Annexure 1   |
+| label             | `string` | See [label](/api-reference/it/calculator/tax_pnl/securities/domestic/annexures/labels)   |
 | last_traded_price | `number` | LTP              |
 
 
@@ -155,7 +155,7 @@ Reference sheet for preparing domestic securities tradewise settlements across a
 | cgst                         | `number`  | No       | CGST                      |
 | igst                         | `number`  | No       | IGST                      |
 | other_transfer_expenses      | `number`  | No       | Transfer expenses         |
-| nature_of_settlement         | `string`  | No       | See Annexure 2            |
+| nature_of_settlement         | `string`  | No       | See [Annexure](/api-reference/it/calculator/tax_pnl/securities/domestic/annexures/labels)            |
 | product_type                 | `string`  | Yes      | `delivery`, `intraday`    |
 
 
@@ -169,7 +169,7 @@ Reference sheet for preparing domestic securities tradewise settlements across a
 | transfer_date      | `number` | Transfer date       |
 | price              | `number` | Unit transfer price |
 | transfer_type      | `string` | `IN` or `OUT`       |
-| nature_of_transfer | `string` | See Annexure 2      |
+| nature_of_transfer | `string` | See [Annexure](/api-reference/it/calculator/tax_pnl/securities/domestic/annexures/labels)      |
 | transfer_value     | `number` | Total value         |
 | transfer_expense   | `number` | Transfer expense    |
 
@@ -184,7 +184,7 @@ Reference sheet for preparing domestic securities tradewise settlements across a
 | buy_date          | `number` | Buy date         |
 | buy_price         | `number` | Buy price        |
 | transaction_type  | `string` | Transaction type |
-| label             | `string` | Label            |
+| label             | `string` | See [label](/api-reference/it/calculator/tax_pnl/securities/domestic/annexures/labels)           |
 | last_traded_price | `number` | LTP              |
 
 
@@ -198,7 +198,7 @@ Reference sheet for preparing domestic securities tradewise settlements across a
 | sell_date         | `number` | Date sold        |
 | sell_price        | `number` | Price sold       |
 | transaction_type  | `string` | Transaction type |
-| label             | `string` | Label            |
+| label             | `string` | See [label](/api-reference/it/calculator/tax_pnl/securities/domestic/annexures/labels)           |
 | last_traded_price | `number` | LTP              |
 
 
@@ -240,7 +240,7 @@ Reference sheet for preparing domestic securities tradewise settlements across a
 | trade_date        | `number` | Trade date                                 |
 | trade_price       | `number` | Trade price                                |
 | transaction_type  | `string` | Transaction type                           |
-| label             | `string` | Label                                      |
+| label             | `string` | See [label](/api-reference/it/calculator/tax_pnl/securities/domestic/annexures/labels)                                      |
 | last_traded_price | `number` | LTP                                        |
 
 
@@ -282,7 +282,7 @@ Reference sheet for preparing domestic securities tradewise settlements across a
 | trade_date        | `number` | Trade date                    |
 | trade_price       | `number` | Price                         |
 | transaction_type  | `string` | Transaction type              |
-| label             | `string` | Label                         |
+| label             | `string` | See [label](/api-reference/it/calculator/tax_pnl/securities/domestic/annexures/labels)                         |
 | last_traded_price | `number` | LTP                           |
 
 
@@ -338,7 +338,7 @@ Reference sheet for preparing domestic securities tradewise settlements across a
 | sell_date         | `number` | Date        |
 | sell_price        | `number` | Price       |
 | transaction_type  | `string` | Type        |
-| label             | `string` | Label       |
+| label             | `string` | See [label](/api-reference/it/calculator/tax_pnl/securities/domestic/annexures/labels)       |
 | last_traded_price | `number` | LTP         |
 
 
@@ -394,7 +394,7 @@ Reference sheet for preparing domestic securities tradewise settlements across a
 | buy_date          | `number` | Buy date    |
 | buy_price         | `number` | Price       |
 | transaction_type  | `string` | Type        |
-| label             | `string` | Label       |
+| label             | `string` | See [label](/api-reference/it/calculator/tax_pnl/securities/domestic/annexures/labels)       |
 | last_traded_price | `number` | LTP         |
 
 
@@ -407,7 +407,7 @@ Reference sheet for preparing domestic securities tradewise settlements across a
 | sell_date         | `number` | Sell date   |
 | sell_price        | `number` | Price       |
 | transaction_type  | `string` | Type        |
-| label             | `string` | Label       |
+| label             | `string` | See [label](/api-reference/it/calculator/tax_pnl/securities/domestic/annexures/labels)       |
 | last_traded_price | `number` | LTP         |
 
 
