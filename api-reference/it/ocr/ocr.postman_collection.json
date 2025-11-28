@@ -1,0 +1,1997 @@
+{
+	"info": {
+		"_postman_id": "696bba94-d317-4dbb-8f41-7b5b56fb5dc9",
+		"name": "ocr",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "29708799",
+		"_collection_link": "https://in-co-sandbox.postman.co/workspace/in-co-sandbox-it~43387b28-aaf6-43c7-826f-da5ec083715d/collection/29708799-696bba94-d317-4dbb-8f41-7b5b56fb5dc9?action=share&source=collection_link&creator=29708799"
+	},
+	"item": [
+		{
+			"name": "form26AS",
+			"item": [
+				{
+					"name": "Form26AS Classify",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "x-api-key",
+								"value": "{{api_key}}",
+								"type": "text"
+							},
+							{
+								"key": "Authorization",
+								"value": "{{access_token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "file",
+									"type": "file",
+									"src": "postman-cloud:///1eefe15e-a668-4660-ac11-740ae64e8a49"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{sandbox_host}}/form-26as/pdf/classify",
+							"host": [
+								"{{sandbox_host}}"
+							],
+							"path": [
+								"form-26as",
+								"pdf",
+								"classify"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "200 OK",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "x-api-key",
+										"value": "{{api_key}}",
+										"type": "text"
+									},
+									{
+										"key": "Authorization",
+										"value": "{{access_token}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "file",
+											"type": "file",
+											"src": "postman-cloud:///1eefe15e-a668-4660-ac11-740ae64e8a49"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{sandbox_host}}/form-26as/pdf/classify",
+									"host": [
+										"{{sandbox_host}}"
+									],
+									"path": [
+										"form-26as",
+										"pdf",
+										"classify"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Date",
+									"value": "Fri, 19 Apr 2024 06:27:23 GMT"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Content-Length",
+									"value": "143"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "x-amzn-RequestId",
+									"value": "bcc86368-b2e6-4413-96ed-a10f56dbf9a5"
+								},
+								{
+									"key": "x-amzn-Remapped-x-amzn-RequestId",
+									"value": "6fe49b7a-3b31-4c99-b106-783f67789c4f"
+								},
+								{
+									"key": "access-control-allow-origin",
+									"value": "*"
+								},
+								{
+									"key": "access-control-allow-headers",
+									"value": "x-requested-with, accept, content-type, x-auth-token, x-auth-role, x-api-key, x-api-token, authorization"
+								},
+								{
+									"key": "x-amzn-Remapped-Content-Length",
+									"value": "143"
+								},
+								{
+									"key": "x-amzn-Remapped-Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "x-amz-apigw-id",
+									"value": "Wdc88E0chcwFZYA="
+								},
+								{
+									"key": "access-control-allow-methods",
+									"value": "POST, GET, OPTIONS, DELETE"
+								},
+								{
+									"key": "X-Amzn-Trace-Id",
+									"value": "Root=1-66220eb8-0f7087d647175aed5ace633d;Parent=28998f751d9ee15b;Sampled=0;lineage=00fbddb4:0|f97d29b2:0"
+								},
+								{
+									"key": "x-amzn-Remapped-Date",
+									"value": "Fri, 19 Apr 2024 06:27:23 GMT"
+								},
+								{
+									"key": "access-control-max-age",
+									"value": "3600"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"transaction_id\": \"6fe49b7a-3b31-4c99-b106-783f67789c4f\",\n    \"code\": 200,\n    \"data\": {\n        \"type\": \"Form 26AS\",\n        \"version\": \"2023.1.0\"\n    },\n    \"timestamp\": 1713508024000\n}"
+						}
+					]
+				},
+				{
+					"name": "Form26AS Read",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "x-api-key",
+								"value": "{{api_key}}",
+								"type": "text"
+							},
+							{
+								"key": "Authorization",
+								"value": "{{access_token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "file",
+									"type": "file",
+									"src": "/C:/Users/vishvajit_quicko/Downloads/RRMPS6467P-2025.pdf"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{sandbox_host}}/it/ocr/form-26as/pdf",
+							"host": [
+								"{{sandbox_host}}"
+							],
+							"path": [
+								"it",
+								"ocr",
+								"form-26as",
+								"pdf"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "200 OK",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "x-api-key",
+										"value": "{{api_key}}",
+										"type": "text"
+									},
+									{
+										"key": "Authorization",
+										"value": "{{access_token}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "file",
+											"type": "file",
+											"src": "postman-cloud:///1eefe15e-a668-4660-ac11-740ae64e8a49"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{sandbox_host}}/form-26as/pdf",
+									"host": [
+										"{{sandbox_host}}"
+									],
+									"path": [
+										"form-26as",
+										"pdf"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Date",
+									"value": "Fri, 19 Apr 2024 06:27:55 GMT"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Content-Length",
+									"value": "2854"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "x-amzn-RequestId",
+									"value": "9c913be0-49eb-4f3c-930b-cd42a06b4ed2"
+								},
+								{
+									"key": "x-amzn-Remapped-x-amzn-RequestId",
+									"value": "4942c06a-4f2b-4299-87c2-59c8b84e5fae"
+								},
+								{
+									"key": "access-control-allow-origin",
+									"value": "*"
+								},
+								{
+									"key": "access-control-allow-headers",
+									"value": "x-requested-with, accept, content-type, x-auth-token, x-auth-role, x-api-key, x-api-token, authorization"
+								},
+								{
+									"key": "x-amzn-Remapped-Content-Length",
+									"value": "2854"
+								},
+								{
+									"key": "x-amzn-Remapped-Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "x-amz-apigw-id",
+									"value": "WddEMHwxhcwFsVQ="
+								},
+								{
+									"key": "access-control-allow-methods",
+									"value": "POST, GET, OPTIONS, DELETE"
+								},
+								{
+									"key": "X-Amzn-Trace-Id",
+									"value": "Root=1-66220ee7-0c7efbbf19145fc6168fad33;Parent=6f6554de3f98d10a;Sampled=0;lineage=00fbddb4:0|f97d29b2:0"
+								},
+								{
+									"key": "x-amzn-Remapped-Date",
+									"value": "Fri, 19 Apr 2024 06:27:55 GMT"
+								},
+								{
+									"key": "access-control-max-age",
+									"value": "3600"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"transaction_id\": \"4942c06a-4f2b-4299-87c2-59c8b84e5fae\",\n    \"code\": 200,\n    \"data\": {\n        \"Part VI\": [],\n        \"financial_year\": \"2023-24\",\n        \"assessment_year\": \"2024-25\",\n        \"name\": \"HEENA TRIVEDI\",\n        \"Part II\": [],\n        \"Part III\": [],\n        \"Part V\": [],\n        \"pan\": \"ABVPT1571F\",\n        \"Part I\": [\n            {\n                \"deduction_wise\": [\n                    [\n                        \"sr_no\",\n                        \"section\",\n                        \"transaction_date\",\n                        \"status_of_booking\",\n                        \"date_of_booking\",\n                        \"remarks\",\n                        \"amount_paid_credited\",\n                        \"tax_deducted\",\n                        \"tds_deposited\"\n                    ],\n                    [\n                        \"1\",\n                        \"194JA\",\n                        \"30-Jun-2023\",\n                        \"F\",\n                        \"01-Oct-2023\",\n                        \"-\",\n                        \"13000.00\",\n                        \"260.00\",\n                        \"260.00\"\n                    ],\n                    [\n                        \"2\",\n                        \"194JA\",\n                        \"23-Jun-2023\",\n                        \"F\",\n                        \"01-Oct-2023\",\n                        \"-\",\n                        \"14500.00\",\n                        \"290.00\",\n                        \"290.00\"\n                    ],\n                    [\n                        \"3\",\n                        \"194JA\",\n                        \"06-Jun-2023\",\n                        \"F\",\n                        \"01-Oct-2023\",\n                        \"-\",\n                        \"13000.00\",\n                        \"260.00\",\n                        \"260.00\"\n                    ]\n                ],\n                \"total_amount_paid_credited\": \"40500.00\",\n                \"name_of_deductor\": \"GUJARAT STATE WOMEN SEWA CO-OP FEDERATION LTD\",\n                \"total_tax_deducted\": \"810.00\",\n                \"sr_no\": \"1\",\n                \"total_tds_deposited\": \"810.00\",\n                \"tan_of_deductor\": \"AHMG01790F\"\n            },\n            {\n                \"deduction_wise\": [\n                    [\n                        \"sr_no\",\n                        \"section\",\n                        \"transaction_date\",\n                        \"status_of_booking\",\n                        \"date_of_booking\",\n                        \"remarks\",\n                        \"amount_paid_credited\",\n                        \"tax_deducted\",\n                        \"tds_deposited\"\n                    ],\n                    [\n                        \"1\",\n                        \"194JB\",\n                        \"30-Sep-2023\",\n                        \"F\",\n                        \"27-Oct-2023\",\n                        \"-\",\n                        \"13500.00\",\n                        \"1350.00\",\n                        \"1350.00\"\n                    ],\n                    [\n                        \"2\",\n                        \"194JB\",\n                        \"31-Aug-2023\",\n                        \"F\",\n                        \"27-Oct-2023\",\n                        \"-\",\n                        \"12500.00\",\n                        \"1250.00\",\n                        \"1250.00\"\n                    ],\n                    [\n                        \"3\",\n                        \"194JB\",\n                        \"18-Aug-2023\",\n                        \"F\",\n                        \"27-Oct-2023\",\n                        \"-\",\n                        \"2500.00\",\n                        \"250.00\",\n                        \"250.00\"\n                    ],\n                    [\n                        \"4\",\n                        \"194JB\",\n                        \"31-Jul-2023\",\n                        \"F\",\n                        \"27-Oct-2023\",\n                        \"-\",\n                        \"12500.00\",\n                        \"1250.00\",\n                        \"1250.00\"\n                    ]\n                ],\n                \"total_amount_paid_credited\": \"41000.00\",\n                \"name_of_deductor\": \"SHRI GUJARAT MAHILA LOKSWATHYA SEWA SAHAKARI MANDLI \",\n                \"total_tax_deducted\": \"4100.00\",\n                \"sr_no\": \"2\",\n                \"total_tds_deposited\": \"4100.00\",\n                \"tan_of_deductor\": \"AHMS03410B\"\n            },\n            {\n                \"deduction_wise\": [\n                    [\n                        \"sr_no\",\n                        \"section\",\n                        \"transaction_date\",\n                        \"status_of_booking\",\n                        \"date_of_booking\",\n                        \"remarks\",\n                        \"amount_paid_credited\",\n                        \"tax_deducted\",\n                        \"tds_deposited\"\n                    ],\n                    [\n                        \"1\",\n                        \"194\",\n                        \"01-Aug-2023\",\n                        \"F\",\n                        \"08-Nov-2023\",\n                        \"-\",\n                        \"15.60\",\n                        \"0.00\",\n                        \"0.00\"\n                    ]\n                ],\n                \"total_amount_paid_credited\": \"15.60\",\n                \"name_of_deductor\": \"ASHOK LEYLAND LIMITED\",\n                \"total_tax_deducted\": \"0.00\",\n                \"sr_no\": \"3\",\n                \"total_tds_deposited\": \"0.00\",\n                \"tan_of_deductor\": \"CHEA31306C\"\n            },\n            {\n                \"deduction_wise\": [\n                    [\n                        \"sr_no\",\n                        \"section\",\n                        \"transaction_date\",\n                        \"status_of_booking\",\n                        \"date_of_booking\",\n                        \"remarks\",\n                        \"amount_paid_credited\",\n                        \"tax_deducted\",\n                        \"tds_deposited\"\n                    ],\n                    [\n                        \"1\",\n                        \"194\",\n                        \"30-Aug-2023\",\n                        \"F\",\n                        \"28-Oct-2023\",\n                        \"-\",\n                        \"45.00\",\n                        \"0.00\",\n                        \"0.00\"\n                    ]\n                ],\n                \"total_amount_paid_credited\": \"45.00\",\n                \"name_of_deductor\": \"LIFE INSURANCE CORPORATION OF INDIA\",\n                \"total_tax_deducted\": \"0.00\",\n                \"sr_no\": \"4\",\n                \"total_tds_deposited\": \"0.00\",\n                \"tan_of_deductor\": \"MUML13465E\"\n            },\n            {\n                \"deduction_wise\": [\n                    [\n                        \"sr_no\",\n                        \"section\",\n                        \"transaction_date\",\n                        \"status_of_booking\",\n                        \"date_of_booking\",\n                        \"remarks\",\n                        \"amount_paid_credited\",\n                        \"tax_deducted\",\n                        \"tds_deposited\"\n                    ],\n                    [\n                        \"1\",\n                        \"194\",\n                        \"05-Sep-2023\",\n                        \"F\",\n                        \"05-Nov-2023\",\n                        \"-\",\n                        \"52.00\",\n                        \"0.00\",\n                        \"0.00\"\n                    ]\n                ],\n                \"total_amount_paid_credited\": \"52.00\",\n                \"name_of_deductor\": \"BHARAT PETROLEUM CORPORATION LIMITED\",\n                \"total_tax_deducted\": \"0.00\",\n                \"sr_no\": \"5\",\n                \"total_tds_deposited\": \"0.00\",\n                \"tan_of_deductor\": \"PNEB16470G\"\n            }\n        ],\n        \"Part IV\": []\n    },\n    \"timestamp\": 1713508071000\n}"
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "form16",
+			"item": [
+				{
+					"name": "Form16 Classify",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "x-api-key",
+								"value": "{{api_key}}",
+								"type": "text"
+							},
+							{
+								"key": "Authorization",
+								"value": "{{access_token}}",
+								"type": "text"
+							},
+							{
+								"key": "x-api-transaction-id",
+								"value": "test",
+								"type": "text",
+								"disabled": true
+							},
+							{
+								"key": "x-request-time",
+								"value": "0",
+								"type": "text",
+								"disabled": true
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "file",
+									"type": "file",
+									"src": "/C:/Users/nachiketa.vadera_qui/Documents/form-16/AY 2024-25/BKCPV5331C-Full-Form-16.pdf"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{sandbox_host}}/it/ocr/form-16/pdf/classify",
+							"host": [
+								"{{sandbox_host}}"
+							],
+							"path": [
+								"it",
+								"ocr",
+								"form-16",
+								"pdf",
+								"classify"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "200 OK (Part A)",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "x-api-key",
+										"value": "{{api_key}}",
+										"type": "text"
+									},
+									{
+										"key": "Authorization",
+										"value": "eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9.eyJhcGlfa2V5Ijoia2V5X2xpdmVfdmFTcUhMTmc4VFpCTFhqR0p2Ym5nd1c4RTVtRGh6QnciLCJpbnRlbnQiOiJBQ0NFU1NfVE9LRU4iLCJpYXQiOjE2NzU2NjI5NjgsImV4cCI6NDgzMTQyMjk2OCwiYXVkIjoiQVBJIiwiaXNzIjoiYXBpLnNhbmRib3guY28uaW4iLCJzdWIiOiJkZXZlbG9wZXJAcXVpY2tvLmNvbSJ9.wqqwP9hU4jHQ9-zYJCumhqvoXNUh8Q7KldMsBLk1xEdtHEeFT4nxZpDwDAxXNVkGH4JMoYXiWKbTcIMqIiRtjg",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "file",
+											"type": "file",
+											"src": "/C:/Users/dhruv.sirodaria_quic/Downloads/form 16 A.pdf"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{sandbox_host}}/form-16/pdf/classify",
+									"host": [
+										"{{sandbox_host}}"
+									],
+									"path": [
+										"form-16",
+										"pdf",
+										"classify"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Date",
+									"value": "Wed, 28 Aug 2024 05:56:05 GMT"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Content-Length",
+									"value": "136"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "x-amzn-RequestId",
+									"value": "6d794155-4dfb-47cf-ac41-4e621e1ed6e0"
+								},
+								{
+									"key": "x-amzn-Remapped-x-amzn-RequestId",
+									"value": "f9006a8d-8032-4c50-892d-99d93a193fd2"
+								},
+								{
+									"key": "access-control-allow-origin",
+									"value": "*"
+								},
+								{
+									"key": "access-control-allow-headers",
+									"value": "x-requested-with, accept, content-type, x-auth-token, x-auth-role, x-api-key, x-api-token, authorization"
+								},
+								{
+									"key": "x-amzn-Remapped-Content-Length",
+									"value": "136"
+								},
+								{
+									"key": "x-amzn-Remapped-Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "x-amz-apigw-id",
+									"value": "dNJORG4MBcwFTyg="
+								},
+								{
+									"key": "access-control-allow-methods",
+									"value": "POST, GET, OPTIONS, DELETE"
+								},
+								{
+									"key": "X-Amzn-Trace-Id",
+									"value": "Root=1-66cebbf4-01a678685ac5c38057535ef6;Parent=5387068ebeb09d6b;Sampled=0;lineage=00fbddb4:0|fd5c516d:0"
+								},
+								{
+									"key": "x-amzn-Remapped-Date",
+									"value": "Wed, 28 Aug 2024 05:56:05 GMT"
+								},
+								{
+									"key": "access-control-max-age",
+									"value": "3600"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"transaction_id\": \"f9006a8d-8032-4c50-892d-99d93a193fd2\",\n    \"code\": 200,\n    \"data\": {\n        \"type\": \"Part A\",\n        \"version\": \"2022\"\n    },\n    \"timestamp\": 1724824564000\n}"
+						},
+						{
+							"name": "200 OK (Part B)",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "x-api-key",
+										"value": "{{api_key}}",
+										"type": "text"
+									},
+									{
+										"key": "Authorization",
+										"value": "eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9.eyJhcGlfa2V5Ijoia2V5X2xpdmVfdmFTcUhMTmc4VFpCTFhqR0p2Ym5nd1c4RTVtRGh6QnciLCJpbnRlbnQiOiJBQ0NFU1NfVE9LRU4iLCJpYXQiOjE2NzU2NjI5NjgsImV4cCI6NDgzMTQyMjk2OCwiYXVkIjoiQVBJIiwiaXNzIjoiYXBpLnNhbmRib3guY28uaW4iLCJzdWIiOiJkZXZlbG9wZXJAcXVpY2tvLmNvbSJ9.wqqwP9hU4jHQ9-zYJCumhqvoXNUh8Q7KldMsBLk1xEdtHEeFT4nxZpDwDAxXNVkGH4JMoYXiWKbTcIMqIiRtjg",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "file",
+											"type": "file",
+											"src": "/C:/Users/dhruv.sirodaria_quic/Downloads/form 16 B.pdf"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{sandbox_host}}/form-16/pdf/classify",
+									"host": [
+										"{{sandbox_host}}"
+									],
+									"path": [
+										"form-16",
+										"pdf",
+										"classify"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Date",
+									"value": "Wed, 28 Aug 2024 05:56:33 GMT"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Content-Length",
+									"value": "136"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "x-amzn-RequestId",
+									"value": "95f12abd-7221-45ac-b08c-d24fa5d5b383"
+								},
+								{
+									"key": "x-amzn-Remapped-x-amzn-RequestId",
+									"value": "c92ba957-1684-4762-afa6-dd7057f73091"
+								},
+								{
+									"key": "access-control-allow-origin",
+									"value": "*"
+								},
+								{
+									"key": "access-control-allow-headers",
+									"value": "x-requested-with, accept, content-type, x-auth-token, x-auth-role, x-api-key, x-api-token, authorization"
+								},
+								{
+									"key": "x-amzn-Remapped-Content-Length",
+									"value": "136"
+								},
+								{
+									"key": "x-amzn-Remapped-Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "x-amz-apigw-id",
+									"value": "dNJS0Fb6hcwFY1w="
+								},
+								{
+									"key": "access-control-allow-methods",
+									"value": "POST, GET, OPTIONS, DELETE"
+								},
+								{
+									"key": "X-Amzn-Trace-Id",
+									"value": "Root=1-66cebc11-42a2cdbb3cb8e74b639019c5;Parent=46099de95ddcac09;Sampled=0;lineage=fd5c516d:0"
+								},
+								{
+									"key": "x-amzn-Remapped-Date",
+									"value": "Wed, 28 Aug 2024 05:56:33 GMT"
+								},
+								{
+									"key": "access-control-max-age",
+									"value": "3600"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"transaction_id\": \"c92ba957-1684-4762-afa6-dd7057f73091\",\n    \"code\": 200,\n    \"data\": {\n        \"type\": \"Part B\",\n        \"version\": \"2022\"\n    },\n    \"timestamp\": 1724824593000\n}"
+						},
+						{
+							"name": "200 OK",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "x-api-key",
+										"value": "{{api_key}}",
+										"type": "text"
+									},
+									{
+										"key": "Authorization",
+										"value": "eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9.eyJhcGlfa2V5Ijoia2V5X2xpdmVfdmFTcUhMTmc4VFpCTFhqR0p2Ym5nd1c4RTVtRGh6QnciLCJpbnRlbnQiOiJBQ0NFU1NfVE9LRU4iLCJpYXQiOjE2NzU2NjI5NjgsImV4cCI6NDgzMTQyMjk2OCwiYXVkIjoiQVBJIiwiaXNzIjoiYXBpLnNhbmRib3guY28uaW4iLCJzdWIiOiJkZXZlbG9wZXJAcXVpY2tvLmNvbSJ9.wqqwP9hU4jHQ9-zYJCumhqvoXNUh8Q7KldMsBLk1xEdtHEeFT4nxZpDwDAxXNVkGH4JMoYXiWKbTcIMqIiRtjg",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "file",
+											"type": "file",
+											"src": "/C:/Users/dhruv.sirodaria_quic/Downloads/form 16.pdf"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{sandbox_host}}/form-16/pdf/classify",
+									"host": [
+										"{{sandbox_host}}"
+									],
+									"path": [
+										"form-16",
+										"pdf",
+										"classify"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Date",
+									"value": "Wed, 28 Aug 2024 05:57:52 GMT"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Content-Length",
+									"value": "137"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "x-amzn-RequestId",
+									"value": "e613e73f-0f3c-42fa-8c1d-d504de1f9c97"
+								},
+								{
+									"key": "x-amzn-Remapped-x-amzn-RequestId",
+									"value": "5ff71164-1414-4568-92c4-db9cf471ea2a"
+								},
+								{
+									"key": "access-control-allow-origin",
+									"value": "*"
+								},
+								{
+									"key": "access-control-allow-headers",
+									"value": "x-requested-with, accept, content-type, x-auth-token, x-auth-role, x-api-key, x-api-token, authorization"
+								},
+								{
+									"key": "x-amzn-Remapped-Content-Length",
+									"value": "137"
+								},
+								{
+									"key": "x-amzn-Remapped-Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "x-amz-apigw-id",
+									"value": "dNJfDHEOhcwFkyg="
+								},
+								{
+									"key": "access-control-allow-methods",
+									"value": "POST, GET, OPTIONS, DELETE"
+								},
+								{
+									"key": "X-Amzn-Trace-Id",
+									"value": "Root=1-66cebc5f-2c1e592e2a043fba48cd8f1a;Parent=718affad2a7e5c7b;Sampled=0;lineage=00fbddb4:0|fd5c516d:0"
+								},
+								{
+									"key": "x-amzn-Remapped-Date",
+									"value": "Wed, 28 Aug 2024 05:57:52 GMT"
+								},
+								{
+									"key": "access-control-max-age",
+									"value": "3600"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"transaction_id\": \"5ff71164-1414-4568-92c4-db9cf471ea2a\",\n    \"code\": 200,\n    \"data\": {\n        \"type\": \"Form 16\",\n        \"version\": \"2022\"\n    },\n    \"timestamp\": 1724824672000\n}"
+						},
+						{
+							"name": "500 (Password Protected)",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "x-api-key",
+										"value": "{{api_key}}",
+										"type": "text"
+									},
+									{
+										"key": "Authorization",
+										"value": "eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9.eyJhcGlfa2V5Ijoia2V5X2xpdmVfdmFTcUhMTmc4VFpCTFhqR0p2Ym5nd1c4RTVtRGh6QnciLCJpbnRlbnQiOiJBQ0NFU1NfVE9LRU4iLCJpYXQiOjE2NzU2NjI5NjgsImV4cCI6NDgzMTQyMjk2OCwiYXVkIjoiQVBJIiwiaXNzIjoiYXBpLnNhbmRib3guY28uaW4iLCJzdWIiOiJkZXZlbG9wZXJAcXVpY2tvLmNvbSJ9.wqqwP9hU4jHQ9-zYJCumhqvoXNUh8Q7KldMsBLk1xEdtHEeFT4nxZpDwDAxXNVkGH4JMoYXiWKbTcIMqIiRtjg",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "file",
+											"type": "file",
+											"src": "/C:/Users/dhruv.sirodaria_quic/Downloads/form 16_protected.pdf"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{sandbox_host}}/form-16/pdf/classify",
+									"host": [
+										"{{sandbox_host}}"
+									],
+									"path": [
+										"form-16",
+										"pdf",
+										"classify"
+									]
+								}
+							},
+							"status": "Internal Server Error",
+							"code": 500,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Date",
+									"value": "Wed, 28 Aug 2024 06:03:21 GMT"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Content-Length",
+									"value": "136"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "x-amzn-RequestId",
+									"value": "13a53ffa-7cd1-4430-a798-c4e3e158a7af"
+								},
+								{
+									"key": "x-amzn-Remapped-x-amzn-RequestId",
+									"value": "d07811e7-3bca-4588-833d-30881255a56c"
+								},
+								{
+									"key": "access-control-allow-origin",
+									"value": "*"
+								},
+								{
+									"key": "access-control-allow-headers",
+									"value": "x-requested-with, accept, content-type, x-auth-token, x-auth-role, x-api-key, x-api-token, authorization"
+								},
+								{
+									"key": "x-amzn-Remapped-Content-Length",
+									"value": "136"
+								},
+								{
+									"key": "x-amzn-Remapped-Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "x-amz-apigw-id",
+									"value": "dNKSeHQUBcwFn9A="
+								},
+								{
+									"key": "access-control-allow-methods",
+									"value": "POST, GET, OPTIONS, DELETE"
+								},
+								{
+									"key": "X-Amzn-Trace-Id",
+									"value": "Root=1-66cebda9-1a3378d262d43a33376460ff;Parent=5729e1da9e4c099a;Sampled=0;lineage=00fbddb4:0|fd5c516d:0"
+								},
+								{
+									"key": "x-amzn-Remapped-Date",
+									"value": "Wed, 28 Aug 2024 06:03:21 GMT"
+								},
+								{
+									"key": "access-control-max-age",
+									"value": "3600"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"transaction_id\": \"d07811e7-3bca-4588-833d-30881255a56c\",\n    \"code\": 500,\n    \"message\": \"Form 16 is password protected\",\n    \"timestamp\": 1724825001000\n}"
+						},
+						{
+							"name": "200 OK (Password Protected)",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "x-api-key",
+										"value": "{{api_key}}",
+										"type": "text"
+									},
+									{
+										"key": "Authorization",
+										"value": "eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9.eyJhcGlfa2V5Ijoia2V5X2xpdmVfdmFTcUhMTmc4VFpCTFhqR0p2Ym5nd1c4RTVtRGh6QnciLCJpbnRlbnQiOiJBQ0NFU1NfVE9LRU4iLCJpYXQiOjE2NzU2NjI5NjgsImV4cCI6NDgzMTQyMjk2OCwiYXVkIjoiQVBJIiwiaXNzIjoiYXBpLnNhbmRib3guY28uaW4iLCJzdWIiOiJkZXZlbG9wZXJAcXVpY2tvLmNvbSJ9.wqqwP9hU4jHQ9-zYJCumhqvoXNUh8Q7KldMsBLk1xEdtHEeFT4nxZpDwDAxXNVkGH4JMoYXiWKbTcIMqIiRtjg",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "file",
+											"type": "file",
+											"src": "/C:/Users/dhruv.sirodaria_quic/Downloads/form 16_protected.pdf"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{sandbox_host}}/form-16/pdf/classify?password=12345678",
+									"host": [
+										"{{sandbox_host}}"
+									],
+									"path": [
+										"form-16",
+										"pdf",
+										"classify"
+									],
+									"query": [
+										{
+											"key": "password",
+											"value": "12345678"
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Date",
+									"value": "Wed, 28 Aug 2024 06:04:41 GMT"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Content-Length",
+									"value": "137"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "x-amzn-RequestId",
+									"value": "67d2d09a-2dac-4d60-8871-13201f6051a9"
+								},
+								{
+									"key": "x-amzn-Remapped-x-amzn-RequestId",
+									"value": "bc1ab4fe-4e4b-4873-b570-92122fc0b89f"
+								},
+								{
+									"key": "access-control-allow-origin",
+									"value": "*"
+								},
+								{
+									"key": "access-control-allow-headers",
+									"value": "x-requested-with, accept, content-type, x-auth-token, x-auth-role, x-api-key, x-api-token, authorization"
+								},
+								{
+									"key": "x-amzn-Remapped-Content-Length",
+									"value": "137"
+								},
+								{
+									"key": "x-amzn-Remapped-Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "x-amz-apigw-id",
+									"value": "dNKfCGcjBcwFfjw="
+								},
+								{
+									"key": "access-control-allow-methods",
+									"value": "POST, GET, OPTIONS, DELETE"
+								},
+								{
+									"key": "X-Amzn-Trace-Id",
+									"value": "Root=1-66cebdf9-6ada390169fa9e700c756f1b;Parent=647744c2ee8adb01;Sampled=0;lineage=00fbddb4:0|fd5c516d:0"
+								},
+								{
+									"key": "x-amzn-Remapped-Date",
+									"value": "Wed, 28 Aug 2024 06:04:41 GMT"
+								},
+								{
+									"key": "access-control-max-age",
+									"value": "3600"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"transaction_id\": \"bc1ab4fe-4e4b-4873-b570-92122fc0b89f\",\n    \"code\": 200,\n    \"data\": {\n        \"type\": \"Form 16\",\n        \"version\": \"2022\"\n    },\n    \"timestamp\": 1724825081000\n}"
+						}
+					]
+				},
+				{
+					"name": "Form16 Read",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "x-api-key",
+								"value": "{{api_key}}"
+							},
+							{
+								"key": "Authorization",
+								"value": "{{access_token}}"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "file",
+									"type": "file",
+									"src": "/C:/Users/vishvajit_quicko/Downloads/form16_protected.pdf"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{sandbox_host}}/it/ocr/form-16/pdf",
+							"host": [
+								"{{sandbox_host}}"
+							],
+							"path": [
+								"it",
+								"ocr",
+								"form-16",
+								"pdf"
+							],
+							"query": [
+								{
+									"key": "password",
+									"value": "a",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "200 OK",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "x-api-key",
+										"value": "{{api_key}}"
+									},
+									{
+										"key": "Authorization",
+										"value": "{{access_token}}"
+									}
+								],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "file",
+											"type": "file",
+											"src": "/C:/Users/dhruv.sirodaria_quic/Downloads/form 16.pdf"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{sandbox_host}}/form-16/pdf",
+									"host": [
+										"{{sandbox_host}}"
+									],
+									"path": [
+										"form-16",
+										"pdf"
+									],
+									"query": [
+										{
+											"key": "password",
+											"value": null,
+											"disabled": true
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Date",
+									"value": "Wed, 28 Aug 2024 05:58:32 GMT"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Content-Length",
+									"value": "2970"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "x-amzn-RequestId",
+									"value": "ebedaf1a-5b95-4fd7-8820-9c9be89d9aa3"
+								},
+								{
+									"key": "x-amzn-Remapped-x-amzn-RequestId",
+									"value": "478527ab-9e73-4e08-97e7-63122b5b9072"
+								},
+								{
+									"key": "access-control-allow-origin",
+									"value": "*"
+								},
+								{
+									"key": "access-control-allow-headers",
+									"value": "x-requested-with, accept, content-type, x-auth-token, x-auth-role, x-api-key, x-api-token, authorization"
+								},
+								{
+									"key": "x-amzn-Remapped-Content-Length",
+									"value": "2970"
+								},
+								{
+									"key": "x-amzn-Remapped-Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "x-amz-apigw-id",
+									"value": "dNJlYFZ9hcwFfTw="
+								},
+								{
+									"key": "access-control-allow-methods",
+									"value": "POST, GET, OPTIONS, DELETE"
+								},
+								{
+									"key": "X-Amzn-Trace-Id",
+									"value": "Root=1-66cebc88-6cbf5f010a1bfdea03879ca2;Parent=31db37a28481c7a9;Sampled=0;lineage=fd5c516d:0"
+								},
+								{
+									"key": "x-amzn-Remapped-Date",
+									"value": "Wed, 28 Aug 2024 05:58:32 GMT"
+								},
+								{
+									"key": "access-control-max-age",
+									"value": "3600"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"transaction_id\": \"478527ab-9e73-4e08-97e7-63122b5b9072\",\n    \"code\": 200,\n    \"data\": {\n        \"Part A\": {\n            \"tds\": [\n                [\n                    \"quarter\",\n                    \"receipt_number\",\n                    \"credit_amount\",\n                    \"tax_deducted\",\n                    \"tax_deposited\"\n                ],\n                [\n                    \"Q4\",\n                    \"QVQYSSEF\",\n                    360030,\n                    28428,\n                    28428\n                ],\n                [\n                    \"Q3\",\n                    \"QVOLJKOE\",\n                    240000,\n                    9704,\n                    9704\n                ],\n                [\n                    \"Q2\",\n                    \"QVMVLPLC\",\n                    250000,\n                    9704,\n                    9704\n                ],\n                [\n                    \"Q1\",\n                    \"QVKCNDHC\",\n                    230000,\n                    19249,\n                    19249\n                ],\n                [\n                    \"Total\",\n                    null,\n                    1080030,\n                    67085,\n                    67085\n                ]\n            ],\n            \"assessment_year\": \"2024-25\",\n            \"employer\": {\n                \"tan\": \"HYDU00904B\",\n                \"address\": {\n                    \"area\": \"\",\n                    \"street\": \"8-2-596/5, Star Hospitals, Road No.10, \",\n                    \"postal_code\": \"500034\"\n                },\n                \"name\": \"UNIMED HEALTH CARE PRIVATE LIMITED\",\n                \"pan\": \"AAACU8638B\"\n            },\n            \"employee\": {\n                \"address\": {\n                    \"area\": \"WARANGAL - 506002, \",\n                    \"street\": \"H.NO-14-8-271, CHARBOWLI, GIRMAJIPET, \",\n                    \"postal_code\": \"506002\"\n                },\n                \"last_name\": \"GUTHIKONDA\",\n                \"pan\": \"DCDPG7297B\",\n                \"middle_name\": \"SAI\",\n                \"first_name\": \"SRI\"\n            }\n        },\n        \"Part B\": {\n            \"assessment_year\": \"2024-25\",\n            \"employer\": {\n                \"tan\": \"HYDU00904B\",\n                \"address\": {\n                    \"area\": \"\",\n                    \"street\": \"8-2-596/5, Star Hospitals, Road No.10, \",\n                    \"postal_code\": \"500034\"\n                },\n                \"name\": \"UNIMED HEALTH CARE PRIVATE LIMITED\",\n                \"pan\": \"AAACU8638B\"\n            },\n            \"employee\": {\n                \"address\": {\n                    \"area\": \"WARANGAL - 506002, \",\n                    \"street\": \"H.NO-14-8-271, CHARBOWLI, GIRMAJIPET, \",\n                    \"postal_code\": \"506002\"\n                },\n                \"last_name\": \"GUTHIKONDA\",\n                \"pan\": \"DCDPG7297B\",\n                \"middle_name\": \"SAI\",\n                \"first_name\": \"SRI\"\n            },\n            \"details_of_salary_paid\": {\n                \"surcharge\": 0,\n                \"gross_salary\": {\n                    \"reported_total_amount_of_salary_received_from_other_employer\": 0,\n                    \"profits_in_lieu_of_salary_us_17_3\": 0,\n                    \"value_of_perquisites_us_17_2\": 0,\n                    \"salary_as_per_provisions_contained_in_section_17_1\": 1080030\n                },\n                \"gross_total_income\": 1030030,\n                \"tax_payable\": 67084,\n                \"allowances_us_10\": {\n                    \"house_rent_allowance_us_10_13_a\": 0,\n                    \"commuted_value_of_pension_us_10_10_a\": 0,\n                    \"death_cum_retirement_gratuity_us_10_10\": 0,\n                    \"total_amount_of_any_other_exemption_us_10\": 0,\n                    \"total_amount_of_exemption_claimed_us_10\": 0,\n                    \"travel_concession_or_assistance_us_10_5\": 0,\n                    \"cash_equivalent_of_leave_salary_encashment_us_10_10_aa\": 0\n                },\n                \"total_amount_of_deductions_us_16\": 50000,\n                \"health_and_eduction_cess\": 2580,\n                \"deduction_under_chapter_vi_a\": {\n                    \"deduction_us_80_ccc\": {},\n                    \"deduction_us_80_tta\": {},\n                    \"total_deduction_us_80_cce\": {},\n                    \"deduction_us_80_ccd_2\": {},\n                    \"deduction_us_80_ccd_1\": {},\n                    \"deduction_us_80_d\": {},\n                    \"deduction_us_80_ccd_1_b\": {},\n                    \"deduction_us_80_e\": {},\n                    \"deduction_us_80_g\": {},\n                    \"deduction_us_80_c\": {}\n                },\n                \"rebate_us_87_a\": 0,\n                \"relief_us_89\": 0,\n                \"aggregate_deductible_amount_under_chapter_vi_a\": 0,\n                \"opting_out_of_taxation_us_115_bac\": \"No\",\n                \"net_tax_payable\": 67084,\n                \"tax_on_total_income\": 64504,\n                \"total_amount_of_other_income_reported_by_employee\": 0,\n                \"other_income_reported_by_employee_us_192_2_b\": {\n                    \"income_under_the_head_other_sources_offered_for_tds\": 0,\n                    \"income_from_house_property_reported_by_employee_offered_for_tds\": 0\n                },\n                \"income_chargeable_under_the_head_salaries\": 1030030,\n                \"total_amount_of_salary_received_from_current_employer\": 1080030,\n                \"deduction_us_16\": {\n                    \"entertainment_allowance_us_16_ii\": 0,\n                    \"standard_deduction_us_16_ia\": 50000,\n                    \"tax_on_employment_us_16_iii\": 0\n                },\n                \"total_taxable_income\": 1030030\n            }\n        }\n    },\n    \"timestamp\": 1724824712000\n}"
+						},
+						{
+							"name": "200 OK (Part A)",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "x-api-key",
+										"value": "{{api_key}}"
+									},
+									{
+										"key": "Authorization",
+										"value": "{{access_token}}"
+									}
+								],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "file",
+											"type": "file",
+											"src": "/C:/Users/dhruv.sirodaria_quic/Downloads/form 16 A.pdf"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{sandbox_host}}/form-16/pdf",
+									"host": [
+										"{{sandbox_host}}"
+									],
+									"path": [
+										"form-16",
+										"pdf"
+									],
+									"query": [
+										{
+											"key": "password",
+											"value": null,
+											"disabled": true
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Date",
+									"value": "Wed, 28 Aug 2024 05:58:54 GMT"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Content-Length",
+									"value": "851"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "x-amzn-RequestId",
+									"value": "46cec71d-31a4-4d0d-8415-8e83d77e4b89"
+								},
+								{
+									"key": "x-amzn-Remapped-x-amzn-RequestId",
+									"value": "b36acfdc-fe5f-4628-bf7e-e56382785dd2"
+								},
+								{
+									"key": "access-control-allow-origin",
+									"value": "*"
+								},
+								{
+									"key": "access-control-allow-headers",
+									"value": "x-requested-with, accept, content-type, x-auth-token, x-auth-role, x-api-key, x-api-token, authorization"
+								},
+								{
+									"key": "x-amzn-Remapped-Content-Length",
+									"value": "851"
+								},
+								{
+									"key": "x-amzn-Remapped-Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "x-amz-apigw-id",
+									"value": "dNJo2G4hBcwFghQ="
+								},
+								{
+									"key": "access-control-allow-methods",
+									"value": "POST, GET, OPTIONS, DELETE"
+								},
+								{
+									"key": "X-Amzn-Trace-Id",
+									"value": "Root=1-66cebc9e-0ac383980923ce207ccd4fd1;Parent=2d85f37bc884cb00;Sampled=0;lineage=00fbddb4:0|fd5c516d:0"
+								},
+								{
+									"key": "x-amzn-Remapped-Date",
+									"value": "Wed, 28 Aug 2024 05:58:54 GMT"
+								},
+								{
+									"key": "access-control-max-age",
+									"value": "3600"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"transaction_id\": \"b36acfdc-fe5f-4628-bf7e-e56382785dd2\",\n    \"code\": 200,\n    \"data\": {\n        \"Part A\": {\n            \"tds\": [\n                [\n                    \"quarter\",\n                    \"receipt_number\",\n                    \"credit_amount\",\n                    \"tax_deducted\",\n                    \"tax_deposited\"\n                ],\n                [\n                    \"Q4\",\n                    \"QVQYSSEF\",\n                    360030,\n                    28428,\n                    28428\n                ],\n                [\n                    \"Q3\",\n                    \"QVOLJKOE\",\n                    240000,\n                    9704,\n                    9704\n                ],\n                [\n                    \"Q2\",\n                    \"QVMVLPLC\",\n                    250000,\n                    9704,\n                    9704\n                ],\n                [\n                    \"Q1\",\n                    \"QVKCNDHC\",\n                    230000,\n                    19249,\n                    19249\n                ],\n                [\n                    \"Total\",\n                    null,\n                    1080030,\n                    67085,\n                    67085\n                ]\n            ],\n            \"assessment_year\": \"2024-25\",\n            \"employer\": {\n                \"tan\": \"HYDU00904B\",\n                \"address\": {\n                    \"area\": \"\",\n                    \"street\": \"8-2-596/5, Star Hospitals, Road No.10, \",\n                    \"postal_code\": \"500034\"\n                },\n                \"name\": \"UNIMED HEALTH CARE PRIVATE LIMITED\",\n                \"pan\": \"AAACU8638B\"\n            },\n            \"employee\": {\n                \"address\": {\n                    \"area\": \"WARANGAL - 506002, \",\n                    \"street\": \"H.NO-14-8-271, CHARBOWLI, GIRMAJIPET, \",\n                    \"postal_code\": \"506002\"\n                },\n                \"last_name\": \"GUTHIKONDA\",\n                \"pan\": \"DCDPG7297B\",\n                \"middle_name\": \"SAI\",\n                \"first_name\": \"SRI\"\n            }\n        }\n    },\n    \"timestamp\": 1724824734000\n}"
+						},
+						{
+							"name": "200 OK (Part B)",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "x-api-key",
+										"value": "{{api_key}}"
+									},
+									{
+										"key": "Authorization",
+										"value": "{{access_token}}"
+									}
+								],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "file",
+											"type": "file",
+											"src": "/C:/Users/dhruv.sirodaria_quic/Downloads/form 16 B.pdf"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{sandbox_host}}/form-16/pdf",
+									"host": [
+										"{{sandbox_host}}"
+									],
+									"path": [
+										"form-16",
+										"pdf"
+									],
+									"query": [
+										{
+											"key": "password",
+											"value": null,
+											"disabled": true
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Date",
+									"value": "Wed, 28 Aug 2024 06:00:26 GMT"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Content-Length",
+									"value": "2222"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "x-amzn-RequestId",
+									"value": "632c2d22-d183-4bff-8dd6-0dd8609f8a2a"
+								},
+								{
+									"key": "x-amzn-Remapped-x-amzn-RequestId",
+									"value": "7b0c0294-3645-445b-8949-ddfd06244e1f"
+								},
+								{
+									"key": "access-control-allow-origin",
+									"value": "*"
+								},
+								{
+									"key": "access-control-allow-headers",
+									"value": "x-requested-with, accept, content-type, x-auth-token, x-auth-role, x-api-key, x-api-token, authorization"
+								},
+								{
+									"key": "x-amzn-Remapped-Content-Length",
+									"value": "2222"
+								},
+								{
+									"key": "x-amzn-Remapped-Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "x-amz-apigw-id",
+									"value": "dNJ3MHCHBcwFVjA="
+								},
+								{
+									"key": "access-control-allow-methods",
+									"value": "POST, GET, OPTIONS, DELETE"
+								},
+								{
+									"key": "X-Amzn-Trace-Id",
+									"value": "Root=1-66cebcfa-12e79ac95004a1e856b3c3e3;Parent=0c977c32d0a1375f;Sampled=0;lineage=00fbddb4:0|fd5c516d:0"
+								},
+								{
+									"key": "x-amzn-Remapped-Date",
+									"value": "Wed, 28 Aug 2024 06:00:26 GMT"
+								},
+								{
+									"key": "access-control-max-age",
+									"value": "3600"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"transaction_id\": \"7b0c0294-3645-445b-8949-ddfd06244e1f\",\n    \"code\": 200,\n    \"data\": {\n        \"Part B\": {\n            \"assessment_year\": \"2024-25\",\n            \"employer\": {\n                \"tan\": \"HYDU00904B\",\n                \"address\": {\n                    \"area\": \"\",\n                    \"street\": \"8-2-596/5, Star Hospitals, Road No.10, \",\n                    \"postal_code\": \"500034\"\n                },\n                \"name\": \"UNIMED HEALTH CARE PRIVATE LIMITED\",\n                \"pan\": \"AAACU8638B\"\n            },\n            \"employee\": {\n                \"address\": {\n                    \"area\": \"WARANGAL - 506002, \",\n                    \"street\": \"H.NO-14-8-271, CHARBOWLI, GIRMAJIPET, \",\n                    \"postal_code\": \"506002\"\n                },\n                \"last_name\": \"GUTHIKONDA\",\n                \"pan\": \"DCDPG7297B\",\n                \"middle_name\": \"SAI\",\n                \"first_name\": \"SRI\"\n            },\n            \"details_of_salary_paid\": {\n                \"surcharge\": 0,\n                \"gross_salary\": {\n                    \"reported_total_amount_of_salary_received_from_other_employer\": 0,\n                    \"profits_in_lieu_of_salary_us_17_3\": 0,\n                    \"value_of_perquisites_us_17_2\": 0,\n                    \"salary_as_per_provisions_contained_in_section_17_1\": 1080030\n                },\n                \"gross_total_income\": 1030030,\n                \"tax_payable\": 67084,\n                \"allowances_us_10\": {\n                    \"house_rent_allowance_us_10_13_a\": 0,\n                    \"commuted_value_of_pension_us_10_10_a\": 0,\n                    \"death_cum_retirement_gratuity_us_10_10\": 0,\n                    \"total_amount_of_any_other_exemption_us_10\": 0,\n                    \"total_amount_of_exemption_claimed_us_10\": 0,\n                    \"travel_concession_or_assistance_us_10_5\": 0,\n                    \"cash_equivalent_of_leave_salary_encashment_us_10_10_aa\": 0\n                },\n                \"total_amount_of_deductions_us_16\": 50000,\n                \"health_and_eduction_cess\": 2580,\n                \"deduction_under_chapter_vi_a\": {\n                    \"deduction_us_80_ccc\": {},\n                    \"deduction_us_80_tta\": {},\n                    \"total_deduction_us_80_cce\": {},\n                    \"deduction_us_80_ccd_2\": {},\n                    \"deduction_us_80_ccd_1\": {},\n                    \"deduction_us_80_d\": {},\n                    \"deduction_us_80_ccd_1_b\": {},\n                    \"deduction_us_80_e\": {},\n                    \"deduction_us_80_g\": {},\n                    \"deduction_us_80_c\": {}\n                },\n                \"rebate_us_87_a\": 0,\n                \"relief_us_89\": 0,\n                \"aggregate_deductible_amount_under_chapter_vi_a\": 0,\n                \"opting_out_of_taxation_us_115_bac\": \"No\",\n                \"net_tax_payable\": 67084,\n                \"tax_on_total_income\": 64504,\n                \"total_amount_of_other_income_reported_by_employee\": 0,\n                \"other_income_reported_by_employee_us_192_2_b\": {\n                    \"income_under_the_head_other_sources_offered_for_tds\": 0,\n                    \"income_from_house_property_reported_by_employee_offered_for_tds\": 0\n                },\n                \"income_chargeable_under_the_head_salaries\": 1030030,\n                \"total_amount_of_salary_received_from_current_employer\": 1080030,\n                \"deduction_us_16\": {\n                    \"entertainment_allowance_us_16_ii\": 0,\n                    \"standard_deduction_us_16_ia\": 50000,\n                    \"tax_on_employment_us_16_iii\": 0\n                },\n                \"total_taxable_income\": 1030030\n            }\n        }\n    },\n    \"timestamp\": 1724824826000\n}"
+						},
+						{
+							"name": "500 (Password Protected)",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "x-api-key",
+										"value": "{{api_key}}"
+									},
+									{
+										"key": "Authorization",
+										"value": "{{access_token}}"
+									}
+								],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "file",
+											"type": "file",
+											"src": "/C:/Users/dhruv.sirodaria_quic/Downloads/form 16_protected.pdf"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{sandbox_host}}/form-16/pdf",
+									"host": [
+										"{{sandbox_host}}"
+									],
+									"path": [
+										"form-16",
+										"pdf"
+									],
+									"query": [
+										{
+											"key": "password",
+											"value": null,
+											"disabled": true
+										}
+									]
+								}
+							},
+							"status": "Internal Server Error",
+							"code": 500,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Date",
+									"value": "Wed, 28 Aug 2024 06:02:15 GMT"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Content-Length",
+									"value": "136"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "x-amzn-RequestId",
+									"value": "834a7c5b-e356-4a82-a76e-66d31a87269a"
+								},
+								{
+									"key": "x-amzn-Remapped-x-amzn-RequestId",
+									"value": "b8efe8d1-dd0d-49e1-9a95-748c9554746a"
+								},
+								{
+									"key": "access-control-allow-origin",
+									"value": "*"
+								},
+								{
+									"key": "access-control-allow-headers",
+									"value": "x-requested-with, accept, content-type, x-auth-token, x-auth-role, x-api-key, x-api-token, authorization"
+								},
+								{
+									"key": "x-amzn-Remapped-Content-Length",
+									"value": "136"
+								},
+								{
+									"key": "x-amzn-Remapped-Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "x-amz-apigw-id",
+									"value": "dNKIIG8GhcwFRdQ="
+								},
+								{
+									"key": "access-control-allow-methods",
+									"value": "POST, GET, OPTIONS, DELETE"
+								},
+								{
+									"key": "X-Amzn-Trace-Id",
+									"value": "Root=1-66cebd66-712e5ea8185c2e103b0b923f;Parent=0521bb27420ed3b9;Sampled=0;lineage=00fbddb4:0|fd5c516d:0"
+								},
+								{
+									"key": "x-amzn-Remapped-Date",
+									"value": "Wed, 28 Aug 2024 06:02:15 GMT"
+								},
+								{
+									"key": "access-control-max-age",
+									"value": "3600"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"transaction_id\": \"b8efe8d1-dd0d-49e1-9a95-748c9554746a\",\n    \"code\": 500,\n    \"message\": \"Form 16 is password protected\",\n    \"timestamp\": 1724824934000\n}"
+						},
+						{
+							"name": "200 OK (Password Protected)",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "x-api-key",
+										"value": "{{api_key}}"
+									},
+									{
+										"key": "Authorization",
+										"value": "{{access_token}}"
+									}
+								],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "file",
+											"type": "file",
+											"src": "/C:/Users/dhruv.sirodaria_quic/Downloads/form 16_protected.pdf"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{sandbox_host}}/form-16/pdf?password=12345678",
+									"host": [
+										"{{sandbox_host}}"
+									],
+									"path": [
+										"form-16",
+										"pdf"
+									],
+									"query": [
+										{
+											"key": "password",
+											"value": "12345678"
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Date",
+									"value": "Wed, 28 Aug 2024 06:02:54 GMT"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Content-Length",
+									"value": "2970"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "x-amzn-RequestId",
+									"value": "6d1ab9bb-a06c-4c1d-a226-9c07d54a2888"
+								},
+								{
+									"key": "x-amzn-Remapped-x-amzn-RequestId",
+									"value": "fe6429be-6250-4b6d-a2be-5b3e7710f258"
+								},
+								{
+									"key": "access-control-allow-origin",
+									"value": "*"
+								},
+								{
+									"key": "access-control-allow-headers",
+									"value": "x-requested-with, accept, content-type, x-auth-token, x-auth-role, x-api-key, x-api-token, authorization"
+								},
+								{
+									"key": "x-amzn-Remapped-Content-Length",
+									"value": "2970"
+								},
+								{
+									"key": "x-amzn-Remapped-Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "x-amz-apigw-id",
+									"value": "dNKOMFIkhcwFVjA="
+								},
+								{
+									"key": "access-control-allow-methods",
+									"value": "POST, GET, OPTIONS, DELETE"
+								},
+								{
+									"key": "X-Amzn-Trace-Id",
+									"value": "Root=1-66cebd8d-6c985a7736d8af7121356eb8;Parent=6a78837b1610f8bb;Sampled=0;lineage=fd5c516d:0"
+								},
+								{
+									"key": "x-amzn-Remapped-Date",
+									"value": "Wed, 28 Aug 2024 06:02:54 GMT"
+								},
+								{
+									"key": "access-control-max-age",
+									"value": "3600"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"transaction_id\": \"fe6429be-6250-4b6d-a2be-5b3e7710f258\",\n    \"code\": 200,\n    \"data\": {\n        \"Part A\": {\n            \"tds\": [\n                [\n                    \"quarter\",\n                    \"receipt_number\",\n                    \"credit_amount\",\n                    \"tax_deducted\",\n                    \"tax_deposited\"\n                ],\n                [\n                    \"Q4\",\n                    \"QVQYSSEF\",\n                    360030,\n                    28428,\n                    28428\n                ],\n                [\n                    \"Q3\",\n                    \"QVOLJKOE\",\n                    240000,\n                    9704,\n                    9704\n                ],\n                [\n                    \"Q2\",\n                    \"QVMVLPLC\",\n                    250000,\n                    9704,\n                    9704\n                ],\n                [\n                    \"Q1\",\n                    \"QVKCNDHC\",\n                    230000,\n                    19249,\n                    19249\n                ],\n                [\n                    \"Total\",\n                    null,\n                    1080030,\n                    67085,\n                    67085\n                ]\n            ],\n            \"assessment_year\": \"2024-25\",\n            \"employer\": {\n                \"tan\": \"HYDU00904B\",\n                \"address\": {\n                    \"area\": \"\",\n                    \"street\": \"8-2-596/5, Star Hospitals, Road No.10, \",\n                    \"postal_code\": \"500034\"\n                },\n                \"name\": \"UNIMED HEALTH CARE PRIVATE LIMITED\",\n                \"pan\": \"AAACU8638B\"\n            },\n            \"employee\": {\n                \"address\": {\n                    \"area\": \"WARANGAL - 506002, \",\n                    \"street\": \"H.NO-14-8-271, CHARBOWLI, GIRMAJIPET, \",\n                    \"postal_code\": \"506002\"\n                },\n                \"last_name\": \"GUTHIKONDA\",\n                \"pan\": \"DCDPG7297B\",\n                \"middle_name\": \"SAI\",\n                \"first_name\": \"SRI\"\n            }\n        },\n        \"Part B\": {\n            \"assessment_year\": \"2024-25\",\n            \"employer\": {\n                \"tan\": \"HYDU00904B\",\n                \"address\": {\n                    \"area\": \"\",\n                    \"street\": \"8-2-596/5, Star Hospitals, Road No.10, \",\n                    \"postal_code\": \"500034\"\n                },\n                \"name\": \"UNIMED HEALTH CARE PRIVATE LIMITED\",\n                \"pan\": \"AAACU8638B\"\n            },\n            \"employee\": {\n                \"address\": {\n                    \"area\": \"WARANGAL - 506002, \",\n                    \"street\": \"H.NO-14-8-271, CHARBOWLI, GIRMAJIPET, \",\n                    \"postal_code\": \"506002\"\n                },\n                \"last_name\": \"GUTHIKONDA\",\n                \"pan\": \"DCDPG7297B\",\n                \"middle_name\": \"SAI\",\n                \"first_name\": \"SRI\"\n            },\n            \"details_of_salary_paid\": {\n                \"surcharge\": 0,\n                \"gross_salary\": {\n                    \"reported_total_amount_of_salary_received_from_other_employer\": 0,\n                    \"profits_in_lieu_of_salary_us_17_3\": 0,\n                    \"value_of_perquisites_us_17_2\": 0,\n                    \"salary_as_per_provisions_contained_in_section_17_1\": 1080030\n                },\n                \"gross_total_income\": 1030030,\n                \"tax_payable\": 67084,\n                \"allowances_us_10\": {\n                    \"house_rent_allowance_us_10_13_a\": 0,\n                    \"commuted_value_of_pension_us_10_10_a\": 0,\n                    \"death_cum_retirement_gratuity_us_10_10\": 0,\n                    \"total_amount_of_any_other_exemption_us_10\": 0,\n                    \"total_amount_of_exemption_claimed_us_10\": 0,\n                    \"travel_concession_or_assistance_us_10_5\": 0,\n                    \"cash_equivalent_of_leave_salary_encashment_us_10_10_aa\": 0\n                },\n                \"total_amount_of_deductions_us_16\": 50000,\n                \"health_and_eduction_cess\": 2580,\n                \"deduction_under_chapter_vi_a\": {\n                    \"deduction_us_80_ccc\": {},\n                    \"deduction_us_80_tta\": {},\n                    \"total_deduction_us_80_cce\": {},\n                    \"deduction_us_80_ccd_2\": {},\n                    \"deduction_us_80_ccd_1\": {},\n                    \"deduction_us_80_d\": {},\n                    \"deduction_us_80_ccd_1_b\": {},\n                    \"deduction_us_80_e\": {},\n                    \"deduction_us_80_g\": {},\n                    \"deduction_us_80_c\": {}\n                },\n                \"rebate_us_87_a\": 0,\n                \"relief_us_89\": 0,\n                \"aggregate_deductible_amount_under_chapter_vi_a\": 0,\n                \"opting_out_of_taxation_us_115_bac\": \"No\",\n                \"net_tax_payable\": 67084,\n                \"tax_on_total_income\": 64504,\n                \"total_amount_of_other_income_reported_by_employee\": 0,\n                \"other_income_reported_by_employee_us_192_2_b\": {\n                    \"income_under_the_head_other_sources_offered_for_tds\": 0,\n                    \"income_from_house_property_reported_by_employee_offered_for_tds\": 0\n                },\n                \"income_chargeable_under_the_head_salaries\": 1030030,\n                \"total_amount_of_salary_received_from_current_employer\": 1080030,\n                \"deduction_us_16\": {\n                    \"entertainment_allowance_us_16_ii\": 0,\n                    \"standard_deduction_us_16_ia\": 50000,\n                    \"tax_on_employment_us_16_iii\": 0\n                },\n                \"total_taxable_income\": 1030030\n            }\n        }\n    },\n    \"timestamp\": 1724824973000\n}"
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "form16 v2",
+			"item": [
+				{
+					"name": "Read",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"let jsonData = pm.response.json();\r",
+									"\r",
+									"pm.test(\"API Response Structure\", function () {\r",
+									"    pm.response.to.be.json;\r",
+									"    pm.expect(jsonData.code).to.exist\r",
+									"    pm.expect(jsonData.timestamp).to.exist\r",
+									"    pm.expect(jsonData.transaction_id).to.exist\r",
+									"    if (pm.response.code === 200) {\r",
+									"        pm.expect(jsonData.data).to.exist\r",
+									"    }\r",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "x-api-key",
+								"value": "{{api_key}}",
+								"type": "text"
+							},
+							{
+								"key": "Authorization",
+								"value": "{{access_token}}",
+								"type": "text"
+							},
+							{
+								"key": "x-api-transaction-id",
+								"value": "cbd518d6-8daf-42b0-9913-9b374833b3c6",
+								"type": "text",
+								"disabled": true
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "file",
+									"type": "file",
+									"src": "/C:/Users/dhruv.shah_quicko/Downloads/BXZPR8027F_FY22-23_Extra 1st Page (1).pdf"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{sandbox_host}}/it/ocr/form-16",
+							"host": [
+								"{{sandbox_host}}"
+							],
+							"path": [
+								"it",
+								"ocr",
+								"form-16"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "422",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "x-api-key",
+										"value": "{{api_key}}",
+										"type": "text"
+									},
+									{
+										"key": "Authorization",
+										"value": "{{access_token}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "",
+											"type": "file",
+											"src": [],
+											"disabled": true
+										}
+									]
+								},
+								"url": {
+									"raw": "{{sandbox_host}}/it/ocr/form-16",
+									"host": [
+										"{{sandbox_host}}"
+									],
+									"path": [
+										"it",
+										"ocr",
+										"form-16"
+									]
+								}
+							},
+							"status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+							"code": 422,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Date",
+									"value": "Mon, 14 Oct 2024 12:03:57 GMT"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Content-Length",
+									"value": "155"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "x-amzn-RequestId",
+									"value": "0ecc95fc-9c14-4e8d-8643-438bd4e3eab0"
+								},
+								{
+									"key": "x-amzn-Remapped-x-amzn-RequestId",
+									"value": "b2db212d-4dcb-4885-a3a3-81d4ce7cd27b"
+								},
+								{
+									"key": "access-control-allow-origin",
+									"value": "*"
+								},
+								{
+									"key": "access-control-allow-headers",
+									"value": "*"
+								},
+								{
+									"key": "x-amzn-Remapped-Content-Length",
+									"value": "155"
+								},
+								{
+									"key": "x-amzn-Remapped-Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "x-amz-apigw-id",
+									"value": "fo5KwEdqBcwFSww="
+								},
+								{
+									"key": "X-Requested-With",
+									"value": "*"
+								},
+								{
+									"key": "X-Amzn-Trace-Id",
+									"value": "Root=1-670d08aa-3e2da0966869e533252767bd;Parent=36d462835ab69f33;Sampled=0;Lineage=2:9f80708e:0"
+								},
+								{
+									"key": "x-amzn-Remapped-Date",
+									"value": "Mon, 14 Oct 2024 12:03:57 GMT"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"timestamp\": 1728907434930,\n    \"transaction_id\": \"b2db212d-4dcb-4885-a3a3-81d4ce7cd27b\",\n    \"message\": \"Invalid Content-Type multipart/form-data missing\",\n    \"code\": 422\n}"
+						},
+						{
+							"name": "pdf missing",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "x-api-key",
+										"value": "{{api_key}}",
+										"type": "text"
+									},
+									{
+										"key": "Authorization",
+										"value": "{{access_token}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "file",
+											"type": "file",
+											"src": "/C:/Users/swaraj.mangaonkar_qu/Downloads/f6bbfae8-ad1e-4086-9516-d24f185c9f2a.xlsx"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{sandbox_host}}/it/ocr/form-16",
+									"host": [
+										"{{sandbox_host}}"
+									],
+									"path": [
+										"it",
+										"ocr",
+										"form-16"
+									]
+								}
+							},
+							"status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+							"code": 422,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Date",
+									"value": "Mon, 14 Oct 2024 12:04:22 GMT"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Content-Length",
+									"value": "138"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "x-amzn-RequestId",
+									"value": "ec12b267-64cb-4faf-9104-d3d03b23c65e"
+								},
+								{
+									"key": "x-amzn-Remapped-x-amzn-RequestId",
+									"value": "e9120271-8aa4-4a97-88e6-8b0bae674fab"
+								},
+								{
+									"key": "access-control-allow-origin",
+									"value": "*"
+								},
+								{
+									"key": "access-control-allow-headers",
+									"value": "*"
+								},
+								{
+									"key": "x-amzn-Remapped-Content-Length",
+									"value": "138"
+								},
+								{
+									"key": "x-amzn-Remapped-Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "x-amz-apigw-id",
+									"value": "fo5O9G8KBcwFbNg="
+								},
+								{
+									"key": "X-Requested-With",
+									"value": "*"
+								},
+								{
+									"key": "X-Amzn-Trace-Id",
+									"value": "Root=1-670d08c5-4501781676e361923d52baa6;Parent=10abf38e78588113;Sampled=0;Lineage=1:9f80708e:0"
+								},
+								{
+									"key": "x-amzn-Remapped-Date",
+									"value": "Mon, 14 Oct 2024 12:04:22 GMT"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"timestamp\": 1728907461857,\n    \"transaction_id\": \"e9120271-8aa4-4a97-88e6-8b0bae674fab\",\n    \"message\": \"Invalid file type : PDF missing\",\n    \"code\": 422\n}"
+						},
+						{
+							"name": "200 OK",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "x-api-key",
+										"value": "{{api_key}}",
+										"type": "text"
+									},
+									{
+										"key": "Authorization",
+										"value": "{{access_token}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "file",
+											"type": "file",
+											"src": "/D:/developer/material/Test1/test1.pdf"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{sandbox_host}}/it/ocr/form-16",
+									"host": [
+										"{{sandbox_host}}"
+									],
+									"path": [
+										"it",
+										"ocr",
+										"form-16"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Date",
+									"value": "Thu, 30 Jan 2025 10:53:19 GMT"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Content-Length",
+									"value": "4759"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "x-amzn-RequestId",
+									"value": "4ba582f2-c836-4f8a-9ff5-8eacc8dd7a22"
+								},
+								{
+									"key": "x-amzn-Remapped-x-amzn-RequestId",
+									"value": "faa322b4-f461-4663-aca6-96d3baae39e4"
+								},
+								{
+									"key": "access-control-allow-origin",
+									"value": "*"
+								},
+								{
+									"key": "access-control-allow-headers",
+									"value": "*"
+								},
+								{
+									"key": "x-amzn-Remapped-Content-Length",
+									"value": "4759"
+								},
+								{
+									"key": "x-amzn-Remapped-Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "x-amz-apigw-id",
+									"value": "FMsBjEkXBcwFWZw="
+								},
+								{
+									"key": "X-Requested-With",
+									"value": "*"
+								},
+								{
+									"key": "X-Amzn-Trace-Id",
+									"value": "Root=1-679b5a09-0312040117da0c41427ee2a6;Parent=46428fda8bddda03;Sampled=0;Lineage=2:9f80708e:0"
+								},
+								{
+									"key": "x-amzn-Remapped-Date",
+									"value": "Thu, 30 Jan 2025 10:53:19 GMT"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"timestamp\": 1738234377586,\n    \"transaction_id\": \"faa322b4-f461-4663-aca6-96d3baae39e4\",\n    \"data\": {\n        \"part_a\": {\n            \"tds\": [\n                [\n                    \"quarter\",\n                    \"receipt_numbers_of_original_quarterly_statements_of_TDS_under_sub_section_3_of_section_200\",\n                    \"amount_paid_credited\",\n                    \"amount_of_tax_deducted\",\n                    \"amount_of_tax_deposited_remitted\"\n                ],\n                [\n                    \"q1\",\n                    \"QVKRRNEA\",\n                    \"488255.15\",\n                    \"87798.00\",\n                    \"87798.00\"\n                ],\n                [\n                    \"q2\",\n                    \"QVMZJYOC\",\n                    \"480678.43\",\n                    \"85662.00\",\n                    \"85662.00\"\n                ],\n                [\n                    \"q3\",\n                    \"QVOTEBRB\",\n                    \"529833.35\",\n                    \"100031.00\",\n                    \"100031.00\"\n                ],\n                [\n                    \"q4\",\n                    \"QVQLPEED\",\n                    \"730892.56\",\n                    \"153973.81\",\n                    \"153973.81\"\n                ],\n                [\n                    \"total\",\n                    \"\",\n                    \"2229659.49\",\n                    \"427464.81\",\n                    \"427464.81\"\n                ]\n            ],\n            \"assessment_year\": \"2024-25\",\n            \"employer\": {\n                \"tan\": \"MUMJ05980C\",\n                \"address\": {\n                    \"area\": \"GOREGAON (E)\",\n                    \"street\": \"TOWER A BLK9,, NIRLON KNOWLEDGE PARK,, WESTERN EXPRESS HIGHWAY\",\n                    \"city\": \"MUMBAI\",\n                    \"state\": \"Maharashtra\",\n                    \"postal_code\": \"400063\"\n                },\n                \"name\": \"JP MORGAN SERVICES INDIA PRIVATE LIMITED\",\n                \"pan\": \"AABCD0503B\"\n            },\n            \"employee\": {\n                \"address\": {\n                    \"area\": \"GHODBUNDER ROAD\",\n                    \"street\": \"FLAT NO.1006, BLDG NO.2, VIJAYGALAXY WAGHBIL, NAKA\",\n                    \"city\": \"THANE\",\n                    \"state\": \"Maharashtra\",\n                    \"postal_code\": \"400615\"\n                },\n                \"last_name\": \"BHAMBHANI\",\n                \"pan\": \"ΑΚΤΡΒ1556D\",\n                \"middle_name\": \"HARESH\",\n                \"first_name\": \"RAHUL\"\n            }\n        },\n        \"part_b\": {\n            \"assessment_year\": \"2024-25\",\n            \"details_of_salary_paid_and_any_other_income_and_tax_deducted\": {\n                \"whether_opting_out_of_taxation_us_115_bac_1_a\": \"Yes\",\n                \"gross_salary\": {\n                    \"salary_as_per_provisions_contained_in_section_17_1\": \"2228206.00\",\n                    \"value_of_perquisites_us_17_2\": \"1453.00\",\n                    \"profits_in_lieu_of_salary_us_17_3\": \"0.00\",\n                    \"total\": \"2229659.00\",\n                    \"reported_total_amount_of_salary_received_from_other_employer\": \"0.00\"\n                },\n                \"less_allowances_to_the_extent_exempt_us_10\": {\n                    \"travel_concession_or_assistance_us_10_5\": \"0.00\",\n                    \"death_cum_retirement_gratuity_us_10_10\": \"0.00\",\n                    \"commuted_value_of_pension_us_10_10_a\": \"0.00\",\n                    \"cash_equivalent_of_leave_salary_encashment_us_10_10_aa\": \"0.00\",\n                    \"house_rent_allowance_us_10_13_a\": \"0.00\",\n                    \"other_special_allowances_us_10_14\": \"0.00\",\n                    \"total_amount_of_any_other_exemption_us_10\": \"0.00\",\n                    \"total_amount_of_exemption_claimed_us_10\": \"0.00\"\n                },\n                \"total_amount_of_salary_received_from_current_employer_1_d_2_i\": \"2229659.00\",\n                \"less_deduction_us_16\": {\n                    \"standard_deduction_us_16_ia\": \"50000.00\",\n                    \"entertainment_allowance_us_16_ii\": \"0.00\",\n                    \"tax_on_employment_us_16_iii\": \"2500.00\"\n                },\n                \"total_amount_of_deductions_us_16\": \"52500.00\",\n                \"income_chargeable_under_the_head_salaries\": \"2177159.00\",\n                \"add_any_other_income_reported_by_employee_us_192_2_b\": {\n                    \"income_or_admissible_loss_from_house_property_reported_by_employee_offered_for_TDS\": \"0.00\",\n                    \"income_under_the_head_other_sources_offered_for_TDS\": \"0.00\"\n                },\n                \"total_amount_of_other_income_reported_by_employee_7_a_7_b\": \"0.00\",\n                \"gross_total_income\": \"2177159.00\",\n                \"deduction_under_chapter_vi_a\": {\n                    \"deduction_in_respect_of_life_insurance_premia_contributions_to_provident_fund_etc_us_80_c\": {\n                        \"gross_amount\": \"150000.00\",\n                        \"deductible_amount\": \"150000.00\"\n                    },\n                    \"deduction_in_respect_of_contribution_to_certain_pension_funds_us_80_ccc\": {\n                        \"gross_amount\": \"0.00\",\n                        \"deductible_amount\": \"0.00\"\n                    },\n                    \"deduction_in_respect_of_contribution_by_taxpayer_to_pension_scheme_us_80_ccd_1\": {\n                        \"gross_amount\": \"0.00\",\n                        \"deductible_amount\": \"0.00\"\n                    },\n                    \"total_deduction_us_80_c_80_ccc_80_ccd_1\": {\n                        \"gross_amount\": \"150000.00\",\n                        \"deductible_amount\": \"150000.00\"\n                    },\n                    \"deductions_in_respect_of_amount_paid_deposited_to_notified_pension_scheme_us_80_ccd_1_b\": {\n                        \"gross_amount\": \"0.00\",\n                        \"deductible_amount\": \"0.00\"\n                    },\n                    \"deduction_in_respect_of_contribution_by_employer_to_pension_scheme_us_80_ccd_2\": {\n                        \"gross_amount\": \"0.00\",\n                        \"deductible_amount\": \"0.00\"\n                    },\n                    \"deduction_in_respect_of_health_insurance_premia_us_80_d\": {\n                        \"gross_amount\": \"32079.48\",\n                        \"deductible_amount\": \"32079.48\"\n                    },\n                    \"deduction_in_respect_of_interest_on_loan_taken_for_higher_education_us_80_e\": {\n                        \"gross_amount\": \"0.00\",\n                        \"deductible_amount\": \"0.00\"\n                    },\n                    \"deduction_in_respect_of_contribution_by_the_employee_to_agnipath_scheme_us_80_cch\": {\n                        \"gross_amount\": \"0.00\",\n                        \"deductible_amount\": \"0.00\"\n                    },\n                    \"deduction_in_respect_of_contribution_by_the_central_government_to_agnipath_scheme_us_80_cch\": {\n                        \"gross_amount\": \"0.00\",\n                        \"deductible_amount\": \"0.00\"\n                    },\n                    \"total_deduction_in_respect_of_donations_to_certain_funds_charitable_institutions_etc_us_80_g\": {\n                        \"gross_amount\": \"0.00\",\n                        \"qualifying_amount\": \"0.00\",\n                        \"deductible_amount\": \"0.00\"\n                    },\n                    \"deduction_in_respect_of_interest_on_deposits_in_savings_account_us_80_tta\": {\n                        \"gross_amount\": \"0.00\",\n                        \"qualifying_amount\": \"0.00\",\n                        \"deductible_amount\": \"0.00\"\n                    },\n                    \"total_of_amount_deductible_under_any_other_provisions_of_chapter_vi_a\": {\n                        \"gross_amount\": \"0.00\",\n                        \"qualifying_amount\": \"0.00\",\n                        \"deductible_amount\": \"0.00\"\n                    }\n                },\n                \"aggregate_of_deductible_amount_under_chapter_vi_a\": \"182079.48\",\n                \"total_taxable_income\": \"1995079.52\",\n                \"tax_on_total_income\": \"411023.86\",\n                \"rebate_us_87_a\": \"0.00\",\n                \"surcharge\": \"0.00\",\n                \"health_and_eduction_cess\": \"16440.95\",\n                \"tax_payable_13_15_16_14\": \"427464.81\",\n                \"less_relief_us_89\": \"0.00\",\n                \"net_tax_payable\": \"427464.81\"\n            }\n        }\n    },\n    \"code\": 200\n}"
+						}
+					]
+				},
+				{
+					"name": "Classify",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									"// Import crypto-js\r",
+									"const crypto = require('crypto-js');\r",
+									"\r",
+									"// Generate a random UUID\r",
+									"function generateUUID() {\r",
+									"    return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function(c) {\r",
+									"        let r = (Math.random() * 16) | 0,\r",
+									"            v = c === 'x' ? r : (r & 0x3) | 0x8;\r",
+									"        return v.toString(16);\r",
+									"    });\r",
+									"}\r",
+									"\r",
+									"// Get the UUID\r",
+									"const uuid = generateUUID();\r",
+									"\r",
+									"// Set the UUID in the request headers\r",
+									"pm.request.headers.add({\r",
+									"    key: \"x-api-transaction-id\",\r",
+									"    value: uuid\r",
+									"});\r",
+									"\r",
+									"// Log the generated UUID for debugging\r",
+									"console.log(\"Generated x-api-transaction-id:\", uuid);"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{access_token}}",
+								"type": "text"
+							},
+							{
+								"key": "x-api-key",
+								"value": "{{api_key}}",
+								"type": "text"
+							},
+							{
+								"key": "x-api-transaction-id",
+								"value": "cbd518d6-8daf-42b0-9913-9b374833b3c6",
+								"type": "text",
+								"disabled": true
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "file",
+									"type": "file",
+									"src": []
+								},
+								{
+									"key": "password",
+									"value": "",
+									"description": "`optional` password of protected form16",
+									"type": "text",
+									"disabled": true
+								}
+							]
+						},
+						"url": {
+							"raw": "https://h85mv907w4.execute-api.ap-south-1.amazonaws.com/dev/it/ocr/form-16/classify",
+							"protocol": "https",
+							"host": [
+								"h85mv907w4",
+								"execute-api",
+								"ap-south-1",
+								"amazonaws",
+								"com"
+							],
+							"path": [
+								"dev",
+								"it",
+								"ocr",
+								"form-16",
+								"classify"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}

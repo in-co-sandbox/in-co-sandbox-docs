@@ -1,0 +1,1317 @@
+{
+    "openapi": "3.1.0",
+    "info": {
+      "title": "Sandbox API [Prod]",
+      "version": "1.0"
+    },
+    "servers": [
+      {
+        "url": "https://api.sandbox.co.in"
+      }
+    ],
+    "components": {
+      "securitySchemes": {}
+    },
+    "security": [
+      {}
+    ],
+    "paths": {
+       
+      "/form-26as/pdf": {
+        "post": {
+          "summary": "Read Form 26AS Document",
+          "description": "",
+          "operationId": "read-form-26as-document-api",
+          "parameters": [
+            {
+              "name": "email",
+              "in": "query",
+              "description": "email id",
+              "schema": {
+                "type": "string"
+              }
+            },
+            {
+              "name": "password",
+              "in": "query",
+              "description": "Password of encrypted Form 26AS",
+              "schema": {
+                "type": "string"
+              }
+            },
+            {
+              "name": "Authorization",
+              "in": "header",
+              "description": "JWT Authorization token",
+              "required": true,
+              "schema": {
+                "type": "string"
+              }
+            },
+            {
+              "name": "x-api-key",
+              "in": "header",
+              "description": "Public key required to authorize API access.",
+              "required": true,
+              "schema": {
+                "type": "string"
+              }
+            },
+            {
+              "name": "x-api-version",
+              "in": "header",
+              "required": true,
+              "schema": {
+                "type": "string",
+                "default": "1.0"
+              }
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "200",
+              "content": {
+                "application/json": {
+                  "examples": {
+                    "Result": {
+                      "value": "{\n    \"Part VI\": [],\n    \"financial_year\": \"2022-23\",\n    \"assessment_year\": \"2023-24\",\n    \"name\": \"TONY STARK\",\n    \"Part II\": [\n        {\n            \"deduction_wise\": [\n                [\n                    \"sr_no\",\n                    \"section\",\n                    \"transaction_date\",\n                    \"date_of_booking\",\n                    \"remarks\",\n                    \"amount_paid_credited\",\n                    \"tax_deducted\",\n                    \"tds_deposited\"\n                ],\n                [\n                    \"1\",\n                    \"194\",\n                    \"22-Jul-2022\",\n                    \"30-Oct-2022\",\n                    \"-\",\n                    \"11582.50\",\n                    \"0.00\",\n                    \"0.00\"\n                ]\n            ],\n            \"total_amount_paid_credited\": \"11582.50\",\n            \"name_of_deductor\": \"UBA Ltd.\",\n            \"total_tax_deducted\": \"0.00\",\n            \"sr_no\": \"1\",\n            \"total_tds_deposited\": \"0.00\",\n            \"tan_of_deductor\": \"HRAB00275C\"\n        },\n        {\n            \"deduction_wise\": [\n                [\n                    \"sr_no\",\n                    \"section\",\n                    \"transaction_date\",\n                    \"date_of_booking\",\n                    \"remarks\",\n                    \"amount_paid_credited\",\n                    \"tax_deducted\",\n                    \"tds_deposited\"\n                ],\n                [\n                    \"1\",\n                    \"193\",\n                    \"30-Jun-2022\",\n                    \"02-Aug-2022\",\n                    \"-\",\n                    \"413.00\",\n                    \"0.00\",\n                    \"0.00\"\n                ],\n                [\n                    \"2\",\n                    \"194\",\n                    \"30-Jun-2022\",\n                    \"02-Aug-2022\",\n                    \"-\",\n                    \"413.00\",\n                    \"0.00\",\n                    \"0.00\"\n                ],\n                [\n                    \"3\",\n                    \"193\",\n                    \"30-Jun-2022\",\n                    \"02-Aug-2022\",\n                    \"B\",\n                    \"-413.00\",\n                    \"0.00\",\n                    \"0.00\"\n                ]\n            ],\n            \"total_amount_paid_credited\": \"413.00\",\n            \"name_of_deductor\": \"Jio Finance Ltd.\",\n            \"total_tax_deducted\": \"0.00\",\n            \"sr_no\": \"2\",\n            \"total_tds_deposited\": \"0.00\",\n            \"tan_of_deductor\": \"ANDC03708F\"\n        }\n    ],\n    \"Part III\": [],\n    \"Part V\": [],\n    \"pan\": \"ACPPA2608F\",\n    \"Part I\": [\n        {\n            \"deduction_wise\": [\n                [\n                    \"sr_no\",\n                    \"section\",\n                    \"transaction_date\",\n                    \"status_of_booking\",\n                    \"date_of_booking\",\n                    \"remarks\",\n                    \"amount_paid_credited\",\n                    \"tax_deducted\",\n                    \"tds_deposited\"\n                ],\n                [\n                    \"1\",\n                    \"194\",\n                    \"09-Nov-2022\",\n                    \"F\",\n                    \"08-Feb-2023\",\n                    \"-\",\n                    \"6912.00\",\n                    \"691.00\",\n                    \"691.00\"\n                ],\n                [\n                    \"2\",\n                    \"194\",\n                    \"25-Jul-2022\",\n                    \"F\",\n                    \"31-Oct-2022\",\n                    \"-\",\n                    \"5031.00\",\n                    \"504.00\",\n                    \"504.00\"\n                ]\n            ],\n            \"total_amount_paid_credited\": \"11943.00\",\n            \"name_of_deductor\": \"STARK INDUSTRIES\",\n            \"total_tax_deducted\": \"1195.00\",\n            \"sr_no\": \"1\",\n            \"total_tds_deposited\": \"1195.00\",\n            \"tan_of_deductor\": \"AHMS41521B\"\n        },\n        {\n            \"deduction_wise\": [\n                [\n                    \"sr_no\",\n                    \"section\",\n                    \"transaction_date\",\n                    \"status_of_booking\",\n                    \"date_of_booking\",\n                    \"remarks\",\n                    \"amount_paid_credited\",\n                    \"tax_deducted\",\n                    \"tds_deposited\"\n                ],\n                [\n                    \"1\",\n                    \"194\",\n                    \"02-Dec-2022\",\n                    \"F\",\n                    \"29-Jan-2023\",\n                    \"-\",\n                    \"516.00\",\n                    \"0.00\",\n                    \"0.00\"\n                ]\n            ],\n            \"total_amount_paid_credited\": \"\",\n            \"name_of_deductor\": \"PEARSON SPECTER LITT\",\n            \"total_tax_deducted\": \"\",\n            \"sr_no\": \"\",\n            \"total_tds_deposited\": \"\",\n            \"tan_of_deductor\": \"CMBF04227G\"\n        },\n        {\n            \"deduction_wise\": [\n                [\n                    \"sr_no\",\n                    \"section\",\n                    \"transaction_date\",\n                    \"status_of_booking\",\n                    \"date_of_booking\",\n                    \"remarks\",\n                    \"amount_paid_credited\",\n                    \"tax_deducted\",\n                    \"tds_deposited\"\n                ],\n                [\n                    \"1\",\n                    \"194\",\n                    \"23-Nov-2022\",\n                    \"F\",\n                    \"07-Feb-2023\",\n                    \"-\",\n                    \"1692.00\",\n                    \"0.00\",\n                    \"0.00\"\n                ]\n            ],\n            \"total_amount_paid_credited\": \"1692.00\",\n            \"name_of_deductor\": \"PEARSON HARDMAN\",\n            \"total_tax_deducted\": \"0.00\",\n            \"sr_no\": \"3\",\n            \"total_tds_deposited\": \"0.00\",\n            \"tan_of_deductor\": \"CMBF04227K\"\n        },\n        {\n            \"deduction_wise\": [\n                [\n                    \"sr_no\",\n                    \"section\",\n                    \"transaction_date\",\n                    \"status_of_booking\",\n                    \"date_of_booking\",\n                    \"remarks\",\n                    \"amount_paid_credited\",\n                    \"tax_deducted\",\n                    \"tds_deposited\"\n                ],\n                [\n                    \"1\",\n                    \"194\",\n                    \"10-Nov-2022\",\n                    \"F\",\n                    \"31-Jan-2023\",\n                    \"-\",\n                    \"450.00\",\n                    \"0.00\",\n                    \"0.00\"\n                ]\n            ]\n        },\n        {\n            \"deduction_wise\": [\n                [\n                    \"sr_no\",\n                    \"section\",\n                    \"transaction_date\",\n                    \"status_of_booking\",\n                    \"date_of_booking\",\n                    \"remarks\",\n                    \"amount_paid_credited\",\n                    \"tax_deducted\",\n                    \"tds_deposited\"\n                ],\n                [\n                    \"1\",\n                    \"194\",\n                    \"20-Jul-2022\",\n                    \"F\",\n                    \"03-Nov-2022\",\n                    \"-\",\n                    \"1332.87\",\n                    \"0.00\",\n                    \"0.00\"\n                ],\n                [\n                    \"2\",\n                    \"194\",\n                    \"20-Jul-2022\",\n                    \"F\",\n                    \"03-Nov-2022\",\n                    \"-\",\n                    \"1332.87\",\n                    \"0.00\",\n                    \"0.00\"\n                ],\n                [\n                    \"3\",\n                    \"194\",\n                    \"20-Jul-2022\",\n                    \"F\",\n                    \"03-Nov-2022\",\n                    \"B\",\n                    \"-1332.87\",\n                    \"0.00\",\n                    \"0.00\"\n                ],\n                [\n                    \"4\",\n                    \"194\",\n                    \"20-Jul-2022\",\n                    \"F\",\n                    \"03-Nov-2022\",\n                    \"-\",\n                    \"1332.87\",\n                    \"0.00\",\n                    \"0.00\"\n                ],\n                [\n                    \"5\",\n                    \"194\",\n                    \"20-Jul-2022\",\n                    \"F\",\n                    \"03-Nov-2022\",\n                    \"B\",\n                    \"-1332.87\",\n                    \"0.00\",\n                    \"0.00\"\n                ],\n                [\n                    \"6\",\n                    \"194\",\n                    \"20-Jul-2022\",\n                    \"F\",\n                    \"03-Nov-2022\",\n                    \"-\",\n                    \"1332.87\",\n                    \"0.00\",\n                    \"0.00\"\n                ],\n                [\n                    \"7\",\n                    \"194\",\n                    \"20-Jul-2022\",\n                    \"F\",\n                    \"03-Nov-2022\",\n                    \"B\",\n                    \"-1332.87\",\n                    \"0.00\",\n                    \"0.00\"\n                ]\n            ]\n        }\n    ],\n    \"Part IV\": []\n}"
+                    }
+                  },
+                  "schema": {
+                    "type": "object",
+                    "properties": {
+                      "Part VI": {
+                        "type": "array",
+                        "items": {
+                          "type": "object",
+                          "properties": {
+  
+                          }
+                        }
+                      },
+                      "financial_year": {
+                        "type": "string",
+                        "example": "2022-23"
+                      },
+                      "assessment_year": {
+                        "type": "string",
+                        "example": "2023-24"
+                      },
+                      "name": {
+                        "type": "string",
+                        "example": "TONY STARK"
+                      },
+                      "Part II": {
+                        "type": "array",
+                        "items": {
+                          "type": "object",
+                          "properties": {
+                            "deduction_wise": {
+                              "type": "array",
+                              "items": {
+                                "type": "array",
+                                "items": {
+                                  "type": "string",
+                                  "example": "sr_no"
+                                }
+                              }
+                            },
+                            "total_amount_paid_credited": {
+                              "type": "string",
+                              "example": "11582.50"
+                            },
+                            "name_of_deductor": {
+                              "type": "string",
+                              "example": "UBA Ltd."
+                            },
+                            "total_tax_deducted": {
+                              "type": "string",
+                              "example": "0.00"
+                            },
+                            "sr_no": {
+                              "type": "string",
+                              "example": "1"
+                            },
+                            "total_tds_deposited": {
+                              "type": "string",
+                              "example": "0.00"
+                            },
+                            "tan_of_deductor": {
+                              "type": "string",
+                              "example": "HRAB00275C"
+                            }
+                          }
+                        }
+                      },
+                      "Part III": {
+                        "type": "array",
+                        "items": {
+                          "type": "object",
+                          "properties": {
+  
+                          }
+                        }
+                      },
+                      "Part V": {
+                        "type": "array",
+                        "items": {
+                          "type": "object",
+                          "properties": {
+  
+                          }
+                        }
+                      },
+                      "pan": {
+                        "type": "string",
+                        "example": "ACPPA2608F"
+                      },
+                      "Part I": {
+                        "type": "array",
+                        "items": {
+                          "type": "object",
+                          "properties": {
+                            "deduction_wise": {
+                              "type": "array",
+                              "items": {
+                                "type": "array",
+                                "items": {
+                                  "type": "string",
+                                  "example": "sr_no"
+                                }
+                              }
+                            },
+                            "total_amount_paid_credited": {
+                              "type": "string",
+                              "example": "11943.00"
+                            },
+                            "name_of_deductor": {
+                              "type": "string",
+                              "example": "STARK INDUSTRIES"
+                            },
+                            "total_tax_deducted": {
+                              "type": "string",
+                              "example": "1195.00"
+                            },
+                            "sr_no": {
+                              "type": "string",
+                              "example": "1"
+                            },
+                            "total_tds_deposited": {
+                              "type": "string",
+                              "example": "1195.00"
+                            },
+                            "tan_of_deductor": {
+                              "type": "string",
+                              "example": "AHMS41521B"
+                            }
+                          }
+                        }
+                      },
+                      "Part IV": {
+                        "type": "array",
+                        "items": {
+                          "type": "object",
+                          "properties": {
+  
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            },
+            "500": {
+              "description": "500",
+              "content": {
+                "application/json": {
+                  "examples": {
+                    "Incorrect Password": {
+                      "value": "{\n  \"status\": 500,\n  \"message\": \"Invalid password\"\n}"
+                    },
+                    "Password Protected": {
+                      "value": "{\n  \"status\": 500,\n  \"message\": \"Form 26AS is password protected\"\n}"
+                    },
+                    "Failure": {
+                      "value": "{\n  \"status\": 500,\n  \"message\": \"Unable to read Form 26AS\"\n}"
+                    }
+                  },
+                  "schema": {
+                    "oneOf": [
+                      {
+                        "title": "Incorrect Password",
+                        "type": "object",
+                        "properties": {
+                          "status": {
+                            "type": "integer",
+                            "example": 500,
+                            "default": 0
+                          },
+                          "message": {
+                            "type": "string",
+                            "example": "Invalid password"
+                          }
+                        }
+                      },
+                      {
+                        "title": "Password Protected",
+                        "type": "object",
+                        "properties": {
+                          "status": {
+                            "type": "integer",
+                            "example": 500,
+                            "default": 0
+                          },
+                          "message": {
+                            "type": "string",
+                            "example": "Form 26AS is password protected"
+                          }
+                        }
+                      },
+                      {
+                        "title": "Failure",
+                        "type": "object",
+                        "properties": {
+                          "status": {
+                            "type": "integer",
+                            "example": 500,
+                            "default": 0
+                          },
+                          "message": {
+                            "type": "string",
+                            "example": "Unable to read Form 26AS"
+                          }
+                        }
+                      }
+                    ]
+                  }
+                }
+              }
+            }
+          },
+          "deprecated": false
+        }
+      },
+          "/it/ocr/form-26as/pdf": {
+        "post": {
+          "summary": "Form26AS Read",
+          "tags": [
+            "form26AS"
+          ],
+          "parameters": [
+            {
+              "name": "x-api-key",
+              "in": "header",
+              "schema": {
+                "type": "string"
+              }
+            },
+            {
+              "name": "Authorization",
+              "in": "header",
+              "schema": {
+                "type": "string"
+              }
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "200 OK",
+              "headers": {
+                "Date": {
+                  "schema": {
+                    "type": "string"
+                  }
+                },
+                "Content-Length": {
+                  "schema": {
+                    "type": "integer"
+                  }
+                },
+                "Connection": {
+                  "schema": {
+                    "type": "string"
+                  }
+                },
+                "x-amzn-RequestId": {
+                  "schema": {
+                    "type": "string"
+                  }
+                },
+                "x-amzn-Remapped-x-amzn-RequestId": {
+                  "schema": {
+                    "type": "string"
+                  }
+                },
+                "access-control-allow-origin": {
+                  "schema": {
+                    "type": "string"
+                  }
+                },
+                "access-control-allow-headers": {
+                  "schema": {
+                    "type": "string"
+                  }
+                },
+                "x-amzn-Remapped-Content-Length": {
+                  "schema": {
+                    "type": "integer"
+                  }
+                },
+                "x-amzn-Remapped-Connection": {
+                  "schema": {
+                    "type": "string"
+                  }
+                },
+                "x-amz-apigw-id": {
+                  "schema": {
+                    "type": "string"
+                  }
+                },
+                "access-control-allow-methods": {
+                  "schema": {
+                    "type": "string"
+                  }
+                },
+                "X-Amzn-Trace-Id": {
+                  "schema": {
+                    "type": "string"
+                  }
+                },
+                "x-amzn-Remapped-Date": {
+                  "schema": {
+                    "type": "string"
+                  }
+                },
+                "access-control-max-age": {
+                  "schema": {
+                    "type": "integer"
+                  }
+                }
+              },
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "type": "object",
+                    "properties": {
+                      "transaction_id": {
+                        "type": "string"
+                      },
+                      "code": {
+                        "type": "integer"
+                      },
+                      "data": {
+                        "type": "object",
+                        "properties": {
+                          "Part VI": {
+                            "type": "array",
+                            "items": {}
+                          },
+                          "financial_year": {
+                            "type": "string"
+                          },
+                          "assessment_year": {
+                            "type": "string"
+                          },
+                          "name": {
+                            "type": "string"
+                          },
+                          "Part II": {
+                            "type": "array",
+                            "items": {}
+                          },
+                          "Part III": {
+                            "type": "array",
+                            "items": {}
+                          },
+                          "Part V": {
+                            "type": "array",
+                            "items": {}
+                          },
+                          "pan": {
+                            "type": "string"
+                          },
+                          "Part I": {
+                            "type": "array",
+                            "items": {
+                              "type": "object",
+                              "properties": {
+                                "deduction_wise": {
+                                  "type": "array",
+                                  "items": {
+                                    "type": "array",
+                                    "items": {
+                                      "type": "string"
+                                    }
+                                  }
+                                },
+                                "total_amount_paid_credited": {
+                                  "type": "string",
+                                  "format": "utc-millisec"
+                                },
+                                "name_of_deductor": {
+                                  "type": "string"
+                                },
+                                "total_tax_deducted": {
+                                  "type": "string",
+                                  "format": "utc-millisec"
+                                },
+                                "sr_no": {
+                                  "type": "string",
+                                  "format": "utc-millisec"
+                                },
+                                "total_tds_deposited": {
+                                  "type": "string",
+                                  "format": "utc-millisec"
+                                },
+                                "tan_of_deductor": {
+                                  "type": "string"
+                                }
+                              }
+                            }
+                          },
+                          "Part IV": {
+                            "type": "array",
+                            "items": {}
+                          }
+                        }
+                      },
+                      "timestamp": {
+                        "type": "integer"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "/it/ocr/form-16/pdf/classify": {
+        "post": {
+          "summary": "Form16 Classify",
+          "tags": [
+            "form16"
+          ],
+          "parameters": [
+            {
+              "name": "x-api-key",
+              "in": "header",
+              "schema": {
+                "type": "string"
+              }
+            },
+            {
+              "name": "Authorization",
+              "in": "header",
+              "schema": {
+                "type": "string"
+              }
+            },
+            {
+              "name": "x-api-transaction-id",
+              "in": "header",
+              "schema": {
+                "type": "string"
+              }
+            },
+            {
+              "name": "x-request-time",
+              "in": "header",
+              "schema": {
+                "type": "integer"
+              }
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "200 OK (Part A)",
+              "headers": {
+                "Date": {
+                  "schema": {
+                    "type": "string"
+                  }
+                },
+                "Content-Length": {
+                  "schema": {
+                    "type": "integer"
+                  }
+                },
+                "Connection": {
+                  "schema": {
+                    "type": "string"
+                  }
+                },
+                "x-amzn-RequestId": {
+                  "schema": {
+                    "type": "string"
+                  }
+                },
+                "x-amzn-Remapped-x-amzn-RequestId": {
+                  "schema": {
+                    "type": "string"
+                  }
+                },
+                "access-control-allow-origin": {
+                  "schema": {
+                    "type": "string"
+                  }
+                },
+                "access-control-allow-headers": {
+                  "schema": {
+                    "type": "string"
+                  }
+                },
+                "x-amzn-Remapped-Content-Length": {
+                  "schema": {
+                    "type": "integer"
+                  }
+                },
+                "x-amzn-Remapped-Connection": {
+                  "schema": {
+                    "type": "string"
+                  }
+                },
+                "x-amz-apigw-id": {
+                  "schema": {
+                    "type": "string"
+                  }
+                },
+                "access-control-allow-methods": {
+                  "schema": {
+                    "type": "string"
+                  }
+                },
+                "X-Amzn-Trace-Id": {
+                  "schema": {
+                    "type": "string"
+                  }
+                },
+                "x-amzn-Remapped-Date": {
+                  "schema": {
+                    "type": "string"
+                  }
+                },
+                "access-control-max-age": {
+                  "schema": {
+                    "type": "integer"
+                  }
+                }
+              },
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "type": "object",
+                    "properties": {
+                      "transaction_id": {
+                        "type": "string"
+                      },
+                      "code": {
+                        "type": "integer"
+                      },
+                      "data": {
+                        "type": "object",
+                        "properties": {
+                          "type": {
+                            "type": "string"
+                          },
+                          "version": {
+                            "type": "string",
+                            "format": "utc-millisec"
+                          }
+                        }
+                      },
+                      "timestamp": {
+                        "type": "integer"
+                      }
+                    }
+                  }
+                }
+              }
+            },
+            "500": {
+              "description": "500 (Password Protected)",
+              "headers": {
+                "Date": {
+                  "schema": {
+                    "type": "string"
+                  }
+                },
+                "Content-Length": {
+                  "schema": {
+                    "type": "integer"
+                  }
+                },
+                "Connection": {
+                  "schema": {
+                    "type": "string"
+                  }
+                },
+                "x-amzn-RequestId": {
+                  "schema": {
+                    "type": "string"
+                  }
+                },
+                "x-amzn-Remapped-x-amzn-RequestId": {
+                  "schema": {
+                    "type": "string"
+                  }
+                },
+                "access-control-allow-origin": {
+                  "schema": {
+                    "type": "string"
+                  }
+                },
+                "access-control-allow-headers": {
+                  "schema": {
+                    "type": "string"
+                  }
+                },
+                "x-amzn-Remapped-Content-Length": {
+                  "schema": {
+                    "type": "integer"
+                  }
+                },
+                "x-amzn-Remapped-Connection": {
+                  "schema": {
+                    "type": "string"
+                  }
+                },
+                "x-amz-apigw-id": {
+                  "schema": {
+                    "type": "string"
+                  }
+                },
+                "access-control-allow-methods": {
+                  "schema": {
+                    "type": "string"
+                  }
+                },
+                "X-Amzn-Trace-Id": {
+                  "schema": {
+                    "type": "string"
+                  }
+                },
+                "x-amzn-Remapped-Date": {
+                  "schema": {
+                    "type": "string"
+                  }
+                },
+                "access-control-max-age": {
+                  "schema": {
+                    "type": "integer"
+                  }
+                }
+              },
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "type": "object",
+                    "properties": {
+                      "transaction_id": {
+                        "type": "string"
+                      },
+                      "code": {
+                        "type": "integer"
+                      },
+                      "message": {
+                        "type": "string"
+                      },
+                      "timestamp": {
+                        "type": "integer"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+
+      "/it/ocr/form-16": {
+        "post": {
+          "summary": "Read Form16",
+          "description": "",
+          "operationId": "read-form16",
+          "requestBody": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "file": {
+                      "type": "string",
+                      "format": "binary"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "responses": {
+            "200": {
+              "description": "200",
+              "content": {
+                "application/json": {
+                  "examples": {
+                    "Result": {
+                      "value": "{}"
+                    }
+                  },
+                  "schema": {
+                    "type": "object",
+                    "properties": {}
+                  }
+                }
+              }
+            },
+            "400": {
+              "description": "400",
+              "content": {
+                "application/json": {
+                  "examples": {
+                    "Result": {
+                      "value": "{}"
+                    }
+                  },
+                  "schema": {
+                    "type": "object",
+                    "properties": {}
+                  }
+                }
+              }
+            }
+          },
+          "deprecated": false
+        }
+      },
+       "/it/ocr/form-16/pdf": {
+        "post": {
+          "summary": "Form16 Read",
+          "tags": [
+            "form16"
+          ],
+          "parameters": [
+            {
+              "name": "password",
+              "in": "query",
+              "schema": {
+                "type": "string"
+              }
+            },
+            {
+              "name": "x-api-key",
+              "in": "header",
+              "schema": {
+                "type": "string"
+              }
+            },
+            {
+              "name": "Authorization",
+              "in": "header",
+              "schema": {
+                "type": "string"
+              }
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "200 OK",
+              "headers": {
+                "Date": {
+                  "schema": {
+                    "type": "string"
+                  }
+                },
+                "Content-Length": {
+                  "schema": {
+                    "type": "integer"
+                  }
+                },
+                "Connection": {
+                  "schema": {
+                    "type": "string"
+                  }
+                },
+                "x-amzn-RequestId": {
+                  "schema": {
+                    "type": "string"
+                  }
+                },
+                "x-amzn-Remapped-x-amzn-RequestId": {
+                  "schema": {
+                    "type": "string"
+                  }
+                },
+                "access-control-allow-origin": {
+                  "schema": {
+                    "type": "string"
+                  }
+                },
+                "access-control-allow-headers": {
+                  "schema": {
+                    "type": "string"
+                  }
+                },
+                "x-amzn-Remapped-Content-Length": {
+                  "schema": {
+                    "type": "integer"
+                  }
+                },
+                "x-amzn-Remapped-Connection": {
+                  "schema": {
+                    "type": "string"
+                  }
+                },
+                "x-amz-apigw-id": {
+                  "schema": {
+                    "type": "string"
+                  }
+                },
+                "access-control-allow-methods": {
+                  "schema": {
+                    "type": "string"
+                  }
+                },
+                "X-Amzn-Trace-Id": {
+                  "schema": {
+                    "type": "string"
+                  }
+                },
+                "x-amzn-Remapped-Date": {
+                  "schema": {
+                    "type": "string"
+                  }
+                },
+                "access-control-max-age": {
+                  "schema": {
+                    "type": "integer"
+                  }
+                }
+              },
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "type": "object",
+                    "properties": {
+                      "transaction_id": {
+                        "type": "string"
+                      },
+                      "code": {
+                        "type": "integer"
+                      },
+                      "data": {
+                        "type": "object",
+                        "properties": {
+                          "Part A": {
+                            "type": "object",
+                            "properties": {
+                              "tds": {
+                                "type": "array",
+                                "items": {
+                                  "type": "array",
+                                  "items": {
+                                    "type": "string"
+                                  }
+                                }
+                              },
+                              "assessment_year": {
+                                "type": "string"
+                              },
+                              "employer": {
+                                "type": "object",
+                                "properties": {
+                                  "tan": {
+                                    "type": "string"
+                                  },
+                                  "address": {
+                                    "type": "object",
+                                    "properties": {
+                                      "area": {
+                                        "type": "string"
+                                      },
+                                      "street": {
+                                        "type": "string"
+                                      },
+                                      "postal_code": {
+                                        "type": "string",
+                                        "format": "color"
+                                      }
+                                    }
+                                  },
+                                  "name": {
+                                    "type": "string"
+                                  },
+                                  "pan": {
+                                    "type": "string"
+                                  }
+                                }
+                              },
+                              "employee": {
+                                "type": "object",
+                                "properties": {
+                                  "address": {
+                                    "type": "object",
+                                    "properties": {
+                                      "area": {
+                                        "type": "string"
+                                      },
+                                      "street": {
+                                        "type": "string"
+                                      },
+                                      "postal_code": {
+                                        "type": "string",
+                                        "format": "color"
+                                      }
+                                    }
+                                  },
+                                  "last_name": {
+                                    "type": "string"
+                                  },
+                                  "pan": {
+                                    "type": "string"
+                                  },
+                                  "middle_name": {
+                                    "type": "string"
+                                  },
+                                  "first_name": {
+                                    "type": "string"
+                                  }
+                                }
+                              }
+                            }
+                          },
+                          "Part B": {
+                            "type": "object",
+                            "properties": {
+                              "assessment_year": {
+                                "type": "string"
+                              },
+                              "employer": {
+                                "type": "object",
+                                "properties": {
+                                  "tan": {
+                                    "type": "string"
+                                  },
+                                  "address": {
+                                    "type": "object",
+                                    "properties": {
+                                      "area": {
+                                        "type": "string"
+                                      },
+                                      "street": {
+                                        "type": "string"
+                                      },
+                                      "postal_code": {
+                                        "type": "string",
+                                        "format": "color"
+                                      }
+                                    }
+                                  },
+                                  "name": {
+                                    "type": "string"
+                                  },
+                                  "pan": {
+                                    "type": "string"
+                                  }
+                                }
+                              },
+                              "employee": {
+                                "type": "object",
+                                "properties": {
+                                  "address": {
+                                    "type": "object",
+                                    "properties": {
+                                      "area": {
+                                        "type": "string"
+                                      },
+                                      "street": {
+                                        "type": "string"
+                                      },
+                                      "postal_code": {
+                                        "type": "string",
+                                        "format": "color"
+                                      }
+                                    }
+                                  },
+                                  "last_name": {
+                                    "type": "string"
+                                  },
+                                  "pan": {
+                                    "type": "string"
+                                  },
+                                  "middle_name": {
+                                    "type": "string"
+                                  },
+                                  "first_name": {
+                                    "type": "string"
+                                  }
+                                }
+                              },
+                              "details_of_salary_paid": {
+                                "type": "object",
+                                "properties": {
+                                  "surcharge": {
+                                    "type": "integer"
+                                  },
+                                  "gross_salary": {
+                                    "type": "object",
+                                    "properties": {
+                                      "reported_total_amount_of_salary_received_from_other_employer": {
+                                        "type": "integer"
+                                      },
+                                      "profits_in_lieu_of_salary_us_17_3": {
+                                        "type": "integer"
+                                      },
+                                      "value_of_perquisites_us_17_2": {
+                                        "type": "integer"
+                                      },
+                                      "salary_as_per_provisions_contained_in_section_17_1": {
+                                        "type": "integer"
+                                      }
+                                    }
+                                  },
+                                  "gross_total_income": {
+                                    "type": "integer"
+                                  },
+                                  "tax_payable": {
+                                    "type": "integer"
+                                  },
+                                  "allowances_us_10": {
+                                    "type": "object",
+                                    "properties": {
+                                      "house_rent_allowance_us_10_13_a": {
+                                        "type": "integer"
+                                      },
+                                      "commuted_value_of_pension_us_10_10_a": {
+                                        "type": "integer"
+                                      },
+                                      "death_cum_retirement_gratuity_us_10_10": {
+                                        "type": "integer"
+                                      },
+                                      "total_amount_of_any_other_exemption_us_10": {
+                                        "type": "integer"
+                                      },
+                                      "total_amount_of_exemption_claimed_us_10": {
+                                        "type": "integer"
+                                      },
+                                      "travel_concession_or_assistance_us_10_5": {
+                                        "type": "integer"
+                                      },
+                                      "cash_equivalent_of_leave_salary_encashment_us_10_10_aa": {
+                                        "type": "integer"
+                                      }
+                                    }
+                                  },
+                                  "total_amount_of_deductions_us_16": {
+                                    "type": "integer"
+                                  },
+                                  "health_and_eduction_cess": {
+                                    "type": "integer"
+                                  },
+                                  "deduction_under_chapter_vi_a": {
+                                    "type": "object",
+                                    "properties": {
+                                      "deduction_us_80_ccc": {
+                                        "type": "object"
+                                      },
+                                      "deduction_us_80_tta": {
+                                        "type": "object"
+                                      },
+                                      "total_deduction_us_80_cce": {
+                                        "type": "object"
+                                      },
+                                      "deduction_us_80_ccd_2": {
+                                        "type": "object"
+                                      },
+                                      "deduction_us_80_ccd_1": {
+                                        "type": "object"
+                                      },
+                                      "deduction_us_80_d": {
+                                        "type": "object"
+                                      },
+                                      "deduction_us_80_ccd_1_b": {
+                                        "type": "object"
+                                      },
+                                      "deduction_us_80_e": {
+                                        "type": "object"
+                                      },
+                                      "deduction_us_80_g": {
+                                        "type": "object"
+                                      },
+                                      "deduction_us_80_c": {
+                                        "type": "object"
+                                      }
+                                    }
+                                  },
+                                  "rebate_us_87_a": {
+                                    "type": "integer"
+                                  },
+                                  "relief_us_89": {
+                                    "type": "integer"
+                                  },
+                                  "aggregate_deductible_amount_under_chapter_vi_a": {
+                                    "type": "integer"
+                                  },
+                                  "opting_out_of_taxation_us_115_bac": {
+                                    "type": "string"
+                                  },
+                                  "net_tax_payable": {
+                                    "type": "integer"
+                                  },
+                                  "tax_on_total_income": {
+                                    "type": "integer"
+                                  },
+                                  "total_amount_of_other_income_reported_by_employee": {
+                                    "type": "integer"
+                                  },
+                                  "other_income_reported_by_employee_us_192_2_b": {
+                                    "type": "object",
+                                    "properties": {
+                                      "income_under_the_head_other_sources_offered_for_tds": {
+                                        "type": "integer"
+                                      },
+                                      "income_from_house_property_reported_by_employee_offered_for_tds": {
+                                        "type": "integer"
+                                      }
+                                    }
+                                  },
+                                  "income_chargeable_under_the_head_salaries": {
+                                    "type": "integer"
+                                  },
+                                  "total_amount_of_salary_received_from_current_employer": {
+                                    "type": "integer"
+                                  },
+                                  "deduction_us_16": {
+                                    "type": "object",
+                                    "properties": {
+                                      "entertainment_allowance_us_16_ii": {
+                                        "type": "integer"
+                                      },
+                                      "standard_deduction_us_16_ia": {
+                                        "type": "integer"
+                                      },
+                                      "tax_on_employment_us_16_iii": {
+                                        "type": "integer"
+                                      }
+                                    }
+                                  },
+                                  "total_taxable_income": {
+                                    "type": "integer"
+                                  }
+                                }
+                              }
+                            }
+                          }
+                        }
+                      },
+                      "timestamp": {
+                        "type": "integer"
+                      }
+                    }
+                  }
+                }
+              }
+            },
+            "500": {
+              "description": "500 (Password Protected)",
+              "headers": {
+                "Date": {
+                  "schema": {
+                    "type": "string"
+                  }
+                },
+                "Content-Length": {
+                  "schema": {
+                    "type": "integer"
+                  }
+                },
+                "Connection": {
+                  "schema": {
+                    "type": "string"
+                  }
+                },
+                "x-amzn-RequestId": {
+                  "schema": {
+                    "type": "string"
+                  }
+                },
+                "x-amzn-Remapped-x-amzn-RequestId": {
+                  "schema": {
+                    "type": "string"
+                  }
+                },
+                "access-control-allow-origin": {
+                  "schema": {
+                    "type": "string"
+                  }
+                },
+                "access-control-allow-headers": {
+                  "schema": {
+                    "type": "string"
+                  }
+                },
+                "x-amzn-Remapped-Content-Length": {
+                  "schema": {
+                    "type": "integer"
+                  }
+                },
+                "x-amzn-Remapped-Connection": {
+                  "schema": {
+                    "type": "string"
+                  }
+                },
+                "x-amz-apigw-id": {
+                  "schema": {
+                    "type": "string"
+                  }
+                },
+                "access-control-allow-methods": {
+                  "schema": {
+                    "type": "string"
+                  }
+                },
+                "X-Amzn-Trace-Id": {
+                  "schema": {
+                    "type": "string"
+                  }
+                },
+                "x-amzn-Remapped-Date": {
+                  "schema": {
+                    "type": "string"
+                  }
+                },
+                "access-control-max-age": {
+                  "schema": {
+                    "type": "integer"
+                  }
+                }
+              },
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "type": "object",
+                    "properties": {
+                      "transaction_id": {
+                        "type": "string"
+                      },
+                      "code": {
+                        "type": "integer"
+                      },
+                      "message": {
+                        "type": "string"
+                      },
+                      "timestamp": {
+                        "type": "integer"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
