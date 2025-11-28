@@ -1,2462 +1,2454 @@
 {
-	"$schema": "https://mintlify.com/docs.json",
-	"theme": "palm",
-	"name": "Sandbox Financial Technologies Private Limited",
-	"colors": {
-		"primary": "#151455",
-		"light": "#CFCEFF",
-		"dark": "#1B1B20"
-	},
-	"background": {
-		"decoration": "gradient"
-	},
-	"description": "End-to-end tax automation platform for businesses to verify tax ids, calculate & pay taxes, generate e-invoices, process tax documents, analyse & reconcile tax ledgers, prepare and file tax returns through SDKs & APIs.",
-	"logo": {
-		"light": "/static/logo/light.svg",
-		"dark": "/static/logo/dark.svg",
-		"href": "https://developer.sandbox.co.in/"
-	},
-	"favicon": {
-		"light": "/static/favicon/light.svg",
-		"dark": "/static/favicon/dark.svg"
-	},
-	"navbar": {
-		"links": [
-			{
-				"label": "Help Centre",
-				"icon": "life-ring",
-				"href": "https://help.sandbox.co.in/"
-			},
-			{
-				"label": "Contact Sales",
-				"icon": "phone",
-				"href": "https://sandbox.co.in/contact-sales"
-			}
-		],
-		"primary": {
-			"type": "button",
-			"label": "Sign Up",
-			"href": "https://accounts.sandbox.co.in/signup"
-		}
-	},
-	"navigation": {
-		"tabs": [
-			{
-				"tab": "Guides",
-				"icon": "book-open",
-				"groups": [
-					{
-						"group": "Introduction",
-						"icon": "book",
-						"pages": [
-							"guides/introduction/about_sandbox",
-							"guides/introduction/authentication"
-						]
-					},
-					{
-						"group": "Get Started",
-						"icon": "rocket-launch",
-						"pages": [
-							"guides/get-started/quickstart",
-							"guides/get-started/the_basics",
-							"guides/get-started/versioning",
-							"guides/get-started/response_caching",
-							"guides/get-started/errors",
-							"guides/get-started/rate_limit",
-							"guides/get-started/webhooks",
-							"guides/get-started/post_for_get",
-							"guides/get-started/changelog"
-						]
-					},
-					{
-						"group": "Products",
-						"icon": "boxes-stacked",
-						"pages": [
-							"guides/products/kyc",
-							"guides/products/gst",
-							"guides/products/tds",
-							"guides/products/income_tax"
-						]
-					},
-					{
-						"group": "Billing & Invoicing",
-						"icon": "credit-card",
-						"pages": [
-							"guides/billing-and-invoicing/subscription",
-							"guides/billing-and-invoicing/quota",
-							"guides/billing-and-invoicing/overdraft",
-							"guides/billing-and-invoicing/wallet"
-						]
-					}
-				]
-			},
-			{
-				"tab": "API Reference",
-				"icon": "code",
-				"menu": [
-					{
-						"item": "Authentication",
-						"description": "Authenticate and get access to use Sandbox APIs",
-						"icon": "rocket-vertical",
-						"groups": [
-							{
-								"group": "Auth",
-								"icon": "square-terminal",
-								"pages": [
-									"api-reference/authenticate"
-								]
-							}
-						]
-					},
-					{
-						"item": "KYC",
-						"description": "Confirm Identities with confidence",
-						"icon": "/static/svg/workload-icons/KYC.svg",
-						"pages": [
-							"api-reference/kyc/overview",
-							{
-								"group": "Aadhaar",
-								"pages": [
-									{
-										"group": "OKYC",
-										"pages": [
-											"api-reference/kyc/aadhaar/endpoints/generate_otp",
-											"api-reference/kyc/aadhaar/endpoints/verify_otp"
-										]
-									}
-								]
-							},
-							{
-								"group": "Bank",
-								"pages": [
-									"api-reference/kyc/bank/endpoints/ifsc_verification",
-									"api-reference/kyc/bank/endpoints/penny_drop",
-									"api-reference/kyc/bank/endpoints/penny_less"
-								]
-							},
-							{
-								"group": "Digilocker",
-								"pages": [
-									"api-reference/kyc/digilocker/endpoints/initiate_session",
-									"api-reference/kyc/digilocker/endpoints/session_status",
-									"api-reference/kyc/digilocker/endpoints/fetch_document"
-								]
-							},
-							{
-								"group": "Digilocker SDK",
-								"pages": [
-									{
-										"group": "Getting Started",
-										"pages": [
-											"api-reference/kyc/digilocker-sdk/getting-started/introduction"
-										]
-									},
-									{
-										"group": "Platforms",
-										"pages": [
-											"api-reference/kyc/digilocker-sdk/getting-started/platforms/web",
-											"api-reference/kyc/digilocker-sdk/getting-started/platforms/android",
-											"api-reference/kyc/digilocker-sdk/getting-started/platforms/ios"
-										]
-									},
-									{
-										"group": "Endpoints",
-										"pages": [
-											"api-reference/kyc/digilocker-sdk/endpoints/create-session",
-											"api-reference/kyc/digilocker-sdk/endpoints/get-session-status",
-											"api-reference/kyc/digilocker-sdk/endpoints/get-document"
-										]
-									}
-								]
-							},
-							{
-								"group": "EntityLocker SDK",
-								"hidden": true,
-								"pages": [
-									{
-										"group": "Endpoints",
-										"hidden": false,
-										"pages": [
-											"api-reference/kyc/entitylocker-sdk/endpoints/create_session",
-											"api-reference/kyc/entitylocker-sdk/endpoints/get_session_status",
-											"api-reference/kyc/entitylocker-sdk/endpoints/get_document"
-										]
-									},
-									{
-										"group": "Internal Endpoints",
-										"hidden": true,
-										"pages": [
-											"api-reference/kyc/entitylocker-sdk/internal-apis/endpoints/initiate_session",
-											"api-reference/kyc/entitylocker-sdk/internal-apis/endpoints/get_authorization_url",
-											"api-reference/kyc/entitylocker-sdk/internal-apis/endpoints/authorization",
-											"api-reference/kyc/entitylocker-sdk/internal-apis/endpoints/get_documents",
-											"api-reference/kyc/entitylocker-sdk/internal-apis/endpoints/reset_session"
-										]
-									}
-								]
-							},
-							{
-								"group":"MCA",
-								"pages":[
-									"api-reference/kyc/mca/company_master_data",
-									"api-reference/kyc/mca/director_master_data"
-								]
-							},
-							{
-								"group": "PAN",
-								"pages": [
-									"api-reference/kyc/pan/endpoints/verify_pan_details",
-									"api-reference/kyc/pan/endpoints/pan_aadhaar_link_status"
-								]
-							},
-							{
-								"group": "Annexures",
-								"pages": [
-									"api-reference/kyc/annexures/master_data"
-								]
-							}
-						]
-					},
-					{
-						"item": "GST",
-						"description": "Simple and Secure GST Compliance",
-						"icon": "/static/svg/workload-icons/GST.svg",
-						"pages": [
-							"api-reference/gst/overview",
-							{
-								"group": "Analytics",
-								"icon": "chart-mixed",
-								"pages": [
-									{
-										"group": "GSTR-2A Reconciliation",
-										"pages": [
-											"api-reference/gst/analytics/guides/gstr-2a-reconciliation/overview",
-											"api-reference/gst/analytics/endpoints/gstr-2a-reconciliation/submit_job",
-											"api-reference/gst/analytics/endpoints/gstr-2a-reconciliation/poll_job"
-										]
-									},
-									{
-										"group": "GSTR-2B Reconciliation",
-										"pages": [
-											"api-reference/gst/analytics/guides/gstr-2b-reconciliation/overview",
-											"api-reference/gst/analytics/endpoints/gstr-2b-reconciliation/submit_job",
-											"api-reference/gst/analytics/endpoints/gstr-2b-reconciliation/poll_job"
-										]
-									}
-								]
-							},
-							{
-								"group": "Compliance",
-								"icon": "box-check",
-								"pages": [
-									{
-										"group": "Public",
-										"pages": [
-											"api-reference/gst/compliance/endpoints/public/search_gstin",
-											"api-reference/gst/compliance/endpoints/public/track_gstrs",
-											"api-reference/gst/compliance/endpoints/public/search_pan_state_code"
-										]
-									},
-									{
-										"group": "Taxpayer",
-										"pages": [
-											{
-												"group": "Authentication",
-												"pages": [
-													"api-reference/gst/compliance/guides/taxpayer/authentication/enable_api_access",
-													"api-reference/gst/compliance/endpoints/taxpayer/authentication/generate_otp",
-													"api-reference/gst/compliance/endpoints/taxpayer/authentication/verify_otp",
-													"api-reference/gst/compliance/endpoints/taxpayer/authentication/refresh_session",
-													"api-reference/gst/compliance/endpoints/taxpayer/authentication/generate_evc_otp",
-													"api-reference/gst/compliance/endpoints/taxpayer/authentication/logout"
-												]
-											},
-											{
-												"group": "GSTR-1 Documents",
-												"pages": [
-													"api-reference/gst/compliance/endpoints/taxpayer/gstr-1/documents/at",
-													"api-reference/gst/compliance/endpoints/taxpayer/gstr-1/documents/ata",
-													"api-reference/gst/compliance/endpoints/taxpayer/gstr-1/documents/b2b",
-													"api-reference/gst/compliance/endpoints/taxpayer/gstr-1/documents/b2ba",
-													"api-reference/gst/compliance/endpoints/taxpayer/gstr-1/documents/b2cl",
-													"api-reference/gst/compliance/endpoints/taxpayer/gstr-1/documents/b2cla",
-													"api-reference/gst/compliance/endpoints/taxpayer/gstr-1/documents/b2cs",
-													"api-reference/gst/compliance/endpoints/taxpayer/gstr-1/documents/b2csa",
-													"api-reference/gst/compliance/endpoints/taxpayer/gstr-1/documents/cdnr",
-													"api-reference/gst/compliance/endpoints/taxpayer/gstr-1/documents/cdnra",
-													"api-reference/gst/compliance/endpoints/taxpayer/gstr-1/documents/cdnur",
-													"api-reference/gst/compliance/endpoints/taxpayer/gstr-1/documents/cdnura",
-													"api-reference/gst/compliance/endpoints/taxpayer/gstr-1/documents/doc_issue",
-													"api-reference/gst/compliance/endpoints/taxpayer/gstr-1/documents/exp",
-													"api-reference/gst/compliance/endpoints/taxpayer/gstr-1/documents/expa",
-													"api-reference/gst/compliance/endpoints/taxpayer/gstr-1/documents/get_hsn",
-													"api-reference/gst/compliance/endpoints/taxpayer/gstr-1/documents/nil"
-												]
-											},
-											{
-												"group": "File GSTR-1",
-												"pages": [
-													"api-reference/gst/compliance/endpoints/taxpayer/gstr-1/file/save",
-													"api-reference/gst/compliance/endpoints/taxpayer/common/gst_return_status",
-													"api-reference/gst/compliance/endpoints/taxpayer/gstr-1/file/new_proceed",
-													"api-reference/gst/compliance/endpoints/taxpayer/authentication/generate_evc_otp",
-													"api-reference/gst/compliance/endpoints/taxpayer/gstr-1/file/file",
-													"api-reference/gst/compliance/endpoints/taxpayer/gstr-1/file/reset"
-												]
-											},
-											{
-												"group": "GSTR-2A",
-												"pages": [
-													"api-reference/gst/compliance/endpoints/taxpayer/gstr-2a/amdhist",
-													"api-reference/gst/compliance/endpoints/taxpayer/gstr-2a/b2b",
-													"api-reference/gst/compliance/endpoints/taxpayer/gstr-2a/b2ba",
-													"api-reference/gst/compliance/endpoints/taxpayer/gstr-2a/cdn",
-													"api-reference/gst/compliance/endpoints/taxpayer/gstr-2a/cdna",
-													"api-reference/gst/compliance/endpoints/taxpayer/gstr-2a/document",
-													"api-reference/gst/compliance/endpoints/taxpayer/gstr-2a/impg",
-													"api-reference/gst/compliance/endpoints/taxpayer/gstr-2a/impgsez",
-													"api-reference/gst/compliance/endpoints/taxpayer/gstr-2a/isd",
-													"api-reference/gst/compliance/endpoints/taxpayer/gstr-2a/tcs",
-													"api-reference/gst/compliance/endpoints/taxpayer/gstr-2a/tds"
-												]
-											},
-											{
-												"group": "GSTR-2B",
-												"pages": [
-													"api-reference/gst/compliance/endpoints/taxpayer/gstr-2b/document",
-													"api-reference/gst/compliance/endpoints/taxpayer/gstr-2b/regenerate_gstr_2b",
-													"api-reference/gst/compliance/endpoints/taxpayer/gstr-2b/gstr_2b_regeneration_status"
-												]
-											},
-											{
-												"group": "File GSTR-3B",
-												"pages": [
-													"api-reference/gst/compliance/endpoints/taxpayer/gstr-3b/gstr_3b_details",
-													"api-reference/gst/compliance/endpoints/taxpayer/gstr-3b/save",
-													"api-reference/gst/compliance/endpoints/taxpayer/common/gst_return_status",
-													"api-reference/gst/compliance/endpoints/taxpayer/gstr-3b/offset_liability",
-													"api-reference/gst/compliance/endpoints/taxpayer/authentication/generate_evc_otp",
-													"api-reference/gst/compliance/endpoints/taxpayer/gstr-3b/file"
-												]
-											},
-											{
-												"group": "GSTR-9",
-												"pages": [
-													"api-reference/gst/compliance/endpoints/taxpayer/gstr-9/auto_calculated_details",
-													"api-reference/gst/compliance/endpoints/taxpayer/gstr-9/section_8a_details",
-													"api-reference/gst/compliance/endpoints/taxpayer/gstr-9/save",
-													"api-reference/gst/compliance/endpoints/taxpayer/common/gst_return_status",
-													"api-reference/gst/compliance/endpoints/taxpayer/gstr-9/gstr_9_details",
-													"api-reference/gst/compliance/endpoints/taxpayer/gstr-9/proceed",
-													"api-reference/gst/compliance/endpoints/taxpayer/authentication/generate_evc_otp",
-													"api-reference/gst/compliance/endpoints/taxpayer/gstr-9/file"
-												]
-											},
-											{
-												"group": "Filing Preference",
-												"pages": [
-													"api-reference/gst/compliance/endpoints/taxpayer/common/get_filing_preference",
-													"api-reference/gst/compliance/endpoints/taxpayer/common/save_filing_preference"
-												]
-											},
-											{
-												"group": "Ledgers",
-												"pages": [
-													"api-reference/gst/compliance/endpoints/taxpayer/ledgers/cash_itc_balance_ledger",
-													"api-reference/gst/compliance/endpoints/taxpayer/ledgers/cash_ledger",
-													"api-reference/gst/compliance/endpoints/taxpayer/ledgers/itc_ledger",
-													"api-reference/gst/compliance/endpoints/taxpayer/ledgers/return_liability_ledger"
-												]
-											},
-											{
-												"group": "E-Invoice",
-												"pages": [
-													"api-reference/gst/compliance/endpoints/taxpayer/e-invoice/e_invoice",
-													"api-reference/gst/compliance/endpoints/taxpayer/e-invoice/list_purchase_invoices_job",
-													"api-reference/gst/compliance/endpoints/taxpayer/e-invoice/list_purchase_invoices_job_status",
-													"api-reference/gst/compliance/endpoints/taxpayer/e-invoice/list_sales_invoices_job",
-													"api-reference/gst/compliance/endpoints/taxpayer/e-invoice/list_sales_invoices_job_status"
-												]
-											},
-											{
-												"group": "Invoice Management System (IMS)",
-												"pages": [
-													"api-reference/gst/compliance/guides/taxpayer/invoice-management-system/overview",
-													"api-reference/gst/compliance/endpoints/taxpayer/invoices/invoice_count",
-													"api-reference/gst/compliance/endpoints/taxpayer/invoices/invoices",
-													"api-reference/gst/compliance/endpoints/taxpayer/invoices/save",
-													"api-reference/gst/compliance/endpoints/taxpayer/invoices/reset",
-													"api-reference/gst/compliance/endpoints/taxpayer/invoices/status"
-												]
-											}
-										]
-									},
-									{
-										"group": "E-Invoice",
-										"pages": [
-											"api-reference/gst/compliance/guides/e-invoice/authentication/create_api_credentials",
-											"api-reference/gst/compliance/endpoints/e-invoice/authenticate",
-											"api-reference/gst/compliance/endpoints/e-invoice/generate_e_invoice",
-											"api-reference/gst/compliance/endpoints/e-invoice/generate_e_invoice_pdf",
-											"api-reference/gst/compliance/endpoints/e-invoice/cancel_e_invoice",
-											"api-reference/gst/compliance/endpoints/e-invoice/get_e_invoice",
-											"api-reference/gst/compliance/endpoints/e-invoice/get_e_invoice_by_document_data",
-											"api-reference/gst/compliance/endpoints/e-invoice/generate_e_way_bill",
-											"api-reference/gst/compliance/endpoints/e-invoice/get_e_way_bill",
-											"api-reference/gst/compliance/endpoints/e-invoice/search_gstin"
-										]
-									},
-									{
-										"group": "E-Way Bill",
-										"pages": [
-											"api-reference/gst/compliance/guides/e-way-bill/authentication/create_api_credentials",
-											"api-reference/gst/compliance/endpoints/e-way-bill/authenticate",
-											{
-												"group": "Consignor",
-												"pages": [
-													"api-reference/gst/compliance/endpoints/e-way-bill/consignor/generate_e_way_bill",
-													"api-reference/gst/compliance/endpoints/e-way-bill/consignor/get_e_way_bill_by_date",
-													"api-reference/gst/compliance/endpoints/e-way-bill/consignor/get_e_way_bill_by_document_data",
-													"api-reference/gst/compliance/endpoints/e-way-bill/consignor/cancel_e_way_bill",
-													"api-reference/gst/compliance/endpoints/e-way-bill/consignor/extend_validity",
-													"api-reference/gst/compliance/endpoints/e-way-bill/consignor/update_vehicle_details",
-													"api-reference/gst/compliance/endpoints/e-way-bill/consignor/update_transporter",
-													{
-														"group": "Consolidated E-Way Bill",
-														"pages": [
-															"api-reference/gst/compliance/endpoints/e-way-bill/consignor/consolidated-e-way-bill/consolidate_e_way_bill",
-															"api-reference/gst/compliance/endpoints/e-way-bill/consignor/consolidated-e-way-bill/get_consolidated_bill",
-															"api-reference/gst/compliance/endpoints/e-way-bill/consignor/consolidated-e-way-bill/regenerate_consolidated_bill"
-														]
-													},
-													{
-														"group": "Multi-Vehicle Movement",
-														"pages": [
-															"api-reference/gst/compliance/endpoints/e-way-bill/consignor/multi-vehicle-movement/initiate_multi_vehicle_movement",
-															"api-reference/gst/compliance/endpoints/e-way-bill/consignor/multi-vehicle-movement/add_vehicle",
-															"api-reference/gst/compliance/endpoints/e-way-bill/consignor/multi-vehicle-movement/update_vehicle"
-														]
-													}
-												]
-											},
-											{
-												"group": "Consignee",
-												"pages": [
-													"api-reference/gst/compliance/endpoints/e-way-bill/consignee/get_e_way_bills_by_date",
-													"api-reference/gst/compliance/endpoints/e-way-bill/consignee/reject_e_way_bill"
-												]
-											},
-											{
-												"group": "Transporter",
-												"pages": [
-													"api-reference/gst/compliance/endpoints/e-way-bill/transporter/get_e_way_bills_by_date_and_state",
-													"api-reference/gst/compliance/endpoints/e-way-bill/transporter/list_e_way_bills_by_generator",
-													"api-reference/gst/compliance/endpoints/e-way-bill/transporter/extend_validity",
-													"api-reference/gst/compliance/endpoints/e-way-bill/transporter/update_vehicle_details",
-													"api-reference/gst/compliance/endpoints/e-way-bill/transporter/update_transporter",
-													{
-														"group": "Consolidated E-Way Bill",
-														"pages": [
-															"api-reference/gst/compliance/endpoints/e-way-bill/transporter/consolidated-e-way-bill/consolidate_e_way_bill",
-															"api-reference/gst/compliance/endpoints/e-way-bill/transporter/consolidated-e-way-bill/get_consolidated_bill",
-															"api-reference/gst/compliance/endpoints/e-way-bill/transporter/consolidated-e-way-bill/regenerate_consolidated_bill"
-														]
-													},
-													{
-														"group": "Multi-Vehicle Movement",
-														"pages": [
-															"api-reference/gst/compliance/endpoints/e-way-bill/transporter/multi-vehicle-movement/initiate_multi_vehicle_movement",
-															"api-reference/gst/compliance/endpoints/e-way-bill/transporter/multi-vehicle-movement/add_vehicle",
-															"api-reference/gst/compliance/endpoints/e-way-bill/transporter/multi-vehicle-movement/update_vehicle"
-														]
-													}
-												]
-											},
-											{
-												"group": "Common",
-												"pages": [
-													"api-reference/gst/compliance/endpoints/e-way-bill/common/get_e_way_bill",
-													"api-reference/gst/compliance/endpoints/e-way-bill/common/get_error_list",
-													"api-reference/gst/compliance/endpoints/e-way-bill/common/get_hsn_details",
-													"api-reference/gst/compliance/endpoints/e-way-bill/common/search_gstin",
-													"api-reference/gst/compliance/endpoints/e-way-bill/common/search_transporter"
-												]
-											}
-										]
-									}
-								]
-							}
-						]
-					},
-					{
-						"item": "TDS",
-						"description": "Automate TDS on Salary & Non-Salary Payments",
-						"icon": "/static/svg/workload-icons/TDS.svg",
-						"pages": [
-							"api-reference/tds/overview",
-							{
-								"group": "Calculator",
-								"icon": "calculator",
-								"pages": [
-									{
-										"group": "TDS",
-										"pages": [
-											{
-												"group": "Salary Payments",
-												"pages": [
-													"api-reference/tds/calculator/tds-calculator/endpoints/submit_job_salary",
-													"api-reference/tds/calculator/tds-calculator/endpoints/poll_job_salary"
-												]
-											},
-											"api-reference/tds/calculator/tds-calculator/endpoints/non_salary",
-											"api-reference/tds/calculator/tds-calculator/endpoints/salary_sync"
-										]
-									},
-									{
-										"group": "TCS",
-										"pages": [
-											"api-reference/tds/calculator/tcs-calculator/endpoints/calculator"
-										]
-									}
-								]
-							},
-							{
-								"group": "Analytics",
-								"icon": "chart-mixed",
-								"pages": [
-									{
-										"group": "TDS",
-										"pages": [
-											{
-												"group": "Create Job",
-												"pages": [
-													"api-reference/tds/analytics/tds-analytics/endpoints/submit_job",
-													"api-reference/tds/analytics/tds-analytics/non_salary_payments",
-													"api-reference/tds/analytics/tds-analytics/salary_payments",
-													"api-reference/tds/analytics/tds-analytics/nri_payments"
-												]
-											},
-											{
-												"group": "Poll Job",
-												"pages": [
-													"api-reference/tds/analytics/tds-analytics/endpoints/poll_job",
-													"api-reference/tds/analytics/tds-analytics/external-links/form24q_workbook",
-													"api-reference/tds/analytics/tds-analytics/external-links/form26q_workbook",
-													"api-reference/tds/analytics/tds-analytics/external-links/form27q_workbook"
-												]
-											},
-											"api-reference/tds/analytics/tds-analytics/endpoints/fetch_jobs"
-										]
-									},
-									{
-										"group": "TCS",
-										"pages": [
-											{
-												"group": "Create Job",
-												"pages": [
-													"api-reference/tds/analytics/tcs-analytics/endpoints/submit_job",
-													"api-reference/tds/analytics/tcs-analytics/tcs_payments"
-												]
-											},
-											{
-												"group": "Poll Job",
-												"pages": [
-													"api-reference/tds/analytics/tcs-analytics/endpoints/poll_job",
-													"api-reference/tds/analytics/tcs-analytics/external-links/form27eq_workbook"
-												]
-											},
-											"api-reference/tds/analytics/tcs-analytics/endpoints/fetch_jobs"
-										]
-									}
-								]
-							},
-							{
-								"group": "Reports",
-								"icon": "file-text",
-								"pages": [
-									{
-										"group": "TDS",
-										"pages": [
-											{
-												"group": "Create Job",
-												"pages": [
-													"api-reference/tds/reports/tds-reports/endpoints/submit_job",
-													"api-reference/tds/reports/tds-reports/non_salary_payments",
-													"api-reference/tds/reports/tds-reports/salary_payments",
-													"api-reference/tds/reports/tds-reports/nri_payments"
-												]
-											},
-											"api-reference/tds/reports/tds-reports/endpoints/poll_job",
-											"api-reference/tds/reports/tds-reports/endpoints/fetch_jobs"
-										]
-									},
-									{
-										"group": "TCS",
-										"pages": [
-											{
-												"group": "Create Job",
-												"pages": [
-													"api-reference/tds/reports/tcs-reports/endpoints/submit_job",
-													"api-reference/tds/reports/tcs-reports/tcs_payments"
-												]
-											},
-											"api-reference/tds/reports/tcs-reports/endpoints/poll_job",
-											"api-reference/tds/reports/tcs-reports/endpoints/fetch_jobs"
-										]
-									}
-								]
-							},
-							{
-								"group": "Compliance",
-								"icon": "box-check",
-								"pages": [
-									{
-										"group": "Download Form16",
-										"pages": [
-											{
-												"group": "Create Job",
-												"pages": [
-													"api-reference/tds/compliance/certificate-form16(a)/endpoints/submit_job",
-													"api-reference/tds/compliance/certificate-form16(a)/credentials"
-												]
-											},
-											"api-reference/tds/compliance/certificate-form16(a)/endpoints/poll_job",
-											"api-reference/tds/compliance/certificate-form16(a)/endpoints/fetch_job"
-										]
-									},
-									{
-										"group": "Generate FVU",
-										"pages": [
-											"api-reference/tds/compliance/generate-fvu/endpoints/submit_job",
-											"api-reference/tds/compliance/generate-fvu/endpoints/poll_job",
-											"api-reference/tds/compliance/generate-fvu/endpoints/search_job"
-										]
-									},
-									{
-										"group": "E-File",
-										"pages": [
-											"api-reference/tds/compliance/e-file/endpoints/submit_job",
-											"api-reference/tds/compliance/e-file/endpoints/poll_job",
-											"api-reference/tds/compliance/e-file/endpoints/search_job"
-										]
-									},
-									{
-										"group": "Download CSI",
-										"pages": [
-											"api-reference/tds/compliance/download-csi/endpoints/generate_otp",
-											"api-reference/tds/compliance/download-csi/endpoints/verify_otp"
-										]
-									}
-								]
-							},
-							{
-								"group": "Annexures",
-								"pages": [
-									"api-reference/tds/annexures/tds_annexures",
-									"api-reference/tds/annexures/master_data"
-								]
-							}
-						]
-					},
-					{
-						"item": "Income Tax",
-						"description": "Direct tax compliance on auto-pilot",
-						"icon": "/static/svg/workload-icons/IT.svg",
-						"pages": [
-							"api-reference/it/overview",
-							{
-								"group": "Calculator",
-								"icon": "calculator",
-								"pages": [
-									{
-										"group": "Tax P&L",
-										"pages": [
-											{
-												"group": "Securities",
-												"pages": [
-													{
-														"group": "Domestic",
-														"pages": [
-															"api-reference/it/calculator/tax_pnl/securities/domestic/endpoints/submit_job",
-															"api-reference/it/calculator/tax_pnl/securities/domestic/endpoints/put_request",
-															"api-reference/it/calculator/tax_pnl/securities/domestic/endpoints/job_status",
-															{
-																"group": "Annexures",
-																"pages": [
-																	"api-reference/it/calculator/tax_pnl/securities/domestic/annexures/tradebook_domestic_securities",
-																	"api-reference/it/calculator/tax_pnl/securities/domestic/annexures/tradewise_settlement_domestic_securities",
-																	"api-reference/it/calculator/tax_pnl/securities/domestic/annexures/tradewise_tax_pnl_domestic"
-																]
-															}
-														]
-													},
-													{
-														"group": "Foreign",
-														"pages": [
-															"api-reference/it/calculator/tax_pnl/securities/foreign/endpoints/submit_job",
-															"api-reference/it/calculator/tax_pnl/securities/foreign/endpoints/put_request",
-															"api-reference/it/calculator/tax_pnl/securities/foreign/endpoints/job_status",
-															{
-																"group": "Annexures",
-																"pages": [
-																	"api-reference/it/calculator/tax_pnl/securities/foreign/annexures/tradebook_foreign",
-																	"api-reference/it/calculator/tax_pnl/securities/foreign/annexures/tradewise_settlement_foreign",
-																	"api-reference/it/calculator/tax_pnl/securities/foreign/annexures/tradewise_tax_pnl_foreign",
-																	"api-reference/it/calculator/tax_pnl/securities/foreign/annexures/scripwise_tax_pnl_foreign"
-																]
-															}
-														]
-													}
-												]
-											},
-											{
-												"group": "Crypto",
-												"pages": [
-													{
-														"group": "Tax P&L",
-														"pages": [
-															"api-reference/it/calculator/tax_pnl/crypto/endpoints/submit_job",
-															"api-reference/it/calculator/tax_pnl/crypto/endpoints/put_request",
-															"api-reference/it/calculator/tax_pnl/crypto/endpoints/job_status",
-															{
-																"group": "Annexures",
-																"pages": [
-																	"api-reference/it/calculator/tax_pnl/crypto/annexures/tradebook_crypto",
-																	"api-reference/it/calculator/tax_pnl/crypto/annexures/tradewise_tax_pnl_crypto"
-																]
-															}
-														]
-													}
-												]
-											}
-										]
-									}
-								]
-							},
-							{
-								"group": "Reporting",
-								"icon": "file-text",
-								"pages": [
-									{
-										"group": "Tax PNL",
-										"pages": [
-											{
-												"group": "Securities",
-												"pages": [
-													{
-														"group": "Domestic",
-														"pages": [
-															"api-reference/it/report/tax_pnl/securities/domestic/endpoints/submit_job",
-															"api-reference/it/report/tax_pnl/securities/domestic/endpoints/put_request",
-															"api-reference/it/report/tax_pnl/securities/domestic/endpoints/job_status",
-															{
-																"group": "Annexures",
-																"pages": [
-																	"api-reference/it/report/tax_pnl/securities/domestic/annexures/tradebook_domestic",
-																	"api-reference/it/report/tax_pnl/securities/domestic/annexures/tradewise_domestic"
-																]
-															}
-														]
-													}
-												]
-											}
-										]
-									}
-								]
-							},
-							{
-								"group": "OCR",
-								"icon": "file-magnifying-glass",
-								"pages": [
-									{
-										"group": "Form 16",
-										"pages": [
-											"api-reference/it/ocr/form_16/endpoints/read_form_16"
-										]
-									},
-									{
-										"group": "Form 26AS",
-										"pages": [
-											"api-reference/it/ocr/form_26as/endpoints/read_form_26as"
-										]
-									}
-								]
-							}
-						]
-					},
-					{
-						"item": "Bank",
-						"description": "Bank APIs",
-						"icon": "/static/svg/Bank.svg",
-						"hidden": true,
-						"groups": [
-							{
-								"group": "Virtual Account",
-								"pages": [
-									{
-										"group": "Accounts",
-										"pages": [
-											"api-reference/bank/virtual-account/accounts/endpoints/create_virtual_account",
-											"api-reference/bank/virtual-account/accounts/endpoints/fetch_virtual_account",
-											"api-reference/bank/virtual-account/accounts/endpoints/fetch_all_virtual_accounts",
-											"api-reference/bank/virtual-account/accounts/endpoints/fetch_virtual_account_balance",
-											"api-reference/bank/virtual-account/accounts/endpoints/patch_virtual_account",
-											"api-reference/bank/virtual-account/accounts/endpoints/delete_virtual_account"
-										]
-									},
-									{
-										"group": "Statements",
-										"pages": [
-											"api-reference/bank/virtual-account/statements/endpoints/submit_virtual_account_statement_job",
-											"api-reference/bank/virtual-account/statements/endpoints/poll_virtual_account_statement_job"
-										]
-									},
-									{
-										"group": "Payments",
-										"pages": [
-											"api-reference/bank/virtual-account/payments/endpoints/generate_static_qr_string",
-											"api-reference/bank/virtual-account/payments/endpoints/generate_dynamic_qr_string",
-											"api-reference/bank/virtual-account/payments/endpoints/generate_upi_collect_pay_request",
-											"api-reference/bank/virtual-account/payments/endpoints/request_payout"
-										]
-									},
-									{
-										"group": "Transactions",
-										"pages": [
-											"api-reference/bank/virtual-account/transactions/endpoints/fetch_transaction",
-											"api-reference/bank/virtual-account/transactions/endpoints/fetch_all_transactions",
-											"api-reference/bank/virtual-account/transactions/endpoints/cancel_transaction"
-										]
-									}
-								]
-							}
-						]
-					}
-				]
-			},
-			{
-				"tab": "Recipes",
-				"icon": "flask",
-				"menu": [
-					{
-						"item": "KYC",
-						"description": "Quick recipes for fast, reliable identity checks.",
-						"pages": [
-							"recipes/kyc/introduction",
-							{
-								"group": "DigiLocker",
-								"pages": [
-									"recipes/kyc/digilocker/digilocker_api_recipe"
-								]
-							}
-						]
-					},
-					{
-						"item": "GST",
-						"description": "Easy steps for smooth, error-free GST workflows.",
-						"pages": [
-							"recipes/gst/introduction",
-							{
-								"group": "Authentication",
-								"pages": [
-									"recipes/gst/authentication/generate_tax_payer_session",
-									"recipes/gst/authentication/generate_e_invoice_session",
-									"recipes/gst/authentication/generate_e_way_bill_session"
-								]
-							},
-							{
-								"group": "GSTR-1",
-								"pages": [
-									"recipes/gst/gstr-1/file_gstr_1",
-									"recipes/gst/gstr-1/file_nil_gstr_1"
-								]
-							},
-							{
-								"group": "GSTR-3B",
-								"pages": [
-									"recipes/gst/gstr-3b/file_gstr_3b",
-									"recipes/gst/gstr-3b/file_nil_gstr_3b"
-								]
-							},
-							{
-								"group": "E-Invoice",
-								"pages": [
-									"recipes/gst/e-invoice/generate_e_invoice",
-									"recipes/gst/e-invoice/get_e_invoice_using_taxpayer_api"
-								]
-							}
-						]
-					},
-					{
-						"item": "TDS",
-						"description": "Guides to set up seamless, automated TDS.",
-						"pages": [
-							"recipes/tds/introduction",
-							{
-								"group": "Form 24Q",
-								"pages": [
-									"recipes/tds/form-24q/prepare_form_24q",
-									"recipes/tds/form-24q/file_form_24q"
-								]
-							},
-							{
-								"group": "Form 16",
-								"pages": [
-									"recipes/tds/form-16/generate_form_16_certificates"
-								]
-							}
-						]
-					},
-					{
-						"item": "Income Tax",
-						"description": "Ready flows to automate your Income tax tasks.",
-						"pages": [
-							"recipes/it/introduction"
-						]
-					}
-				]
-			},
-			{
-				"tab": "Changelog",
-				"icon": "clock",
-				"pages": [
-					"changelog"
-				]
-			},
-			{
-				"tab": "Resources",
-				"icon": "books",
-				"menu": [
-					{
-						"item": "Postman Collections",
-						"icon": "book-bookmark",
-						"href": "https://www.postman.com/in-co-sandbox/sandbox-api"
-					},
-					{
-						"item": "SDKs & Clients",
-						"icon": "cube",
-						"href": "https://github.com/in-co-sandbox"
-					},
-					{
-						"item": "Status",
-						"icon": "signal-stream",
-						"href": "https://status.api.sandbox.co.in/"
-					},
-					{
-						"item": "Customer Stories",
-						"icon": "users",
-						"href": "https://sandbox.co.in/customers"
-					}
-				]
-			}
-		]
-	},
-	"contextual": {
-		"options": [
-			"copy",
-			"view",
-			"chatgpt",
-			"claude",
-			"perplexity",
-			"mcp",
-			"cursor",
-			"vscode"
-		]
-	},
-	"footer": {
-		"socials": {
-			"github": "https://github.com/in-co-sandbox",
-			"linkedin": "https://www.linkedin.com/showcase/sandboxapi",
-			"medium": "https://medium.com/blog-by-sandbox",
-			"youtube": "https://www.youtube.com/@sandboxapi",
-			"x": "https://twitter.com/sandbox_api"
-		}
-	},
-	"integrations": {
-		"gtm": {
-			"tagId": "GTM-NWRF32W"
-		}
-	},
-	"redirects": [
-		{
-			"source": "reference",
-			"destination": "/"
-		},
-		{
-			"source": "changelog?page=1",
-			"destination": "changelog"
-		},
-		{
-			"source": "changelog?page=2",
-			"destination": "changelog"
-		},
-		{
-			"source": "changelog?page=3",
-			"destination": "changelog"
-		},
-		{
-			"source": "changelog?page=4",
-			"destination": "changelog"
-		},
-		{
-			"source": "changelog?page=5",
-			"destination": "changelog"
-		},
-		{
-			"source": "changelog?page=6",
-			"destination": "changelog"
-		},
-		{
-			"source": "changelog/206ab-206cca-compliance-check",
-			"destination": "changelog"
-		},
-		{
-			"source": "changelog/authentication-feature-release",
-			"destination": "changelog"
-		},
-		{
-			"source": "changelog/changes-in-aadhaar-okyc-api",
-			"destination": "changelog"
-		},
-		{
-			"source": "changelog/contract-changed-for-tdsr-e-file-api",
-			"destination": "changelog"
-		},
-		{
-			"source": "changelog/crypto-tax-pnl-changelog",
-			"destination": "changelog"
-		},
-		{
-			"source": "changelog/december-2022",
-			"destination": "changelog"
-		},
-		{
-			"source": "changelog/deprecated-contracts-for-gst-e-invoice-api",
-			"destination": "changelog"
-		},
-		{
-			"source": "changelog/deprecated-contracts-for-gst-e-way-bill-api",
-			"destination": "changelog"
-		},
-		{
-			"source": "changelog/deprecated-contracts-for-gst-public-and-taxpayer-api",
-			"destination": "changelog"
-		},
-		{
-			"source": "changelog/deprecated-tdsr-filing-apis",
-			"destination": "changelog"
-		},
-		{
-			"source": "changelog/deprecation-of-pan-basic-and-advance-api",
-			"destination": "changelog"
-		},
-		{
-			"source": "changelog/discontinuation-of-older-api-contracts-of-mca-apis",
-			"destination": "changelog"
-		},
-		{
-			"source": "changelog/discontinuation-of-version-1-of-aadhaar-okyc-apis",
-			"destination": "changelog"
-		},
-		{
-			"source": "changelog/download-form-16-apis",
-			"destination": "changelog"
-		},
-		{
-			"source": "changelog/e-invoices-generated-within-last-6-months",
-			"destination": "changelog"
-		},
-		{
-			"source": "changelog/february-2023",
-			"destination": "changelog"
-		},
-		{
-			"source": "changelog/generate-e-invoice-pdf",
-			"destination": "changelog"
-		},
-		{
-			"source": "changelog/generate-e-way-bill-to-unregistered-persons",
-			"destination": "changelog"
-		},
-		{
-			"source": "changelog/generate-fvu",
-			"destination": "changelog"
-		},
-		{
-			"source": "changelog/gst-api-feature-release",
-			"destination": "changelog"
-		},
-		{
-			"source": "changelog/gst-invoice-managenent-system-ims-api",
-			"destination": "changelog"
-		},
-		{
-			"source": "changelog/gstr-2a-reconciliation",
-			"destination": "changelog"
-		},
-		{
-			"source": "changelog/gstr-2b-reconciliation",
-			"destination": "changelog"
-		},
-		{
-			"source": "changelog/income-tax-api-feature-release",
-			"destination": "changelog"
-		},
-		{
-			"source": "changelog/introducing-criss-cross-operations-for-reliable-e-invoicing",
-			"destination": "changelog"
-		},
-		{
-			"source": "changelog/introducing-digilocker-apis",
-			"destination": "changelog"
-		},
-		{
-			"source": "changelog/janurary-2023",
-			"destination": "changelog"
-		},
-		{
-			"source": "changelog/july-2023",
-			"destination": "changelog"
-		},
-		{
-			"source": "changelog/june-2023",
-			"destination": "changelog"
-		},
-		{
-			"source": "changelog/may2023",
-			"destination": "changelog"
-		},
-		{
-			"source": "changelog/new-contract-for-mca-apis",
-			"destination": "changelog"
-		},
-		{
-			"source": "changelog/new-contract-for-pan-aadhaar-link-status-check",
-			"destination": "changelog"
-		},
-		{
-			"source": "changelog/new-contract-for-search-gstin-by-pan-api",
-			"destination": "changelog"
-		},
-		{
-			"source": "changelog/new-contracts-for-gst-e-invoice-api",
-			"destination": "changelog"
-		},
-		{
-			"source": "changelog/new-contracts-for-gst-e-way-bill-api",
-			"destination": "changelog"
-		},
-		{
-			"source": "changelog/new-contracts-for-gst-public-and-taxpayer-api",
-			"destination": "changelog"
-		},
-		{
-			"source": "changelog/new-gstr-9-taxpayer-api",
-			"destination": "changelog"
-		},
-		{
-			"source": "changelog/new-tds-reports-api",
-			"destination": "changelog"
-		},
-		{
-			"source": "changelog/new-tdsr-api-contracts",
-			"destination": "changelog"
-		},
-		{
-			"source": "changelog/november-2022",
-			"destination": "changelog"
-		},
-		{
-			"source": "changelog/october-2023",
-			"destination": "changelog"
-		},
-		{
-			"source": "changelog/older-api-contracts-for-tds-reporting",
-			"destination": "changelog"
-		},
-		{
-			"source": "changelog/pan-advance-api-discontinued",
-			"destination": "changelog"
-		},
-		{
-			"source": "changelog/potential-notices-api",
-			"destination": "changelog"
-		},
-		{
-			"source": "changelog/regenerate-gstr-2b-on-demand-api",
-			"destination": "changelog"
-		},
-		{
-			"source": "changelog/sandbox-version-2",
-			"destination": "changelog"
-		},
-		{
-			"source": "changelog/september-2023",
-			"destination": "changelog"
-		},
-		{
-			"source": "changelog/sheet-json-converter-apis",
-			"destination": "changelog"
-		},
-		{
-			"source": "changelog/tcs-calculator-api",
-			"destination": "changelog"
-		},
-		{
-			"source": "changelog/tcs-reports-api",
-			"destination": "changelog"
-		},
-		{
-			"source": "changelog/tds-api-feature-release",
-			"destination": "changelog"
-		},
-		{
-			"source": "changelog/verify-pan-details-api",
-			"destination": "changelog"
-		},
-		{
-			"source": "changelog/x-accept-cache-header-support-added-in-gst-public-api",
-			"destination": "changelog"
-		},
-		{
-			"source": "changelog/x-accept-cache-header-support-added-in-kyc-api",
-			"destination": "changelog"
-		},
-		{
-			"source": "discuss",
-			"destination": "/"
-		},
-		{
-			"source": "discuss-new",
-			"destination": "/"
-		},
-		{
-			"source": "discuss?isFAQ=true",
-			"destination": "/"
-		},
-		{
-			"source": "discuss?page=1&perPage=10",
-			"destination": "/"
-		},
-		{
-			"source": "discuss?page=2&perPage=10",
-			"destination": "/"
-		},
-		{
-			"source": "discuss?sorting=open",
-			"destination": "/"
-		},
-		{
-			"source": "discuss?sorting=recent",
-			"destination": "/"
-		},
-		{
-			"source": "discuss?sorting=recent&page=1&perPage=10",
-			"destination": "/"
-		},
-		{
-			"source": "discuss?sorting=recent&page=2&perPage=10",
-			"destination": "/"
-		},
-		{
-			"source": "discuss?tag=access%20token",
-			"destination": "/"
-		},
-		{
-			"source": "discuss?tag=authenticate",
-			"destination": "/"
-		},
-		{
-			"source": "discuss/611e8a71f659ee0045316f26",
-			"destination": "/"
-		},
-		{
-			"source": "discuss/6125e09283393d0078a53986",
-			"destination": "/"
-		},
-		{
-			"source": "discuss/615c1127aa169e0153df7261",
-			"destination": "/"
-		},
-		{
-			"source": "discuss/61dc48e71a0804036683ede7",
-			"destination": "/"
-		},
-		{
-			"source": "discuss/622393f2e4d9d90076d2e5f0",
-			"destination": "/"
-		},
-		{
-			"source": "discuss/6276892991a37b008d6cfd06",
-			"destination": "/"
-		},
-		{
-			"source": "discuss/62849371c841620078c76438",
-			"destination": "/"
-		},
-		{
-			"source": "discuss/629c78c52e6ab400a642a200",
-			"destination": "/"
-		},
-		{
-			"source": "discuss/62a05b75dc366b00751d820d",
-			"destination": "/"
-		},
-		{
-			"source": "discuss/6385b1182283a300527bf91b",
-			"destination": "/"
-		},
-		{
-			"source": "discuss/638f1e8f30840c0023208dc9",
-			"destination": "/"
-		},
-		{
-			"source": "discuss/6905d164649e1809f890fe0c",
-			"destination": "/"
-		},
-		{
-			"source": "docs/aadhaar-okyc-generate-otp",
-			"destination": "guides/products/kyc"
-		},
-		{
-			"source": "docs/about-sandbox",
-			"destination": "guides/introduction/about_sandbox"
-		},
-		{
-			"source": "docs/authentication",
-			"destination": "guides/introduction/authentication"
-		},
-		{
-			"source": "docs/bank-account-verification",
-			"destination": "guides/products/kyc"
-		},
-		{
-			"source": "docs/bank-account-verification-penny-less",
-			"destination": "guides/products/kyc"
-		},
-		{
-			"source": "docs/changelog",
-			"destination": "guides/get-started/changelog"
-		},
-		{
-			"source": "docs/classify-form16-document-1",
-			"destination": "guides/products/income_tax"
-		},
-		{
-			"source": "docs/consumption",
-			"destination": "/"
-		},
-		{
-			"source": "docs/domestic-securities-tradebook-payload#annexure-1-corporate-actions",
-			"destination": "api-reference/it/calculator/tax_pnl/securities/domestic/annexures/tradebook_domestic_securities"
-		},
-		{
-			"source": "docs/e-file-tds-return",
-			"destination": "guides/products/tds"
-		},
-		{
-			"source": "docs/e-file-tds-return-submit-job",
-			"destination": "guides/products/tds"
-		},
-		{
-			"source": "docs/e-invoice-api-guide",
-			"destination": "guides/products/gst"
-		},
-		{
-			"source": "docs/e-way-bill-api",
-			"destination": "guides/products/gst"
-		},
-		{
-			"source": "docs/errors",
-			"destination": "guides/get-started/errors"
-		},
-		{
-			"source": "docs/form-16-api",
-			"destination": "guides/products/tds"
-		},
-		{
-			"source": "docs/form-24q",
-			"destination": "guides/products/tds"
-		},
-		{
-			"source": "docs/form24q-q4",
-			"destination": "guides/products/tds"
-		},
-		{
-			"source": "docs/gst",
-			"destination": "guides/products/gst"
-		},
-		{
-			"source": "docs/income-tax",
-			"destination": "guides/products/income_tax"
-		},
-		{
-			"source": "docs/kyc",
-			"destination": "guides/products/kyc"
-		},
-		{
-			"source": "docs/mca-company-master-data",
-			"destination": "api-reference/kyc/mca/company_master_data"
-		},
-		{
-			"source": "docs/mca-director-master-data",
-			"destination": "api-reference/kyc/mca/director_master_data"
-		},
-		{
-			"source": "docs/overdraft",
-			"destination": "guides/billing-and-invoicing/overdraft"
-		},
-		{
-			"source": "docs/post-for-get",
-			"destination": "guides/get-started/post_for_get"
-		},
-		{
-			"source": "docs/quota",
-			"destination": "guides/billing-and-invoicing/quota"
-		},
-		{
-			"source": "docs/rate-limits",
-			"destination": "guides/get-started/rate_limit"
-		},
-		{
-			"source": "docs/response-caching",
-			"destination": "guides/get-started/response_caching"
-		},
-		{
-			"source": "docs/subscription",
-			"destination": "guides/billing-and-invoicing/subscription"
-		},
-		{
-			"source": "docs/tax-pnl-annexures#annexure-1-labels",
-			"destination": "api-reference/it/calculator/tax_pnl/securities/domestic/annexures/tradebook_domestic_securities"
-		},
-		{
-			"source": "docs/tds",
-			"destination": "guides/products/tds"
-		},
-		{
-			"source": "docs/the-basics",
-			"destination": "guides/get-started/the_basics"
-		},
-		{
-			"source": "docs/versioning",
-			"destination": "guides/get-started/versioning"
-		},
-		{
-			"source": "docs/wallet",
-			"destination": "guides/billing-and-invoicing/wallet"
-		},
-		{
-			"source": "docs/webhooks",
-			"destination": "guides/get-started/webhooks"
-		},
-		{
-			"source": "recipes",
-			"destination": "recipes/kyc/introduction"
-		},
-		{
-			"source": "reference/aadhaar-kyc",
-			"destination": "api-reference/kyc/aadhaar/endpoints/generate_otp"
-		},
-		{
-			"source": "reference/aadhaar-okyc-generate-otp-api",
-			"destination": "api-reference/kyc/aadhaar/endpoints/generate_otp"
-		},
-		{
-			"source": "reference/aadhaar-okyc-verify-otp-api",
-			"destination": "api-reference/kyc/aadhaar/endpoints/verify_otp"
-		},
-		{
-			"source": "reference/authenticate-api",
-			"destination": "api-reference/authenticate"
-		},
-		{
-			"source": "reference/bank-account-verification-api",
-			"destination": "api-reference/kyc/bank/endpoints/penny_drop"
-		},
-		{
-			"source": "reference/bank-account-verification-penny-less-api",
-			"destination": "api-reference/kyc/bank/endpoints/penny_less"
-		},
-		{
-			"source": "reference/bank-api",
-			"destination": "api-reference/kyc/bank/endpoints/ifsc_verification"
-		},
-		{
-			"source": "reference/calculate-tax-loss-harvesting-from-tradebook",
-			"destination": "/"
-		},
-		{
-			"source": "reference/calculate-tcs",
-			"destination": "api-reference/tds/calculator/tcs-calculator/endpoints/calculator"
-		},
-		{
-			"source": "reference/calculate-tds-api",
-			"destination": "api-reference/tds/calculator/tds-calculator/endpoints/non_salary"
-		},
-		{
-			"source": "reference/calculate-tds-on-salary-api",
-			"destination": "api-reference/tds/calculator/tds-calculator/endpoints/salary_sync"
-		},
-		{
-			"source": "reference/cancel-e-invoice-api",
-			"destination": "api-reference/gst/compliance/endpoints/e-invoice/cancel_e_invoice"
-		},
-		{
-			"source": "reference/cancel-e-way-bill-api",
-			"destination": "api-reference/gst/compliance/endpoints/e-way-bill/consignor/cancel_e_way_bill"
-		},
-		{
-			"source": "reference/cash-itc-balance-api",
-			"destination": "api-reference/gst/compliance/endpoints/taxpayer/ledgers/cash_itc_balance_ledger"
-		},
-		{
-			"source": "reference/cash-ledger-api",
-			"destination": "api-reference/gst/compliance/endpoints/taxpayer/ledgers/cash_ledger"
-		},
-		{
-			"source": "reference/check-invoice-status-api",
-			"destination": "api-reference/gst/compliance/endpoints/taxpayer/invoices/status"
-		},
-		{
-			"source": "reference/classify-form16-document",
-			"destination": "api-reference/it/ocr/form_16/endpoints/read_form_16"
-		},
-		{
-			"source": "reference/consignee-get-e-way-bills-by-date-api",
-			"destination": "api-reference/gst/compliance/endpoints/e-way-bill/consignee/get_e_way_bills_by_date"
-		},
-		{
-			"source": "reference/consigner-extend-e-way-bill-validity-api",
-			"destination": "api-reference/gst/compliance/endpoints/e-way-bill/consignor/extend_validity"
-		},
-		{
-			"source": "reference/consigner-update-transporter-api",
-			"destination": "api-reference/gst/compliance/endpoints/e-way-bill/consignor/update_transporter"
-		},
-		{
-			"source": "reference/consignor-get-e-way-bills-by-date-api",
-			"destination": "api-reference/gst/compliance/endpoints/e-way-bill/consignor/get_e_way_bill_by_date"
-		},
-		{
-			"source": "reference/consignor-update-vehicle-details-api",
-			"destination": "api-reference/gst/compliance/endpoints/e-way-bill/consignor/update_vehicle_details"
-		},
-		{
-			"source": "reference/crypto-reporting-put-request",
-			"destination": "api-reference/it/calculator/tax_pnl/crypto/endpoints/put_request"
-		},
-		{
-			"source": "reference/crypto-securities-tax-pl-calculator-request-tradebook",
-			"destination": "api-reference/it/calculator/tax_pnl/crypto/annexures/tradebook_crypto"
-		},
-		{
-			"source": "reference/crypto-securities-tax-pl-calculator-response-tradewise-tax-pl",
-			"destination": "api-reference/it/calculator/tax_pnl/crypto/annexures/tradewise_tax_pnl_crypto"
-		},
-		{
-			"source": "reference/crypto-securities-tax-pl-reporting-request-tradebook",
-			"destination": "api-reference/it/calculator/tax_pnl/crypto/annexures/tradebook_crypto"
-		},
-		{
-			"source": "reference/cryptocurrency-test-cases",
-			"destination": "/"
-		},
-		{
-			"source": "reference/digilocker-api",
-			"destination": "api-reference/kyc/digilocker/endpoints/initiate_session"
-		},
-		{
-			"source": "reference/digilocker-api-fetch-document",
-			"destination": "api-reference/kyc/digilocker/endpoints/fetch_document"
-		},
-		{
-			"source": "reference/digilocker-api-initiate-session",
-			"destination": "api-reference/kyc/digilocker/endpoints/initiate_session"
-		},
-		{
-			"source": "reference/digilocker-api-session-status",
-			"destination": "api-reference/kyc/digilocker/endpoints/session_status"
-		},
-		{
-			"source": "reference/digilocker-sdk",
-			"destination": "api-reference/kyc/digilocker-sdk/getting-started/introduction"
-		},
-		{
-			"source": "reference/digilocker-sdk-create-session",
-			"destination": "api-reference/kyc/digilocker-sdk/endpoints/create-session"
-		},
-		{
-			"source": "reference/digilocker-sdk-integration",
-			"destination": "api-reference/kyc/digilocker-sdk/getting-started/introduction"
-		},
-		{
-			"source": "reference/digilocker-sdk-session-status",
-			"destination": "api-reference/kyc/digilocker-sdk/endpoints/get-session-status"
-		},
-		{
-			"source": "reference/domestic-securities-tax-pl-calculator-response-scripwise-tax-pl",
-			"destination": "/"
-		},
-		{
-			"source": "reference/domestic-securities-tax-pl-calculator-response-tradewise-tax-pl",
-			"destination": "api-reference/it/calculator/tax_pnl/securities/domestic/annexures/tradewise_tax_pnl_domestic"
-		},
-		{
-			"source": "reference/domestic-securities-tax-pl-calculatorreport-request-scripwise-settlement",
-			"destination": "/"
-		},
-		{
-			"source": "reference/domestic-securities-tax-pl-calculatorreport-request-tradebook",
-			"destination": "api-reference/it/calculator/tax_pnl/securities/domestic/annexures/tradebook_domestic_securities"
-		},
-		{
-			"source": "reference/domestic-securities-tax-pl-calculatorreport-request-tradewise-settlement",
-			"destination": "api-reference/it/calculator/tax_pnl/securities/domestic/annexures/tradewise_settlement_domestic_securities"
-		},
-		{
-			"source": "reference/download-csi-generate-otp",
-			"destination": "api-reference/tds/compliance/download-csi/endpoints/generate_otp"
-		},
-		{
-			"source": "reference/download-csi-verify-otp",
-			"destination": "api-reference/tds/compliance/download-csi/endpoints/verify_otp"
-		},
-		{
-			"source": "reference/download-form-16-api",
-			"destination": "api-reference/tds/compliance/certificate-form16(a)/endpoints/submit_job"
-		},
-		{
-			"source": "reference/download-form-27d",
-			"destination": "/"
-		},
-		{
-			"source": "reference/e-file-tds-return-api",
-			"destination": "api-reference/tds/compliance/e-file/endpoints/submit_job"
-		},
-		{
-			"source": "reference/e-file-tds-return-deprecated-api",
-			"destination": "api-reference/tds/compliance/e-file/endpoints/submit_job"
-		},
-		{
-			"source": "reference/e-file-tds-return-job",
-			"destination": "api-reference/tds/compliance/e-file/endpoints/submit_job"
-		},
-		{
-			"source": "reference/e-file-tds-return-job-status",
-			"destination": "api-reference/tds/compliance/e-file/endpoints/poll_job"
-		},
-		{
-			"source": "reference/e-file-tds-return-job-status-deprecated-api",
-			"destination": "api-reference/tds/compliance/e-file/endpoints/poll_job"
-		},
-		{
-			"source": "reference/e-file-tds-return-poll-job-api",
-			"destination": "api-reference/tds/compliance/e-file/endpoints/poll_job"
-		},
-		{
-			"source": "reference/e-file-tds-return-poll-job-deprecated-api",
-			"destination": "api-reference/tds/compliance/e-file/endpoints/poll_job"
-		},
-		{
-			"source": "reference/e-file-tds-return-submit-job-deprecated-api",
-			"destination": "api-reference/tds/compliance/e-file/endpoints/submit_job"
-		},
-		{
-			"source": "reference/e-invoice-authentication-api",
-			"destination": "api-reference/gst/compliance/endpoints/e-invoice/authenticate"
-		},
-		{
-			"source": "reference/e-way-bill-authentication-api",
-			"destination": "api-reference/gst/compliance/endpoints/e-way-bill/authenticate"
-		},
-		{
-			"source": "reference/e-way-bill-search-gstin-api",
-			"destination": "api-reference/gst/compliance/endpoints/e-way-bill/common/search_gstin"
-		},
-		{
-			"source": "reference/enable-api-access-on-e-invoice-portal",
-			"destination": "api-reference/gst/compliance/guides/e-invoice/create_api_credentials"
-		},
-		{
-			"source": "reference/enable-api-access-on-e-way-bill-portal",
-			"destination": "api-reference/gst/compliance/guides/e-way-bill/create_api_credentials"
-		},
-		{
-			"source": "reference/entities",
-			"destination": "/"
-		},
-		{
-			"source": "reference/entities-2",
-			"destination": "/"
-		},
-		{
-			"source": "reference/entity-locker-sdk",
-			"destination": "api-reference/kyc/entitylocker-sdk/endpoints/create_session"
-		},
-		{
-			"source": "reference/fetch-tcs-certificate-jobs",
-			"destination": "/"
-		},
-		{
-			"source": "reference/fetch-tcs-potential-notice-jobs",
-			"destination": "/"
-		},
-		{
-			"source": "reference/fetch-tcs-report-jobs",
-			"destination": "api-reference/tds/analytics/tcs-analytics/endpoints/fetch_jobs"
-		},
-		{
-			"source": "reference/fetch-tds-certificate-jobs",
-			"destination": "api-reference/tds/compliance/certificate-form16(a)/endpoints/fetch_job"
-		},
-		{
-			"source": "reference/fetch-tds-potential-notice-jobs",
-			"destination": "/"
-		},
-		{
-			"source": "reference/fetch-tds-report-jobs",
-			"destination": "api-reference/tds/analytics/tds-analytics/endpoints/fetch_jobs"
-		},
-		{
-			"source": "reference/fetch-tds-return-jobs",
-			"destination": "api-reference/tds/compliance/e-file/endpoints/search_job"
-		},
-		{
-			"source": "reference/file-gstr-1-api",
-			"destination": "api-reference/gst/compliance/endpoints/taxpayer/gstr-1/file/file"
-		},
-		{
-			"source": "reference/file-gstr-3b-api",
-			"destination": "api-reference/gst/compliance/endpoints/taxpayer/gstr-3b/file"
-		},
-		{
-			"source": "reference/file-gstr-9-api",
-			"destination": "api-reference/gst/compliance/endpoints/taxpayer/gstr-9/file"
-		},
-		{
-			"source": "reference/foreign-securities-tax-pl-calculator-request-tradebook",
-			"destination": "api-reference/it/calculator/tax_pnl/securities/foreign/annexures/tradebook_foreign"
-		},
-		{
-			"source": "reference/foreign-securities-tax-pl-calculator-request-tradewise-settlement",
-			"destination": "api-reference/it/calculator/tax_pnl/securities/foreign/annexures/tradewise_settlement_foreign"
-		},
-		{
-			"source": "reference/foreign-securities-tax-pl-calculator-response-scripwise-tax-pl",
-			"destination": "api-reference/it/calculator/tax_pnl/securities/foreign/annexures/scripwise_tax_pnl_foreign"
-		},
-		{
-			"source": "reference/foreign-securities-tax-pl-calculator-response-tradewise-tax-pl",
-			"destination": "api-reference/it/calculator/tax_pnl/securities/foreign/annexures/tradewise_tax_pnl_foreign"
-		},
-		{
-			"source": "reference/generate-e-invoice-api",
-			"destination": "api-reference/gst/compliance/endpoints/e-invoice/generate_e_invoice"
-		},
-		{
-			"source": "reference/generate-e-invoice-pdf-api",
-			"destination": "api-reference/gst/compliance/endpoints/e-invoice/generate_e_invoice_pdf"
-		},
-		{
-			"source": "reference/generate-e-way-bill-api",
-			"destination": "api-reference/gst/compliance/endpoints/e-way-bill/consignor/generate_e_way_bill"
-		},
-		{
-			"source": "reference/generate-e-way-bill-by-irn-api",
-			"destination": "api-reference/gst/compliance/endpoints/e-invoice/generate_e_way_bill"
-		},
-		{
-			"source": "reference/generate-evc-otp-api",
-			"destination": "api-reference/gst/compliance/endpoints/taxpayer/authentication/generate_evc_otp"
-		},
-		{
-			"source": "reference/generate-fvu-job",
-			"destination": "api-reference/tds/compliance/generate-fvu/endpoints/submit_job"
-		},
-		{
-			"source": "reference/generate-fvu-job-status",
-			"destination": "api-reference/tds/compliance/generate-fvu/endpoints/poll_job"
-		},
-		{
-			"source": "reference/get-e-invoice-by-document-data-api",
-			"destination": "api-reference/gst/compliance/endpoints/e-invoice/get_e_invoice_by_document_data"
-		},
-		{
-			"source": "reference/get-e-invoice-by-irn-api",
-			"destination": "api-reference/gst/compliance/endpoints/e-invoice/get_e_invoice"
-		},
-		{
-			"source": "reference/get-e-way-bill-api",
-			"destination": "api-reference/gst/compliance/endpoints/e-way-bill/common/get_e_way_bill"
-		},
-		{
-			"source": "reference/get-e-way-bill-by-document-data-api",
-			"destination": "api-reference/gst/compliance/endpoints/e-way-bill/consignor/get_e_way_bill_by_document_data"
-		},
-		{
-			"source": "reference/get-e-way-bill-by-irn-api",
-			"destination": "api-reference/gst/compliance/endpoints/e-invoice/get_e_way_bill"
-		},
-		{
-			"source": "reference/get-e-way-bills-by-date-and-state",
-			"destination": "api-reference/gst/compliance/endpoints/e-way-bill/transporter/get_e_way_bills_by_date_and_state"
-		},
-		{
-			"source": "reference/get-error-list-api",
-			"destination": "api-reference/gst/compliance/endpoints/e-way-bill/common/get_error_list"
-		},
-		{
-			"source": "reference/get-hsn-details-api",
-			"destination": "api-reference/gst/compliance/endpoints/e-way-bill/common/get_hsn_details"
-		},
-		{
-			"source": "reference/get-invoice-count-api",
-			"destination": "api-reference/gst/compliance/endpoints/taxpayer/invoices/invoice_count"
-		},
-		{
-			"source": "reference/get-invoices-api",
-			"destination": "api-reference/gst/compliance/endpoints/taxpayer/invoices/invoices"
-		},
-		{
-			"source": "reference/get-it-calculator-securities-domestic-tax-pnl",
-			"destination": "api-reference/it/calculator/tax_pnl/securities/domestic/endpoints/submit_job"
-		},
-		{
-			"source": "reference/get-it-calculator-securities-foreign-tax-pnl",
-			"destination": "api-reference/it/calculator/tax_pnl/securities/foreign/endpoints/submit_job"
-		},
-		{
-			"source": "reference/get-it-reporting-securities-domestic-tax-pnl",
-			"destination": "api-reference/it/report/tax_pnl/securities/domestic/endpoints/submit_job"
-		},
-		{
-			"source": "reference/get-request-2",
-			"destination": "/"
-		},
-		{
-			"source": "reference/get-request-3",
-			"destination": "/"
-		},
-		{
-			"source": "reference/get-session-status-copy",
-			"destination": "/"
-		},
-		{
-			"source": "reference/gst-entities",
-			"destination": "/"
-		},
-		{
-			"source": "reference/gst-invoice-management-system",
-			"destination": "api-reference/gst/compliance/endpoints/taxpayer/invoices/invoices"
-		},
-		{
-			"source": "reference/gst-master-data",
-			"destination": "/"
-		},
-		{
-			"source": "reference/gst-taxpayer-authentication",
-			"destination": "api-reference/gst/compliance/endpoints/taxpayer/authentication/generate_otp"
-		},
-		{
-			"source": "reference/gst-test-cases",
-			"destination": "/"
-		},
-		{
-			"source": "reference/gstr-1-at-api",
-			"destination": "api-reference/gst/compliance/endpoints/taxpayer/gstr-1/documents/at"
-		},
-		{
-			"source": "reference/gstr-1-ata-api",
-			"destination": "api-reference/gst/compliance/endpoints/taxpayer/gstr-1/documents/ata"
-		},
-		{
-			"source": "reference/gstr-1-b2b-api",
-			"destination": "api-reference/gst/compliance/endpoints/taxpayer/gstr-1/documents/b2b"
-		},
-		{
-			"source": "reference/gstr-1-b2ba-api",
-			"destination": "api-reference/gst/compliance/endpoints/taxpayer/gstr-1/documents/b2ba"
-		},
-		{
-			"source": "reference/gstr-1-b2cl-api",
-			"destination": "api-reference/gst/compliance/endpoints/taxpayer/gstr-1/documents/b2cl"
-		},
-		{
-			"source": "reference/gstr-1-b2cla-api",
-			"destination": "api-reference/gst/compliance/endpoints/taxpayer/gstr-1/documents/b2cla"
-		},
-		{
-			"source": "reference/gstr-1-b2cs-api",
-			"destination": "api-reference/gst/compliance/endpoints/taxpayer/gstr-1/documents/b2cs"
-		},
-		{
-			"source": "reference/gstr-1-b2csa-api",
-			"destination": "api-reference/gst/compliance/endpoints/taxpayer/gstr-1/documents/b2csa"
-		},
-		{
-			"source": "reference/gstr-1-cdnr-api",
-			"destination": "api-reference/gst/compliance/endpoints/taxpayer/gstr-1/documents/cdnr"
-		},
-		{
-			"source": "reference/gstr-1-cdnra-api",
-			"destination": "api-reference/gst/compliance/endpoints/taxpayer/gstr-1/documents/cdnra"
-		},
-		{
-			"source": "reference/gstr-1-cdnur-api",
-			"destination": "api-reference/gst/compliance/endpoints/taxpayer/gstr-1/documents/cdnur"
-		},
-		{
-			"source": "reference/gstr-1-cdnura-api",
-			"destination": "api-reference/gst/compliance/endpoints/taxpayer/gstr-1/documents/cdnura"
-		},
-		{
-			"source": "reference/gstr-1-document-issued-api",
-			"destination": "api-reference/gst/compliance/endpoints/taxpayer/gstr-1/documents/doc_issue"
-		},
-		{
-			"source": "reference/gstr-1-exp-api",
-			"destination": "api-reference/gst/compliance/endpoints/taxpayer/gstr-1/documents/exp"
-		},
-		{
-			"source": "reference/gstr-1-expa-api",
-			"destination": "api-reference/gst/compliance/endpoints/taxpayer/gstr-1/documents/expa"
-		},
-		{
-			"source": "reference/gstr-1-hsn-summary-api",
-			"destination": "api-reference/gst/compliance/endpoints/taxpayer/gstr-1/documents/get_hsn"
-		},
-		{
-			"source": "reference/gstr-1-nil-supplies-api",
-			"destination": "api-reference/gst/compliance/endpoints/taxpayer/gstr-1/documents/nil"
-		},
-		{
-			"source": "reference/gstr-1-summary-api",
-			"destination": "api-reference/gst/compliance/endpoints/taxpayer/common/gst_return_status"
-		},
-		{
-			"source": "reference/gstr-2a-amdhist",
-			"destination": "api-reference/gst/compliance/endpoints/taxpayer/gstr-2a/amdhist"
-		},
-		{
-			"source": "reference/gstr-2a-api",
-			"destination": "api-reference/gst/compliance/endpoints/taxpayer/gstr-2a/document"
-		},
-		{
-			"source": "reference/gstr-2a-b2b-api",
-			"destination": "api-reference/gst/compliance/endpoints/taxpayer/gstr-2a/b2b"
-		},
-		{
-			"source": "reference/gstr-2a-b2ba-api",
-			"destination": "api-reference/gst/compliance/endpoints/taxpayer/gstr-2a/b2ba"
-		},
-		{
-			"source": "reference/gstr-2a-cdn-api",
-			"destination": "api-reference/gst/compliance/endpoints/taxpayer/gstr-2a/cdn"
-		},
-		{
-			"source": "reference/gstr-2a-cdna-api",
-			"destination": "api-reference/gst/compliance/endpoints/taxpayer/gstr-2a/cdna"
-		},
-		{
-			"source": "reference/gstr-2a-impg",
-			"destination": "api-reference/gst/compliance/endpoints/taxpayer/gstr-2a/impg"
-		},
-		{
-			"source": "reference/gstr-2a-impgsez",
-			"destination": "api-reference/gst/compliance/endpoints/taxpayer/gstr-2a/impgsez"
-		},
-		{
-			"source": "reference/gstr-2a-isd-api",
-			"destination": "api-reference/gst/compliance/endpoints/taxpayer/gstr-2a/isd"
-		},
-		{
-			"source": "reference/gstr-2a-reconciliation",
-			"destination": "api-reference/gst/analytics/endpoints/gstr-2a-reconciliation/submit_job"
-		},
-		{
-			"source": "reference/gstr-2a-tcs",
-			"destination": "api-reference/gst/compliance/endpoints/taxpayer/gstr-2a/tcs"
-		},
-		{
-			"source": "reference/gstr-2a-tds",
-			"destination": "api-reference/gst/compliance/endpoints/taxpayer/gstr-2a/tds"
-		},
-		{
-			"source": "reference/gstr-2b-api",
-			"destination": "api-reference/gst/compliance/endpoints/taxpayer/gstr-2b/document"
-		},
-		{
-			"source": "reference/gstr-2b-reconciliation",
-			"destination": "api-reference/gst/analytics/endpoints/gstr-2b-reconciliation/submit_job"
-		},
-		{
-			"source": "reference/gstr-2b-regeneration-status",
-			"destination": "api-reference/gst/compliance/endpoints/taxpayer/gstr-2b/gstr_2b_regeneration_status"
-		},
-		{
-			"source": "reference/gstr-3b-details-api",
-			"destination": "api-reference/gst/compliance/endpoints/taxpayer/gstr-3b/gstr_3b_details"
-		},
-		{
-			"source": "reference/gstr-3b-offset-liability",
-			"destination": "api-reference/gst/compliance/endpoints/taxpayer/gstr-3b/offset_liability"
-		},
-		{
-			"source": "reference/gstr-9-auto-calculated-details-api",
-			"destination": "api-reference/gst/compliance/endpoints/taxpayer/gstr-9/auto_calculated_details"
-		},
-		{
-			"source": "reference/gstr-9-get-details-api",
-			"destination": "api-reference/gst/compliance/endpoints/taxpayer/gstr-9/gstr_9_details"
-		},
-		{
-			"source": "reference/gstr-status-api",
-			"destination": "api-reference/gst/compliance/endpoints/taxpayer/common/gst_return_status"
-		},
-		{
-			"source": "reference/ifsc-verification-api",
-			"destination": "api-reference/kyc/bank/endpoints/ifsc_verification"
-		},
-		{
-			"source": "reference/income-tax-annexures",
-			"destination": "api-reference/it/calculator/tax_pnl/securities/domestic/annexures/tradebook_domestic_securities"
-		},
-		{
-			"source": "reference/income-tax-test-cases",
-			"destination": "/"
-		},
-		{
-			"source": "reference/irp-einv-search-gstin-details",
-			"destination": "api-reference/gst/compliance/endpoints/e-invoice/search_gstin"
-		},
-		{
-			"source": "reference/it-reports-tax-pnl-securities-poll-job",
-			"destination": "api-reference/it/report/tax_pnl/securities/domestic/endpoints/poll_job"
-		},
-		{
-			"source": "reference/it-reports-tax-pnl-securities-submit-job",
-			"destination": "api-reference/it/report/tax_pnl/securities/domestic/endpoints/submit_job"
-		},
-		{
-			"source": "reference/itc-ledger-api",
-			"destination": "api-reference/gst/compliance/endpoints/taxpayer/ledgers/itc_ledger"
-		},
-		{
-			"source": "reference/job-status-calculator-domestic-securities",
-			"destination": "api-reference/it/calculator/tax_pnl/securities/domestic/endpoints/job_status"
-		},
-		{
-			"source": "reference/job-status-it-calculator-securities-foreign",
-			"destination": "api-reference/it/calculator/tax_pnl/securities/foreign/endpoints/job_status"
-		},
-		{
-			"source": "reference/job-status-reporting-crypto",
-			"destination": "api-reference/it/calculator/tax_pnl/crypto/endpoints/job_status"
-		},
-		{
-			"source": "reference/job-status-reporting-foreign-securities",
-			"destination": "/"
-		},
-		{
-			"source": "reference/json-to-xlsx-submit-job-api",
-			"destination": "/"
-		},
-		{
-			"source": "reference/kyc-master-data",
-			"destination": "/"
-		},
-		{
-			"source": "reference/list-e-way-bills-by-generator",
-			"destination": "api-reference/gst/compliance/endpoints/e-way-bill/transporter/list_e_way_bills_by_generator"
-		},
-		{
-			"source": "reference/list-purchase-e-invoices-job-api",
-			"destination": "api-reference/gst/compliance/endpoints/taxpayer/e-invoice/list_purchase_invoices_job"
-		},
-		{
-			"source": "reference/list-purchase-e-invoices-job-status-api",
-			"destination": "api-reference/gst/compliance/endpoints/taxpayer/e-invoice/list_purchase_invoices_job_status"
-		},
-		{
-			"source": "reference/list-sales-e-invoices-job-api",
-			"destination": "api-reference/gst/compliance/endpoints/taxpayer/e-invoice/list_sales_invoices_job"
-		},
-		{
-			"source": "reference/list-sales-e-invoices-job-status-api",
-			"destination": "api-reference/gst/compliance/endpoints/taxpayer/e-invoice/list_sales_invoices_job_status"
-		},
-		{
-			"source": "reference/mca-api-guide",
-			"destination": "api-reference/kyc/mca/company_master_data"
-		},
-		{
-			"source": "reference/mca-company-master-data-api",
-			"destination": "api-reference/kyc/mca/company_master_data"
-		},
-		{
-			"source": "reference/mca-director-master-data-api",
-			"destination": "api-reference/kyc/mca/director_master_data"
-		},
-		{
-			"source": "reference/new-proceed-to-file-api",
-			"destination": "api-reference/gst/compliance/endpoints/taxpayer/gstr-1/file/new_proceed"
-		},
-		{
-			"source": "reference/non-salary-payments",
-			"destination": "api-reference/tds/reports/tds-reports/non_salary_payments"
-		},
-		{
-			"source": "reference/non-salary-payments-potential-notice",
-			"destination": "/"
-		},
-		{
-			"source": "reference/nri-payments",
-			"destination": "api-reference/tds/reports/tds-reports/nri_payments"
-		},
-		{
-			"source": "reference/nri-payments-potential-notice",
-			"destination": "/"
-		},
-		{
-			"source": "reference/pan-aadhaar-link-status-api",
-			"destination": "api-reference/kyc/pan/endpoints/pan_aadhaar_link_status"
-		},
-		{
-			"source": "reference/pan-aadhaar-link-status-check",
-			"destination": "api-reference/kyc/pan/endpoints/pan_aadhaar_link_status"
-		},
-		{
-			"source": "reference/pan-verification-advance-api",
-			"destination": "api-reference/kyc/pan/endpoints/verify_pan_details"
-		},
-		{
-			"source": "reference/poll-job",
-			"destination": "/"
-		},
-		{
-			"source": "reference/poll-job-form16-api",
-			"destination": "api-reference/tds/compliance/certificate-form16(a)/endpoints/poll_job"
-		},
-		{
-			"source": "reference/poll-job-form27d",
-			"destination": "/"
-		},
-		{
-			"source": "reference/post-it-calculator-securities-domestic-tax-pnl",
-			"destination": "api-reference/it/calculator/tax_pnl/securities/domestic/endpoints/submit_job"
-		},
-		{
-			"source": "reference/post-it-calculator-securities-foreign-tax-pnl",
-			"destination": "api-reference/it/calculator/tax_pnl/securities/foreign/endpoints/submit_job"
-		},
-		{
-			"source": "reference/post-it-reporting-securities-domestic-tax-pnl",
-			"destination": "api-reference/it/report/tax_pnl/securities/domestic/endpoints/submit_job"
-		},
-		{
-			"source": "reference/post-it-reporting-securities-foreign-tax-pnl",
-			"destination": "/"
-		},
-		{
-			"source": "reference/prepare-form-27eq-tcs-return",
-			"destination": "/"
-		},
-		{
-			"source": "reference/prepare-itr",
-			"destination": "/"
-		},
-		{
-			"source": "reference/prepare-tds-return",
-			"destination": "/"
-		},
-		{
-			"source": "reference/prepare-tds-return-api",
-			"destination": "/"
-		},
-		{
-			"source": "reference/prepare-tds-return-job-status",
-			"destination": "/"
-		},
-		{
-			"source": "reference/prepare-tds-return-job-status-api",
-			"destination": "/"
-		},
-		{
-			"source": "reference/proceed-to-file-api",
-			"destination": "api-reference/gst/compliance/endpoints/taxpayer/gstr-9/proceed"
-		},
-		{
-			"source": "reference/put-request-1",
-			"destination": "api-reference/it/calculator/tax_pnl/securities/domestic/endpoints/put_request"
-		},
-		{
-			"source": "reference/put-request-tcs-potential-notice",
-			"destination": "/"
-		},
-		{
-			"source": "reference/put-request-zip-fvu-form-27a",
-			"destination": "/"
-		},
-		{
-			"source": "reference/read-form16-document",
-			"destination": "api-reference/it/ocr/form_16/endpoints/read_form_16"
-		},
-		{
-			"source": "reference/reconcile-gstr-2a-job",
-			"destination": "api-reference/gst/analytics/endpoints/gstr-2a-reconciliation/submit_job"
-		},
-		{
-			"source": "reference/reconcile-gstr-2a-job-status-api",
-			"destination": "api-reference/gst/analytics/endpoints/gstr-2a-reconciliation/poll_job"
-		},
-		{
-			"source": "reference/reconcile-gstr-2b-job",
-			"destination": "api-reference/gst/analytics/endpoints/gstr-2b-reconciliation/submit_job"
-		},
-		{
-			"source": "reference/reconcile-gstr-2b-job-status-api",
-			"destination": "api-reference/gst/analytics/endpoints/gstr-2b-reconciliation/poll_job"
-		},
-		{
-			"source": "reference/regenerate-gstr-2b",
-			"destination": "api-reference/gst/compliance/endpoints/taxpayer/gstr-2b/regenerate_gstr_2b"
-		},
-		{
-			"source": "reference/reject-e-way-bill-api",
-			"destination": "api-reference/gst/compliance/endpoints/e-way-bill/consignee/reject_e_way_bill"
-		},
-		{
-			"source": "reference/remember-credentials-preference",
-			"destination": "api-reference/gst/compliance/endpoints/taxpayer/common/get_filing_preference"
-		},
-		{
-			"source": "reference/reset-gstr-1-api",
-			"destination": "api-reference/gst/compliance/endpoints/taxpayer/gstr-1/file/reset"
-		},
-		{
-			"source": "reference/reset-invoice-status-api",
-			"destination": "api-reference/gst/compliance/endpoints/taxpayer/invoices/reset"
-		},
-		{
-			"source": "reference/return-related-ledger-api",
-			"destination": "api-reference/gst/compliance/endpoints/taxpayer/ledgers/return_liability_ledger"
-		},
-		{
-			"source": "reference/salary-payments",
-			"destination": "api-reference/tds/reports/tds-reports/salary_payments"
-		},
-		{
-			"source": "reference/salary-payments-potential-notice",
-			"destination": "/"
-		},
-		{
-			"source": "reference/save-gstr-1-api",
-			"destination": "api-reference/gst/compliance/endpoints/taxpayer/gstr-1/file/save"
-		},
-		{
-			"source": "reference/save-gstr-3b-api",
-			"destination": "api-reference/gst/compliance/endpoints/taxpayer/gstr-3b/save"
-		},
-		{
-			"source": "reference/save-gstr-9-api",
-			"destination": "api-reference/gst/compliance/endpoints/taxpayer/gstr-9/save"
-		},
-		{
-			"source": "reference/save-invoice-status-api",
-			"destination": "api-reference/gst/compliance/endpoints/taxpayer/invoices/save"
-		},
-		{
-			"source": "reference/search-e-file-tds-return-jobs",
-			"destination": "api-reference/tds/compliance/e-file/endpoints/search_job"
-		},
-		{
-			"source": "reference/search-generate-fvu-jobs",
-			"destination": "api-reference/tds/compliance/generate-fvu/endpoints/search_job"
-		},
-		{
-			"source": "reference/search-gstin-api",
-			"destination": "api-reference/gst/compliance/endpoints/public/search_gstin"
-		},
-		{
-			"source": "reference/search-gstin-by-pan-api",
-			"destination": "api-reference/gst/compliance/endpoints/public/search_pan_state_code"
-		},
-		{
-			"source": "reference/search-tan-api",
-			"destination": "/"
-		},
-		{
-			"source": "reference/search-transin-api",
-			"destination": "api-reference/gst/compliance/endpoints/e-way-bill/common/search_transporter"
-		},
-		{
-			"source": "reference/section-206ab-206cca-compliance-check-sync-api",
-			"destination": "/"
-		},
-		{
-			"source": "reference/section-8a-details-api",
-			"destination": "api-reference/gst/compliance/endpoints/taxpayer/gstr-9/section_8a_details"
-		},
-		{
-			"source": "reference/submit-job-calculator-domestic-securities",
-			"destination": "api-reference/it/calculator/tax_pnl/securities/domestic/endpoints/submit_job"
-		},
-		{
-			"source": "reference/submit-job-it-calculator-securities-foreign",
-			"destination": "api-reference/it/calculator/tax_pnl/securities/foreign/endpoints/submit_job"
-		},
-		{
-			"source": "reference/submit-job-reporting-crypto",
-			"destination": "api-reference/it/calculator/tax_pnl/crypto/endpoints/submit_job"
-		},
-		{
-			"source": "reference/submit-job-reporting-foreign-securities",
-			"destination": "/"
-		},
-		{
-			"source": "reference/taxpayer-generate-otp-api",
-			"destination": "api-reference/gst/compliance/endpoints/taxpayer/authentication/generate_otp"
-		},
-		{
-			"source": "reference/taxpayer-get-e-invoice-by-irn-api",
-			"destination": "api-reference/gst/compliance/endpoints/taxpayer/e-invoice/e_invoice"
-		},
-		{
-			"source": "reference/taxpayer-logout-api",
-			"destination": "api-reference/gst/compliance/endpoints/taxpayer/authentication/logout"
-		},
-		{
-			"source": "reference/taxpayer-refresh-access-token-api",
-			"destination": "api-reference/gst/compliance/endpoints/taxpayer/authentication/refresh_session"
-		},
-		{
-			"source": "reference/taxpayer-verify-otp-api",
-			"destination": "api-reference/gst/compliance/endpoints/taxpayer/authentication/verify_otp"
-		},
-		{
-			"source": "reference/tcs-poll-job",
-			"destination": "api-reference/tds/analytics/tcs-analytics/endpoints/poll_job"
-		},
-		{
-			"source": "reference/tcs-potential-notice-check-api",
-			"destination": "/"
-		},
-		{
-			"source": "reference/tcs-potential-notice-poll-job-api",
-			"destination": "/"
-		},
-		{
-			"source": "reference/tcs-submit-job",
-			"destination": "api-reference/tds/analytics/tcs-analytics/endpoints/submit_job"
-		},
-		{
-			"source": "reference/tds-entities",
-			"destination": "/"
-		},
-		{
-			"source": "reference/tds-master-data",
-			"destination": "/"
-		},
-		{
-			"source": "reference/tds-on-salary-calculator-api-bulk",
-			"destination": "api-reference/tds/calculator/tds-calculator/endpoints/submit_job_salary"
-		},
-		{
-			"source": "reference/tds-potential-notice-check-api",
-			"destination": "/"
-		},
-		{
-			"source": "reference/tds-potential-notice-poll-job-api",
-			"destination": "/"
-		},
-		{
-			"source": "reference/tds-reports-master-data",
-			"destination": "/"
-		},
-		{
-			"source": "reference/tds-test-cases",
-			"destination": "/"
-		},
-		{
-			"source": "reference/track-gst-returns-api",
-			"destination": "api-reference/gst/compliance/endpoints/public/track_gstrs"
-		},
-		{
-			"source": "reference/tradebook",
-			"destination": "api-reference/it/calculator/tax_pnl/securities/domestic/annexures/tradebook_domestic_securities"
-		},
-		{
-			"source": "reference/tradewise-tax-pl-crypto-reporting",
-			"destination": "api-reference/it/calculator/tax_pnl/crypto/annexures/tradewise_tax_pnl_crypto"
-		},
-		{
-			"source": "reference/transporter-extend-e-way-bill-validity-api",
-			"destination": "api-reference/gst/compliance/endpoints/e-way-bill/transporter/extend_validity"
-		},
-		{
-			"source": "reference/transporter-update-transporter-api",
-			"destination": "api-reference/gst/compliance/endpoints/e-way-bill/transporter/update_transporter"
-		},
-		{
-			"source": "reference/transporter-update-vehicle-details-part-b-api",
-			"destination": "api-reference/gst/compliance/endpoints/e-way-bill/transporter/update_vehicle_details"
-		},
-		{
-			"source": "reference/upi-verification-api",
-			"destination": "/"
-		},
-		{
-			"source": "reference/upload-gstr-2a",
-			"destination": "/"
-		},
-		{
-			"source": "reference/upload-gstr-2b",
-			"destination": "/"
-		},
-		{
-			"source": "reference/upload-purchase-ledger",
-			"destination": "/"
-		},
-		{
-			"source": "reference/verify-pan-details-api",
-			"destination": "api-reference/kyc/pan/endpoints/verify_pan_details"
-		},
-		{
-			"source": "reference/xlsx-to-json-submit-job-api",
-			"destination": "/"
-		},
-		{
-			"source": "v3.0",
-			"destination": "/"
-		},
-		{
-			"source": "v3.0/",
-			"destination": "/"
-		},
-		{
-			"source": "v3.0/changelog",
-			"destination": "changelog"
-		},
-		{
-			"source": "v3.0/discuss",
-			"destination": "/"
-		},
-		{
-			"source": "v3.0/docs",
-			"destination": "/"
-		},
-		{
-			"source": "v3.0/docs/tds-master-data",
-			"destination": "/"
-		},
-		{
-			"source": "v3.0/recipes",
-			"destination": "recipes/kyc/introduction"
-		},
-		{
-			"source": "v3.0/reference",
-			"destination": "/"
-		}
-	]
+  "$schema": "https://mintlify.com/docs.json",
+  "theme": "palm",
+  "name": "Sandbox Financial Technologies Private Limited",
+  "colors": {
+    "primary": "#151455",
+    "light": "#CFCEFF",
+    "dark": "#1B1B20"
+  },
+  "background": {
+    "decoration": "gradient"
+  },
+  "description": "End-to-end tax automation platform for businesses to verify tax ids, calculate & pay taxes, generate e-invoices, process tax documents, analyse & reconcile tax ledgers, prepare and file tax returns through SDKs & APIs.",
+  "logo": {
+    "light": "/static/logo/light.svg",
+    "dark": "/static/logo/dark.svg",
+    "href": "https://developer.sandbox.co.in/"
+  },
+  "favicon": {
+    "light": "/static/favicon/light.svg",
+    "dark": "/static/favicon/dark.svg"
+  },
+  "navbar": {
+    "links": [
+      {
+        "label": "Help Centre",
+        "icon": "life-ring",
+        "href": "https://help.sandbox.co.in/"
+      },
+      {
+        "label": "Contact Sales",
+        "icon": "phone",
+        "href": "https://sandbox.co.in/contact-sales"
+      }
+    ],
+    "primary": {
+      "type": "button",
+      "label": "Sign Up",
+      "href": "https://accounts.sandbox.co.in/signup"
+    }
+  },
+  "navigation": {
+    "tabs": [
+      {
+        "tab": "Guides",
+        "icon": "book-open",
+        "groups": [
+          {
+            "group": "Get Started",
+            "icon": "rocket-launch",
+            "pages": [
+              "guides/get-started/quickstart",
+              "guides/get-started/the_basics",
+              "guides/get-started/versioning",
+              "guides/get-started/response_caching",
+              "guides/get-started/errors",
+              "guides/get-started/rate_limit",
+              "guides/get-started/webhooks",
+              "guides/get-started/post_for_get",
+              "guides/get-started/changelog"
+            ]
+          },
+          {
+            "group": "Products",
+            "icon": "boxes-stacked",
+            "pages": [
+              "guides/products/kyc",
+              "guides/products/gst",
+              "guides/products/tds",
+              "guides/products/income_tax"
+            ]
+          },
+          {
+            "group": "Billing & Invoicing",
+            "icon": "credit-card",
+            "pages": [
+              "guides/billing-and-invoicing/subscription",
+              "guides/billing-and-invoicing/quota",
+              "guides/billing-and-invoicing/overdraft",
+              "guides/billing-and-invoicing/wallet"
+            ]
+          }
+        ]
+      },
+      {
+        "tab": "API Reference",
+        "icon": "code",
+        "menu": [
+          {
+            "item": "Authentication",
+            "description": "Authenticate and get access to use Sandbox APIs",
+            "icon": "rocket-vertical",
+            "groups": [
+              {
+                "group": "Auth",
+                "icon": "square-terminal",
+                "pages": [
+                  "api-reference/authenticate"
+                ]
+              }
+            ]
+          },
+          {
+            "item": "KYC",
+            "description": "Confirm Identities with confidence",
+            "icon": "/static/svg/workload-icons/KYC.svg",
+            "pages": [
+              "api-reference/kyc/overview",
+              {
+                "group": "Aadhaar",
+                "pages": [
+                  {
+                    "group": "OKYC",
+                    "pages": [
+                      "api-reference/kyc/aadhaar/endpoints/generate_otp",
+                      "api-reference/kyc/aadhaar/endpoints/verify_otp"
+                    ]
+                  }
+                ]
+              },
+              {
+                "group": "Bank",
+                "pages": [
+                  "api-reference/kyc/bank/endpoints/ifsc_verification",
+                  "api-reference/kyc/bank/endpoints/penny_drop",
+                  "api-reference/kyc/bank/endpoints/penny_less"
+                ]
+              },
+              {
+                "group": "Digilocker",
+                "pages": [
+                  "api-reference/kyc/digilocker/endpoints/initiate_session",
+                  "api-reference/kyc/digilocker/endpoints/session_status",
+                  "api-reference/kyc/digilocker/endpoints/fetch_document"
+                ]
+              },
+              {
+                "group": "Digilocker SDK",
+                "pages": [
+                  {
+                    "group": "Getting Started",
+                    "pages": [
+                      "api-reference/kyc/digilocker-sdk/getting-started/introduction"
+                    ]
+                  },
+                  {
+                    "group": "Platforms",
+                    "pages": [
+                      "api-reference/kyc/digilocker-sdk/getting-started/platforms/web",
+                      "api-reference/kyc/digilocker-sdk/getting-started/platforms/android",
+                      "api-reference/kyc/digilocker-sdk/getting-started/platforms/ios"
+                    ]
+                  },
+                  {
+                    "group": "Endpoints",
+                    "pages": [
+                      "api-reference/kyc/digilocker-sdk/endpoints/create-session",
+                      "api-reference/kyc/digilocker-sdk/endpoints/get-session-status",
+                      "api-reference/kyc/digilocker-sdk/endpoints/get-document"
+                    ]
+                  }
+                ]
+              },
+              {
+                "group": "EntityLocker SDK",
+                "hidden": true,
+                "pages": [
+                  {
+                    "group": "Endpoints",
+                    "hidden": false,
+                    "pages": [
+                      "api-reference/kyc/entitylocker-sdk/endpoints/create_session",
+                      "api-reference/kyc/entitylocker-sdk/endpoints/get_session_status",
+                      "api-reference/kyc/entitylocker-sdk/endpoints/get_document"
+                    ]
+                  },
+                  {
+                    "group": "Internal Endpoints",
+                    "hidden": true,
+                    "pages": [
+                      "api-reference/kyc/entitylocker-sdk/internal-apis/endpoints/initiate_session",
+                      "api-reference/kyc/entitylocker-sdk/internal-apis/endpoints/get_authorization_url",
+                      "api-reference/kyc/entitylocker-sdk/internal-apis/endpoints/authorization",
+                      "api-reference/kyc/entitylocker-sdk/internal-apis/endpoints/get_documents",
+                      "api-reference/kyc/entitylocker-sdk/internal-apis/endpoints/reset_session"
+                    ]
+                  }
+                ]
+              },
+              {
+                "group": "MCA",
+                "pages": [
+                  "api-reference/kyc/mca/company_master_data",
+                  "api-reference/kyc/mca/director_master_data"
+                ]
+              },
+              {
+                "group": "PAN",
+                "pages": [
+                  "api-reference/kyc/pan/endpoints/verify_pan_details",
+                  "api-reference/kyc/pan/endpoints/pan_aadhaar_link_status"
+                ]
+              },
+              {
+                "group": "Annexures",
+                "pages": [
+                  "api-reference/kyc/annexures/master_data"
+                ]
+              }
+            ]
+          },
+          {
+            "item": "GST",
+            "description": "Simple and Secure GST Compliance",
+            "icon": "/static/svg/workload-icons/GST.svg",
+            "pages": [
+              "api-reference/gst/overview",
+              {
+                "group": "Analytics",
+                "icon": "chart-mixed",
+                "pages": [
+                  {
+                    "group": "GSTR-2A Reconciliation",
+                    "pages": [
+                      "api-reference/gst/analytics/guides/gstr-2a-reconciliation/overview",
+                      "api-reference/gst/analytics/endpoints/gstr-2a-reconciliation/submit_job",
+                      "api-reference/gst/analytics/endpoints/gstr-2a-reconciliation/poll_job"
+                    ]
+                  },
+                  {
+                    "group": "GSTR-2B Reconciliation",
+                    "pages": [
+                      "api-reference/gst/analytics/guides/gstr-2b-reconciliation/overview",
+                      "api-reference/gst/analytics/endpoints/gstr-2b-reconciliation/submit_job",
+                      "api-reference/gst/analytics/endpoints/gstr-2b-reconciliation/poll_job"
+                    ]
+                  }
+                ]
+              },
+              {
+                "group": "Compliance",
+                "icon": "box-check",
+                "pages": [
+                  {
+                    "group": "Public",
+                    "pages": [
+                      "api-reference/gst/compliance/endpoints/public/search_gstin",
+                      "api-reference/gst/compliance/endpoints/public/track_gstrs",
+                      "api-reference/gst/compliance/endpoints/public/search_pan_state_code"
+                    ]
+                  },
+                  {
+                    "group": "Taxpayer",
+                    "pages": [
+                      {
+                        "group": "Authentication",
+                        "pages": [
+                          "api-reference/gst/compliance/guides/taxpayer/authentication/enable_api_access",
+                          "api-reference/gst/compliance/endpoints/taxpayer/authentication/generate_otp",
+                          "api-reference/gst/compliance/endpoints/taxpayer/authentication/verify_otp",
+                          "api-reference/gst/compliance/endpoints/taxpayer/authentication/refresh_session",
+                          "api-reference/gst/compliance/endpoints/taxpayer/authentication/generate_evc_otp",
+                          "api-reference/gst/compliance/endpoints/taxpayer/authentication/logout"
+                        ]
+                      },
+                      {
+                        "group": "GSTR-1 Documents",
+                        "pages": [
+                          "api-reference/gst/compliance/endpoints/taxpayer/gstr-1/documents/at",
+                          "api-reference/gst/compliance/endpoints/taxpayer/gstr-1/documents/ata",
+                          "api-reference/gst/compliance/endpoints/taxpayer/gstr-1/documents/b2b",
+                          "api-reference/gst/compliance/endpoints/taxpayer/gstr-1/documents/b2ba",
+                          "api-reference/gst/compliance/endpoints/taxpayer/gstr-1/documents/b2cl",
+                          "api-reference/gst/compliance/endpoints/taxpayer/gstr-1/documents/b2cla",
+                          "api-reference/gst/compliance/endpoints/taxpayer/gstr-1/documents/b2cs",
+                          "api-reference/gst/compliance/endpoints/taxpayer/gstr-1/documents/b2csa",
+                          "api-reference/gst/compliance/endpoints/taxpayer/gstr-1/documents/cdnr",
+                          "api-reference/gst/compliance/endpoints/taxpayer/gstr-1/documents/cdnra",
+                          "api-reference/gst/compliance/endpoints/taxpayer/gstr-1/documents/cdnur",
+                          "api-reference/gst/compliance/endpoints/taxpayer/gstr-1/documents/cdnura",
+                          "api-reference/gst/compliance/endpoints/taxpayer/gstr-1/documents/doc_issue",
+                          "api-reference/gst/compliance/endpoints/taxpayer/gstr-1/documents/exp",
+                          "api-reference/gst/compliance/endpoints/taxpayer/gstr-1/documents/expa",
+                          "api-reference/gst/compliance/endpoints/taxpayer/gstr-1/documents/get_hsn",
+                          "api-reference/gst/compliance/endpoints/taxpayer/gstr-1/documents/nil"
+                        ]
+                      },
+                      {
+                        "group": "File GSTR-1",
+                        "pages": [
+                          "api-reference/gst/compliance/endpoints/taxpayer/gstr-1/file/save",
+                          "api-reference/gst/compliance/endpoints/taxpayer/common/gst_return_status",
+                          "api-reference/gst/compliance/endpoints/taxpayer/gstr-1/file/new_proceed",
+                          "api-reference/gst/compliance/endpoints/taxpayer/authentication/generate_evc_otp",
+                          "api-reference/gst/compliance/endpoints/taxpayer/gstr-1/file/file",
+                          "api-reference/gst/compliance/endpoints/taxpayer/gstr-1/file/reset"
+                        ]
+                      },
+                      {
+                        "group": "GSTR-2A",
+                        "pages": [
+                          "api-reference/gst/compliance/endpoints/taxpayer/gstr-2a/amdhist",
+                          "api-reference/gst/compliance/endpoints/taxpayer/gstr-2a/b2b",
+                          "api-reference/gst/compliance/endpoints/taxpayer/gstr-2a/b2ba",
+                          "api-reference/gst/compliance/endpoints/taxpayer/gstr-2a/cdn",
+                          "api-reference/gst/compliance/endpoints/taxpayer/gstr-2a/cdna",
+                          "api-reference/gst/compliance/endpoints/taxpayer/gstr-2a/document",
+                          "api-reference/gst/compliance/endpoints/taxpayer/gstr-2a/impg",
+                          "api-reference/gst/compliance/endpoints/taxpayer/gstr-2a/impgsez",
+                          "api-reference/gst/compliance/endpoints/taxpayer/gstr-2a/isd",
+                          "api-reference/gst/compliance/endpoints/taxpayer/gstr-2a/tcs",
+                          "api-reference/gst/compliance/endpoints/taxpayer/gstr-2a/tds"
+                        ]
+                      },
+                      {
+                        "group": "GSTR-2B",
+                        "pages": [
+                          "api-reference/gst/compliance/endpoints/taxpayer/gstr-2b/document",
+                          "api-reference/gst/compliance/endpoints/taxpayer/gstr-2b/regenerate_gstr_2b",
+                          "api-reference/gst/compliance/endpoints/taxpayer/gstr-2b/gstr_2b_regeneration_status"
+                        ]
+                      },
+                      {
+                        "group": "File GSTR-3B",
+                        "pages": [
+                          "api-reference/gst/compliance/endpoints/taxpayer/gstr-3b/gstr_3b_details",
+                          "api-reference/gst/compliance/endpoints/taxpayer/gstr-3b/save",
+                          "api-reference/gst/compliance/endpoints/taxpayer/common/gst_return_status",
+                          "api-reference/gst/compliance/endpoints/taxpayer/gstr-3b/offset_liability",
+                          "api-reference/gst/compliance/endpoints/taxpayer/authentication/generate_evc_otp",
+                          "api-reference/gst/compliance/endpoints/taxpayer/gstr-3b/file"
+                        ]
+                      },
+                      {
+                        "group": "GSTR-9",
+                        "pages": [
+                          "api-reference/gst/compliance/endpoints/taxpayer/gstr-9/auto_calculated_details",
+                          "api-reference/gst/compliance/endpoints/taxpayer/gstr-9/section_8a_details",
+                          "api-reference/gst/compliance/endpoints/taxpayer/gstr-9/save",
+                          "api-reference/gst/compliance/endpoints/taxpayer/common/gst_return_status",
+                          "api-reference/gst/compliance/endpoints/taxpayer/gstr-9/gstr_9_details",
+                          "api-reference/gst/compliance/endpoints/taxpayer/gstr-9/proceed",
+                          "api-reference/gst/compliance/endpoints/taxpayer/authentication/generate_evc_otp",
+                          "api-reference/gst/compliance/endpoints/taxpayer/gstr-9/file"
+                        ]
+                      },
+                      {
+                        "group": "Filing Preference",
+                        "pages": [
+                          "api-reference/gst/compliance/endpoints/taxpayer/common/get_filing_preference",
+                          "api-reference/gst/compliance/endpoints/taxpayer/common/save_filing_preference"
+                        ]
+                      },
+                      {
+                        "group": "Ledgers",
+                        "pages": [
+                          "api-reference/gst/compliance/endpoints/taxpayer/ledgers/cash_itc_balance_ledger",
+                          "api-reference/gst/compliance/endpoints/taxpayer/ledgers/cash_ledger",
+                          "api-reference/gst/compliance/endpoints/taxpayer/ledgers/itc_ledger",
+                          "api-reference/gst/compliance/endpoints/taxpayer/ledgers/return_liability_ledger"
+                        ]
+                      },
+                      {
+                        "group": "E-Invoice",
+                        "pages": [
+                          "api-reference/gst/compliance/endpoints/taxpayer/e-invoice/e_invoice",
+                          "api-reference/gst/compliance/endpoints/taxpayer/e-invoice/list_purchase_invoices_job",
+                          "api-reference/gst/compliance/endpoints/taxpayer/e-invoice/list_purchase_invoices_job_status",
+                          "api-reference/gst/compliance/endpoints/taxpayer/e-invoice/list_sales_invoices_job",
+                          "api-reference/gst/compliance/endpoints/taxpayer/e-invoice/list_sales_invoices_job_status"
+                        ]
+                      },
+                      {
+                        "group": "Invoice Management System (IMS)",
+                        "pages": [
+                          "api-reference/gst/compliance/guides/taxpayer/invoice-management-system/overview",
+                          "api-reference/gst/compliance/endpoints/taxpayer/invoices/invoice_count",
+                          "api-reference/gst/compliance/endpoints/taxpayer/invoices/invoices",
+                          "api-reference/gst/compliance/endpoints/taxpayer/invoices/save",
+                          "api-reference/gst/compliance/endpoints/taxpayer/invoices/reset",
+                          "api-reference/gst/compliance/endpoints/taxpayer/invoices/status"
+                        ]
+                      }
+                    ]
+                  },
+                  {
+                    "group": "E-Invoice",
+                    "pages": [
+                      "api-reference/gst/compliance/guides/e-invoice/authentication/create_api_credentials",
+                      "api-reference/gst/compliance/endpoints/e-invoice/authenticate",
+                      "api-reference/gst/compliance/endpoints/e-invoice/generate_e_invoice",
+                      "api-reference/gst/compliance/endpoints/e-invoice/generate_e_invoice_pdf",
+                      "api-reference/gst/compliance/endpoints/e-invoice/cancel_e_invoice",
+                      "api-reference/gst/compliance/endpoints/e-invoice/get_e_invoice",
+                      "api-reference/gst/compliance/endpoints/e-invoice/get_e_invoice_by_document_data",
+                      "api-reference/gst/compliance/endpoints/e-invoice/generate_e_way_bill",
+                      "api-reference/gst/compliance/endpoints/e-invoice/get_e_way_bill",
+                      "api-reference/gst/compliance/endpoints/e-invoice/search_gstin"
+                    ]
+                  },
+                  {
+                    "group": "E-Way Bill",
+                    "pages": [
+                      "api-reference/gst/compliance/guides/e-way-bill/authentication/create_api_credentials",
+                      "api-reference/gst/compliance/endpoints/e-way-bill/authenticate",
+                      {
+                        "group": "Consignor",
+                        "pages": [
+                          "api-reference/gst/compliance/endpoints/e-way-bill/consignor/generate_e_way_bill",
+                          "api-reference/gst/compliance/endpoints/e-way-bill/consignor/get_e_way_bill_by_date",
+                          "api-reference/gst/compliance/endpoints/e-way-bill/consignor/get_e_way_bill_by_document_data",
+                          "api-reference/gst/compliance/endpoints/e-way-bill/consignor/cancel_e_way_bill",
+                          "api-reference/gst/compliance/endpoints/e-way-bill/consignor/extend_validity",
+                          "api-reference/gst/compliance/endpoints/e-way-bill/consignor/update_vehicle_details",
+                          "api-reference/gst/compliance/endpoints/e-way-bill/consignor/update_transporter",
+                          {
+                            "group": "Consolidated E-Way Bill",
+                            "pages": [
+                              "api-reference/gst/compliance/endpoints/e-way-bill/consignor/consolidated-e-way-bill/consolidate_e_way_bill",
+                              "api-reference/gst/compliance/endpoints/e-way-bill/consignor/consolidated-e-way-bill/get_consolidated_bill",
+                              "api-reference/gst/compliance/endpoints/e-way-bill/consignor/consolidated-e-way-bill/regenerate_consolidated_bill"
+                            ]
+                          },
+                          {
+                            "group": "Multi-Vehicle Movement",
+                            "pages": [
+                              "api-reference/gst/compliance/endpoints/e-way-bill/consignor/multi-vehicle-movement/initiate_multi_vehicle_movement",
+                              "api-reference/gst/compliance/endpoints/e-way-bill/consignor/multi-vehicle-movement/add_vehicle",
+                              "api-reference/gst/compliance/endpoints/e-way-bill/consignor/multi-vehicle-movement/update_vehicle"
+                            ]
+                          }
+                        ]
+                      },
+                      {
+                        "group": "Consignee",
+                        "pages": [
+                          "api-reference/gst/compliance/endpoints/e-way-bill/consignee/get_e_way_bills_by_date",
+                          "api-reference/gst/compliance/endpoints/e-way-bill/consignee/reject_e_way_bill"
+                        ]
+                      },
+                      {
+                        "group": "Transporter",
+                        "pages": [
+                          "api-reference/gst/compliance/endpoints/e-way-bill/transporter/get_e_way_bills_by_date_and_state",
+                          "api-reference/gst/compliance/endpoints/e-way-bill/transporter/list_e_way_bills_by_generator",
+                          "api-reference/gst/compliance/endpoints/e-way-bill/transporter/extend_validity",
+                          "api-reference/gst/compliance/endpoints/e-way-bill/transporter/update_vehicle_details",
+                          "api-reference/gst/compliance/endpoints/e-way-bill/transporter/update_transporter",
+                          {
+                            "group": "Consolidated E-Way Bill",
+                            "pages": [
+                              "api-reference/gst/compliance/endpoints/e-way-bill/transporter/consolidated-e-way-bill/consolidate_e_way_bill",
+                              "api-reference/gst/compliance/endpoints/e-way-bill/transporter/consolidated-e-way-bill/get_consolidated_bill",
+                              "api-reference/gst/compliance/endpoints/e-way-bill/transporter/consolidated-e-way-bill/regenerate_consolidated_bill"
+                            ]
+                          },
+                          {
+                            "group": "Multi-Vehicle Movement",
+                            "pages": [
+                              "api-reference/gst/compliance/endpoints/e-way-bill/transporter/multi-vehicle-movement/initiate_multi_vehicle_movement",
+                              "api-reference/gst/compliance/endpoints/e-way-bill/transporter/multi-vehicle-movement/add_vehicle",
+                              "api-reference/gst/compliance/endpoints/e-way-bill/transporter/multi-vehicle-movement/update_vehicle"
+                            ]
+                          }
+                        ]
+                      },
+                      {
+                        "group": "Common",
+                        "pages": [
+                          "api-reference/gst/compliance/endpoints/e-way-bill/common/get_e_way_bill",
+                          "api-reference/gst/compliance/endpoints/e-way-bill/common/get_error_list",
+                          "api-reference/gst/compliance/endpoints/e-way-bill/common/get_hsn_details",
+                          "api-reference/gst/compliance/endpoints/e-way-bill/common/search_gstin",
+                          "api-reference/gst/compliance/endpoints/e-way-bill/common/search_transporter"
+                        ]
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "item": "TDS",
+            "description": "Automate TDS on Salary & Non-Salary Payments",
+            "icon": "/static/svg/workload-icons/TDS.svg",
+            "pages": [
+              "api-reference/tds/overview",
+              {
+                "group": "Calculator",
+                "icon": "calculator",
+                "pages": [
+                  {
+                    "group": "TDS",
+                    "pages": [
+                      {
+                        "group": "Salary Payments",
+                        "pages": [
+                          "api-reference/tds/calculator/tds-calculator/endpoints/submit_job_salary",
+                          "api-reference/tds/calculator/tds-calculator/endpoints/poll_job_salary"
+                        ]
+                      },
+                      "api-reference/tds/calculator/tds-calculator/endpoints/non_salary",
+                      "api-reference/tds/calculator/tds-calculator/endpoints/salary_sync"
+                    ]
+                  },
+                  {
+                    "group": "TCS",
+                    "pages": [
+                      "api-reference/tds/calculator/tcs-calculator/endpoints/calculator"
+                    ]
+                  }
+                ]
+              },
+              {
+                "group": "Analytics",
+                "icon": "chart-mixed",
+                "pages": [
+                  {
+                    "group": "TDS",
+                    "pages": [
+                      {
+                        "group": "Create Job",
+                        "pages": [
+                          "api-reference/tds/analytics/tds-analytics/endpoints/submit_job",
+                          "api-reference/tds/analytics/tds-analytics/non_salary_payments",
+                          "api-reference/tds/analytics/tds-analytics/salary_payments",
+                          "api-reference/tds/analytics/tds-analytics/nri_payments"
+                        ]
+                      },
+                      {
+                        "group": "Poll Job",
+                        "pages": [
+                          "api-reference/tds/analytics/tds-analytics/endpoints/poll_job",
+                          "api-reference/tds/analytics/tds-analytics/external-links/form24q_workbook",
+                          "api-reference/tds/analytics/tds-analytics/external-links/form26q_workbook",
+                          "api-reference/tds/analytics/tds-analytics/external-links/form27q_workbook"
+                        ]
+                      },
+                      "api-reference/tds/analytics/tds-analytics/endpoints/fetch_jobs"
+                    ]
+                  },
+                  {
+                    "group": "TCS",
+                    "pages": [
+                      {
+                        "group": "Create Job",
+                        "pages": [
+                          "api-reference/tds/analytics/tcs-analytics/endpoints/submit_job",
+                          "api-reference/tds/analytics/tcs-analytics/tcs_payments"
+                        ]
+                      },
+                      {
+                        "group": "Poll Job",
+                        "pages": [
+                          "api-reference/tds/analytics/tcs-analytics/endpoints/poll_job",
+                          "api-reference/tds/analytics/tcs-analytics/external-links/form27eq_workbook"
+                        ]
+                      },
+                      "api-reference/tds/analytics/tcs-analytics/endpoints/fetch_jobs"
+                    ]
+                  }
+                ]
+              },
+              {
+                "group": "Reports",
+                "icon": "file-text",
+                "pages": [
+                  {
+                    "group": "TDS",
+                    "pages": [
+                      {
+                        "group": "Create Job",
+                        "pages": [
+                          "api-reference/tds/reports/tds-reports/endpoints/submit_job",
+                          "api-reference/tds/reports/tds-reports/non_salary_payments",
+                          "api-reference/tds/reports/tds-reports/salary_payments",
+                          "api-reference/tds/reports/tds-reports/nri_payments"
+                        ]
+                      },
+                      "api-reference/tds/reports/tds-reports/endpoints/poll_job",
+                      "api-reference/tds/reports/tds-reports/endpoints/fetch_jobs"
+                    ]
+                  },
+                  {
+                    "group": "TCS",
+                    "pages": [
+                      {
+                        "group": "Create Job",
+                        "pages": [
+                          "api-reference/tds/reports/tcs-reports/endpoints/submit_job",
+                          "api-reference/tds/reports/tcs-reports/tcs_payments"
+                        ]
+                      },
+                      "api-reference/tds/reports/tcs-reports/endpoints/poll_job",
+                      "api-reference/tds/reports/tcs-reports/endpoints/fetch_jobs"
+                    ]
+                  }
+                ]
+              },
+              {
+                "group": "Compliance",
+                "icon": "box-check",
+                "pages": [
+                  {
+                    "group": "Download Form16",
+                    "pages": [
+                      {
+                        "group": "Create Job",
+                        "pages": [
+                          "api-reference/tds/compliance/certificate-form16(a)/endpoints/submit_job",
+                          "api-reference/tds/compliance/certificate-form16(a)/credentials"
+                        ]
+                      },
+                      "api-reference/tds/compliance/certificate-form16(a)/endpoints/poll_job",
+                      "api-reference/tds/compliance/certificate-form16(a)/endpoints/fetch_job"
+                    ]
+                  },
+                  {
+                    "group": "Generate FVU",
+                    "pages": [
+                      "api-reference/tds/compliance/generate-fvu/endpoints/submit_job",
+                      "api-reference/tds/compliance/generate-fvu/endpoints/poll_job",
+                      "api-reference/tds/compliance/generate-fvu/endpoints/search_job"
+                    ]
+                  },
+                  {
+                    "group": "E-File",
+                    "pages": [
+                      "api-reference/tds/compliance/e-file/endpoints/submit_job",
+                      "api-reference/tds/compliance/e-file/endpoints/poll_job",
+                      "api-reference/tds/compliance/e-file/endpoints/search_job"
+                    ]
+                  },
+                  {
+                    "group": "Download CSI",
+                    "pages": [
+                      "api-reference/tds/compliance/download-csi/endpoints/generate_otp",
+                      "api-reference/tds/compliance/download-csi/endpoints/verify_otp"
+                    ]
+                  }
+                ]
+              },
+              {
+                "group": "Annexures",
+                "pages": [
+                  "api-reference/tds/annexures/tds_annexures",
+                  "api-reference/tds/annexures/master_data"
+                ]
+              }
+            ]
+          },
+          {
+            "item": "Income Tax",
+            "description": "Direct tax compliance on auto-pilot",
+            "icon": "/static/svg/workload-icons/IT.svg",
+            "pages": [
+              "api-reference/it/overview",
+              {
+                "group": "Calculator",
+                "icon": "calculator",
+                "pages": [
+                  {
+                    "group": "Tax P&L",
+                    "pages": [
+                      {
+                        "group": "Securities",
+                        "pages": [
+                          {
+                            "group": "Domestic",
+                            "pages": [
+                              "api-reference/it/calculator/tax_pnl/securities/domestic/endpoints/submit_job",
+                              "api-reference/it/calculator/tax_pnl/securities/domestic/endpoints/put_request",
+                              "api-reference/it/calculator/tax_pnl/securities/domestic/endpoints/job_status",
+                              {
+                                "group": "Annexures",
+                                "pages": [
+                                  "api-reference/it/calculator/tax_pnl/securities/domestic/annexures/tradebook_domestic_securities",
+                                  "api-reference/it/calculator/tax_pnl/securities/domestic/annexures/tradewise_settlement_domestic_securities",
+                                  "api-reference/it/calculator/tax_pnl/securities/domestic/annexures/tradewise_tax_pnl_domestic"
+                                ]
+                              }
+                            ]
+                          },
+                          {
+                            "group": "Foreign",
+                            "pages": [
+                              "api-reference/it/calculator/tax_pnl/securities/foreign/endpoints/submit_job",
+                              "api-reference/it/calculator/tax_pnl/securities/foreign/endpoints/put_request",
+                              "api-reference/it/calculator/tax_pnl/securities/foreign/endpoints/job_status",
+                              {
+                                "group": "Annexures",
+                                "pages": [
+                                  "api-reference/it/calculator/tax_pnl/securities/foreign/annexures/tradebook_foreign",
+                                  "api-reference/it/calculator/tax_pnl/securities/foreign/annexures/tradewise_settlement_foreign",
+                                  "api-reference/it/calculator/tax_pnl/securities/foreign/annexures/tradewise_tax_pnl_foreign",
+                                  "api-reference/it/calculator/tax_pnl/securities/foreign/annexures/scripwise_tax_pnl_foreign"
+                                ]
+                              }
+                            ]
+                          }
+                        ]
+                      },
+                      {
+                        "group": "Crypto",
+                        "pages": [
+                          {
+                            "group": "Tax P&L",
+                            "pages": [
+                              "api-reference/it/calculator/tax_pnl/crypto/endpoints/submit_job",
+                              "api-reference/it/calculator/tax_pnl/crypto/endpoints/put_request",
+                              "api-reference/it/calculator/tax_pnl/crypto/endpoints/job_status",
+                              {
+                                "group": "Annexures",
+                                "pages": [
+                                  "api-reference/it/calculator/tax_pnl/crypto/annexures/tradebook_crypto",
+                                  "api-reference/it/calculator/tax_pnl/crypto/annexures/tradewise_tax_pnl_crypto"
+                                ]
+                              }
+                            ]
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "group": "Reporting",
+                "icon": "file-text",
+                "pages": [
+                  {
+                    "group": "Tax PNL",
+                    "pages": [
+                      {
+                        "group": "Securities",
+                        "pages": [
+                          {
+                            "group": "Domestic",
+                            "pages": [
+                              "api-reference/it/report/tax_pnl/securities/domestic/endpoints/submit_job",
+                              "api-reference/it/report/tax_pnl/securities/domestic/endpoints/put_request",
+                              "api-reference/it/report/tax_pnl/securities/domestic/endpoints/job_status",
+                              {
+                                "group": "Annexures",
+                                "pages": [
+                                  "api-reference/it/report/tax_pnl/securities/domestic/annexures/tradebook_domestic",
+                                  "api-reference/it/report/tax_pnl/securities/domestic/annexures/tradewise_domestic"
+                                ]
+                              }
+                            ]
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "group": "OCR",
+                "icon": "file-magnifying-glass",
+                "pages": [
+                  {
+                    "group": "Form 16",
+                    "pages": [
+                      "api-reference/it/ocr/form_16/endpoints/read_form_16"
+                    ]
+                  },
+                  {
+                    "group": "Form 26AS",
+                    "pages": [
+                      "api-reference/it/ocr/form_26as/endpoints/read_form_26as"
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "item": "Bank",
+            "description": "Bank APIs",
+            "icon": "/static/svg/Bank.svg",
+            "hidden": true,
+            "groups": [
+              {
+                "group": "Virtual Account",
+                "pages": [
+                  {
+                    "group": "Accounts",
+                    "pages": [
+                      "api-reference/bank/virtual-account/accounts/endpoints/create_virtual_account",
+                      "api-reference/bank/virtual-account/accounts/endpoints/fetch_virtual_account",
+                      "api-reference/bank/virtual-account/accounts/endpoints/fetch_all_virtual_accounts",
+                      "api-reference/bank/virtual-account/accounts/endpoints/fetch_virtual_account_balance",
+                      "api-reference/bank/virtual-account/accounts/endpoints/patch_virtual_account",
+                      "api-reference/bank/virtual-account/accounts/endpoints/delete_virtual_account"
+                    ]
+                  },
+                  {
+                    "group": "Statements",
+                    "pages": [
+                      "api-reference/bank/virtual-account/statements/endpoints/submit_virtual_account_statement_job",
+                      "api-reference/bank/virtual-account/statements/endpoints/poll_virtual_account_statement_job"
+                    ]
+                  },
+                  {
+                    "group": "Payments",
+                    "pages": [
+                      "api-reference/bank/virtual-account/payments/endpoints/generate_static_qr_string",
+                      "api-reference/bank/virtual-account/payments/endpoints/generate_dynamic_qr_string",
+                      "api-reference/bank/virtual-account/payments/endpoints/generate_upi_collect_pay_request",
+                      "api-reference/bank/virtual-account/payments/endpoints/request_payout"
+                    ]
+                  },
+                  {
+                    "group": "Transactions",
+                    "pages": [
+                      "api-reference/bank/virtual-account/transactions/endpoints/fetch_transaction",
+                      "api-reference/bank/virtual-account/transactions/endpoints/fetch_all_transactions",
+                      "api-reference/bank/virtual-account/transactions/endpoints/cancel_transaction"
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "tab": "Recipes",
+        "icon": "flask",
+        "menu": [
+          {
+            "item": "KYC",
+            "description": "Quick recipes for fast, reliable identity checks.",
+            "pages": [
+              "recipes/kyc/introduction",
+              {
+                "group": "DigiLocker",
+                "pages": [
+                  "recipes/kyc/digilocker/digilocker_api_recipe"
+                ]
+              }
+            ]
+          },
+          {
+            "item": "GST",
+            "description": "Easy steps for smooth, error-free GST workflows.",
+            "pages": [
+              "recipes/gst/introduction",
+              {
+                "group": "Authentication",
+                "pages": [
+                  "recipes/gst/authentication/generate_tax_payer_session",
+                  "recipes/gst/authentication/generate_e_invoice_session",
+                  "recipes/gst/authentication/generate_e_way_bill_session"
+                ]
+              },
+              {
+                "group": "GSTR-1",
+                "pages": [
+                  "recipes/gst/gstr-1/file_gstr_1",
+                  "recipes/gst/gstr-1/file_nil_gstr_1"
+                ]
+              },
+              {
+                "group": "GSTR-3B",
+                "pages": [
+                  "recipes/gst/gstr-3b/file_gstr_3b",
+                  "recipes/gst/gstr-3b/file_nil_gstr_3b"
+                ]
+              },
+              {
+                "group": "E-Invoice",
+                "pages": [
+                  "recipes/gst/e-invoice/generate_e_invoice",
+                  "recipes/gst/e-invoice/get_e_invoice_using_taxpayer_api"
+                ]
+              }
+            ]
+          },
+          {
+            "item": "TDS",
+            "description": "Guides to set up seamless, automated TDS.",
+            "pages": [
+              "recipes/tds/introduction",
+              {
+                "group": "Form 24Q",
+                "pages": [
+                  "recipes/tds/form-24q/prepare_form_24q",
+                  "recipes/tds/form-24q/file_form_24q"
+                ]
+              },
+              {
+                "group": "Form 16",
+                "pages": [
+                  "recipes/tds/form-16/generate_form_16_certificates"
+                ]
+              }
+            ]
+          },
+          {
+            "item": "Income Tax",
+            "description": "Ready flows to automate your Income tax tasks.",
+            "pages": [
+              "recipes/it/introduction"
+            ]
+          }
+        ]
+      },
+      {
+        "tab": "Changelog",
+        "icon": "clock",
+        "pages": [
+          "changelog"
+        ]
+      },
+      {
+        "tab": "Resources",
+        "icon": "books",
+        "menu": [
+          {
+            "item": "Postman Collections",
+            "icon": "book-bookmark",
+            "href": "https://www.postman.com/in-co-sandbox/sandbox-api"
+          },
+          {
+            "item": "SDKs & Clients",
+            "icon": "cube",
+            "href": "https://github.com/in-co-sandbox"
+          },
+          {
+            "item": "Status",
+            "icon": "signal-stream",
+            "href": "https://status.api.sandbox.co.in/"
+          },
+          {
+            "item": "Customer Stories",
+            "icon": "users",
+            "href": "https://sandbox.co.in/customers"
+          }
+        ]
+      }
+    ]
+  },
+  "contextual": {
+    "options": [
+      "copy",
+      "view",
+      "chatgpt",
+      "claude",
+      "perplexity",
+      "mcp",
+      "cursor",
+      "vscode"
+    ]
+  },
+  "footer": {
+    "socials": {
+      "github": "https://github.com/in-co-sandbox",
+      "linkedin": "https://www.linkedin.com/showcase/sandboxapi",
+      "medium": "https://medium.com/blog-by-sandbox",
+      "youtube": "https://www.youtube.com/@sandboxapi",
+      "x": "https://twitter.com/sandbox_api"
+    }
+  },
+  "integrations": {
+    "gtm": {
+      "tagId": "GTM-NWRF32W"
+    }
+  },
+  "redirects": [
+    {
+      "source": "reference",
+      "destination": "/"
+    },
+    {
+      "source": "changelog?page=1",
+      "destination": "changelog"
+    },
+    {
+      "source": "changelog?page=2",
+      "destination": "changelog"
+    },
+    {
+      "source": "changelog?page=3",
+      "destination": "changelog"
+    },
+    {
+      "source": "changelog?page=4",
+      "destination": "changelog"
+    },
+    {
+      "source": "changelog?page=5",
+      "destination": "changelog"
+    },
+    {
+      "source": "changelog?page=6",
+      "destination": "changelog"
+    },
+    {
+      "source": "changelog/206ab-206cca-compliance-check",
+      "destination": "changelog"
+    },
+    {
+      "source": "changelog/authentication-feature-release",
+      "destination": "changelog"
+    },
+    {
+      "source": "changelog/changes-in-aadhaar-okyc-api",
+      "destination": "changelog"
+    },
+    {
+      "source": "changelog/contract-changed-for-tdsr-e-file-api",
+      "destination": "changelog"
+    },
+    {
+      "source": "changelog/crypto-tax-pnl-changelog",
+      "destination": "changelog"
+    },
+    {
+      "source": "changelog/december-2022",
+      "destination": "changelog"
+    },
+    {
+      "source": "changelog/deprecated-contracts-for-gst-e-invoice-api",
+      "destination": "changelog"
+    },
+    {
+      "source": "changelog/deprecated-contracts-for-gst-e-way-bill-api",
+      "destination": "changelog"
+    },
+    {
+      "source": "changelog/deprecated-contracts-for-gst-public-and-taxpayer-api",
+      "destination": "changelog"
+    },
+    {
+      "source": "changelog/deprecated-tdsr-filing-apis",
+      "destination": "changelog"
+    },
+    {
+      "source": "changelog/deprecation-of-pan-basic-and-advance-api",
+      "destination": "changelog"
+    },
+    {
+      "source": "changelog/discontinuation-of-older-api-contracts-of-mca-apis",
+      "destination": "changelog"
+    },
+    {
+      "source": "changelog/discontinuation-of-version-1-of-aadhaar-okyc-apis",
+      "destination": "changelog"
+    },
+    {
+      "source": "changelog/download-form-16-apis",
+      "destination": "changelog"
+    },
+    {
+      "source": "changelog/e-invoices-generated-within-last-6-months",
+      "destination": "changelog"
+    },
+    {
+      "source": "changelog/february-2023",
+      "destination": "changelog"
+    },
+    {
+      "source": "changelog/generate-e-invoice-pdf",
+      "destination": "changelog"
+    },
+    {
+      "source": "changelog/generate-e-way-bill-to-unregistered-persons",
+      "destination": "changelog"
+    },
+    {
+      "source": "changelog/generate-fvu",
+      "destination": "changelog"
+    },
+    {
+      "source": "changelog/gst-api-feature-release",
+      "destination": "changelog"
+    },
+    {
+      "source": "changelog/gst-invoice-managenent-system-ims-api",
+      "destination": "changelog"
+    },
+    {
+      "source": "changelog/gstr-2a-reconciliation",
+      "destination": "changelog"
+    },
+    {
+      "source": "changelog/gstr-2b-reconciliation",
+      "destination": "changelog"
+    },
+    {
+      "source": "changelog/income-tax-api-feature-release",
+      "destination": "changelog"
+    },
+    {
+      "source": "changelog/introducing-criss-cross-operations-for-reliable-e-invoicing",
+      "destination": "changelog"
+    },
+    {
+      "source": "changelog/introducing-digilocker-apis",
+      "destination": "changelog"
+    },
+    {
+      "source": "changelog/janurary-2023",
+      "destination": "changelog"
+    },
+    {
+      "source": "changelog/july-2023",
+      "destination": "changelog"
+    },
+    {
+      "source": "changelog/june-2023",
+      "destination": "changelog"
+    },
+    {
+      "source": "changelog/may2023",
+      "destination": "changelog"
+    },
+    {
+      "source": "changelog/new-contract-for-mca-apis",
+      "destination": "changelog"
+    },
+    {
+      "source": "changelog/new-contract-for-pan-aadhaar-link-status-check",
+      "destination": "changelog"
+    },
+    {
+      "source": "changelog/new-contract-for-search-gstin-by-pan-api",
+      "destination": "changelog"
+    },
+    {
+      "source": "changelog/new-contracts-for-gst-e-invoice-api",
+      "destination": "changelog"
+    },
+    {
+      "source": "changelog/new-contracts-for-gst-e-way-bill-api",
+      "destination": "changelog"
+    },
+    {
+      "source": "changelog/new-contracts-for-gst-public-and-taxpayer-api",
+      "destination": "changelog"
+    },
+    {
+      "source": "changelog/new-gstr-9-taxpayer-api",
+      "destination": "changelog"
+    },
+    {
+      "source": "changelog/new-tds-reports-api",
+      "destination": "changelog"
+    },
+    {
+      "source": "changelog/new-tdsr-api-contracts",
+      "destination": "changelog"
+    },
+    {
+      "source": "changelog/november-2022",
+      "destination": "changelog"
+    },
+    {
+      "source": "changelog/october-2023",
+      "destination": "changelog"
+    },
+    {
+      "source": "changelog/older-api-contracts-for-tds-reporting",
+      "destination": "changelog"
+    },
+    {
+      "source": "changelog/pan-advance-api-discontinued",
+      "destination": "changelog"
+    },
+    {
+      "source": "changelog/potential-notices-api",
+      "destination": "changelog"
+    },
+    {
+      "source": "changelog/regenerate-gstr-2b-on-demand-api",
+      "destination": "changelog"
+    },
+    {
+      "source": "changelog/sandbox-version-2",
+      "destination": "changelog"
+    },
+    {
+      "source": "changelog/september-2023",
+      "destination": "changelog"
+    },
+    {
+      "source": "changelog/sheet-json-converter-apis",
+      "destination": "changelog"
+    },
+    {
+      "source": "changelog/tcs-calculator-api",
+      "destination": "changelog"
+    },
+    {
+      "source": "changelog/tcs-reports-api",
+      "destination": "changelog"
+    },
+    {
+      "source": "changelog/tds-api-feature-release",
+      "destination": "changelog"
+    },
+    {
+      "source": "changelog/verify-pan-details-api",
+      "destination": "changelog"
+    },
+    {
+      "source": "changelog/x-accept-cache-header-support-added-in-gst-public-api",
+      "destination": "changelog"
+    },
+    {
+      "source": "changelog/x-accept-cache-header-support-added-in-kyc-api",
+      "destination": "changelog"
+    },
+    {
+      "source": "discuss",
+      "destination": "/"
+    },
+    {
+      "source": "discuss-new",
+      "destination": "/"
+    },
+    {
+      "source": "discuss?isFAQ=true",
+      "destination": "/"
+    },
+    {
+      "source": "discuss?page=1&perPage=10",
+      "destination": "/"
+    },
+    {
+      "source": "discuss?page=2&perPage=10",
+      "destination": "/"
+    },
+    {
+      "source": "discuss?sorting=open",
+      "destination": "/"
+    },
+    {
+      "source": "discuss?sorting=recent",
+      "destination": "/"
+    },
+    {
+      "source": "discuss?sorting=recent&page=1&perPage=10",
+      "destination": "/"
+    },
+    {
+      "source": "discuss?sorting=recent&page=2&perPage=10",
+      "destination": "/"
+    },
+    {
+      "source": "discuss?tag=access%20token",
+      "destination": "/"
+    },
+    {
+      "source": "discuss?tag=authenticate",
+      "destination": "/"
+    },
+    {
+      "source": "discuss/611e8a71f659ee0045316f26",
+      "destination": "/"
+    },
+    {
+      "source": "discuss/6125e09283393d0078a53986",
+      "destination": "/"
+    },
+    {
+      "source": "discuss/615c1127aa169e0153df7261",
+      "destination": "/"
+    },
+    {
+      "source": "discuss/61dc48e71a0804036683ede7",
+      "destination": "/"
+    },
+    {
+      "source": "discuss/622393f2e4d9d90076d2e5f0",
+      "destination": "/"
+    },
+    {
+      "source": "discuss/6276892991a37b008d6cfd06",
+      "destination": "/"
+    },
+    {
+      "source": "discuss/62849371c841620078c76438",
+      "destination": "/"
+    },
+    {
+      "source": "discuss/629c78c52e6ab400a642a200",
+      "destination": "/"
+    },
+    {
+      "source": "discuss/62a05b75dc366b00751d820d",
+      "destination": "/"
+    },
+    {
+      "source": "discuss/6385b1182283a300527bf91b",
+      "destination": "/"
+    },
+    {
+      "source": "discuss/638f1e8f30840c0023208dc9",
+      "destination": "/"
+    },
+    {
+      "source": "discuss/6905d164649e1809f890fe0c",
+      "destination": "/"
+    },
+    {
+      "source": "docs/aadhaar-okyc-generate-otp",
+      "destination": "guides/products/kyc"
+    },
+    {
+      "source": "docs/about-sandbox",
+      "destination": "guides/introduction/about_sandbox"
+    },
+    {
+      "source": "docs/authentication",
+      "destination": "guides/introduction/authentication"
+    },
+    {
+      "source": "docs/bank-account-verification",
+      "destination": "guides/products/kyc"
+    },
+    {
+      "source": "docs/bank-account-verification-penny-less",
+      "destination": "guides/products/kyc"
+    },
+    {
+      "source": "docs/changelog",
+      "destination": "guides/get-started/changelog"
+    },
+    {
+      "source": "docs/classify-form16-document-1",
+      "destination": "guides/products/income_tax"
+    },
+    {
+      "source": "docs/consumption",
+      "destination": "/"
+    },
+    {
+      "source": "docs/domestic-securities-tradebook-payload#annexure-1-corporate-actions",
+      "destination": "api-reference/it/calculator/tax_pnl/securities/domestic/annexures/tradebook_domestic_securities"
+    },
+    {
+      "source": "docs/e-file-tds-return",
+      "destination": "guides/products/tds"
+    },
+    {
+      "source": "docs/e-file-tds-return-submit-job",
+      "destination": "guides/products/tds"
+    },
+    {
+      "source": "docs/e-invoice-api-guide",
+      "destination": "guides/products/gst"
+    },
+    {
+      "source": "docs/e-way-bill-api",
+      "destination": "guides/products/gst"
+    },
+    {
+      "source": "docs/errors",
+      "destination": "guides/get-started/errors"
+    },
+    {
+      "source": "docs/form-16-api",
+      "destination": "guides/products/tds"
+    },
+    {
+      "source": "docs/form-24q",
+      "destination": "guides/products/tds"
+    },
+    {
+      "source": "docs/form24q-q4",
+      "destination": "guides/products/tds"
+    },
+    {
+      "source": "docs/gst",
+      "destination": "guides/products/gst"
+    },
+    {
+      "source": "docs/income-tax",
+      "destination": "guides/products/income_tax"
+    },
+    {
+      "source": "docs/kyc",
+      "destination": "guides/products/kyc"
+    },
+    {
+      "source": "docs/mca-company-master-data",
+      "destination": "api-reference/kyc/mca/company_master_data"
+    },
+    {
+      "source": "docs/mca-director-master-data",
+      "destination": "api-reference/kyc/mca/director_master_data"
+    },
+    {
+      "source": "docs/overdraft",
+      "destination": "guides/billing-and-invoicing/overdraft"
+    },
+    {
+      "source": "docs/post-for-get",
+      "destination": "guides/get-started/post_for_get"
+    },
+    {
+      "source": "docs/quota",
+      "destination": "guides/billing-and-invoicing/quota"
+    },
+    {
+      "source": "docs/rate-limits",
+      "destination": "guides/get-started/rate_limit"
+    },
+    {
+      "source": "docs/response-caching",
+      "destination": "guides/get-started/response_caching"
+    },
+    {
+      "source": "docs/subscription",
+      "destination": "guides/billing-and-invoicing/subscription"
+    },
+    {
+      "source": "docs/tax-pnl-annexures#annexure-1-labels",
+      "destination": "api-reference/it/calculator/tax_pnl/securities/domestic/annexures/tradebook_domestic_securities"
+    },
+    {
+      "source": "docs/tds",
+      "destination": "guides/products/tds"
+    },
+    {
+      "source": "docs/the-basics",
+      "destination": "guides/get-started/the_basics"
+    },
+    {
+      "source": "docs/versioning",
+      "destination": "guides/get-started/versioning"
+    },
+    {
+      "source": "docs/wallet",
+      "destination": "guides/billing-and-invoicing/wallet"
+    },
+    {
+      "source": "docs/webhooks",
+      "destination": "guides/get-started/webhooks"
+    },
+    {
+      "source": "recipes",
+      "destination": "recipes/kyc/introduction"
+    },
+    {
+      "source": "reference/aadhaar-kyc",
+      "destination": "api-reference/kyc/aadhaar/endpoints/generate_otp"
+    },
+    {
+      "source": "reference/aadhaar-okyc-generate-otp-api",
+      "destination": "api-reference/kyc/aadhaar/endpoints/generate_otp"
+    },
+    {
+      "source": "reference/aadhaar-okyc-verify-otp-api",
+      "destination": "api-reference/kyc/aadhaar/endpoints/verify_otp"
+    },
+    {
+      "source": "reference/authenticate-api",
+      "destination": "api-reference/authenticate"
+    },
+    {
+      "source": "reference/bank-account-verification-api",
+      "destination": "api-reference/kyc/bank/endpoints/penny_drop"
+    },
+    {
+      "source": "reference/bank-account-verification-penny-less-api",
+      "destination": "api-reference/kyc/bank/endpoints/penny_less"
+    },
+    {
+      "source": "reference/bank-api",
+      "destination": "api-reference/kyc/bank/endpoints/ifsc_verification"
+    },
+    {
+      "source": "reference/calculate-tax-loss-harvesting-from-tradebook",
+      "destination": "/"
+    },
+    {
+      "source": "reference/calculate-tcs",
+      "destination": "api-reference/tds/calculator/tcs-calculator/endpoints/calculator"
+    },
+    {
+      "source": "reference/calculate-tds-api",
+      "destination": "api-reference/tds/calculator/tds-calculator/endpoints/non_salary"
+    },
+    {
+      "source": "reference/calculate-tds-on-salary-api",
+      "destination": "api-reference/tds/calculator/tds-calculator/endpoints/salary_sync"
+    },
+    {
+      "source": "reference/cancel-e-invoice-api",
+      "destination": "api-reference/gst/compliance/endpoints/e-invoice/cancel_e_invoice"
+    },
+    {
+      "source": "reference/cancel-e-way-bill-api",
+      "destination": "api-reference/gst/compliance/endpoints/e-way-bill/consignor/cancel_e_way_bill"
+    },
+    {
+      "source": "reference/cash-itc-balance-api",
+      "destination": "api-reference/gst/compliance/endpoints/taxpayer/ledgers/cash_itc_balance_ledger"
+    },
+    {
+      "source": "reference/cash-ledger-api",
+      "destination": "api-reference/gst/compliance/endpoints/taxpayer/ledgers/cash_ledger"
+    },
+    {
+      "source": "reference/check-invoice-status-api",
+      "destination": "api-reference/gst/compliance/endpoints/taxpayer/invoices/status"
+    },
+    {
+      "source": "reference/classify-form16-document",
+      "destination": "api-reference/it/ocr/form_16/endpoints/read_form_16"
+    },
+    {
+      "source": "reference/consignee-get-e-way-bills-by-date-api",
+      "destination": "api-reference/gst/compliance/endpoints/e-way-bill/consignee/get_e_way_bills_by_date"
+    },
+    {
+      "source": "reference/consigner-extend-e-way-bill-validity-api",
+      "destination": "api-reference/gst/compliance/endpoints/e-way-bill/consignor/extend_validity"
+    },
+    {
+      "source": "reference/consigner-update-transporter-api",
+      "destination": "api-reference/gst/compliance/endpoints/e-way-bill/consignor/update_transporter"
+    },
+    {
+      "source": "reference/consignor-get-e-way-bills-by-date-api",
+      "destination": "api-reference/gst/compliance/endpoints/e-way-bill/consignor/get_e_way_bill_by_date"
+    },
+    {
+      "source": "reference/consignor-update-vehicle-details-api",
+      "destination": "api-reference/gst/compliance/endpoints/e-way-bill/consignor/update_vehicle_details"
+    },
+    {
+      "source": "reference/crypto-reporting-put-request",
+      "destination": "api-reference/it/calculator/tax_pnl/crypto/endpoints/put_request"
+    },
+    {
+      "source": "reference/crypto-securities-tax-pl-calculator-request-tradebook",
+      "destination": "api-reference/it/calculator/tax_pnl/crypto/annexures/tradebook_crypto"
+    },
+    {
+      "source": "reference/crypto-securities-tax-pl-calculator-response-tradewise-tax-pl",
+      "destination": "api-reference/it/calculator/tax_pnl/crypto/annexures/tradewise_tax_pnl_crypto"
+    },
+    {
+      "source": "reference/crypto-securities-tax-pl-reporting-request-tradebook",
+      "destination": "api-reference/it/calculator/tax_pnl/crypto/annexures/tradebook_crypto"
+    },
+    {
+      "source": "reference/cryptocurrency-test-cases",
+      "destination": "/"
+    },
+    {
+      "source": "reference/digilocker-api",
+      "destination": "api-reference/kyc/digilocker/endpoints/initiate_session"
+    },
+    {
+      "source": "reference/digilocker-api-fetch-document",
+      "destination": "api-reference/kyc/digilocker/endpoints/fetch_document"
+    },
+    {
+      "source": "reference/digilocker-api-initiate-session",
+      "destination": "api-reference/kyc/digilocker/endpoints/initiate_session"
+    },
+    {
+      "source": "reference/digilocker-api-session-status",
+      "destination": "api-reference/kyc/digilocker/endpoints/session_status"
+    },
+    {
+      "source": "reference/digilocker-sdk",
+      "destination": "api-reference/kyc/digilocker-sdk/getting-started/introduction"
+    },
+    {
+      "source": "reference/digilocker-sdk-create-session",
+      "destination": "api-reference/kyc/digilocker-sdk/endpoints/create-session"
+    },
+    {
+      "source": "reference/digilocker-sdk-integration",
+      "destination": "api-reference/kyc/digilocker-sdk/getting-started/introduction"
+    },
+    {
+      "source": "reference/digilocker-sdk-session-status",
+      "destination": "api-reference/kyc/digilocker-sdk/endpoints/get-session-status"
+    },
+    {
+      "source": "reference/domestic-securities-tax-pl-calculator-response-scripwise-tax-pl",
+      "destination": "/"
+    },
+    {
+      "source": "reference/domestic-securities-tax-pl-calculator-response-tradewise-tax-pl",
+      "destination": "api-reference/it/calculator/tax_pnl/securities/domestic/annexures/tradewise_tax_pnl_domestic"
+    },
+    {
+      "source": "reference/domestic-securities-tax-pl-calculatorreport-request-scripwise-settlement",
+      "destination": "/"
+    },
+    {
+      "source": "reference/domestic-securities-tax-pl-calculatorreport-request-tradebook",
+      "destination": "api-reference/it/calculator/tax_pnl/securities/domestic/annexures/tradebook_domestic_securities"
+    },
+    {
+      "source": "reference/domestic-securities-tax-pl-calculatorreport-request-tradewise-settlement",
+      "destination": "api-reference/it/calculator/tax_pnl/securities/domestic/annexures/tradewise_settlement_domestic_securities"
+    },
+    {
+      "source": "reference/download-csi-generate-otp",
+      "destination": "api-reference/tds/compliance/download-csi/endpoints/generate_otp"
+    },
+    {
+      "source": "reference/download-csi-verify-otp",
+      "destination": "api-reference/tds/compliance/download-csi/endpoints/verify_otp"
+    },
+    {
+      "source": "reference/download-form-16-api",
+      "destination": "api-reference/tds/compliance/certificate-form16(a)/endpoints/submit_job"
+    },
+    {
+      "source": "reference/download-form-27d",
+      "destination": "/"
+    },
+    {
+      "source": "reference/e-file-tds-return-api",
+      "destination": "api-reference/tds/compliance/e-file/endpoints/submit_job"
+    },
+    {
+      "source": "reference/e-file-tds-return-deprecated-api",
+      "destination": "api-reference/tds/compliance/e-file/endpoints/submit_job"
+    },
+    {
+      "source": "reference/e-file-tds-return-job",
+      "destination": "api-reference/tds/compliance/e-file/endpoints/submit_job"
+    },
+    {
+      "source": "reference/e-file-tds-return-job-status",
+      "destination": "api-reference/tds/compliance/e-file/endpoints/poll_job"
+    },
+    {
+      "source": "reference/e-file-tds-return-job-status-deprecated-api",
+      "destination": "api-reference/tds/compliance/e-file/endpoints/poll_job"
+    },
+    {
+      "source": "reference/e-file-tds-return-poll-job-api",
+      "destination": "api-reference/tds/compliance/e-file/endpoints/poll_job"
+    },
+    {
+      "source": "reference/e-file-tds-return-poll-job-deprecated-api",
+      "destination": "api-reference/tds/compliance/e-file/endpoints/poll_job"
+    },
+    {
+      "source": "reference/e-file-tds-return-submit-job-deprecated-api",
+      "destination": "api-reference/tds/compliance/e-file/endpoints/submit_job"
+    },
+    {
+      "source": "reference/e-invoice-authentication-api",
+      "destination": "api-reference/gst/compliance/endpoints/e-invoice/authenticate"
+    },
+    {
+      "source": "reference/e-way-bill-authentication-api",
+      "destination": "api-reference/gst/compliance/endpoints/e-way-bill/authenticate"
+    },
+    {
+      "source": "reference/e-way-bill-search-gstin-api",
+      "destination": "api-reference/gst/compliance/endpoints/e-way-bill/common/search_gstin"
+    },
+    {
+      "source": "reference/enable-api-access-on-e-invoice-portal",
+      "destination": "api-reference/gst/compliance/guides/e-invoice/create_api_credentials"
+    },
+    {
+      "source": "reference/enable-api-access-on-e-way-bill-portal",
+      "destination": "api-reference/gst/compliance/guides/e-way-bill/create_api_credentials"
+    },
+    {
+      "source": "reference/entities",
+      "destination": "/"
+    },
+    {
+      "source": "reference/entities-2",
+      "destination": "/"
+    },
+    {
+      "source": "reference/entity-locker-sdk",
+      "destination": "api-reference/kyc/entitylocker-sdk/endpoints/create_session"
+    },
+    {
+      "source": "reference/fetch-tcs-certificate-jobs",
+      "destination": "/"
+    },
+    {
+      "source": "reference/fetch-tcs-potential-notice-jobs",
+      "destination": "/"
+    },
+    {
+      "source": "reference/fetch-tcs-report-jobs",
+      "destination": "api-reference/tds/analytics/tcs-analytics/endpoints/fetch_jobs"
+    },
+    {
+      "source": "reference/fetch-tds-certificate-jobs",
+      "destination": "api-reference/tds/compliance/certificate-form16(a)/endpoints/fetch_job"
+    },
+    {
+      "source": "reference/fetch-tds-potential-notice-jobs",
+      "destination": "/"
+    },
+    {
+      "source": "reference/fetch-tds-report-jobs",
+      "destination": "api-reference/tds/analytics/tds-analytics/endpoints/fetch_jobs"
+    },
+    {
+      "source": "reference/fetch-tds-return-jobs",
+      "destination": "api-reference/tds/compliance/e-file/endpoints/search_job"
+    },
+    {
+      "source": "reference/file-gstr-1-api",
+      "destination": "api-reference/gst/compliance/endpoints/taxpayer/gstr-1/file/file"
+    },
+    {
+      "source": "reference/file-gstr-3b-api",
+      "destination": "api-reference/gst/compliance/endpoints/taxpayer/gstr-3b/file"
+    },
+    {
+      "source": "reference/file-gstr-9-api",
+      "destination": "api-reference/gst/compliance/endpoints/taxpayer/gstr-9/file"
+    },
+    {
+      "source": "reference/foreign-securities-tax-pl-calculator-request-tradebook",
+      "destination": "api-reference/it/calculator/tax_pnl/securities/foreign/annexures/tradebook_foreign"
+    },
+    {
+      "source": "reference/foreign-securities-tax-pl-calculator-request-tradewise-settlement",
+      "destination": "api-reference/it/calculator/tax_pnl/securities/foreign/annexures/tradewise_settlement_foreign"
+    },
+    {
+      "source": "reference/foreign-securities-tax-pl-calculator-response-scripwise-tax-pl",
+      "destination": "api-reference/it/calculator/tax_pnl/securities/foreign/annexures/scripwise_tax_pnl_foreign"
+    },
+    {
+      "source": "reference/foreign-securities-tax-pl-calculator-response-tradewise-tax-pl",
+      "destination": "api-reference/it/calculator/tax_pnl/securities/foreign/annexures/tradewise_tax_pnl_foreign"
+    },
+    {
+      "source": "reference/generate-e-invoice-api",
+      "destination": "api-reference/gst/compliance/endpoints/e-invoice/generate_e_invoice"
+    },
+    {
+      "source": "reference/generate-e-invoice-pdf-api",
+      "destination": "api-reference/gst/compliance/endpoints/e-invoice/generate_e_invoice_pdf"
+    },
+    {
+      "source": "reference/generate-e-way-bill-api",
+      "destination": "api-reference/gst/compliance/endpoints/e-way-bill/consignor/generate_e_way_bill"
+    },
+    {
+      "source": "reference/generate-e-way-bill-by-irn-api",
+      "destination": "api-reference/gst/compliance/endpoints/e-invoice/generate_e_way_bill"
+    },
+    {
+      "source": "reference/generate-evc-otp-api",
+      "destination": "api-reference/gst/compliance/endpoints/taxpayer/authentication/generate_evc_otp"
+    },
+    {
+      "source": "reference/generate-fvu-job",
+      "destination": "api-reference/tds/compliance/generate-fvu/endpoints/submit_job"
+    },
+    {
+      "source": "reference/generate-fvu-job-status",
+      "destination": "api-reference/tds/compliance/generate-fvu/endpoints/poll_job"
+    },
+    {
+      "source": "reference/get-e-invoice-by-document-data-api",
+      "destination": "api-reference/gst/compliance/endpoints/e-invoice/get_e_invoice_by_document_data"
+    },
+    {
+      "source": "reference/get-e-invoice-by-irn-api",
+      "destination": "api-reference/gst/compliance/endpoints/e-invoice/get_e_invoice"
+    },
+    {
+      "source": "reference/get-e-way-bill-api",
+      "destination": "api-reference/gst/compliance/endpoints/e-way-bill/common/get_e_way_bill"
+    },
+    {
+      "source": "reference/get-e-way-bill-by-document-data-api",
+      "destination": "api-reference/gst/compliance/endpoints/e-way-bill/consignor/get_e_way_bill_by_document_data"
+    },
+    {
+      "source": "reference/get-e-way-bill-by-irn-api",
+      "destination": "api-reference/gst/compliance/endpoints/e-invoice/get_e_way_bill"
+    },
+    {
+      "source": "reference/get-e-way-bills-by-date-and-state",
+      "destination": "api-reference/gst/compliance/endpoints/e-way-bill/transporter/get_e_way_bills_by_date_and_state"
+    },
+    {
+      "source": "reference/get-error-list-api",
+      "destination": "api-reference/gst/compliance/endpoints/e-way-bill/common/get_error_list"
+    },
+    {
+      "source": "reference/get-hsn-details-api",
+      "destination": "api-reference/gst/compliance/endpoints/e-way-bill/common/get_hsn_details"
+    },
+    {
+      "source": "reference/get-invoice-count-api",
+      "destination": "api-reference/gst/compliance/endpoints/taxpayer/invoices/invoice_count"
+    },
+    {
+      "source": "reference/get-invoices-api",
+      "destination": "api-reference/gst/compliance/endpoints/taxpayer/invoices/invoices"
+    },
+    {
+      "source": "reference/get-it-calculator-securities-domestic-tax-pnl",
+      "destination": "api-reference/it/calculator/tax_pnl/securities/domestic/endpoints/submit_job"
+    },
+    {
+      "source": "reference/get-it-calculator-securities-foreign-tax-pnl",
+      "destination": "api-reference/it/calculator/tax_pnl/securities/foreign/endpoints/submit_job"
+    },
+    {
+      "source": "reference/get-it-reporting-securities-domestic-tax-pnl",
+      "destination": "api-reference/it/report/tax_pnl/securities/domestic/endpoints/submit_job"
+    },
+    {
+      "source": "reference/get-request-2",
+      "destination": "/"
+    },
+    {
+      "source": "reference/get-request-3",
+      "destination": "/"
+    },
+    {
+      "source": "reference/get-session-status-copy",
+      "destination": "/"
+    },
+    {
+      "source": "reference/gst-entities",
+      "destination": "/"
+    },
+    {
+      "source": "reference/gst-invoice-management-system",
+      "destination": "api-reference/gst/compliance/endpoints/taxpayer/invoices/invoices"
+    },
+    {
+      "source": "reference/gst-master-data",
+      "destination": "/"
+    },
+    {
+      "source": "reference/gst-taxpayer-authentication",
+      "destination": "api-reference/gst/compliance/endpoints/taxpayer/authentication/generate_otp"
+    },
+    {
+      "source": "reference/gst-test-cases",
+      "destination": "/"
+    },
+    {
+      "source": "reference/gstr-1-at-api",
+      "destination": "api-reference/gst/compliance/endpoints/taxpayer/gstr-1/documents/at"
+    },
+    {
+      "source": "reference/gstr-1-ata-api",
+      "destination": "api-reference/gst/compliance/endpoints/taxpayer/gstr-1/documents/ata"
+    },
+    {
+      "source": "reference/gstr-1-b2b-api",
+      "destination": "api-reference/gst/compliance/endpoints/taxpayer/gstr-1/documents/b2b"
+    },
+    {
+      "source": "reference/gstr-1-b2ba-api",
+      "destination": "api-reference/gst/compliance/endpoints/taxpayer/gstr-1/documents/b2ba"
+    },
+    {
+      "source": "reference/gstr-1-b2cl-api",
+      "destination": "api-reference/gst/compliance/endpoints/taxpayer/gstr-1/documents/b2cl"
+    },
+    {
+      "source": "reference/gstr-1-b2cla-api",
+      "destination": "api-reference/gst/compliance/endpoints/taxpayer/gstr-1/documents/b2cla"
+    },
+    {
+      "source": "reference/gstr-1-b2cs-api",
+      "destination": "api-reference/gst/compliance/endpoints/taxpayer/gstr-1/documents/b2cs"
+    },
+    {
+      "source": "reference/gstr-1-b2csa-api",
+      "destination": "api-reference/gst/compliance/endpoints/taxpayer/gstr-1/documents/b2csa"
+    },
+    {
+      "source": "reference/gstr-1-cdnr-api",
+      "destination": "api-reference/gst/compliance/endpoints/taxpayer/gstr-1/documents/cdnr"
+    },
+    {
+      "source": "reference/gstr-1-cdnra-api",
+      "destination": "api-reference/gst/compliance/endpoints/taxpayer/gstr-1/documents/cdnra"
+    },
+    {
+      "source": "reference/gstr-1-cdnur-api",
+      "destination": "api-reference/gst/compliance/endpoints/taxpayer/gstr-1/documents/cdnur"
+    },
+    {
+      "source": "reference/gstr-1-cdnura-api",
+      "destination": "api-reference/gst/compliance/endpoints/taxpayer/gstr-1/documents/cdnura"
+    },
+    {
+      "source": "reference/gstr-1-document-issued-api",
+      "destination": "api-reference/gst/compliance/endpoints/taxpayer/gstr-1/documents/doc_issue"
+    },
+    {
+      "source": "reference/gstr-1-exp-api",
+      "destination": "api-reference/gst/compliance/endpoints/taxpayer/gstr-1/documents/exp"
+    },
+    {
+      "source": "reference/gstr-1-expa-api",
+      "destination": "api-reference/gst/compliance/endpoints/taxpayer/gstr-1/documents/expa"
+    },
+    {
+      "source": "reference/gstr-1-hsn-summary-api",
+      "destination": "api-reference/gst/compliance/endpoints/taxpayer/gstr-1/documents/get_hsn"
+    },
+    {
+      "source": "reference/gstr-1-nil-supplies-api",
+      "destination": "api-reference/gst/compliance/endpoints/taxpayer/gstr-1/documents/nil"
+    },
+    {
+      "source": "reference/gstr-1-summary-api",
+      "destination": "api-reference/gst/compliance/endpoints/taxpayer/common/gst_return_status"
+    },
+    {
+      "source": "reference/gstr-2a-amdhist",
+      "destination": "api-reference/gst/compliance/endpoints/taxpayer/gstr-2a/amdhist"
+    },
+    {
+      "source": "reference/gstr-2a-api",
+      "destination": "api-reference/gst/compliance/endpoints/taxpayer/gstr-2a/document"
+    },
+    {
+      "source": "reference/gstr-2a-b2b-api",
+      "destination": "api-reference/gst/compliance/endpoints/taxpayer/gstr-2a/b2b"
+    },
+    {
+      "source": "reference/gstr-2a-b2ba-api",
+      "destination": "api-reference/gst/compliance/endpoints/taxpayer/gstr-2a/b2ba"
+    },
+    {
+      "source": "reference/gstr-2a-cdn-api",
+      "destination": "api-reference/gst/compliance/endpoints/taxpayer/gstr-2a/cdn"
+    },
+    {
+      "source": "reference/gstr-2a-cdna-api",
+      "destination": "api-reference/gst/compliance/endpoints/taxpayer/gstr-2a/cdna"
+    },
+    {
+      "source": "reference/gstr-2a-impg",
+      "destination": "api-reference/gst/compliance/endpoints/taxpayer/gstr-2a/impg"
+    },
+    {
+      "source": "reference/gstr-2a-impgsez",
+      "destination": "api-reference/gst/compliance/endpoints/taxpayer/gstr-2a/impgsez"
+    },
+    {
+      "source": "reference/gstr-2a-isd-api",
+      "destination": "api-reference/gst/compliance/endpoints/taxpayer/gstr-2a/isd"
+    },
+    {
+      "source": "reference/gstr-2a-reconciliation",
+      "destination": "api-reference/gst/analytics/endpoints/gstr-2a-reconciliation/submit_job"
+    },
+    {
+      "source": "reference/gstr-2a-tcs",
+      "destination": "api-reference/gst/compliance/endpoints/taxpayer/gstr-2a/tcs"
+    },
+    {
+      "source": "reference/gstr-2a-tds",
+      "destination": "api-reference/gst/compliance/endpoints/taxpayer/gstr-2a/tds"
+    },
+    {
+      "source": "reference/gstr-2b-api",
+      "destination": "api-reference/gst/compliance/endpoints/taxpayer/gstr-2b/document"
+    },
+    {
+      "source": "reference/gstr-2b-reconciliation",
+      "destination": "api-reference/gst/analytics/endpoints/gstr-2b-reconciliation/submit_job"
+    },
+    {
+      "source": "reference/gstr-2b-regeneration-status",
+      "destination": "api-reference/gst/compliance/endpoints/taxpayer/gstr-2b/gstr_2b_regeneration_status"
+    },
+    {
+      "source": "reference/gstr-3b-details-api",
+      "destination": "api-reference/gst/compliance/endpoints/taxpayer/gstr-3b/gstr_3b_details"
+    },
+    {
+      "source": "reference/gstr-3b-offset-liability",
+      "destination": "api-reference/gst/compliance/endpoints/taxpayer/gstr-3b/offset_liability"
+    },
+    {
+      "source": "reference/gstr-9-auto-calculated-details-api",
+      "destination": "api-reference/gst/compliance/endpoints/taxpayer/gstr-9/auto_calculated_details"
+    },
+    {
+      "source": "reference/gstr-9-get-details-api",
+      "destination": "api-reference/gst/compliance/endpoints/taxpayer/gstr-9/gstr_9_details"
+    },
+    {
+      "source": "reference/gstr-status-api",
+      "destination": "api-reference/gst/compliance/endpoints/taxpayer/common/gst_return_status"
+    },
+    {
+      "source": "reference/ifsc-verification-api",
+      "destination": "api-reference/kyc/bank/endpoints/ifsc_verification"
+    },
+    {
+      "source": "reference/income-tax-annexures",
+      "destination": "api-reference/it/calculator/tax_pnl/securities/domestic/annexures/tradebook_domestic_securities"
+    },
+    {
+      "source": "reference/income-tax-test-cases",
+      "destination": "/"
+    },
+    {
+      "source": "reference/irp-einv-search-gstin-details",
+      "destination": "api-reference/gst/compliance/endpoints/e-invoice/search_gstin"
+    },
+    {
+      "source": "reference/it-reports-tax-pnl-securities-poll-job",
+      "destination": "api-reference/it/report/tax_pnl/securities/domestic/endpoints/poll_job"
+    },
+    {
+      "source": "reference/it-reports-tax-pnl-securities-submit-job",
+      "destination": "api-reference/it/report/tax_pnl/securities/domestic/endpoints/submit_job"
+    },
+    {
+      "source": "reference/itc-ledger-api",
+      "destination": "api-reference/gst/compliance/endpoints/taxpayer/ledgers/itc_ledger"
+    },
+    {
+      "source": "reference/job-status-calculator-domestic-securities",
+      "destination": "api-reference/it/calculator/tax_pnl/securities/domestic/endpoints/job_status"
+    },
+    {
+      "source": "reference/job-status-it-calculator-securities-foreign",
+      "destination": "api-reference/it/calculator/tax_pnl/securities/foreign/endpoints/job_status"
+    },
+    {
+      "source": "reference/job-status-reporting-crypto",
+      "destination": "api-reference/it/calculator/tax_pnl/crypto/endpoints/job_status"
+    },
+    {
+      "source": "reference/job-status-reporting-foreign-securities",
+      "destination": "/"
+    },
+    {
+      "source": "reference/json-to-xlsx-submit-job-api",
+      "destination": "/"
+    },
+    {
+      "source": "reference/kyc-master-data",
+      "destination": "/"
+    },
+    {
+      "source": "reference/list-e-way-bills-by-generator",
+      "destination": "api-reference/gst/compliance/endpoints/e-way-bill/transporter/list_e_way_bills_by_generator"
+    },
+    {
+      "source": "reference/list-purchase-e-invoices-job-api",
+      "destination": "api-reference/gst/compliance/endpoints/taxpayer/e-invoice/list_purchase_invoices_job"
+    },
+    {
+      "source": "reference/list-purchase-e-invoices-job-status-api",
+      "destination": "api-reference/gst/compliance/endpoints/taxpayer/e-invoice/list_purchase_invoices_job_status"
+    },
+    {
+      "source": "reference/list-sales-e-invoices-job-api",
+      "destination": "api-reference/gst/compliance/endpoints/taxpayer/e-invoice/list_sales_invoices_job"
+    },
+    {
+      "source": "reference/list-sales-e-invoices-job-status-api",
+      "destination": "api-reference/gst/compliance/endpoints/taxpayer/e-invoice/list_sales_invoices_job_status"
+    },
+    {
+      "source": "reference/mca-api-guide",
+      "destination": "api-reference/kyc/mca/company_master_data"
+    },
+    {
+      "source": "reference/mca-company-master-data-api",
+      "destination": "api-reference/kyc/mca/company_master_data"
+    },
+    {
+      "source": "reference/mca-director-master-data-api",
+      "destination": "api-reference/kyc/mca/director_master_data"
+    },
+    {
+      "source": "reference/new-proceed-to-file-api",
+      "destination": "api-reference/gst/compliance/endpoints/taxpayer/gstr-1/file/new_proceed"
+    },
+    {
+      "source": "reference/non-salary-payments",
+      "destination": "api-reference/tds/reports/tds-reports/non_salary_payments"
+    },
+    {
+      "source": "reference/non-salary-payments-potential-notice",
+      "destination": "/"
+    },
+    {
+      "source": "reference/nri-payments",
+      "destination": "api-reference/tds/reports/tds-reports/nri_payments"
+    },
+    {
+      "source": "reference/nri-payments-potential-notice",
+      "destination": "/"
+    },
+    {
+      "source": "reference/pan-aadhaar-link-status-api",
+      "destination": "api-reference/kyc/pan/endpoints/pan_aadhaar_link_status"
+    },
+    {
+      "source": "reference/pan-aadhaar-link-status-check",
+      "destination": "api-reference/kyc/pan/endpoints/pan_aadhaar_link_status"
+    },
+    {
+      "source": "reference/pan-verification-advance-api",
+      "destination": "api-reference/kyc/pan/endpoints/verify_pan_details"
+    },
+    {
+      "source": "reference/poll-job",
+      "destination": "/"
+    },
+    {
+      "source": "reference/poll-job-form16-api",
+      "destination": "api-reference/tds/compliance/certificate-form16(a)/endpoints/poll_job"
+    },
+    {
+      "source": "reference/poll-job-form27d",
+      "destination": "/"
+    },
+    {
+      "source": "reference/post-it-calculator-securities-domestic-tax-pnl",
+      "destination": "api-reference/it/calculator/tax_pnl/securities/domestic/endpoints/submit_job"
+    },
+    {
+      "source": "reference/post-it-calculator-securities-foreign-tax-pnl",
+      "destination": "api-reference/it/calculator/tax_pnl/securities/foreign/endpoints/submit_job"
+    },
+    {
+      "source": "reference/post-it-reporting-securities-domestic-tax-pnl",
+      "destination": "api-reference/it/report/tax_pnl/securities/domestic/endpoints/submit_job"
+    },
+    {
+      "source": "reference/post-it-reporting-securities-foreign-tax-pnl",
+      "destination": "/"
+    },
+    {
+      "source": "reference/prepare-form-27eq-tcs-return",
+      "destination": "/"
+    },
+    {
+      "source": "reference/prepare-itr",
+      "destination": "/"
+    },
+    {
+      "source": "reference/prepare-tds-return",
+      "destination": "/"
+    },
+    {
+      "source": "reference/prepare-tds-return-api",
+      "destination": "/"
+    },
+    {
+      "source": "reference/prepare-tds-return-job-status",
+      "destination": "/"
+    },
+    {
+      "source": "reference/prepare-tds-return-job-status-api",
+      "destination": "/"
+    },
+    {
+      "source": "reference/proceed-to-file-api",
+      "destination": "api-reference/gst/compliance/endpoints/taxpayer/gstr-9/proceed"
+    },
+    {
+      "source": "reference/put-request-1",
+      "destination": "api-reference/it/calculator/tax_pnl/securities/domestic/endpoints/put_request"
+    },
+    {
+      "source": "reference/put-request-tcs-potential-notice",
+      "destination": "/"
+    },
+    {
+      "source": "reference/put-request-zip-fvu-form-27a",
+      "destination": "/"
+    },
+    {
+      "source": "reference/read-form16-document",
+      "destination": "api-reference/it/ocr/form_16/endpoints/read_form_16"
+    },
+    {
+      "source": "reference/reconcile-gstr-2a-job",
+      "destination": "api-reference/gst/analytics/endpoints/gstr-2a-reconciliation/submit_job"
+    },
+    {
+      "source": "reference/reconcile-gstr-2a-job-status-api",
+      "destination": "api-reference/gst/analytics/endpoints/gstr-2a-reconciliation/poll_job"
+    },
+    {
+      "source": "reference/reconcile-gstr-2b-job",
+      "destination": "api-reference/gst/analytics/endpoints/gstr-2b-reconciliation/submit_job"
+    },
+    {
+      "source": "reference/reconcile-gstr-2b-job-status-api",
+      "destination": "api-reference/gst/analytics/endpoints/gstr-2b-reconciliation/poll_job"
+    },
+    {
+      "source": "reference/regenerate-gstr-2b",
+      "destination": "api-reference/gst/compliance/endpoints/taxpayer/gstr-2b/regenerate_gstr_2b"
+    },
+    {
+      "source": "reference/reject-e-way-bill-api",
+      "destination": "api-reference/gst/compliance/endpoints/e-way-bill/consignee/reject_e_way_bill"
+    },
+    {
+      "source": "reference/remember-credentials-preference",
+      "destination": "api-reference/gst/compliance/endpoints/taxpayer/common/get_filing_preference"
+    },
+    {
+      "source": "reference/reset-gstr-1-api",
+      "destination": "api-reference/gst/compliance/endpoints/taxpayer/gstr-1/file/reset"
+    },
+    {
+      "source": "reference/reset-invoice-status-api",
+      "destination": "api-reference/gst/compliance/endpoints/taxpayer/invoices/reset"
+    },
+    {
+      "source": "reference/return-related-ledger-api",
+      "destination": "api-reference/gst/compliance/endpoints/taxpayer/ledgers/return_liability_ledger"
+    },
+    {
+      "source": "reference/salary-payments",
+      "destination": "api-reference/tds/reports/tds-reports/salary_payments"
+    },
+    {
+      "source": "reference/salary-payments-potential-notice",
+      "destination": "/"
+    },
+    {
+      "source": "reference/save-gstr-1-api",
+      "destination": "api-reference/gst/compliance/endpoints/taxpayer/gstr-1/file/save"
+    },
+    {
+      "source": "reference/save-gstr-3b-api",
+      "destination": "api-reference/gst/compliance/endpoints/taxpayer/gstr-3b/save"
+    },
+    {
+      "source": "reference/save-gstr-9-api",
+      "destination": "api-reference/gst/compliance/endpoints/taxpayer/gstr-9/save"
+    },
+    {
+      "source": "reference/save-invoice-status-api",
+      "destination": "api-reference/gst/compliance/endpoints/taxpayer/invoices/save"
+    },
+    {
+      "source": "reference/search-e-file-tds-return-jobs",
+      "destination": "api-reference/tds/compliance/e-file/endpoints/search_job"
+    },
+    {
+      "source": "reference/search-generate-fvu-jobs",
+      "destination": "api-reference/tds/compliance/generate-fvu/endpoints/search_job"
+    },
+    {
+      "source": "reference/search-gstin-api",
+      "destination": "api-reference/gst/compliance/endpoints/public/search_gstin"
+    },
+    {
+      "source": "reference/search-gstin-by-pan-api",
+      "destination": "api-reference/gst/compliance/endpoints/public/search_pan_state_code"
+    },
+    {
+      "source": "reference/search-tan-api",
+      "destination": "/"
+    },
+    {
+      "source": "reference/search-transin-api",
+      "destination": "api-reference/gst/compliance/endpoints/e-way-bill/common/search_transporter"
+    },
+    {
+      "source": "reference/section-206ab-206cca-compliance-check-sync-api",
+      "destination": "/"
+    },
+    {
+      "source": "reference/section-8a-details-api",
+      "destination": "api-reference/gst/compliance/endpoints/taxpayer/gstr-9/section_8a_details"
+    },
+    {
+      "source": "reference/submit-job-calculator-domestic-securities",
+      "destination": "api-reference/it/calculator/tax_pnl/securities/domestic/endpoints/submit_job"
+    },
+    {
+      "source": "reference/submit-job-it-calculator-securities-foreign",
+      "destination": "api-reference/it/calculator/tax_pnl/securities/foreign/endpoints/submit_job"
+    },
+    {
+      "source": "reference/submit-job-reporting-crypto",
+      "destination": "api-reference/it/calculator/tax_pnl/crypto/endpoints/submit_job"
+    },
+    {
+      "source": "reference/submit-job-reporting-foreign-securities",
+      "destination": "/"
+    },
+    {
+      "source": "reference/taxpayer-generate-otp-api",
+      "destination": "api-reference/gst/compliance/endpoints/taxpayer/authentication/generate_otp"
+    },
+    {
+      "source": "reference/taxpayer-get-e-invoice-by-irn-api",
+      "destination": "api-reference/gst/compliance/endpoints/taxpayer/e-invoice/e_invoice"
+    },
+    {
+      "source": "reference/taxpayer-logout-api",
+      "destination": "api-reference/gst/compliance/endpoints/taxpayer/authentication/logout"
+    },
+    {
+      "source": "reference/taxpayer-refresh-access-token-api",
+      "destination": "api-reference/gst/compliance/endpoints/taxpayer/authentication/refresh_session"
+    },
+    {
+      "source": "reference/taxpayer-verify-otp-api",
+      "destination": "api-reference/gst/compliance/endpoints/taxpayer/authentication/verify_otp"
+    },
+    {
+      "source": "reference/tcs-poll-job",
+      "destination": "api-reference/tds/analytics/tcs-analytics/endpoints/poll_job"
+    },
+    {
+      "source": "reference/tcs-potential-notice-check-api",
+      "destination": "/"
+    },
+    {
+      "source": "reference/tcs-potential-notice-poll-job-api",
+      "destination": "/"
+    },
+    {
+      "source": "reference/tcs-submit-job",
+      "destination": "api-reference/tds/analytics/tcs-analytics/endpoints/submit_job"
+    },
+    {
+      "source": "reference/tds-entities",
+      "destination": "/"
+    },
+    {
+      "source": "reference/tds-master-data",
+      "destination": "/"
+    },
+    {
+      "source": "reference/tds-on-salary-calculator-api-bulk",
+      "destination": "api-reference/tds/calculator/tds-calculator/endpoints/submit_job_salary"
+    },
+    {
+      "source": "reference/tds-potential-notice-check-api",
+      "destination": "/"
+    },
+    {
+      "source": "reference/tds-potential-notice-poll-job-api",
+      "destination": "/"
+    },
+    {
+      "source": "reference/tds-reports-master-data",
+      "destination": "/"
+    },
+    {
+      "source": "reference/tds-test-cases",
+      "destination": "/"
+    },
+    {
+      "source": "reference/track-gst-returns-api",
+      "destination": "api-reference/gst/compliance/endpoints/public/track_gstrs"
+    },
+    {
+      "source": "reference/tradebook",
+      "destination": "api-reference/it/calculator/tax_pnl/securities/domestic/annexures/tradebook_domestic_securities"
+    },
+    {
+      "source": "reference/tradewise-tax-pl-crypto-reporting",
+      "destination": "api-reference/it/calculator/tax_pnl/crypto/annexures/tradewise_tax_pnl_crypto"
+    },
+    {
+      "source": "reference/transporter-extend-e-way-bill-validity-api",
+      "destination": "api-reference/gst/compliance/endpoints/e-way-bill/transporter/extend_validity"
+    },
+    {
+      "source": "reference/transporter-update-transporter-api",
+      "destination": "api-reference/gst/compliance/endpoints/e-way-bill/transporter/update_transporter"
+    },
+    {
+      "source": "reference/transporter-update-vehicle-details-part-b-api",
+      "destination": "api-reference/gst/compliance/endpoints/e-way-bill/transporter/update_vehicle_details"
+    },
+    {
+      "source": "reference/upi-verification-api",
+      "destination": "/"
+    },
+    {
+      "source": "reference/upload-gstr-2a",
+      "destination": "/"
+    },
+    {
+      "source": "reference/upload-gstr-2b",
+      "destination": "/"
+    },
+    {
+      "source": "reference/upload-purchase-ledger",
+      "destination": "/"
+    },
+    {
+      "source": "reference/verify-pan-details-api",
+      "destination": "api-reference/kyc/pan/endpoints/verify_pan_details"
+    },
+    {
+      "source": "reference/xlsx-to-json-submit-job-api",
+      "destination": "/"
+    },
+    {
+      "source": "v3.0",
+      "destination": "/"
+    },
+    {
+      "source": "v3.0/",
+      "destination": "/"
+    },
+    {
+      "source": "v3.0/changelog",
+      "destination": "changelog"
+    },
+    {
+      "source": "v3.0/discuss",
+      "destination": "/"
+    },
+    {
+      "source": "v3.0/docs",
+      "destination": "/"
+    },
+    {
+      "source": "v3.0/docs/tds-master-data",
+      "destination": "/"
+    },
+    {
+      "source": "v3.0/recipes",
+      "destination": "recipes/kyc/introduction"
+    },
+    {
+      "source": "v3.0/reference",
+      "destination": "/"
+    }
+  ]
 }
