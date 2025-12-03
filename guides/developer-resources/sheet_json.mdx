@@ -1,38 +1,6 @@
 ---
-title: "Environments"
+title: "Sheet JSON"
 ---
-
-### **Host URLs**
-
-Please find below the distinct host URLs for our production and test environments.
-
-| **Environment** | **Host URL**                                            |
-| :-------------- | :------------------------------------------------------ |
-| Test            | [test-api.sandbox.co.in](http://test-api.sandbox.co.in) |
-| Production      | [api.sandbox.co.in](http://api.sandbox.co.in)           |
-
-### **Request & Response Structure**
-
-Sandbox API requests will take JSON-encoded payloads, query, and path parameters and provide standard JSON-encoded responses. All `GET` and `DELETE` API requests take path and/or query parameters. Meanwhile, `POST` API request accepts JSON-encoded body. Please note that there might be some exceptions which will be informed in the API doc and reference.
-
-In some APIs, the JSON body will be in a sheet structure format.
-
-### **Headers**
-
-Below are the headers that are present in Sandbox APIs
-
-| **Header**    | **Mandatory** | **Description**                                                       | **Example**                       |
-| :------------ | :------------ | :-------------------------------------------------------------------- | :-------------------------------- |
-| x-api-key     | Yes           | API key                                                               | key_live_SIethxxxxxxxx            |
-| authorization | Yes           | JWT access token / Resource owner token                               | eyJhbGcxxxxx.eyJhdJxxxx.Si29xxxxx |
-| x-api-secret  | No            | API secret. Required in Authenticate API to generate JWT access token | secret_live_xxxxxxxxxxx           |
-| x-api-version | No            | API version                                                           | 1.0                               |
-| x-source      | No            | Specify the source. Default is primary                                | secondary                         |
-| Cache-Control | No            | Send with value as no-cache to get latest data                        | no-cache                          |
-| Content-Type  | No            | The content type being sent in the request                            | application/json                  |
-
-### **Sheet Structure**
-
 APIs with volumetric data will either require or respond back in the form of a sheet structure. A sheet structure mimics an Excel or Google Sheet. This allows API users to send/receive more data in a smaller JSON format. The sheet will be divided into multiple blocks, which will have data either in a table or list format.
 
 [View an example workbook for TDS Form 24Q.](https://docs.google.com/spreadsheets/d/1GS3LVBYxAturviZ-NgzC20yJwDI0hQiy/edit?gid=105692586#gid=105692586)
