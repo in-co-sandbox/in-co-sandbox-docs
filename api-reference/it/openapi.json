@@ -149,23 +149,43 @@
           {
             "name": "input",
             "in": "query",
-            "required": false,
+            "required": true,
+            "description": "Type of input file. Allowed values: tradewise_settlement or tradebook.",
             "deprecated": false,
-            "schema": {}
+            "schema": {
+              "type": "string",
+              "default": "tradewise_settlement",
+              "enum": [
+                "tradewise_settlement",
+                "tradebook"
+              ]
+            }
           },
           {
             "name": "output",
             "in": "query",
-            "required": false,
+            "required": true,
+            "description": "Output format to generate. Allowed values: tradewise_tax_pnl or scripwise_tax_pnl.",
             "deprecated": false,
-            "schema": {}
+            "schema": {
+              "type": "string",
+              "default": "tradewise_tax_pnl",
+              "enum": [
+                "tradewise_tax_pnl",
+                "scripwise_tax_pnl"
+              ]
+            }
           },
           {
             "name": "financial_year",
             "in": "query",
-            "required": false,
+            "required": true,
+            "description": "Financial year for which the report is generated. Use format FY 20XX-XX (e.g., FY 2024-25).",
             "deprecated": false,
-            "schema": {}
+            "schema": {
+              "type": "string",
+              "pattern": "^FY\\s20\\d{2}-\\d{2}$"
+            }
           },
           {
             "name": "x-accept-type",
@@ -179,6 +199,7 @@
             "name": "x-api-key",
             "in": "header",
             "required": false,
+            "description": "Your API key used to authenticate and authorize the request.",
             "deprecated": false,
             "schema": {}
           },
@@ -186,6 +207,7 @@
             "name": "x-api-version",
             "in": "header",
             "required": false,
+            "description": "Indicates the version of the API you want to use. Ensures backward-compatible behavior.",
             "deprecated": false,
             "schema": {}
           },
@@ -193,6 +215,7 @@
             "name": "Authorization",
             "in": "header",
             "required": false,
+            "description": "Bearer token for user-level authorization. Typically passed as Bearer {{access_token}}.",
             "deprecated": false,
             "schema": {}
           }
@@ -363,14 +386,17 @@
           {
             "name": "job_id",
             "in": "query",
-            "description": "(Required) ",
-            "schema": {
-              "type": "string"
-            }
+            "required": true,
+            "description": "Unique identifier of the job whose processing status you want to fetch. Returned in the response when a tax P&L job is created.",
+            "deprecated": false,
+            "schema": {}
           },
           {
             "name": "Authorization",
             "in": "header",
+            "required": true,
+            "description": "Bearer token for user-level authorization. Typically passed as Bearer {{access_token}}.",
+            "deprecated": false,
             "schema": {
               "type": "string"
             }
@@ -378,6 +404,9 @@
           {
             "name": "x-api-key",
             "in": "header",
+            "required": true,
+            "description": "Your API key used to authenticate and authorize the request.",
+            "deprecated": false,
             "schema": {
               "type": "string"
             }
@@ -385,8 +414,10 @@
           {
             "name": "x-api-version",
             "in": "header",
+            "description": "Indicates the version of the API you want to use. Ensures backward-compatible behavior.",
             "schema": {
-              "type": "string"
+              "type": "string",
+              "default": "1.0.0"
             }
           }
         ],
@@ -516,35 +547,55 @@
           {
             "name": "report",
             "in": "query",
+            "required": true,
+            "description": "Specifies the report type to fetch",
+            "deprecated": false,
             "schema": {
-              "type": "string"
+              "type": "string",
+              "default": "tradewise"
             }
           },
           {
             "name": "from",
             "in": "query",
+            "required": true,
+            "description": "Start of the date range filter in Unix Epoch timestamp (milliseconds). Settlements from this timestamp onward will be included",
+            "deprecated": false,
             "schema": {
-              "type": "integer"
+              "type": "number"
             }
           },
           {
             "name": "to",
             "in": "query",
+            "required": true,
+            "description": "End of the date range filter in Unix Epoch timestamp (milliseconds). Settlements up to this timestamp will be included.",
+            "deprecated": false,
             "schema": {
-              "type": "integer"
+              "type": "number"
             }
           },
           {
             "name": "x-accept-type",
             "in": "header",
-            "description": "application/json or application/xlsx",
+            "required": true,
+            "description": "Specifies the response format expected from the API. Use application/json for JSON responses or application/xlsx for Excel file downloads.application/xlsx",
+            "deprecated": false,
             "schema": {
-              "type": "string"
+              "type": "string",
+              "default": "application/json",
+              "enum": [
+                "application/json",
+                "application/xlsx"
+              ]
             }
           },
           {
             "name": "x-api-key",
             "in": "header",
+            "required": true,
+            "description": "Specifies the response format expected from the API. Use application/json for JSON responses or application/xlsx for Excel file downloads.application/xlsx",
+            "deprecated": false,
             "schema": {
               "type": "string"
             }
@@ -552,13 +603,20 @@
           {
             "name": "x-api-version",
             "in": "header",
+            "required": false,
+            "description": "Indicates the version of the API you want to use. Ensures backward-compatible behavior.",
+            "deprecated": false,
             "schema": {
-              "type": "string"
+              "type": "string",
+              "default": "1.0.0"
             }
           },
           {
             "name": "Authorization",
             "in": "header",
+            "required": true,
+            "description": "Bearer token for user-level authorization. Typically passed as Bearer {{access_token}}.",
+            "deprecated": false,
             "schema": {
               "type": "string"
             }
@@ -651,21 +709,35 @@
           {
             "name": "job_id",
             "in": "query",
+            "required": true,
+            "description": "Unique identifier of the job whose processing status you want to fetch. Returned in the response when a tax P&L job is created.",
+            "deprecated": false,
             "schema": {
-              "type": "string"
+              "type": "string",
+              "format": "uuid"
             }
           },
           {
             "name": "x-accept-type",
             "in": "header",
-            "description": "application/json or application/xlsx",
+            "required": true,
+            "description": "Specifies the response format expected from the API. Use application/json for JSON responses or application/xlsx for Excel file downloads.application/xlsx",
+            "deprecated": false,
             "schema": {
-              "type": "string"
+              "type": "string",
+              "default": "application/json",
+              "enum": [
+                "application/xlsx",
+                "application/json"
+              ]
             }
           },
           {
             "name": "x-api-key",
             "in": "header",
+            "required": true,
+            "description": "Your API key used to authenticate and authorize the request.",
+            "deprecated": false,
             "schema": {
               "type": "string"
             }
@@ -673,6 +745,9 @@
           {
             "name": "x-api-version",
             "in": "header",
+            "required": false,
+            "description": "Indicates the version of the API you want to use. Ensures backward-compatible behavior.",
+            "deprecated": false,
             "schema": {
               "type": "string"
             }
@@ -680,6 +755,9 @@
           {
             "name": "Authorization",
             "in": "header",
+            "required": true,
+            "description": "Bearer token for user-level authorization. Typically passed as Bearer {{access_token}}.",
+            "deprecated": false,
             "schema": {
               "type": "string"
             }
@@ -10884,35 +10962,65 @@
           {
             "name": "input",
             "in": "query",
+            "required": true,
+            "description": "Type of input file. Allowed values: tradewise_settlement or tradebook.",
+            "deprecated": false,
             "schema": {
-              "type": "string"
+              "type": "string",
+              "default": "tradewise_settlement",
+              "enum": [
+                "tradewise_settlement",
+                " tradebook"
+              ]
             }
           },
           {
             "name": "output",
             "in": "query",
+            "required": true,
+            "description": "Output format to generate. Allowed values: tradewise_tax_pnl or scripwise_tax_pnl.",
+            "deprecated": false,
             "schema": {
-              "type": "string"
+              "type": "string",
+              "default": "tradewise_tax_pnl",
+              "enum": [
+                "tradewise_tax_pnl",
+                "scripwise_tax_pnl"
+              ]
             }
           },
           {
             "name": "financial_year",
             "in": "query",
+            "required": true,
+            "description": "Financial year for which the report is generated. Use format FY 20XX-XX (e.g., FY 2024-25).",
+            "deprecated": false,
             "schema": {
-              "type": "string"
+              "type": "string",
+              "pattern": "^FY\\s20\\d{2}-\\d{2}$"
             }
           },
           {
             "name": "x-accept-type",
             "in": "header",
-            "description": "application/json or application/xlsx",
+            "required": true,
+            "description": "Specifies the response format expected from the API. Use application/json for JSON responses or application/xlsx for Excel file downloads.application/xlsx",
+            "deprecated": false,
             "schema": {
-              "type": "string"
+              "type": "string",
+              "default": "application/json",
+              "enum": [
+                "application/json",
+                "application/xlsx "
+              ]
             }
           },
           {
             "name": "x-api-key",
             "in": "header",
+            "required": true,
+            "description": "Your API key used to authenticate and authorize the request.",
+            "deprecated": false,
             "schema": {
               "type": "string"
             }
@@ -10920,13 +11028,18 @@
           {
             "name": "x-api-version",
             "in": "header",
+            "description": "Indicates the version of the API you want to use. Ensures backward-compatible behavior.",
             "schema": {
-              "type": "string"
+              "type": "string",
+              "default": "1.0.0"
             }
           },
           {
             "name": "Authorization",
             "in": "header",
+            "required": true,
+            "description": "Bearer token for user-level authorization. Typically passed as Bearer {{access_token}}.",
+            "deprecated": false,
             "schema": {
               "type": "string"
             }
@@ -10945,31 +11058,44 @@
           {
             "name": "job_id",
             "in": "query",
-            "required": false,
-            "description": "(Required) ",
+            "required": true,
+            "description": "Unique identifier of the job whose processing status you want to fetch. Returned in the response when a tax P&L job is created.",
             "deprecated": false,
-            "schema": {}
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
           },
           {
             "name": "Authorization",
             "in": "header",
-            "required": false,
+            "required": true,
+            "description": "Bearer token for user-level authorization. Typically passed as Bearer {{access_token}}.",
             "deprecated": false,
-            "schema": {}
+            "schema": {
+              "type": "string"
+            }
           },
           {
             "name": "x-api-key",
             "in": "header",
-            "required": false,
+            "required": true,
+            "description": "Your API key used to authenticate and authorize the request.",
             "deprecated": false,
-            "schema": {}
+            "schema": {
+              "type": "string"
+            }
           },
           {
             "name": "x-api-version",
             "in": "header",
-            "required": false,
+            "required": true,
+            "description": "Bearer token for user-level authorization. Typically passed as Bearer {{access_token}}.",
             "deprecated": false,
-            "schema": {}
+            "schema": {
+              "type": "string",
+              "default": "1.0.0"
+            }
           }
         ],
         "responses": {
@@ -11653,28 +11779,50 @@
           {
             "name": "input",
             "in": "query",
+            "required": true,
+            "description": "Type of input file. Allowed values: tradewise_settlement or tradebook.",
+            "deprecated": false,
             "schema": {
-              "type": "string"
+              "type": "string",
+              "default": "tradewise_settlement",
+              "enum": [
+                "tradewise_settlement",
+                "tradebook"
+              ]
             }
           },
           {
             "name": "financial_year",
             "in": "query",
+            "required": true,
+            "description": "Financial year for which the report is generated. Use format FY 20XX-XX (e.g., FY 2024-25).",
+            "deprecated": false,
             "schema": {
-              "type": "string"
+              "type": "string",
+              "pattern": "^FY\\s20\\d{2}-\\d{2}$"
             }
           },
           {
             "name": "x-accept-type",
             "in": "header",
-            "description": "application/json or application/xlsx",
+            "required": true,
+            "description": "Specifies the response format expected from the API. Use application/json for JSON responses or application/xlsx for Excel file downloads.",
+            "deprecated": false,
             "schema": {
-              "type": "string"
+              "type": "string",
+              "default": "application/xlsx",
+              "enum": [
+                "application/xlsx",
+                "application/json"
+              ]
             }
           },
           {
             "name": "x-api-key",
             "in": "header",
+            "required": false,
+            "description": "Your API key used to authenticate and authorize the request.",
+            "deprecated": false,
             "schema": {
               "type": "string"
             }
@@ -11682,13 +11830,18 @@
           {
             "name": "x-api-version",
             "in": "header",
+            "description": "Indicates the version of the API you want to use. Ensures backward-compatible behavior.",
             "schema": {
-              "type": "string"
+              "type": "string",
+              "default": "1.0.0"
             }
           },
           {
             "name": "Authorization",
             "in": "header",
+            "required": true,
+            "description": "Bearer token for user-level authorization. Typically passed as Bearer {{access_token}}.",
+            "deprecated": false,
             "schema": {
               "type": "string"
             }
@@ -11793,31 +11946,41 @@
           {
             "name": "job_id",
             "in": "query",
-            "description": "(Required) ",
+            "required": false,
+            "description": "Unique identifier of the job whose processing status you want to fetch. Returned in the response when a tax P&L job is created.",
+            "deprecated": false,
+            "schema": {}
+          },
+          {
+            "name": "Authorization",
+            "in": "header",
+            "required": true,
+            "description": "Bearer token for user-level authorization. Typically passed as Bearer {{access_token}}.",
+            "deprecated": false,
             "schema": {
               "type": "string"
             }
           },
           {
-            "name": "Authorization",
-            "in": "header",
-            "required": false,
-            "deprecated": false,
-            "schema": {}
-          },
-          {
             "name": "x-api-key",
             "in": "header",
-            "required": false,
+            "required": true,
+            "description": "Your API key used to authenticate and authorize the request.",
             "deprecated": false,
-            "schema": {}
+            "schema": {
+              "type": "string"
+            }
           },
           {
             "name": "x-api-version",
             "in": "header",
             "required": false,
+            "description": "Indicates the version of the API you want to use. Ensures backward-compatible behavior.",
             "deprecated": false,
-            "schema": {}
+            "schema": {
+              "type": "string",
+              "default": "1.0.0"
+            }
           }
         ],
         "responses": {

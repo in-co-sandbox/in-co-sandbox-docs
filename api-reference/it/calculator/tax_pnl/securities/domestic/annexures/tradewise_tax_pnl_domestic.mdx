@@ -1,5 +1,5 @@
 ---
-title: "Tradewise Tax P&L | Domestic Securities"
+title: "Tradewise Tax P&L"
 ---
 
 ## Tax Pnl Summary Sheet
@@ -152,7 +152,7 @@ title: "Tradewise Tax P&L | Domestic Securities"
 | Transfer Date | `number` | Yes | Date on which the transfer completed |
 | Price | `number` | Yes | Price per unit transferred |
 | Transfer Type | `string` | Yes | Indicates whether the transfer is `IN` or `OUT` |
-| Nature Of Transfer | `string` | Yes | See [Nature of Settlement](https://developer.sandbox.co.in/reference/annexures#annexure-2-nature-of-settlement) |
+| Nature Of Transfer | `string` | Yes | See [Nature of Settlement](/api-reference/it/calculator/tax_pnl/securities/domestic/annexures/labels) |
 | Transfer Value | `number` | Yes | Total trading amount |
 | Transfer Expense | `number` | No | Expense relating to the transfer of stock |
 
@@ -160,7 +160,7 @@ title: "Tradewise Tax P&L | Domestic Securities"
 
 | Param | Type | Required | Description |
 | :---- | :------- | :------- | :---------- |
-| Nature Of Transaction | `string` | Yes | See [Nature of Settlement](https://developer.sandbox.co.in/reference/annexures#annexure-2-nature-of-settlement) |
+| Nature Of Transaction | `string` | Yes | See [Nature of Settlement](/api-reference/it/calculator/tax_pnl/securities/domestic/annexures/labels) |
 | Total Transaction Value | `number` | Yes | Sum of all transaction values |
 | Realised Pnl | `number` | Yes | Profit/loss without transfer costs |
 | Transfer Expense | `number` | No | Expense relating to the transfer |
@@ -176,7 +176,7 @@ title: "Tradewise Tax P&L | Domestic Securities"
 | Buy Date | `number` | Yes | Date on which the equity stock was bought |
 | Buy Price | `number` | Yes | Price per unit at buy |
 | Transaction Type | `string` | Yes | One of `buy`, `sell`, `send`, `receive`, or `trade` |
-| Label | `string` | No | See [Labels](https://developer.sandbox.co.in/reference/annexures#annexure-1-labels) |
+| Label | `string` | No | See [Labels](/api-reference/it/calculator/tax_pnl/securities/domestic/annexures/labels) |
 | Last Traded Price | `string` | No | Last market price of the equity stock |
 
 ### Stock Tradewise Open Sell Table
@@ -189,7 +189,7 @@ title: "Tradewise Tax P&L | Domestic Securities"
 | Sell Date | `number` | Yes | Date on which the equity stock was sold |
 | Sell Price | `number` | Yes | Price per unit at sell |
 | Transaction Type | `string` | Yes | One of `buy`, `sell`, `send`, `receive`, or `trade` |
-| Label | `string` | No | See [Labels](https://developer.sandbox.co.in/reference/annexures#annexure-1-labels) |
+| Label | `string` | No | See [Labels](/api-reference/it/calculator/tax_pnl/securities/domestic/annexures/labels) |
 | Last Traded Price | `number` | No | Last market price of the equity stock |
 
 ### Stock Delivery Tradewise Tax P/L Table
@@ -277,7 +277,7 @@ title: "Tradewise Tax P&L | Domestic Securities"
 | Transfer Date | `number` | Yes | Date on which the transfer completed |
 | Price | `number` | Yes | Price per unit transferred |
 | Transfer Type | `string` | Yes | `IN` or `OUT` |
-| Nature Of Transfer | `string` | Yes | See [Nature of Transfer](https://developer.sandbox.co.in/reference/annexures#annexure-2-nature-of-settlement) |
+| Nature Of Transfer | `string` | Yes | See [Nature of Transfer](/api-reference/it/calculator/tax_pnl/securities/domestic/annexures/labels) |
 | Transfer Value | `number` | Yes | Total trading amount |
 | Transfer Expense | `number` | No | Expense relating to the transfer of mutual funds |
 
@@ -285,7 +285,7 @@ title: "Tradewise Tax P&L | Domestic Securities"
 
 | Param | Type | Required | Description |
 | :---- | :------- | :------- | :---------- |
-| Nature Of Transaction | `string` | Yes | See [Nature of Transfer](https://developer.sandbox.co.in/reference/annexures#annexure-2-nature-of-settlement) |
+| Nature Of Transaction | `string` | Yes | See [Nature of Transfer](/api-reference/it/calculator/tax_pnl/securities/domestic/annexures/labels) |
 | Total Transaction Value | `number` | Yes | Total value of all the transactions |
 | Realised Pnl | `number` | Yes | Profit/loss without transfer costs |
 | Transfer Expense | `number` | No | Expense relating to the transfer of mutual funds |
@@ -302,7 +302,7 @@ title: "Tradewise Tax P&L | Domestic Securities"
 | Buy Date | `number` | Yes | Date on which the MF unit was bought |
 | Buy Price | `number` | Yes | Price per unit bought |
 | Transaction Type | `string` | Yes | `buy`, `sell`, `send`, `receive`, or `trade` |
-| Label | `string` | No | See [Labels](https://developer.sandbox.co.in/reference/annexures#annexure-1-labels) |
+| Label | `string` | No | See [Labels](/api-reference/it/calculator/tax_pnl/securities/domestic/annexures/labels) |
 | Last Traded Price | `string` | No | Last market price of the MF unit |
 | Unrealized Pnl | `string` | No | Unrealized profit/loss on the holding |
 
@@ -317,7 +317,7 @@ title: "Tradewise Tax P&L | Domestic Securities"
 | Sell Date | `number` | Yes | Date on which the MF unit was sold |
 | Sell Price | `number` | Yes | Price per unit sold |
 | Transaction Type | `string` | Yes | `buy`, `sell`, `send`, `receive`, or `trade` |
-| Label | `string` | No | See [Labels](https://developer.sandbox.co.in/reference/annexures#annexure-1-labels) |
+| Label | `string` | No | See [Labels](/api-reference/it/calculator/tax_pnl/securities/domestic/annexures/labels) |
 | Last Traded Price | `string` | No | Last market price of the MF unit |
 | Unrealized Pnl | `string` | No | Unrealized profit/loss on the holding |
 
@@ -366,7 +366,7 @@ title: "Tradewise Tax P&L | Domestic Securities"
 | Transfer Date | `number` | Yes | Date on which the transfer completed |
 | Price | `number` | Yes | Price per unit transferred |
 | Transfer Type | `string` | Yes | `IN` or `OUT` |
-| Nature Of Transfer | `string` | Yes | See [Nature of Transfer](https://developer.sandbox.co.in/reference/annexures#annexure-2-nature-of-settlement) |
+| Nature Of Transfer | `string` | Yes | See [Nature of Transfer](/api-reference/it/calculator/tax_pnl/securities/domestic/annexures/labels) |
 | Transfer Value | `number` | Yes | Total trading amount |
 | Transfer Expense | `number` | No | Expense relating to the transfer of ETF |
 
@@ -374,7 +374,7 @@ title: "Tradewise Tax P&L | Domestic Securities"
 
 | Param | Type | Required | Description |
 | :---- | :------- | :------- | :---------- |
-| Nature Of Transaction | `string` | Yes | See [Nature of Transfer](https://developer.sandbox.co.in/reference/annexures#annexure-2-nature-of-settlement) |
+| Nature Of Transaction | `string` | Yes | See [Nature of Transfer](/api-reference/it/calculator/tax_pnl/securities/domestic/annexures/labels) |
 | Total Transaction Value | `number` | Yes | Total value of all the transactions |
 | Realised Pnl | `number` | Yes | Profit/loss without transfer costs |
 | Transfer Expense | `number` | No | Expense relating to the transfer of ETF |
@@ -391,7 +391,7 @@ title: "Tradewise Tax P&L | Domestic Securities"
 | Buy Date | `number` | Yes | Date on which the ETF was bought |
 | Buy Price | `number` | Yes | Price per unit bought |
 | Transaction Type | `string` | Yes | `buy`, `sell`, `send`, `receive`, or `trade` |
-| Label | `string` | No | See [Labels](https://developer.sandbox.co.in/reference/annexures#annexure-1-labels) |
+| Label | `string` | No | See [Labels](/api-reference/it/calculator/tax_pnl/securities/domestic/annexures/labels) |
 | Last Traded Price | `string` | No | Last market price of the unit |
 | Unrealized Pnl | `string` | No | Unrealized profit/loss on the holding |
 
@@ -406,7 +406,7 @@ title: "Tradewise Tax P&L | Domestic Securities"
 | Sell Date | `number` | Yes | Date on which the unit was sold |
 | Sell Price | `number` | Yes | Price per unit sold |
 | Transaction Type | `string` | Yes | `buy`, `sell`, `send`, `receive`, or `trade` |
-| Label | `string` | No | See [Labels](https://developer.sandbox.co.in/reference/annexures#annexure-1-labels) |
+| Label | `string` | No | See [Labels](/api-reference/it/calculator/tax_pnl/securities/domestic/annexures/labels) |
 | Last Traded Price | `string` | No | Last market price of the unit |
 | Unrealized Pnl | `string` | No | Unrealized profit/loss on the holding |
 
@@ -499,7 +499,7 @@ title: "Tradewise Tax P&L | Domestic Securities"
 | Trade Date | `number` | Yes | Date on which the contract was traded |
 | Trade Price | `number` | Yes | Price at which the contract was traded |
 | Transaction Type | `string` | Yes | `buy`, `sell`, `send`, `receive`, or `trade` |
-| Label | `string` | No | See [Labels](https://developer.sandbox.co.in/reference/annexures#annexure-1-labels) |
+| Label | `string` | No | See [Labels](/api-reference/it/calculator/tax_pnl/securities/domestic/annexures/labels) |
 | Last Traded Price | `number` | No | Last market price of the contract |
 | Unrealized Pnl | `string` | No | Unrealized profit/loss on the open position |
 
@@ -552,7 +552,7 @@ title: "Tradewise Tax P&L | Domestic Securities"
 | Trade Date | `number` | Yes | Date on which the contract was traded |
 | Trade Price | `number` | Yes | Price at which the contract was traded |
 | Transaction Type | `string` | Yes | `buy`, `sell`, `send`, `receive`, or `trade` |
-| Label | `string` | No | See [Labels](https://developer.sandbox.co.in/reference/annexures#annexure-1-labels) |
+| Label | `string` | No | See [Labels](/api-reference/it/calculator/tax_pnl/securities/domestic/annexures/labels) |
 | Last Traded Price | `number` | No | Last market price of the contract |
 | Unrealized Pnl | `string` | No | Unrealized profit/loss on the open position |
 
@@ -604,7 +604,7 @@ title: "Tradewise Tax P&L | Domestic Securities"
 | Transfer Date | `number` | Yes | Date on which the transfer completed |
 | Price | `number` | Yes | Price per unit transferred |
 | Transfer Type | `string` | Yes | `IN` or `OUT` |
-| Nature Of Transfer | `string` | Yes | See [Nature of Transfer](https://developer.sandbox.co.in/reference/annexures#annexure-2-nature-of-settlement) |
+| Nature Of Transfer | `string` | Yes | See [Nature of Transfer](/api-reference/it/calculator/tax_pnl/securities/domestic/annexures/labels) |
 | Transfer Value | `number` | Yes | Total trading amount |
 | Transfer Expense | `number` | No | Expense relating to the transfer of bond |
 
@@ -612,7 +612,7 @@ title: "Tradewise Tax P&L | Domestic Securities"
 
 | Param | Type | Required | Description |
 | :---- | :------- | :------- | :---------- |
-| Nature Of Transaction | `string` | Yes | See [Nature of Transfer](https://developer.sandbox.co.in/reference/annexures#annexure-2-nature-of-settlement) |
+| Nature Of Transaction | `string` | Yes | See [Nature of Transfer](/api-reference/it/calculator/tax_pnl/securities/domestic/annexures/labels) |
 | Total Transaction Value | `number` | Yes | Total value of all the transactions |
 | Realised Pnl | `number` | Yes | Profit/loss without transfer costs |
 | Transfer Expense | `number` | No | Expense relating to the transfer of bonds |
@@ -628,7 +628,7 @@ title: "Tradewise Tax P&L | Domestic Securities"
 | Buy Date | `number` | Yes | Date on which the bond was bought |
 | Buy Price | `number` | Yes | Price per unit bought |
 | Transaction Type | `string` | Yes | `buy`, `sell`, `send`, `receive`, or `trade` |
-| Label | `string` | No | See [Labels](https://developer.sandbox.co.in/reference/annexures#annexure-1-labels) |
+| Label | `string` | No | See [Labels](/api-reference/it/calculator/tax_pnl/securities/domestic/annexures/labels) |
 | Last Traded Price | `string` | No | Last market price of the bond |
 | Unrealized Pnl | `string` | No | Unrealized profit/loss on the holding |
 
@@ -642,7 +642,7 @@ title: "Tradewise Tax P&L | Domestic Securities"
 | Sell Date | `number` | Yes | Date on which the bond was sold |
 | Sell Price | `number` | Yes | Price per unit sold |
 | Transaction Type | `string` | Yes | `buy`, `sell`, `send`, `receive`, or `trade` |
-| Label | `string` | No | See [Labels](https://developer.sandbox.co.in/reference/annexures#annexure-1-labels) |
+| Label | `string` | No | See [Labels](/api-reference/it/calculator/tax_pnl/securities/domestic/annexures/labels) |
 | Last Traded Price | `string` | No | Last market price of the bond |
 | Unrealized Pnl | `string` | No | Unrealized profit/loss on the holding |
 
@@ -696,7 +696,7 @@ title: "Tradewise Tax P&L | Domestic Securities"
 | Transfer Date | `number` | Yes | Date on which the transfer completed |
 | Price | `number` | Yes | Price per unit transferred |
 | Transfer Type | `string` | Yes | `IN` or `OUT` |
-| Nature Of Transfer | `string` | Yes | See [Nature of Transfer](https://developer.sandbox.co.in/reference/annexures#annexure-2-nature-of-settlement) |
+| Nature Of Transfer | `string` | Yes | See [Nature of Transfer](/api-reference/it/calculator/tax_pnl/securities/domestic/annexures/labels) |
 | Transfer Value | `number` | Yes | Total trading amount |
 | Transfer Expense | `number` | No | Expense relating to the transfer of debenture |
 
@@ -704,7 +704,7 @@ title: "Tradewise Tax P&L | Domestic Securities"
 
 | Param | Type | Required | Description |
 | :---- | :------- | :------- | :---------- |
-| Nature Of Transaction | `string` | Yes | See [Nature of Transfer](https://developer.sandbox.co.in/reference/annexures#annexure-2-nature-of-settlement) |
+| Nature Of Transaction | `string` | Yes | See [Nature of Transfer](/api-reference/it/calculator/tax_pnl/securities/domestic/annexures/labels) |
 | Total Transaction Value | `number` | Yes | Total value of all the transactions |
 | Realised Pnl | `number` | Yes | Profit/loss without transfer costs |
 | Transfer Expense | `number` | No | Expense relating to the transfer of debenture |
@@ -720,7 +720,7 @@ title: "Tradewise Tax P&L | Domestic Securities"
 | Buy Date | `number` | Yes | Date on which the debenture was bought |
 | Buy Price | `number` | Yes | Price per unit bought |
 | Transaction Type | `string` | Yes | `buy`, `sell`, `send`, `receive`, or `trade` |
-| Label | `string` | No | See [Labels](https://developer.sandbox.co.in/reference/annexures#annexure-1-labels) |
+| Label | `string` | No | See [Labels](/api-reference/it/calculator/tax_pnl/securities/domestic/annexures/labels) |
 | Last Traded Price | `string` | No | Last market price of the debenture |
 | Unrealized Pnl | `string` | No | Unrealized profit/loss on the holding |
 
@@ -734,7 +734,7 @@ title: "Tradewise Tax P&L | Domestic Securities"
 | Sell Date | `number` | Yes | Date on which the debenture was sold |
 | Sell Price | `number` | Yes | Price per unit sold |
 | Transaction Type | `string` | Yes | `buy`, `sell`, `send`, `receive`, or `trade` |
-| Label | `string` | No | See [Labels](https://developer.sandbox.co.in/reference/annexures#annexure-1-labels) |
+| Label | `string` | No | See [Labels](/api-reference/it/calculator/tax_pnl/securities/domestic/annexures/labels) |
 | Last Traded Price | `string` | No | Last market price of the debenture |
 | Unrealized Pnl | `string` | No | Unrealized profit/loss on the holding |
 
