@@ -1,6 +1,6 @@
 ---
-title: "Quickstart"
-description: "Learn how to authenticate and make your first API call."
+title: "Quick Start"
+description: "Description of your new file."
 ---
 
 Getting started with Sandbox APIs is seemless. This guide walks you through 3 simple steps to authenticate and make API calls using your API credentials.
@@ -9,7 +9,7 @@ Getting started with Sandbox APIs is seemless. This guide walks you through 3 si
 
 <Steps>
   <Step title="Get your API credentials">
-    Login to [Sandbox Console](https://console.sandbox.co.in) and navigate to **Settings** → **API Keys** to get your API Key and API Secret. You have two separate sets for live and test environments, identified by the prefixes "live" and "test". Here's how to [generate your API keys](https://help.sandbox.co.in/portal/en/kb/articles/generate-your-api-keys). 
+    Login to [Sandbox Console](https://console.sandbox.co.in) and navigate to **Settings** → **API Keys** to get your API Key and API Secret. You have two separate sets for live and test environments, identified by the prefixes "live" and "test". Here's how to [generate your API keys](https://help.sandbox.co.in/portal/en/kb/articles/generate-your-api-keys).
 
     <Tip>
       **Download your API key and API key secret when prompted, it's only shown once.**
@@ -49,9 +49,8 @@ Getting started with Sandbox APIs is seemless. This guide walks you through 3 si
     - `x-api-version` (optional): API version (e.g., "1.0")
 
     <Warning>
-      **``The access token you generate is NOT a bearer token. Pass it in the authorization header without the Bearer keyword.``**
+      `The access token you generate is NOT a bearer token. Pass it in the authorization header without the Bearer keyword.`
     </Warning>
-
     ```bash Request
     curl -X POST 'https://api.sandbox.co.in/gst/compliance/public/gstin/search' \
       -H 'x-api-key: YOUR_API_KEY' \
