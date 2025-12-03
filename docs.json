@@ -46,14 +46,6 @@
 				"icon": "book-open",
 				"groups": [
 					{
-						"group": "Introduction",
-						"icon": "book",
-						"pages": [
-							"guides/introduction/about_sandbox",
-							"guides/introduction/authentication"
-						]
-					},
-					{
 						"group": "Get Started",
 						"icon": "rocket-launch",
 						"pages": [
@@ -117,13 +109,8 @@
 							{
 								"group": "Aadhaar",
 								"pages": [
-									{
-										"group": "OKYC",
-										"pages": [
-											"api-reference/kyc/aadhaar/endpoints/generate_otp",
+									"api-reference/kyc/aadhaar/endpoints/generate_otp",
 											"api-reference/kyc/aadhaar/endpoints/verify_otp"
-										]
-									}
 								]
 							},
 							{
@@ -980,10 +967,6 @@
 	},
 	"redirects": [
 		{
-			"source": "reference",
-			"destination": "/"
-		},
-		{
 			"source": "changelog?page=1",
 			"destination": "changelog"
 		},
@@ -1316,6 +1299,10 @@
 			"destination": "/"
 		},
 		{
+			"source": "docs",
+			"destination": "/guides"
+		},
+		{
 			"source": "docs/aadhaar-okyc-generate-otp",
 			"destination": "guides/products/kyc"
 		},
@@ -1454,6 +1441,10 @@
 		{
 			"source": "recipes",
 			"destination": "recipes/kyc/introduction"
+		},
+		{
+			"source": "reference",
+			"destination": "api-reference"
 		},
 		{
 			"source": "reference/aadhaar-kyc",
