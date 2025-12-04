@@ -1,14 +1,15 @@
 ---
 title: "Quickstart"
+description: "Learn how to authenticate and make your first API call."
 ---
 
-Getting started with Sandbox APIs is seemless. This guide walks you through 3 simple steps to authenticate and make API calls using your API credentials.
+Getting started with Sandbox APIs is straightforward. This guide will walk you through 3 simple steps to authenticate and make API calls using your API credentials.
 
 ## Send your first API request
 
 <Steps>
   <Step title="Get your API credentials">
-    Login to [Sandbox Console](https://console.sandbox.co.in) and navigate to **Settings** → **API Keys** to get your API Key and API Secret. You have two separate sets for live and test environments, identified by the prefixes "live" and "test". Here's how to [generate your API keys](https://help.sandbox.co.in/portal/en/kb/articles/generate-your-api-keys).
+    Login to [Sandbox Console](https://console.sandbox.co.in) and navigate to **Settings** → **API Keys** to get your API Key and API Secret. You have two separate sets for live and test environments, identified by the prefixes "live" and "test". Here’s how to generate your API Keys: [Generate your API Keys](https://help.sandbox.co.in/portal/en/kb/articles/generate-your-api-keys).
 
     <Tip>
       **Download your API key and API key secret when prompted, it's only shown once.**
@@ -17,12 +18,8 @@ Getting started with Sandbox APIs is seemless. This guide walks you through 3 si
   <Step title="Authenticate to get an access token">
     Call the [Authenticate API](/api-reference/authenticate) to generate an access token. You'll need to pass your API Key and API Secret in the request headers.
 
-    ```bash Request
-    curl -X POST 'https://api.sandbox.co.in/authenticate' \
-      -H 'x-api-key: YOUR_API_KEY' \
-      -H 'x-api-secret: YOUR_API_SECRET' \
-      -H 'x-api-version: 1.0.0' \
-      -H 'Content-Type: application/json'
+    ```bash Terminal
+    
     ```
 
     ```json Response
@@ -44,19 +41,14 @@ Getting started with Sandbox APIs is seemless. This guide walks you through 3 si
     Now you can use the access token to call any Sandbox API. Include the following headers in your requests:
 
     - `x-api-key`: Your API Key
-    - `Authorization`: Your access token
+    - `authorization`: Your access token
     - `x-api-version` (optional): API version (e.g., "1.0")
 
     <Warning>
-      `The access token you generate is NOT a bearer token. Pass it in the authorization header without the Bearer keyword.`
+      **``The access token you generate is NOT a bearer token. Pass it in the authorization header without the Bearer keyword.``**
     </Warning>
-    ```bash Request
-    curl -X POST 'https://api.sandbox.co.in/gst/compliance/public/gstin/search' \
-      -H 'x-api-key: YOUR_API_KEY' \
-      -H 'Authorization: eyJ0eXAiOiJKV1QiLCJhbGc...' \
-      -H 'x-api-version: 1.0' \
-      -H 'Content-Type: application/json' \
-      -d '{ "gstin": "05ABNTY3290P8ZB" }'
+    ```bash Terminal
+    
     ```
 
     <Tip>
