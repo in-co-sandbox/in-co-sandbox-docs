@@ -18,8 +18,12 @@ Getting started with Sandbox APIs is straightforward. This guide will walk you t
   <Step title="Authenticate to get an access token">
     Call the [Authenticate API](/api-reference/authenticate) to generate an access token. You'll need to pass your API Key and API Secret in the request headers.
 
-    ```bash Terminal
-    
+    ```bash Request
+    curl -X POST 'https://api.sandbox.co.in/authenticate' \
+         -H 'x-api-key: YOUR_API_KEY' \
+         -H 'x-api-secret: YOUR_API_SECRET' \
+         -H 'x-api-version: 1.0.0' \
+         -H 'Content-Type: application/json'
     ```
 
     ```json Response
@@ -45,10 +49,15 @@ Getting started with Sandbox APIs is straightforward. This guide will walk you t
     - `x-api-version` (optional): API version (e.g., "1.0")
 
     <Warning>
-      **``The access token you generate is NOT a bearer token. Pass it in the authorization header without the Bearer keyword.``**
+      **`The access token you generate is NOT a bearer token. Pass it in the authorization header without the Bearer keyword.`**
     </Warning>
-    ```bash Terminal
-    
+    ```bash Request
+    curl -X POST 'https://api.sandbox.co.in/gst/compliance/public/gstin/search' \
+         -H 'x-api-key: YOUR_API_KEY' \
+         -H 'Authorization: eyJ0eXAiOiJKV1QiLCJhbGc...' \
+         -H 'x-api-version: 1.0' \
+         -H 'Content-Type: application/json' \
+         -d '{ "gstin": "05ABNTY3290P8ZB" }'
     ```
 
     <Tip>
