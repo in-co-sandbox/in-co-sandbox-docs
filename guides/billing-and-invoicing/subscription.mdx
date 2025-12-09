@@ -2,22 +2,70 @@
 title: "Subscription"
 ---
 
-A subscription is a recurring payment arrangement where users are billed at regular intervals, called the billing period to access a product or service. To use Sandbox APIs, you must maintain an active subscription, billed monthly or annually through a valid payment method.
+To access Sandbox APIs, customers must purchase a subscription plan. Subscriptions can be billed **monthly or annually** by setting up payment instructions with a valid payment method.
 
-A Sandbox subscription gives you:
+Every Sandbox subscription provides:
 
-- Access to 200+ Sandbox APIs
-- Access to API Keys
-- A Monthly Quota, based on your selected plan
+- **Access to 200+ Sandbox APIs**
+- **Access to API Keys**
+- **Monthly Quota**
 
-Here’s how you can [Purchase a subscription Plan](https://help.sandbox.co.in/portal/en/kb/articles/purchase-a-plan).
+A subscription ensures seamless, uninterrupted access to Sandbox APIs and resources while helping businesses manage usage and costs efficiently.
+
+You can explore and compare all the plans on our [Pricing page](https://sandbox.co.in/pricing). Here's a guide on how to [Purchase a Plan](https://help.sandbox.co.in/portal/en/kb/articles/purchase-a-plan).
 
 ### **Free Trial**
 
-Sandbox offers a [**14-day free trial**](https://accounts.sandbox.co.in/signup) that gives you full access to the platform so you can evaluate the APIs before committing to a paid plan. During the trial, you can:
+Sandbox offers a 1[4-day free trial](https://help.sandbox.co.in/support/solutions/articles/84000351066-start-the-14-day-free-trial) that gives you access to our platform. This will help you test our APIs and build a proof of concept for your stakeholders.
 
-- Test any API
-- Build a proof of concept
-- Share demos with your stakeholders
+## Quota
 
-[**Here’s how to Start a Free Trial**](https://help.sandbox.co.in/portal/en/kb/articles/start-a-free-trial)
+Quota refers to the number of API calls a customer can make each month without incurring additional charges. The quota allocated depends on the subscribed plan and always resets monthly.
+
+<Warning>
+  **The unused quota does not carry forward to the next month.**
+</Warning>
+
+Quota limits help us provision infrastructure efficiently across customers of all sizes and ensure fair access to resources for everyone.
+
+### **Consumption**
+
+Not all API requests count toward your quota, and not all requests incur wallet charges. For example, failed requests with 5xx status codes neither consume quota nor deduct wallet balance.
+
+Below is a breakdown of when quota is consumed and when wallet charges apply.
+
+### **Quota Consumption**
+
+Quota is consumed only for successful API calls (200).
+
+### **Wallet Charges**
+
+Wallet charges apply only on successful API calls (200).
+
+### **Wallet Charges**
+
+Wallet charges are only applicable on 200 (successful) calls.
+
+You can view the quota limits for all standard plans on our [**Pricing page**](https://sandbox.co.in/pricing).
+
+## Overdraft
+
+Overdraft allows you to continue making API calls even after you have exhausted your monthly quota. This ensures your production workloads remain uninterrupted, even during unexpected traffic spikes or higher than normal usage.
+
+Here's how you can [enable or disable Overdraft](https://help.sandbox.co.in/portal/en/kb/articles/how-to-enable-or-disable-overdraft).
+
+The Overdraft feature helps you maintain service continuity while giving you flexibility to scale as needed.
+
+### **Overdraft Consumption**
+
+Overdraft is activated only when you exceed your monthly quota. All API calls made beyond the quota are considered as overdraft usage.
+
+### **Overdraft Charges**
+
+Overdraft usage is charged on a pro-rata basis as per the rate defined in your subscription plan.\
+These charges are added to your invoice at the end of your billing cycle.
+
+### **Notifications**
+
+You will receive email alerts when your usage reaches **50%**, **90%**, and **100%** of your monthly quota.\
+You can also configure postback notifications to alert your team when your subscription goes into overdraft.

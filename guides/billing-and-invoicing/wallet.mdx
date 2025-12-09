@@ -2,20 +2,41 @@
 title: "Wallet"
 ---
 
-Sandbox issues a Wallet for every account where funds can be loaded. One can load funds into their wallet using payment gateway or bank transfer using the account details that are available on Sandbox.
+Sandbox provides every account with a dedicated Wallet where you can load funds and pay for APIs that incur wallet charges. Funds can be added using a payment gateway or via bank transfer using the account details available on the Console.
 
 <Tip>
   **Wallet funds do not have expiry and are always carried forward.**
 </Tip>
 
-### **Wallet charges**
+## Virtual Account
 
-Some APIs incur additional charges per API call that are deducted from the wallet. Please note that a subscription is required to access Sandbox APIs, and wallet charges are in addition to the subscription fee. Wallet charges cover the following expenses, which are applicable based on the API called.
+Every Sandbox account is issued a unique Virtual Bank Account to add funds. You can easily top up your Sandbox Wallet using UPI, IMPS, NEFT, or RTGS bank transfers. Once funds are added, your Wallet automatically pays for APIs that incur wallet charges.
 
-- Upstream charges from vendors like Banks, GSPs, Account Aggregators, TIN FCs, etc.
+## Wallet Balance
+
+Your Sandbox Wallet functions like a virtual bank account where you deposit funds and pay for APIs that incur wallet charges. To give you an accurate view of your available funds, Sandbox provides two balance indicators: **Effective Balance** and **Closing Balance**.
+
+### **Effective Balance**
+
+The Effective Balance is the amount displayed on the Console. It reflects the actual spendable balance after accounting for any pending deductions:
+
+**Effective Balance = Closing Balance – Unbilled Charges**
+
+This ensures you always see the real amount available for API usage.
+
+### **Closing Balance**
+
+The Closing Balance represents the total actual funds in your wallet’s virtual bank account, much like the closing balance shown in a traditional bank statement.\
+You can view your Closing Balance anytime through viewing your [**Wallet Statement.**](https://help.sandbox.co.in/portal/en/kb/articles/view-and-download-wallet-statement)
+
+## **Wallet charges**
+
+Certain APIs incur an additional per-call charge that is deducted from your wallet. These charges are separate from your subscription fee, as an active subscription is required to access Sandbox APIs. Wallet charges cover the following expenses:
+
+- Upstream vendor fees (Banks, GSPs, Account Aggregators, TIN FCs, etc.)
 - Licensing charges
-- IP charges
-- Credit, Email or SMS charges
+- IP-related charges
+- Credit, Email, or SMS charges
 
 Below are the APIs that have wallet charges applicable on them.
 
@@ -36,11 +57,3 @@ Below are the APIs that have wallet charges applicable on them.
 <Tip>
   **Wallet charges are only applicable on 2xx calls.**
 </Tip>
-
-Here are some useful resources from our Help Centre to help you manage your Wallet:
-
-- [**Understanding Wallet Balance**](https://help.sandbox.co.in/portal/en/kb/articles/understanding-wallet-balance)
-- [**View & Download Wallet Statement**](https://help.sandbox.co.in/portal/en/kb/articles/view-and-download-wallet-statement)
-- [**Wallet Charges Invoice**](https://help.sandbox.co.in/portal/en/kb/articles/what-is-wallet-charges-invoice)
-- **Bank Details for Wallet Top-Ups**
-- [**Add Funds to Wallet**](https://help.sandbox.co.in/portal/en/kb/articles/add-funds)
