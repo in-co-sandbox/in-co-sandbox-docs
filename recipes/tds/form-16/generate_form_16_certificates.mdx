@@ -1,4 +1,182 @@
 ---
 title: "Generate Form 16 Certificates"
-description: "Form 16 must be issued by employers to their employees before the 15th of June each year. This recipe explores how you can automate this compliance step to streamline the generation and download of Form 16."
+description: "Generate and download Form 16 salary TDS certificates once Form 24Q TDS returns are filed."
 ---
+
+Form 16 is the TDS certificate that employers must issue to employees after filing **Form 24Q**. This recipe shows how to:
+
+- Ensure Form 24Q is filed for the given TAN, year, and quarter
+- Trigger Form 16 generation via Sandbox TDS Compliance APIs
+- Fetch and download the generated Form 16 certificates
+
+<Info>
+Before you begin, make sure you’ve:
+
+- Generated a Sandbox <code>authorization</code> token using the <b>Authenticate</b> endpoint.
+- Filed your Form 24Q TDS return for the relevant financial year and quarter (typically <code>Q4</code> for Form 16).
+- TRACES credentials (username &amp; password) for the employer TAN.
+</Info>
+
+<Steps>
+  <Step title="File Form 24Q TDS Return" stepNumber={1} titleSize="h2">
+    Employers must finish filing their **Form 24Q TDS return** before generating Form 16. If this is already done via the <b>File Form 24Q TDS Returns</b> recipe, you can skip directly to Step 2.
+
+    To programmatically confirm that a Form 24Q return has been filed (or is in progress), you can use the **Search E-File TDS Return Jobs** API for the given TAN, financial year, quarter, and form.
+
+    <Accordion title="cURL Request – Search E-File TDS Return Jobs" defaultOpen>
+      ```bash
+      curl --request POST \
+        --url https://api.sandbox.co.in/tds/compliance/e-file/search \
+        --header 'Authorization: {sandbox-access-token}' \
+        --header 'Content-Type: application/json' \
+        --header 'x-api-key: xxxxxxxxxxxxxxxxxx' \
+        --header 'x-api-version: 1.0.0' \
+        --data '{
+          "@entity": "in.co.sandbox.tds.compliance.e-file.search",
+          "tan": "AHMA09719B",
+          "quarter": "Q4",
+          "form": "24Q",
+          "financial_year": "FY 2024-25",
+          "from_date": 1711929600000,
+          "to_date": 1750463999000,
+          "page_size": 20
+        }'
+      ```
+    </Accordion>
+
+    Look for a job with:
+
+    - <code>form</code> = <code>24Q</code>  
+    - <code>quarter</code> = <code>Q4</code>  
+    - <code>status</code> = <code>succeeded</code>
+
+    This confirms that the **Form 24Q return is filed** and you can safely proceed to generating Form 16.
+  </Step>
+
+  <Step title="Generate Form 16" stepNumber={2} titleSize="h2">
+    Once the Form 24Q return is filed, you can initiate Form 16 generation using the **Download Form 16 – Submit Job** API.
+
+    This API logs into TRACES using the employer’s credentials, validates challan &amp; return details, and creates a job to generate Form 16 (Part A and Part B) for the selected TAN, quarter, financial year, and form.
+
+    <Info>
+    For Form 16, you must typically use <code>form</code> = <code>24Q</code> and <code>quarter</code> = <code>Q4</code>, since Form 16 is issued for the full financial year’s salary TDS.
+    </Info>
+
+    <Accordion title="cURL Request – Submit Form 16 Download Job" defaultOpen>
+      ```bash
+      curl --request POST \
+        --url https://api.sandbox.co.in/tds/compliance/traces/deductors/forms/form16 \
+        --header 'Authorization: {sandbox-access-token}' \
+        --header 'Content-Type: application/json' \
+        --header 'x-api-key: xxxxxxxxxxxxxxxxxx' \
+        --header 'x-api-version: 1.0.0' \
+        --data '{
+          "@entity": "in.co.sandbox.tds.compliance.traces.credentials",
+          "username": "traces-username",
+          "password": "traces-password",
+          "tan": "AHMA09719B",
+          "security_captcha": {
+            "@entity": "in.co.sandbox.tds.compliance.traces.credentials.security_captcha",
+            "quarter": "Q4",
+            "financial_year": "FY 2024-25",
+            "form": "24Q",
+            "bsr_code": "0510001",
+            "challan_date": 1711929600000,
+            "challan_serial_no": "00001",
+            "provisional_receipt_number": "123456789012345",
+            "challan_amount": 100000,
+            "unique_pan_amount_combination_for_challan": [
+              [
+                "ABCDE1234F|50000"
+              ],
+              [
+                "PQRSX9876Z|50000"
+              ]
+            ]
+          },
+          "remember_me": true
+        }'
+      ```
+    </Accordion>
+
+    A successful response returns a **certificate job**:
+
+    - <code>job_id</code> – identifier for the Form 16 generation job  
+    - <code>tan</code>, <code>financial_year</code>, <code>quarter</code>, <code>form</code> – job context  
+    - <code>status</code> – typically <code>created</code> or <code>queued</code> initially  
+    - <code>remember_me</code> – whether credentials are stored for easier polling
+
+    <Info>
+    - If <code>remember_me</code> is <code>true</code>, you can poll the job status without resending TRACES credentials on every request.  
+    - If <code>remember_me</code> is <code>false</code>, you’ll need to pass credentials again while polling (as per the Form 16 <b>Remember Credentials</b> behaviour).
+    </Info>
+  </Step>
+
+  <Step title="Fetch Form 16 Certificates" stepNumber={3} titleSize="h2">
+    After submitting the Form 16 job, you need to check when the certificates are generated and ready to download.
+
+    There are two useful APIs here:
+
+    - **Poll Job** – to check the status of a specific Form 16 job  
+    - **Fetch Jobs** – to list all jobs and their statuses for a TAN/period
+
+    ### 3.1 Poll a specific Form 16 job
+
+    Use the **Poll Job** endpoint with the <code>job_id</code> from Step 2:
+
+    <Accordion title="cURL Request – Poll Form 16 Job Status" defaultOpen>
+      ```bash
+      curl --request POST \
+        --url 'https://api.sandbox.co.in/tds/compliance/traces/deductors/forms/form16/status?job_id={job_id}' \
+        --header 'Authorization: {sandbox-access-token}' \
+        --header 'Content-Type: application/json' \
+        --header 'x-api-key: xxxxxxxxxxxxxxxxxx' \
+        --header 'x-api-version: 1.0.0' \
+        --data '{
+          "@entity": "in.co.sandbox.tds.compliance.traces.credentials",
+          "username": "traces-username",
+          "password": "traces-password",
+          "tan": "AHMA09719B"
+        }'
+      ```
+    </Accordion>
+
+    When processing is complete, the job <code>status</code> will move to <code>succeeded</code> (or <code>failed</code> if there was an error such as invalid challan details or no Form 16 available for that period).
+
+    ### 3.2 Fetch all Form 16 jobs and download certificates
+
+    To get a list of all Form 16 download jobs (and, depending on contract, the corresponding download URLs), use the **Fetch Jobs** endpoint:
+
+    <Accordion title="cURL Request – Fetch Form 16 Jobs">
+      ```bash
+      curl --request POST \
+        --url https://api.sandbox.co.in/tds/compliance/traces/deductors/forms/form16/search \
+        --header 'Authorization: {sandbox-access-token}' \
+        --header 'Content-Type: application/json' \
+        --header 'x-api-key: xxxxxxxxxxxxxxxxxx' \
+        --header 'x-api-version: 1.0.0' \
+        --data '{
+          "@entity": "in.co.sandbox.tds.compliance.certificate.job.search",
+          "tan": "AHMA09719B",
+          "quarter": "Q4",
+          "form": "24Q",
+          "financial_year": "FY 2024-25",
+          "from_date": 1711929600000,
+          "to_date": 1750463999000,
+          "page_size": 20
+        }'
+      ```
+    </Accordion>
+
+    The response includes a list of jobs with their <code>status</code>:
+
+    - <code>status = "succeeded"</code> – Form 16 certificates are generated and ready  
+    - <code>status = "failed"</code> – job failed (for example, wrong TRACES credentials or Form 16 not yet available)
+
+    For succeeded jobs, you can use the certificate download URLs provided in the job metadata (for example, a ZIP of all Form 16 PDFs for the specified TAN, year, and quarter). Download and store these PDFs in your system, and expose them to employees through your HR or payroll portal.
+
+    <Warning>
+    Form 16 for salary TDS is typically available only for <b>Q4 Form 24Q returns</b>. Make sure you request certificates with <code>form</code> = <code>24Q</code> and <code>quarter</code> = <code>Q4</code> for the relevant financial year.
+    </Warning>
+  </Step>
+</Steps>

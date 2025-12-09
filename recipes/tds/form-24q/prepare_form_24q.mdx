@@ -1,4 +1,202 @@
 ---
 title: "Prepare Form 24Q TDS Return"
-description: "TDS preparation can be complex and time-consuming for your FinOps team. This recipe shows how to automate the generation of TDS returns, streamlining compliance and reducing manual effort."
+description: "Prepare Form 24Q TDS returns by checking potential notices, uploading Sheet JSON data, generating the TXT file, and getting ready for e-filing."
 ---
+
+Before filing Form 24Q, it’s a good idea to validate your data for potential issues and generate a clean TXT file that will pass FVU validation.
+
+This recipe walks you through:
+
+- Checking for potential notices using TDS Analytics
+- Uploading salary data in Sheet JSON format
+- Generating the Form 24Q TXT file via TDS Reports
+- Getting ready to move into the FVU + e-filing flow
+
+<Info>
+Before you begin, make sure you’ve:
+
+- Generated a Sandbox <code>authorization</code> token using the <b>Authenticate</b> endpoint.
+- Identified the correct <code>tan</code>, <code>financial_year</code> (for example, <code>FY 2024-25</code>), <code>quarter</code> (<code>Q1</code>–<code>Q4</code>), and <code>form</code> (<code>24Q</code> for salary TDS).
+</Info>
+
+<Steps>
+  <Step title="Check for Potential Notice" stepNumber={1} titleSize="h2">
+    Start by checking whether your Form 24Q return is likely to trigger any notices. Use the TDS Analytics – Potential Notices API to create a job for the given TAN, financial year, quarter, and form.
+
+    This returns a <code>job_id</code> and a <code>json_url</code> where you’ll later upload salary data in Sheet JSON format.
+
+    <Accordion title="cURL Request – Create Potential Notice Job" defaultOpen>
+      ```bash
+      curl --request POST \
+        --url https://api.sandbox.co.in/tds/analytics/potential-notices \
+        --header 'accept: application/json' \
+        --header 'authorization: {sandbox-access-token}' \
+        --header 'content-type: application/json' \
+        --header 'x-api-key: xxxxxxxxxxxxxxxxxx' \
+        --header 'x-api-version: 1.0.0' \
+        --data '{
+          "@entity": "in.co.sandbox.tds.analytics.potential_notice.request",
+          "financial_year": "FY 2024-25",
+          "form": "24Q",
+          "quarter": "Q1",
+          "tan": "AHMA09719B"
+        }'
+      ```
+    </Accordion>
+
+    A successful response returns:
+
+    - <code>job_id</code> – the Potential Notice job identifier  
+    - <code>status</code> – typically <code>created</code> or <code>queued</code>  
+    - <code>json_url</code> – a pre-signed S3 URL for uploading salary data in Sheet JSON format
+
+    You will use both <code>job_id</code> and <code>json_url</code> in the next steps.
+  </Step>
+
+  <Step title="Provide data (upload Sheet JSON for Potential Notices)" stepNumber={2} titleSize="h2">
+    Next, upload the data required to detect potential notices.
+
+    The <code>json_url</code> returned in Step 1 expects a **Sheet JSON** payload that represents the Form 24Q workbook (Deductor details, Employee master, Salary details, Challans, and mappings).
+
+    You generate this Sheet JSON in your backend and then upload it with a <code>PUT</code> request.
+
+    <Info>
+    The exact Sheet JSON structure for Form 24Q is documented in the TDS Sheet JSON / sample workbooks. Make sure your workbook name, sheet names, and columns match the specification for salary TDS.
+    </Info>
+
+    <Accordion title="cURL Request – Upload Sheet JSON to json_url" defaultOpen>
+      ```bash
+      curl --request PUT \
+        --url '{json_url-from-step-1}' \
+        --header 'content-type: application/json' \
+        --data '@form24q_potential_notice_sheet.json'
+      ```
+    </Accordion>
+
+    After a successful upload, Sandbox will process the workbook asynchronously and update the Potential Notice job with the analysis results.
+  </Step>
+
+  <Step title="Fetch Potential Notice details" stepNumber={3} titleSize="h2">
+    Once the data is uploaded, poll the Potential Notice job to see whether any potential issues were identified.
+
+    Use the Potential Notices GET endpoint with the <code>job_id</code> from Step 1.
+
+    <Accordion title="cURL Request – Fetch Potential Notice Job" defaultOpen>
+      ```bash
+      curl --request GET \
+        --url 'https://api.sandbox.co.in/tds/analytics/potential-notices?job_id={job_id}' \
+        --header 'accept: application/json' \
+        --header 'authorization: {sandbox-access-token}' \
+        --header 'x-api-key: xxxxxxxxxxxxxxxxxx' \
+        --header 'x-api-version: 1.0.0'
+      ```
+    </Accordion>
+
+    When processing is complete, you’ll see:
+
+    - <code>status</code> – for example, <code>succeeded</code> or <code>failed</code>  
+    - A link to a Potential Notice report (for example, an Excel or JSON report) summarising possible issues like missing challans, mismatches, or under-deductions
+
+    Review these findings and make any necessary corrections to your source data before moving ahead with TXT generation.
+  </Step>
+
+  <Step title="Generate TDS Report (create TXT job for Form 24Q)" stepNumber={4} titleSize="h2">
+    After you’ve identified and understood potential issues, you can move on to preparing the TXT file using the TDS Reports – TXT API.
+
+    This step creates a TXT generation job and returns a new <code>job_id</code> and <code>json_url</code> for uploading the final, corrected Form 24Q Sheet JSON workbook.
+
+    <Accordion title="cURL Request – Create TXT Generation Job" defaultOpen>
+      ```bash
+      curl --request POST \
+        --url https://api.sandbox.co.in/tds/reports/txt \
+        --header 'accept: application/json' \
+        --header 'authorization: {sandbox-access-token}' \
+        --header 'content-type: application/json' \
+        --header 'x-api-key: xxxxxxxxxxxxxxxxxx' \
+        --header 'x-api-version: 1.0.0' \
+        --data '{
+          "@entity": "in.co.sandbox.tds.reports.request",
+          "financial_year": "FY 2024-25",
+          "form": "24Q",
+          "quarter": "Q1",
+          "tan": "AHMA09719B",
+          "previous_receipt_number": "123456789012345"
+        }'
+      ```
+    </Accordion>
+
+    Notes:
+
+    - Omit <code>previous_receipt_number</code> for an original (regular) return.  
+    - For a correction return, set <code>previous_receipt_number</code> to the earlier Form 24Q acknowledgement number.
+
+    The response includes:
+
+    - <code>job_id</code> – the TXT generation job id  
+    - <code>json_url</code> – pre-signed S3 URL where you’ll upload the final quarter-wise Form 24Q Sheet JSON
+  </Step>
+
+  <Step title="Repeat the above steps after fixing issues" stepNumber={5} titleSize="h2">
+    If the Potential Notice report (or later validation) indicates data problems, you should:
+
+    - Correct your source data (salary, challans, employee master, etc.) in your system.  
+    - Regenerate the Sheet JSON workbook for Form 24Q.  
+    - Re-upload the updated Sheet JSON to the appropriate <code>json_url</code>.  
+    - If required, rerun the Potential Notice flow (Steps 1–3) until the report is clean.
+
+    This iterative process helps you catch issues early and ensures that the TXT generated in the next step is less likely to fail during FVU validation.
+  </Step>
+
+  <Step title="Provide quarterly details (upload Sheet JSON for TXT)" stepNumber={6} titleSize="h2">
+    Now upload the final, quarter-specific Form 24Q Sheet JSON workbook to the <code>json_url</code> returned from the TXT job in Step 4.
+
+    This workbook should contain all the data required for the Form 24Q return for the selected quarter:
+
+    - Deductor details  
+    - Employee master and PAN details  
+    - Month-wise salary and TDS information  
+    - Challan / book-entry details and mappings
+
+    <Accordion title="cURL Request – Upload Sheet JSON for TXT" defaultOpen>
+      ```bash
+      curl --request PUT \
+        --url '{json_url-from-step-4}' \
+        --header 'content-type: application/json' \
+        --data '@form24q_q1_final_sheet.json'
+      ```
+    </Accordion>
+
+    Once the upload succeeds, Sandbox processes this workbook to generate the Form 24Q TXT file in the background.
+  </Step>
+
+  <Step title="Fetch TXT file" stepNumber={7} titleSize="h2">
+    After uploading the final Sheet JSON, poll the TXT job to track TXT generation status.
+
+    <Accordion title="cURL Request – Fetch TXT Job Status" defaultOpen>
+      ```bash
+      curl --request GET \
+        --url 'https://api.sandbox.co.in/tds/reports/txt?job_id={job_id-from-step-4}' \
+        --header 'accept: application/json' \
+        --header 'authorization: {sandbox-access-token}' \
+        --header 'x-api-key: xxxxxxxxxxxxxxxxxx' \
+        --header 'x-api-version: 1.0.0'
+      ```
+    </Accordion>
+
+    When the job <code>status</code> is <code>succeeded</code>, the response will include:
+
+    - A URL to download the generated **Form 24Q TXT file**
+
+    Save this TXT file securely. You will use it to generate FVU and then e-file the return (covered in the “File Form 24Q TDS Returns” recipe).
+  </Step>
+
+  <Step title="File Form 24Q TDS Return (next steps)" stepNumber={8} titleSize="h2">
+    With a clean Form 24Q TXT in hand, you’re ready to move to the actual filing workflow:
+
+    - Generate FVU using the TXT and CSI files with the TDS Compliance – FVU Generation APIs.  
+    - E-file the TDS return via the TDS Compliance – E-File APIs.  
+    - Download the filing receipts and, later, Form 16 certificates for employees.
+
+    For the full end-to-end filing steps, follow the <b>File Form 24Q TDS Returns</b> recipe, which builds on top of the TXT generated here.
+  </Step>
+</Steps>
