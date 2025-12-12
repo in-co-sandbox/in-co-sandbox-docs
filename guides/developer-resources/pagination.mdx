@@ -2,18 +2,14 @@
 title: "Pagination"
 ---
 
-Some list endpoints return a limited set of results at a time.\
-Each paginated response may include a special value called `last_evaluated_key`.\
-If this key exists, it means **more results are available**. Send it again in the next request to fetch the next page.\
-If the key is missing, you’ve reached the end.
+Some list endpoints return a limited set of results at a time. Each paginated response may include a special value called `last_evaluated_key` . If this key exists, it means **more results are available**. Send it again in the subsequent request to fetch the next page. If the key is missing, you’ve reached the end.
 
 ---
 
 ## How Pagination Works
 
 1. Make the first request **without** `last_evaluated_key`.
-2. Receive a page of results.
-   If `last_evaluated_key` appears in the response, there’s another page.
+2. Receive a page of results. If `last_evaluated_key` appears in the response, there’s another page.
 3. Include that key in your next request to continue.
 4. Repeat until no `last_evaluated_key` is returned.
 
@@ -28,14 +24,12 @@ flowchart TD
 
 ---
 
-## Request Fields for Pagination
+## Request Attributes for Pagination
 
-Include these fields in the request body when using pagination:
+Include these attributes in the request body when using pagination:
 
 | Field                | Type    | Required | Description                                               |
 | -------------------- | ------- | -------- | --------------------------------------------------------- |
-| `from_date`          | integer | No       | Start timestamp (Epoch ms) to filter jobs from            |
-| `to_date`            | integer | No       | End timestamp (Epoch ms) to filter jobs till              |
 | `page_size`          | integer | No       | Max items to return per page (up to 50)                   |
 | `last_evaluated_key` | string  | No       | Cursor for the next page, returned from previous response |
 
@@ -52,8 +46,8 @@ Include these fields in the request body when using pagination:
   "quarter": "Q1",
   "form": "24Q",
   "financial_year": "FY 2024-25",
-  "from_date": 123,
-  "to_date": 123,
+  "from_date": 1765530000000,
+  "to_date": 1765536568538,
   "page_size": 50
 }
 ```
@@ -72,7 +66,7 @@ Include these fields in the request body when using pagination:
       { /* job item */ },
       { /* job item */ }
     ],
-    "last_evaluated_key": "eydadadadada...=="
+    "last_evaluated_key": "ZDVkMzAyZmUtMWFjYS00YjkxLTgyMWUtMTQxYmM4ZGE1NmNmIA=="
   }
 }
 ```
@@ -86,10 +80,10 @@ Include these fields in the request body when using pagination:
   "quarter": "Q1",
   "form": "24Q",
   "financial_year": "FY 2024-25",
-  "from_date": 123,
-  "to_date": 123,
+  "from_date": 1765530000000,
+  "to_date": 1765536568538,
   "page_size": 50,
-  "last_evaluated_key": "eydadadadada...=="
+  "last_evaluated_key": "ZDVkMzAyZmUtMWFjYS00YjkxLTgyMWUtMTQxYmM4ZGE1NmNmIA=="
 }
 ```
 
@@ -102,4 +96,6 @@ Include these fields in the request body when using pagination:
 | `items`              | Results for the current page       |
 | `last_evaluated_key` | Present only when more pages exist |
 
-<Note>Pagination is **forward-only**</Note>
+<Note>
+  Pagination is **forward-only**
+</Note>
