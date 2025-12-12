@@ -1,17 +1,23 @@
 ---
 title: "Pagination"
+description: "How to retrieve paginated data from the server using page_size and last_evaluated_key"
 ---
 
-Some list endpoints return a limited set of results at a time. Each paginated response may include a special value called `last_evaluated_key` . If this key exists, it means **more results are available**. Send it again in the subsequent request to fetch the next page. If the key is missing, you’ve reached the end.
+\
+List resources endpoint may return paginated items. Each paginated response may include a special value attribute`last_evaluated_key`. Presence of such attribute means **more items are available**. API client must include `last_evaluated_key` in  reuquest body to fetch next page.\
+\
+Response will not include`last_evaluated_key`for the last page to indicate the end of the list.
 
----
+## How pagination works
 
-## How Pagination Works
+1. Include`page_size `in the request body
+1. Response body includes `items`and `last_evaluated_key` 
+1. Include `page_size`and `last_evaluated_key` on subsequent request body
+4. Repeat until response body does not include`last_evaluated_key` 
 
-1. Make the first request **without** `last_evaluated_key`.
-2. Receive a page of results. If `last_evaluated_key` appears in the response, there’s another page.
-3. Include that key in your next request to continue.
-4. Repeat until no `last_evaluated_key` is returned.
+<Note>
+  Pagination is **forward-only**
+</Note>
 
 ```mermaid
 flowchart TD
@@ -24,16 +30,21 @@ flowchart TD
 
 ---
 
-## Request Attributes for Pagination
+## Key Request Attributes for Pagination
 
-Include these attributes in the request body when using pagination:
+Include following attributes in the request body when using pagination:
 
 | Field                | Type    | Required | Description                                               |
 | -------------------- | ------- | -------- | --------------------------------------------------------- |
 | `page_size`          | integer | No       | Max items to return per page (up to 50)                   |
 | `last_evaluated_key` | string  | No       | Cursor for the next page, returned from previous response |
 
----
+## Key Response Attributes for Pagination
+
+| Field                | Meaning                            |
+| :------------------- | :--------------------------------- |
+| `items`              | Results for the current page       |
+| `last_evaluated_key` | Present only when more pages exist |
 
 ## Example: Fetch Jobs with Pagination
 
@@ -42,13 +53,13 @@ Include these attributes in the request body when using pagination:
 ```json
 {
   "@entity": "in.co.sandbox.tds.reports.jobs.search",
-  "tan": "AHMA09719B",
+  "tan": "AHMQ00112A",
   "quarter": "Q1",
   "form": "24Q",
   "financial_year": "FY 2024-25",
   "from_date": 1765530000000,
   "to_date": 1765536568538,
-  "page_size": 50
+  "page_size": 10
 }
 ```
 
@@ -76,26 +87,15 @@ Include these attributes in the request body when using pagination:
 ```json
 {
   "@entity": "in.co.sandbox.tds.reports.jobs.search",
-  "tan": "AHMA09719B",
+  "tan": "AHMQ00112A",
   "quarter": "Q1",
   "form": "24Q",
   "financial_year": "FY 2024-25",
   "from_date": 1765530000000,
   "to_date": 1765536568538,
-  "page_size": 50,
+  "page_size": 10,
   "last_evaluated_key": "ZDVkMzAyZmUtMWFjYS00YjkxLTgyMWUtMTQxYmM4ZGE1NmNmIA=="
 }
 ```
 
 ---
-
-## Key Response Properties
-
-| Field                | Meaning                            |
-| -------------------- | ---------------------------------- |
-| `items`              | Results for the current page       |
-| `last_evaluated_key` | Present only when more pages exist |
-
-<Note>
-  Pagination is **forward-only**
-</Note>
