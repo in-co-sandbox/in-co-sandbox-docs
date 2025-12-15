@@ -1,8 +1,64 @@
 ---
 title: "Changelog"
 description: "Changelog for Sandbox APIs"
-rss: true
+rss: "true"
 ---
+
+
+<Update label="November 13th, 2025" tags={["Feature"]}>
+  ## **Download CSI – Generate & Verify OTP**
+
+  New endpoints have been introduced to support OTP-based authentication for downloading CSI files as part of the TDS compliance workflow.
+
+  - `POST /tds/compliance/csi/otp` — **Generate OTP**
+
+    Initiates an OTP request for CSI download. The client must provide `tan`, `mobile_number`, `from`, `to`, `consent`, and `reason`. The response returns a `reference_id`.
+  - `POST /tds/compliance/csi/otp/verify` — **Verify OTP**
+
+    Verifies the OTP to authenticate the user and enable CSI file download.
+
+  **Behaviour & Workflow**
+
+  - An OTP is sent to the specified `mobile_number` for user verification.
+  - Upon successful OTP verification, the CSI file can be downloaded for the given TAN and date range, completing the _Download CSI_ step in the TDS compliance flow.
+  - This enables downstream processes such as FVU generation and e-filing using validated CSI data.
+</Update>
+
+<Update label="October 6th, 2025" tags={["Feature"]}>
+  ## **Introducing DigiLocker SDK**
+
+  We’ve launched the **DigiLocker SDK** to enable consent-based digital KYC for organizations. It allows individuals to securely fetch verified documents such as Aadhaar, PAN, and Driving License directly from **DigiLocker**, India’s trusted digital document wallet.
+
+  **Workflow**
+
+  - [**Initialize SDK**](https://developer.sandbox.co.in/api-reference/kyc/digilocker-sdk/endpoints/create-session): Start a DigiLocker-based KYC session.
+  - [**Check Session Status**](https://developer.sandbox.co.in/api-reference/kyc/digilocker-sdk/endpoints/get-session-status): Monitor consent status and approved documents in real time.
+  - [**Fetch Document**](https://developer.sandbox.co.in/api-reference/kyc/digilocker-sdk/endpoints/get-document): Retrieve documents using the session ID and document type.
+
+  View the [**SDK Demo**](https://demo.sandbox.co.in/kyc/digilocker).
+
+  **Key Behaviour**
+
+  - **One-hour retention:** Retrieved documents are automatically deleted after 60 minutes.
+  - **Custom UX:** You control the user experience while Sandbox handles the backend integration.
+  - **Certified TSP:** Sandbox is a government-recognized Technology Solution Provider.
+</Update>
+
+<Update label="September 5th, 2025" tags={["Improvement"]}>
+  ## **Enhanced Error Handling for Test Environment Requests**
+
+  We’ve improved how the test environment responds to invalid requests. Previously, requests that didn’t match any saved example returned a generic mock error. Now, such requests will return a proper **404 Not Found** error, along with a detailed error message to clearly indicate the issue. This update provides better feedback and simplifies troubleshooting for developers.
+</Update>
+
+<Update label="August 25th, 2025" tags={["Feature"]}>
+  ## **Download File Details**
+
+  This API enables reliable downloading of large GSTR files from the GST network using a GSTN-issued file `token`. The job-based workflow ensures resilience and seamless integration with existing GST compliance processes:
+
+  - Obtain file token from the GST network
+  - Submit download job
+  - Poll job status 
+</Update>
 
 <Update label="July 31st, 2025" tags={["Feature"]}>
   ## Introducing DigiLocker APIs
@@ -1682,7 +1738,7 @@ rss: true
 </Update>
 
 <Update label="January 2nd, 2023 " tags={["Feature"]}>
-  ##  **PAN Verification API (Advance)**
+  ## **PAN Verification API (Advance)**
 
   The updated API endpoint includes the implementation of caching, updated API request response, improved charging mechanism & better pricing.
 
@@ -1717,7 +1773,7 @@ rss: true
 </Update>
 
 <Update label="December 14th, 2022 " tags={["Feature"]}>
-  ##  **Bank Account Verification [Penny Drop] Version 2.0**
+  ## **Bank Account Verification [Penny Drop] Version 2.0**
 
   The new version includes the implementation of caching, updated API responses, and an improved charging mechanism.
 
@@ -1748,7 +1804,7 @@ rss: true
 </Update>
 
 <Update label="November 2nd, 2022" tags={["Feature"]}>
-  ##  **Tax Payment APIs Entity changes**
+  ## **Tax Payment APIs Entity changes**
 
   As we migrate our systems from OLTAS to TIN 2.0, we had to incorporate a few changes to the API contracts.
 
