@@ -3,17 +3,52 @@ title: "Changelog"
 description: "Changelog for Sandbox APIs"
 rss: "true"
 ---
+<Update label="December 16th, 2025" tags={["Feature"]}>
+  ## Introducing EntityLocker APIs
 
+  EntityLocker is essentially DigiLocker for businesses, a secure, consent-based digital document locker that enables organizations to fetch and share verified business documents seamlessly. It plays a key role in streamlining vendor onboarding, compliance checks, and B2B workflows.
+
+
+  **Workflow**
+
+  1. [Initiate Session](https://developer.sandbox.co.in/api-reference/kyc/entitylocker/endpoints/initiate_session): Generate a one-time DigiLocker link for document consent
+  2. [Session Status](https://developer.sandbox.co.in/api-reference/kyc/entitylocker/endpoints/session_status): Check real-time consent status and list of approved documents
+  3. [Fetch Document](https://developer.sandbox.co.in/api-reference/kyc/entitylocker/endpoints/fetch_document): Retrieve the requested document using session ID + document type
+  4. [Get Entity Details](https://developer.sandbox.co.in/api-reference/kyc/entitylocker/endpoints/get_entity_details): Retrieve the Entity details using session ID
+  5. [Get User Profile](https://developer.sandbox.co.in/api-reference/kyc/entitylocker/endpoints/get_user_profile_details): Retrieve the Entity's authorized user's profile using session ID
+
+  **Key Behaviour**
+
+  - One-hour retention: Documents are retained for up to 60 minutes, then auto-deleted
+  - You control the UX: Build your own flows, Sandbox just powers the backend
+  - Certified TSP: Sandbox is a government-recognized Technology Solution Provider
+</Update>
+
+<Update label="December 16th, 2025" tags={["Feature"]}>
+  ## **DigiLocker Flutter SDK**
+
+* Added [`sandbox_digilocker_sdk`](https://pub.dev/packages/sandbox_digilocker_sdk) to enable DigiLocker integration in Flutter.
+* Introduced **native Flutter integration** for DigiLocker using the Sandbox SDK.
+* Full support for **Android and iOS platforms** with a unified Flutter API.
+
+###  Platform Support
+
+*  Android
+*  iOS
+
+
+
+</Update>
 
 <Update label="November 13th, 2025" tags={["Feature"]}>
   ## **Download CSI – Generate & Verify OTP**
 
   New endpoints have been introduced to support OTP-based authentication for downloading CSI files as part of the TDS compliance workflow.
 
-  - `POST /tds/compliance/csi/otp` — **Generate OTP**
+  - [**Generate OTP**](https://developer.sandbox.co.in/api-reference/tds/compliance/download-csi/endpoints/generate_otp)
 
     Initiates an OTP request for CSI download. The client must provide `tan`, `mobile_number`, `from`, `to`, `consent`, and `reason`. The response returns a `reference_id`.
-  - `POST /tds/compliance/csi/otp/verify` — **Verify OTP**
+  - [**Verify OTP**](https://developer.sandbox.co.in/api-reference/tds/compliance/download-csi/endpoints/verify_otp)
 
     Verifies the OTP to authenticate the user and enable CSI file download.
 
