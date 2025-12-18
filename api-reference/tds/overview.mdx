@@ -3,29 +3,47 @@ title: "Overview"
 description: "Overview of TDS API by Sandbox - Tax API Stack for India by Quicko."
 ---
 
-Tax Deducted at Source (TDS) is an indirect method of collecting Income Tax. TDS is based on the principle of “Pay as you earn”. It is where a person making a payment of specified nature is liable to deduct tax at a prescribed rate.
+## Tax Deducted at Source (TDS)
 
-Staying TDS compliant can be a hassle, as one is required to :
+Tax Deducted at Source (TDS) is a mechanism for collecting Income Tax at the time a payment is made. It operates on the principle of “pay as you earn”, where the person responsible for making a specified payment deducts tax at a prescribed rate before releasing the amount to the recipient and deposits it with the Government.
 
-1. Deduct TDS from payments that are liable for TDS Deduction at an appropriate rate.
-2. Deposit TDS to the Government before the due date.
-3. Issue a TDS Certificate by the deductor to the deductee.
-4. File TDS Returns on a Quarterly basis.
+TDS applies to various types of payments such as salary, professional fees, rent, interest, commissions, and contractual payments, helping ensure timely tax collection and reduced tax evasion.
 
-Businesses deducting TDS have to remain compliant with each of the steps. Failure to do so results in TDS Penalties by Authorities. Sandbox provides TDS APIs to completely automate this process.
+Staying TDS-compliant involves multiple ongoing obligations. Businesses responsible for deducting TDS must:
 
-### **Compliance API**
+- Deduct tax at the correct rate on applicable payments
+- Deposit the deducted TDS with the Government within prescribed due dates
+- Issue TDS certificates (such as Form 16 or Form 16A) to deductees
+- File quarterly TDS returns accurately and on time
 
-These APIs enable businesses to automate their TDS Compliance requirements such as [<u>E-File TDS Return</u>](https://developer.sandbox.co.in/api-reference/tds/compliance/e-file/endpoints/submit_job) and Download [<u>TDS Certificate APIs</u>](https://developer.sandbox.co.in/api-reference/tds/compliance/certificate-form16\(a\)/endpoints/submit_job) such as Form16 / Form16A.
+Failure to comply with any of these steps can result in interest, penalties, and notices from tax authorities, making manual TDS management complex and high-risk especially for businesses handling large volumes of transactions.
 
-### **Analytics API**
+## API Categories
 
-APIs that use business data to analyze TDS information to avoid [<u>Potential Notices</u>](https://developer.sandbox.co.in/api-reference/tds/analytics/tds-analytics/endpoints/submit_job), Reconcile a business's TDS credits, and more.
+<Card title="Compliance APIs" icon="sparkles">
+  Compliance APIs help businesses meet statutory TDS requirements by enabling:
 
-### **Report API**
+  - [E-filing of TDS returns](https://developer.sandbox.co.in/api-reference/tds/compliance/e-file/endpoints/submit_job)
+  - [**Download of TDS certificates such as Form 16 and Form 16A**](https://developer.sandbox.co.in/api-reference/tds/compliance/certificate-form16\(a\)/endpoints/submit_job)
+  - Streamlined handling of filing and post-filing workflows
+</Card>
 
-[<u>Prepare TDS returns</u>](https://developer.sandbox.co.in/api-reference/tds/reports/tds-reports/endpoints/submit_job) for volumetric deductions through these APIs, easily generating TXT.
+<Card title="Analytics APIs" icon="sparkles">
+  Analytics APIs leverage business data to provide actionable insights, including:
 
-### **Calculator API**
+  - Reconciliation of TDS credits
+  - Identification of discrepancies that may trigger [potential notices](https://developer.sandbox.co.in/api-reference/tds/analytics/tds-analytics/endpoints/submit_job)
+  - Visibility into overall TDS compliance status
+</Card>
 
-Determine the deduction amount on Salary, [<u>Non-Salary payments</u>](https://developer.sandbox.co.in/api-reference/tds/calculator/tds-calculator/endpoints/non_salary) through our TDS Calculator APIs.
+<Card title="Report API" icon="sparkles">
+  [<u>Prepare TDS returns</u>](https://developer.sandbox.co.in/api-reference/tds/reports/tds-reports/endpoints/submit_job) for volumetric deductions through these APIs, easily generating TXT.
+</Card>
+
+<Card title="Calculator API" icon="sparkles">
+  Determine the deduction amount on Salary, [<u>Non-Salary payments</u>](https://developer.sandbox.co.in/api-reference/tds/calculator/tds-calculator/endpoints/non_salary) through our TDS Calculator APIs.
+</Card>
+
+## How Sandbox Simplifies TDS Compliance
+
+Sandbox provides a comprehensive suite of **TDS APIs** that automate the entire TDS lifecycle, from calculation to return filing and certificate management allowing businesses to stay compliant without operational overhead.
