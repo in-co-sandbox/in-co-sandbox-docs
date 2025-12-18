@@ -3,27 +3,30 @@ title: "Overview"
 description: "Overview of KYC API by Sandbox - Tax API Stack for India by Quicko."
 ---
 
-KYC stands for 'Know Your Customer' or 'Know Your Client'. It is needed in various industries where businesses interact with customers and clients to prevent fraud, money laundering, identity theft, and other illicit activities. Some of the industries where KYC is commonly required include
+Know Your Customer (KYC) is a mandatory compliance process used to verify the identity of individuals and businesses before establishing a financial or contractual relationship. KYC plays a critical role in preventing fraud, money laundering, identity theft, and other financial crimes, while ensuring adherence to regulatory requirements across industries.
 
-- Banks, credit unions, and financial institutions need KYC to open accounts, provide loans, and manage financial transactions.
-- Insurance companies verify customer identities and assess risk when underwriting policies.
-- Online casinos and gaming platforms use KYC to ensure legal age and prevent money laundering.
+KYC is widely required across sectors such as banking and financial services, insurance, fintech, lending, online gaming, and any business that handles payments, financial data, or sensitive customer information.
 
-Sandbox API enables businesses to automate KYC for their individual customers and businesses.
+Sandbox provides a comprehensive KYC API stack for India, enabling businesses to automate identity verification for both individuals and organizations through secure, reliable, and government-authoritative data sources.
 
-### **Business KYC**
+## Individual KYC
 
-KYC for businesses can be done with the following type of APIs
+Individual KYC focuses on verifying a person’s identity, financial legitimacy, and compliance history. Sandbox supports Individual KYC through trusted national identifiers.
 
-1. [**<u>CIN & DIN:</u>**](https://developer.sandbox.co.in/reference/mca-company-master-data-api) The Ministry of Corporate Affairs is an Indian government ministry primarily concerned with the administration of the Companies Act 2013 and maintains details on all incorporated companies.
-2. [**<u>GSTIN:</u>**](https://developer.sandbox.co.in/reference/search-gstin-api)Goods and Services Network (GSTN) assigns a unique GST Identification Number (GSTIN) to businesses operating within a state or Union territory. It acts as Identity verification, operational status, business information etc.
-3. [**<u>TAN:</u>**](https://developer.sandbox.co.in/reference/search-tan-api) TAN is essential for those responsible for tax deduction (TDS) or tax collection (TCS), ensuring compliance with tax regulations. It can be used to verify Tax compliance, business validity, risk assessment etc of the businesses.
-4. [**<u>PAN:</u>**](https://developer.sandbox.co.in/reference/verify-pan-details-api) PAN of the business provides insights into the business's financial transactions, industry classification, and regulatory adherence, aiding risk assessment and decision-making during business relationships.
+Businesses can perform Individual KYC using:
 
-### **Individual KYC**
+- [**Aadhaar**:](https://developer.sandbox.co.in/api-reference/kyc/aadhaar/endpoints/generate_otp) Issued by UIDAI, Aadhaar serves as a widely accepted proof of identity and address across India and is one of the most preferred methods for customer verification.
+- [**Bank Account Verification**](https://developer.sandbox.co.in/api-reference/kyc/bank/endpoints/penny_drop): Confirms account ownership and validity, commonly used during onboarding for payment, payout, and financial services workflows.
+- [**PAN (Individual**](https://developer.sandbox.co.in/api-reference/kyc/pan/endpoints/verify_pan_details)**)**: Individual PAN verification confirms identity details and tax compliance history, enabling informed decision making across financial and regulatory use cases.
+- [**Driving License**:](https://developer.sandbox.co.in/api-reference/kyc/entitylocker/endpoints/initiate_session) Issued by State Transport Authorities under the Ministry of Road Transport and Highways (MoRTH), Driving License verification helps validate an individual’s identity, age, and address, and is commonly used as a supplementary KYC document for onboarding and risk assessment.
 
-Businesses can do KYC for individuals with
+## Business KYC
 
-1. [**<u>Aadhaar:</u>**](https://developer.sandbox.co.in/reference/aadhaar-okyc-generate-otp-api) Aadhaar is an individual identification issued by the UIDAI. Aadhaar number serves as proof of identity and address, anywhere in India. Hence, verifying Aadhaar is one of the primary and most preferred ways to KYC customers.
-2. [**<u>Bank Account:</u>**](https://developer.sandbox.co.in/reference/bank-account-verification-api) Bank Account Verification is part of customer onboarding due diligence to ensure the legitimacy of the user and their ownership of the bank account, especially when services involve exchanges of money and financial data.
-3. [**<u>PAN:</u>**](https://developer.sandbox.co.in/reference/verify-pan-details-api) PAN of individual involves confirming the individual identity, ownership details, and tax compliance history facilitating informed decisions in various transactions and services.
+Business KYC helps establish the legal existence, ownership structure, and compliance status of an organization. Sandbox enables Business KYC using multiple government-issued identifiers.
+
+Businesses can be verified using:
+
+- [**CIN & DIN Number**](https://developer.sandbox.co.in/reference/mca-company-master-data-api): Issued and maintained by the Ministry of Corporate Affairs (MCA), these identifiers help validate company registration details, directors, and corporate structure under the Companies Act, 2013.
+- [**GSTIN**:](https://developer.sandbox.co.in/reference/search-gstin-api) The Goods and Services Tax Identification Number (GSTIN), issued by GSTN, verifies business identity, registration status, filing activity, and operational details across states.
+- [**TAN**:](https://developer.sandbox.co.in/reference/search-tan-api) The Tax Deduction and Collection Account Number (TAN) is mandatory for entities responsible for TDS or TCS, enabling verification of tax compliance and business validity.
+- [**PAN (Business)**:](https://developer.sandbox.co.in/reference/verify-pan-details-api) Business PAN verification provides insights into financial activity, industry classification, and regulatory adherence, supporting risk assessment and partner due diligence.
