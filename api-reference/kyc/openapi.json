@@ -2065,19 +2065,6 @@
                                             },
                                             "transaction_id": "6daaaf0c-21f6-4e32-93b5-19ec4415d7fa"
                                         }
-                                    },
-                                    "200 - 200 - Session Created 1": {
-                                        "value": {
-                                            "code": 200,
-                                            "timestamp": 1752580258171,
-                                            "data": {
-                                                "id": "839fd8a0-d645-42e1-a904-bb43353b0139",
-                                                "created_at": 1752579445983,
-                                                "@entity": "in.co.sandbox.kyc.digilocker.session",
-                                                "status": "created"
-                                            },
-                                            "transaction_id": "800ff751-2191-4b7d-b20a-8301790a3e19"
-                                        }
                                     }
                                 }
                             }
@@ -2901,32 +2888,80 @@
                 "summary": "Initiate session",
                 "parameters": [
                     {
-                        "name": "x-api-key",
-                        "in": "header",
-                        "description": "API key for identification",
-                        "schema": {
-                            "type": "string"
-                        },
-                        "example": "{{api_key}}"
-                    },
-                    {
                         "name": "Authorization",
                         "in": "header",
+                        "required": true,
                         "description": "JWT access token",
                         "schema": {
+                            "deprecated": false,
                             "type": "string"
-                        },
-                        "example": "{{access_token}}"
+                        }
+                    },
+                    {
+                        "name": "x-api-key",
+                        "in": "header",
+                        "required": true,
+                        "description": "API key for identification",
+                        "schema": {
+                            "deprecated": false,
+                            "type": "string"
+                        }
                     },
                     {
                         "name": "x-api-version",
                         "in": "header",
+                        "required": false,
                         "schema": {
                             "type": "string"
-                        },
-                        "example": "{{version}}"
+                        }
                     }
                 ],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type": "object",
+                                "properties": {
+                                    "@entity": {
+                                        "type": "string",
+                                        "const": "in.co.sandbox.kyc.entitylocker.session.request"
+                                    },
+                                    "flow": {
+                                        "description": "Indicates whether the user is signing in or signing up on EntityLocker",
+                                        "type": "string",
+                                        "enum": [
+                                            "signin",
+                                            "signup"
+                                        ]
+                                    },
+                                    "redirect_url": {
+                                        "description": "The URL to redirect the user post consent is received",
+                                        "type": "string",
+                                        "format": "uri"
+                                    },
+                                    "consent_expiry": {
+                                        "description": "The expiry of the consent that the user provides. Should be a minimum of 1 hour from current timestamp.",
+                                        "type": "number"
+                                    }
+                                },
+                                "required": [
+                                    "@entity",
+                                    "flow",
+                                    "redirect_url"
+                                ]
+                            },
+                            "examples": {
+                                "200 Example": {
+                                    "value": {
+                                        "@entity": "in.co.sandbox.kyc.entitylocker.session.request",
+                                        "flow": "signin",
+                                        "redirect_url": "https://sandbox.co.in"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
                 "responses": {
                     "200": {
                         "description": "200 - Session initiated",
@@ -2978,17 +3013,7 @@
                 "tags": [
                     "EntityLocker",
                     "EntityLocker API"
-                ],
-                "requestBody": {
-                    "content": {
-                        "application/json": {
-                            "schema": {
-                                "type": "object"
-                            },
-                            "example": "{\r\n    \"@entity\": \"in.co.sandbox.kyc.entitylocker.session.request\",\r\n    \"flow\": \"signin\",\r\n    \"redirect_url\": \"https://sandbox.co.in/\",\r\n    \"consent_expiry\":\r\n}"
-                        }
-                    }
-                }
+                ]
             }
         },
         "/kyc/entitylocker/sessions/{session_id}/status": {
@@ -2996,30 +3021,32 @@
                 "summary": "Get session status",
                 "parameters": [
                     {
-                        "name": "x-api-key",
-                        "in": "header",
-                        "description": "API key for identification",
-                        "schema": {
-                            "type": "string"
-                        },
-                        "example": "{{api_key}}"
-                    },
-                    {
                         "name": "Authorization",
                         "in": "header",
+                        "required": true,
                         "description": "JWT access token",
                         "schema": {
+                            "deprecated": false,
                             "type": "string"
-                        },
-                        "example": "{{access_token}}"
+                        }
+                    },
+                    {
+                        "name": "x-api-key",
+                        "in": "header",
+                        "required": true,
+                        "description": "API key for identification",
+                        "schema": {
+                            "deprecated": false,
+                            "type": "string"
+                        }
                     },
                     {
                         "name": "x-api-version",
                         "in": "header",
+                        "required": false,
                         "schema": {
                             "type": "string"
-                        },
-                        "example": "{{version}}"
+                        }
                     }
                 ],
                 "responses": {
@@ -3039,22 +3066,77 @@
                                         "data": {
                                             "type": "object",
                                             "properties": {
-                                                "@entity": {
-                                                    "type": "string"
-                                                },
                                                 "id": {
-                                                    "type": "string"
-                                                },
-                                                "status": {
                                                     "type": "string"
                                                 },
                                                 "created_at": {
                                                     "type": "integer"
+                                                },
+                                                "updated_at": {
+                                                    "type": "integer"
+                                                },
+                                                "@entity": {
+                                                    "type": "string",
+                                                    "const": "in.co.sandbox.kyc.entitylocker.session"
+                                                },
+                                                "status": {
+                                                    "type": "string",
+                                                    "enum": [
+                                                        "created",
+                                                        "succeeded",
+                                                        "expired",
+                                                        "failed"
+                                                    ]
+                                                },
+                                                "documents_consented": {
+                                                    "type": "array",
+                                                    "items": {
+                                                        "type": "string",
+                                                        "enum": [
+                                                            "company_master_details",
+                                                            "gstn_details",
+                                                            "udhyam_certificate"
+                                                        ]
+                                                    }
                                                 }
                                             }
                                         },
                                         "transaction_id": {
                                             "type": "string"
+                                        }
+                                    }
+                                },
+                                "examples": {
+                                    "200 - Session Created": {
+                                        "value": {
+                                            "code": 200,
+                                            "timestamp": 1752580258171,
+                                            "data": {
+                                                "id": "839fd8a0-d645-42e1-a904-bb43353b0139",
+                                                "created_at": 1752579445983,
+                                                "@entity": "in.co.sandbox.kyc.entitylocker.session",
+                                                "status": "created"
+                                            },
+                                            "transaction_id": "800ff751-2191-4b7d-b20a-8301790a3e19"
+                                        }
+                                    },
+                                    "200 - Session Succeeded": {
+                                        "value": {
+                                            "code": 200,
+                                            "timestamp": 1751975475945,
+                                            "data": {
+                                                "id": "f1bd0342-cc1d-4051-8301-e8ee17e3a3c3",
+                                                "created_at": 1751975341292,
+                                                "updated_at": 1751975465494,
+                                                "@entity": "in.co.sandbox.kyc.entitylocker.session",
+                                                "status": "succeeded",
+                                                "documents_consented": [
+                                                    "company_master_details",
+                                                    "gstn_details",
+                                                    "udhyam_certificate"
+                                                ]
+                                            },
+                                            "transaction_id": "6daaaf0c-21f6-4e32-93b5-19ec4415d7fa"
                                         }
                                     }
                                 }
@@ -3072,11 +3154,12 @@
                     "name": "session_id",
                     "in": "path",
                     "required": true,
-                    "description": "Session ID",
+                    "description": "Session created in Initiate Session API",
                     "schema": {
-                        "type": "string"
-                    },
-                    "example": "{{session_id}}"
+                        "deprecated": false,
+                        "type": "string",
+                        "format": "uuid"
+                    }
                 }
             ]
         },
@@ -3085,30 +3168,32 @@
                 "summary": "Fetch Document",
                 "parameters": [
                     {
-                        "name": "x-api-key",
-                        "in": "header",
-                        "description": "API key for identification",
-                        "schema": {
-                            "type": "string"
-                        },
-                        "example": "{{api_key}}"
-                    },
-                    {
                         "name": "Authorization",
                         "in": "header",
+                        "required": true,
                         "description": "JWT access token",
                         "schema": {
+                            "deprecated": false,
                             "type": "string"
-                        },
-                        "example": "{{access_token}}"
+                        }
+                    },
+                    {
+                        "name": "x-api-key",
+                        "in": "header",
+                        "required": true,
+                        "description": "API key for identification",
+                        "schema": {
+                            "deprecated": false,
+                            "type": "string"
+                        }
                     },
                     {
                         "name": "x-api-version",
                         "in": "header",
+                        "required": false,
                         "schema": {
                             "type": "string"
-                        },
-                        "example": "{{version}}"
+                        }
                     }
                 ],
                 "responses": {
@@ -3243,50 +3328,6 @@
                     },
                     "400": {
                         "description": "400 - Consent not provided",
-                        "headers": {
-                            "Date": {
-                                "schema": {
-                                    "type": "string"
-                                },
-                                "example": "Tue, 16 Dec 2025 12:27:33 GMT"
-                            },
-                            "Content-Length": {
-                                "schema": {
-                                    "type": "integer"
-                                },
-                                "example": "158"
-                            },
-                            "Connection": {
-                                "schema": {
-                                    "type": "string"
-                                },
-                                "example": "keep-alive"
-                            },
-                            "x-amzn-RequestId": {
-                                "schema": {
-                                    "type": "string"
-                                },
-                                "example": "3f0590ab-b977-43ae-8b9d-667d984cceb2"
-                            },
-                            "Content-Encoding": {
-                                "schema": {
-                                    "type": "string"
-                                },
-                                "example": "gzip"
-                            },
-                            "x-amz-apigw-id": {
-                                "schema": {
-                                    "type": "string"
-                                },
-                                "example": "Vrl4ZFU6hcwEHmQ="
-                            },
-                            "X-Amzn-Trace-Id": {
-                                "schema": {
-                                    "type": "string"
-                                },
-                                "example": "Root=1-69415035-76503de35f2fd737277c7130;Parent=60db67b0f1b4ee08;Sampled=0;Lineage=2:a93f68fd:0"
-                            }
-                        },
                         "content": {
                             "application/json": {
                                 "schema": {
@@ -3326,21 +3367,27 @@
                     "name": "session_id",
                     "in": "path",
                     "required": true,
-                    "description": "Session ID",
+                    "description": "Session created in Initiate Session API",
                     "schema": {
-                        "type": "string"
-                    },
-                    "example": "{{session_id}}"
+                        "deprecated": false,
+                        "type": "string",
+                        "format": "uuid"
+                    }
                 },
                 {
                     "name": "doc_type",
                     "in": "path",
                     "required": true,
-                    "description": "Document Type",
+                    "description": "Document you want to fetch",
                     "schema": {
-                        "type": "string"
-                    },
-                    "example": "udhyam_certificate"
+                        "deprecated": false,
+                        "type": "string",
+                        "enum": [
+                            "company_master_details",
+                            "gstn_details",
+                            "udhyam_certificate"
+                        ]
+                    }
                 }
             ]
         },
@@ -3349,79 +3396,37 @@
                 "summary": "Get Entity Details",
                 "parameters": [
                     {
-                        "name": "x-api-key",
-                        "in": "header",
-                        "description": "API key for identification",
-                        "schema": {
-                            "type": "string"
-                        },
-                        "example": "{{api_key}}"
-                    },
-                    {
                         "name": "Authorization",
                         "in": "header",
+                        "required": true,
                         "description": "JWT access token",
                         "schema": {
+                            "deprecated": false,
                             "type": "string"
-                        },
-                        "example": "{{access_token}}"
+                        }
+                    },
+                    {
+                        "name": "x-api-key",
+                        "in": "header",
+                        "required": true,
+                        "description": "API key for identification",
+                        "schema": {
+                            "deprecated": false,
+                            "type": "string"
+                        }
                     },
                     {
                         "name": "x-api-version",
                         "in": "header",
+                        "required": false,
                         "schema": {
                             "type": "string"
-                        },
-                        "example": "{{version}}"
+                        }
                     }
                 ],
                 "responses": {
                     "200": {
                         "description": "200 - Entity Details fetched",
-                        "headers": {
-                            "Date": {
-                                "schema": {
-                                    "type": "string"
-                                },
-                                "example": "Tue, 16 Dec 2025 12:39:28 GMT"
-                            },
-                            "Content-Length": {
-                                "schema": {
-                                    "type": "integer"
-                                },
-                                "example": "313"
-                            },
-                            "Connection": {
-                                "schema": {
-                                    "type": "string"
-                                },
-                                "example": "keep-alive"
-                            },
-                            "x-amzn-RequestId": {
-                                "schema": {
-                                    "type": "string"
-                                },
-                                "example": "c4124d99-4854-446f-9b04-b8f8c12785d0"
-                            },
-                            "Content-Encoding": {
-                                "schema": {
-                                    "type": "string"
-                                },
-                                "example": "gzip"
-                            },
-                            "x-amz-apigw-id": {
-                                "schema": {
-                                    "type": "string"
-                                },
-                                "example": "Vrnn_HQMBcwEbUw="
-                            },
-                            "X-Amzn-Trace-Id": {
-                                "schema": {
-                                    "type": "string"
-                                },
-                                "example": "Root=1-694152ff-4303b2a34a10c73d6ab1cf70;Parent=7baae4a933556160;Sampled=0;Lineage=2:a93f68fd:0"
-                            }
-                        },
                         "content": {
                             "application/json": {
                                 "schema": {
@@ -3440,7 +3445,8 @@
                                                     "type": "string"
                                                 },
                                                 "@entity": {
-                                                    "type": "string"
+                                                    "type": "string",
+                                                    "const": "in.co.sandbox.kyc.entitylocker.entity"
                                                 },
                                                 "date_of_incorporation": {
                                                     "type": "string"
@@ -3450,8 +3456,7 @@
                                                     "format": "email"
                                                 },
                                                 "mobile": {
-                                                    "type": "string",
-                                                    "format": "utc-millisec"
+                                                    "type": "string"
                                                 },
                                                 "name": {
                                                     "type": "string"
@@ -3494,11 +3499,12 @@
                     "name": "session_id",
                     "in": "path",
                     "required": true,
-                    "description": "Session ID",
+                    "description": "Session created in Initiate Session API",
                     "schema": {
-                        "type": "string"
-                    },
-                    "example": "{{session_id}}"
+                        "deprecated": false,
+                        "type": "string",
+                        "format": "uuid"
+                    }
                 }
             ]
         },
@@ -3509,118 +3515,78 @@
                     {
                         "name": "Authorization",
                         "in": "header",
+                        "required": true,
+                        "description": "JWT access token",
                         "schema": {
+                            "deprecated": false,
                             "type": "string"
-                        },
-                        "example": "{{access_token}}"
+                        }
                     },
                     {
                         "name": "x-api-key",
                         "in": "header",
+                        "required": true,
+                        "description": "API key for identification",
                         "schema": {
+                            "deprecated": false,
                             "type": "string"
-                        },
-                        "example": "{{api_key}}"
+                        }
                     },
                     {
                         "name": "x-api-version",
                         "in": "header",
+                        "required": false,
                         "schema": {
                             "type": "string"
-                        },
-                        "example": "{{version}}"
+                        }
                     }
                 ],
                 "responses": {
                     "200": {
                         "description": "200 - Profile Details fetched",
-                        "headers": {
-                            "Date": {
-                                "schema": {
-                                    "type": "string"
-                                },
-                                "example": "Tue, 16 Dec 2025 12:43:21 GMT"
-                            },
-                            "Content-Length": {
-                                "schema": {
-                                    "type": "integer"
-                                },
-                                "example": "269"
-                            },
-                            "Connection": {
-                                "schema": {
-                                    "type": "string"
-                                },
-                                "example": "keep-alive"
-                            },
-                            "x-amzn-RequestId": {
-                                "schema": {
-                                    "type": "string"
-                                },
-                                "example": "7603165e-e591-4342-bb19-1d9f4caabb0f"
-                            },
-                            "Content-Encoding": {
-                                "schema": {
-                                    "type": "string"
-                                },
-                                "example": "gzip"
-                            },
-                            "x-amz-apigw-id": {
-                                "schema": {
-                                    "type": "string"
-                                },
-                                "example": "VroMYFJwBcwEQOA="
-                            },
-                            "X-Amzn-Trace-Id": {
-                                "schema": {
-                                    "type": "string"
-                                },
-                                "example": "Root=1-694153e8-30ae73ff336f160e08391ac3;Parent=5b3521629f82a990;Sampled=0;Lineage=3:3966fe4b:0"
-                            }
-                        },
                         "content": {
                             "application/json": {
                                 "schema": {
-                                    "type": "object",
-                                    "properties": {
-                                        "code": {
-                                            "type": "integer"
-                                        },
-                                        "timestamp": {
-                                            "type": "integer"
-                                        },
-                                        "data": {
-                                            "type": "object",
-                                            "properties": {
-                                                "id": {
-                                                    "type": "string"
-                                                },
-                                                "@entity": {
-                                                    "type": "string"
-                                                },
-                                                "date_of_birth": {
-                                                    "type": "string"
-                                                },
-                                                "mobile": {
-                                                    "type": "string",
-                                                    "format": "utc-millisec"
-                                                },
-                                                "eaadhaar": {
-                                                    "type": "boolean"
-                                                },
-                                                "gender": {
-                                                    "type": "string"
-                                                },
-                                                "name": {
-                                                    "type": "string"
-                                                }
-                                            }
-                                        },
-                                        "transaction_id": {
-                                            "type": "string"
-                                        }
-                                    }
-                                },
+    "type": "object",
+    "properties": {
+        "code": {
+            "type": "integer"
+        },
+        "timestamp": {
+            "type": "integer"
+        },
+        "data": {
+            "type": "object",
+            "properties": {
+                "id": {
+                    "type": "string"
+                },
+                "@entity": {
+                    "type": "string",
+                    "const": "in.co.sandbox.kyc.entitylocker.user.profile"
+                },
+                "date_of_birth": {
+                    "type": "string"
+                },
+                "mobile": {
+                    "type": "string"
+                },
+                "eaadhaar": {
+                    "type": "boolean"
+                },
+                "gender": {
+                    "type": "string"
+                },
+                "name": {
+                    "type": "string"
+                }
+            }
+        },
+        "transaction_id": {
+            "type": "string"
+        }
+    }
+},
                                 "example": {
                                     "code": 200,
                                     "timestamp": 1765889000461,
@@ -3649,11 +3615,12 @@
                     "name": "session_id",
                     "in": "path",
                     "required": true,
-                    "description": "Session ID",
+                    "description": "Session created in Initiate Session API",
                     "schema": {
-                        "type": "string"
-                    },
-                    "example": "{{session_id}}"
+                        "deprecated": false,
+                        "type": "string",
+                        "format": "uuid"
+                    }
                 }
             ]
         },
@@ -3670,6 +3637,7 @@
                         "required": true,
                         "description": "JWT access token",
                         "schema": {
+                            "deprecated": false,
                             "type": "string"
                         }
                     },
@@ -3677,8 +3645,9 @@
                         "name": "x-api-key",
                         "in": "header",
                         "required": true,
-                        "description": "API Key for identification",
+                        "description": "API key for identification",
                         "schema": {
+                            "deprecated": false,
                             "type": "string"
                         }
                     },
@@ -3799,6 +3768,7 @@
                         "required": true,
                         "description": "JWT access token",
                         "schema": {
+                            "deprecated": false,
                             "type": "string"
                         }
                     },
@@ -3806,7 +3776,16 @@
                         "name": "x-api-key",
                         "in": "header",
                         "required": true,
-                        "description": "API Key for identification",
+                        "description": "API key for identification",
+                        "schema": {
+                            "deprecated": false,
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "x-api-version",
+                        "in": "header",
+                        "required": false,
                         "schema": {
                             "type": "string"
                         }
@@ -3948,6 +3927,7 @@
                         "required": true,
                         "description": "JWT access token",
                         "schema": {
+                            "deprecated": false,
                             "type": "string"
                         }
                     },
@@ -3955,7 +3935,16 @@
                         "name": "x-api-key",
                         "in": "header",
                         "required": true,
-                        "description": "API Key for identification",
+                        "description": "API key for identification",
+                        "schema": {
+                            "deprecated": false,
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "x-api-version",
+                        "in": "header",
+                        "required": false,
                         "schema": {
                             "type": "string"
                         }
@@ -4161,17 +4150,20 @@
                     "name": "session_id",
                     "in": "path",
                     "required": true,
-                    "description": "SDK Session that is created in the \"Create Session API\"",
+                    "description": "SDK session created in Create Session API",
                     "schema": {
-                        "type": "string"
+                        "deprecated": false,
+                        "type": "string",
+                        "format": "uuid"
                     }
                 },
                 {
                     "name": "doc_type",
                     "in": "path",
                     "required": true,
-                    "description": "Document type of the document that is being fetched",
+                    "description": "Document you want to fetch",
                     "schema": {
+                        "deprecated": false,
                         "type": "string",
                         "enum": [
                             "company_master_details",
@@ -4189,27 +4181,29 @@
                 "operationId": "mca-company-master-data-api",
                 "parameters": [
                     {
-                        "name": "authorization",
+                        "name": "Authorization",
                         "in": "header",
-                        "description": "JWT access token",
                         "required": true,
+                        "description": "JWT access token",
                         "schema": {
+                            "deprecated": false,
                             "type": "string"
                         }
                     },
                     {
                         "name": "x-api-key",
                         "in": "header",
-                        "description": "API key for identification",
                         "required": true,
+                        "description": "API key for identification",
                         "schema": {
+                            "deprecated": false,
                             "type": "string"
                         }
                     },
                     {
                         "name": "x-api-version",
                         "in": "header",
-                        "description": "API version",
+                        "required": false,
                         "schema": {
                             "type": "string"
                         }
