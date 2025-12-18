@@ -1,6 +1,6 @@
 ---
 title: "PUT Request Guide"
-description: "Uploading files and large input payloads in Sandbox APIs follows a **consistent 3-step pattern** across all workloads. This guide explains how PUT uploads work, when they are required, and how to implement them correctly."
+description: "Uploading files and large input payloads in Sandbox APIs follows a **consistent 3-step pattern** across all workloads. This guide explains how PUT requests work, when they are required, and how to implement them correctly."
 ---
 
 ## Overview
@@ -12,12 +12,12 @@ The system then processes your payload asynchronously as a **job**.
 
 ---
 
-## When a PUT Upload Is Required
+## When a PUT Request Is Required
 
 You will see this workflow whenever the API endpoint mentions steps like:
 
 1. **Submit Job** → returns `id` (job ID) + `url` (signed S3 upload URL)  
-2. **PUT Upload** → upload your file or JSON payload to the S3 `url`  
+2. **PUT Payload** → upload your file or JSON payload to the S3 `url`  
 3. **Poll Job** → retrieve the processed output  
 
 If an API reference page contains a **PUT Request** section, it uses this flow.
