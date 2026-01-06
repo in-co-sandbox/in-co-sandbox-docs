@@ -140,6 +140,7 @@ A successful upload returns:
 200 OK
 ```
 Once the payload is uploaded successfully, the JOB automatically moves to the next stage and begins processing.
+
 ---
 ## Step 3 — Poll the Job Status
 
@@ -168,3 +169,44 @@ GET /:workload/:function/:sub_function/:job_id
   }
 }
 ``` 
+### Example Response
+
+```json
+{
+  "code": 200,
+  "timestamp": 1765272159032,
+  "data": {
+    "id": "84f3844d-75ad-40a9-ab8d-73a7a4da7db2",
+    "status": "in_progress",
+    "created_at": 1765271146287,
+    "updated_at": 1765272159032,
+    "@entity": "in.co.sandbox.{workload}.{function}.job"
+  }
+}
+```
+### Job Status Handling
+
+- `created`, `queued`, `in_progress`  
+  Continue polling at regular intervals.
+
+- `succeeded`  
+  Output is ready and can be accessed using the downloadable URL.
+
+- `failed`  
+  Job execution failed; inspect the error details in the response.
+  ### Successful Job Response
+
+When the JOB succeeds, the response includes a **downloadable URL** for the output:
+
+```json
+{
+  "code": 200,
+  "data": {
+    "id": "84f3844d-75ad-40a9-ab8d-73a7a4da7db2",
+    "status": "succeeded",
+    "output_url": "https://downloadable-output-url"
+  }
+}
+```
+Use the `output_url` to download the processed result.  
+The URL is time-bound and will expire after a limited duration, so make sure to download and store the output as needed.
