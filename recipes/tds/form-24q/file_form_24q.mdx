@@ -1,59 +1,86 @@
 ---
 title: "File Form 24Q TDS Returns"
-description: "File Form 24Q TDS returns by generating FVU, downloading CSI, e-filing the return, and generating Form 16 certificates."
+description: "File Form 24Q TDS returns by downloading CSI using OTP, generating FVU, e-filing the return, and generating Form 16 certificates."
 ---
 
-This recipe explains how to **file Form 24Q TDS returns** after the TXT file has been prepared. It covers CSI download, FVU generation, e-filing, and post-filing certificate generation.
+This recipe walks you through filing **Form 24Q TDS returns** after generating the TXT file.  
+It covers CSI download (OTP-based), FVU generation, e-filing, and post-filing steps.
 
 <Info>
-Before starting this recipe, ensure that:
-- You have generated the **Form 24Q TXT file** using the TDS Reports APIs.
-- You have a valid Sandbox <code>authorization</code> token.
-- You know the correct <code>TAN</code>, <code>financial_year</code>, <code>quarter</code>, and <code>form = 24Q</code>.
+Before you begin:
+- You must have generated the **Form 24Q TXT file** using the TDS Reports API.
+- You must have a valid Sandbox <code>authorization</code> token.
+- You must know the correct <code>TAN</code>, <code>financial_year</code>, and <code>quarter</code>.
 </Info>
 
 <Steps>
 
   <Step title="Prepare TDS Return (Generate TXT)" stepNumber={1} titleSize="h2">
-    The filing workflow starts after generating the **Form 24Q TXT file** using the TDS Reports API.
+    Ensure that you have generated the **Form 24Q TXT file** using the TDS Reports APIs.
 
-    If you’ve already completed the **Prepare Form 24Q TDS Return** recipe, you can reuse the generated TXT and proceed to the next step.
+    If you’ve already completed the **Prepare Form 24Q TDS Return** recipe, you can reuse the TXT file and continue to the next step.
   </Step>
 
-  <Step title="Download CSI File" stepNumber={2} titleSize="h2">
-    Before generating the FVU, you must obtain the **CSI (Challan Status Inquiry) file** for the relevant TAN and financial year.
+  <Step title="Generate OTP for CSI Download" stepNumber={2} titleSize="h2">
+    To fetch the CSI file, you must first generate an OTP.  
+    This OTP is sent by TRACES to the TAN’s registered email/mobile.
 
-    Use the **Download CSI** API to create a CSI download job.
+    Endpoint:  
+    <code>POST /tds/compliance/download-csi/generate_otp</code>
 
-    <Accordion title="cURL Request – Download CSI" defaultOpen>
+    <Accordion title="cURL Request – Generate CSI OTP" defaultOpen>
       ```bash
       curl --request POST \
-        --url https://api.sandbox.co.in/tds/compliance/csi \
+        --url https://api.sandbox.co.in/tds/compliance/download-csi/generate_otp \
         --header 'authorization: {sandbox-access-token}' \
         --header 'content-type: application/json' \
         --header 'x-api-key: xxxxxxxxxxxxx' \
         --header 'x-api-version: 1.0.0' \
         --data '{
-          "@entity": "in.co.sandbox.tds.compliance.csi.request",
           "tan": "AHMA09719B",
           "financial_year": "FY 2024-25"
         }'
       ```
     </Accordion>
 
-    Poll the CSI job status and download the CSI file once the job succeeds.
-
     <Info>
-    The CSI file reflects challan details as available on TRACES and is mandatory for FVU validation.
+    This step only triggers OTP delivery.  
+    No CSI file or download URL is returned here.
     </Info>
   </Step>
 
-  <Step title="Generate FVU" stepNumber={3} titleSize="h2">
+  <Step title="Verify OTP and Get CSI Download URL" stepNumber={3} titleSize="h2">
+    Verify the OTP received to obtain a **signed CSI download URL**.
+
+    Endpoint:  
+    <code>POST /tds/compliance/download-csi/verify_otp</code>
+
+    <Accordion title="cURL Request – Verify CSI OTP" defaultOpen>
+      ```bash
+      curl --request POST \
+        --url https://api.sandbox.co.in/tds/compliance/download-csi/verify_otp \
+        --header 'authorization: {sandbox-access-token}' \
+        --header 'content-type: application/json' \
+        --header 'x-api-key: xxxxxxxxxxxxx' \
+        --header 'x-api-version: 1.0.0' \
+        --data '{
+          "tan": "AHMA09719B",
+          "financial_year": "FY 2024-25",
+          "otp": "123456"
+        }'
+      ```
+    </Accordion>
+
+    A successful response includes:
+    - <code>csi_download_url</code> (signed, time-limited)
+
+    Download the CSI file using this URL. You will upload it during FVU generation.
+  </Step>
+
+  <Step title="Generate FVU" stepNumber={4} titleSize="h2">
     With the **TXT** and **CSI** files ready, create an FVU generation job.
 
-    This job returns signed URLs to upload both files.
-
-    <Accordion title="cURL Request – Create FVU Generation Job" defaultOpen>
+    <Accordion title="cURL Request – Create FVU Job" defaultOpen>
       ```bash
       curl --request POST \
         --url https://api.sandbox.co.in/tds/compliance/fvu/generate \
@@ -71,15 +98,15 @@ Before starting this recipe, ensure that:
       ```
     </Accordion>
 
-    The response includes:
+    The response returns:
     - <code>txt_file_upload_url</code>
     - <code>csi_file_upload_url</code>
   </Step>
 
-  <Step title="Provide TXT & CSI Files" stepNumber={4} titleSize="h2">
-    Upload the TXT and CSI files using the signed URLs returned in the previous step.
+  <Step title="Provide TXT & CSI Files" stepNumber={5} titleSize="h2">
+    Upload the TXT and CSI files using the signed URLs.
 
-    <Accordion title="cURL Request – Upload TXT">
+    <Accordion title="cURL – Upload TXT">
       ```bash
       curl --request PUT \
         --url '{txt_file_upload_url}' \
@@ -88,7 +115,7 @@ Before starting this recipe, ensure that:
       ```
     </Accordion>
 
-    <Accordion title="cURL Request – Upload CSI">
+    <Accordion title="cURL – Upload CSI">
       ```bash
       curl --request PUT \
         --url '{csi_file_upload_url}' \
@@ -98,10 +125,10 @@ Before starting this recipe, ensure that:
     </Accordion>
   </Step>
 
-  <Step title="Fetch FVU Generation Status" stepNumber={5} titleSize="h2">
-    Poll the FVU job to check whether the file has been generated successfully.
+  <Step title="Fetch FVU Generation Status" stepNumber={6} titleSize="h2">
+    Poll the FVU job until it completes.
 
-    <Accordion title="cURL Request – Fetch FVU Status" defaultOpen>
+    <Accordion title="cURL – Fetch FVU Status" defaultOpen>
       ```bash
       curl --request GET \
         --url 'https://api.sandbox.co.in/tds/compliance/fvu/generate?job_id={fvu_job_id}' \
@@ -111,17 +138,14 @@ Before starting this recipe, ensure that:
       ```
     </Accordion>
 
-    When <code>status = "succeeded"</code>, download the <code>fvu_zip_file_url</code> from the response.
-
-    <Warning>
-    If the job fails, review the <code>validation_report_file_url</code>, fix the TXT data, and regenerate the FVU.
-    </Warning>
+    When the job <code>status</code> is <code>succeeded</code>, download:
+    - <code>fvu_zip_file_url</code>
   </Step>
 
-  <Step title="E-file TDS Return" stepNumber={6} titleSize="h2">
-    After generating the FVU ZIP, create an **E-file TDS Return** job.
+  <Step title="E-file TDS Return" stepNumber={7} titleSize="h2">
+    Create an e-file job for Form 24Q.
 
-    <Accordion title="cURL Request – Create E-File Job" defaultOpen>
+    <Accordion title="cURL – Create E-file Job" defaultOpen>
       ```bash
       curl --request POST \
         --url https://api.sandbox.co.in/tds/compliance/e-file \
@@ -139,13 +163,13 @@ Before starting this recipe, ensure that:
       ```
     </Accordion>
 
-    The response includes a signed <code>fvu_upload_file_url</code>.
+    The response contains <code>fvu_upload_file_url</code>.
   </Step>
 
-  <Step title="Provide FVU ZIP" stepNumber={7} titleSize="h2">
-    Upload the ZIP file containing the **FVU file and Form 27A**.
+  <Step title="Provide FVU ZIP" stepNumber={8} titleSize="h2">
+    Upload the ZIP containing the **FVU file and Form 27A**.
 
-    <Accordion title="cURL Request – Upload FVU ZIP">
+    <Accordion title="cURL – Upload FVU ZIP">
       ```bash
       curl --request PUT \
         --url '{fvu_upload_file_url}' \
@@ -155,10 +179,10 @@ Before starting this recipe, ensure that:
     </Accordion>
   </Step>
 
-  <Step title="Fetch TDS Return Status" stepNumber={8} titleSize="h2">
-    Check the status of the e-file job.
+  <Step title="Fetch TDS Return Status" stepNumber={9} titleSize="h2">
+    Poll the e-file job to confirm filing completion.
 
-    <Accordion title="cURL Request – Fetch E-File Status" defaultOpen>
+    <Accordion title="cURL – Fetch E-file Status" defaultOpen>
       ```bash
       curl --request GET \
         --url 'https://api.sandbox.co.in/tds/compliance/e-file?job_id={efile_job_id}' \
@@ -168,18 +192,18 @@ Before starting this recipe, ensure that:
       ```
     </Accordion>
 
-    On success, the response contains:
+    On success, the response includes:
     - <code>receipt_number</code>
     - <code>receipt_file_url</code>
     - <code>form27a_file_url</code>
   </Step>
 
-  <Step title="Generate Form 16" stepNumber={9} titleSize="h2">
-    After filing Form 24Q, you can generate **Form 16 certificates** for employees.
+  <Step title="Generate Form 16 (Optional)" stepNumber={10} titleSize="h2">
+    After filing Form 24Q, you can generate **Form 16 certificates**.
 
-    The request requires **at least three PAN–amount combinations** for challan verification.
+    Ensure that the request includes **at least 3 PAN–amount combinations**.
 
-    <Accordion title="cURL Request – Generate Form 16" defaultOpen>
+    <Accordion title="cURL – Generate Form 16">
       ```bash
       curl --request POST \
         --url https://api.sandbox.co.in/tds/compliance/traces/deductors/forms/form16 \
@@ -211,8 +235,6 @@ Before starting this recipe, ensure that:
         }'
       ```
     </Accordion>
-
-    Once generated, you can fetch and download the **Form 16 certificate ZIP files**.
   </Step>
 
 </Steps>
