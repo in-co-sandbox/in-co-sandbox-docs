@@ -1,149 +1,170 @@
 ---
-title: "PUT Request"
-description: "Uploading files and large input payloads in Sandbox APIs follows a consistent 3-step pattern across all workloads. This guide explains how PUT uploads work, when they are required, and how to implement them correctly."
+title: "Job-Based API Workflow"
+description: "Learn how to work with Sandbox APIs that use an asynchronous job-based execution model, including job submission, payload upload, and job polling."
 ---
 
-## Overview
+# Job-Based API Workflow
 
-Some APIs require you to upload an input payload (JSON, ZIP, CSV, etc.).\
-Instead of sending large bodies directly to Sandbox APIs, you upload the payload to a secure **pre-signed AWS S3 URL** using a `PUT` request.
+Several Sandbox APIs follow an **asynchronous, job-based workflow** to process requests that involve large input payloads or long-running computations.
 
-The system then processes your payload asynchronously as a **job**.
+Instead of sending the complete input directly in the API request, these APIs break execution into clearly defined steps that improve reliability, scalability, and performance.
 
-## When a PUT Upload Is Required
+In this workflow, you:
 
-You will see this workflow whenever the API endpoint mentions steps like:
+1. **Submit a JOB** to initialize processing  
+2. **Upload the input payload** using a pre-signed URL  
+3. **Poll the JOB** until processing completes and the output is ready
 
-1. **Submit Job** → returns `id` (job ID) + `url` (signed S3 upload URL)
-2. **PUT Upload** → upload your file or JSON payload to the S3 `url`
-3. **Poll Job** → retrieve the processed output
+This guide walks you through the **entire JOB lifecycle** and explains how to implement each step consistently across Sandbox APIs.
+## When to Use Job-Based APIs
 
-If an API reference page contains a **PUT Request** section, it uses this flow.
+Job-based APIs are used when:
 
-## How PUT Requests Work
+- Input payloads are large (JSON, CSV, ZIP, etc.)
+- Processing is compute-intensive or time-consuming
+- Results cannot be generated synchronously within a single request
 
-<Steps>
-  <Step title="Submit the Job" titleSize="h2">
-    You first call the API endpoint that initializes the job.\
-    The response includes:
+This model allows Sandbox to process requests asynchronously while giving you full control over input uploads and execution tracking.
 
-    <ParamField body="id" type="string" required>
-      Job id
-    </ParamField>
-    <ParamField body="url" type="string" required>
-      Pre-signed S3 put URL
-    </ParamField>
-    <ParamField body="status" type="string" required>
-      Current state of the job
-    </ParamField>
-    <ParamField path="created_at" type="string">
-      Timestamp of when the job was created
-    </ParamField>
-    <ParamField body="updated_at" type="string">
-      Timestamp of when the job was last updated
-    </ParamField>
-    <CodeGroup>
+---
 
-    ```bash Example Request
-    curl --request POST \
-      --url 'https://api.sandbox.co.in/it/calculator/crypto/tax-pnl?report=tradewise' \
-      --header 'Authorization: <authorization>' \
-      --header 'x-accept-type: application/json' \
-      --header 'x-api-key: <x-api-key>' \
-      --header 'x-api-version: 1.0.0'
-    ```
+## Job Lifecycle
 
-    
-    ```json Example Response
-    {
-      "code": 200,
-      "timestamp": 1765271144915,
-      "data": {
-        "@entity": "in.co.sandbox.it.calculator.pnl.crypto.job",
-        "id": "84f3844d-75ad-40a9-ab8d-73a7a4da7db2",
-    	"url": "https://in-co-sandbox-it-calculator-pnl-crypto-dev.s3.ap-south-1.amazonaws.com/84f3844d-75ad-40a9-ab8d-73a7a4da7db2/workbook.input?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Credential=AKTARBAE40KMVKC2ZT7X%2F20251209%2Fap-south-1%2Fs3%2Faws4_request&X-Amz-Date=20251209T095046Z&X-Amz-Expires=864000&X-Amz-Signature=6da109e7381eadb238fe7452cc06b97322567af8952bcd07def14759681f3b74&X-Amz-SignedHeaders=host&x-amz-checksum-crc32=AAAAAA%3D%3D&x-amz-sdk-checksum-algorithm=CRC32&x-id=PutObject",
-    	"status": "created",
-    	"created_at": 1765271146287,
-        "updated_at": 1765271146287
-      },
-      "transaction_id": "84f3844d-75ad-40a9-ab8d-73a7a4da7db2"
-    }
-    ```
+Every request creates a **JOB** that moves through a well-defined set of states during its execution.
 
-    </CodeGroup>
-  </Step>
-  <Step title="PUT the Input Payload" titleSize="h2">
-    Once you receive the pre-signed S3 URL, upload your payload (JSON, ZIP, CSV, etc.) directly to that URL using an HTTP `PUT` request.
+A JOB can have one of the following statuses:
 
-    The `url` returned in Step 1 is an **AWS S3 pre-signed URL**, not a Sandbox API endpoint.
+- `created` — Job has been created and is ready to receive input
+- `queued` — Job is waiting to be picked up for processing
+- `in_progress` — Job is actively being processed
+- `succeeded` — Job completed successfully and output is available
+- `failed` — Job failed during processing
 
-    <Warning>
-      Do NOT modify the URL
-    </Warning>
-    <Warning>
-      Do NOT send your Sandbox API key in the PUT Request
-    </Warning>
-    Requirements
+You can retrieve the current status of a JOB at any time by polling the job endpoint using the `job_id`.
 
-    - **Method:** `PUT`
-    - **Headers:** only `Content-Type` (and occasionally checksums if required)
-    - **Body:** Your input payload.
+## Step 1 — Submit the Job
 
-    ```bash cURL Example
-    curl -X PUT \
-      -H "Content-Type: application/json" \
-      --data '@payload.json' \
-      "https://in-co-sandbox-it-calculator-pnl-crypto-dev.s3.ap-south-1.amazonaws.com/84f3844d...&x-id=PutObject"
-    ```
-  </Step>
-  <Step title="Poll the Job Status" titleSize="h2">
-    After successfully uploading your payload to the pre-signed S3 URL, the job begins processing on Sandbox servers.\
-    Use the **same endpoint from Step 1**, but switch to a `GET` request with the `job_id` returned earlier.
+The first step is to submit a **JOB** using a `POST` request.  
+This initializes processing and returns the information required for the rest of the workflow.
 
-    Jobs usually finish within a few seconds, but large payloads or complex calculations may take longer.\
-    Implement retry logic with **exponential backoff**.
+Submitting a job provides:
 
-    ### Polling With Job ID
+- A **job_id** to track execution
+- A **pre-signed S3 URL** to upload the input payload
 
-    Use **the same route as Step 1**, only changing the method to `GET` and adding `job_id`.
+---
 
-    <CodeGroup>
+### Endpoint Pattern
+POST "/:workload/:function/:sub_function"
 
-    ```bash Example Request
-    curl --request GET \
-    	--url https://api.sandbox.co.in/it/calculator/crypto/tax-pnl \
-      	--header 'Authorization: <authorization>' \
-      	--header 'x-api-key: <x-api-key>' \
-      	--header 'x-api-version: 1.0.0'
-    ```
+The **same endpoint** is reused later to poll the job status.  
+Only the HTTP method changes (`POST` → `GET`).
 
-    
-    ```json Example Response
-    {
-      "code": 200,
-      "timestamp": 1765273201693,
-      "data": {
-        "id": "9bb84b5f-fca8-4074-bb9c-23b4599b8981",
-        "created_at": 1765273201694,
-        "updated_at": 1765273201694,
-        "@entity": "in.co.sandbox.it.calculator.pnl.crypto.job",
-        "status": "created"
-      },
-      "transaction_id": "cee63779-34d8-48a0-9dd8-ba97e53ceb96"
-    }
-    ```
+---
 
-    </CodeGroup>
-  </Step>
-</Steps>
+### Example Response
 
-### Job Status States
+```json
+{
+  "code": 200,
+  "timestamp": 1765271144915,
+  "data": {
+    "id": "84f3844d-75ad-40a9-ab8d-73a7a4da7db2",
+    "created_at": 1765271146287,
+    "updated_at": 1765271146287,
+    "@entity": "in.co.sandbox.<workload>.<function>.job",
+    "url": "https://<signed-s3-upload-url>",
+    "status": "created"
+  },
+  "transaction_id": "84f3844d-75ad-40a9-ab8d-73a7a4da7db2"
+}
+```
 
-A job can be in one of the following states:
+### Key Fields Explained
 
-| Status        | Description                                           |
-| ------------- | ----------------------------------------------------- |
-| `created`     | Job created, awaiting processing                      |
-| `in_progress` | Sandbox is reading your payload and computing results |
-| `success`     | Output is ready to consume                            |
-| `error`       | Processing failed; inspect the returned error message |
+- `id`  
+  Unique identifier for the JOB. This value is referred to as `job_id` and is required in later steps.
+
+- `url`  
+  An AWS S3 **pre-signed URL** used to upload the input payload in Step 2.
+
+- `status`  
+  Initial state of the JOB. At this stage, it will always be `created`.
+
+---
+Make sure to store the `job_id` securely. You will use it to upload the input payload and to poll the job status in subsequent steps.
+
+---
+## Step 2 — Upload the Input Payload (PUT)
+
+After submitting the JOB, upload your input payload to the **pre-signed S3 URL** returned in Step 1.
+
+This step uses a **plain HTTP `PUT` request** and does not interact with Sandbox APIs directly.
+
+---
+
+### Important Behavior
+
+- The upload URL is an **AWS S3 pre-signed URL**
+- It is **not** a Sandbox API endpoint
+- The URL is valid only for a limited time
+- Do **not** modify the URL in any way
+
+---
+
+### Request Requirements
+
+- **Method:** `PUT`
+- **Headers:**  
+  - `Content-Type`
+- **Body:**  
+  - Input payload (JSON, CSV, ZIP, etc.)
+- **Do NOT include:**  
+  - Authorization headers  
+  - Sandbox API keys  
+  - Sandbox-specific headers  
+
+---
+
+### Example — Upload Using cURL
+
+```bash
+curl -X PUT \
+  -H "Content-Type: application/json" \
+  --data '@payload.json' \
+  "https://signed-s3-upload-url"
+```
+A successful upload returns:
+
+```text
+200 OK
+```
+Once the payload is uploaded successfully, the JOB automatically moves to the next stage and begins processing.
+---
+## Step 3 — Poll the Job Status
+
+After the input payload is uploaded, the JOB begins processing asynchronously.
+
+To track progress and retrieve the final output, poll the **same endpoint used in Step 1**, but with a `GET` request and the `job_id`.
+
+---
+
+### Endpoint Pattern
+
+```http
+GET /:workload/:function/:sub_function/:job_id
+### Example Response
+
+```json
+{
+  "code": 200,
+  "timestamp": 1765272159032,
+  "data": {
+    "id": "84f3844d-75ad-40a9-ab8d-73a7a4da7db2",
+    "status": "in_progress",
+    "created_at": 1765271146287,
+    "updated_at": 1765272159032,
+    "@entity": "in.co.sandbox.{workload}.{function}.job"
+  }
+}
+``` 
