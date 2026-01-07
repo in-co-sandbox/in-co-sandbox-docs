@@ -3,6 +3,26 @@ title: "Changelog"
 description: "Changelog for Sandbox APIs"
 rss: "true"
 ---
+
+<Update label="January 7th, 2026" tags={["Feature"]}>
+  ## **Introducing EntityLocker SDK**
+
+  We’ve launched the **EntityLocker SDK** to enable consent-based digital KYB for organizations. It allows organizations to securely fetch verified documents such as GSTN Details , Udhyam Certificate and Company Master Data directly from **EntityLocker**, India’s trusted digital document wallet for organizations.
+
+  **Workflow**
+
+  - [**Initialize SDK**](https://developer.sandbox.co.in/api-reference/kyc/entitylocker-sdk/endpoints/create_session): Start a EntityLocker-based KYB session.
+  - [**Check Session Status**](https://developer.sandbox.co.in/api-reference/kyc/entitylocker-sdk/endpoints/get_session_status): Monitor consent status and approved documents in real time.
+  - [**Fetch Document**](https://developer.sandbox.co.in/api-reference/kyc/entitylocker-sdk/endpoints/fetch_document): Retrieve documents using the session ID and document type.
+
+  **Key Behaviour**
+
+  - **One-hour retention:** Retrieved documents are automatically deleted after 60 minutes.
+  - **Custom UX:** You control the user experience while Sandbox handles the backend integration.
+  - **Certified TSP:** Sandbox is a government-recognized Technology Solution Provider.
+</Update>
+
+
 <Update label="December 16th, 2025" tags={["Feature"]}>
   ## Introducing EntityLocker APIs
 
