@@ -1,16 +1,45 @@
 ---
 title: "PUT Request"
-description: ""
-openapi: "/api-reference/it/openapi.json POST /it/reports/tax-pnl/securities/domestic"
+description: "Once the job is successfully created, upload the payload using HTTP PUT method on generated presigned url."
 ---
+## Overview
+
+After submitting a job, the API responds with a **presigned S3 URL**.  
+Use this URL to upload the workbook via an HTTP **PUT** request.
+
+<Note>
+This endpoint is part of a larger **job-based workflow**. To understand how job creation, payload upload, and status polling work together, see the **Job-Based API Workflow Guide**.
+
+[Read the Job-Based API Workflow Guide](/guides/developer-resources/put_request)
+</Note>
+
+
+
+> It's a **temporary AWS S3 presigned URL** generated uniquely for each job.
+## Example Presigned URL
+
+
+https://in-co-sandbox-it-reports-tax-pnl-sec-dev.s3.ap-south-1.amazonaws.com/{{file_path}}?{{signed_query_params}}
+
 
 # **JSON Payload**
 
-This API accepts payload in following formats:
+This API accepts payload in following formats: 
 
 ## **Tradebook**
 
-> Click [**<u>here </u>**](https://developer.sandbox.co.in/reference/domestic-securities-tax-pl-calculatorreport-request-tradebook)to learn more about this JSON Payload
+<CardGroup cols={1}>
+<Card
+  title="View Workbook"
+  icon="file-spreadsheet"
+  href="https://docs.google.com/spreadsheets/d/1-OGIS4GT5-cy8-SEdeTbFzddCMfxU-SY/edit?gid=266325390#gid=266325390"
+  arrow="true"
+  horizontal
+>
+</Card>
+</CardGroup>
+
+> Click [here](/api-reference/it/calculator/tax_pnl/securities/domestic/annexures/tradebook_domestic_securities) to learn more about this JSON Payload.
 
 ```json expandable
 {
@@ -445,7 +474,18 @@ This API accepts payload in following formats:
 
 ## **Tradewise Settlements**
 
-> Click [**<u>here </u>**](https://docs.google.com/spreadsheets/d/12E4IEr5CzCP215RN0hp3iCosH27oVfPzg839MyMmn08/edit?gid=199050935#gid=199050935)to learn more about this JSON Payload
+<CardGroup cols={1}>
+<Card
+  title="View Workbook"
+  icon="file-spreadsheet"
+  href="https://docs.google.com/spreadsheets/d/12E4IEr5CzCP215RN0hp3iCosH27oVfPzg839MyMmn08/edit?gid=0#gid=0"
+  arrow="true"
+  horizontal
+>
+</Card>
+</CardGroup>
+
+> Click > Click [here](/api-reference/it/calculator/tax_pnl/securities/domestic/annexures/tradewise_settlement_domestic_securities) to learn more about this JSON Payload.
 
 ```json expandable
 {
@@ -704,3 +744,4 @@ This API accepts payload in following formats:
     "@entity": "workbook"
 }
 ```
+

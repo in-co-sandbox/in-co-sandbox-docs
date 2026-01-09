@@ -7,6 +7,11 @@ description: "Once the job is successfully created, upload the payload using HTT
 After submitting a job, the API responds with a **presigned S3 URL**.  
 Use this URL to upload the workbook via an HTTP **PUT** request.
 
+<Note>
+This endpoint is part of a larger **job-based workflow**. To understand how job creation, payload upload, and status polling work together, see the **Job-Based API Workflow Guide**.
+
+[Read the Job-Based API Workflow Guide](/guides/developer-resources/put_request)
+</Note>
 
 > It's a **temporary AWS S3 presigned URL** generated uniquely for each job.
 ## Example Presigned URL
