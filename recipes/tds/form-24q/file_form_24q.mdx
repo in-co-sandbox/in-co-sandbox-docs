@@ -1,4 +1,240 @@
 ---
 title: "File Form 24Q TDS Returns"
-description: "As part of TDS compliance, companies are required to file TDS returns, which detail the tax deducted at source for a given quarter. This recipe demonstrates how to automate the filing of TDS returns."
+description: "File Form 24Q TDS returns by downloading CSI using OTP, generating FVU, e-filing the return, and generating Form 16 certificates."
 ---
+
+This recipe walks you through filing **Form 24Q TDS returns** after generating the TXT file.  
+It covers CSI download (OTP-based), FVU generation, e-filing, and post-filing steps.
+
+<Info>
+Before you begin:
+- You must have generated the **Form 24Q TXT file** using the TDS Reports API.
+- You must have a valid Sandbox <code>authorization</code> token.
+- You must know the correct <code>TAN</code>, <code>financial_year</code>, and <code>quarter</code>.
+</Info>
+
+<Steps>
+
+  <Step title="Prepare TDS Return (Generate TXT)" stepNumber={1} titleSize="h2">
+    Ensure that you have generated the **Form 24Q TXT file** using the TDS Reports APIs.
+
+    If you’ve already completed the **Prepare Form 24Q TDS Return** recipe, you can reuse the TXT file and continue to the next step.
+  </Step>
+
+  <Step title="Generate OTP for CSI Download" stepNumber={2} titleSize="h2">
+    To fetch the CSI file, you must first generate an OTP.  
+    This OTP is sent by TRACES to the TAN’s registered email/mobile.
+
+    Endpoint:  
+    <code>POST /tds/compliance/download-csi/generate_otp</code>
+
+    <Accordion title="cURL Request – Generate CSI OTP" defaultOpen>
+      ```bash
+      curl --request POST \
+        --url https://api.sandbox.co.in/tds/compliance/download-csi/generate_otp \
+        --header 'authorization: {sandbox-access-token}' \
+        --header 'content-type: application/json' \
+        --header 'x-api-key: xxxxxxxxxxxxx' \
+        --header 'x-api-version: 1.0.0' \
+        --data '{
+          "tan": "AHMA09719B",
+          "financial_year": "FY 2024-25"
+        }'
+      ```
+    </Accordion>
+
+    <Info>
+    This step only triggers OTP delivery.  
+    No CSI file or download URL is returned here.
+    </Info>
+  </Step>
+
+  <Step title="Verify OTP and Get CSI Download URL" stepNumber={3} titleSize="h2">
+    Verify the OTP received to obtain a **signed CSI download URL**.
+
+    Endpoint:  
+    <code>POST /tds/compliance/download-csi/verify_otp</code>
+
+    <Accordion title="cURL Request – Verify CSI OTP" defaultOpen>
+      ```bash
+      curl --request POST \
+        --url https://api.sandbox.co.in/tds/compliance/download-csi/verify_otp \
+        --header 'authorization: {sandbox-access-token}' \
+        --header 'content-type: application/json' \
+        --header 'x-api-key: xxxxxxxxxxxxx' \
+        --header 'x-api-version: 1.0.0' \
+        --data '{
+          "tan": "AHMA09719B",
+          "financial_year": "FY 2024-25",
+          "otp": "123456"
+        }'
+      ```
+    </Accordion>
+
+    A successful response includes:
+    - <code>csi_download_url</code> (signed, time-limited)
+
+    Download the CSI file using this URL. You will upload it during FVU generation.
+  </Step>
+
+  <Step title="Generate FVU" stepNumber={4} titleSize="h2">
+    With the **TXT** and **CSI** files ready, create an FVU generation job.
+
+    <Accordion title="cURL Request – Create FVU Job" defaultOpen>
+      ```bash
+      curl --request POST \
+        --url https://api.sandbox.co.in/tds/compliance/fvu/generate \
+        --header 'authorization: {sandbox-access-token}' \
+        --header 'content-type: application/json' \
+        --header 'x-api-key: xxxxxxxxxxxxx' \
+        --header 'x-api-version: 1.0.0' \
+        --data '{
+          "@entity": "in.co.sandbox.tds.compliance.fvu.generate.request",
+          "financial_year": "FY 2024-25",
+          "quarter": "Q1",
+          "form": "24Q",
+          "tan": "AHMA09719B"
+        }'
+      ```
+    </Accordion>
+
+    The response returns:
+    - <code>txt_file_upload_url</code>
+    - <code>csi_file_upload_url</code>
+  </Step>
+
+  <Step title="Provide TXT & CSI Files" stepNumber={5} titleSize="h2">
+    Upload the TXT and CSI files using the signed URLs.
+
+    <Accordion title="cURL – Upload TXT">
+      ```bash
+      curl --request PUT \
+        --url '{txt_file_upload_url}' \
+        --header 'Content-Type: text/plain' \
+        --data-binary '@/form24q.txt'
+      ```
+    </Accordion>
+
+    <Accordion title="cURL – Upload CSI">
+      ```bash
+      curl --request PUT \
+        --url '{csi_file_upload_url}' \
+        --header 'Content-Type: application/octet-stream' \
+        --data-binary '@/challan.csi'
+      ```
+    </Accordion>
+  </Step>
+
+  <Step title="Fetch FVU Generation Status" stepNumber={6} titleSize="h2">
+    Poll the FVU job until it completes.
+
+    <Accordion title="cURL – Fetch FVU Status" defaultOpen>
+      ```bash
+      curl --request GET \
+        --url 'https://api.sandbox.co.in/tds/compliance/fvu/generate?job_id={fvu_job_id}' \
+        --header 'authorization: {sandbox-access-token}' \
+        --header 'x-api-key: xxxxxxxxxxxxx' \
+        --header 'x-api-version: 1.0.0'
+      ```
+    </Accordion>
+
+    When the job <code>status</code> is <code>succeeded</code>, download:
+    - <code>fvu_zip_file_url</code>
+  </Step>
+
+  <Step title="E-file TDS Return" stepNumber={7} titleSize="h2">
+    Create an e-file job for Form 24Q.
+
+    <Accordion title="cURL – Create E-file Job" defaultOpen>
+      ```bash
+      curl --request POST \
+        --url https://api.sandbox.co.in/tds/compliance/e-file \
+        --header 'authorization: {sandbox-access-token}' \
+        --header 'content-type: application/json' \
+        --header 'x-api-key: xxxxxxxxxxxxx' \
+        --header 'x-api-version: 1.0.0' \
+        --data '{
+          "@entity": "in.co.sandbox.tds.compliance.e-file.request",
+          "financial_year": "FY 2024-25",
+          "quarter": "Q1",
+          "form": "24Q",
+          "tan": "AHMA09719B"
+        }'
+      ```
+    </Accordion>
+
+    The response contains <code>fvu_upload_file_url</code>.
+  </Step>
+
+  <Step title="Provide FVU ZIP" stepNumber={8} titleSize="h2">
+    Upload the ZIP containing the **FVU file and Form 27A**.
+
+    <Accordion title="cURL – Upload FVU ZIP">
+      ```bash
+      curl --request PUT \
+        --url '{fvu_upload_file_url}' \
+        --header 'Content-Type: application/zip' \
+        --data-binary '@/fvu_and_form27a.zip'
+      ```
+    </Accordion>
+  </Step>
+
+  <Step title="Fetch TDS Return Status" stepNumber={9} titleSize="h2">
+    Poll the e-file job to confirm filing completion.
+
+    <Accordion title="cURL – Fetch E-file Status" defaultOpen>
+      ```bash
+      curl --request GET \
+        --url 'https://api.sandbox.co.in/tds/compliance/e-file?job_id={efile_job_id}' \
+        --header 'authorization: {sandbox-access-token}' \
+        --header 'x-api-key: xxxxxxxxxxxxx' \
+        --header 'x-api-version: 1.0.0'
+      ```
+    </Accordion>
+
+    On success, the response includes:
+    - <code>receipt_number</code>
+    - <code>receipt_file_url</code>
+    - <code>form27a_file_url</code>
+  </Step>
+
+  <Step title="Generate Form 16 (Optional)" stepNumber={10} titleSize="h2">
+    After filing Form 24Q, you can generate **Form 16 certificates**.
+
+    Ensure that the request includes **at least 3 PAN–amount combinations**.
+
+    <Accordion title="cURL – Generate Form 16">
+      ```bash
+      curl --request POST \
+        --url https://api.sandbox.co.in/tds/compliance/traces/deductors/forms/form16 \
+        --header 'authorization: {sandbox-access-token}' \
+        --header 'content-type: application/json' \
+        --header 'x-api-key: xxxxxxxxxxxxx' \
+        --header 'x-api-version: 1.0.0' \
+        --data '{
+          "@entity": "in.co.sandbox.tds.compliance.traces.credentials",
+          "username": "traces-username",
+          "password": "traces-password",
+          "tan": "AHMA09719B",
+          "security_captcha": {
+            "@entity": "in.co.sandbox.tds.compliance.traces.credentials.security_captcha",
+            "quarter": "Q4",
+            "financial_year": "FY 2024-25",
+            "form": "24Q",
+            "bsr_code": "0510001",
+            "challan_date": 1711929600000,
+            "challan_serial_no": "00001",
+            "challan_amount": 150000,
+            "unique_pan_amount_combination_for_challan": [
+              ["ABCDE1234F|50000"],
+              ["PQRSX9876Z|50000"],
+              ["LMNOP4321Q|50000"]
+            ]
+          },
+          "remember_me": true
+        }'
+      ```
+    </Accordion>
+  </Step>
+
+</Steps>
