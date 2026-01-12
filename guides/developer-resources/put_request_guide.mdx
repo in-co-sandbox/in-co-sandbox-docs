@@ -1,0 +1,144 @@
+---
+title: Job-Based API Workflow
+description: Understand how Sandbox job-based APIs work using a step-by-step workflow covering job submission, payload upload, and job polling.
+---
+
+<Job>
+</Job>
+
+<Steps>
+  <Step title="Submit the Job" stepNumber={1} titleSize="h2">
+    To begin processing, submit a **JOB** using a `POST` request to the workload-specific endpoint.
+
+    This step initializes the asynchronous workflow and returns:
+    - A unique **job_id**
+    - A **pre-signed S3 URL** for uploading the input payload
+
+    <Accordion title="Endpoint Pattern" defaultOpen>
+      ```http
+      POST /:workload/:function/:sub_function
+      ```
+    </Accordion>
+
+    <Accordion title="Example Response">
+      ```json
+      {
+        "code": 200,
+        "timestamp": 1765271144915,
+        "data": {
+          "id": "84f3844d-75ad-40a9-ab8d-73a7a4da7db2",
+          "created_at": 1765271146287,
+          "updated_at": 1765271146287,
+          "@entity": "in.co.sandbox.{workload}.{function}.job",
+          "url": "https://signed-s3-upload-url",
+          "status": "created"
+        },
+        "transaction_id": "84f3844d-75ad-40a9-ab8d-73a7a4da7db2"
+      }
+      ```
+    </Accordion>
+
+    <ParamField body="id" type="string" required>
+      Unique identifier for the JOB. This value is used to upload input data and to poll job status.
+    </ParamField>
+
+    <ParamField body="url" type="string" required>
+      Pre-signed AWS S3 URL used to upload the input payload in the next step.
+    </ParamField>
+
+    <ParamField body="status" type="string" required>
+      Initial state of the JOB. At creation, this will always be <code>created</code>.
+    </ParamField>
+  </Step>
+</Steps>
+<Steps>
+  <Step title="Upload the Input Payload" stepNumber={2} titleSize="h2">
+    After submitting the JOB, upload your input payload directly to the **pre-signed S3 URL** returned in Step 1.
+
+    This step uses a **plain HTTP `PUT` request** and does **not** interact with Sandbox APIs.
+
+    <Accordion title="Important Notes" defaultOpen>
+      - The upload URL is an **AWS S3 pre-signed URL**
+      - It is **not** a Sandbox API endpoint
+      - The URL is time-bound and expires automatically
+      - Do **not** modify the URL in any way
+      - Do **not** send Sandbox API keys or authorization headers
+    </Accordion>
+
+    <Accordion title="Request Requirements">
+      - **Method:** `PUT`  
+      - **Headers:** `Content-Type`  
+      - **Body:** Input payload (JSON, CSV, ZIP, etc.)  
+      - **No authorization headers**
+    </Accordion>
+
+    <Accordion title="cURL Example" defaultOpen>
+      ```bash
+      curl -X PUT \
+        -H "Content-Type: application/json" \
+        --data '@payload.json' \
+        "https://signed-s3-upload-url"
+      ```
+    </Accordion>
+
+    A successful upload returns:
+
+    ```text
+    200 OK
+    ```
+
+    Once the payload is uploaded successfully, the JOB automatically begins processing.
+  </Step>
+</Steps>
+<Steps>
+  <Step title="Poll the Job Status" stepNumber={3} titleSize="h2">
+    After the input payload is uploaded, the JOB is processed asynchronously.
+
+    To track progress and retrieve the result, poll the **same endpoint used in Step 1**, but using a `GET` request with the `job_id`.
+
+    <Accordion title="Endpoint Pattern" defaultOpen>
+      ```http
+      GET /:workload/:function/:sub_function/:job_id
+      ```
+    </Accordion>
+
+    <Accordion title="Example Response — In Progress">
+      ```json
+      {
+        "code": 200,
+        "timestamp": 1765272159032,
+        "data": {
+          "id": "84f3844d-75ad-40a9-ab8d-73a7a4da7db2",
+          "status": "in_progress",
+          "created_at": 1765271146287,
+          "updated_at": 1765272159032,
+          "@entity": "in.co.sandbox.{workload}.{function}.job"
+        }
+      }
+      ```
+    </Accordion>
+
+    <Accordion title="Job Statuses">
+      - `created` — Job created and awaiting upload  
+      - `queued` — Job queued for processing  
+      - `in_progress` — Job is being processed  
+      - `succeeded` — Processing complete and output available  
+      - `failed` — Job failed during processing
+    </Accordion>
+
+    <Accordion title="Example Response — Succeeded">
+      ```json
+      {
+        "code": 200,
+        "data": {
+          "id": "84f3844d-75ad-40a9-ab8d-73a7a4da7db2",
+          "status": "succeeded",
+          "output_url": "https://downloadable-output-url"
+        }
+      }
+      ```
+    </Accordion>
+
+    When the JOB status is `succeeded`, use the `output_url` to download the processed result.
+  </Step>
+</Steps>
