@@ -1,0 +1,323 @@
+---
+description: Reference for Mintlify MDX components with syntax examples
+globs:
+alwaysApply: true
+---
+# Mintlify component reference
+
+docs.json schema: https://mintlify.com/docs.json
+
+### Callout components
+
+#### Note - Additional helpful information
+<Note>
+Supplementary information that supports the main content without interrupting flow. Use for helpful context, related concepts, or non-critical details.
+</Note>
+
+#### Tip - Best practices and pro tips
+<Tip>
+Expert advice, shortcuts, or best practices that enhance user success. Use for optimization suggestions, time-savers, or friendly recommendations.
+</Tip>
+
+#### Warning - Important cautions
+<Warning>
+Critical information about potential issues, breaking changes, or destructive actions. Use sparingly and only for genuine risks.
+</Warning>
+
+#### Info - Neutral contextual information
+<Info>
+Background information, context, or neutral announcements. Use for prerequisites, permissions, or required setup information.
+</Info>
+
+#### Check - Success confirmations
+<Check>
+Positive confirmations, successful completions, or achievement indicators. Use to verify steps were completed correctly.
+</Check>
+
+### Code components
+
+#### Single code block
+```javascript config.js
+const apiConfig = {
+  baseURL: 'https://api.sandbox.co.in',
+  timeout: 5000,
+  headers: {
+    'Authorization': `Bearer ${process.env.SANDBOX_API_KEY}`,
+    'x-api-key': process.env.SANDBOX_API_KEY,
+    'x-api-version': '2.0'
+  }
+};
+```
+
+#### Code group with multiple languages
+<CodeGroup>
+```javascript Node.js
+const response = await fetch('https://api.sandbox.co.in/kyc/pan/verify', {
+  method: 'POST',
+  headers: { 
+    'Authorization': `Bearer ${apiKey}`,
+    'x-api-key': apiKey,
+    'Content-Type': 'application/json'
+  },
+  body: JSON.stringify({ pan: 'ABCDE1234F' })
+});
+```
+
+```python Python
+import requests
+response = requests.post(
+  'https://api.sandbox.co.in/kyc/pan/verify',
+  headers={
+    'Authorization': f'Bearer {api_key}',
+    'x-api-key': api_key,
+    'Content-Type': 'application/json'
+  },
+  json={'pan': 'ABCDE1234F'}
+)
+```
+
+```curl cURL
+curl -X POST 'https://api.sandbox.co.in/kyc/pan/verify' \
+  -H 'Authorization: Bearer YOUR_API_KEY' \
+  -H 'x-api-key: YOUR_API_KEY' \
+  -H 'Content-Type: application/json' \
+  -d '{"pan": "ABCDE1234F"}'
+```
+</CodeGroup>
+
+#### Request/Response examples
+<RequestExample>
+```bash cURL
+curl -X POST 'https://api.sandbox.co.in/gst/search' \
+  -H 'Authorization: Bearer YOUR_API_KEY' \
+  -H 'Content-Type: application/json' \
+  -d '{"gstin": "29ABCDE1234F1ZH"}'
+```
+</RequestExample>
+
+<ResponseExample>
+```json Success
+{
+  "code": 200,
+  "data": {
+    "gstin": "29ABCDE1234F1ZH",
+    "legal_name": "Example Company Pvt Ltd",
+    "trade_name": "Example Company",
+    "status": "Active",
+    "registration_date": "2017-07-01"
+  }
+}
+```
+</ResponseExample>
+
+### Structural components
+
+#### Steps for procedures
+<Steps>
+<Step title="Get API credentials">
+  Sign up at [Sandbox Dashboard](https://dashboard.sandbox.co.in) to get your API key.
+
+  <Check>
+  Verify you can see your API key in the dashboard.
+  </Check>
+</Step>
+
+<Step title="Set up authentication">
+  Include your API key in the request headers.
+
+  ```bash
+  curl -H 'Authorization: Bearer YOUR_API_KEY' \
+       -H 'x-api-key: YOUR_API_KEY' \
+       https://api.sandbox.co.in/ping
+  ```
+
+  <Warning>
+  Never expose your API key in client-side code or version control.
+  </Warning>
+</Step>
+</Steps>
+
+#### Tabs for alternative content
+<Tabs>
+<Tab title="Production">
+  ```bash
+  BASE_URL=https://api.sandbox.co.in
+  ```
+</Tab>
+
+<Tab title="Staging">
+  ```bash
+  BASE_URL=https://staging-api.sandbox.co.in
+  ```
+</Tab>
+</Tabs>
+
+#### Accordions for collapsible content
+<AccordionGroup>
+<Accordion title="Troubleshooting authentication issues">
+  - **401 Unauthorized**: Check that your API key is valid and not expired
+  - **403 Forbidden**: Ensure your account has the required permissions
+  - **Rate limited**: Implement exponential backoff for retries
+</Accordion>
+
+<Accordion title="Common error codes">
+  - `INVALID_PAN`: The PAN format is incorrect
+  - `INVALID_GSTIN`: The GSTIN format is incorrect
+  - `SERVICE_UNAVAILABLE`: The upstream service is temporarily unavailable
+</Accordion>
+</AccordionGroup>
+
+### API documentation components
+
+#### Parameter fields
+<ParamField path="pan" type="string" required>
+PAN (Permanent Account Number) to verify. Must be a valid 10-character alphanumeric code.
+</ParamField>
+
+<ParamField body="gstin" type="string" required>
+GSTIN (GST Identification Number) to search. Must be a valid 15-character code.
+</ParamField>
+
+<ParamField query="page" type="integer" default="1">
+Page number for pagination. Range: 1-1000.
+</ParamField>
+
+<ParamField header="Authorization" type="string" required>
+Bearer token for API authentication. Format: `Bearer YOUR_API_KEY`
+</ParamField>
+
+#### Response fields
+<ResponseField name="code" type="integer" required>
+HTTP status code indicating the result of the request.
+</ResponseField>
+
+<ResponseField name="data" type="object">
+Response data containing the verification or search results.
+</ResponseField>
+
+<ResponseField name="message" type="string">
+Human-readable message describing the result or error.
+</ResponseField>
+
+#### Expandable nested fields
+<ResponseField name="data" type="object">
+Complete response object with all verification details.
+
+<Expandable title="Data properties">
+  <ResponseField name="status" type="string">
+  Verification status: "valid", "invalid", or "pending".
+  </ResponseField>
+
+  <ResponseField name="details" type="object">
+  Additional details about the verification result.
+
+  <Expandable title="Details">
+    <ResponseField name="name" type="string">
+    Name associated with the verified identifier.
+    </ResponseField>
+
+    <ResponseField name="verification_date" type="string">
+    ISO 8601 formatted timestamp of verification.
+    </ResponseField>
+  </Expandable>
+  </ResponseField>
+</Expandable>
+</ResponseField>
+
+### Interactive components
+
+#### Cards for navigation
+<Card title="KYC verification" icon="id-card" href="/api-reference/kyc/overview">
+Verify PAN, Aadhaar, bank accounts, and other identity documents.
+</Card>
+
+<CardGroup cols={2}>
+<Card title="GST APIs" icon="receipt" href="/api-reference/gst/overview">
+  Search GSTIN, file returns, and manage GST compliance.
+</Card>
+
+<Card title="TDS APIs" icon="file-invoice-dollar" href="/api-reference/tds/overview">
+  Calculate TDS, generate challans, and file TDS returns.
+</Card>
+</CardGroup>
+
+### Media and advanced components
+
+#### Frames for images
+Wrap all images in frames with descriptive alt text.
+
+<Frame>
+<img src="/static/images/dashboard.png" alt="Sandbox dashboard showing API usage metrics" />
+</Frame>
+
+<Frame caption="The API dashboard provides real-time usage insights">
+<img src="/static/images/analytics.png" alt="Analytics dashboard with API call charts" />
+</Frame>
+
+## Required page structure
+
+Every documentation page must begin with YAML frontmatter:
+
+```yaml
+---
+title: "Clear, specific, keyword-rich title"
+description: "Concise description explaining page purpose and value"
+---
+```
+
+## Content quality standards
+
+### Code examples requirements
+
+- Always include complete, runnable examples that users can copy and execute
+- Show proper error handling and edge case management
+- Use realistic data instead of placeholder values
+- Include expected outputs and results for verification
+- Test all code examples thoroughly before publishing
+- Specify language and include filename when relevant
+- Add explanatory comments for complex logic
+- Never include real API keys or sensitive credentials
+
+### API documentation requirements
+
+- Document all parameters including optional ones with clear descriptions
+- Show both success and error response examples with realistic data
+- Include rate limiting information with specific limits
+- Provide authentication examples showing proper format
+- Explain all HTTP status codes and error handling
+- Cover complete request/response cycles
+- Include pagination details when applicable
+
+### Accessibility requirements
+
+- Include descriptive alt text for all images and diagrams
+- Use specific, actionable link text instead of "click here"
+- Ensure proper heading hierarchy starting with H2
+- Provide keyboard navigation considerations
+- Use sufficient color contrast in examples and visuals
+- Structure content for easy scanning with headers and lists
+- Use semantic HTML elements appropriately
+
+## Component selection logic
+
+### When to use each component
+
+- **Steps**: Procedures, tutorials, setup guides, and sequential instructions
+- **Tabs**: Platform-specific content, alternative approaches, or multiple installation methods
+- **CodeGroup**: Same concept demonstrated in multiple programming languages
+- **Accordions**: Supplementary information that might interrupt main flow
+- **Cards/CardGroup**: Navigation, feature overviews, and related resources
+- **Frame**: Wrap all images with descriptive captions when helpful
+- **RequestExample/ResponseExample**: Specifically for API endpoint documentation
+- **Expandable**: Nested object properties or hierarchical information
+- **ParamField**: API parameters with types and requirements
+- **ResponseField**: API response documentation with clear descriptions
+
+### Callout selection guidelines
+
+- **Note**: Extra relevant information that supports main content (not crucial to task completion)
+- **Warning**: Potentially destructive actions, breaking changes, or critical cautions
+- **Info**: Required information, permissions, prerequisites, neutral announcements, background context
+- **Tip**: Opinionated best practices, expert advice, shortcuts, or friendly recommendations
+- **Check**: Success confirmations, positive completions, achievement indicators
+- Don't stack callouts - separate with content between them
