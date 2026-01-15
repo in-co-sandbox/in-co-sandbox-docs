@@ -48,6 +48,14 @@ a img[class*="bg-"],
 /* Dark mode */
 .dark img.icon,
 .dark a img.icon,
+
+/* Hide header on homepage (index page with landing_page_background_div) */
+body:has(#landing_page_background_div) #header,
+body:has(#landing_page_background_div) header#header {
+  display: none !important;
+}
+
+
 .dark img[class*="bg-"],
 .dark a img[class*="bg-"] {
   background: transparent !important;
