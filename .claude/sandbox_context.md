@@ -41,6 +41,36 @@ All API requests require:
 - `authorization`: Your access token (without "Bearer" prefix)
 - `x-api-version`: API version (e.g., "1.0") - optional
 
+## Request & response structure
+
+### Request methods
+- GET: Retrieve data (path/query parameters)
+- POST: Create/submit data (JSON body)
+- PUT: Update data (JSON body)
+- DELETE: Remove data (path/query parameters)
+
+### Standard response format
+```json
+{
+  "code": 200,
+  "data": { /* response data */ },
+  "timestamp": 1750687659809,
+  "transaction_id": "unique-id"
+}
+```
+
+### Common headers
+- `x-api-key` (required): API key (e.g., key_live_SIethxxxxxxxx)
+- `authorization` (required): JWT access token (no "Bearer" prefix)
+- `x-api-secret`: API secret (only for Authenticate API)
+- `x-api-version`: API version (e.g., "1.0") - optional
+- `x-source`: Data source (default: primary) - optional
+- `Cache-Control`: Set to "no-cache" for latest data - optional
+- `Content-Type`: Usually "application/json" - optional
+
+### Special formats
+- Some APIs use sheet structure format for bulk operations
+
 ## Versioning
 
 ### Semantic versioning format
