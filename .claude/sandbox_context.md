@@ -41,6 +41,25 @@ All API requests require:
 - `authorization`: Your access token (without "Bearer" prefix)
 - `x-api-version`: API version (e.g., "1.0") - optional
 
+## Versioning
+
+### Semantic versioning format
+- Format: `MAJOR.MINOR.PATCH`
+- Major: Backward-incompatible changes (e.g., 1.0.0 → 2.0.0)
+- Minor: New features, backward compatible (e.g., 2.0.0 → 2.1.0)
+- Patch: Bug fixes, backward compatible (e.g., 2.1.0 → 2.1.1)
+
+### Version specification
+- Optional header: `x-api-version` (e.g., "1.0")
+- Without version header: Uses latest stable version
+- Sandbox APIs always use latest version
+- Version header only affects response format for specific endpoints
+
+### Version lifecycle
+- **Deprecation**: Older versions no longer maintained but still functional
+- **Discontinuation**: Deprecated versions eventually stopped, returns 503 errors
+- Communicated via: Changelog, email notifications, API reference pages
+
 ## Important notes
 
 - Never mix test and production credentials
