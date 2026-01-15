@@ -1,13 +1,35 @@
 ---
 title: "Environments"
+description: "Understand test and production environments, their host URLs, and how to use separate API credentials for each."
+keywords: ["environments", "test", "production", "host URL", "API credentials"]
 ---
 
-### **Host URLs**
+Sandbox provides separate test and production environments to help you develop and test your integration before going live.
 
-Please find below the distinct host URLs for our production and test environments.
+| **Environment** | **Host url**                     | **Credentials prefix** | **Billing** |
+| :-------------- | :------------------------------- | :--------------------- | :---------- |
+| Test            | `https://test-api.sandbox.co.in` | `key_test`             | Free        |
+| Production      | `https://api.sandbox.co.in`      | `key_live`             | Billed      |
 
-| **Environment** | **Host URL**                                            |
-| :-------------- | :------------------------------------------------------ |
-| Test            | [test-api.sandbox.co.in](http://test-api.sandbox.co.in) |
-| Production      | [api.sandbox.co.in](http://api.sandbox.co.in)           |
+## Test environment
+
+Use the test environment to develop and test your integration without affecting real data or incurring charges. The test environment mirrors production functionality.
+
+- Separate API credentials with `key_test` prefix
+- Free API calls for testing
+- Isolated from production data
+- Safe for experimentation
+
+## Production environment
+
+Use the production environment for live integrations with real data. API calls are billed according to your subscription plan.
+
+- Separate API credentials with `key_live` prefix
+- Billed API usage
+- Real data and transactions
+- Production-grade reliability
+
+<Warning>
+  Never use production credentials in your test environment or vice versa. Keep your credentials separate and secure.
+</Warning>
 
