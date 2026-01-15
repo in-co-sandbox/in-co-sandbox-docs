@@ -1,28 +1,63 @@
 ---
 title: "Versioning"
-
+description: "Learn how Sandbox uses semantic versioning and how to specify API versions in your requests."
+keywords: ["versioning", "semantic versioning", "API version", "deprecation", "backward compatibility"]
 ---
 
-We follow the globally accepted semantic versioning for Sandbox API. Below is an example
+Sandbox APIs follow semantic versioning to manage changes and ensure compatibility. This guide explains how versioning works and how to specify versions in your API requests.
 
-| **Type** | **Compatibility**                                   | **Current Version** | **New Version** |
-| :------- | :-------------------------------------------------- | :------------------ | :-------------- |
-| Major    | Backward-non compatible                             | 1.0.0               | 2.0.0           |
-| Minor    | New functionality added, backward compatible        | 2.0.0               | 2.1.0           |
-| Patch    | Bug-fix in the current version, backward compatible | 2.1.0               | 2.1.1           |
+## Semantic versioning
 
-### **Specifying API Version**
+Sandbox uses semantic versioning with the format `MAJOR.MINOR.PATCH`:
 
-Sandbox APIs are always on the latest version and previous versions are inaccessible. However, in some APIs, by specifying a version in a request, you can get responses as per the specified version of the API. This can be done via the `x-api-version` header. 
+| **Type** | **Compatibility**                         | **Example**     |
+| :------- | :---------------------------------------- | :-------------- |
+| Major    | Backward-incompatible changes             | 1.0.0 → 2.0.0   |
+| Minor    | New features, backward compatible         | 2.0.0 → 2.1.0   |
+| Patch    | Bug fixes, backward compatible            | 2.1.0 → 2.1.1   |
 
-<Tip>
-  **API requests without any version specification go to the latest stable version.**
-</Tip>
+## Specifying API version
 
-### **Deprecation**
+Use the `x-api-version` header to specify which version of the API you want to use:
 
-API deprecation is the practice of gradually retiring an API. This typically happens when major changes are introduced, rendering the previous version less optimal. Once deprecated, the older version is no longer actively maintained. Developers are encouraged to migrate to the newer version or explore alternative APIs suggested in the changelogs.
+<CodeGroup>
+```bash cURL
+curl -X POST 'https://api.sandbox.co.in/endpoint' \
+     -H 'x-api-key: YOUR_API_KEY' \
+     -H 'authorization: YOUR_ACCESS_TOKEN' \
+     -H 'x-api-version: 1.0'
+```
+</CodeGroup>
 
-### **Discontinuation**
+<Note>
+  API requests without the `x-api-version` header use the latest stable version.
+</Note>
 
-The deprecated APIs are eventually discontinued in a planned manner. Post the dates communicated, the API will no longer work and you'll get Service Unavailable responses on the same. The dates will be communicated in the changelogs, via emails as well on the API Reference pages.
+## Version lifecycle
+
+### Deprecation
+
+When we release a new version, we may deprecate older versions. If you use a deprecated version:
+- You no longer receive active maintenance for it
+- It continues to work but receives no updates
+- You should migrate to a supported version
+
+We communicate deprecation notices through:
+- [Changelog](/guides/developer-resources/changelog)
+- E-Mail notifications
+- API reference documentation
+
+### Discontinuation
+
+Deprecated APIs are eventually discontinued after a planned transition period. After discontinuation:
+- API requests return `503 Service Unavailable`
+- You must migrate to the newer version
+
+We announce discontinuation dates through:
+- Changelog updates
+- E-Mail notifications to affected accounts
+- Warnings in API reference pages
+
+<Warning>
+  Sandbox APIs always use the latest version, and previous versions are inaccessible. The `x-api-version` header only affects response format for specific endpoints that support version-specific responses.
+</Warning>
