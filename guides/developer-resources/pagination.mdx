@@ -1,54 +1,72 @@
 ---
 title: "Pagination"
-description: "How to retrieve paginated data from the server using page_size and last_evaluated_key"
+description: "Learn how to retrieve paginated data using page_size and last_evaluated_key."
+keywords: ["pagination", "page_size", "last_evaluated_key", "cursor", "paginated results"]
 ---
 
-\
-List resources endpoint may return paginated items. Each paginated response may include a special value attribute`last_evaluated_key`. Presence of such attribute means **more items are available**. API client must include `last_evaluated_key` in  reuquest body to fetch next page.\
-\
-Response will not include`last_evaluated_key`for the last page to indicate the end of the list.
+List endpoints may return paginated results. When a response includes `last_evaluated_key`, more items are available. Include this value in subsequent requests to fetch the next page.
+
+<Note>
+  Pagination is forward-only. You cannot navigate to previous pages.
+</Note>
 
 ## How pagination works
 
-1. Include`page_size `in the request body
-1. Response body includes `items`and `last_evaluated_key` 
-1. Include `page_size`and `last_evaluated_key` on subsequent request body
-4. Repeat until response body does not include`last_evaluated_key` 
-
-<Note>
-  Pagination is **forward-only**
-</Note>
+<Steps>
+  <Step title="Send initial request">
+    Send a request with `page_size` to specify how many items you want per page.
+  </Step>
+  <Step title="Receive first page">
+    The response includes `items` and `last_evaluated_key` if more pages exist.
+  </Step>
+  <Step title="Request next page">
+    Include the `last_evaluated_key` from the previous response in your next request.
+  </Step>
+  <Step title="Repeat until complete">
+    Continue until the response doesn't include `last_evaluated_key`, indicating you've reached the last page.
+  </Step>
+</Steps>
 
 ```mermaid
-flowchart TD
-    A[Client sends request<br/>no last_evaluated_key] --> B[Server returns: items + last_evaluated_key]
-    B -->|Client checks last_evaluated_key exists| C[Client sends next request<br/>with last_evaluated_key]
-    C --> D[Server returns: items + last_evaluated_key]
-    D -->|Still has last_evaluated_key| C
-    D -->|No last_evaluated_key| E[End of results]
+sequenceDiagram
+    participant Client
+    participant Server
+    
+    Client->>Server: Request with page_size
+    Server->>Client: items + last_evaluated_key
+    
+    Client->>Server: Request with last_evaluated_key
+    Server->>Client: items + last_evaluated_key
+    
+    Client->>Server: Request with last_evaluated_key
+    Server->>Client: items (no last_evaluated_key)
+    
+    Note over Client: End of results
 ```
 
----
+## Request parameters
 
-## Key Request Attributes for Pagination
+<ParamField body="page_size" type="integer">
+  Maximum items to return per page (up to 50)
+</ParamField>
 
-Include following attributes in the request body when using pagination:
+<ParamField body="last_evaluated_key" type="string">
+  Cursor from previous response to fetch the next page
+</ParamField>
 
-| Field                | Type    | Required | Description                                               |
-| -------------------- | ------- | -------- | --------------------------------------------------------- |
-| `page_size`          | integer | No       | Max items to return per page (up to 50)                   |
-| `last_evaluated_key` | string  | No       | Cursor for the next page, returned from previous response |
+## Response fields
 
-## Key Response Attributes for Pagination
+<ParamField path="items" type="array">
+  Results for the current page
+</ParamField>
 
-| Field                | Meaning                            |
-| :------------------- | :--------------------------------- |
-| `items`              | Results for the current page       |
-| `last_evaluated_key` | Present only when more pages exist |
+<ParamField path="last_evaluated_key" type="string">
+  Present only when more pages exist. Include in your next request to continue.
+</ParamField>
 
-## Example: Fetch Jobs with Pagination
+## Example
 
-### First Page — Request
+### First request
 
 ```json
 {
@@ -63,7 +81,7 @@ Include following attributes in the request body when using pagination:
 }
 ```
 
-### First Page — Response
+### First response
 
 ```json
 {
@@ -74,7 +92,6 @@ Include following attributes in the request body when using pagination:
     "@entity": "in.co.sandbox.tds.reports.paginated_list",
     "items": [
       { /* job item */ },
-      { /* job item */ },
       { /* job item */ }
     ],
     "last_evaluated_key": "ZDVkMzAyZmUtMWFjYS00YjkxLTgyMWUtMTQxYmM4ZGE1NmNmIA=="
@@ -82,7 +99,9 @@ Include following attributes in the request body when using pagination:
 }
 ```
 
-### Next Page — Request
+### Next request
+
+Include the `last_evaluated_key` from the previous response:
 
 ```json
 {
@@ -97,5 +116,3 @@ Include following attributes in the request body when using pagination:
   "last_evaluated_key": "ZDVkMzAyZmUtMWFjYS00YjkxLTgyMWUtMTQxYmM4ZGE1NmNmIA=="
 }
 ```
-
----

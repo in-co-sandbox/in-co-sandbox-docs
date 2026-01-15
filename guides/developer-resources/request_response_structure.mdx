@@ -78,38 +78,6 @@ curl -X POST 'https://api.sandbox.co.in/gst/compliance/public/gstin/search' \
        "gstin": "05ABNTY3290P8ZB"
      }'
 ```
-
-```javascript JavaScript
-const response = await fetch('https://api.sandbox.co.in/gst/compliance/public/gstin/search', {
-  method: 'POST',
-  headers: {
-    'x-api-key': 'key_live_SIethxxxxxxxx',
-    'authorization': 'eyJhbGcxxxxx.eyJhdJxxxx.Si29xxxxx',
-    'x-api-version': '1.0',
-    'Content-Type': 'application/json'
-  },
-  body: JSON.stringify({
-    gstin: '05ABNTY3290P8ZB'
-  })
-});
-const data = await response.json();
-```
-
-```python Python
-import requests
-
-response = requests.post(
-    'https://api.sandbox.co.in/gst/compliance/public/gstin/search',
-    headers={
-        'x-api-key': 'key_live_SIethxxxxxxxx',
-        'authorization': 'eyJhbGcxxxxx.eyJadJxxxx.Si29xxxxx',
-        'x-api-version': '1.0',
-        'Content-Type': 'application/json'
-    },
-    json={'gstin': '05ABNTY3290P8ZB'}
-)
-data = response.json()
-```
 </CodeGroup>
 
 ## Response structure

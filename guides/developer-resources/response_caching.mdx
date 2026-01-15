@@ -1,34 +1,44 @@
 ---
-title: "Response Caching"
+title: "Response caching"
+description: "Learn how Sandbox caches API responses and how to control caching behavior."
+keywords: ["caching", "cache", "X-Accept-Cache", "X-Cache", "performance"]
 ---
 
-In case of a request to the source for the same data, we have implemented a response caching mechanism wherein the response is cached after the first API call for a specified duration. This ensures that data is readily available to the users when required.
+Sandbox caches API responses for frequently requested data. Cached responses are stored for 24 hours and served without additional charges to your wallet.
 
-The cache expires after 24 hours, meaning that the cached response will be valid for one day before a new request to the source is required. Please note that this is an eventually consistent system, which means that the cache may take some time to propagate across servers and the response might not be cached immediately after the first successful hit.
+<Note>
+  Cached responses do not incur wallet charges.
+</Note>
 
-<Tip>
-  **There will be no wallet charges if you receive a cached response.**
-</Tip>
+## Controlling cache behavior
 
-### **X-Accept-Cache Header**
+Use the `X-Accept-Cache` header to control whether you want cached or fresh data:
 
-Sandbox API now supports the `X-Accept-Cache` header, giving users control over whether they want to retrieve cached responses or fresh data from the origin.
+<ParamField header="X-Accept-Cache" type="boolean">
+  Controls cache behavior for the request:
+  - `true` — Return cached response if available
+  - `false` — Bypass cache and fetch fresh data from origin
+  
+  **Default**: If omitted, returns fresh data from origin
+</ParamField>
 
-To use this feature, include the `X-Accept-Cache` header in your request with one of the following values:
+```bash
+curl -X POST 'https://api.sandbox.co.in/endpoint' \
+     -H 'x-api-key: YOUR_API_KEY' \
+     -H 'authorization: YOUR_ACCESS_TOKEN' \
+     -H 'X-Accept-Cache: true'
+```
 
-- true: The API will return the cached response if available.
-- false: The API will bypass the cache and return the latest data from the origin.
+## Cache status header
 
-<Tip>
-  **By default, if the X-Accept-Cache header is not included in the request, the API will return the response from the origin.**
-</Tip>
+The `X-Cache` response header indicates the caching status:
 
-### **X-Cache Header**
+| **X-Cache value** | **Description** |
+| :---------------- | :-------------- |
+| `Hit from Cloudfront` | Response served from cache |
+| `Miss from Cloudfront` | Fresh response, now cached for future requests |
+| `Error from Cloudfront` | Non-2XX response, not cached |
 
-The response will include a `X-Cache` header, which will provide caching status of the API response. Here are the possible values
-
-| **X-Cache value**     | **Description**                                                                                 |
-| :-------------------- | :---------------------------------------------------------------------------------------------- |
-| Hit from Cloudfront   | This a Cached Response                                                                          |
-| Miss from Cloudfront  | This is a fresh response that has now been cached                                               |
-| Error from Cloudfront | Will appear for a non `2XX` code, wherein the cache was not hit and the response was not cached |
+<Warning>
+  Cache propagation across servers may take a moment. The response might not be cached immediately after the first successful request.
+</Warning>

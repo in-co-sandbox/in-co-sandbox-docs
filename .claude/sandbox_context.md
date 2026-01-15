@@ -96,3 +96,58 @@ All API requests require:
 - Test environment mirrors production functionality
 - API calls in test environment are free
 - API calls in production environment are billed
+
+## Rate limits
+
+- Test environment: 25 requests per second
+- Production environment: 100 requests per second
+- Exceeding limits returns 429 Too Many Requests
+- Access automatically resumes when within limits
+
+## Response caching
+
+- Responses cached for 24 hours
+- Cached responses don't incur wallet charges
+- Control with `X-Accept-Cache` header (true/false)
+- Check `X-Cache` response header for cache status
+- Default: Returns fresh data from origin if header omitted
+
+## Error handling
+
+### Standard error response
+```json
+{
+  "code": 401,
+  "message": "Unauthorized",
+  "timestamp": 1687602744185,
+  "transaction_id": "unique-id"
+}
+```
+
+### Common status codes
+- 400: Bad Request (missing/invalid fields)
+- 401: Unauthorized (invalid API key/secret)
+- 403: Forbidden (token issues, insufficient credits)
+- 404: Not Found (invalid endpoint)
+- 422: Unprocessable Entity (invalid values)
+- 429: Too Many Requests (rate limited)
+- 500: Internal Server Error
+- 503: Service Unavailable
+- 504: Gateway Timeout
+
+## Webhooks
+
+- Signature header: `x-sandbox-signature`
+- Algorithm: HMAC-SHA256 with base64 encoding
+- Always validate signatures before processing
+
+## Pagination
+
+- Forward-only pagination
+- Request params: `page_size` (max 50), `last_evaluated_key`
+- Response includes `last_evaluated_key` when more pages exist
+- No `last_evaluated_key` in response = last page
+
+## Security: POST for GET
+
+Sandbox uses POST for data retrieval to protect sensitive data (PAN, Aadhaar, GSTIN) by placing identifiers in request body instead of URLs.
