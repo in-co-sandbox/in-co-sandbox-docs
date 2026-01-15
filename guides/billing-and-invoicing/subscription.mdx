@@ -1,71 +1,103 @@
 ---
 title: "Subscription"
+description: "Learn about Sandbox subscription plans, quota management, and overdraft handling"
+keywords: ["subscription", "pricing", "quota", "overdraft", "API limits", "billing cycle", "monthly quota", "free trial"]
 ---
 
-To access Sandbox APIs, customers must purchase a subscription plan. Subscriptions can be billed **monthly or annually** by setting up payment instructions with a valid payment method.
+To access Sandbox APIs, you need an active subscription plan. You pay for subscriptions monthly or annually through payment instructions with a valid payment method.
 
-Every Sandbox subscription provides:
+## What's included
 
-- **Access to 200+ Sandbox APIs**
-- **Access to API Keys**
-- **Monthly Quota**
+Every Sandbox subscription provides the following:
 
-A subscription ensures seamless, uninterrupted access to Sandbox APIs and resources while helping businesses manage usage and costs efficiently.
+<ParamField path="API access" type="included">
+  Access to 200+ Sandbox APIs across KYC, GST, TDS, Income Tax, and Banking products.
+</ParamField>
 
-You can explore and compare all the plans on our [Pricing page](https://sandbox.co.in/pricing). Here's a guide on how to [Purchase a Plan](https://help.sandbox.co.in/portal/en/kb/articles/purchase-a-plan).
+<ParamField path="API keys" type="included">
+  Authentication credentials for test and production environments to integrate with your applications.
+</ParamField>
 
-### **Free Trial**
+<ParamField path="Monthly quota" type="included">
+  A fixed number of API calls per month based on your plan. Quota resets at the start of each billing cycle.
+</ParamField>
 
-Sandbox offers a 1[4-day free trial](https://help.sandbox.co.in/support/solutions/articles/84000351066-start-the-14-day-free-trial) that gives you access to our platform. This will help you test our APIs and build a proof of concept for your stakeholders.
+<Info>
+View and compare all available plans on the [Pricing page](https://sandbox.co.in/pricing).
+</Info>
 
-## Quota
+Learn how to [purchase a plan](https://help.sandbox.co.in/portal/en/kb/articles/purchase-a-plan) through your Console.
 
-Quota refers to the number of API calls a customer can make each month without incurring additional charges. The quota allocated depends on the subscribed plan and always resets monthly.
+## Free trial
+
+Sandbox offers a [14-day free trial](https://help.sandbox.co.in/support/solutions/articles/84000351066-start-the-14-day-free-trial) with full platform access. Use this period to test APIs and build a proof of concept for your stakeholders.
+
+## Quota management
+
+Quota refers to the number of API calls you can make each month without additional charges. Your quota allocation depends on your subscribed plan and resets monthly.
 
 <Warning>
-  **The unused quota does not carry forward to the next month.**
+Unused quota does not carry forward to the next billing cycle.
 </Warning>
 
-Quota limits help us provision infrastructure efficiently across customers of all sizes and ensure fair access to resources for everyone.
+### How quota works
 
-### **Consumption**
+Not all API requests count toward your quota. Understanding what consumes quota helps you optimize usage and costs.
 
-Not all API requests count toward your quota, and not all requests incur wallet charges. For example, failed requests with 5xx status codes neither consume quota nor deduct wallet balance.
+<ParamField path="Successful requests (2xx)" type="consumed">
+  You consume quota only for successful API responses with 2xx status codes.
+</ParamField>
 
-Below is a breakdown of when quota is consumed and when wallet charges apply.
+<ParamField path="Client errors (4xx)" type="not consumed">
+  Requests that fail due to client errors (invalid parameters, authentication issues) do not consume quota.
+</ParamField>
 
-### **Quota Consumption**
+<ParamField path="Server errors (5xx)" type="not consumed">
+  Requests that fail due to server errors do not consume quota or deduct wallet balance.
+</ParamField>
 
-Quota is consumed only for successful API calls (200).
+### Wallet charges
 
-### **Wallet Charges**
+Wallet charges are separate from quota consumption. Certain APIs incur per-call charges that deduct from your wallet balance. These charges apply only on successful API calls (2xx responses).
 
-Wallet charges apply only on successful API calls (200).
-
-### **Wallet Charges**
-
-Wallet charges are only applicable on 200 (successful) calls.
-
-You can view the quota limits for all standard plans on our [**Pricing page**](https://sandbox.co.in/pricing).
+View quota limits for all standard plans on the [Pricing page](https://sandbox.co.in/pricing).
 
 ## Overdraft
 
-Overdraft allows you to continue making API calls even after you have exhausted your monthly quota. This ensures your production workloads remain uninterrupted, even during unexpected traffic spikes or higher than normal usage.
+Overdraft allows you to continue making API calls after exhausting your monthly quota, ensuring production workloads remain uninterrupted during traffic spikes or higher than expected usage.
 
-Here's how you can [enable or disable Overdraft](https://help.sandbox.co.in/portal/en/kb/articles/how-to-enable-or-disable-overdraft).
+<Tip>
+Learn how to [enable or disable overdraft](https://help.sandbox.co.in/portal/en/kb/articles/how-to-enable-or-disable-overdraft) in your Console.
+</Tip>
 
-The Overdraft feature helps you maintain service continuity while giving you flexibility to scale as needed.
+### How overdraft works
 
-### **Overdraft Consumption**
+When you enable overdraft, you can make API calls beyond your monthly quota. Here's what happens:
 
-Overdraft is activated only when you exceed your monthly quota. All API calls made beyond the quota are considered as overdraft usage.
+<Steps>
+  <Step title="Quota exhausted">
+    Once you reach 100% of your monthly quota, overdraft automatically activates if enabled.
+  </Step>
+  
+  <Step title="Overdraft usage tracked">
+    The system tracks all API calls beyond your quota as overdraft usage and charges them at the per-call rate defined in your subscription plan.
+  </Step>
+  
+  <Step title="Invoice generated">
+    At the end of your billing cycle, the system generates a separate overdraft invoice with all usage and charges.
+  </Step>
+</Steps>
 
-### **Overdraft Charges**
+### Overdraft charges
 
-Overdraft usage is charged on a pro-rata basis as per the rate defined in your subscription plan.\
-These charges are added to your invoice at the end of your billing cycle.
+You pay for overdraft usage on a pro-rata basis according to your plan's per-call rate. The system adds these charges to your invoice at the end of each billing cycle.
 
-### **Notifications**
+### Usage notifications
 
-You will receive email alerts when your usage reaches **50%**, **90%**, and **100%** of your monthly quota.\
-You can also configure postback notifications to alert your team when your subscription goes into overdraft.
+Sandbox sends email alerts to help you monitor quota consumption:
+
+- **50% quota consumed** - Early warning to plan for potential overages
+- **90% quota consumed** - Approaching quota limit, consider optimizing usage
+- **100% quota consumed** - Quota exhausted, overdraft activated (if enabled)
+
+You can also configure postback notifications to alert your team when your subscription enters overdraft mode.

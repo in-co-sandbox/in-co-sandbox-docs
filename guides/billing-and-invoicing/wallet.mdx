@@ -1,59 +1,82 @@
 ---
 title: "Wallet"
+description: "Manage your Sandbox Wallet, add funds, and understand wallet charges for API usage"
+keywords: ["wallet", "virtual account", "wallet balance", "wallet charges", "prepaid", "API charges", "payment", "UPI", "NEFT", "RTGS"]
 ---
 
-Sandbox provides every account with a dedicated Wallet where you can load funds and pay for APIs that incur wallet charges. Funds can be added using a payment gateway or via bank transfer using the account details available on the Console.
+Every Sandbox account includes a dedicated Wallet for prepaid API charges. Load funds via payment gateway or bank transfer to pay for APIs that incur per-call wallet charges.
 
 <Tip>
-  **Wallet funds do not have expiry and are always carried forward.**
+Wallet funds never expire and remain in your account indefinitely.
 </Tip>
 
-## Virtual Account
+## Virtual account
 
-Every Sandbox account is issued a unique Virtual Bank Account to add funds. You can easily top up your Sandbox Wallet using UPI, IMPS, NEFT, or RTGS bank transfers. Once funds are added, your Wallet automatically pays for APIs that incur wallet charges.
+Each Sandbox account receives a unique virtual bank account for adding funds. Top up your wallet using any of these payment methods:
 
-## Wallet Balance
+- **UPI** - Instant transfers using UPI apps
+- **IMPS** - Immediate Payment Service for real-time transfers
+- **NEFT** - National Electronic Funds Transfer
+- **RTGS** - Real Time Gross Settlement for larger amounts
 
-Your Sandbox Wallet functions like a virtual bank account where you deposit funds and pay for APIs that incur wallet charges. To give you an accurate view of your available funds, Sandbox provides two balance indicators: **Effective Balance** and **Closing Balance**.
+After you add funds, your wallet automatically pays for APIs that incur wallet charges.
 
-### **Effective Balance**
+## Understanding wallet balance
 
-The Effective Balance is the amount displayed on the Console. It reflects the actual spendable balance after accounting for any pending deductions:
+Your Sandbox Wallet displays two balance indicators to provide accurate fund availability.
 
-**Effective Balance = Closing Balance – Unbilled Charges**
+### Effective balance
+
+The Console prominently shows the effective balance. It displays the actual spendable amount after accounting for pending deductions:
+
+```
+Effective Balance = Closing Balance – Unbilled Charges
+```
 
 This ensures you always see the real amount available for API usage.
 
-### **Closing Balance**
+<ParamField path="Effective balance" type="displayed">
+  The spendable balance after deducting unbilled charges. This is the primary balance shown in your Console and represents funds available for immediate use.
+</ParamField>
 
-The Closing Balance represents the total actual funds in your wallet’s virtual bank account, much like the closing balance shown in a traditional bank statement.\
-You can view your Closing Balance anytime through viewing your [**Wallet Statement.**](https://help.sandbox.co.in/portal/en/kb/articles/view-and-download-wallet-statement)
+### Closing balance
 
-## **Wallet charges**
+The closing balance represents total actual funds in your wallet's virtual bank account, similar to a traditional bank statement closing balance.
 
-Certain APIs incur an additional per-call charge that is deducted from your wallet. These charges are separate from your subscription fee, as an active subscription is required to access Sandbox APIs. Wallet charges cover the following expenses:
+<ParamField path="Closing balance" type="actual">
+  The total funds in your wallet before deducting unbilled charges. View your closing balance in the [wallet statement](https://help.sandbox.co.in/portal/en/kb/articles/view-and-download-wallet-statement).
+</ParamField>
 
-- Upstream vendor fees (Banks, GSPs, Account Aggregators, TIN FCs, etc.)
-- Licensing charges
-- IP-related charges
-- Credit, Email, or SMS charges
+## Wallet charges
 
-Below are the APIs that have wallet charges applicable on them.
+Certain APIs incur additional per-call charges deducted from your wallet. These charges are separate from your subscription fee and cover:
 
-| **Product** | **Category** | **API**                                     |
-| :---------- | :----------- | :------------------------------------------ |
-| KYC         | Compliance   | DigiLocker API / DigiLocker SDK             |
-| KYC         | Compliance   | PAN Verification                            |
-| KYC         | Compliance   | Bank Verification                           |
-| GST         | Compliance   | Search GSTIN with PAN and State Code        |
-| GST         | Analytics    | GSTR-2B Reconciliation with Purchase Ledger |
-| TDS         | Reporting    | Prepare TDS Return                          |
-| TDS         | Reporting    | Prepare TCS Return                          |
-| TDS         | Compliance   | Section 206AB & 206CCA Check                |
-| TDS         | Compliance   | e-File TDS Return                           |
-| TDS         | Compliance   | Download TDS Certificate                    |
-| TDS         | Analytics    | Potential Notices                           |
+- Upstream vendor fees (Banks, GSPs, Account Aggregators, TIN FCs)
+- Licensing and IP-related charges
+- Credit, email, or SMS service charges
 
-<Tip>
-  **Wallet charges are only applicable on 2xx calls.**
-</Tip>
+<Info>
+You need an active subscription to access Sandbox APIs. Wallet charges are in addition to subscription fees.
+</Info>
+
+### APIs with wallet charges
+
+The following APIs incur per-call wallet charges on successful requests:
+
+| Product | Category   | API                                          |
+| :------ | :--------- | :------------------------------------------- |
+| KYC     | Compliance | DigiLocker API / DigiLocker SDK              |
+| KYC     | Compliance | PAN Verification                             |
+| KYC     | Compliance | Bank Verification                            |
+| GST     | Compliance | Search GSTIN with PAN and State Code         |
+| GST     | Analytics  | GSTR-2B Reconciliation with Purchase Ledger  |
+| TDS     | Reporting  | Prepare TDS Return                           |
+| TDS     | Reporting  | Prepare TCS Return                           |
+| TDS     | Compliance | Section 206AB & 206CCA Check                 |
+| TDS     | Compliance | e-File TDS Return                            |
+| TDS     | Compliance | Download TDS Certificate                     |
+| TDS     | Analytics  | Potential Notices                            |
+
+<Warning>
+Wallet charges apply only to successful API calls with 2xx status codes. Failed requests do not deduct wallet balance.
+</Warning>
