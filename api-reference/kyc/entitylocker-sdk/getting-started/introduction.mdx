@@ -1,0 +1,59 @@
+---
+title: "Introduction"
+description: "Integrate EntityLocker business document retrieval into your application with client-side SDKs"
+---
+
+The EntityLocker SDK provides a pre-built interface for retrieving business documents from the government's EntityLocker system. Use the SDK when you want a faster integration with minimal code, while we handle the authentication flow and UI.
+
+<Card title="View Demo" icon="window" href="https://demo.sandbox.co.in/kyc/entitylocker">
+  See a live demo of the EntityLocker integration in action
+</Card>
+
+## How it works
+
+The SDK integration follows a four-step process:
+
+1. **Create a session** on your backend using the [Create Session](../endpoints/create_session) endpoint
+2. **Initialize the SDK** on your client app with the session ID
+3. **Handle the response** when users complete or exit the document retrieval flow
+4. **Fetch documents** from your backend using the [Fetch Document](../endpoints/fetch_document) endpoint
+
+The SDK manages the complete EntityLocker authentication flow, including OTP verification and document selection, while providing callbacks for you to handle the results.
+
+<Note>
+  **Important**: The EntityLocker SDK requires specific SDK endpoints. Use these endpoints when integrating with the SDK:
+  
+  - [Create Session](../endpoints/create_session)
+  - [Get Session Status](../endpoints/get_session_status)
+  - [Fetch Document](../endpoints/fetch_document)
+</Note>
+
+## Choose your platform
+
+Select your platform to view the integration guide:
+
+<CardGroup cols={2}>
+  <Card title="Web" icon="laptop" href="./platforms/web">
+    JavaScript SDK for web applications
+  </Card>
+  <Card title="Android" icon="android" href="./platforms/android">
+    Native SDK for Android applications
+  </Card>
+  <Card title="iOS" icon="apple" href="./platforms/ios">
+    Native SDK for iOS applications
+  </Card>
+  <Card title="Flutter" icon="flutter" href="./platforms/flutter">
+    Plugin for Flutter applications (iOS & Android)
+  </Card>
+</CardGroup>
+
+## When to use the SDK
+
+Use the EntityLocker SDK when you need:
+
+- Pre-built UI for the EntityLocker flow
+- Faster implementation without building custom interfaces
+- Consistent user experience across platforms
+- Automatic handling of OTP verification and consent flow
+
+For backend-only integration with full control over the UI, use the [EntityLocker API](/api-reference/kyc/entitylocker/endpoints/initiate_session) instead.

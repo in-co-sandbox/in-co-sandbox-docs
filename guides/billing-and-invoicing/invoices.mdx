@@ -1,21 +1,39 @@
 ---
 title: "Invoices"
+description: "Understand Sandbox invoice types for subscriptions, wallet usage, and overdrafts"
+keywords: ["invoices", "billing", "subscription invoice", "wallet invoice", "overdraft invoice", "GST invoice", "payment"]
 ---
 
-Sandbox generates different types of invoices for **Subscriptions, Wallet usage, and Overdrafts**. Each invoice type is designed to give you a clear view of your charges and payments. You can [view and download invoices](https://help.sandbox.co.in/portal/en/kb/articles/view-and-download-invoices) at any time.
+Sandbox generates different types of invoices based on your usage and billing model. Each invoice type provides a clear breakdown of charges and payments for specific services.
 
-### **Subscription Invoicing**
+<Info>
+You can [view and download invoices](https://help.sandbox.co.in/portal/en/kb/articles/view-and-download-invoices) from your Console at any time.
+</Info>
 
-Subscriptions are prepaid, meaning customers pay at the start of each billing cycle (monthly or annually). Once paid, the subscription becomes active and includes access to 200+ APIs, API keys, and monthly quota. No additional subscription charges apply during the billing period unless you upgrade or change your plan.
+## Invoice types
 
-Here's how to [Get a GST Invoice](https://help.sandbox.co.in/portal/en/kb/articles/how-to-get-gst-invoice).
+Sandbox generates three types of invoices depending on your billing activity.
 
-### **Wallet Invoicing**
+<ParamField path="Subscription invoice" type="prepaid">
+  Generated when you pay for a subscription plan at the start of each billing cycle (monthly or annually). Once paid, your subscription becomes active and includes access to 200+ APIs, API keys, and monthly quota. No additional subscription charges apply during the billing period unless you upgrade or change your plan.
+  
+  [Get a GST invoice](https://help.sandbox.co.in/portal/en/kb/articles/how-to-get-gst-invoice)
+</ParamField>
 
-The Sandbox Wallet follows a prepaid model. Customers add funds using a payment gateway or bank transfer, and these funds are used for APIs that incur wallet charges. Wallet charges are aggregated daily and deducted from your wallet balance. A Wallet Charges Invoice is generated summarizing all billable API usage.
+<ParamField path="Wallet charges invoice" type="prepaid">
+  Generated for wallet usage on APIs that incur per-call charges. Customers add funds to the Sandbox Wallet using a payment gateway or bank transfer. Wallet charges are aggregated daily and deducted from your wallet balance. The invoice summarizes all billable API usage for the period.
+</ParamField>
 
-### **Overdraft Invoicing**
+<ParamField path="Overdraft invoice" type="postpaid">
+  Generated when you exceed your monthly quota with overdraft enabled. Additional API calls beyond quota are charged at the per-call rate defined in your plan. At the end of each billing cycle, a separate invoice lists all overdraft usage and charges.
+</ParamField>
 
-Overdraft is postpaid and applies only when your monthly quota is exhausted. Additional API calls beyond quota are charged at the same per-call rate defined in your plan. At the end of each billing cycle, Sandbox raises a separate Overdraft Invoice listing all overdraft usage and charges.
+## Managing invoices
 
-Here's a guide on how to [Pay Invoices](https://help.sandbox.co.in/portal/en/kb/articles/pay-an-invoice).
+All invoices are available in your Console under the billing section. You can download GST-compliant invoices for accounting and tax purposes.
+
+<Tip>
+Set up automatic payment instructions to ensure uninterrupted service for subscription renewals.
+</Tip>
+
+Learn how to [pay invoices](https://help.sandbox.co.in/portal/en/kb/articles/pay-an-invoice) through your Console.

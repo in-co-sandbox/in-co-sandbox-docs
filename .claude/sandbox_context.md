@@ -151,3 +151,39 @@ All API requests require:
 ## Security: POST for GET
 
 Sandbox uses POST for data retrieval to protect sensitive data (PAN, Aadhaar, GSTIN) by placing identifiers in request body instead of URLs.
+
+## Billing and Invoicing
+
+### Subscription Model
+- **Prepaid billing** - Monthly or annual payment at start of billing cycle
+- **Included**: Access to 200+ APIs, API keys, monthly quota
+- **Free trial**: 14 days with full platform access
+- **Quota**: Fixed API calls per month, resets monthly, unused quota does not carry forward
+- **Quota consumption**: Only successful requests (2xx status codes) consume quota
+- **Plans**: Available at [sandbox.co.in/pricing](https://sandbox.co.in/pricing)
+
+### Wallet System
+- **Prepaid model**: Load funds via payment gateway or bank transfer
+- **Virtual account**: Each account gets unique virtual bank account number
+- **Payment methods**: UPI, IMPS, NEFT, RTGS
+- **No expiry**: Wallet funds never expire and carry forward indefinitely
+- **Effective balance**: `Closing Balance - Unbilled Charges` (displayed in Console)
+- **Closing balance**: Total actual funds in wallet (shown in wallet statement)
+
+### Wallet Charges
+- **Applied to**: Certain APIs incur per-call charges (separate from subscription)
+- **Charged on**: Only successful requests (2xx status codes)
+- **Cover costs for**: Upstream vendor fees, licensing, IP charges, credit/email/SMS services
+- **APIs with charges**: DigiLocker, PAN Verification, Bank Verification, GSTIN Search, GSTR-2B Reconciliation, TDS/TCS Returns, Section 206AB checks, e-Filing, Certificate downloads, Potential Notices
+
+### Overdraft System
+- **Postpaid model**: Activated when monthly quota is exhausted
+- **Charges**: Pro-rata based on plan's per-call rate
+- **Invoice**: Separate overdraft invoice at end of billing cycle
+- **Notifications**: Email alerts at 50%, 90%, and 100% quota consumption
+- **Configuration**: Can be enabled/disabled in Console
+
+### Invoice Types
+1. **Subscription invoice** (prepaid) - Generated at start of billing cycle
+2. **Wallet charges invoice** (prepaid) - Aggregates daily wallet usage
+3. **Overdraft invoice** (postpaid) - Generated for usage beyond quota

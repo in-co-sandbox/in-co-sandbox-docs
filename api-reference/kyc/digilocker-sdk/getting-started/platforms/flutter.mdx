@@ -1,9 +1,13 @@
 ---
-title: "Web"
-description: "Integrate DigiLocker SDK into your web application using JavaScript"
+title: "Flutter"
+description: "Integrate DigiLocker SDK into your Flutter application"
 ---
 
-Integrate DigiLocker document retrieval into your web application using the JavaScript SDK. The SDK provides a pre-built interface that handles the complete DigiLocker flow.
+Integrate DigiLocker document retrieval into your Flutter app using the native SDK. The SDK provides an embedded interface that works on both iOS and Android.
+
+<Card title="View on pub.dev" icon="flutter" href="https://pub.dev/packages/sandbox_digilocker_sdk">
+  Check out the package on pub.dev for latest version and updates
+</Card>
 
 <Steps>
   <Step title="Create a session" stepNumber={1} titleSize="h2">
@@ -15,54 +19,63 @@ Integrate DigiLocker document retrieval into your web application using the Java
 
     Once created, you'll receive a `session_id`, which you'll need when initializing the SDK on the client side.
   </Step>
-  <Step title="Add the SDK script" stepNumber={2} titleSize="h2">
-    Include the Digilocker SDK script in your HTML page.
 
-    ```html
-    <script src="https://sdk.sandbox.co.in/kyc/digilocker/sdk.js"></script>
+  <Step title="Install the package" stepNumber={2} titleSize="h2">
+    Add the DigiLocker SDK package to your Flutter project.
+
+    ```bash
+    flutter pub add sandbox_digilocker_sdk
     ```
 
-    The SDK is loaded globally and available as `DigilockerSDK`.
+    Or add it manually to your `pubspec.yaml`:
+
+    ```yaml
+    dependencies:
+      sandbox_digilocker_sdk: ^1.0.0
+    ```
+
+    Requirements: Flutter SDK ^3.10.1
   </Step>
-  <Step title="Initialize the SDK" stepNumber={3} titleSize="h2">
-    Configure and launch the DigiLocker SDK when the user initiates document retrieval.
+
+  <Step title="Integrate the SDK" stepNumber={3} titleSize="h2">
+    Import the SDK, set your API key, configure options, and launch the DigiLocker flow.
 
     <AccordionGroup>
       <Accordion title="3.1 Basic implementation" defaultOpen>
-        ```html
-        <button onclick="launch()">Fetch with DigiLocker</button>
-        
-        <script>
-          function launch() {
-            // Set your API key
-            DigilockerSDK.setAPIKey("YOUR_API_KEY");
-        
-            // Configure the SDK options
-            const options = {
-              session_id: "a7fac865-61a9-4589-b80c....", // Replace with your session ID from Step 1
-              brand: {
-                name: "MoneyApp", // Your business or app name
-                logo_url: "https://example.com/your_logo", // Publicly accessible URL of your logo
-              },
-              theme: {
-                mode: "light", // Options: "light" or "dark"
-                seed: "#3D6838", // Primary color for theme customization
-              },
-            };
-        
-            // Launch the Digilocker SDK
-            DigilockerSDK.open(options);
-          }
-        </script>
+        ```dart
+        import 'package:sandbox_digilocker_sdk/sandbox_digilocker_sdk.dart';
+
+        // Set your API key
+        DigilockerSDK.instance.setAPIKey('key_your_api_key_here');
+
+        // Set event listener (optional)
+        DigilockerSDK.instance.setEventListener(SDKEventListener());
+
+        // Launch the SDK
+        await DigilockerSDK.instance.open(
+          context: context,
+          options: {
+            'session_id': 'a7fac865-61a9-4589-b80c....', // Replace with your session ID from Step 1
+            'brand': {
+              'name': 'MoneyApp', // Your business or app name
+              'logo_url': 'https://i.imgur.com/vMd9Wcu.png', // Publicly accessible URL
+            },
+            'theme': {
+              'mode': 'light', // Options: 'light' or 'dark'
+              'seed': '#3D6838', // Primary color for theme customization
+            },
+          },
+        );
         ```
       </Accordion>
+
       <Accordion title="3.2 SDK options reference">
         ```json
         {
           "session_id": "a7fac865-61a9-4589-b80c....",
           "brand": {
             "name": "MoneyApp",
-            "logo_url": "https://example.com/your_logo"
+            "logo_url": "https://i.imgur.com/vMd9Wcu.png"
           },
           "theme": {
             "mode": "light",
@@ -74,6 +87,7 @@ Integrate DigiLocker document retrieval into your web application using the Java
         <ParamField body="session_id" type="string" required placeholder="a7fac865-61a9-4589-b80c....">
           Unique session ID generated when Create Session API is called.
         </ParamField>
+
         <ParamField body="brand" type="object" required>
           Configuration for branding displayed in the DigiLocker interface.
 
@@ -86,6 +100,7 @@ Integrate DigiLocker document retrieval into your web application using the Java
             </ParamField>
           </Expandable>
         </ParamField>
+
         <ParamField body="theme" type="object" required>
           Appearance configuration for the SDK.
 
@@ -101,47 +116,28 @@ Integrate DigiLocker document retrieval into your web application using the Java
       </Accordion>
     </AccordionGroup>
   </Step>
-  <Step title="Handle SDK events" stepNumber={4} titleSize="h2">
-    Set up an event listener to handle SDK events indicating session completion, cancellation, or errors.
 
-    ```javascript
-    // Define a custom event listener to handle SDK events
-    class EventListener extends DigilockerSDK.EventListener {
-      constructor(callback) {
-        super();
-        this.callback = callback;
-      }
-      onEvent(event) {
-        if (this.callback) {
-          this.callback(event);
-        }
-      }
-    }
-    
-    // Define a callback function to process events from the SDK
-    const handleEvent = (event) => {
-      console.log("Received event:", event);
-      
-      switch (event.type) {
-        case "in.co.sandbox.kyc.digilocker_sdk.session.completed":
+  <Step title="Handle SDK events" stepNumber={4} titleSize="h2">
+    Set up an event listener to handle SDK events indicating session completion or cancellation.
+
+    ```dart
+    class SDKEventListener implements EventListener {
+      @override
+      void onEvent(Map<String, dynamic> event) {
+        print('Received event: $event');
+        
+        final eventType = event['type'];
+        
+        if (eventType == 'in.co.sandbox.kyc.digilocker_sdk.session.completed') {
           // Documents were fetched successfully
           // Proceed with your application flow
           fetchDocumentsFromBackend(sessionId);
-          break;
-    
-        case "in.co.sandbox.kyc.digilocker_sdk.session.closed":
-          // User closed or exited the SDK
-          showMessage("Document retrieval cancelled");
-          break;
-    
-        default:
-          console.log("Unhandled event:", event);
+        } else if (eventType == 'in.co.sandbox.kyc.digilocker_sdk.session.closed') {
+          // User closed the SDK
+          print('User closed the SDK');
+        }
       }
-    };
-
-    // Initialize the event listener with your callback
-    const eventListener = new EventListener(handleEvent);
-    DigilockerSDK.setEventListener(eventListener);
+    }
     ```
 
     To programmatically verify the final status of a session, call the [Session Status](../../endpoints/get-session-status) endpoint from your backend.
@@ -150,12 +146,46 @@ Integrate DigiLocker document retrieval into your web application using the Java
 
 ## Event types
 
-The SDK emits the following event types:
+The SDK emits the following event types via the `EventListener`:
 
 | Event Type | Description |
 |------------|-------------|
 | `in.co.sandbox.kyc.digilocker_sdk.session.completed` | User successfully completed the DigiLocker flow and documents were retrieved |
 | `in.co.sandbox.kyc.digilocker_sdk.session.closed` | User closed the SDK without completing the flow |
+
+## API reference
+
+### DigilockerSDK
+
+The main SDK class that provides a singleton instance.
+
+**Methods:**
+
+`setAPIKey(String apiKey)`
+- Sets the API key required to authenticate requests
+- Parameters: `apiKey` (String) - The API key string starting with "key_"
+- Throws: Exception if the API key does not start with "key_"
+
+`open(BuildContext context, Map options)`
+- Opens the SDK UI with the provided configuration
+- Parameters:
+  - `context` (BuildContext) - The BuildContext from which the SDK is accessed
+  - `options` (Map) - Configuration options including session_id, brand, and theme
+- Throws: Exception if API key or required options are not set
+
+`setEventListener(EventListener eventListener)`
+- Registers an event listener to receive SDK events
+- Parameters: `eventListener` (EventListener) - The event listener to register
+
+### EventListener
+
+Interface for receiving SDK events.
+
+**Methods:**
+
+`onEvent(Map event)`
+- Called when an SDK event occurs
+- Parameters: `event` (Map) - The event data containing event type and payload
 
 ## Next steps
 
