@@ -11,13 +11,22 @@ The EntityLocker SDK provides a pre-built interface for retrieving business docu
 
 ## How it works
 
-The SDK integration follows a three-step process:
+The SDK integration follows a four-step process:
 
-1. **Create a session** on your backend using the Create Session API
+1. **Create a session** on your backend using the [Create Session](../endpoints/create_session) endpoint
 2. **Initialize the SDK** on your client app with the session ID
 3. **Handle the response** when users complete or exit the document retrieval flow
+4. **Fetch documents** from your backend using the [Fetch Document](../endpoints/fetch_document) endpoint
 
 The SDK manages the complete EntityLocker authentication flow, including OTP verification and document selection, while providing callbacks for you to handle the results.
+
+<Note>
+  **Important**: The EntityLocker SDK requires specific SDK endpoints. Use these endpoints when integrating with the SDK:
+  
+  - [Create Session](../endpoints/create_session)
+  - [Get Session Status](../endpoints/get_session_status)
+  - [Fetch Document](../endpoints/fetch_document)
+</Note>
 
 ## Choose your platform
 
@@ -47,4 +56,4 @@ Use the EntityLocker SDK when you need:
 - Consistent user experience across platforms
 - Automatic handling of OTP verification and consent flow
 
-For backend-only integration with full control over the UI, use the [EntityLocker API](/api-reference/kyc/entitylocker/overview) instead.
+For backend-only integration with full control over the UI, use the [EntityLocker API](/api-reference/kyc/entitylocker/endpoints/initiate_session) instead.

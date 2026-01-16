@@ -11,13 +11,22 @@ The DigiLocker SDK provides a pre-built interface for retrieving government docu
 
 ## How it works
 
-The SDK integration follows a three-step process:
+The SDK integration follows a four-step process:
 
-1. **Create a session** on your backend using the Create Session API
+1. **Create a session** on your backend using the [Create Session](../endpoints/create-session) endpoint
 2. **Initialize the SDK** on your client app with the session ID
 3. **Handle the response** when users complete or exit the document retrieval flow
+4. **Fetch documents** from your backend using the [Get Document](../endpoints/get-document) endpoint
 
 The SDK manages the complete DigiLocker authentication flow, including OTP verification and document selection, while providing callbacks for you to handle the results.
+
+<Note>
+  **Important**: The DigiLocker SDK requires specific SDK endpoints. Use these endpoints when integrating with the SDK:
+  
+  - [Create Session](../endpoints/create-session)
+  - [Get Session Status](../endpoints/get-session-status)
+  - [Get Document](../endpoints/get-document)
+</Note>
 
 ## Choose your platform
 
@@ -47,4 +56,4 @@ Use the DigiLocker SDK when you need:
 - Consistent user experience across platforms
 - Automatic handling of OTP verification and consent flow
 
-For backend-only integration with full control over the UI, use the [DigiLocker API](/api-reference/kyc/digilocker/overview) instead.
+For backend-only integration with full control over the UI, use the [DigiLocker API](/api-reference/kyc/digilocker/endpoints/initiate_session) instead.
