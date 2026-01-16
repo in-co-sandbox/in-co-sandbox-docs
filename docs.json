@@ -137,34 +137,36 @@
               {
                 "group": "Digilocker",
                 "pages": [
-                  "api-reference/kyc/digilocker/endpoints/initiate_session",
-                  "api-reference/kyc/digilocker/endpoints/session_status",
-                  "api-reference/kyc/digilocker/endpoints/fetch_document"
-                ]
-              },
-              {
-                "group": "Digilocker SDK",
-                "pages": [
+                  "api-reference/kyc/digilocker/overview",
                   {
-                    "group": "Getting Started",
+                    "group": "APIs",
                     "pages": [
-                      "api-reference/kyc/digilocker-sdk/getting-started/introduction"
+                      "api-reference/kyc/digilocker/endpoints/initiate_session",
+                      "api-reference/kyc/digilocker/endpoints/session_status",
+                      "api-reference/kyc/digilocker/endpoints/fetch_document"
                     ]
                   },
                   {
-                    "group": "Platforms",
+                    "group": "SDK",
                     "pages": [
-                      "api-reference/kyc/digilocker-sdk/getting-started/platforms/web",
-                      "api-reference/kyc/digilocker-sdk/getting-started/platforms/android",
-                      "api-reference/kyc/digilocker-sdk/getting-started/platforms/ios"
-                    ]
-                  },
-                  {
-                    "group": "Endpoints",
-                    "pages": [
-                      "api-reference/kyc/digilocker-sdk/endpoints/create-session",
-                      "api-reference/kyc/digilocker-sdk/endpoints/get-session-status",
-                      "api-reference/kyc/digilocker-sdk/endpoints/get-document"
+                      "api-reference/kyc/digilocker-sdk/getting-started/introduction",
+                      {
+                        "group": "Platforms",
+                        "pages": [
+                          "api-reference/kyc/digilocker-sdk/getting-started/platforms/web",
+                          "api-reference/kyc/digilocker-sdk/getting-started/platforms/android",
+                          "api-reference/kyc/digilocker-sdk/getting-started/platforms/ios",
+                          "api-reference/kyc/digilocker-sdk/getting-started/platforms/flutter"
+                        ]
+                      },
+                      {
+                        "group": "Endpoints",
+                        "pages": [
+                          "api-reference/kyc/digilocker-sdk/endpoints/create-session",
+                          "api-reference/kyc/digilocker-sdk/endpoints/get-session-status",
+                          "api-reference/kyc/digilocker-sdk/endpoints/get-document"
+                        ]
+                      }
                     ]
                   }
                 ]
@@ -172,23 +174,38 @@
               {
                 "group": "EntityLocker",
                 "pages": [
-                  "api-reference/kyc/entitylocker/endpoints/initiate_session",
-                  "api-reference/kyc/entitylocker/endpoints/session_status",
-                  "api-reference/kyc/entitylocker/endpoints/fetch_document",
-                  "api-reference/kyc/entitylocker/endpoints/get_entity_details",
-                  "api-reference/kyc/entitylocker/endpoints/get_user_profile_details"
-                ]
-              },
-              {
-                "group": "EntityLocker SDK",
-                "pages": [
+                  "api-reference/kyc/entitylocker/overview",
                   {
-                    "group": "Endpoints",
-                    "hidden": false,
+                    "group": "APIs",
                     "pages": [
-                      "api-reference/kyc/entitylocker-sdk/endpoints/create_session",
-                      "api-reference/kyc/entitylocker-sdk/endpoints/get_session_status",
-                      "api-reference/kyc/entitylocker-sdk/endpoints/fetch_document"
+                      "api-reference/kyc/entitylocker/endpoints/initiate_session",
+                      "api-reference/kyc/entitylocker/endpoints/session_status",
+                      "api-reference/kyc/entitylocker/endpoints/fetch_document",
+                      "api-reference/kyc/entitylocker/endpoints/get_entity_details",
+                      "api-reference/kyc/entitylocker/endpoints/get_user_profile_details"
+                    ]
+                  },
+                  {
+                    "group": "SDK",
+                    "pages": [
+                      "api-reference/kyc/entitylocker-sdk/getting-started/introduction",
+                      {
+                        "group": "Platforms",
+                        "pages": [
+                          "api-reference/kyc/entitylocker-sdk/getting-started/platforms/web",
+                          "api-reference/kyc/entitylocker-sdk/getting-started/platforms/android",
+                          "api-reference/kyc/entitylocker-sdk/getting-started/platforms/ios",
+                          "api-reference/kyc/entitylocker-sdk/getting-started/platforms/flutter"
+                        ]
+                      },
+                      {
+                        "group": "Endpoints",
+                        "pages": [
+                          "api-reference/kyc/entitylocker-sdk/endpoints/create_session",
+                          "api-reference/kyc/entitylocker-sdk/endpoints/get_session_status",
+                          "api-reference/kyc/entitylocker-sdk/endpoints/fetch_document"
+                        ]
+                      }
                     ]
                   }
                 ]
@@ -843,7 +860,7 @@
             "pages": [
               "recipes/kyc/introduction",
               {
-                "group": "DigiLocker",
+                "group": "Digilocker",
                 "pages": [
                   "recipes/kyc/digilocker/digilocker_api_recipe"
                 ]

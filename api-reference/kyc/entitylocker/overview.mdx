@@ -1,0 +1,112 @@
+---
+title: "Overview"
+description: "Retrieve verified business documents from EntityLocker via consent-based verification"
+---
+
+# EntityLocker
+
+EntityLocker is a government platform for storing and sharing business documents digitally. Use this API to retrieve verified business documents after an authorized representative grants consent.
+
+This API enables consent-based retrieval of business credentials for vendor verification, KYB compliance, and partner onboarding.
+
+<CardGroup cols={2}>
+  <Card title="Consent-based verification" icon="shield-check">
+    Authorized representatives grant consent to share documents. The system retains retrieved documents for 60 minutes.
+  </Card>
+  <Card title="Two integration methods" icon="code">
+    Backend API for custom B2B workflows or client-side SDK for web and mobile applications.
+  </Card>
+</CardGroup>
+
+## How it works
+
+<Steps>
+  <Step title="Initiate session">
+    Generate a unique EntityLocker session link for the business entity.
+  </Step>
+  
+  <Step title="Business authentication">
+    Authorized representative logs in and grants consent to share specific business documents.
+  </Step>
+  
+  <Step title="Retrieve documents">
+    Fetch the requested business documents and entity details in PDF or JSON format.
+  </Step>
+</Steps>
+
+## What you can do
+
+<CardGroup cols={2}>
+  <Card title="Access business documents" icon="file-lines">
+    Retrieve GSTIN details, Company Master Data from MCA, Udyam certificates, incorporation documents, and business PAN.
+  </Card>
+  <Card title="Verify business identity" icon="building">
+    Get company name, registration details, director information, authorized signatories, and shareholding patterns.
+  </Card>
+  <Card title="Automate vendor verification" icon="circle-check">
+    Replace manual document collection with automated retrieval from government sources.
+  </Card>
+  <Card title="Time-limited access" icon="clock">
+    The system retains retrieved documents for 60 minutes before automatically deleting them for security compliance.
+  </Card>
+</CardGroup>
+
+## Integration methods
+
+<CardGroup cols={2}>
+  <Card title="EntityLocker API" icon="code" href="/api-reference/kyc/entitylocker/endpoints/initiate_session">
+    Backend integration where you control the flow and handle session management.
+  </Card>
+  <Card title="EntityLocker SDK" icon="mobile" href="/api-reference/kyc/entitylocker-sdk/endpoints/create_session">
+    Client-side integration using pre-built SDKs for web and mobile applications.
+  </Card>
+</CardGroup>
+
+## Common use cases
+
+Use EntityLocker API when you need to:
+
+- Verify business credentials during vendor onboarding
+- Validate company registration and incorporation details
+- Retrieve GSTIN information for tax compliance verification
+- Access MCA records for due diligence and partner verification
+- Verify MSME status through Udyam certificates
+- Replace manual collection of business documents
+- Conduct KYB checks for B2B account opening
+
+## Frequently Asked Questions
+
+<AccordionGroup>
+  <Accordion title="What is EntityLocker?">
+    EntityLocker is India's digital locker for business organizations. It's essentially Digilocker for businesses, enabling secure storage, sharing, and verification of business documents and credentials.
+  </Accordion>
+
+  <Accordion title="How does EntityLocker API work?">
+    EntityLocker API enables consent-based business document retrieval. An authorized representative from the business authenticates, grants consent to share specific documents, and you receive verified business data instantly through our API.
+  </Accordion>
+
+  <Accordion title="What documents can I fetch from EntityLocker?">
+    You can fetch various business documents including GSTIN details, Company Master Data from MCA, Udyam Certificate, Certificate of Incorporation, and other government-issued business credentials.
+  </Accordion>
+
+  <Accordion title="Who can authorize document sharing from EntityLocker?">
+    Only authorized representatives of the business entity can grant consent to share documents. This is typically verified through the entity's registered credentials with EntityLocker.
+  </Accordion>
+
+  <Accordion title="How long are documents retained?">
+    Our system retains documents for up to 60 minutes after retrieval and then automatically deletes them for security and compliance purposes.
+  </Accordion>
+
+  <Accordion title="Is Sandbox a certified Technology Solution Provider?">
+    Yes, Sandbox is a government-recognized Technology Solution Provider (TSP), enabling secure and compliant access to EntityLocker data through our API.
+  </Accordion>
+
+  <Accordion title="What is the difference between EntityLocker API and EntityLocker SDK?">
+    **EntityLocker API**: Backend integration with full control, ideal for custom B2B workflows  
+    **EntityLocker SDK**: Client-side integration with pre-built components for faster implementation
+  </Accordion>
+
+  <Accordion title="Can I verify individual documents with EntityLocker?">
+    No, EntityLocker is for business entities only. For individual verification, use [Digilocker API](/api-reference/kyc/digilocker/overview).
+  </Accordion>
+</AccordionGroup>

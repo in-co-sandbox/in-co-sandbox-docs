@@ -15,7 +15,7 @@ Comprehensive guides covering:
 ### 🔌 API Reference
 Complete API documentation organized by product:
 - **Authentication**: API authentication endpoints
-- **KYC**: Aadhaar, Bank, DigiLocker, EntityLocker SDK, PAN verification APIs
+- **KYC**: Aadhaar, Bank, Digilocker, EntityLocker SDK, PAN verification APIs
 - **GST**: Analytics and Compliance APIs (Public, Taxpayer, E-Invoice, E-Way Bill)
 - **TDS**: Reports, Analytics, and Compliance APIs
 - **Income Tax**: Tax calculation and compliance APIs
@@ -23,7 +23,7 @@ Complete API documentation organized by product:
 
 ### 🍳 Recipes
 Step-by-step recipes and examples for:
-- **KYC**: DigiLocker API integration examples
+- **KYC**: Digilocker API integration examples
 - **GST**: GST workflow recipes
 - **TDS**: TDS compliance recipes
 - **IT**: Income Tax calculation recipes

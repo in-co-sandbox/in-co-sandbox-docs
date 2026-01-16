@@ -1,11 +1,11 @@
 ---
-title: "Fetch Documents from Digilocker via DigiLocker API"
-description: "This recipe provides a step-by-step process to integrate DigiLocker APIs into your application."
+title: "Fetch Documents from Digilocker via Digilocker API"
+description: "This recipe provides a step-by-step process to integrate Digilocker APIs into your application."
 ---
 
 <Steps>
   <Step title="Initiate Session" stepNumber={1} titleSize="h2">
-    To begin the DigiLocker workflow, your application must first initiate a **session**
+    To begin the Digilocker workflow, your application must first initiate a **session**
     using the [**Initiate Session**](../../../api-reference/kyc/digilocker/endpoints/initiate_session) endpoint.
 
     This endpoint initializes the consent process and returns essential details for user authorization.
@@ -31,18 +31,18 @@ description: "This recipe provides a step-by-step process to integrate DigiLocke
     When the session is created successfully, you’ll receive:
 
     <ParamField body="session_id" type="string" required>
-      A unique identifier used to track and fetch status for this specific DigiLocker consent session.
+      A unique identifier used to track and fetch status for this specific Digilocker consent session.
     </ParamField>
     <ParamField body="authorization_url" type="string" required>
-      The URL where the user should be redirected to grant consent for sharing their DigiLocker documents.
+      The URL where the user should be redirected to grant consent for sharing their Digilocker documents.
     </ParamField>
   </Step>
-  <Step title="Redirect the User to DigiLocker" titleSize="h2">
+  <Step title="Redirect the User to Digilocker" titleSize="h2">
     Once the session is initiated, redirect the user to the **authorization_url**.
 
-    At DigiLocker, the user will:
+    At Digilocker, the user will:
 
-    - Authenticate using their DigiLocker account
+    - Authenticate using their Digilocker account
     - Review permissions
     - Grant consent for your application to access their documents
 
@@ -62,7 +62,7 @@ description: "This recipe provides a step-by-step process to integrate DigiLocke
     </Accordion>
   </Step>
   <Step title="Fetch Documents" titleSize="h2">
-    Once the session status is **succeeded**, you may proceed to retrieve the user's DigiLocker documents using the [Fetch Document API](../../../api-reference/kyc/digilocker/endpoints/fetch_document).
+    Once the session status is **succeeded**, you may proceed to retrieve the user's Digilocker documents using the [Fetch Document API](../../../api-reference/kyc/digilocker/endpoints/fetch_document).
 
     <Accordion title="cURL Request" defaultOpen>
       ```bash

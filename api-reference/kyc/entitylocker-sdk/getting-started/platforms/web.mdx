@@ -1,41 +1,41 @@
 ---
 title: "Web"
-description: "Integrate Digilocker SDK into your web application using JavaScript"
+description: "Integrate EntityLocker SDK into your web application using JavaScript"
 ---
 
-Integrate Digilocker document retrieval into your web application using the JavaScript SDK. The SDK provides a pre-built interface that handles the complete Digilocker flow.
+Integrate EntityLocker business document retrieval into your web application using the JavaScript SDK. The SDK provides a pre-built interface that handles the complete EntityLocker flow.
 
 <Steps>
   <Step title="Create a session" stepNumber={1} titleSize="h2">
     Before initializing the SDK, you must create a **unique session**.
     Each SDK instance requires its own session to ensure secure and independent interactions.
 
-    Use the [Create Session](../../endpoints/create-session) endpoint to generate this session.
+    Use the [Create Session](../../endpoints/create_session) endpoint to generate this session.
     This is a **server-side API call** that uses [Sandbox Authentication](/api-reference/authenticate) to validate your credentials.
 
     Once created, you'll receive a `session_id`, which you'll need when initializing the SDK on the client side.
   </Step>
   <Step title="Add the SDK script" stepNumber={2} titleSize="h2">
-    Include the Digilocker SDK script in your HTML page.
+    Include the EntityLocker SDK script in your HTML page.
 
     ```html
-    <script src="https://sdk.sandbox.co.in/kyc/digilocker/sdk.js"></script>
+    <script src="https://sdk.sandbox.co.in/kyc/entitylocker/sdk.js"></script>
     ```
 
-    The SDK is loaded globally and available as `DigilockerSDK`.
+    The SDK is loaded globally and available as `EntitylockerSDK`.
   </Step>
   <Step title="Initialize the SDK" stepNumber={3} titleSize="h2">
-    Configure and launch the Digilocker SDK when the user initiates document retrieval.
+    Configure and launch the EntityLocker SDK when the user initiates document retrieval.
 
     <AccordionGroup>
       <Accordion title="3.1 Basic implementation" defaultOpen>
         ```html
-        <button onclick="launch()">Fetch with Digilocker</button>
+        <button onclick="launch()">Fetch with EntityLocker</button>
         
         <script>
           function launch() {
             // Set your API key
-            DigilockerSDK.setAPIKey("YOUR_API_KEY");
+            EntitylockerSDK.setAPIKey("YOUR_API_KEY");
         
             // Configure the SDK options
             const options = {
@@ -50,8 +50,8 @@ Integrate Digilocker document retrieval into your web application using the Java
               },
             };
         
-            // Launch the Digilocker SDK
-            DigilockerSDK.open(options);
+            // Launch the EntityLocker SDK
+            EntitylockerSDK.open(options);
           }
         </script>
         ```
@@ -75,11 +75,11 @@ Integrate Digilocker document retrieval into your web application using the Java
           Unique session ID generated when Create Session API is called.
         </ParamField>
         <ParamField body="brand" type="object" required>
-          Configuration for branding displayed in the Digilocker interface.
+          Configuration for branding displayed in the EntityLocker interface.
 
           <Expandable title="child attributes">
             <ParamField body="name" type="string" required>
-              Display name of your business or app shown during the Digilocker flow.
+              Display name of your business or app shown during the EntityLocker flow.
             </ParamField>
             <ParamField body="logo_url" type="string" required>
               Publicly accessible HTTPS URL of your logo displayed within the SDK.
@@ -106,7 +106,7 @@ Integrate Digilocker document retrieval into your web application using the Java
 
     ```javascript
     // Define a custom event listener to handle SDK events
-    class EventListener extends DigilockerSDK.EventListener {
+    class EventListener extends EntitylockerSDK.EventListener {
       constructor(callback) {
         super();
         this.callback = callback;
@@ -123,13 +123,13 @@ Integrate Digilocker document retrieval into your web application using the Java
       console.log("Received event:", event);
       
       switch (event.type) {
-        case "in.co.sandbox.kyc.digilocker_sdk.session.completed":
+        case "in.co.sandbox.kyc.entitylocker_sdk.session.completed":
           // Documents were fetched successfully
           // Proceed with your application flow
           fetchDocumentsFromBackend(sessionId);
           break;
     
-        case "in.co.sandbox.kyc.digilocker_sdk.session.closed":
+        case "in.co.sandbox.kyc.entitylocker_sdk.session.closed":
           // User closed or exited the SDK
           showMessage("Document retrieval cancelled");
           break;
@@ -141,10 +141,10 @@ Integrate Digilocker document retrieval into your web application using the Java
 
     // Initialize the event listener with your callback
     const eventListener = new EventListener(handleEvent);
-    DigilockerSDK.setEventListener(eventListener);
+    EntitylockerSDK.setEventListener(eventListener);
     ```
 
-    To programmatically verify the final status of a session, call the [Session Status](../../endpoints/get-session-status) endpoint from your backend.
+    To programmatically verify the final status of a session, call the [Session Status](../../endpoints/get_session_status) endpoint from your backend.
   </Step>
 </Steps>
 
@@ -154,19 +154,19 @@ The SDK emits the following event types:
 
 | Event Type | Description |
 |------------|-------------|
-| `in.co.sandbox.kyc.digilocker_sdk.session.completed` | User successfully completed the Digilocker flow and documents were retrieved |
-| `in.co.sandbox.kyc.digilocker_sdk.session.closed` | User closed the SDK without completing the flow |
+| `in.co.sandbox.kyc.entitylocker_sdk.session.completed` | User successfully completed the EntityLocker flow and documents were retrieved |
+| `in.co.sandbox.kyc.entitylocker_sdk.session.closed` | User closed the SDK without completing the flow |
 
 ## Next steps
 
 <CardGroup cols={3}>
-  <Card title="Create Session API" icon="code" href="../../endpoints/create-session">
+  <Card title="Create Session API" icon="code" href="../../endpoints/create_session">
     Learn how to create sessions for the SDK
   </Card>
-  <Card title="Session Status API" icon="clock" href="../../endpoints/get-session-status">
+  <Card title="Session Status API" icon="clock" href="../../endpoints/get_session_status">
     Monitor session progress and status
   </Card>
-  <Card title="Get Document API" icon="file" href="../../endpoints/get-document">
+  <Card title="Fetch Document API" icon="file" href="../../endpoints/fetch_document">
     Retrieve document data after completion
   </Card>
 </CardGroup>

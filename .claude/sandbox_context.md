@@ -174,7 +174,7 @@ Sandbox uses POST for data retrieval to protect sensitive data (PAN, Aadhaar, GS
 - **Applied to**: Certain APIs incur per-call charges (separate from subscription)
 - **Charged on**: Only successful requests (2xx status codes)
 - **Cover costs for**: Upstream vendor fees, licensing, IP charges, credit/email/SMS services
-- **APIs with charges**: DigiLocker, PAN Verification, Bank Verification, GSTIN Search, GSTR-2B Reconciliation, TDS/TCS Returns, Section 206AB checks, e-Filing, Certificate downloads, Potential Notices
+- **APIs with charges**: Digilocker, PAN Verification, Bank Verification, GSTIN Search, GSTR-2B Reconciliation, TDS/TCS Returns, Section 206AB checks, e-Filing, Certificate downloads, Potential Notices
 
 ### Overdraft System
 - **Postpaid model**: Activated when monthly quota is exhausted
