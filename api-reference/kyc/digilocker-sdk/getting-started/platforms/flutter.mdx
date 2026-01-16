@@ -1,9 +1,9 @@
 ---
 title: "Flutter"
-description: "Integrate Digilocker SDK into your Flutter application"
+description: "Integrate DigiLocker SDK into your Flutter application"
 ---
 
-Integrate Digilocker document retrieval into your Flutter app using the native SDK. The SDK provides an embedded interface that works on both iOS and Android.
+Integrate DigiLocker document retrieval into your Flutter app using the native SDK. The SDK provides an embedded interface that works on both iOS and Android.
 
 <Card title="View on pub.dev" icon="flutter" href="https://pub.dev/packages/sandbox_digilocker_sdk">
   Check out the package on pub.dev for latest version and updates
@@ -21,7 +21,7 @@ Integrate Digilocker document retrieval into your Flutter app using the native S
   </Step>
 
   <Step title="Install the package" stepNumber={2} titleSize="h2">
-    Add the Digilocker SDK package to your Flutter project.
+    Add the DigiLocker SDK package to your Flutter project.
 
     ```bash
     flutter pub add sandbox_digilocker_sdk
@@ -38,7 +38,7 @@ Integrate Digilocker document retrieval into your Flutter app using the native S
   </Step>
 
   <Step title="Integrate the SDK" stepNumber={3} titleSize="h2">
-    Import the SDK, set your API key, configure options, and launch the Digilocker flow.
+    Import the SDK, set your API key, configure options, and launch the DigiLocker flow.
 
     <AccordionGroup>
       <Accordion title="3.1 Basic implementation" defaultOpen>
@@ -89,11 +89,11 @@ Integrate Digilocker document retrieval into your Flutter app using the native S
         </ParamField>
 
         <ParamField body="brand" type="object" required>
-          Configuration for branding displayed in the Digilocker interface.
+          Configuration for branding displayed in the DigiLocker interface.
 
           <Expandable title="child attributes">
             <ParamField body="name" type="string" required>
-              Display name of your business or app shown during the Digilocker flow.
+              Display name of your business or app shown during the DigiLocker flow.
             </ParamField>
             <ParamField body="logo_url" type="string" required>
               Publicly accessible HTTPS URL of your logo displayed within the SDK.
@@ -150,7 +150,7 @@ The SDK emits the following event types via the `EventListener`:
 
 | Event Type | Description |
 |------------|-------------|
-| `in.co.sandbox.kyc.digilocker_sdk.session.completed` | User successfully completed the Digilocker flow and documents were retrieved |
+| `in.co.sandbox.kyc.digilocker_sdk.session.completed` | User successfully completed the DigiLocker flow and documents were retrieved |
 | `in.co.sandbox.kyc.digilocker_sdk.session.closed` | User closed the SDK without completing the flow |
 
 ## API reference

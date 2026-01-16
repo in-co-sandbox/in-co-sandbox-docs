@@ -29,20 +29,20 @@ Verify individual identity using trusted government data sources.
 - OTP-based verification flow
 - Returns: Name, Date of Birth, Gender, Address, Photo
 
-#### Digilocker
+#### DigiLocker
 - Government platform for storing and sharing documents digitally
 - Consent-based document retrieval following UIDAI and RBI guidelines
 - Access government-issued documents: Aadhaar, PAN, Driving License, Vehicle Registration, Education Certificates, etc.
 - Two integration options:
-  - **Digilocker API**: Backend integration for full control over the flow
-  - **Digilocker SDK**: Client-side SDK for iOS, Android, React Native, and Flutter
+  - **DigiLocker API**: Backend integration for full control over the flow
+  - **DigiLocker SDK**: Client-side SDK for iOS, Android, React Native, and Flutter
 - Returns: Structured data in PDF, JPEG, or XML format
 - User authenticates via Aadhaar OTP and grants consent to share specific documents
-- Works with 250M+ registered Digilocker users
+- Works with 250M+ registered DigiLocker users
 - Used for: Identity verification, address proof, KYC compliance, paperless verification
 
-**Digilocker SDK Integration:**
-- Pre-built UI for Digilocker authentication flow
+**DigiLocker SDK Integration:**
+- Pre-built UI for DigiLocker authentication flow
 - Three-step process: Create session → Initialize SDK → Handle response
 - SDK manages complete flow including OTP verification and document selection
 - Available platforms: Web (JavaScript), Android, iOS, Flutter
@@ -104,7 +104,7 @@ Streamline business verification to reduce onboarding time from days to minutes 
 - Used for: MSME verification, government tender participation
 
 #### EntityLocker
-- Government platform for storing and sharing business documents digitally (Digilocker for businesses)
+- Government platform for storing and sharing business documents digitally (DigiLocker for businesses)
 - Consent-based retrieval of business credentials
 - Access verified business documents: GSTIN details, Company Master Data from MCA, Udyam certificates, Certificate of Incorporation, Business PAN
 - Two integration options:
@@ -144,7 +144,7 @@ Consistent response formats across all verification methods:
 - **CIN**: 21-character Corporate Identity Number
 - **DIN**: 8-digit Director Identification Number
 - **Udyam**: MSME registration certificate
-- **Digilocker**: Digital locker for storing government-issued documents
+- **DigiLocker**: Digital locker for storing government-issued documents
 - **EntityLocker**: Digital locker for business documents
 - *Documentation Writing Guidelines
 
@@ -167,7 +167,7 @@ When writing KYC/KYB overview pages:
 - Aadhaar verification, Aadhaar API
 - PAN verification, PAN API
 - GSTIN verification, GST verification
-- Digilocker, Digilocker API, Digilocker SDK
+- DigiLocker, DigiLocker API, DigiLocker SDK
 - EntityLocker, EntityLocker API, EntityLocker SDK
 - bank verification, bank account verification
 - MCA verification, company verification
@@ -175,7 +175,7 @@ When writing KYC/KYB overview pages:
 - consent-based verification, document retrieval
 - PAN verification, PAN API
 - GSTIN verification, GST verification
-- Digilocker, Digilocker API
+- DigiLocker, DigiLocker API
 - bank verification, bank account verification
 - MCA verification, company verification
 - vendor onboarding, partner verification

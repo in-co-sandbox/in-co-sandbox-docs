@@ -1,11 +1,11 @@
 ---
 title: "Overview"
-description: "Retrieve government-issued documents from Digilocker via consent-based verification"
+description: "Retrieve government-issued documents from DigiLocker via consent-based verification"
 ---
 
-# Digilocker API
+# DigiLocker API
 
-Digilocker is a government platform for storing and sharing documents digitally. Use this API to retrieve government-issued documents from your users' Digilocker accounts after they grant consent.
+DigiLocker is a government platform for storing and sharing documents digitally. Use this API to retrieve government-issued documents from your users' DigiLocker accounts after they grant consent.
 
 This API enables consent-based document retrieval following UIDAI and RBI guidelines for identity verification and KYC compliance.
 
@@ -22,11 +22,11 @@ This API enables consent-based document retrieval following UIDAI and RBI guidel
 
 <Steps>
   <Step title="Initiate session">
-    Generate a unique Digilocker URL for the user to authenticate and provide consent.
+    Generate a unique DigiLocker URL for the user to authenticate and provide consent.
   </Step>
   
   <Step title="User authentication">
-    User logs into Digilocker using Aadhaar-based OTP verification and grants consent to share specific documents.
+    User logs into DigiLocker using Aadhaar-based OTP verification and grants consent to share specific documents.
   </Step>
   
   <Step title="Retrieve documents">
@@ -47,24 +47,24 @@ This API enables consent-based document retrieval following UIDAI and RBI guidel
     Government sources provide documents directly, ensuring authenticity and reducing fraud risk.
   </Card>
   <Card title="Support existing users" icon="users">
-    Works with 250M+ registered Digilocker users and allows new users to create accounts during verification.
+    Works with 250M+ registered DigiLocker users and allows new users to create accounts during verification.
   </Card>
 </CardGroup>
 
 ## Integration methods
 
 <CardGroup cols={2}>
-  <Card title="Digilocker API" icon="code" href="/api-reference/kyc/digilocker/endpoints/initiate_session">
+  <Card title="DigiLocker API" icon="code" href="/api-reference/kyc/digilocker/endpoints/initiate_session">
     Backend integration where you control the entire flow and handle session management.
   </Card>
-  <Card title="Digilocker SDK" icon="mobile" href="/api-reference/kyc/digilocker-sdk/getting-started/overview">
+  <Card title="DigiLocker SDK" icon="mobile" href="/api-reference/kyc/digilocker-sdk/getting-started/overview">
     Client-side integration using pre-built SDKs for iOS, Android, React Native, and Flutter.
   </Card>
 </CardGroup>
 
 ## Common use cases
 
-Use Digilocker API when you need to:
+Use DigiLocker API when you need to:
 
 - Verify user identity during account creation or onboarding
 - Retrieve address proof for KYC compliance
@@ -77,39 +77,39 @@ Use Digilocker API when you need to:
 ## Frequently Asked Questions
 
 <AccordionGroup>
-  <Accordion title="What is Digilocker?">
-    A flagship initiative under Digital India Mission, Digilocker is a secure cloud-based platform for storage, sharing and verification of documents & certificates.
+  <Accordion title="What is DigiLocker?">
+    A flagship initiative under Digital India Mission, DigiLocker is a secure cloud-based platform for storage, sharing and verification of documents & certificates.
   </Accordion>
 
-  <Accordion title="How does Digilocker API work?">
-    Digilocker API enables consent-based document retrieval. Users authenticate via Aadhaar OTP, grant consent to share specific documents, and you receive verified document data instantly through our API.
+  <Accordion title="How does DigiLocker API work?">
+    DigiLocker API enables consent-based document retrieval. Users authenticate via Aadhaar OTP, grant consent to share specific documents, and you receive verified document data instantly through our API.
   </Accordion>
 
-  <Accordion title="What details can I fetch from Digilocker API?">
+  <Accordion title="What details can I fetch from DigiLocker API?">
     You can fetch comprehensive details including name, date of birth, address, gender, photo, parent's name, and document-specific information. Documents are available in PDF, JPEG, and XML formats.
   </Accordion>
 
-  <Accordion title="How to get Aadhaar details if a user doesn't have a Digilocker account?">
-    Users can create a Digilocker account instantly during the verification process using their Aadhaar number and OTP. No pre-registration required.
+  <Accordion title="How to get Aadhaar details if a user doesn't have a DigiLocker account?">
+    Users can create a DigiLocker account instantly during the verification process using their Aadhaar number and OTP. No pre-registration required.
   </Accordion>
 
-  <Accordion title="Can someone else enter details on the Digilocker page on user's behalf?">
-    No. Digilocker authentication requires the user's Aadhaar-linked mobile number for OTP verification, ensuring only the legitimate user can authorize document sharing.
+  <Accordion title="Can someone else enter details on the DigiLocker page on user's behalf?">
+    No. DigiLocker authentication requires the user's Aadhaar-linked mobile number for OTP verification, ensuring only the legitimate user can authorize document sharing.
   </Accordion>
 
-  <Accordion title="Who can fetch documents from Digilocker?">
-    Only authorized entities registered as Requestor Organizations with Digilocker can fetch documents. Sandbox is a certified Technology Solution Provider (TSP), enabling you to access Digilocker through our API.
+  <Accordion title="Who can fetch documents from DigiLocker?">
+    Only authorized entities registered as Requestor Organizations with DigiLocker can fetch documents. Sandbox is a certified Technology Solution Provider (TSP), enabling you to access DigiLocker through our API.
   </Accordion>
 
-  <Accordion title="What are issued documents and uploaded documents on Digilocker?">
-    - **Issued Documents**: Government-issued documents directly available in Digilocker (e.g., Aadhaar, PAN, Driving License)
-    - **Uploaded Documents**: Documents uploaded by users to their Digilocker account
+  <Accordion title="What are issued documents and uploaded documents on DigiLocker?">
+    - **Issued Documents**: Government-issued documents directly available in DigiLocker (e.g., Aadhaar, PAN, Driving License)
+    - **Uploaded Documents**: Documents uploaded by users to their DigiLocker account
     
     You can fetch both types through our API with user consent.
   </Accordion>
 
-  <Accordion title="What is the difference between Digilocker API and Digilocker SDK?">
-    **Digilocker API**: Backend integration with full control, ideal for custom workflows  
-    **Digilocker SDK**: Client-side integration with pre-built UI for faster implementation
+  <Accordion title="What is the difference between DigiLocker API and DigiLocker SDK?">
+    **DigiLocker API**: Backend integration with full control, ideal for custom workflows  
+    **DigiLocker SDK**: Client-side integration with pre-built UI for faster implementation
   </Accordion>
 </AccordionGroup>
