@@ -1,5 +1,5 @@
 ---
-title: "OCR APIs"
+title: "Overview"
 description: "Extract structured data from income tax documents like Form 16 and Form 26AS."
 ---
 
@@ -13,7 +13,6 @@ The OCR (Optical Character Recognition) APIs automate the extraction and classif
   <Card title="Form 16" icon="file-invoice" href="/api-reference/it/ocr/form_16/endpoints/read_form_16">
     TDS Certificate from employers. Extract salary details, tax deducted, and investment declarations.
   </Card>
-  
   <Card title="Form 26AS" icon="file-lines" href="/api-reference/it/ocr/form_26as/endpoints/read_form_26as">
     TDS statement showing all tax deductions. Extract creditable tax amounts and deductor details.
   </Card>
@@ -26,6 +25,7 @@ The OCR (Optical Character Recognition) APIs automate the extraction and classif
 3. **Get Results**: Receive structured JSON with confidence scores
 
 ## Related Documentation
+
 - [IT Context Guide](/it_context.md)
 - [Calculator APIs](/api-reference/it/calculator/overview)
 - [Report APIs](/api-reference/it/report/overview)
@@ -41,6 +41,7 @@ The OCR (Optical Character Recognition) APIs automate the extraction and classif
 ```
 
 ### Processing Flow
+
 1. **Upload Document**: Submit PDF/image with metadata
 2. **Initial Classification**: Auto-detect document type and version
 3. **OCR Processing**: Extract text and tabular data using advanced AI models
@@ -51,6 +52,7 @@ The OCR (Optical Character Recognition) APIs automate the extraction and classif
 ## Response Structure
 
 ### Successful Extraction
+
 ```json
 {
   "code": 200,
@@ -105,7 +107,9 @@ The OCR (Optical Character Recognition) APIs automate the extraction and classif
 ```
 
 ### Confidence Scores
+
 Each extracted field includes a confidence score (0.0 to 1.0):
+
 ```json
 {
   "employer_name": {
@@ -119,15 +123,17 @@ Each extracted field includes a confidence score (0.0 to 1.0):
 }
 ```
 
-
 **Interpretation:**
+
 - **0.95+**: Very high confidence, can be used directly
 - **0.85-0.95**: High confidence, minimal validation needed
 - **0.75-0.85**: Moderate confidence, recommend review
 - **\<0.75**: Low confidence, manual verification recommended
 
 ### Partial Extraction
+
 If some fields cannot be extracted:
+
 ```json
 {
   "code": 200,
@@ -146,16 +152,17 @@ If some fields cannot be extracted:
 }
 ```
 
-
 ## Integration Patterns
 
 ### Customer KYC/Income Verification
+
 1. Accept Form 16 upload from customer
 2. Extract income and employer details
 3. Verify against other sources
 4. Use for lending decisions or account opening
 
 ### Tax Compliance Workflows
+
 1. Employee uploads Form 16 from multiple employers
 2. System extracts TDS details from each
 3. Verify total TDS matches Form 26AS (reconcile discrepancies)
@@ -163,6 +170,7 @@ If some fields cannot be extracted:
 5. Flag any mismatches for manual review
 
 ### Payroll Integration
+
 1. HR uploads employee Form 16 PDFs in bulk
 2. Extract salary information and TDS
 3. Validate against payroll records
@@ -170,6 +178,7 @@ If some fields cannot be extracted:
 5. Generate compliance reports
 
 ### Document Archival
+
 1. Upload historical tax documents
 2. Extract and index searchable data
 3. Create audit trail of document processing
@@ -184,6 +193,7 @@ Like Calculator APIs, OCR operations follow async job-based processing:
 3. **Fetch Results**: GET results endpoint → Download extraction results
 
 This enables:
+
 - Processing of large documents without timeout
 - Bulk processing of multiple documents
 - Progress tracking for UI feedback
@@ -193,14 +203,15 @@ This enables:
 
 ### Common Issues & Solutions
 
-| Issue | Cause | Solution |
-|-------|-------|----------|
-| Low Confidence Score | Poor document quality or handwriting | Manual review or re-upload with better quality |
-| Missing Fields | Document doesn't contain expected data | Verify correct document type, check document completeness |
-| Incorrect Extraction | Wrong field mapping or poor OCR | Provide feedback for model improvement, manual correction |
-| Unsupported Format | Document version not recognized | Ensure document is original/official copy |
+| Issue                | Cause                                  | Solution                                                  |
+| -------------------- | -------------------------------------- | --------------------------------------------------------- |
+| Low Confidence Score | Poor document quality or handwriting   | Manual review or re-upload with better quality            |
+| Missing Fields       | Document doesn't contain expected data | Verify correct document type, check document completeness |
+| Incorrect Extraction | Wrong field mapping or poor OCR        | Provide feedback for model improvement, manual correction |
+| Unsupported Format   | Document version not recognized        | Ensure document is original/official copy                 |
 
 ### Quality Checks
+
 - **Page Count**: Verify all pages uploaded (multi-page documents)
 - **Document Completeness**: Ensure all required fields present
 - **Data Validity**: Validate extracted dates, amounts, PAN formats
@@ -217,6 +228,7 @@ This enables:
 - **Privacy**: Handle sensitive documents securely, follow data privacy regulations
 
 ## Related Documentation
+
 - [Form 16 Extraction API](/api-reference/it/ocr/form_16/endpoints/read_form_16)
 - [Form 26AS Extraction API](/api-reference/it/ocr/form_26as/endpoints/read_form_26as)
 - [Report Generation from Extracted Data](/api-reference/it/report/endpoints/submit_job)
