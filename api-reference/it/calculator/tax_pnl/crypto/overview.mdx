@@ -1,0 +1,37 @@
+---
+title: "Crypto Tax P&L"
+description: "Calculate profit & loss for cryptocurrency transactions with holding period classification and tax computation."
+---
+
+# Cryptocurrency Tax Profit & Loss
+
+Calculate profit and loss for cryptocurrency transactions with automatic holding period classification and capital gains tax computation.
+
+## Capabilities
+
+- **Profit & Loss Calculation**: Calculate realized and unrealized gains/losses for crypto transactions
+- **Holding Period Classification**: Automatic short-term vs long-term classification
+- **Capital Loss Tracking**: Track and manage capital losses for offset
+- **Multi-transaction Matching**: FIFO method for automatic buy-sell matching
+
+## API Endpoints
+
+<CardGroup cols={3}>
+  <Card title="Submit Job" href="/api-reference/it/calculator/tax_pnl/crypto/endpoints/submit_job">
+    Submit crypto transactions
+  </Card>
+  
+  <Card title="Get Results" href="/api-reference/it/calculator/tax_pnl/crypto/endpoints/put_request">
+    Retrieve calculated P&L
+  </Card>
+
+  <Card title="Check Status" href="/api-reference/it/calculator/tax_pnl/crypto/endpoints/job_status">
+    Get processing status
+  </Card>
+</CardGroup>
+
+## Related Documentation
+- [Calculator Overview](/api-reference/it/calculator/overview)
+- [Domestic Securities Tax P&L](/api-reference/it/calculator/tax_pnl/securities/domestic/overview)
+- [Foreign Securities Tax P&L](/api-reference/it/calculator/tax_pnl/securities/foreign/overview)
+- [Report APIs](/api-reference/it/report/overview)

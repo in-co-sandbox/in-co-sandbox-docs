@@ -1,0 +1,45 @@
+---
+title: "Domestic Securities Tax P&L"
+description: "Calculate profit & loss for domestic equity, mutual funds, and derivatives with automatic tax classification."
+---
+
+# Domestic Securities Tax Profit & Loss
+
+Calculate profit and loss for domestic securities trading including equities, mutual funds, and derivatives with proper holding period classification and indexation benefits.
+
+## Capabilities
+
+- **Profit & Loss Calculation**: Calculate realized and unrealized gains/losses
+- **Holding Period Classification**: Automatic short-term and long-term classification based on asset type
+- **Indexation Benefit**: Cost inflation index adjustment for long-term capital gains
+- **Loss Tracking**: Manage and offset capital losses
+
+## Supported Assets
+
+- **Equity Shares**: NSE/BSE listed stocks
+- **Mutual Funds**: Equity, debt, and balanced funds
+- **Derivatives**: Futures and options on recognized exchanges
+- **ETFs**: Traded funds (equity or debt classification)
+- **Bonds**: Government and corporate securities
+
+## API Endpoints
+
+<CardGroup cols={3}>
+  <Card title="Submit Job" href="/api-reference/it/calculator/tax_pnl/securities/domestic/endpoints/submit_job">
+    Submit transactions
+  </Card>
+  
+  <Card title="Get Results" href="/api-reference/it/calculator/tax_pnl/securities/domestic/endpoints/put_request">
+    Retrieve P&L
+  </Card>
+
+  <Card title="Check Status" href="/api-reference/it/calculator/tax_pnl/securities/domestic/endpoints/job_status">
+    Get processing status
+  </Card>
+</CardGroup>
+
+## Related Documentation
+- [Calculator Overview](/api-reference/it/calculator/overview)
+- [Foreign Securities Tax P&L](/api-reference/it/calculator/tax_pnl/securities/foreign/overview)
+- [Crypto Tax P&L](/api-reference/it/calculator/tax_pnl/crypto/overview)
+- [Report APIs](/api-reference/it/report/overview)
