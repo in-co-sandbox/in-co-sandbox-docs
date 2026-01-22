@@ -1,5 +1,5 @@
 ---
-title: "Tax P&L Calculators"
+title: "Overview"
 description: "Calculate profit & loss and capital gains tax across securities (domestic and foreign) and cryptocurrency transactions."
 ---
 
@@ -10,13 +10,17 @@ The Tax P&L Calculator APIs compute profit and loss for investment transactions 
 ## Capabilities
 
 ### Profit & Loss Calculation
+
 Calculate realized and unrealized gains/losses for:
+
 - **Domestic Securities**: Equity shares, mutual funds, derivatives with holding period classification
 - **Foreign Securities**: International investments with currency conversion and holding period classification
 - **Cryptocurrency**: Digital asset transactions with holding period tracking
 
 ### Tax Classification
+
 Automatic classification based on holding periods and asset types:
+
 - **Short-term Capital Gains**: Special tax rates
 - **Long-term Capital Gains**: Special tax rates with indexation benefits (for domestic securities)
 - **Currency Gains**: For foreign securities transactions
@@ -28,11 +32,9 @@ Automatic classification based on holding periods and asset types:
   <Card title="Domestic Securities Tax P&L" href="/api-reference/it/calculator/tax_pnl/securities/domestic/overview">
     Calculate gains/losses for equity, mutual funds, and derivatives trading in India.
   </Card>
-  
   <Card title="Foreign Securities Tax P&L" href="/api-reference/it/calculator/tax_pnl/securities/foreign/overview">
     Calculate tax impact for international investments with currency conversion.
   </Card>
-
   <Card title="Crypto Tax P&L" href="/api-reference/it/calculator/tax_pnl/crypto/overview">
     Compute capital gains and losses from cryptocurrency transactions.
   </Card>
@@ -44,11 +46,9 @@ Automatic classification based on holding periods and asset types:
   <Card title="Domestic Securities" href="/api-reference/it/calculator/tax_pnl/securities/domestic/endpoints/submit_job">
     Submit Jobs
   </Card>
-
   <Card title="Foreign Securities" href="/api-reference/it/calculator/tax_pnl/securities/foreign/endpoints/submit_job">
     Submit Jobs
   </Card>
-
   <Card title="Crypto" href="/api-reference/it/calculator/tax_pnl/crypto/endpoints/submit_job">
     Submit Jobs
   </Card>
@@ -63,6 +63,7 @@ All calculator operations use async job-based processing:
 3. **Check Status & Get Output**: Poll job status endpoint with `job_id` → Returns processing status and results once complete
 
 ## Related Documentation
+
 - [Domestic Securities P&L](/api-reference/it/calculator/tax_pnl/securities/domestic/overview)
 - [Foreign Securities P&L](/api-reference/it/calculator/tax_pnl/securities/foreign/overview)
 - [Crypto Tax P&L](/api-reference/it/calculator/tax_pnl/crypto/overview)
