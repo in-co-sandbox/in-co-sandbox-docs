@@ -10,10 +10,10 @@ GSTR-1 is a monthly or quarterly return for reporting outward supplies (sales). 
 This API enables automated GSTR-1 compliance covering all invoice types, amendments, credit/debit notes, exports, and HSN summaries.
 
 <CardGroup cols={2}>
-  <Card title="Complete invoice coverage" icon="file-invoice">
+  <Card title="All GSTR-1 tables" icon="file-invoice">
     Save and retrieve B2B, B2C, exports, credit/debit notes, and nil supplies across all GSTR-1 tables.
   </Card>
-  <Card title="End-to-end filing" icon="paper-plane">
+  <Card title="Full filing workflow" icon="paper-plane">
     From saving invoices to generating EVC OTP and filing—handle the entire compliance workflow via API.
   </Card>
 </CardGroup>
@@ -137,37 +137,6 @@ Shared endpoints used across GSTR-1 workflow:
 | [Return Status](/api-reference/gst/compliance/endpoints/taxpayer/common/gst_return_status) | Check status after saving return |
 | [Refresh Session](/api-reference/gst/compliance/endpoints/taxpayer/authentication/refresh_session) | Extend taxpayer session |
 | [Logout](/api-reference/gst/compliance/endpoints/taxpayer/authentication/logout) | End taxpayer session |
-
-## GSTR-1 table mapping
-
-Complete mapping of GSTR-1 tables to API endpoints:
-
-| API | Table | Description |
-|:----|:------|:------------|
-| GSTR-1 AT | 11A | Advances received (tax payable on advance, invoice not issued yet) |
-| GSTR-1 ATA | 11A (Amendments) | Amendment of advances reported earlier |
-| GSTR-1 B2B | 4A, 4B, 6B, 6C | B2B invoices (incl. SEZ supplies & Deemed exports) |
-| GSTR-1 B2BA | 9A | Amendment of B2B invoices |
-| GSTR-1 B2CL | 5A, 5B | B2C Large invoices (inter-state above threshold) |
-| GSTR-1 B2CLA | 9A | Amendment of B2C Large invoices |
-| GSTR-1 B2CS | 7 | B2C Others / Small (rate-wise consolidated) |
-| GSTR-1 B2CSA | 10 | Amendment of B2C Others (Table 7) |
-| GSTR-1 CDNR | 9B | Credit/Debit Notes to registered persons |
-| GSTR-1 CDNRA | 9C | Amendment of CDNR (registered) |
-| GSTR-1 CDNUR | 9B | Credit/Debit Notes to unregistered persons |
-| GSTR-1 CDNURA | 9C | Amendment of CDNUR (unregistered) |
-| GSTR-1 Document Issued | 13 | Documents issued (invoice series, DN/CN series etc.) |
-| GSTR-1 EXP | 6A | Export invoices |
-| GSTR-1 EXPA | 9A (Exports) | Amendments to export invoices |
-| GSTR-1 NIL Supplies | 8A–8D | Nil rated / exempt / non-GST outward supplies |
-| Get GSTR-1 NIL Supplies | 8A–8D | Nil rated / exempt / non-GST outward supplies (fetch) |
-| GSTR-1 HSN Summary | 12 | HSN-wise summary of outward supplies |
-| GSTR-1 TXP | 11B | Advance tax adjusted against invoices |
-| GSTR-1 TXPA | 11B (Amendments) | Amendments to advance adjustments |
-| GSTR-1 ECOM | 14 | Supplies made through e-commerce operators |
-| GSTR-1 ECOMA | 14A | Amendments to Table 14 |
-| GSTR-1 SUPECO | 15 | Supplies u/s 9(5) where ECO is liable to pay tax |
-| GSTR-1 SUPECOA | 15A | Amendments to Table 15 |
 
 ## Common use cases
 
