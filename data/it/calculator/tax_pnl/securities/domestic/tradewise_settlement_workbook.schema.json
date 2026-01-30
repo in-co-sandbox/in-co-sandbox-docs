@@ -1,0 +1,3407 @@
+{
+  "$schema" : "http://json-schema.org/draft-07/schema#",
+  "type" : "object",
+  "properties" : {
+    "name" : {
+      "type" : "string",
+      "enum" : [ "tradewise_settlement_workbook" ]
+    },
+    "@entity" : {
+      "type" : "string",
+      "enum" : [ "workbook" ]
+    },
+    "sheets" : {
+      "type" : "array",
+      "items" : {
+        "oneOf" : [ {
+          "type" : "object",
+          "properties" : {
+            "name" : {
+              "type" : "string",
+              "enum" : [ "stock_sheet" ]
+            },
+            "@entity" : {
+              "type" : "string",
+              "enum" : [ "sheet" ]
+            },
+            "blocks" : {
+              "type" : "array",
+              "items" : {
+                "oneOf" : [ {
+                  "type" : "object",
+                  "properties" : {
+                    "name" : {
+                      "type" : "string",
+                      "enum" : [ "stock_tradewise_settlement_table" ]
+                    },
+                    "@entity" : {
+                      "type" : "string",
+                      "enum" : [ "table" ]
+                    },
+                    "header" : {
+                      "type" : "array",
+                      "items" : [ {
+                        "type" : "string",
+                        "enum" : [ "isin" ]
+                      }, {
+                        "type" : "string",
+                        "enum" : [ "symbol" ]
+                      }, {
+                        "type" : "string",
+                        "enum" : [ "is_listed" ]
+                      }, {
+                        "type" : "string",
+                        "enum" : [ "is_stt_paid" ]
+                      }, {
+                        "type" : "string",
+                        "enum" : [ "quantity" ]
+                      }, {
+                        "type" : "string",
+                        "enum" : [ "buy_trade_id" ]
+                      }, {
+                        "type" : "string",
+                        "enum" : [ "buy_date" ]
+                      }, {
+                        "type" : "string",
+                        "enum" : [ "buy_price" ]
+                      }, {
+                        "type" : "string",
+                        "enum" : [ "sell_trade_id" ]
+                      }, {
+                        "type" : "string",
+                        "enum" : [ "sell_date" ]
+                      }, {
+                        "type" : "string",
+                        "enum" : [ "sell_price" ]
+                      }, {
+                        "type" : "string",
+                        "enum" : [ "fmv" ]
+                      }, {
+                        "type" : "string",
+                        "enum" : [ "brokerage" ]
+                      }, {
+                        "type" : "string",
+                        "enum" : [ "clearing_charges" ]
+                      }, {
+                        "type" : "string",
+                        "enum" : [ "exchange_transaction_charges" ]
+                      }, {
+                        "type" : "string",
+                        "enum" : [ "sebi_turnover_fee" ]
+                      }, {
+                        "type" : "string",
+                        "enum" : [ "stt" ]
+                      }, {
+                        "type" : "string",
+                        "enum" : [ "stamp_duty" ]
+                      }, {
+                        "type" : "string",
+                        "enum" : [ "sgst" ]
+                      }, {
+                        "type" : "string",
+                        "enum" : [ "cgst" ]
+                      }, {
+                        "type" : "string",
+                        "enum" : [ "igst" ]
+                      }, {
+                        "type" : "string",
+                        "enum" : [ "other_transfer_expenses" ]
+                      }, {
+                        "type" : "string",
+                        "enum" : [ "nature_of_settlement" ]
+                      }, {
+                        "type" : "string",
+                        "enum" : [ "product_type" ]
+                      } ],
+                      "additionalItems" : false,
+                      "minItems" : 24,
+                      "maxItems" : 24
+                    },
+                    "rows" : {
+                      "type" : "array",
+                      "items" : {
+                        "type" : "array",
+                        "items" : [ {
+                          "type" : [ "string", "null" ],
+                          "pattern" : "^[A-Z]{2}[A-Z0-9]{9}[0-9]$",
+                          "examples" : [ "INE01C001018" ]
+                        }, {
+                          "type" : "string",
+                          "examples" : [ "ADANIPORTS" ]
+                        }, {
+                          "type" : "boolean",
+                          "examples" : [ "TRUE()" ]
+                        }, {
+                          "type" : "boolean",
+                          "examples" : [ "TRUE()" ]
+                        }, {
+                          "type" : "number",
+                          "minimum" : 1.0,
+                          "format" : "BigDecimal",
+                          "examples" : [ "645.0" ]
+                        }, {
+                          "type" : "string",
+                          "pattern" : "^[A-Z0-9]{20}$",
+                          "examples" : [ "CJ1CLC4YCBFEZ4CVDNMH" ]
+                        }, {
+                          "type" : "integer",
+                          "format" : "Long",
+                          "examples" : [ "1.4633568E12" ]
+                        }, {
+                          "type" : "number",
+                          "minimum" : 0.0,
+                          "maximum" : 9.9999999999999E13,
+                          "format" : "BigDecimal"
+                        }, {
+                          "type" : "string",
+                          "pattern" : "^[A-Z0-9]{20}$",
+                          "examples" : [ "CYX9TQSTWUYK8C9Z7BCE" ]
+                        }, {
+                          "type" : "integer",
+                          "format" : "Long",
+                          "examples" : [ "1.681496999E12" ]
+                        }, {
+                          "type" : "number",
+                          "minimum" : 0.0,
+                          "maximum" : 9.9999999999999E13,
+                          "format" : "BigDecimal",
+                          "examples" : [ "580.0" ]
+                        }, {
+                          "type" : [ "number", "null" ],
+                          "minimum" : 0.0,
+                          "maximum" : 9.9999999999999E13,
+                          "format" : "BigDecimal",
+                          "examples" : [ "438.0" ]
+                        }, {
+                          "type" : [ "number", "null" ],
+                          "minimum" : 0.0,
+                          "maximum" : 9.9999999999999E13,
+                          "format" : "BigDecimal",
+                          "examples" : [ "64.0981" ]
+                        }, {
+                          "type" : [ "number", "null" ],
+                          "minimum" : 0.0,
+                          "maximum" : 9.9999999999999E13,
+                          "format" : "BigDecimal",
+                          "examples" : [ "64.0981" ]
+                        }, {
+                          "type" : [ "number", "null" ],
+                          "minimum" : 0.0,
+                          "maximum" : 9.9999999999999E13,
+                          "format" : "BigDecimal",
+                          "examples" : [ "64.0981" ]
+                        }, {
+                          "type" : [ "number", "null" ],
+                          "minimum" : 0.0,
+                          "maximum" : 9.9999999999999E13,
+                          "format" : "BigDecimal",
+                          "examples" : [ "64.0981" ]
+                        }, {
+                          "type" : [ "number", "null" ],
+                          "minimum" : 0.0,
+                          "maximum" : 9.9999999999999E13,
+                          "format" : "BigDecimal",
+                          "examples" : [ "64.0981" ]
+                        }, {
+                          "type" : [ "number", "null" ],
+                          "minimum" : 0.0,
+                          "maximum" : 9.9999999999999E13,
+                          "format" : "BigDecimal",
+                          "examples" : [ "64.0981" ]
+                        }, {
+                          "type" : [ "number", "null" ],
+                          "minimum" : 0.0,
+                          "maximum" : 9.9999999999999E13,
+                          "format" : "BigDecimal",
+                          "examples" : [ "64.0981" ]
+                        }, {
+                          "type" : [ "number", "null" ],
+                          "minimum" : 0.0,
+                          "maximum" : 9.9999999999999E13,
+                          "format" : "BigDecimal",
+                          "examples" : [ "64.0981" ]
+                        }, {
+                          "type" : [ "number", "null" ],
+                          "minimum" : 0.0,
+                          "maximum" : 9.9999999999999E13,
+                          "format" : "BigDecimal",
+                          "examples" : [ "64.0981" ]
+                        }, {
+                          "type" : [ "number", "null" ],
+                          "minimum" : 0.0,
+                          "maximum" : 9.9999999999999E13,
+                          "format" : "BigDecimal",
+                          "examples" : [ "64.0981" ]
+                        }, {
+                          "type" : "string",
+                          "enum" : [ "trade", "interest", "transfer_in", "transfer_out", "gift_send", "gift_receive", "donation", "buy_back", "other" ],
+                          "examples" : [ "trade" ]
+                        }, {
+                          "type" : "string",
+                          "enum" : [ "intraday", "delivery" ],
+                          "examples" : [ "delivery" ]
+                        } ],
+                        "additionalItems" : false,
+                        "minItems" : 24,
+                        "maxItems" : 24
+                      }
+                    }
+                  },
+                  "required" : [ "name", "@entity", "header", "rows" ]
+                }, {
+                  "type" : "object",
+                  "properties" : {
+                    "name" : {
+                      "type" : "string",
+                      "enum" : [ "stock_tradewise_transfer_table" ]
+                    },
+                    "@entity" : {
+                      "type" : "string",
+                      "enum" : [ "table" ]
+                    },
+                    "header" : {
+                      "type" : "array",
+                      "items" : [ {
+                        "type" : "string",
+                        "enum" : [ "isin" ]
+                      }, {
+                        "type" : "string",
+                        "enum" : [ "symbol" ]
+                      }, {
+                        "type" : "string",
+                        "enum" : [ "quantity" ]
+                      }, {
+                        "type" : "string",
+                        "enum" : [ "transfer_date" ]
+                      }, {
+                        "type" : "string",
+                        "enum" : [ "price" ]
+                      }, {
+                        "type" : "string",
+                        "enum" : [ "transfer_type" ]
+                      }, {
+                        "type" : "string",
+                        "enum" : [ "nature_of_transfer" ]
+                      }, {
+                        "type" : "string",
+                        "enum" : [ "transfer_value" ]
+                      }, {
+                        "type" : "string",
+                        "enum" : [ "transfer_expense" ]
+                      } ],
+                      "additionalItems" : false,
+                      "minItems" : 9,
+                      "maxItems" : 9
+                    },
+                    "rows" : {
+                      "type" : "array",
+                      "items" : {
+                        "type" : "array",
+                        "items" : [ {
+                          "type" : [ "string", "null" ],
+                          "pattern" : "^[A-Z]{2}[A-Z0-9]{9}[0-9]$",
+                          "examples" : [ "INE01C001018" ]
+                        }, {
+                          "type" : "string",
+                          "examples" : [ "ADANIPORTS" ]
+                        }, {
+                          "type" : "number",
+                          "minimum" : 1.0,
+                          "format" : "BigDecimal",
+                          "examples" : [ "645.0" ]
+                        }, {
+                          "type" : "integer",
+                          "format" : "Long",
+                          "examples" : [ "1.4633568E12" ]
+                        }, {
+                          "type" : "number",
+                          "minimum" : 0.0,
+                          "maximum" : 9.9999999999999E13,
+                          "format" : "BigDecimal",
+                          "examples" : [ "500.0" ]
+                        }, {
+                          "type" : "string"
+                        }, {
+                          "type" : "string",
+                          "enum" : [ "trade", "interest", "transfer_in", "transfer_out", "gift_send", "gift_receive", "donation", "buy_back", "other" ],
+                          "examples" : [ "trade" ]
+                        }, {
+                          "type" : "number",
+                          "format" : "BigDecimal",
+                          "examples" : [ "L35*L33" ]
+                        }, {
+                          "type" : "number",
+                          "minimum" : 0.0,
+                          "format" : "BigDecimal",
+                          "examples" : [ "100.0" ]
+                        } ],
+                        "additionalItems" : false,
+                        "minItems" : 9,
+                        "maxItems" : 9
+                      }
+                    }
+                  },
+                  "required" : [ "name", "@entity", "header", "rows" ]
+                }, {
+                  "type" : "object",
+                  "properties" : {
+                    "name" : {
+                      "type" : "string",
+                      "enum" : [ "stock_tradewise_holding_table" ]
+                    },
+                    "@entity" : {
+                      "type" : "string",
+                      "enum" : [ "table" ]
+                    },
+                    "header" : {
+                      "type" : "array",
+                      "items" : [ {
+                        "type" : "string",
+                        "enum" : [ "isin" ]
+                      }, {
+                        "type" : "string",
+                        "enum" : [ "symbol" ]
+                      }, {
+                        "type" : "string",
+                        "enum" : [ "quantity" ]
+                      }, {
+                        "type" : "string",
+                        "enum" : [ "buy_date" ]
+                      }, {
+                        "type" : "string",
+                        "enum" : [ "buy_price" ]
+                      }, {
+                        "type" : "string",
+                        "enum" : [ "transaction_type" ]
+                      }, {
+                        "type" : "string",
+                        "enum" : [ "label" ]
+                      }, {
+                        "type" : "string",
+                        "enum" : [ "last_traded_price" ]
+                      }, {
+                        "type" : "string",
+                        "enum" : [ "unrealized_pnl" ]
+                      } ],
+                      "additionalItems" : false,
+                      "minItems" : 9,
+                      "maxItems" : 9
+                    },
+                    "rows" : {
+                      "type" : "array",
+                      "items" : {
+                        "type" : "array",
+                        "items" : [ {
+                          "type" : [ "string", "null" ],
+                          "pattern" : "^[A-Z]{2}[A-Z0-9]{9}[0-9]$",
+                          "examples" : [ "INE01C001018" ]
+                        }, {
+                          "type" : "string",
+                          "examples" : [ "ADANIPORTS" ]
+                        }, {
+                          "type" : "number",
+                          "minimum" : 1.0,
+                          "format" : "BigDecimal",
+                          "examples" : [ "48.0" ]
+                        }, {
+                          "type" : "integer",
+                          "format" : "Long",
+                          "examples" : [ "1.6311456E12" ]
+                        }, {
+                          "type" : "number",
+                          "minimum" : 0.0,
+                          "maximum" : 9.9999999999999E13,
+                          "format" : "BigDecimal",
+                          "examples" : [ "270.0" ]
+                        }, {
+                          "type" : "string",
+                          "examples" : [ "buy" ]
+                        }, {
+                          "type" : [ "string", "null" ],
+                          "enum" : [ "amalgamation", "bonus_issue", "buy_back", "consolidation", "dividend", "income_distribution_invit", "income_distribution_rites", "return_of_capital_invit", "preferential_issue", "reduction_of_capital", "right_issue", "scheme_of_arrangement", "spin_off", "stock_split", "voluntary_delisting_of_share", "donation", "gift", "lost", "transfer", "other" ]
+                        }, {
+                          "type" : [ "number", "null" ],
+                          "minimum" : 0.0,
+                          "maximum" : 9.9999999999999E13,
+                          "format" : "BigDecimal"
+                        }, {
+                          "type" : [ "number", "null" ],
+                          "maximum" : 9.9999999999999E13,
+                          "format" : "BigDecimal"
+                        } ],
+                        "additionalItems" : false,
+                        "minItems" : 9,
+                        "maxItems" : 9
+                      }
+                    }
+                  },
+                  "required" : [ "name", "@entity", "header", "rows" ]
+                }, {
+                  "type" : "object",
+                  "properties" : {
+                    "name" : {
+                      "type" : "string",
+                      "enum" : [ "stock_tradewise_open_sell_table" ]
+                    },
+                    "@entity" : {
+                      "type" : "string",
+                      "enum" : [ "table" ]
+                    },
+                    "header" : {
+                      "type" : "array",
+                      "items" : [ {
+                        "type" : "string",
+                        "enum" : [ "isin" ]
+                      }, {
+                        "type" : "string",
+                        "enum" : [ "symbol" ]
+                      }, {
+                        "type" : "string",
+                        "enum" : [ "quantity" ]
+                      }, {
+                        "type" : "string",
+                        "enum" : [ "sell_date" ]
+                      }, {
+                        "type" : "string",
+                        "enum" : [ "sell_price" ]
+                      }, {
+                        "type" : "string",
+                        "enum" : [ "transaction_type" ]
+                      }, {
+                        "type" : "string",
+                        "enum" : [ "label" ]
+                      }, {
+                        "type" : "string",
+                        "enum" : [ "last_traded_price" ]
+                      }, {
+                        "type" : "string",
+                        "enum" : [ "unrealized_pnl" ]
+                      } ],
+                      "additionalItems" : false,
+                      "minItems" : 9,
+                      "maxItems" : 9
+                    },
+                    "rows" : {
+                      "type" : "array",
+                      "items" : {
+                        "type" : "array",
+                        "items" : [ {
+                          "type" : [ "string", "null" ],
+                          "pattern" : "^[A-Z]{2}[A-Z0-9]{9}[0-9]$",
+                          "examples" : [ "INE00E101023" ]
+                        }, {
+                          "type" : "string",
+                          "examples" : [ "BIKAJI" ]
+                        }, {
+                          "type" : "number",
+                          "minimum" : 1.0,
+                          "format" : "BigDecimal",
+                          "examples" : [ "260.0" ]
+                        }, {
+                          "type" : "integer",
+                          "format" : "Long",
+                          "examples" : [ "1.69344E12" ]
+                        }, {
+                          "type" : "number",
+                          "minimum" : 0.0,
+                          "maximum" : 9.9999999999999E13,
+                          "format" : "BigDecimal",
+                          "examples" : [ "370.0" ]
+                        }, {
+                          "type" : "string",
+                          "examples" : [ "sell" ]
+                        }, {
+                          "type" : "string",
+                          "enum" : [ "amalgamation", "bonus_issue", "buy_back", "consolidation", "dividend", "income_distribution_invit", "income_distribution_rites", "return_of_capital_invit", "preferential_issue", "reduction_of_capital", "right_issue", "scheme_of_arrangement", "spin_off", "stock_split", "voluntary_delisting_of_share", "donation", "gift", "lost", "transfer", "other" ]
+                        }, {
+                          "type" : [ "number", "null" ],
+                          "minimum" : 0.0,
+                          "maximum" : 9.9999999999999E13,
+                          "format" : "BigDecimal"
+                        }, {
+                          "type" : [ "number", "null" ],
+                          "maximum" : 9.9999999999999E13,
+                          "format" : "BigDecimal"
+                        } ],
+                        "additionalItems" : false,
+                        "minItems" : 9,
+                        "maxItems" : 9
+                      }
+                    }
+                  },
+                  "required" : [ "name", "@entity", "header", "rows" ]
+                }, {
+                  "$ref" : "#/definitions/dividend_table_294418242"
+                } ]
+              }
+            }
+          },
+          "required" : [ "name", "@entity", "blocks" ]
+        }, {
+          "type" : "object",
+          "properties" : {
+            "name" : {
+              "type" : "string",
+              "enum" : [ "mutual_fund_sheet" ]
+            },
+            "@entity" : {
+              "type" : "string",
+              "enum" : [ "sheet" ]
+            },
+            "blocks" : {
+              "type" : "array",
+              "items" : {
+                "oneOf" : [ {
+                  "type" : "object",
+                  "properties" : {
+                    "name" : {
+                      "type" : "string",
+                      "enum" : [ "mutual_fund_tradewise_settlement_table" ]
+                    },
+                    "@entity" : {
+                      "type" : "string",
+                      "enum" : [ "table" ]
+                    },
+                    "header" : {
+                      "type" : "array",
+                      "items" : [ {
+                        "type" : "string",
+                        "enum" : [ "isin" ]
+                      }, {
+                        "type" : "string",
+                        "enum" : [ "scheme_name" ]
+                      }, {
+                        "type" : "string",
+                        "enum" : [ "asset_class" ]
+                      }, {
+                        "type" : "string",
+                        "enum" : [ "is_listed" ]
+                      }, {
+                        "type" : "string",
+                        "enum" : [ "is_stt_paid" ]
+                      }, {
+                        "type" : "string",
+                        "enum" : [ "quantity" ]
+                      }, {
+                        "type" : "string",
+                        "enum" : [ "buy_trade_id" ]
+                      }, {
+                        "type" : "string",
+                        "enum" : [ "buy_date" ]
+                      }, {
+                        "type" : "string",
+                        "enum" : [ "buy_price" ]
+                      }, {
+                        "type" : "string",
+                        "enum" : [ "sell_trade_id" ]
+                      }, {
+                        "type" : "string",
+                        "enum" : [ "sell_date" ]
+                      }, {
+                        "type" : "string",
+                        "enum" : [ "sell_price" ]
+                      }, {
+                        "type" : "string",
+                        "enum" : [ "fmv" ]
+                      }, {
+                        "type" : "string",
+                        "enum" : [ "transfer_expenses" ]
+                      }, {
+                        "type" : "string",
+                        "enum" : [ "nature_of_settlement" ]
+                      } ],
+                      "additionalItems" : false,
+                      "minItems" : 15,
+                      "maxItems" : 15
+                    },
+                    "rows" : {
+                      "type" : "array",
+                      "items" : {
+                        "type" : "array",
+                        "items" : [ {
+                          "type" : [ "string", "null" ],
+                          "pattern" : "^[A-Z]{2}[A-Z0-9]{9}[0-9]$",
+                          "examples" : [ "INF846K01DI2" ]
+                        }, {
+                          "type" : "string",
+                          "examples" : [ "Axis Bluechip Fund" ]
+                        }, {
+                          "type" : "string",
+                          "enum" : [ "equity", "debt", "other" ],
+                          "examples" : [ "equity" ]
+                        }, {
+                          "type" : "boolean",
+                          "examples" : [ "true" ]
+                        }, {
+                          "type" : "boolean",
+                          "examples" : [ "true" ]
+                        }, {
+                          "type" : "number",
+                          "minimum" : 1.0,
+                          "format" : "BigDecimal",
+                          "examples" : [ "355.9" ]
+                        }, {
+                          "type" : "string",
+                          "pattern" : "^[A-Z0-9]{20}$",
+                          "examples" : [ "GGFCHMYLKDQY9RRINTGH" ]
+                        }, {
+                          "type" : "integer",
+                          "format" : "Long",
+                          "examples" : [ "1.4914368E12" ]
+                        }, {
+                          "type" : "number",
+                          "minimum" : 0.0,
+                          "maximum" : 9.9999999999999E13,
+                          "format" : "BigDecimal",
+                          "examples" : [ "124.2586" ]
+                        }, {
+                          "type" : "string",
+                          "pattern" : "^[A-Z0-9]{20}$",
+                          "examples" : [ "JHF78MYGKDQY9RRINTGH" ]
+                        }, {
+                          "type" : "integer",
+                          "format" : "Long",
+                          "examples" : [ "1.681496999E12" ]
+                        }, {
+                          "type" : "number",
+                          "minimum" : 0.0,
+                          "maximum" : 9.9999999999999E13,
+                          "format" : "BigDecimal",
+                          "examples" : [ "212.7" ]
+                        }, {
+                          "type" : [ "number", "null" ],
+                          "minimum" : 0.0,
+                          "maximum" : 9.9999999999999E13,
+                          "format" : "BigDecimal",
+                          "examples" : [ "20.0" ]
+                        }, {
+                          "type" : "number",
+                          "minimum" : 0.0,
+                          "maximum" : 9.9999999999999E13,
+                          "format" : "BigDecimal",
+                          "examples" : [ "68.1534" ]
+                        }, {
+                          "type" : "string",
+                          "enum" : [ "trade", "interest", "transfer_in", "transfer_out", "gift_send", "gift_receive", "donation", "buy_back", "other" ],
+                          "examples" : [ "trade" ]
+                        } ],
+                        "additionalItems" : false,
+                        "minItems" : 15,
+                        "maxItems" : 15
+                      }
+                    }
+                  },
+                  "required" : [ "name", "@entity", "header", "rows" ]
+                }, {
+                  "type" : "object",
+                  "properties" : {
+                    "name" : {
+                      "type" : "string",
+                      "enum" : [ "mutual_fund_tradewise_transfer_table" ]
+                    },
+                    "@entity" : {
+                      "type" : "string",
+                      "enum" : [ "table" ]
+                    },
+                    "header" : {
+                      "type" : "array",
+                      "items" : [ {
+                        "type" : "string",
+                        "enum" : [ "isin" ]
+                      }, {
+                        "type" : "string",
+                        "enum" : [ "scheme_name" ]
+                      }, {
+                        "type" : "string",
+                        "enum" : [ "asset_class" ]
+                      }, {
+                        "type" : "string",
+                        "enum" : [ "quantity" ]
+                      }, {
+                        "type" : "string",
+                        "enum" : [ "transfer_date" ]
+                      }, {
+                        "type" : "string",
+                        "enum" : [ "price" ]
+                      }, {
+                        "type" : "string",
+                        "enum" : [ "transfer_type" ]
+                      }, {
+                        "type" : "string",
+                        "enum" : [ "nature_of_transfer" ]
+                      }, {
+                        "type" : "string",
+                        "enum" : [ "transfer_value" ]
+                      }, {
+                        "type" : "string",
+                        "enum" : [ "transfer_expense" ]
+                      } ],
+                      "additionalItems" : false,
+                      "minItems" : 10,
+                      "maxItems" : 10
+                    },
+                    "rows" : {
+                      "type" : "array",
+                      "items" : {
+                        "type" : "array",
+                        "items" : [ {
+                          "type" : [ "string", "null" ],
+                          "pattern" : "^[A-Z]{2}[A-Z0-9]{9}[0-9]$",
+                          "examples" : [ "INF846K01DI2" ]
+                        }, {
+                          "type" : "string",
+                          "examples" : [ "Axis Bluechip Fund" ]
+                        }, {
+                          "type" : "string",
+                          "enum" : [ "equity", "debt", "other" ],
+                          "examples" : [ "equity" ]
+                        }, {
+                          "type" : "number",
+                          "minimum" : 1.0,
+                          "format" : "BigDecimal",
+                          "examples" : [ "1.0" ]
+                        }, {
+                          "type" : "integer",
+                          "format" : "Long",
+                          "examples" : [ "1.4914368E12" ]
+                        }, {
+                          "type" : "number",
+                          "minimum" : 0.0,
+                          "maximum" : 9.9999999999999E13,
+                          "format" : "BigDecimal",
+                          "examples" : [ "50.0" ]
+                        }, {
+                          "type" : "string"
+                        }, {
+                          "type" : "string",
+                          "enum" : [ "trade", "interest", "transfer_in", "transfer_out", "gift_send", "gift_receive", "donation", "buy_back", "other" ],
+                          "examples" : [ "trade" ]
+                        }, {
+                          "type" : "number",
+                          "format" : "BigDecimal",
+                          "examples" : [ "50.0" ]
+                        }, {
+                          "type" : "number",
+                          "minimum" : 0.0,
+                          "format" : "BigDecimal",
+                          "examples" : [ "0.0" ]
+                        } ],
+                        "additionalItems" : false,
+                        "minItems" : 10,
+                        "maxItems" : 10
+                      }
+                    }
+                  },
+                  "required" : [ "name", "@entity", "header", "rows" ]
+                }, {
+                  "type" : "object",
+                  "properties" : {
+                    "name" : {
+                      "type" : "string",
+                      "enum" : [ "mutual_fund_tradewise_holding_table" ]
+                    },
+                    "@entity" : {
+                      "type" : "string",
+                      "enum" : [ "table" ]
+                    },
+                    "header" : {
+                      "type" : "array",
+                      "items" : [ {
+                        "type" : "string",
+                        "enum" : [ "isin" ]
+                      }, {
+                        "type" : "string",
+                        "enum" : [ "scheme_name" ]
+                      }, {
+                        "type" : "string",
+                        "enum" : [ "asset_class" ]
+                      }, {
+                        "type" : "string",
+                        "enum" : [ "quantity" ]
+                      }, {
+                        "type" : "string",
+                        "enum" : [ "buy_date" ]
+                      }, {
+                        "type" : "string",
+                        "enum" : [ "buy_price" ]
+                      }, {
+                        "type" : "string",
+                        "enum" : [ "transaction_type" ]
+                      }, {
+                        "type" : "string",
+                        "enum" : [ "label" ]
+                      }, {
+                        "type" : "string",
+                        "enum" : [ "last_traded_price" ]
+                      }, {
+                        "type" : "string",
+                        "enum" : [ "unrealized_pnl" ]
+                      } ],
+                      "additionalItems" : false,
+                      "minItems" : 10,
+                      "maxItems" : 10
+                    },
+                    "rows" : {
+                      "type" : "array",
+                      "items" : {
+                        "type" : "array",
+                        "items" : [ {
+                          "type" : [ "string", "null" ],
+                          "pattern" : "^[A-Z]{2}[A-Z0-9]{9}[0-9]$",
+                          "examples" : [ "INF846K01DI2" ]
+                        }, {
+                          "type" : "string",
+                          "examples" : [ "Axis Bluechip Fund" ]
+                        }, {
+                          "type" : "string",
+                          "enum" : [ "equity", "debt", "other" ],
+                          "examples" : [ "equity" ]
+                        }, {
+                          "type" : "number",
+                          "minimum" : 1.0,
+                          "format" : "BigDecimal",
+                          "examples" : [ "50.0" ]
+                        }, {
+                          "type" : "integer",
+                          "format" : "Long",
+                          "examples" : [ "1.4914368E12" ]
+                        }, {
+                          "type" : "number",
+                          "minimum" : 0.0,
+                          "maximum" : 9.9999999999999E13,
+                          "format" : "BigDecimal",
+                          "examples" : [ "124.2586" ]
+                        }, {
+                          "type" : "string",
+                          "examples" : [ "buy" ]
+                        }, {
+                          "type" : "string",
+                          "enum" : [ "amalgamation", "bonus_issue", "buy_back", "consolidation", "dividend", "income_distribution_invit", "income_distribution_rites", "return_of_capital_invit", "preferential_issue", "reduction_of_capital", "right_issue", "scheme_of_arrangement", "spin_off", "stock_split", "voluntary_delisting_of_share", "donation", "gift", "lost", "transfer", "other" ]
+                        }, {
+                          "type" : [ "number", "null" ],
+                          "minimum" : 0.0,
+                          "maximum" : 9.9999999999999E13,
+                          "format" : "BigDecimal"
+                        }, {
+                          "type" : [ "number", "null" ],
+                          "minimum" : 0.0,
+                          "maximum" : 9.9999999999999E13,
+                          "format" : "BigDecimal"
+                        } ],
+                        "additionalItems" : false,
+                        "minItems" : 10,
+                        "maxItems" : 10
+                      }
+                    }
+                  },
+                  "required" : [ "name", "@entity", "header", "rows" ]
+                }, {
+                  "type" : "object",
+                  "properties" : {
+                    "name" : {
+                      "type" : "string",
+                      "enum" : [ "mutual_fund_tradewise_open_sell_table" ]
+                    },
+                    "@entity" : {
+                      "type" : "string",
+                      "enum" : [ "table" ]
+                    },
+                    "header" : {
+                      "type" : "array",
+                      "items" : [ {
+                        "type" : "string",
+                        "enum" : [ "isin" ]
+                      }, {
+                        "type" : "string",
+                        "enum" : [ "scheme_name" ]
+                      }, {
+                        "type" : "string",
+                        "enum" : [ "asset_class" ]
+                      }, {
+                        "type" : "string",
+                        "enum" : [ "quantity" ]
+                      }, {
+                        "type" : "string",
+                        "enum" : [ "sell_date" ]
+                      }, {
+                        "type" : "string",
+                        "enum" : [ "sell_price" ]
+                      }, {
+                        "type" : "string",
+                        "enum" : [ "transaction_type" ]
+                      }, {
+                        "type" : "string",
+                        "enum" : [ "label" ]
+                      }, {
+                        "type" : "string",
+                        "enum" : [ "last_traded_price" ]
+                      }, {
+                        "type" : "string",
+                        "enum" : [ "unrealized_pnl" ]
+                      } ],
+                      "additionalItems" : false,
+                      "minItems" : 10,
+                      "maxItems" : 10
+                    },
+                    "rows" : {
+                      "type" : "array",
+                      "items" : {
+                        "type" : "array",
+                        "items" : [ {
+                          "type" : [ "string", "null" ],
+                          "pattern" : "^[A-Z]{2}[A-Z0-9]{9}[0-9]$",
+                          "examples" : [ "INF277K01YE6" ]
+                        }, {
+                          "type" : "string",
+                          "examples" : [ "TATA LIQUID FUND - DIRECT PLAN" ]
+                        }, {
+                          "type" : "string",
+                          "enum" : [ "equity", "debt", "other" ],
+                          "examples" : [ "debt" ]
+                        }, {
+                          "type" : "number",
+                          "minimum" : 1.0,
+                          "format" : "BigDecimal",
+                          "examples" : [ "17.137" ]
+                        }, {
+                          "type" : "integer",
+                          "format" : "Long",
+                          "examples" : [ "1.68264E12" ]
+                        }, {
+                          "type" : "number",
+                          "minimum" : 0.0,
+                          "maximum" : 9.9999999999999E13,
+                          "format" : "BigDecimal",
+                          "examples" : [ "160.0" ]
+                        }, {
+                          "type" : "string",
+                          "examples" : [ "sell" ]
+                        }, {
+                          "type" : "string",
+                          "enum" : [ "amalgamation", "bonus_issue", "buy_back", "consolidation", "dividend", "income_distribution_invit", "income_distribution_rites", "return_of_capital_invit", "preferential_issue", "reduction_of_capital", "right_issue", "scheme_of_arrangement", "spin_off", "stock_split", "voluntary_delisting_of_share", "donation", "gift", "lost", "transfer", "other" ]
+                        }, {
+                          "type" : [ "number", "null" ],
+                          "minimum" : 0.0,
+                          "maximum" : 9.9999999999999E13,
+                          "format" : "BigDecimal"
+                        }, {
+                          "type" : [ "number", "null" ],
+                          "minimum" : 0.0,
+                          "maximum" : 9.9999999999999E13,
+                          "format" : "BigDecimal"
+                        } ],
+                        "additionalItems" : false,
+                        "minItems" : 10,
+                        "maxItems" : 10
+                      }
+                    }
+                  },
+                  "required" : [ "name", "@entity", "header", "rows" ]
+                }, {
+                  "$ref" : "#/definitions/dividend_table_294418242"
+                } ]
+              }
+            }
+          },
+          "required" : [ "name", "@entity", "blocks" ]
+        }, {
+          "type" : "object",
+          "properties" : {
+            "name" : {
+              "type" : "string",
+              "enum" : [ "etf_sheet" ]
+            },
+            "@entity" : {
+              "type" : "string",
+              "enum" : [ "sheet" ]
+            },
+            "blocks" : {
+              "type" : "array",
+              "items" : {
+                "oneOf" : [ {
+                  "type" : "object",
+                  "properties" : {
+                    "name" : {
+                      "type" : "string",
+                      "enum" : [ "etf_tradewise_settlement_table" ]
+                    },
+                    "@entity" : {
+                      "type" : "string",
+                      "enum" : [ "table" ]
+                    },
+                    "header" : {
+                      "type" : "array",
+                      "items" : [ {
+                        "type" : "string",
+                        "enum" : [ "isin" ]
+                      }, {
+                        "type" : "string",
+                        "enum" : [ "scheme_name" ]
+                      }, {
+                        "type" : "string",
+                        "enum" : [ "asset_class" ]
+                      }, {
+                        "type" : "string",
+                        "enum" : [ "is_listed" ]
+                      }, {
+                        "type" : "string",
+                        "enum" : [ "is_stt_paid" ]
+                      }, {
+                        "type" : "string",
+                        "enum" : [ "quantity" ]
+                      }, {
+                        "type" : "string",
+                        "enum" : [ "buy_trade_id" ]
+                      }, {
+                        "type" : "string",
+                        "enum" : [ "buy_date" ]
+                      }, {
+                        "type" : "string",
+                        "enum" : [ "buy_price" ]
+                      }, {
+                        "type" : "string",
+                        "enum" : [ "sell_trade_id" ]
+                      }, {
+                        "type" : "string",
+                        "enum" : [ "sell_date" ]
+                      }, {
+                        "type" : "string",
+                        "enum" : [ "sell_price" ]
+                      }, {
+                        "type" : "string",
+                        "enum" : [ "fmv" ]
+                      }, {
+                        "type" : "string",
+                        "enum" : [ "brokerage" ]
+                      }, {
+                        "type" : "string",
+                        "enum" : [ "clearing_charges" ]
+                      }, {
+                        "type" : "string",
+                        "enum" : [ "exchange_transaction_charges" ]
+                      }, {
+                        "type" : "string",
+                        "enum" : [ "sebi_turnover_fee" ]
+                      }, {
+                        "type" : "string",
+                        "enum" : [ "stt" ]
+                      }, {
+                        "type" : "string",
+                        "enum" : [ "stamp_duty" ]
+                      }, {
+                        "type" : "string",
+                        "enum" : [ "sgst" ]
+                      }, {
+                        "type" : "string",
+                        "enum" : [ "cgst" ]
+                      }, {
+                        "type" : "string",
+                        "enum" : [ "igst" ]
+                      }, {
+                        "type" : "string",
+                        "enum" : [ "other_transfer_expenses" ]
+                      }, {
+                        "type" : "string",
+                        "enum" : [ "nature_of_settlement" ]
+                      }, {
+                        "type" : "string",
+                        "enum" : [ "product_type" ]
+                      } ],
+                      "additionalItems" : false,
+                      "minItems" : 25,
+                      "maxItems" : 25
+                    },
+                    "rows" : {
+                      "type" : "array",
+                      "items" : {
+                        "type" : "array",
+                        "items" : [ {
+                          "type" : [ "string", "null" ],
+                          "pattern" : "^[A-Z]{2}[A-Z0-9]{9}[0-9]$",
+                          "examples" : [ "INF179KB1QR6" ]
+                        }, {
+                          "type" : "string",
+                          "examples" : [ "ICICI LIQUID FUND - DIRECT PLAN" ]
+                        }, {
+                          "type" : "string",
+                          "enum" : [ "equity", "debt", "other" ],
+                          "examples" : [ "equity" ]
+                        }, {
+                          "type" : "boolean",
+                          "examples" : [ "true" ]
+                        }, {
+                          "type" : "boolean",
+                          "examples" : [ "true" ]
+                        }, {
+                          "type" : "number",
+                          "minimum" : 1.0,
+                          "format" : "BigDecimal",
+                          "examples" : [ "75.0" ]
+                        }, {
+                          "type" : "string",
+                          "pattern" : "^[A-Z0-9]{20}$",
+                          "examples" : [ "HNM88JKGKDQY9RRINGFB" ]
+                        }, {
+                          "type" : "integer",
+                          "format" : "Long",
+                          "examples" : [ "1.6815E12" ]
+                        }, {
+                          "type" : "number",
+                          "minimum" : 0.0,
+                          "maximum" : 9.9999999999999E13,
+                          "format" : "BigDecimal",
+                          "examples" : [ "125.0" ]
+                        }, {
+                          "type" : "string",
+                          "pattern" : "^[A-Z0-9]{20}$",
+                          "examples" : [ "GJK48MYGKDQY9RRINGFB" ]
+                        }, {
+                          "type" : "integer",
+                          "format" : "Long",
+                          "examples" : [ "1.6815E12" ]
+                        }, {
+                          "type" : "number",
+                          "minimum" : 0.0,
+                          "maximum" : 9.9999999999999E13,
+                          "format" : "BigDecimal",
+                          "examples" : [ "45.0" ]
+                        }, {
+                          "type" : [ "number", "null" ],
+                          "minimum" : 0.0,
+                          "maximum" : 9.9999999999999E13,
+                          "format" : "BigDecimal",
+                          "examples" : [ "300.0" ]
+                        }, {
+                          "type" : "number",
+                          "minimum" : 0.0,
+                          "maximum" : 9.9999999999999E13,
+                          "format" : "BigDecimal",
+                          "examples" : [ "58.0" ]
+                        }, {
+                          "type" : "number",
+                          "minimum" : 0.0,
+                          "maximum" : 9.9999999999999E13,
+                          "format" : "BigDecimal",
+                          "examples" : [ "223.0" ]
+                        }, {
+                          "type" : "number",
+                          "minimum" : 0.0,
+                          "maximum" : 9.9999999999999E13,
+                          "format" : "BigDecimal",
+                          "examples" : [ "275.0" ]
+                        }, {
+                          "type" : "number",
+                          "minimum" : 0.0,
+                          "maximum" : 9.9999999999999E13,
+                          "format" : "BigDecimal",
+                          "examples" : [ "87.0" ]
+                        }, {
+                          "type" : "number",
+                          "minimum" : 0.0,
+                          "maximum" : 9.9999999999999E13,
+                          "format" : "BigDecimal",
+                          "examples" : [ "82.0" ]
+                        }, {
+                          "type" : "number",
+                          "minimum" : 0.0,
+                          "maximum" : 9.9999999999999E13,
+                          "format" : "BigDecimal",
+                          "examples" : [ "192.0" ]
+                        }, {
+                          "type" : "number",
+                          "minimum" : 0.0,
+                          "maximum" : 9.9999999999999E13,
+                          "format" : "BigDecimal",
+                          "examples" : [ "279.0" ]
+                        }, {
+                          "type" : "number",
+                          "minimum" : 0.0,
+                          "maximum" : 9.9999999999999E13,
+                          "format" : "BigDecimal",
+                          "examples" : [ "110.0" ]
+                        }, {
+                          "type" : "number",
+                          "minimum" : 0.0,
+                          "maximum" : 9.9999999999999E13,
+                          "format" : "BigDecimal",
+                          "examples" : [ "211.0" ]
+                        }, {
+                          "type" : "number",
+                          "minimum" : 0.0,
+                          "maximum" : 9.9999999999999E13,
+                          "format" : "BigDecimal",
+                          "examples" : [ "97.0" ]
+                        }, {
+                          "type" : "string",
+                          "enum" : [ "trade", "interest", "transfer_in", "transfer_out", "gift_send", "gift_receive", "donation", "buy_back", "other" ],
+                          "examples" : [ "trade" ]
+                        }, {
+                          "type" : "string",
+                          "enum" : [ "intraday", "delivery" ],
+                          "examples" : [ "intraday" ]
+                        } ],
+                        "additionalItems" : false,
+                        "minItems" : 25,
+                        "maxItems" : 25
+                      }
+                    }
+                  },
+                  "required" : [ "name", "@entity", "header", "rows" ]
+                }, {
+                  "type" : "object",
+                  "properties" : {
+                    "name" : {
+                      "type" : "string",
+                      "enum" : [ "etf_tradewise_transfer_table" ]
+                    },
+                    "@entity" : {
+                      "type" : "string",
+                      "enum" : [ "table" ]
+                    },
+                    "header" : {
+                      "type" : "array",
+                      "items" : [ {
+                        "type" : "string",
+                        "enum" : [ "isin" ]
+                      }, {
+                        "type" : "string",
+                        "enum" : [ "scheme_name" ]
+                      }, {
+                        "type" : "string",
+                        "enum" : [ "asset_class" ]
+                      }, {
+                        "type" : "string",
+                        "enum" : [ "quantity" ]
+                      }, {
+                        "type" : "string",
+                        "enum" : [ "transfer_date" ]
+                      }, {
+                        "type" : "string",
+                        "enum" : [ "price" ]
+                      }, {
+                        "type" : "string",
+                        "enum" : [ "transfer_type" ]
+                      }, {
+                        "type" : "string",
+                        "enum" : [ "nature_of_transfer" ]
+                      }, {
+                        "type" : "string",
+                        "enum" : [ "transfer_value" ]
+                      }, {
+                        "type" : "string",
+                        "enum" : [ "transfer_expense" ]
+                      } ],
+                      "additionalItems" : false,
+                      "minItems" : 10,
+                      "maxItems" : 10
+                    },
+                    "rows" : {
+                      "type" : "array",
+                      "items" : {
+                        "type" : "array",
+                        "items" : [ {
+                          "type" : [ "string", "null" ],
+                          "pattern" : "^[A-Z]{2}[A-Z0-9]{9}[0-9]$",
+                          "examples" : [ "INF846K01DI2" ]
+                        }, {
+                          "type" : "string",
+                          "examples" : [ "Axis Bluechip Fund" ]
+                        }, {
+                          "type" : "string",
+                          "enum" : [ "equity", "debt", "other" ],
+                          "examples" : [ "equity" ]
+                        }, {
+                          "type" : "number",
+                          "minimum" : 1.0,
+                          "format" : "BigDecimal",
+                          "examples" : [ "1.0" ]
+                        }, {
+                          "type" : "integer",
+                          "format" : "Long",
+                          "examples" : [ "1.4914368E12" ]
+                        }, {
+                          "type" : "number",
+                          "minimum" : 0.0,
+                          "maximum" : 9.9999999999999E13,
+                          "format" : "BigDecimal",
+                          "examples" : [ "50.0" ]
+                        }, {
+                          "type" : "string"
+                        }, {
+                          "type" : "string",
+                          "enum" : [ "trade", "interest", "transfer_in", "transfer_out", "gift_send", "gift_receive", "donation", "buy_back", "other" ],
+                          "examples" : [ "trade" ]
+                        }, {
+                          "type" : "number",
+                          "format" : "BigDecimal",
+                          "examples" : [ "50.0" ]
+                        }, {
+                          "type" : "number",
+                          "minimum" : 0.0,
+                          "format" : "BigDecimal",
+                          "examples" : [ "0.0" ]
+                        } ],
+                        "additionalItems" : false,
+                        "minItems" : 10,
+                        "maxItems" : 10
+                      }
+                    }
+                  },
+                  "required" : [ "name", "@entity", "header", "rows" ]
+                }, {
+                  "type" : "object",
+                  "properties" : {
+                    "name" : {
+                      "type" : "string",
+                      "enum" : [ "etf_tradewise_holding_table" ]
+                    },
+                    "@entity" : {
+                      "type" : "string",
+                      "enum" : [ "table" ]
+                    },
+                    "header" : {
+                      "type" : "array",
+                      "items" : [ {
+                        "type" : "string",
+                        "enum" : [ "isin" ]
+                      }, {
+                        "type" : "string",
+                        "enum" : [ "scheme_name" ]
+                      }, {
+                        "type" : "string",
+                        "enum" : [ "asset_class" ]
+                      }, {
+                        "type" : "string",
+                        "enum" : [ "quantity" ]
+                      }, {
+                        "type" : "string",
+                        "enum" : [ "buy_date" ]
+                      }, {
+                        "type" : "string",
+                        "enum" : [ "buy_price" ]
+                      }, {
+                        "type" : "string",
+                        "enum" : [ "transaction_type" ]
+                      }, {
+                        "type" : "string",
+                        "enum" : [ "label" ]
+                      }, {
+                        "type" : "string",
+                        "enum" : [ "last_traded_price" ]
+                      }, {
+                        "type" : "string",
+                        "enum" : [ "unrealized_pnl" ]
+                      } ],
+                      "additionalItems" : false,
+                      "minItems" : 10,
+                      "maxItems" : 10
+                    },
+                    "rows" : {
+                      "type" : "array",
+                      "items" : {
+                        "type" : "array",
+                        "items" : [ {
+                          "type" : [ "string", "null" ],
+                          "pattern" : "^[A-Z]{2}[A-Z0-9]{9}[0-9]$",
+                          "examples" : [ "INF846K01DI2" ]
+                        }, {
+                          "type" : "string",
+                          "examples" : [ "Axis Bluechip Fund" ]
+                        }, {
+                          "type" : "string",
+                          "enum" : [ "equity", "debt", "other" ],
+                          "examples" : [ "equity" ]
+                        }, {
+                          "type" : "number",
+                          "minimum" : 1.0,
+                          "format" : "BigDecimal",
+                          "examples" : [ "50.0" ]
+                        }, {
+                          "type" : "integer",
+                          "format" : "Long",
+                          "examples" : [ "1.4914368E12" ]
+                        }, {
+                          "type" : "number",
+                          "minimum" : 0.0,
+                          "maximum" : 9.9999999999999E13,
+                          "format" : "BigDecimal",
+                          "examples" : [ "124.2586" ]
+                        }, {
+                          "type" : "string",
+                          "examples" : [ "buy" ]
+                        }, {
+                          "type" : "string",
+                          "enum" : [ "amalgamation", "bonus_issue", "buy_back", "consolidation", "dividend", "income_distribution_invit", "income_distribution_rites", "return_of_capital_invit", "preferential_issue", "reduction_of_capital", "right_issue", "scheme_of_arrangement", "spin_off", "stock_split", "voluntary_delisting_of_share", "donation", "gift", "lost", "transfer", "other" ]
+                        }, {
+                          "type" : [ "number", "null" ],
+                          "minimum" : 0.0,
+                          "maximum" : 9.9999999999999E13,
+                          "format" : "BigDecimal"
+                        }, {
+                          "type" : [ "number", "null" ],
+                          "minimum" : 0.0,
+                          "maximum" : 9.9999999999999E13,
+                          "format" : "BigDecimal"
+                        } ],
+                        "additionalItems" : false,
+                        "minItems" : 10,
+                        "maxItems" : 10
+                      }
+                    }
+                  },
+                  "required" : [ "name", "@entity", "header", "rows" ]
+                }, {
+                  "type" : "object",
+                  "properties" : {
+                    "name" : {
+                      "type" : "string",
+                      "enum" : [ "etf_tradewise_open_sell_table" ]
+                    },
+                    "@entity" : {
+                      "type" : "string",
+                      "enum" : [ "table" ]
+                    },
+                    "header" : {
+                      "type" : "array",
+                      "items" : [ {
+                        "type" : "string",
+                        "enum" : [ "isin" ]
+                      }, {
+                        "type" : "string",
+                        "enum" : [ "scheme_name" ]
+                      }, {
+                        "type" : "string",
+                        "enum" : [ "asset_class" ]
+                      }, {
+                        "type" : "string",
+                        "enum" : [ "quantity" ]
+                      }, {
+                        "type" : "string",
+                        "enum" : [ "sell_date" ]
+                      }, {
+                        "type" : "string",
+                        "enum" : [ "sell_price" ]
+                      }, {
+                        "type" : "string",
+                        "enum" : [ "transaction_type" ]
+                      }, {
+                        "type" : "string",
+                        "enum" : [ "label" ]
+                      }, {
+                        "type" : "string",
+                        "enum" : [ "last_traded_price" ]
+                      }, {
+                        "type" : "string",
+                        "enum" : [ "unrealized_pnl" ]
+                      } ],
+                      "additionalItems" : false,
+                      "minItems" : 10,
+                      "maxItems" : 10
+                    },
+                    "rows" : {
+                      "type" : "array",
+                      "items" : {
+                        "type" : "array",
+                        "items" : [ {
+                          "type" : [ "string", "null" ],
+                          "pattern" : "^[A-Z]{2}[A-Z0-9]{9}[0-9]$",
+                          "examples" : [ "INF277K01YE6" ]
+                        }, {
+                          "type" : "string",
+                          "examples" : [ "TATA LIQUID FUND - DIRECT PLAN" ]
+                        }, {
+                          "type" : "string",
+                          "enum" : [ "equity", "debt", "other" ],
+                          "examples" : [ "debt" ]
+                        }, {
+                          "type" : "number",
+                          "minimum" : 1.0,
+                          "format" : "BigDecimal",
+                          "examples" : [ "17.137" ]
+                        }, {
+                          "type" : "integer",
+                          "format" : "Long",
+                          "examples" : [ "1.68264E12" ]
+                        }, {
+                          "type" : "number",
+                          "minimum" : 0.0,
+                          "maximum" : 9.9999999999999E13,
+                          "format" : "BigDecimal",
+                          "examples" : [ "160.0" ]
+                        }, {
+                          "type" : "string",
+                          "examples" : [ "sell" ]
+                        }, {
+                          "type" : "string",
+                          "enum" : [ "amalgamation", "bonus_issue", "buy_back", "consolidation", "dividend", "income_distribution_invit", "income_distribution_rites", "return_of_capital_invit", "preferential_issue", "reduction_of_capital", "right_issue", "scheme_of_arrangement", "spin_off", "stock_split", "voluntary_delisting_of_share", "donation", "gift", "lost", "transfer", "other" ]
+                        }, {
+                          "type" : [ "number", "null" ],
+                          "minimum" : 0.0,
+                          "maximum" : 9.9999999999999E13,
+                          "format" : "BigDecimal"
+                        }, {
+                          "type" : [ "number", "null" ],
+                          "maximum" : 9.9999999999999E13,
+                          "format" : "BigDecimal"
+                        } ],
+                        "additionalItems" : false,
+                        "minItems" : 10,
+                        "maxItems" : 10
+                      }
+                    }
+                  },
+                  "required" : [ "name", "@entity", "header", "rows" ]
+                }, {
+                  "$ref" : "#/definitions/dividend_table_294418242"
+                } ]
+              }
+            }
+          },
+          "required" : [ "name", "@entity", "blocks" ]
+        }, {
+          "type" : "object",
+          "properties" : {
+            "name" : {
+              "type" : "string",
+              "enum" : [ "future_sheet" ]
+            },
+            "@entity" : {
+              "type" : "string",
+              "enum" : [ "sheet" ]
+            },
+            "blocks" : {
+              "type" : "array",
+              "items" : {
+                "oneOf" : [ {
+                  "type" : "object",
+                  "properties" : {
+                    "name" : {
+                      "type" : "string",
+                      "enum" : [ "future_tradewise_settlement_table" ]
+                    },
+                    "@entity" : {
+                      "type" : "string",
+                      "enum" : [ "table" ]
+                    },
+                    "header" : {
+                      "type" : "array",
+                      "items" : [ {
+                        "type" : "string",
+                        "enum" : [ "isin" ]
+                      }, {
+                        "type" : "string",
+                        "enum" : [ "contract_name" ]
+                      }, {
+                        "type" : "string",
+                        "enum" : [ "asset_class" ]
+                      }, {
+                        "type" : "string",
+                        "enum" : [ "quantity" ]
+                      }, {
+                        "type" : "string",
+                        "enum" : [ "buy_trade_id" ]
+                      }, {
+                        "type" : "string",
+                        "enum" : [ "buy_date" ]
+                      }, {
+                        "type" : "string",
+                        "enum" : [ "buy_price" ]
+                      }, {
+                        "type" : "string",
+                        "enum" : [ "sell_trade_id" ]
+                      }, {
+                        "type" : "string",
+                        "enum" : [ "sell_date" ]
+                      }, {
+                        "type" : "string",
+                        "enum" : [ "sell_price" ]
+                      }, {
+                        "type" : "string",
+                        "enum" : [ "brokerage" ]
+                      }, {
+                        "type" : "string",
+                        "enum" : [ "clearing_charges" ]
+                      }, {
+                        "type" : "string",
+                        "enum" : [ "exchange_transaction_charges" ]
+                      }, {
+                        "type" : "string",
+                        "enum" : [ "sebi_turnover_fee" ]
+                      }, {
+                        "type" : "string",
+                        "enum" : [ "stt" ]
+                      }, {
+                        "type" : "string",
+                        "enum" : [ "stamp_duty" ]
+                      }, {
+                        "type" : "string",
+                        "enum" : [ "sgst" ]
+                      }, {
+                        "type" : "string",
+                        "enum" : [ "cgst" ]
+                      }, {
+                        "type" : "string",
+                        "enum" : [ "igst" ]
+                      }, {
+                        "type" : "string",
+                        "enum" : [ "other_transfer_expenses" ]
+                      }, {
+                        "type" : "string",
+                        "enum" : [ "nature_of_settlement" ]
+                      } ],
+                      "additionalItems" : false,
+                      "minItems" : 21,
+                      "maxItems" : 21
+                    },
+                    "rows" : {
+                      "type" : "array",
+                      "items" : {
+                        "type" : "array",
+                        "items" : [ {
+                          "type" : [ "string", "null" ],
+                          "pattern" : "^[A-Z]{2}[A-Z0-9]{9}[0-9]$"
+                        }, {
+                          "type" : "string",
+                          "examples" : [ "NIFTY 15 JAN 2023 FUT" ]
+                        }, {
+                          "type" : "string",
+                          "enum" : [ "equity", "currency", "commodity" ],
+                          "examples" : [ "equity" ]
+                        }, {
+                          "type" : "number",
+                          "minimum" : 1.0,
+                          "format" : "BigDecimal",
+                          "examples" : [ "25.0" ]
+                        }, {
+                          "type" : "string",
+                          "pattern" : "^[A-Z0-9]{20}$",
+                          "examples" : [ "Z0FCJBWODSL8GF3KKVPY" ]
+                        }, {
+                          "type" : "integer",
+                          "format" : "Long",
+                          "examples" : [ "1.6734816E12" ]
+                        }, {
+                          "type" : "number",
+                          "minimum" : 0.0,
+                          "maximum" : 9.9999999999999E13,
+                          "format" : "BigDecimal",
+                          "examples" : [ "168.0" ]
+                        }, {
+                          "type" : "string",
+                          "pattern" : "^[A-Z0-9]{20}$",
+                          "examples" : [ "VLNYY0FTJTUGELL1TK8D" ]
+                        }, {
+                          "type" : "integer",
+                          "format" : "Long",
+                          "examples" : [ "1.681496999E12" ]
+                        }, {
+                          "type" : "number",
+                          "minimum" : 0.0,
+                          "maximum" : 9.9999999999999E13,
+                          "format" : "BigDecimal",
+                          "examples" : [ "146.0" ]
+                        }, {
+                          "type" : "number",
+                          "minimum" : 0.0,
+                          "maximum" : 9.9999999999999E13,
+                          "format" : "BigDecimal",
+                          "examples" : [ "107.7" ]
+                        }, {
+                          "type" : "number",
+                          "minimum" : 0.0,
+                          "maximum" : 9.9999999999999E13,
+                          "format" : "BigDecimal",
+                          "examples" : [ "60.3" ]
+                        }, {
+                          "type" : "number",
+                          "minimum" : 0.0,
+                          "maximum" : 9.9999999999999E13,
+                          "format" : "BigDecimal",
+                          "examples" : [ "3.8" ]
+                        }, {
+                          "type" : "number",
+                          "minimum" : 0.0,
+                          "maximum" : 9.9999999999999E13,
+                          "format" : "BigDecimal",
+                          "examples" : [ "136.4" ]
+                        }, {
+                          "type" : "number",
+                          "minimum" : 0.0,
+                          "maximum" : 9.9999999999999E13,
+                          "format" : "BigDecimal",
+                          "examples" : [ "221.4" ]
+                        }, {
+                          "type" : "number",
+                          "minimum" : 0.0,
+                          "maximum" : 9.9999999999999E13,
+                          "format" : "BigDecimal",
+                          "examples" : [ "427.6" ]
+                        }, {
+                          "type" : "number",
+                          "minimum" : 0.0,
+                          "maximum" : 9.9999999999999E13,
+                          "format" : "BigDecimal",
+                          "examples" : [ "12.2" ]
+                        }, {
+                          "type" : "number",
+                          "minimum" : 0.0,
+                          "maximum" : 9.9999999999999E13,
+                          "format" : "BigDecimal",
+                          "examples" : [ "13.1" ]
+                        }, {
+                          "type" : "number",
+                          "minimum" : 0.0,
+                          "maximum" : 9.9999999999999E13,
+                          "format" : "BigDecimal",
+                          "examples" : [ "58.5" ]
+                        }, {
+                          "type" : "number",
+                          "minimum" : 0.0,
+                          "maximum" : 9.9999999999999E13,
+                          "format" : "BigDecimal",
+                          "examples" : [ "44.7" ]
+                        }, {
+                          "type" : "string",
+                          "enum" : [ "trade", "interest", "transfer_in", "transfer_out", "gift_send", "gift_receive", "donation", "buy_back", "other" ],
+                          "examples" : [ "trade" ]
+                        } ],
+                        "additionalItems" : false,
+                        "minItems" : 21,
+                        "maxItems" : 21
+                      }
+                    }
+                  },
+                  "required" : [ "name", "@entity", "header", "rows" ]
+                }, {
+                  "type" : "object",
+                  "properties" : {
+                    "name" : {
+                      "type" : "string",
+                      "enum" : [ "future_tradewise_open_position_table" ]
+                    },
+                    "@entity" : {
+                      "type" : "string",
+                      "enum" : [ "table" ]
+                    },
+                    "header" : {
+                      "type" : "array",
+                      "items" : [ {
+                        "type" : "string",
+                        "enum" : [ "isin" ]
+                      }, {
+                        "type" : "string",
+                        "enum" : [ "contract_name" ]
+                      }, {
+                        "type" : "string",
+                        "enum" : [ "asset_class" ]
+                      }, {
+                        "type" : "string",
+                        "enum" : [ "quantity" ]
+                      }, {
+                        "type" : "string",
+                        "enum" : [ "trade_date" ]
+                      }, {
+                        "type" : "string",
+                        "enum" : [ "trade_price" ]
+                      }, {
+                        "type" : "string",
+                        "enum" : [ "transaction_type" ]
+                      }, {
+                        "type" : "string",
+                        "enum" : [ "label" ]
+                      }, {
+                        "type" : "string",
+                        "enum" : [ "last_traded_price" ]
+                      }, {
+                        "type" : "string",
+                        "enum" : [ "unrealized_pnl" ]
+                      } ],
+                      "additionalItems" : false,
+                      "minItems" : 10,
+                      "maxItems" : 10
+                    },
+                    "rows" : {
+                      "type" : "array",
+                      "items" : {
+                        "type" : "array",
+                        "items" : [ {
+                          "type" : [ "string", "null" ],
+                          "pattern" : "^[A-Z]{2}[A-Z0-9]{9}[0-9]$"
+                        }, {
+                          "type" : "string",
+                          "examples" : [ "NIFTY 15 JAN 2023 FUT" ]
+                        }, {
+                          "type" : "string",
+                          "enum" : [ "equity", "currency", "commodity" ],
+                          "examples" : [ "equity" ]
+                        }, {
+                          "type" : "number",
+                          "minimum" : 1.0,
+                          "format" : "BigDecimal",
+                          "examples" : [ "25.0" ]
+                        }, {
+                          "type" : "integer",
+                          "format" : "Long"
+                        }, {
+                          "type" : "number",
+                          "minimum" : 0.0,
+                          "maximum" : 9.9999999999999E13,
+                          "format" : "BigDecimal"
+                        }, {
+                          "type" : "string"
+                        }, {
+                          "type" : "string",
+                          "enum" : [ "amalgamation", "bonus_issue", "buy_back", "consolidation", "dividend", "income_distribution_invit", "income_distribution_rites", "return_of_capital_invit", "preferential_issue", "reduction_of_capital", "right_issue", "scheme_of_arrangement", "spin_off", "stock_split", "voluntary_delisting_of_share", "donation", "gift", "lost", "transfer", "other" ]
+                        }, {
+                          "type" : [ "number", "null" ],
+                          "minimum" : 0.0,
+                          "maximum" : 9.9999999999999E13,
+                          "format" : "BigDecimal"
+                        }, {
+                          "type" : [ "number", "null" ],
+                          "minimum" : 0.0,
+                          "maximum" : 9.9999999999999E13,
+                          "format" : "BigDecimal"
+                        } ],
+                        "additionalItems" : false,
+                        "minItems" : 10,
+                        "maxItems" : 10
+                      }
+                    }
+                  },
+                  "required" : [ "name", "@entity", "header", "rows" ]
+                } ]
+              }
+            }
+          },
+          "required" : [ "name", "@entity", "blocks" ]
+        }, {
+          "type" : "object",
+          "properties" : {
+            "name" : {
+              "type" : "string",
+              "enum" : [ "option_sheet" ]
+            },
+            "@entity" : {
+              "type" : "string",
+              "enum" : [ "sheet" ]
+            },
+            "blocks" : {
+              "type" : "array",
+              "items" : {
+                "oneOf" : [ {
+                  "type" : "object",
+                  "properties" : {
+                    "name" : {
+                      "type" : "string",
+                      "enum" : [ "option_tradewise_settlement_table" ]
+                    },
+                    "@entity" : {
+                      "type" : "string",
+                      "enum" : [ "table" ]
+                    },
+                    "header" : {
+                      "type" : "array",
+                      "items" : [ {
+                        "type" : "string",
+                        "enum" : [ "isin" ]
+                      }, {
+                        "type" : "string",
+                        "enum" : [ "contract_name" ]
+                      }, {
+                        "type" : "string",
+                        "enum" : [ "asset_class" ]
+                      }, {
+                        "type" : "string",
+                        "enum" : [ "quantity" ]
+                      }, {
+                        "type" : "string",
+                        "enum" : [ "buy_trade_id" ]
+                      }, {
+                        "type" : "string",
+                        "enum" : [ "buy_date" ]
+                      }, {
+                        "type" : "string",
+                        "enum" : [ "buy_price" ]
+                      }, {
+                        "type" : "string",
+                        "enum" : [ "sell_trade_id" ]
+                      }, {
+                        "type" : "string",
+                        "enum" : [ "sell_date" ]
+                      }, {
+                        "type" : "string",
+                        "enum" : [ "sell_price" ]
+                      }, {
+                        "type" : "string",
+                        "enum" : [ "brokerage" ]
+                      }, {
+                        "type" : "string",
+                        "enum" : [ "clearing_charges" ]
+                      }, {
+                        "type" : "string",
+                        "enum" : [ "exchange_transaction_charges" ]
+                      }, {
+                        "type" : "string",
+                        "enum" : [ "sebi_turnover_fee" ]
+                      }, {
+                        "type" : "string",
+                        "enum" : [ "stt" ]
+                      }, {
+                        "type" : "string",
+                        "enum" : [ "stamp_duty" ]
+                      }, {
+                        "type" : "string",
+                        "enum" : [ "sgst" ]
+                      }, {
+                        "type" : "string",
+                        "enum" : [ "cgst" ]
+                      }, {
+                        "type" : "string",
+                        "enum" : [ "igst" ]
+                      }, {
+                        "type" : "string",
+                        "enum" : [ "other_transfer_expenses" ]
+                      }, {
+                        "type" : "string",
+                        "enum" : [ "nature_of_settlement" ]
+                      } ],
+                      "additionalItems" : false,
+                      "minItems" : 21,
+                      "maxItems" : 21
+                    },
+                    "rows" : {
+                      "type" : "array",
+                      "items" : {
+                        "type" : "array",
+                        "items" : [ {
+                          "type" : [ "string", "null" ],
+                          "pattern" : "^[A-Z]{2}[A-Z0-9]{9}[0-9]$"
+                        }, {
+                          "type" : "string",
+                          "examples" : [ "NIFTY 15 JAN 2023 FUT" ]
+                        }, {
+                          "type" : "string",
+                          "enum" : [ "equity", "currency", "commodity" ],
+                          "examples" : [ "equity" ]
+                        }, {
+                          "type" : "number",
+                          "minimum" : 1.0,
+                          "format" : "BigDecimal",
+                          "examples" : [ "25.0" ]
+                        }, {
+                          "type" : "string",
+                          "pattern" : "^[A-Z0-9]{20}$",
+                          "examples" : [ "Z0FCJBWODSL8GF3KKVPY" ]
+                        }, {
+                          "type" : "integer",
+                          "format" : "Long",
+                          "examples" : [ "1.6734816E12" ]
+                        }, {
+                          "type" : "number",
+                          "minimum" : 0.0,
+                          "maximum" : 9.9999999999999E13,
+                          "format" : "BigDecimal",
+                          "examples" : [ "168.0" ]
+                        }, {
+                          "type" : "string",
+                          "pattern" : "^[A-Z0-9]{20}$",
+                          "examples" : [ "VLNYY0FTJTUGELL1TK8D" ]
+                        }, {
+                          "type" : "integer",
+                          "format" : "Long",
+                          "examples" : [ "1.681496999E12" ]
+                        }, {
+                          "type" : "number",
+                          "minimum" : 0.0,
+                          "maximum" : 9.9999999999999E13,
+                          "format" : "BigDecimal",
+                          "examples" : [ "146.0" ]
+                        }, {
+                          "type" : "number",
+                          "minimum" : 0.0,
+                          "maximum" : 9.9999999999999E13,
+                          "format" : "BigDecimal",
+                          "examples" : [ "107.7" ]
+                        }, {
+                          "type" : "number",
+                          "minimum" : 0.0,
+                          "maximum" : 9.9999999999999E13,
+                          "format" : "BigDecimal",
+                          "examples" : [ "60.3" ]
+                        }, {
+                          "type" : "number",
+                          "minimum" : 0.0,
+                          "maximum" : 9.9999999999999E13,
+                          "format" : "BigDecimal",
+                          "examples" : [ "3.8" ]
+                        }, {
+                          "type" : "number",
+                          "minimum" : 0.0,
+                          "maximum" : 9.9999999999999E13,
+                          "format" : "BigDecimal",
+                          "examples" : [ "136.4" ]
+                        }, {
+                          "type" : "number",
+                          "minimum" : 0.0,
+                          "maximum" : 9.9999999999999E13,
+                          "format" : "BigDecimal",
+                          "examples" : [ "221.4" ]
+                        }, {
+                          "type" : "number",
+                          "minimum" : 0.0,
+                          "maximum" : 9.9999999999999E13,
+                          "format" : "BigDecimal",
+                          "examples" : [ "427.6" ]
+                        }, {
+                          "type" : "number",
+                          "minimum" : 0.0,
+                          "maximum" : 9.9999999999999E13,
+                          "format" : "BigDecimal",
+                          "examples" : [ "12.2" ]
+                        }, {
+                          "type" : "number",
+                          "minimum" : 0.0,
+                          "maximum" : 9.9999999999999E13,
+                          "format" : "BigDecimal",
+                          "examples" : [ "13.1" ]
+                        }, {
+                          "type" : "number",
+                          "minimum" : 0.0,
+                          "maximum" : 9.9999999999999E13,
+                          "format" : "BigDecimal",
+                          "examples" : [ "58.5" ]
+                        }, {
+                          "type" : "number",
+                          "minimum" : 0.0,
+                          "maximum" : 9.9999999999999E13,
+                          "format" : "BigDecimal",
+                          "examples" : [ "44.7" ]
+                        }, {
+                          "type" : "string",
+                          "enum" : [ "trade", "interest", "transfer_in", "transfer_out", "gift_send", "gift_receive", "donation", "buy_back", "other" ],
+                          "examples" : [ "trade" ]
+                        } ],
+                        "additionalItems" : false,
+                        "minItems" : 21,
+                        "maxItems" : 21
+                      }
+                    }
+                  },
+                  "required" : [ "name", "@entity", "header", "rows" ]
+                }, {
+                  "type" : "object",
+                  "properties" : {
+                    "name" : {
+                      "type" : "string",
+                      "enum" : [ "option_tradewise_open_position_table" ]
+                    },
+                    "@entity" : {
+                      "type" : "string",
+                      "enum" : [ "table" ]
+                    },
+                    "header" : {
+                      "type" : "array",
+                      "items" : [ {
+                        "type" : "string",
+                        "enum" : [ "isin" ]
+                      }, {
+                        "type" : "string",
+                        "enum" : [ "contract_name" ]
+                      }, {
+                        "type" : "string",
+                        "enum" : [ "asset_class" ]
+                      }, {
+                        "type" : "string",
+                        "enum" : [ "quantity" ]
+                      }, {
+                        "type" : "string",
+                        "enum" : [ "trade_date" ]
+                      }, {
+                        "type" : "string",
+                        "enum" : [ "trade_price" ]
+                      }, {
+                        "type" : "string",
+                        "enum" : [ "transaction_type" ]
+                      }, {
+                        "type" : "string",
+                        "enum" : [ "label" ]
+                      }, {
+                        "type" : "string",
+                        "enum" : [ "last_traded_price" ]
+                      }, {
+                        "type" : "string",
+                        "enum" : [ "unrealized_pnl" ]
+                      } ],
+                      "additionalItems" : false,
+                      "minItems" : 10,
+                      "maxItems" : 10
+                    },
+                    "rows" : {
+                      "type" : "array",
+                      "items" : {
+                        "type" : "array",
+                        "items" : [ {
+                          "type" : [ "string", "null" ],
+                          "pattern" : "^[A-Z]{2}[A-Z0-9]{9}[0-9]$"
+                        }, {
+                          "type" : "string",
+                          "examples" : [ "NIFTY 15 JAN 2023 FUT" ]
+                        }, {
+                          "type" : "string",
+                          "enum" : [ "equity", "currency", "commodity" ],
+                          "examples" : [ "equity" ]
+                        }, {
+                          "type" : "number",
+                          "minimum" : 1.0,
+                          "format" : "BigDecimal",
+                          "examples" : [ "25.0" ]
+                        }, {
+                          "type" : "integer",
+                          "format" : "Long"
+                        }, {
+                          "type" : "number",
+                          "minimum" : 0.0,
+                          "maximum" : 9.9999999999999E13,
+                          "format" : "BigDecimal"
+                        }, {
+                          "type" : "string"
+                        }, {
+                          "type" : "string",
+                          "enum" : [ "amalgamation", "bonus_issue", "buy_back", "consolidation", "dividend", "income_distribution_invit", "income_distribution_rites", "return_of_capital_invit", "preferential_issue", "reduction_of_capital", "right_issue", "scheme_of_arrangement", "spin_off", "stock_split", "voluntary_delisting_of_share", "donation", "gift", "lost", "transfer", "other" ]
+                        }, {
+                          "type" : [ "number", "null" ],
+                          "minimum" : 0.0,
+                          "maximum" : 9.9999999999999E13,
+                          "format" : "BigDecimal"
+                        }, {
+                          "type" : [ "number", "null" ],
+                          "minimum" : 0.0,
+                          "maximum" : 9.9999999999999E13,
+                          "format" : "BigDecimal"
+                        } ],
+                        "additionalItems" : false,
+                        "minItems" : 10,
+                        "maxItems" : 10
+                      }
+                    }
+                  },
+                  "required" : [ "name", "@entity", "header", "rows" ]
+                } ]
+              }
+            }
+          },
+          "required" : [ "name", "@entity", "blocks" ]
+        }, {
+          "type" : "object",
+          "properties" : {
+            "name" : {
+              "type" : "string",
+              "enum" : [ "bond_sheet" ]
+            },
+            "@entity" : {
+              "type" : "string",
+              "enum" : [ "sheet" ]
+            },
+            "blocks" : {
+              "type" : "array",
+              "items" : {
+                "oneOf" : [ {
+                  "type" : "object",
+                  "properties" : {
+                    "name" : {
+                      "type" : "string",
+                      "enum" : [ "bond_tradewise_settlement_table" ]
+                    },
+                    "@entity" : {
+                      "type" : "string",
+                      "enum" : [ "table" ]
+                    },
+                    "header" : {
+                      "type" : "array",
+                      "items" : [ {
+                        "type" : "string",
+                        "enum" : [ "isin" ]
+                      }, {
+                        "type" : "string",
+                        "enum" : [ "security_name" ]
+                      }, {
+                        "type" : "string",
+                        "enum" : [ "is_listed" ]
+                      }, {
+                        "type" : "string",
+                        "enum" : [ "is_stt_paid" ]
+                      }, {
+                        "type" : "string",
+                        "enum" : [ "quantity" ]
+                      }, {
+                        "type" : "string",
+                        "enum" : [ "buy_trade_id" ]
+                      }, {
+                        "type" : "string",
+                        "enum" : [ "buy_date" ]
+                      }, {
+                        "type" : "string",
+                        "enum" : [ "buy_price" ]
+                      }, {
+                        "type" : "string",
+                        "enum" : [ "sell_trade_id" ]
+                      }, {
+                        "type" : "string",
+                        "enum" : [ "sell_date" ]
+                      }, {
+                        "type" : "string",
+                        "enum" : [ "sell_price" ]
+                      }, {
+                        "type" : "string",
+                        "enum" : [ "brokerage" ]
+                      }, {
+                        "type" : "string",
+                        "enum" : [ "clearing_charges" ]
+                      }, {
+                        "type" : "string",
+                        "enum" : [ "exchange_transaction_charges" ]
+                      }, {
+                        "type" : "string",
+                        "enum" : [ "sebi_turnover_fee" ]
+                      }, {
+                        "type" : "string",
+                        "enum" : [ "stt" ]
+                      }, {
+                        "type" : "string",
+                        "enum" : [ "stamp_duty" ]
+                      }, {
+                        "type" : "string",
+                        "enum" : [ "sgst" ]
+                      }, {
+                        "type" : "string",
+                        "enum" : [ "cgst" ]
+                      }, {
+                        "type" : "string",
+                        "enum" : [ "igst" ]
+                      }, {
+                        "type" : "string",
+                        "enum" : [ "other_transfer_expenses" ]
+                      }, {
+                        "type" : "string",
+                        "enum" : [ "nature_of_settlement" ]
+                      } ],
+                      "additionalItems" : false,
+                      "minItems" : 22,
+                      "maxItems" : 22
+                    },
+                    "rows" : {
+                      "type" : "array",
+                      "items" : {
+                        "type" : "array",
+                        "items" : [ {
+                          "type" : [ "string", "null" ],
+                          "pattern" : "^[A-Z]{2}[A-Z0-9]{9}[0-9]$",
+                          "examples" : [ "INE272F07011" ]
+                        }, {
+                          "type" : "string",
+                          "examples" : [ "Blue Dart Express" ]
+                        }, {
+                          "type" : "boolean",
+                          "examples" : [ "true" ]
+                        }, {
+                          "type" : "boolean",
+                          "examples" : [ "TRUE" ]
+                        }, {
+                          "type" : "number",
+                          "minimum" : 1.0,
+                          "format" : "BigDecimal",
+                          "examples" : [ "20.0" ]
+                        }, {
+                          "type" : "string",
+                          "pattern" : "^[A-Z0-9]{20}$",
+                          "examples" : [ "BVNCH72LKDQY9RRINTGH" ]
+                        }, {
+                          "type" : "integer",
+                          "format" : "Long",
+                          "examples" : [ "1.680373799E12" ]
+                        }, {
+                          "type" : "number",
+                          "minimum" : 0.0,
+                          "maximum" : 9.9999999999999E13,
+                          "format" : "BigDecimal",
+                          "examples" : [ "20.0" ]
+                        }, {
+                          "type" : "string",
+                          "pattern" : "^[A-Z0-9]{20}$",
+                          "examples" : [ "KHF78MYGKDQY9RRINTGH" ]
+                        }, {
+                          "type" : "integer",
+                          "format" : "Long",
+                          "examples" : [ "1.681496999E12" ]
+                        }, {
+                          "type" : "number",
+                          "minimum" : 0.0,
+                          "maximum" : 9.9999999999999E13,
+                          "format" : "BigDecimal",
+                          "examples" : [ "200.0" ]
+                        }, {
+                          "type" : [ "number", "null" ],
+                          "minimum" : 0.0,
+                          "maximum" : 9.9999999999999E13,
+                          "format" : "BigDecimal",
+                          "examples" : [ "122.0" ]
+                        }, {
+                          "type" : [ "number", "null" ],
+                          "minimum" : 0.0,
+                          "maximum" : 9.9999999999999E13,
+                          "format" : "BigDecimal",
+                          "examples" : [ "48.8" ]
+                        }, {
+                          "type" : [ "number", "null" ],
+                          "minimum" : 0.0,
+                          "maximum" : 9.9999999999999E13,
+                          "format" : "BigDecimal",
+                          "examples" : [ "124.0" ]
+                        }, {
+                          "type" : [ "number", "null" ],
+                          "minimum" : 0.0,
+                          "maximum" : 9.9999999999999E13,
+                          "format" : "BigDecimal",
+                          "examples" : [ "60.6" ]
+                        }, {
+                          "type" : [ "number", "null" ],
+                          "minimum" : 0.0,
+                          "maximum" : 9.9999999999999E13,
+                          "format" : "BigDecimal",
+                          "examples" : [ "64.0981" ]
+                        }, {
+                          "type" : [ "number", "null" ],
+                          "minimum" : 0.0,
+                          "maximum" : 9.9999999999999E13,
+                          "format" : "BigDecimal",
+                          "examples" : [ "16.2" ]
+                        }, {
+                          "type" : [ "number", "null" ],
+                          "minimum" : 0.0,
+                          "maximum" : 9.9999999999999E13,
+                          "format" : "BigDecimal",
+                          "examples" : [ "121.4" ]
+                        }, {
+                          "type" : [ "number", "null" ],
+                          "minimum" : 0.0,
+                          "maximum" : 9.9999999999999E13,
+                          "format" : "BigDecimal",
+                          "examples" : [ "46.0" ]
+                        }, {
+                          "type" : [ "number", "null" ],
+                          "minimum" : 0.0,
+                          "maximum" : 9.9999999999999E13,
+                          "format" : "BigDecimal",
+                          "examples" : [ "70.8" ]
+                        }, {
+                          "type" : [ "number", "null" ],
+                          "minimum" : 0.0,
+                          "maximum" : 9.9999999999999E13,
+                          "format" : "BigDecimal",
+                          "examples" : [ "88.0" ]
+                        }, {
+                          "type" : "string",
+                          "enum" : [ "trade", "interest", "transfer_in", "transfer_out", "gift_send", "gift_receive", "donation", "buy_back", "other" ],
+                          "examples" : [ "trade" ]
+                        } ],
+                        "additionalItems" : false,
+                        "minItems" : 22,
+                        "maxItems" : 22
+                      }
+                    }
+                  },
+                  "required" : [ "name", "@entity", "header", "rows" ]
+                }, {
+                  "type" : "object",
+                  "properties" : {
+                    "name" : {
+                      "type" : "string",
+                      "enum" : [ "bond_tradewise_transfer_table" ]
+                    },
+                    "@entity" : {
+                      "type" : "string",
+                      "enum" : [ "table" ]
+                    },
+                    "header" : {
+                      "type" : "array",
+                      "items" : [ {
+                        "type" : "string",
+                        "enum" : [ "isin" ]
+                      }, {
+                        "type" : "string",
+                        "enum" : [ "security_name" ]
+                      }, {
+                        "type" : "string",
+                        "enum" : [ "quantity" ]
+                      }, {
+                        "type" : "string",
+                        "enum" : [ "transfer_date" ]
+                      }, {
+                        "type" : "string",
+                        "enum" : [ "price" ]
+                      }, {
+                        "type" : "string",
+                        "enum" : [ "transfer_type" ]
+                      }, {
+                        "type" : "string",
+                        "enum" : [ "nature_of_transfer" ]
+                      }, {
+                        "type" : "string",
+                        "enum" : [ "transfer_value" ]
+                      }, {
+                        "type" : "string",
+                        "enum" : [ "transfer_expense" ]
+                      } ],
+                      "additionalItems" : false,
+                      "minItems" : 9,
+                      "maxItems" : 9
+                    },
+                    "rows" : {
+                      "type" : "array",
+                      "items" : {
+                        "type" : "array",
+                        "items" : [ {
+                          "type" : [ "string", "null" ],
+                          "pattern" : "^[A-Z]{2}[A-Z0-9]{9}[0-9]$",
+                          "examples" : [ "INE272F07011" ]
+                        }, {
+                          "type" : "string",
+                          "examples" : [ "Blue Dart Express" ]
+                        }, {
+                          "type" : "number",
+                          "minimum" : 1.0,
+                          "format" : "BigDecimal",
+                          "examples" : [ "20.0" ]
+                        }, {
+                          "type" : "integer",
+                          "format" : "Long",
+                          "examples" : [ "1.681496999E12" ]
+                        }, {
+                          "type" : "number",
+                          "minimum" : 0.0,
+                          "maximum" : 9.9999999999999E13,
+                          "format" : "BigDecimal",
+                          "examples" : [ "1.0" ]
+                        }, {
+                          "type" : "string"
+                        }, {
+                          "type" : "string",
+                          "enum" : [ "trade", "interest", "transfer_in", "transfer_out", "gift_send", "gift_receive", "donation", "buy_back", "other" ]
+                        }, {
+                          "type" : "number",
+                          "minimum" : 0.0,
+                          "maximum" : 9.9999999999999E13,
+                          "format" : "BigDecimal",
+                          "examples" : [ "20.0" ]
+                        }, {
+                          "type" : "number",
+                          "minimum" : 0.0,
+                          "maximum" : 9.9999999999999E13,
+                          "format" : "BigDecimal",
+                          "examples" : [ "0.0" ]
+                        } ],
+                        "additionalItems" : false,
+                        "minItems" : 9,
+                        "maxItems" : 9
+                      }
+                    }
+                  },
+                  "required" : [ "name", "@entity", "header", "rows" ]
+                }, {
+                  "type" : "object",
+                  "properties" : {
+                    "name" : {
+                      "type" : "string",
+                      "enum" : [ "bond_tradewise_holding_table" ]
+                    },
+                    "@entity" : {
+                      "type" : "string",
+                      "enum" : [ "table" ]
+                    },
+                    "header" : {
+                      "type" : "array",
+                      "items" : [ {
+                        "type" : "string",
+                        "enum" : [ "isin" ]
+                      }, {
+                        "type" : "string",
+                        "enum" : [ "security_name" ]
+                      }, {
+                        "type" : "string",
+                        "enum" : [ "quantity" ]
+                      }, {
+                        "type" : "string",
+                        "enum" : [ "buy_date" ]
+                      }, {
+                        "type" : "string",
+                        "enum" : [ "buy_price" ]
+                      }, {
+                        "type" : "string",
+                        "enum" : [ "transaction_type" ]
+                      }, {
+                        "type" : "string",
+                        "enum" : [ "label" ]
+                      }, {
+                        "type" : "string",
+                        "enum" : [ "last_traded_price" ]
+                      }, {
+                        "type" : "string",
+                        "enum" : [ "unrealized_pnl" ]
+                      } ],
+                      "additionalItems" : false,
+                      "minItems" : 9,
+                      "maxItems" : 9
+                    },
+                    "rows" : {
+                      "type" : "array",
+                      "items" : {
+                        "type" : "array",
+                        "items" : [ {
+                          "type" : [ "string", "null" ],
+                          "pattern" : "^[A-Z]{2}[A-Z0-9]{9}[0-9]$",
+                          "examples" : [ "INE272F07011" ]
+                        }, {
+                          "type" : "string",
+                          "examples" : [ "Blue Dart Express" ]
+                        }, {
+                          "type" : "number",
+                          "minimum" : 1.0,
+                          "format" : "BigDecimal",
+                          "examples" : [ "20.0" ]
+                        }, {
+                          "type" : "integer",
+                          "format" : "Long"
+                        }, {
+                          "type" : "number",
+                          "format" : "BigDecimal"
+                        }, {
+                          "type" : "string"
+                        }, {
+                          "type" : "string",
+                          "enum" : [ "amalgamation", "bonus_issue", "buy_back", "consolidation", "dividend", "income_distribution_invit", "income_distribution_rites", "return_of_capital_invit", "preferential_issue", "reduction_of_capital", "right_issue", "scheme_of_arrangement", "spin_off", "stock_split", "voluntary_delisting_of_share", "donation", "gift", "lost", "transfer", "other" ]
+                        }, {
+                          "type" : [ "number", "null" ],
+                          "minimum" : 0.0,
+                          "maximum" : 9.9999999999999E13,
+                          "format" : "BigDecimal"
+                        }, {
+                          "type" : [ "number", "null" ],
+                          "maximum" : 9.9999999999999E13,
+                          "format" : "BigDecimal"
+                        } ],
+                        "additionalItems" : false,
+                        "minItems" : 9,
+                        "maxItems" : 9
+                      }
+                    }
+                  },
+                  "required" : [ "name", "@entity", "header", "rows" ]
+                }, {
+                  "type" : "object",
+                  "properties" : {
+                    "name" : {
+                      "type" : "string",
+                      "enum" : [ "bond_tradewise_open_sell_table" ]
+                    },
+                    "@entity" : {
+                      "type" : "string",
+                      "enum" : [ "table" ]
+                    },
+                    "header" : {
+                      "type" : "array",
+                      "items" : [ {
+                        "type" : "string",
+                        "enum" : [ "isin" ]
+                      }, {
+                        "type" : "string",
+                        "enum" : [ "security_name" ]
+                      }, {
+                        "type" : "string",
+                        "enum" : [ "quantity" ]
+                      }, {
+                        "type" : "string",
+                        "enum" : [ "sell_date" ]
+                      }, {
+                        "type" : "string",
+                        "enum" : [ "sell_price" ]
+                      }, {
+                        "type" : "string",
+                        "enum" : [ "transaction_type" ]
+                      }, {
+                        "type" : "string",
+                        "enum" : [ "label" ]
+                      }, {
+                        "type" : "string",
+                        "enum" : [ "last_traded_price" ]
+                      }, {
+                        "type" : "string",
+                        "enum" : [ "unrealized_pnl" ]
+                      } ],
+                      "additionalItems" : false,
+                      "minItems" : 9,
+                      "maxItems" : 9
+                    },
+                    "rows" : {
+                      "type" : "array",
+                      "items" : {
+                        "type" : "array",
+                        "items" : [ {
+                          "type" : [ "string", "null" ],
+                          "pattern" : "^[A-Z]{2}[A-Z0-9]{9}[0-9]$",
+                          "examples" : [ "INE272F07011" ]
+                        }, {
+                          "type" : "string",
+                          "examples" : [ "Blue Dart Express" ]
+                        }, {
+                          "type" : "number",
+                          "minimum" : 1.0,
+                          "format" : "BigDecimal",
+                          "examples" : [ "30.0" ]
+                        }, {
+                          "type" : "integer",
+                          "format" : "Long",
+                          "examples" : [ "1.6704576E12" ]
+                        }, {
+                          "type" : "number",
+                          "format" : "BigDecimal"
+                        }, {
+                          "type" : "string",
+                          "examples" : [ "buy" ]
+                        }, {
+                          "type" : "string",
+                          "enum" : [ "amalgamation", "bonus_issue", "buy_back", "consolidation", "dividend", "income_distribution_invit", "income_distribution_rites", "return_of_capital_invit", "preferential_issue", "reduction_of_capital", "right_issue", "scheme_of_arrangement", "spin_off", "stock_split", "voluntary_delisting_of_share", "donation", "gift", "lost", "transfer", "other" ]
+                        }, {
+                          "type" : [ "number", "null" ],
+                          "minimum" : 0.0,
+                          "maximum" : 9.9999999999999E13,
+                          "format" : "BigDecimal"
+                        }, {
+                          "type" : [ "number", "null" ],
+                          "maximum" : 9.9999999999999E13,
+                          "format" : "BigDecimal"
+                        } ],
+                        "additionalItems" : false,
+                        "minItems" : 9,
+                        "maxItems" : 9
+                      }
+                    }
+                  },
+                  "required" : [ "name", "@entity", "header", "rows" ]
+                } ]
+              }
+            }
+          },
+          "required" : [ "name", "@entity", "blocks" ]
+        }, {
+          "type" : "object",
+          "properties" : {
+            "name" : {
+              "type" : "string",
+              "enum" : [ "debenture_sheet" ]
+            },
+            "@entity" : {
+              "type" : "string",
+              "enum" : [ "sheet" ]
+            },
+            "blocks" : {
+              "type" : "array",
+              "items" : {
+                "oneOf" : [ {
+                  "type" : "object",
+                  "properties" : {
+                    "name" : {
+                      "type" : "string",
+                      "enum" : [ "debenture_tradewise_settlement_table" ]
+                    },
+                    "@entity" : {
+                      "type" : "string",
+                      "enum" : [ "table" ]
+                    },
+                    "header" : {
+                      "type" : "array",
+                      "items" : [ {
+                        "type" : "string",
+                        "enum" : [ "isin" ]
+                      }, {
+                        "type" : "string",
+                        "enum" : [ "security_name" ]
+                      }, {
+                        "type" : "string",
+                        "enum" : [ "is_listed" ]
+                      }, {
+                        "type" : "string",
+                        "enum" : [ "is_stt_paid" ]
+                      }, {
+                        "type" : "string",
+                        "enum" : [ "quantity" ]
+                      }, {
+                        "type" : "string",
+                        "enum" : [ "buy_trade_id" ]
+                      }, {
+                        "type" : "string",
+                        "enum" : [ "buy_date" ]
+                      }, {
+                        "type" : "string",
+                        "enum" : [ "buy_price" ]
+                      }, {
+                        "type" : "string",
+                        "enum" : [ "sell_trade_id" ]
+                      }, {
+                        "type" : "string",
+                        "enum" : [ "sell_date" ]
+                      }, {
+                        "type" : "string",
+                        "enum" : [ "sell_price" ]
+                      }, {
+                        "type" : "string",
+                        "enum" : [ "brokerage" ]
+                      }, {
+                        "type" : "string",
+                        "enum" : [ "clearing_charges" ]
+                      }, {
+                        "type" : "string",
+                        "enum" : [ "exchange_transaction_charges" ]
+                      }, {
+                        "type" : "string",
+                        "enum" : [ "sebi_turnover_fee" ]
+                      }, {
+                        "type" : "string",
+                        "enum" : [ "stt" ]
+                      }, {
+                        "type" : "string",
+                        "enum" : [ "stamp_duty" ]
+                      }, {
+                        "type" : "string",
+                        "enum" : [ "sgst" ]
+                      }, {
+                        "type" : "string",
+                        "enum" : [ "cgst" ]
+                      }, {
+                        "type" : "string",
+                        "enum" : [ "igst" ]
+                      }, {
+                        "type" : "string",
+                        "enum" : [ "other_transfer_expenses" ]
+                      }, {
+                        "type" : "string",
+                        "enum" : [ "nature_of_settlement" ]
+                      } ],
+                      "additionalItems" : false,
+                      "minItems" : 22,
+                      "maxItems" : 22
+                    },
+                    "rows" : {
+                      "type" : "array",
+                      "items" : {
+                        "type" : "array",
+                        "items" : [ {
+                          "type" : [ "string", "null" ],
+                          "pattern" : "^[A-Z]{2}[A-Z0-9]{9}[0-9]$",
+                          "examples" : [ "INE272F07011" ]
+                        }, {
+                          "type" : "string",
+                          "examples" : [ "Blue Dart Express" ]
+                        }, {
+                          "type" : "boolean",
+                          "examples" : [ "true" ]
+                        }, {
+                          "type" : "boolean",
+                          "examples" : [ "TRUE" ]
+                        }, {
+                          "type" : "number",
+                          "minimum" : 1.0,
+                          "format" : "BigDecimal",
+                          "examples" : [ "20.0" ]
+                        }, {
+                          "type" : "string",
+                          "pattern" : "^[A-Z0-9]{20}$",
+                          "examples" : [ "BVNCH72LKDQY9RRINTGH" ]
+                        }, {
+                          "type" : "integer",
+                          "format" : "Long",
+                          "examples" : [ "1.680373799E12" ]
+                        }, {
+                          "type" : "number",
+                          "minimum" : 0.0,
+                          "maximum" : 9.9999999999999E13,
+                          "format" : "BigDecimal",
+                          "examples" : [ "20.0" ]
+                        }, {
+                          "type" : "string",
+                          "pattern" : "^[A-Z0-9]{20}$",
+                          "examples" : [ "KHF78MYGKDQY9RRINTGH" ]
+                        }, {
+                          "type" : "integer",
+                          "format" : "Long",
+                          "examples" : [ "1.681496999E12" ]
+                        }, {
+                          "type" : "number",
+                          "minimum" : 0.0,
+                          "maximum" : 9.9999999999999E13,
+                          "format" : "BigDecimal",
+                          "examples" : [ "200.0" ]
+                        }, {
+                          "type" : [ "number", "null" ],
+                          "minimum" : 0.0,
+                          "maximum" : 9.9999999999999E13,
+                          "format" : "BigDecimal",
+                          "examples" : [ "122.0" ]
+                        }, {
+                          "type" : [ "number", "null" ],
+                          "minimum" : 0.0,
+                          "maximum" : 9.9999999999999E13,
+                          "format" : "BigDecimal",
+                          "examples" : [ "48.8" ]
+                        }, {
+                          "type" : [ "number", "null" ],
+                          "minimum" : 0.0,
+                          "maximum" : 9.9999999999999E13,
+                          "format" : "BigDecimal",
+                          "examples" : [ "124.0" ]
+                        }, {
+                          "type" : [ "number", "null" ],
+                          "minimum" : 0.0,
+                          "maximum" : 9.9999999999999E13,
+                          "format" : "BigDecimal",
+                          "examples" : [ "60.6" ]
+                        }, {
+                          "type" : [ "number", "null" ],
+                          "minimum" : 0.0,
+                          "maximum" : 9.9999999999999E13,
+                          "format" : "BigDecimal",
+                          "examples" : [ "64.0981" ]
+                        }, {
+                          "type" : [ "number", "null" ],
+                          "minimum" : 0.0,
+                          "maximum" : 9.9999999999999E13,
+                          "format" : "BigDecimal",
+                          "examples" : [ "16.2" ]
+                        }, {
+                          "type" : [ "number", "null" ],
+                          "minimum" : 0.0,
+                          "maximum" : 9.9999999999999E13,
+                          "format" : "BigDecimal",
+                          "examples" : [ "121.4" ]
+                        }, {
+                          "type" : [ "number", "null" ],
+                          "minimum" : 0.0,
+                          "maximum" : 9.9999999999999E13,
+                          "format" : "BigDecimal",
+                          "examples" : [ "46.0" ]
+                        }, {
+                          "type" : [ "number", "null" ],
+                          "minimum" : 0.0,
+                          "maximum" : 9.9999999999999E13,
+                          "format" : "BigDecimal",
+                          "examples" : [ "70.8" ]
+                        }, {
+                          "type" : [ "number", "null" ],
+                          "minimum" : 0.0,
+                          "maximum" : 9.9999999999999E13,
+                          "format" : "BigDecimal",
+                          "examples" : [ "88.0" ]
+                        }, {
+                          "type" : "string",
+                          "enum" : [ "trade", "interest", "transfer_in", "transfer_out", "gift_send", "gift_receive", "donation", "buy_back", "other" ],
+                          "examples" : [ "trade" ]
+                        } ],
+                        "additionalItems" : false,
+                        "minItems" : 22,
+                        "maxItems" : 22
+                      }
+                    }
+                  },
+                  "required" : [ "name", "@entity", "header", "rows" ]
+                }, {
+                  "type" : "object",
+                  "properties" : {
+                    "name" : {
+                      "type" : "string",
+                      "enum" : [ "debenture_tradewise_transfer_table" ]
+                    },
+                    "@entity" : {
+                      "type" : "string",
+                      "enum" : [ "table" ]
+                    },
+                    "header" : {
+                      "type" : "array",
+                      "items" : [ {
+                        "type" : "string",
+                        "enum" : [ "isin" ]
+                      }, {
+                        "type" : "string",
+                        "enum" : [ "security_name" ]
+                      }, {
+                        "type" : "string",
+                        "enum" : [ "quantity" ]
+                      }, {
+                        "type" : "string",
+                        "enum" : [ "transfer_date" ]
+                      }, {
+                        "type" : "string",
+                        "enum" : [ "price" ]
+                      }, {
+                        "type" : "string",
+                        "enum" : [ "transfer_type" ]
+                      }, {
+                        "type" : "string",
+                        "enum" : [ "nature_of_transfer" ]
+                      }, {
+                        "type" : "string",
+                        "enum" : [ "transfer_value" ]
+                      }, {
+                        "type" : "string",
+                        "enum" : [ "transfer_expense" ]
+                      } ],
+                      "additionalItems" : false,
+                      "minItems" : 9,
+                      "maxItems" : 9
+                    },
+                    "rows" : {
+                      "type" : "array",
+                      "items" : {
+                        "type" : "array",
+                        "items" : [ {
+                          "type" : [ "string", "null" ],
+                          "pattern" : "^[A-Z]{2}[A-Z0-9]{9}[0-9]$",
+                          "examples" : [ "INE272F07011" ]
+                        }, {
+                          "type" : "string",
+                          "examples" : [ "Blue Dart Express" ]
+                        }, {
+                          "type" : "number",
+                          "minimum" : 1.0,
+                          "format" : "BigDecimal",
+                          "examples" : [ "20.0" ]
+                        }, {
+                          "type" : "integer",
+                          "format" : "Long",
+                          "examples" : [ "1.681496999E12" ]
+                        }, {
+                          "type" : "number",
+                          "minimum" : 0.0,
+                          "maximum" : 9.9999999999999E13,
+                          "format" : "BigDecimal",
+                          "examples" : [ "1.0" ]
+                        }, {
+                          "type" : "string"
+                        }, {
+                          "type" : "string",
+                          "enum" : [ "trade", "interest", "transfer_in", "transfer_out", "gift_send", "gift_receive", "donation", "buy_back", "other" ]
+                        }, {
+                          "type" : "number",
+                          "minimum" : 0.0,
+                          "maximum" : 9.9999999999999E13,
+                          "format" : "BigDecimal",
+                          "examples" : [ "20.0" ]
+                        }, {
+                          "type" : "number",
+                          "minimum" : 0.0,
+                          "maximum" : 9.9999999999999E13,
+                          "format" : "BigDecimal",
+                          "examples" : [ "0.0" ]
+                        } ],
+                        "additionalItems" : false,
+                        "minItems" : 9,
+                        "maxItems" : 9
+                      }
+                    }
+                  },
+                  "required" : [ "name", "@entity", "header", "rows" ]
+                }, {
+                  "type" : "object",
+                  "properties" : {
+                    "name" : {
+                      "type" : "string",
+                      "enum" : [ "debenture_tradewise_holding_table" ]
+                    },
+                    "@entity" : {
+                      "type" : "string",
+                      "enum" : [ "table" ]
+                    },
+                    "header" : {
+                      "type" : "array",
+                      "items" : [ {
+                        "type" : "string",
+                        "enum" : [ "isin" ]
+                      }, {
+                        "type" : "string",
+                        "enum" : [ "security_name" ]
+                      }, {
+                        "type" : "string",
+                        "enum" : [ "quantity" ]
+                      }, {
+                        "type" : "string",
+                        "enum" : [ "buy_date" ]
+                      }, {
+                        "type" : "string",
+                        "enum" : [ "buy_price" ]
+                      }, {
+                        "type" : "string",
+                        "enum" : [ "transaction_type" ]
+                      }, {
+                        "type" : "string",
+                        "enum" : [ "label" ]
+                      }, {
+                        "type" : "string",
+                        "enum" : [ "last_traded_price" ]
+                      }, {
+                        "type" : "string",
+                        "enum" : [ "unrealized_pnl" ]
+                      } ],
+                      "additionalItems" : false,
+                      "minItems" : 9,
+                      "maxItems" : 9
+                    },
+                    "rows" : {
+                      "type" : "array",
+                      "items" : {
+                        "type" : "array",
+                        "items" : [ {
+                          "type" : [ "string", "null" ],
+                          "pattern" : "^[A-Z]{2}[A-Z0-9]{9}[0-9]$",
+                          "examples" : [ "INE272F07011" ]
+                        }, {
+                          "type" : "string",
+                          "examples" : [ "Blue Dart Express" ]
+                        }, {
+                          "type" : "number",
+                          "minimum" : 1.0,
+                          "format" : "BigDecimal",
+                          "examples" : [ "20.0" ]
+                        }, {
+                          "type" : "integer",
+                          "format" : "Long"
+                        }, {
+                          "type" : "number",
+                          "format" : "BigDecimal"
+                        }, {
+                          "type" : "string"
+                        }, {
+                          "type" : "string",
+                          "enum" : [ "amalgamation", "bonus_issue", "buy_back", "consolidation", "dividend", "income_distribution_invit", "income_distribution_rites", "return_of_capital_invit", "preferential_issue", "reduction_of_capital", "right_issue", "scheme_of_arrangement", "spin_off", "stock_split", "voluntary_delisting_of_share", "donation", "gift", "lost", "transfer", "other" ]
+                        }, {
+                          "type" : [ "number", "null" ],
+                          "minimum" : 0.0,
+                          "maximum" : 9.9999999999999E13,
+                          "format" : "BigDecimal"
+                        }, {
+                          "type" : [ "number", "null" ],
+                          "maximum" : 9.9999999999999E13,
+                          "format" : "BigDecimal"
+                        } ],
+                        "additionalItems" : false,
+                        "minItems" : 9,
+                        "maxItems" : 9
+                      }
+                    }
+                  },
+                  "required" : [ "name", "@entity", "header", "rows" ]
+                }, {
+                  "type" : "object",
+                  "properties" : {
+                    "name" : {
+                      "type" : "string",
+                      "enum" : [ "debenture_tradewise_open_sell_table" ]
+                    },
+                    "@entity" : {
+                      "type" : "string",
+                      "enum" : [ "table" ]
+                    },
+                    "header" : {
+                      "type" : "array",
+                      "items" : [ {
+                        "type" : "string",
+                        "enum" : [ "isin" ]
+                      }, {
+                        "type" : "string",
+                        "enum" : [ "security_name" ]
+                      }, {
+                        "type" : "string",
+                        "enum" : [ "quantity" ]
+                      }, {
+                        "type" : "string",
+                        "enum" : [ "sell_date" ]
+                      }, {
+                        "type" : "string",
+                        "enum" : [ "sell_price" ]
+                      }, {
+                        "type" : "string",
+                        "enum" : [ "transaction_type" ]
+                      }, {
+                        "type" : "string",
+                        "enum" : [ "label" ]
+                      }, {
+                        "type" : "string",
+                        "enum" : [ "last_traded_price" ]
+                      }, {
+                        "type" : "string",
+                        "enum" : [ "unrealized_pnl" ]
+                      } ],
+                      "additionalItems" : false,
+                      "minItems" : 9,
+                      "maxItems" : 9
+                    },
+                    "rows" : {
+                      "type" : "array",
+                      "items" : {
+                        "type" : "array",
+                        "items" : [ {
+                          "type" : [ "string", "null" ],
+                          "pattern" : "^[A-Z]{2}[A-Z0-9]{9}[0-9]$",
+                          "examples" : [ "INE272F07011" ]
+                        }, {
+                          "type" : "string",
+                          "examples" : [ "Blue Dart Express" ]
+                        }, {
+                          "type" : "number",
+                          "minimum" : 1.0,
+                          "format" : "BigDecimal",
+                          "examples" : [ "30.0" ]
+                        }, {
+                          "type" : "integer",
+                          "format" : "Long",
+                          "examples" : [ "1.6704576E12" ]
+                        }, {
+                          "type" : "number",
+                          "format" : "BigDecimal"
+                        }, {
+                          "type" : "string",
+                          "examples" : [ "buy" ]
+                        }, {
+                          "type" : "string",
+                          "enum" : [ "amalgamation", "bonus_issue", "buy_back", "consolidation", "dividend", "income_distribution_invit", "income_distribution_rites", "return_of_capital_invit", "preferential_issue", "reduction_of_capital", "right_issue", "scheme_of_arrangement", "spin_off", "stock_split", "voluntary_delisting_of_share", "donation", "gift", "lost", "transfer", "other" ]
+                        }, {
+                          "type" : [ "number", "null" ],
+                          "minimum" : 0.0,
+                          "maximum" : 9.9999999999999E13,
+                          "format" : "BigDecimal"
+                        }, {
+                          "type" : [ "number", "null" ],
+                          "maximum" : 9.9999999999999E13,
+                          "format" : "BigDecimal"
+                        } ],
+                        "additionalItems" : false,
+                        "minItems" : 9,
+                        "maxItems" : 9
+                      }
+                    }
+                  },
+                  "required" : [ "name", "@entity", "header", "rows" ]
+                } ]
+              }
+            }
+          },
+          "required" : [ "name", "@entity", "blocks" ]
+        }, {
+          "type" : "object",
+          "properties" : {
+            "name" : {
+              "type" : "string",
+              "enum" : [ "other_charges_sheet" ]
+            },
+            "@entity" : {
+              "type" : "string",
+              "enum" : [ "sheet" ]
+            },
+            "blocks" : {
+              "type" : "array",
+              "items" : {
+                "oneOf" : [ {
+                  "type" : "object",
+                  "properties" : {
+                    "name" : {
+                      "type" : "string",
+                      "enum" : [ "other_charges_summary_list" ]
+                    },
+                    "@entity" : {
+                      "type" : "string",
+                      "enum" : [ "list" ]
+                    },
+                    "items" : {
+                      "type" : "array",
+                      "items" : {
+                        "additionalProperties" : false,
+                        "properties" : {
+                          "dp_charges" : {
+                            "type" : [ "number", "null" ],
+                            "minimum" : 0.0,
+                            "maximum" : 9.9999999999999E13,
+                            "format" : "BigDecimal",
+                            "examples" : [ "650.0" ]
+                          },
+                          "amc" : {
+                            "type" : [ "number", "null" ],
+                            "minimum" : 0.0,
+                            "maximum" : 9.9999999999999E13,
+                            "format" : "BigDecimal",
+                            "examples" : [ "650.0" ]
+                          },
+                          "call_trade_charges" : {
+                            "type" : [ "number", "null" ],
+                            "minimum" : 0.0,
+                            "maximum" : 9.9999999999999E13,
+                            "format" : "BigDecimal",
+                            "examples" : [ "650.0" ]
+                          },
+                          "buyback_application_charges" : {
+                            "type" : [ "number", "null" ],
+                            "minimum" : 0.0,
+                            "maximum" : 9.9999999999999E13,
+                            "format" : "BigDecimal",
+                            "examples" : [ "650.0" ]
+                          },
+                          "pledging_charges" : {
+                            "type" : [ "number", "null" ],
+                            "minimum" : 0.0,
+                            "maximum" : 9.9999999999999E13,
+                            "format" : "BigDecimal",
+                            "examples" : [ "650.0" ]
+                          },
+                          "auto_square_off_charge" : {
+                            "type" : [ "number", "null" ],
+                            "minimum" : 0.0,
+                            "maximum" : 9.9999999999999E13,
+                            "format" : "BigDecimal",
+                            "examples" : [ "650.0" ]
+                          },
+                          "delayed_payment_charge" : {
+                            "type" : [ "number", "null" ],
+                            "minimum" : 0.0,
+                            "maximum" : 9.9999999999999E13,
+                            "format" : "BigDecimal",
+                            "examples" : [ "650.0" ]
+                          },
+                          "account_opening_charge" : {
+                            "type" : [ "number", "null" ],
+                            "minimum" : 0.0,
+                            "maximum" : 9.9999999999999E13,
+                            "format" : "BigDecimal",
+                            "examples" : [ "650.0" ]
+                          },
+                          "interest_charge" : {
+                            "type" : [ "number", "null" ],
+                            "minimum" : 0.0,
+                            "maximum" : 9.9999999999999E13,
+                            "format" : "BigDecimal",
+                            "examples" : [ "650.0" ]
+                          },
+                          "margin_shortfall_penalty" : {
+                            "type" : [ "number", "null" ],
+                            "minimum" : 0.0,
+                            "maximum" : 9.9999999999999E13,
+                            "format" : "BigDecimal",
+                            "examples" : [ "650.0" ]
+                          },
+                          "any_other" : {
+                            "type" : [ "number", "null" ],
+                            "minimum" : 0.0,
+                            "maximum" : 9.9999999999999E13,
+                            "format" : "BigDecimal",
+                            "examples" : [ "650.0" ]
+                          }
+                        },
+                        "type" : "object"
+                      }
+                    }
+                  },
+                  "required" : [ "name", "@entity", "items" ]
+                } ]
+              }
+            }
+          },
+          "required" : [ "name", "@entity", "blocks" ]
+        } ]
+      }
+    }
+  },
+  "required" : [ "name", "@entity", "sheets" ],
+  "definitions" : {
+    "dividend_table_294418242" : {
+      "properties" : {
+        "@entity" : {
+          "enum" : [ "table" ],
+          "type" : "string"
+        },
+        "header" : {
+          "additionalItems" : false,
+          "items" : [ {
+            "enum" : [ "isin" ],
+            "type" : "string"
+          }, {
+            "enum" : [ "symbol" ],
+            "type" : "string"
+          }, {
+            "enum" : [ "quantity" ],
+            "type" : "string"
+          }, {
+            "enum" : [ "date" ],
+            "type" : "string"
+          }, {
+            "enum" : [ "dividend_per_share" ],
+            "type" : "string"
+          }, {
+            "enum" : [ "dividend_amount" ],
+            "type" : "string"
+          }, {
+            "enum" : [ "tax_withheld" ],
+            "type" : "string"
+          } ],
+          "maxItems" : 7,
+          "minItems" : 7,
+          "type" : "array"
+        },
+        "name" : {
+          "enum" : [ "dividend_table" ],
+          "type" : "string"
+        },
+        "rows" : {
+          "items" : {
+            "additionalItems" : false,
+            "items" : [ {
+              "examples" : [ "INE03Q201024" ],
+              "pattern" : "^[A-Z]{2}[A-Z0-9]{9}[0-9]$",
+              "type" : [ "string", "null" ]
+            }, {
+              "examples" : [ "TATA" ],
+              "type" : "string"
+            }, {
+              "examples" : [ "5.0" ],
+              "format" : "BigDecimal",
+              "maximum" : 9.9999999999999E13,
+              "minimum" : 0.0,
+              "type" : "number"
+            }, {
+              "format" : "Long",
+              "type" : "integer"
+            }, {
+              "format" : "BigDecimal",
+              "maximum" : 9.9999999999999E13,
+              "minimum" : 0.0,
+              "type" : "number"
+            }, {
+              "examples" : [ "10.0" ],
+              "format" : "BigDecimal",
+              "maximum" : 9.9999999999999E13,
+              "minimum" : 0.0,
+              "type" : "number"
+            }, {
+              "examples" : [ "21.0" ],
+              "format" : "BigDecimal",
+              "maximum" : 9.9999999999999E13,
+              "minimum" : 0.0,
+              "type" : "number"
+            } ],
+            "maxItems" : 7,
+            "minItems" : 7,
+            "type" : "array"
+          },
+          "type" : "array"
+        }
+      },
+      "required" : [ "name", "@entity", "header", "rows" ],
+      "type" : "object"
+    }
+  }
+}
