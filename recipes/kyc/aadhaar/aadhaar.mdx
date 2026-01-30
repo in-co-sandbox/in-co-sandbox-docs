@@ -1,0 +1,92 @@
+---
+title: "Aadhaar OTP Authentication"
+description: "Authenticate an Aadhaar holder by generating and verifying OTP using Sandbox Aadhaar KYC APIs."
+---
+
+This recipe explains how to perform **Aadhaar OTP-based authentication** using Sandbox KYC APIs.  
+The flow consists of generating an OTP linked to an Aadhaar number and then verifying that OTP to complete authentication.
+
+<Info>
+Before you begin, make sure you have:
+
+- Created a Sandbox account and generated an <code>x-api-key</code>.
+- Generated a Sandbox JWT access token using the <b>Authenticate</b> API.
+- Obtained user consent to perform Aadhaar OTP authentication.
+</Info>
+
+<Steps>
+
+  <Step title="Generate Aadhaar OTP" stepNumber={1} titleSize="h2">
+    Start the Aadhaar authentication flow by generating an OTP for the Aadhaar number.
+
+    This API sends an OTP to the **mobile number registered with Aadhaar** and returns a unique <code>reference_id</code>, which is required for OTP verification.
+
+    <Accordion title="cURL Request – Generate OTP" defaultOpen>
+      ```bash
+      curl --request POST \
+        --url https://api.sandbox.co.in/kyc/aadhaar/otp \
+        --header 'accept: application/json' \
+        --header 'authorization: {sandbox-access-token}' \
+        --header 'content-type: application/json' \
+        --header 'x-api-key: xxxxxxxxxxxxxxxxxx' \
+        --header 'x-api-version: 1.0.0' \
+        --data '{
+          "@entity": "in.co.sandbox.kyc.aadhaar.otp.generate.request",
+          "aadhaar_number": "123412341234",
+          "consent": "Y",
+          "reason": "KYC verification"
+        }'
+      ```
+    </Accordion>
+
+    A successful response contains:
+
+    - <code>reference_id</code> – unique identifier for this OTP transaction  
+    - <code>message</code> – indicates whether OTP was sent successfully  
+
+    <Info>
+    The <code>reference_id</code> must be stored securely and passed to the Verify OTP API.  
+    OTP validity and retry limits are governed by UIDAI policies.
+    </Info>
+  </Step>
+
+  <Step title="Verify Aadhaar OTP" stepNumber={2} titleSize="h2">
+    After receiving the OTP on the Aadhaar-linked mobile number, verify it using the Verify OTP API.
+
+    This step completes the Aadhaar authentication process.
+
+    <Accordion title="cURL Request – Verify OTP" defaultOpen>
+      ```bash
+      curl --request POST \
+        --url https://api.sandbox.co.in/kyc/aadhaar/otp/verify \
+        --header 'accept: application/json' \
+        --header 'authorization: {sandbox-access-token}' \
+        --header 'content-type: application/json' \
+        --header 'x-api-key: xxxxxxxxxxxxxxxxxx' \
+        --header 'x-api-version: 1.0.0' \
+        --data '{
+          "@entity": "in.co.sandbox.kyc.aadhaar.otp.verify.request",
+          "reference_id": "b8d6f6a1-6b1a-4c0c-9f88-7a3a2f3a9d21",
+          "otp": "123456"
+        }'
+      ```
+    </Accordion>
+
+    A successful verification response indicates:
+
+    - <code>status</code> – <code>VALID</code> or <code>INVALID</code>
+    - <code>message</code> – verification result message
+    - Aadhaar OKYC data such as name, date of birth, gender, address, and photo
+
+    <Warning>
+    If the OTP is incorrect or expired, verification will fail.  
+    In such cases, generate a new OTP and restart the flow.
+    </Warning>
+  </Step>
+
+</Steps>
+
+<Info>
+**Next steps:**  
+Once Aadhaar OTP authentication is successful, you can proceed with downstream KYC workflows such as profile creation, document verification, or onboarding as per your application logic.
+</Info>

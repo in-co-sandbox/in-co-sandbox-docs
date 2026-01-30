@@ -1,0 +1,146 @@
+---
+title: "Fetch Documents from EntityLocker"
+description: "Initiate an EntityLocker session, check session status, fetch entity details, and download documents using Sandbox EntityLocker APIs."
+---
+
+EntityLocker allows organizations to securely share verified documents such as incorporation certificates, registrations, and licenses with consent.
+
+This recipe walks you through the complete EntityLocker flow:
+- Initiating an EntityLocker session
+- Tracking session status
+- Fetching entity and user profile details
+- Downloading documents shared via EntityLocker
+
+<Info>
+Before you begin, ensure that:
+
+- You have generated a Sandbox <code>x-api-key</code>.
+- You have generated a Sandbox JWT <code>authorization</code> token using the <b>Authenticate</b> API.
+- The entity user has consented to share documents via EntityLocker.
+</Info>
+
+<Steps>
+
+  <Step title="Initiate EntityLocker Session" stepNumber={1} titleSize="h2">
+    Start the EntityLocker flow by initiating a consent session.
+
+    This API returns:
+    - <code>session_id</code> to track the session
+    - <code>authorization_url</code> where the user must be redirected to authenticate and grant consent
+
+    <Accordion title="cURL Request – Initiate Session" defaultOpen>
+      ```bash
+      curl --request POST \
+  --url https://api.sandbox.co.in/kyc/entitylocker/sessions/init \
+  --header 'Authorization: <authorization>' \
+  --header 'Content-Type: application/json' \
+  --header 'x-api-key: <x-api-key>' \
+  --data '
+{
+  "@entity": "in.co.sandbox.kyc.entitylocker.session.request",
+  "flow": "signin",
+  "redirect_url": "https://sandbox.co.in"
+}'
+      ```
+    </Accordion>
+
+    Redirect the user to the returned <code>authorization_url</code> to complete authentication and consent.
+
+    <Info>
+    Do not proceed until the user completes the EntityLocker consent flow.
+    </Info>
+  </Step>
+
+  <Step title="Check EntityLocker Session Status" stepNumber={2} titleSize="h2">
+    After the user completes the consent flow, check the session status using the <code>session_id</code>.
+
+    <Accordion title="cURL Request – Get Session Status" defaultOpen>
+      ```bash
+      curl --request GET \
+  --url https://api.sandbox.co.in/kyc/entitylocker/sessions/{session_id}/status \
+  --header 'Authorization: <authorization>' \
+  --header 'x-api-key: <x-api-key>'
+      ```
+    </Accordion>
+
+    Possible session statuses:
+
+    - <code>created</code> – session initiated, consent not completed  
+    - <code>succeeded</code> – consent granted successfully  
+    - <code>failed</code> – authentication or consent failed  
+
+    When the status is <code>succeeded</code>, the response also contains <code>documents_consented</code>, listing the document types approved by the entity.
+  </Step>
+
+  <Step title="Fetch Documents from EntityLocker" stepNumber={3} titleSize="h2">
+    Once the session status is <code>succeeded</code>, fetch all documents shared by the entity.
+
+    EntityLocker does not require individual document IDs.  
+    This API returns **all consented documents for the session** as signed download URLs.
+
+    <Accordion title="cURL Request – Fetch Documents" defaultOpen>
+      ```bash
+      curl --request GET \
+  --url https://api.sandbox.co.in/kyc/entitylocker/sessions/{session_id}/documents/{doc_type} \
+  --header 'Authorization: <authorization>' \
+  --header 'x-api-key: <x-api-key>'
+      ```
+    </Accordion>
+
+    The response includes a list of files, each containing:
+
+    - Signed S3 <code>url</code> (time-bound)
+    - File <code>size</code>
+    - Metadata such as issuer, description, and content type
+
+    <Warning>
+    The document URLs are temporary and expire after a short duration.
+    Download and store documents securely before expiry.
+    </Warning>
+  </Step>
+
+  <Step title="Fetch User Profile Details" stepNumber={4} titleSize="h2">
+    Fetch details of the user who authenticated and granted consent on behalf of the entity.
+
+    <Accordion title="cURL Request – Get User Profile Details" defaultOpen>
+      ```bash
+     curl --request GET \
+  --url https://api.sandbox.co.in/kyc/entitylocker/sessions/{session_id}/user/profile \
+  --header 'Authorization: <authorization>' \
+  --header 'x-api-key: <x-api-key>'
+      ```
+    </Accordion>
+
+    This response typically includes:
+
+    - Name  
+    - Date of birth  
+    - Mobile number  
+    - Gender  
+
+    <Info>
+    This information is useful for audit logs and identifying the authorized signatory.
+    </Info>
+  </Step>
+
+  <Step title="Fetch Entity Details" stepNumber={5} titleSize="h2">
+    Fetch verified entity-level information derived from the documents shared via EntityLocker.
+
+    <Accordion title="cURL Request – Get Entity Details" defaultOpen>
+      ```bash
+     curl --request GET \
+  --url https://api.sandbox.co.in/kyc/entitylocker/sessions/{session_id}/user/profile \
+  --header 'Authorization: <authorization>' \
+  --header 'x-api-key: <x-api-key>'
+      ```
+    </Accordion>
+
+    This endpoint returns verified entity information that can be used for business KYC and compliance workflows.
+  </Step>
+
+</Steps>
+
+<Info>
+**Next steps:**  
+Use the fetched documents, entity details, and user profile information for onboarding, compliance verification, internal audits, or downstream KYC workflows.
+</Info>
