@@ -1,0 +1,662 @@
+{
+    "name": "tradebook_workbook",
+    "@entity": "workbook",
+    "sheets": [
+        {
+            "name": "client_details_sheet",
+            "@entity": "sheet",
+            "blocks": [
+                {
+                    "name": "client_details_list",
+                    "@entity": "list",
+                    "items": [
+                        [
+                            "name",
+                            "n"
+                        ],
+                        [
+                            "pan",
+                            "FKFPS2020A"
+                        ],
+                        [
+                            "client_id",
+                            293932
+                        ],
+                        [
+                            "country",
+                            "India"
+                        ]
+                    ]
+                }
+            ]
+        },
+        {
+            "name": "stock_sheet",
+            "@entity": "sheet",
+            "blocks": [
+                {
+                    "name": "stock_tradebook_table",
+                    "@entity": "table",
+                    "header": [
+                        "isin",
+                        "trade_id",
+                        "symbol",
+                        "quantity",
+                        "date",
+                        "price",
+                        "transaction_type",
+                        "transfer_expenses",
+                        "label",
+                        "product_type"
+                    ],
+                    "rows": [
+                        [
+                            "INE03Q201024",
+                            "KZUG2ZMGMH4WFE2C9RMG",
+                            "AMAZON",
+                            10,
+                            1711929600000,
+                            55,
+                            "buy",
+                            7,
+                            null,
+                            "intraday"
+                        ],
+                        [
+                            "INE767A01016",
+                            "ZVQAT2PZ1RSLYWWYZTXP",
+                            "APPLE",
+                            50,
+                            1672531200000,
+                            46,
+                            "buy",
+                            5,
+                            null,
+                            "delivery"
+                        ],
+                        [
+                            "INE00E101023",
+                            "VTHPFZ7KXVG5LMNZNBHT",
+                            "ALPHABET",
+                            25,
+                            1264982400000,
+                            160,
+                            "buy",
+                            16,
+                            null,
+                            "delivery"
+                        ],
+                        [
+                            "INE462A01022",
+                            "SUNMAQYIBRDSM4Y2TVW9",
+                            "META",
+                            20,
+                            1711929600000,
+                            280,
+                            "buy",
+                            21,
+                            null,
+                            "delivery"
+                        ],
+                        [
+                            "INE002A01018",
+                            "CJ1CLC4YCBFEZ4CVDNMH",
+                            "AMAZON",
+                            10,
+                            1711929600000,
+                            155,
+                            "sell",
+                            8,
+                            null,
+                            "intraday"
+                        ],
+                        [
+                            "INE462A01022",
+                            "PEB6U5ERJBDTNFSLPOI2",
+                            "APPLE",
+                            40,
+                            1714521600000,
+                            40,
+                            "sell",
+                            11,
+                            null,
+                            "delivery"
+                        ],
+                        [
+                            "INE03Q201024",
+                            "8BARHLFV3FZVGYTSJ012",
+                            "ALPHABET",
+                            30,
+                            1735516800000,
+                            189,
+                            "sell",
+                            1,
+                            null,
+                            "delivery"
+                        ],
+                        [
+                            "INE002A01018",
+                            "CYX9TQSTWUYK8C9Z7BCE",
+                            "META",
+                            15,
+                            1738368000000,
+                            260,
+                            "sell",
+                            0,
+                            null,
+                            "delivery"
+                        ]
+                    ]
+                },
+                {
+                    "name": "reference_data_table",
+                    "@entity": "table",
+                    "header": [
+                        "isin",
+                        "symbol",
+                        "address",
+                        "country",
+                        "zip_code",
+                        "52_week_high",
+                        "closing_value"
+                    ],
+                    "rows": [
+                        [
+                            "INE03Q201024",
+                            "AMAZON",
+                            "x",
+                            "USA",
+                            12345645,
+                            1000,
+                            1200
+                        ],
+                        [
+                            "INE767A01016",
+                            "APPLE",
+                            "x",
+                            "USA",
+                            12345645,
+                            1000,
+                            1200
+                        ],
+                        [
+                            "INE00E101023",
+                            "ALPHABET",
+                            "x",
+                            "USA",
+                            12345645,
+                            1000,
+                            1200
+                        ],
+                        [
+                            "INE462A01022",
+                            "META",
+                            "x",
+                            "USA",
+                            12345645,
+                            1000,
+                            1200
+                        ]
+                    ]
+                },
+                {
+                    "name": "dividend_table",
+                    "@entity": "table",
+                    "header": [
+                        "isin",
+                        "symbol",
+                        "quantity",
+                        "date",
+                        "dividend_amount",
+                        "currency",
+                        "tax_withheld"
+                    ],
+                    "rows": [
+                        [
+                            "INE03Q201024",
+                            "AMAZON",
+                            1,
+                            1711929600000,
+                            100,
+                            "USD",
+                            5
+                        ]
+                    ]
+                }
+            ]
+        },
+        {
+            "name": "dr_sheet",
+            "@entity": "sheet",
+            "blocks": [
+                {
+                    "name": "dr_tradebook_table",
+                    "@entity": "table",
+                    "header": [
+                        "isin",
+                        "trade_id",
+                        "symbol",
+                        "quantity",
+                        "date",
+                        "price",
+                        "transaction_type",
+                        "transfer_expenses",
+                        "label",
+                        "product_type"
+                    ],
+                    "rows": [
+                        [
+                            "INE03Q201024",
+                            "KZUG2ZMGMH4WFE2C9RMG",
+                            "FACEBOOK",
+                            10,
+                            1711929600000,
+                            640,
+                            "buy",
+                            7,
+                            null,
+                            "intraday"
+                        ],
+                        [
+                            "INE767A01016",
+                            "ZVQAT2PZ1RSLYWWYZTXP",
+                            "BERKSHIRE",
+                            50,
+                            1672531200000,
+                            270,
+                            "buy",
+                            5,
+                            null,
+                            "delivery"
+                        ],
+                        [
+                            "INE00E101023",
+                            "VTHPFZ7KXVG5LMNZNBHT",
+                            "GAMESTOP",
+                            25,
+                            1264982400000,
+                            72,
+                            "buy",
+                            16,
+                            null,
+                            "delivery"
+                        ],
+                        [
+                            "INE462A01022",
+                            "SUNMAQYIBRDSM4Y2TVW9",
+                            "GOOGL",
+                            20,
+                            1711929600000,
+                            45,
+                            "buy",
+                            21,
+                            null,
+                            "delivery"
+                        ],
+                        [
+                            "INE002A01018",
+                            "CJ1CLC4YCBFEZ4CVDNMH",
+                            "FACEBOOK",
+                            10,
+                            1711929600000,
+                            660,
+                            "sell",
+                            8,
+                            null,
+                            "intraday"
+                        ],
+                        [
+                            "INE462A01022",
+                            "PEB6U5ERJBDTNFSLPOI2",
+                            "BERKSHIRE",
+                            40,
+                            1714521600000,
+                            300,
+                            "sell",
+                            11,
+                            null,
+                            "delivery"
+                        ],
+                        [
+                            "INE03Q201024",
+                            "8BARHLFV3FZVGYTSJ012",
+                            "GAMESTOP",
+                            30,
+                            1735516800000,
+                            40,
+                            "sell",
+                            1,
+                            null,
+                            "delivery"
+                        ],
+                        [
+                            "INE002A01018",
+                            "CYX9TQSTWUYK8C9Z7BCE",
+                            "GOOGL",
+                            15,
+                            1738368000000,
+                            54,
+                            "sell",
+                            0,
+                            null,
+                            "delivery"
+                        ]
+                    ]
+                },
+                {
+                    "name": "reference_data_table",
+                    "@entity": "table",
+                    "header": [
+                        "isin",
+                        "symbol",
+                        "address",
+                        "country",
+                        "zip_code",
+                        "52_week_high",
+                        "closing_value"
+                    ],
+                    "rows": [
+                        [
+                            "INE03Q201024",
+                            "KZUG2ZMGMH4WFE2C9RMG",
+                            "x",
+                            "USA",
+                            12345645,
+                            1000,
+                            1200
+                        ],
+                        [
+                            "INE767A01016",
+                            "ZVQAT2PZ1RSLYWWYZTXP",
+                            "x",
+                            "USA",
+                            12345645,
+                            1000,
+                            1200
+                        ],
+                        [
+                            "INE00E101023",
+                            "VTHPFZ7KXVG5LMNZNBHT",
+                            "x",
+                            "USA",
+                            12345645,
+                            1000,
+                            1200
+                        ],
+                        [
+                            "INE462A01022",
+                            "SUNMAQYIBRDSM4Y2TVW9",
+                            "x",
+                            "USA",
+                            12345645,
+                            1000,
+                            1200
+                        ]
+                    ]
+                },
+                {
+                    "name": "dividend_table",
+                    "@entity": "table",
+                    "header": [
+                        "isin",
+                        "symbol",
+                        "quantity",
+                        "date",
+                        "dividend_amount",
+                        "currency",
+                        "tax_withheld"
+                    ],
+                    "rows": [
+                        [
+                            "INE03Q201024",
+                            "KZUG2ZMGMH4WFE2C9RMG",
+                            4,
+                            1738368000000,
+                            60,
+                            "USD",
+                            5
+                        ]
+                    ]
+                }
+            ]
+        },
+        {
+            "name": "mutual_sheet",
+            "@entity": "sheet",
+            "blocks": [
+                {
+                    "name": "mutual_fund_tradebook_table",
+                    "@entity": "table",
+                    "header": [
+                        "isin",
+                        "trade_id",
+                        "scheme_name",
+                        "scheme_type",
+                        "quantity",
+                        "date",
+                        "price",
+                        "transaction_type",
+                        "transfer_expenses",
+                        "label"
+                    ],
+                    "rows": [
+                        [
+                            "INE03Q201024",
+                            "KZUG2ZMGMH4WFE2C9RMG",
+                            "Fidelity",
+                            "equity",
+                            10,
+                            1711929600000,
+                            640,
+                            "buy",
+                            4,
+                            null
+                        ],
+                        [
+                            "INE767A01016",
+                            "ZVQAT2PZ1RSLYWWYZTXP",
+                            "Blackrock",
+                            "debt",
+                            50,
+                            1672531200000,
+                            270,
+                            "buy",
+                            1,
+                            null
+                        ],
+                        [
+                            "INE002A01018",
+                            "CJ1CLC4YCBFEZ4CVDNMH",
+                            "Fidelity",
+                            "equity",
+                            10,
+                            1711929600000,
+                            660,
+                            "sell",
+                            0,
+                            null
+                        ],
+                        [
+                            "INE462A01022",
+                            "PEB6U5ERJBDTNFSLPOI2",
+                            "Blackrock",
+                            "debt",
+                            40,
+                            1714521600000,
+                            300,
+                            "sell",
+                            2,
+                            null
+                        ]
+                    ]
+                },
+                {
+                    "name": "reference_data_table",
+                    "@entity": "table",
+                    "header": [
+                        "isin",
+                        "symbol",
+                        "address",
+                        "country",
+                        "zip_code",
+                        "52_week_high",
+                        "closing_value"
+                    ],
+                    "rows": []
+                },
+                {
+                    "name": "dividend_table",
+                    "@entity": "table",
+                    "header": [
+                        "isin",
+                        "symbol",
+                        "quantity",
+                        "date",
+                        "dividend_amount",
+                        "currency",
+                        "tax_withheld"
+                    ],
+                    "rows": []
+                }
+            ]
+        },
+        {
+            "name": "etf_sheet",
+            "@entity": "sheet",
+            "blocks": [
+                {
+                    "name": "etf_tradebook_table",
+                    "@entity": "table",
+                    "header": [
+                        "isin",
+                        "trade_id",
+                        "scheme_name",
+                        "scheme_type",
+                        "quantity",
+                        "date",
+                        "price",
+                        "transaction_type",
+                        "transfer_expenses",
+                        "label",
+                        "product_type"
+                    ],
+                    "rows": [
+                        [
+                            "INE03Q201024",
+                            "KZUG2ZMGMH4WFE2C9RMG",
+                            "Fidelity",
+                            "equity",
+                            10,
+                            1711929600000,
+                            640,
+                            "buy",
+                            4,
+                            null,
+                            "intraday"
+                        ],
+                        [
+                            "INE767A01016",
+                            "ZVQAT2PZ1RSLYWWYZTXP",
+                            "Blackrock",
+                            "debt",
+                            50,
+                            1672531200000,
+                            270,
+                            "buy",
+                            1,
+                            null,
+                            "delivery"
+                        ],
+                        [
+                            "INE002A01018",
+                            "CJ1CLC4YCBFEZ4CVDNMH",
+                            "Fidelity",
+                            "equity",
+                            10,
+                            1711929600000,
+                            660,
+                            "sell",
+                            0,
+                            null,
+                            "intraday"
+                        ],
+                        [
+                            "INE462A01022",
+                            "PEB6U5ERJBDTNFSLPOI2",
+                            "Blackrock",
+                            "debt",
+                            40,
+                            1714521600000,
+                            300,
+                            "sell",
+                            2,
+                            null,
+                            "delivery"
+                        ]
+                    ]
+                },
+                {
+                    "name": "reference_data_table",
+                    "@entity": "table",
+                    "header": [
+                        "isin",
+                        "symbol",
+                        "address",
+                        "country",
+                        "zip_code",
+                        "52_week_high",
+                        "closing_value"
+                    ],
+                    "rows": []
+                },
+                {
+                    "name": "dividend_table",
+                    "@entity": "table",
+                    "header": [
+                        "isin",
+                        "symbol",
+                        "quantity",
+                        "date",
+                        "dividend_amount",
+                        "currency",
+                        "tax_withheld"
+                    ],
+                    "rows": []
+                }
+            ]
+        },
+        {
+            "name": "interest_income_sheet",
+            "@entity": "sheet",
+            "blocks": [
+                {
+                    "name": "interest_income_table",
+                    "@entity": "table",
+                    "header": [
+                        "description",
+                        "date",
+                        "amount",
+                        "currency",
+                        "tax_witheld"
+                    ],
+                    "rows": [
+                        [
+                            1,
+                            1711929600000,
+                            54,
+                            "USD",
+                            4
+                        ],
+                        [
+                            2,
+                            1714521600000,
+                            140,
+                            "USD",
+                            16
+                        ]
+                    ]
+                }
+            ]
+        }
+    ]
+}
