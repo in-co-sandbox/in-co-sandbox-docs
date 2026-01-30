@@ -1,18 +1,50 @@
 ---
-title: "Introduction"
-description: "These are the recipes for our TDS workload"
+title: "TDS API Recipes"
+sidebarTitle: "Overview"
+description: "Production-ready TDS API integration recipes for Form 24Q filing and Form 16 certificate generation. Step-by-step implementation guides with code samples."
+"og:description": "Ready-to-use API recipes for TDS compliance automation. Implement Form 24Q filing and Form 16 generation workflows with our step-by-step guides."
 ---
 
-#### Form 24Q Recipes
+Ready-made, step-by-step implementation patterns for building robust TDS workflows. Get actionable code samples and API sequences for automating return filing, generating employee certificates, and integrating TDS compliance logic into your business applications.
+
+<Tip>
+**New to Sandbox TDS APIs?** Start with our [TDS Product Overview](/api-reference/tds/overview) to understand the full capabilities, then come back here to implement specific workflows.
+</Tip>
+
+---
+
+## Form 24Q Filing
+
+File your quarterly TDS returns for salary payments with these step-by-step recipes. Covers preparation and submission workflows.
+
 <CardGroup cols={2}>
-    <Card title="Prepare Form 24Q TDS Return" icon="hat-chef" href="./form-24q/prepare_form_24q">
+    <Card title="Prepare Form 24Q TDS Return" icon="file-pen" href="./form-24q/prepare_form_24q">
+        Complete workflow for preparing Form 24Q with employee salary and TDS deduction details.
     </Card>
-    <Card title="File Form 24Q TDS Returns" icon="hat-chef" href="./form-24q/file_form_24q">
+    <Card title="File Form 24Q TDS Returns" icon="file-arrow-up" href="./form-24q/file_form_24q">
+        Submit prepared Form 24Q returns to the Income Tax Department portal.
     </Card>
 </CardGroup>
 
-#### Form 16 Recipes
+---
+
+## Form 16 Certificates
+
+Generate TDS certificates for employees with automated data compilation and formatting.
+
 <CardGroup cols={2}>
-    <Card title="Generate Form 16 Certificates" icon="hat-chef" href="./form-16/generate_form_16_certificates">
+    <Card title="Generate Form 16 Certificates" icon="certificate" href="./form-16/generate_form_16_certificates">
+        Create and download Form 16 Part A and Part B certificates for salary employees.
     </Card>
+</CardGroup>
+
+---
+
+<CardGroup cols={2}>
+  <Card title="TDS API Reference" icon="code" href="/api-reference/tds/overview">
+    Explore the complete TDS API documentation with request/response schemas.
+  </Card>
+  <Card title="Need Help?" icon="headset" href="https://help.sandbox.co.in/portal">
+    Get support for integration questions and troubleshooting.
+  </Card>
 </CardGroup>
