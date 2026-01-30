@@ -1,0 +1,268 @@
+{
+    "name": "crypto_currency_tradebook_workbook",
+    "@entity": "workbook",
+    "sheets": [
+        {
+            "name": "spot_sheet",
+            "@entity": "sheet",
+            "blocks": [
+                {
+                    "name": "spot_tradebook_table",
+                    "@entity": "table",
+                    "header": [
+                        "id",
+                        "date",
+                        "transaction_type",
+                        "label",
+                        "received_currency",
+                        "received_quantity",
+                        "price",
+                        "price_currency",
+                        "price_inr",
+                        "sent_currency",
+                        "sent_quantity",
+                        "fee_currency",
+                        "fee_amount",
+                        "fee_amount_inr"
+                    ],
+                    "rows": [
+                        [
+                            "acdcwefew3e1113vcd",
+                            1756721330000,
+                            "buy",
+                            null,
+                            "USDT",
+                            50,
+                            75,
+                            "USDT",
+                            6600,
+                            null,
+                            null,
+                            "INR",
+                            50,
+                            50
+                        ],
+                        [
+                            "nknee38ni9cd3defeve",
+                            1757930930000,
+                            "sell",
+                            null,
+                            null,
+                            null,
+                            90,
+                            "USDT",
+                            8055,
+                            "USDT",
+                            45,
+                            "INR",
+                            25,
+                            25
+                        ],
+                        [
+                            "hjdj0plsejw3n227890c",
+                            1760522930000,
+                            "buy",
+                            null,
+                            "USDT",
+                            10,
+                            88,
+                            "USDT",
+                            7832,
+                            null,
+                            null,
+                            "INR",
+                            50,
+                            50
+                        ],
+                        [
+                            "nrezxcetgf2334jk0333d",
+                            1763201330000,
+                            "sell",
+                            null,
+                            null,
+                            null,
+                            125,
+                            "USDT",
+                            11312.5,
+                            "USDT",
+                            8,
+                            "INR",
+                            25,
+                            25
+                        ],
+                        [
+                            "fwhjceco2trsc344f322e",
+                            1763815154000,
+                            "buy",
+                            null,
+                            "USDT",
+                            40,
+                            121,
+                            "USDT",
+                            10708.5,
+                            null,
+                            null,
+                            "INR",
+                            50,
+                            50
+                        ],
+                        [
+                            "zxc1rtvmk3456hkkve3w",
+                            1764410930000,
+                            "sell",
+                            null,
+                            null,
+                            null,
+                            131,
+                            "USDT",
+                            11790,
+                            "USDT",
+                            30,
+                            "INR",
+                            25,
+                            25
+                        ]
+                    ]
+                },
+                {
+                    "name": "spot_last_traded_price_table",
+                    "@entity": "table",
+                    "header": [
+                        "symbol",
+                        "currency",
+                        "last_traded_price",
+                        "last_traded_price_inr"
+                    ],
+                    "rows": [
+                        [
+                            "USDT",
+                            "INR",
+                            135,
+                            135
+                        ]
+                    ]
+                }
+            ]
+        },
+        {
+            "name": "future_sheet",
+            "@entity": "sheet",
+            "blocks": [
+                {
+                    "name": "future_tradebook_table",
+                    "@entity": "table",
+                    "header": [
+                        "id",
+                        "contract_name",
+                        "transaction_type",
+                        "date",
+                        "quantity",
+                        "price",
+                        "price_currency",
+                        "price_inr",
+                        "fee_amount",
+                        "fee_currency",
+                        "fee_amount_inr"
+                    ],
+                    "rows": [
+                        [
+                            "addf3434mkvefv456h",
+                            "BTC-USDT",
+                            "buy",
+                            1756721330000,
+                            7,
+                            115,
+                            "USDT",
+                            10120,
+                            500,
+                            "INR",
+                            500
+                        ],
+                        [
+                            "fege4343gbgee344tg",
+                            "BTC-USDT",
+                            "sell",
+                            1757930930000,
+                            4,
+                            155,
+                            "USDT",
+                            13795,
+                            750,
+                            "INR",
+                            750
+                        ],
+                        [
+                            "fhtyjrg35n788985gff3",
+                            "ETH-USDT",
+                            "buy",
+                            1760522930000,
+                            5,
+                            125,
+                            "USDT",
+                            11250,
+                            1000,
+                            "INR",
+                            1000
+                        ],
+                        [
+                            "fhtyjrg35n788985gff4",
+                            "XRP-USDT",
+                            "buy",
+                            1763201330000,
+                            3,
+                            105,
+                            "USDT",
+                            9555,
+                            1250,
+                            "INR",
+                            1250
+                        ],
+                        [
+                            "fhtyjrg35n788985gff5",
+                            "ETH-USDT",
+                            "sell",
+                            1764410930000,
+                            4,
+                            100,
+                            "USDT",
+                            9200,
+                            1500,
+                            "INR",
+                            1500
+                        ]
+                    ]
+                },
+                {
+                    "name": "future_last_traded_price_table",
+                    "@entity": "table",
+                    "header": [
+                        "contract_name",
+                        "currency",
+                        "last_traded_price",
+                        "last_traded_price_inr"
+                    ],
+                    "rows": [
+                        [
+                            "BTC-USDT",
+                            "INR",
+                            175,
+                            175
+                        ],
+                        [
+                            "ETH-USDT",
+                            "INR",
+                            130,
+                            130
+                        ],
+                        [
+                            "XRP-USDT",
+                            "INR",
+                            110,
+                            110
+                        ]
+                    ]
+                }
+            ]
+        }
+    ]
+}

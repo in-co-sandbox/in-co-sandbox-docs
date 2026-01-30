@@ -1,0 +1,570 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "type": "object",
+  "properties": {
+    "name": {
+      "type": "string",
+      "enum": [
+        "crypto_currency_tradebook_workbook"
+      ]
+    },
+    "@entity": {
+      "type": "string",
+      "enum": [
+        "workbook"
+      ]
+    },
+    "sheets": {
+      "type": "array",
+      "items": {
+        "oneOf": [
+          {
+            "type": "object",
+            "properties": {
+              "name": {
+                "type": "string",
+                "enum": [
+                  "spot_sheet"
+                ]
+              },
+              "@entity": {
+                "type": "string",
+                "enum": [
+                  "sheet"
+                ]
+              },
+              "blocks": {
+                "type": "array",
+                "items": {
+                  "oneOf": [
+                    {
+                      "type": "object",
+                      "properties": {
+                        "name": {
+                          "type": "string",
+                          "enum": [
+                            "spot_tradebook_table"
+                          ]
+                        },
+                        "@entity": {
+                          "type": "string",
+                          "enum": [
+                            "table"
+                          ]
+                        },
+                        "header": {
+                          "type": "array",
+                          "items": [
+                            {
+                              "type": "string",
+                              "enum": [
+                                "id"
+                              ]
+                            },
+                            {
+                              "type": "string",
+                              "enum": [
+                                "date"
+                              ]
+                            },
+                            {
+                              "type": "string",
+                              "enum": [
+                                "transaction_type"
+                              ]
+                            },
+                            {
+                              "type": "string",
+                              "enum": [
+                                "label"
+                              ]
+                            },
+                            {
+                              "type": "string",
+                              "enum": [
+                                "received_currency"
+                              ]
+                            },
+                            {
+                              "type": "string",
+                              "enum": [
+                                "received_quantity"
+                              ]
+                            },
+                            {
+                              "type": "string",
+                              "enum": [
+                                "price"
+                              ]
+                            },
+                            {
+                              "type": "string",
+                              "enum": [
+                                "price_currency"
+                              ]
+                            },
+                            {
+                              "type": "string",
+                              "enum": [
+                                "price_inr"
+                              ]
+                            },
+                            {
+                              "type": "string",
+                              "enum": [
+                                "sent_currency"
+                              ]
+                            },
+                            {
+                              "type": "string",
+                              "enum": [
+                                "sent_quantity"
+                              ]
+                            },
+                            {
+                              "type": "string",
+                              "enum": [
+                                "fee_currency"
+                              ]
+                            },
+                            {
+                              "type": "string",
+                              "enum": [
+                                "fee_amount"
+                              ]
+                            },
+                            {
+                              "type": "string",
+                              "enum": [
+                                "fee_amount_inr"
+                              ]
+                            }
+                          ],
+                          "additionalItems": false,
+                          "minItems": 14,
+                          "maxItems": 14
+                        },
+                        "rows": {
+                          "type": "array",
+                          "items": {
+                            "type": "array",
+                            "items": [
+                              {
+                                "type": "string"
+                              },
+                              {
+                                "type": "integer",
+                                "format": "Long"
+                              },
+                              {
+                                "type": "string"
+                              },
+                              {
+                                "type": "string"
+                              },
+                              {
+                                "type": "string"
+                              },
+                              {
+                                "type": "number",
+                                "format": "BigDecimal"
+                              },
+                              {
+                                "type": "number",
+                                "format": "BigDecimal"
+                              },
+                              {
+                                "type": "string"
+                              },
+                              {
+                                "type": "number",
+                                "format": "BigDecimal"
+                              },
+                              {
+                                "type": "string"
+                              },
+                              {
+                                "type": "number",
+                                "format": "BigDecimal"
+                              },
+                              {
+                                "type": "string"
+                              },
+                              {
+                                "type": "number",
+                                "format": "BigDecimal"
+                              },
+                              {
+                                "type": "number",
+                                "format": "BigDecimal"
+                              }
+                            ],
+                            "additionalItems": false,
+                            "minItems": 14,
+                            "maxItems": 14
+                          }
+                        }
+                      },
+                      "required": [
+                        "name",
+                        "@entity",
+                        "header",
+                        "rows"
+                      ]
+                    },
+                    {
+                      "type": "object",
+                      "properties": {
+                        "name": {
+                          "type": "string",
+                          "enum": [
+                            "spot_last_traded_price_table"
+                          ]
+                        },
+                        "@entity": {
+                          "type": "string",
+                          "enum": [
+                            "table"
+                          ]
+                        },
+                        "header": {
+                          "type": "array",
+                          "items": [
+                            {
+                              "type": "string",
+                              "enum": [
+                                "symbol"
+                              ]
+                            },
+                            {
+                              "type": "string",
+                              "enum": [
+                                "currency"
+                              ]
+                            },
+                            {
+                              "type": "string",
+                              "enum": [
+                                "last_traded_price"
+                              ]
+                            },
+                            {
+                              "type": "string",
+                              "enum": [
+                                "last_traded_price_inr"
+                              ]
+                            }
+                          ],
+                          "additionalItems": false,
+                          "minItems": 4,
+                          "maxItems": 4
+                        },
+                        "rows": {
+                          "type": "array",
+                          "items": {
+                            "type": "array",
+                            "items": [
+                              {
+                                "type": "string"
+                              },
+                              {
+                                "type": "string"
+                              },
+                              {
+                                "type": "number",
+                                "format": "BigDecimal"
+                              },
+                              {
+                                "type": "number",
+                                "format": "BigDecimal"
+                              }
+                            ],
+                            "additionalItems": false,
+                            "minItems": 4,
+                            "maxItems": 4
+                          }
+                        }
+                      },
+                      "required": [
+                        "name",
+                        "@entity",
+                        "header",
+                        "rows"
+                      ]
+                    }
+                  ]
+                }
+              }
+            },
+            "required": [
+              "name",
+              "@entity",
+              "blocks"
+            ]
+          },
+          {
+            "type": "object",
+            "properties": {
+              "name": {
+                "type": "string",
+                "enum": [
+                  "future_sheet"
+                ]
+              },
+              "@entity": {
+                "type": "string",
+                "enum": [
+                  "sheet"
+                ]
+              },
+              "blocks": {
+                "type": "array",
+                "items": {
+                  "oneOf": [
+                    {
+                      "type": "object",
+                      "properties": {
+                        "name": {
+                          "type": "string",
+                          "enum": [
+                            "future_tradebook_table"
+                          ]
+                        },
+                        "@entity": {
+                          "type": "string",
+                          "enum": [
+                            "table"
+                          ]
+                        },
+                        "header": {
+                          "type": "array",
+                          "items": [
+                            {
+                              "type": "string",
+                              "enum": [
+                                "id"
+                              ]
+                            },
+                            {
+                              "type": "string",
+                              "enum": [
+                                "contract_name"
+                              ]
+                            },
+                            {
+                              "type": "string",
+                              "enum": [
+                                "transaction_type"
+                              ]
+                            },
+                            {
+                              "type": "string",
+                              "enum": [
+                                "date"
+                              ]
+                            },
+                            {
+                              "type": "string",
+                              "enum": [
+                                "quantity"
+                              ]
+                            },
+                            {
+                              "type": "string",
+                              "enum": [
+                                "price"
+                              ]
+                            },
+                            {
+                              "type": "string",
+                              "enum": [
+                                "price_currency"
+                              ]
+                            },
+                            {
+                              "type": "string",
+                              "enum": [
+                                "price_inr"
+                              ]
+                            },
+                            {
+                              "type": "string",
+                              "enum": [
+                                "fee_amount"
+                              ]
+                            },
+                            {
+                              "type": "string",
+                              "enum": [
+                                "fee_currency"
+                              ]
+                            },
+                            {
+                              "type": "string",
+                              "enum": [
+                                "fee_amount_inr"
+                              ]
+                            }
+                          ],
+                          "additionalItems": false,
+                          "minItems": 11,
+                          "maxItems": 11
+                        },
+                        "rows": {
+                          "type": "array",
+                          "items": {
+                            "type": "array",
+                            "items": [
+                              {
+                                "type": "string"
+                              },
+                              {
+                                "type": "string"
+                              },
+                              {
+                                "type": "string"
+                              },
+                              {
+                                "type": "integer",
+                                "format": "Long"
+                              },
+                              {
+                                "type": "number",
+                                "format": "BigDecimal"
+                              },
+                              {
+                                "type": "number",
+                                "format": "BigDecimal"
+                              },
+                              {
+                                "type": "string"
+                              },
+                              {
+                                "type": "number",
+                                "format": "BigDecimal"
+                              },
+                              {
+                                "type": "number",
+                                "format": "BigDecimal"
+                              },
+                              {
+                                "type": "string"
+                              },
+                              {
+                                "type": "number",
+                                "format": "BigDecimal"
+                              }
+                            ],
+                            "additionalItems": false,
+                            "minItems": 11,
+                            "maxItems": 11
+                          }
+                        }
+                      },
+                      "required": [
+                        "name",
+                        "@entity",
+                        "header",
+                        "rows"
+                      ]
+                    },
+                    {
+                      "type": "object",
+                      "properties": {
+                        "name": {
+                          "type": "string",
+                          "enum": [
+                            "future_last_traded_price_table"
+                          ]
+                        },
+                        "@entity": {
+                          "type": "string",
+                          "enum": [
+                            "table"
+                          ]
+                        },
+                        "header": {
+                          "type": "array",
+                          "items": [
+                            {
+                              "type": "string",
+                              "enum": [
+                                "contract_name"
+                              ]
+                            },
+                            {
+                              "type": "string",
+                              "enum": [
+                                "currency"
+                              ]
+                            },
+                            {
+                              "type": "string",
+                              "enum": [
+                                "last_traded_price"
+                              ]
+                            },
+                            {
+                              "type": "string",
+                              "enum": [
+                                "last_traded_price_inr"
+                              ]
+                            }
+                          ],
+                          "additionalItems": false,
+                          "minItems": 4,
+                          "maxItems": 4
+                        },
+                        "rows": {
+                          "type": "array",
+                          "items": {
+                            "type": "array",
+                            "items": [
+                              {
+                                "type": "string"
+                              },
+                              {
+                                "type": "string"
+                              },
+                              {
+                                "type": "number",
+                                "format": "BigDecimal"
+                              },
+                              {
+                                "type": "number",
+                                "format": "BigDecimal"
+                              }
+                            ],
+                            "additionalItems": false,
+                            "minItems": 4,
+                            "maxItems": 4
+                          }
+                        }
+                      },
+                      "required": [
+                        "name",
+                        "@entity",
+                        "header",
+                        "rows"
+                      ]
+                    }
+                  ]
+                }
+              }
+            },
+            "required": [
+              "name",
+              "@entity",
+              "blocks"
+            ]
+          }
+        ]
+      }
+    }
+  },
+  "required": [
+    "name",
+    "@entity",
+    "sheets"
+  ]
+}
