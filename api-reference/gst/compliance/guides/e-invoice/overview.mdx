@@ -14,16 +14,16 @@ Sandbox supports dual-IRP routing via the `x-source` header. Route e-Invoice cal
 </Note>
 
 <CardGroup cols={2}>
-  <Card title="Dual-IRP routing" icon="shuffle">
+  <Card title="Dual-IRP routing" icon="shuffle" href="/api-reference/gst/compliance/endpoints/e-invoice/authenticate">
     Route requests to [NIC 1](https://einvoice1.gst.gov.in/) or [NIC 2](https://einvoice1.gst.gov.in/) using the `x-source` header. Retry with the alternate IRP if one is unavailable.
   </Card>
-  <Card title="Complete e-Invoice lifecycle" icon="file-invoice">
+  <Card title="Complete e-Invoice lifecycle" icon="file-invoice" href="/recipes/gst/e-invoice/generate_e_invoice">
     Generate, fetch, cancel e-invoices, and create/retrieve E-Way Bills linked to IRN.
   </Card>
-  <Card title="Signed invoice & QR code" icon="signature">
+  <Card title="Signed invoice & QR code" icon="signature" href="/api-reference/gst/compliance/endpoints/e-invoice/generate_e_invoice">
     Receive IRP-signed invoice and QR code for compliance and audit requirements.
   </Card>
-  <Card title="PDF generation" icon="file-pdf">
+  <Card title="PDF generation" icon="file-pdf" href="/api-reference/gst/compliance/endpoints/e-invoice/generate_e_invoice_pdf">
     Generate e-Invoice PDFs using the signed invoice and QR code data.
   </Card>
 </CardGroup>
