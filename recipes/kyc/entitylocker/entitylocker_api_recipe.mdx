@@ -1,146 +1,318 @@
 ---
-title: "Fetch Documents from EntityLocker"
-description: "Initiate an EntityLocker session, check session status, fetch entity details, and download documents using Sandbox EntityLocker APIs."
+title: "Fetch Documents using EntityLocker"
+description: "Retrieve verified business documents through EntityLocker consent flow."
+keywords: ["entitylocker", "kyc", "entity verification", "document consent", "business kyc", "digilocker", "entity documents"]
 ---
 
-EntityLocker allows organizations to securely share verified documents such as incorporation certificates, registrations, and licenses with consent.
+EntityLocker enables organizations to securely share verified business documents like incorporation certificates, GST registrations, and licenses with your application through user consent.
 
-This recipe walks you through the complete EntityLocker flow:
-- Initiating an EntityLocker session
-- Tracking session status
-- Fetching entity and user profile details
-- Downloading documents shared via EntityLocker
+This recipe walks you through:
+- Initiating an EntityLocker consent session
+- Tracking consent completion
+- Downloading consented documents
+- Fetching user and entity verification details
 
 <Info>
-Before you begin, ensure that:
-
-- You have generated a Sandbox <code>x-api-key</code>.
-- You have generated a Sandbox JWT <code>authorization</code> token using the <b>Authenticate</b> API.
-- The entity user has consented to share documents via EntityLocker.
+Before you begin, ensure you have:
+- Generated a Sandbox `x-api-key`
+- Obtained a JWT `authorization` token using the [**Authenticate API**](/api-reference/authenticate)
+- A business entity ready to provide consent through EntityLocker
 </Info>
 
 <Steps>
 
-  <Step title="Initiate EntityLocker Session" stepNumber={1} titleSize="h2">
-    Start the EntityLocker flow by initiating a consent session.
+<Step title="Initiate EntityLocker session" stepNumber={1} titleSize="h2">
 
-    This API returns:
-    - <code>session_id</code> to track the session
-    - <code>authorization_url</code> where the user must be redirected to authenticate and grant consent
+Use the [Initiate Session API](/api-reference/kyc/entitylocker/endpoints/initiate_session) to start the EntityLocker consent flow.
 
-    <Accordion title="cURL Request – Initiate Session" defaultOpen>
-      ```bash
-      curl --request POST \
+The API returns a `session_id` to track the session and an `authorization_url` where you must redirect the user to authenticate and grant document consent.
+
+<Accordion title="Request" defaultOpen>
+```bash
+curl --request POST \
   --url https://api.sandbox.co.in/kyc/entitylocker/sessions/init \
-  --header 'Authorization: <authorization>' \
+  --header 'Authorization: Bearer <your-jwt-token>' \
   --header 'Content-Type: application/json' \
-  --header 'x-api-key: <x-api-key>' \
-  --data '
-{
+  --header 'x-api-key: <your-api-key>' \
+  --data '{
   "@entity": "in.co.sandbox.kyc.entitylocker.session.request",
   "flow": "signin",
-  "redirect_url": "https://sandbox.co.in"
+  "redirect_url": "https://yourdomain.com/callback"
 }'
-      ```
-    </Accordion>
+```
+</Accordion>
 
-    Redirect the user to the returned <code>authorization_url</code> to complete authentication and consent.
+<Accordion title="Response">
+```json
+{
+  "code": 200,
+  "timestamp": 1765534184274,
+  "data": {
+    "@entity": "in.co.sandbox.kyc.entitylocker.session.response",
+    "session_id": "d3f8897e-f1ff-4449-9704-7073f6930296",
+    "authorization_url": "https://entity.digilocker.gov.in/public/oauth2/1/authorize?response_type=code&client_id=..."
+  },
+  "transaction_id": "02683ff9-2abc-42ab-a050-945f21068bce"
+}
+```
+</Accordion>
 
-    <Info>
-    Do not proceed until the user completes the EntityLocker consent flow.
-    </Info>
-  </Step>
+<ParamField body="session_id" type="string" required>
+  Unique identifier to track this EntityLocker consent session
+</ParamField>
 
-  <Step title="Check EntityLocker Session Status" stepNumber={2} titleSize="h2">
-    After the user completes the consent flow, check the session status using the <code>session_id</code>.
+<ParamField body="authorization_url" type="string" required>
+  Redirect URL where the user authenticates and grants consent for document sharing
+</ParamField>
 
-    <Accordion title="cURL Request – Get Session Status" defaultOpen>
-      ```bash
-      curl --request GET \
+After receiving the response, redirect the user to the `authorization_url` to complete authentication and consent.
+
+<Warning>
+Do not proceed to fetch documents until the user completes the EntityLocker consent flow and the session status is `succeeded`.
+</Warning>
+
+</Step>
+
+<Step title="Check session status" stepNumber={2} titleSize="h2">
+
+After the user completes the consent flow, verify the session status using the [Get Session Status API](/api-reference/kyc/entitylocker/endpoints/session_status).
+
+<Accordion title="Request" defaultOpen>
+```bash
+curl --request GET \
   --url https://api.sandbox.co.in/kyc/entitylocker/sessions/{session_id}/status \
-  --header 'Authorization: <authorization>' \
-  --header 'x-api-key: <x-api-key>'
-      ```
-    </Accordion>
+  --header 'Authorization: Bearer <your-jwt-token>' \
+  --header 'x-api-key: <your-api-key>'
+```
+</Accordion>
 
-    Possible session statuses:
+<Accordion title="Response - Session created">
+```json
+{
+  "code": 200,
+  "timestamp": 1752580258171,
+  "data": {
+    "id": "839fd8a0-d645-42e1-a904-bb43353b0139",
+    "created_at": 1752579445983,
+    "@entity": "in.co.sandbox.kyc.entitylocker.session",
+    "status": "created"
+  },
+  "transaction_id": "800ff751-2191-4b7d-b20a-8301790a3e19"
+}
+```
+</Accordion>
 
-    - <code>created</code> – session initiated, consent not completed  
-    - <code>succeeded</code> – consent granted successfully  
-    - <code>failed</code> – authentication or consent failed  
+<Accordion title="Response - Session succeeded">
+```json
+{
+  "code": 200,
+  "timestamp": 1751975475945,
+  "data": {
+    "id": "f1bd0342-cc1d-4051-8301-e8ee17e3a3c3",
+    "created_at": 1751975341292,
+    "updated_at": 1751975465494,
+    "@entity": "in.co.sandbox.kyc.entitylocker.session",
+    "status": "succeeded",
+    "documents_consented": [
+      "company_master_details",
+      "gstn_details",
+      "udhyam_certificate"
+    ]
+  },
+  "transaction_id": "6daaaf0c-21f6-4e32-93b5-19ec4415d7fa"
+}
+```
+</Accordion>
 
-    When the status is <code>succeeded</code>, the response also contains <code>documents_consented</code>, listing the document types approved by the entity.
-  </Step>
+Session statuses:
 
-  <Step title="Fetch Documents from EntityLocker" stepNumber={3} titleSize="h2">
-    Once the session status is <code>succeeded</code>, fetch all documents shared by the entity.
+- `created` – session initiated, user has not completed consent
+- `succeeded` – user authenticated successfully and granted document consent
+- `failed` – authentication or consent failed
+- `expired` – session expired before consent was granted
 
-    EntityLocker does not require individual document IDs.  
-    This API returns **all consented documents for the session** as signed download URLs.
+When the status is `succeeded`, the response includes `documents_consented`, listing the document types the entity approved for sharing.
 
-    <Accordion title="cURL Request – Fetch Documents" defaultOpen>
-      ```bash
-      curl --request GET \
+<Tip>
+Poll this endpoint periodically to check if consent is complete, or set up a webhook callback using the `redirect_url` parameter.
+</Tip>
+
+</Step>
+
+<Step title="Fetch documents" stepNumber={3} titleSize="h2">
+
+Once the session status is `succeeded`, retrieve the consented documents using the [Fetch Document API](/api-reference/kyc/entitylocker/endpoints/fetch_document).
+
+EntityLocker returns all consented documents for the session as pre-signed download URLs. You don't need individual document IDs.
+
+<Accordion title="Request" defaultOpen>
+```bash
+curl --request GET \
   --url https://api.sandbox.co.in/kyc/entitylocker/sessions/{session_id}/documents/{doc_type} \
-  --header 'Authorization: <authorization>' \
-  --header 'x-api-key: <x-api-key>'
-      ```
-    </Accordion>
+  --header 'Authorization: Bearer <your-jwt-token>' \
+  --header 'x-api-key: <your-api-key>'
+```
+</Accordion>
 
-    The response includes a list of files, each containing:
+<Accordion title="Response">
+```json
+{
+  "code": 200,
+  "timestamp": 1765781088023,
+  "data": {
+    "files": [
+      {
+        "@entity": "org.quicko.drive.file",
+        "url": "https://in-co-sandbox-kyc-entitylocker-storage-dev.s3.ap-south-1.amazonaws.com/non-persistent/workspaces/...",
+        "size": 108598,
+        "metadata": {
+          "ContentType": "application/pdf",
+          "issuer_id": "in.gov.mca",
+          "issuer": "Ministry of Corporate Affairs (MCA), Govt. of India",
+          "LastModified": "19/12/2024",
+          "description": "Company Master Details"
+        }
+      }
+    ]
+  },
+  "transaction_id": "aa10bddf-1fc6-45a9-b0af-dc13613de60c"
+}
+```
+</Accordion>
 
-    - Signed S3 <code>url</code> (time-bound)
-    - File <code>size</code>
-    - Metadata such as issuer, description, and content type
+<Accordion title="Error - Consent not provided">
+```json
+{
+  "code": 400,
+  "timestamp": 1765888053322,
+  "message": "Consent for udhyam_certificate not provided",
+  "transaction_id": "3f0590ab-b977-43ae-8b9d-667d984cceb2"
+}
+```
+</Accordion>
 
-    <Warning>
-    The document URLs are temporary and expire after a short duration.
-    Download and store documents securely before expiry.
-    </Warning>
-  </Step>
+Available document types:
+- `company_master_details` – incorporation certificate from Ministry of Corporate Affairs
+- `gstn_details` – GST registration certificate
+- `udhyam_certificate` – Udyam (MSME) registration certificate
 
-  <Step title="Fetch User Profile Details" stepNumber={4} titleSize="h2">
-    Fetch details of the user who authenticated and granted consent on behalf of the entity.
+Each file includes:
+- Pre-signed S3 `url` for direct download
+- File `size` in bytes
+- `metadata` including issuer, content type, and description
 
-    <Accordion title="cURL Request – Get User Profile Details" defaultOpen>
-      ```bash
-     curl --request GET \
+<Warning>
+Document URLs are temporary and expire after a short duration (typically 1 hour). Download and store documents securely before they expire.
+</Warning>
+
+</Step>
+
+<Step title="Fetch user profile" stepNumber={4} titleSize="h2">
+
+Retrieve details of the user who authenticated and granted consent on behalf of the entity using the [Get User Profile API](/api-reference/kyc/entitylocker/endpoints/get_user_profile_details).
+
+<Accordion title="Request" defaultOpen>
+```bash
+curl --request GET \
   --url https://api.sandbox.co.in/kyc/entitylocker/sessions/{session_id}/user/profile \
-  --header 'Authorization: <authorization>' \
-  --header 'x-api-key: <x-api-key>'
-      ```
-    </Accordion>
+  --header 'Authorization: Bearer <your-jwt-token>' \
+  --header 'x-api-key: <your-api-key>'
+```
+</Accordion>
 
-    This response typically includes:
+<Accordion title="Response">
+```json
+{
+  "code": 200,
+  "timestamp": 1765889000461,
+  "data": {
+    "id": "96b14651-a333-547d-8de9-fee0be4f941e",
+    "@entity": "in.co.sandbox.kyc.entitylocker.user.profile",
+    "name": "Henil Rupesh Shah",
+    "date_of_birth": "28/01/2002",
+    "mobile": "9512120133",
+    "gender": "male",
+    "eaadhaar": true
+  },
+  "transaction_id": "7603165e-e591-4342-bb19-1d9f4caabb0f"
+}
+```
+</Accordion>
 
-    - Name  
-    - Date of birth  
-    - Mobile number  
-    - Gender  
+The response includes:
+- User's full name
+- Date of birth
+- Mobile number
+- Gender
+- Whether they have an e-Aadhaar linked
 
-    <Info>
-    This information is useful for audit logs and identifying the authorized signatory.
-    </Info>
-  </Step>
+<Info>
+Use this information for audit logs, identifying the authorized signatory, and compliance recordkeeping.
+</Info>
 
-  <Step title="Fetch Entity Details" stepNumber={5} titleSize="h2">
-    Fetch verified entity-level information derived from the documents shared via EntityLocker.
+</Step>
 
-    <Accordion title="cURL Request – Get Entity Details" defaultOpen>
-      ```bash
-     curl --request GET \
-  --url https://api.sandbox.co.in/kyc/entitylocker/sessions/{session_id}/user/profile \
-  --header 'Authorization: <authorization>' \
-  --header 'x-api-key: <x-api-key>'
-      ```
-    </Accordion>
+<Step title="Fetch entity details" stepNumber={5} titleSize="h2">
 
-    This endpoint returns verified entity information that can be used for business KYC and compliance workflows.
-  </Step>
+Retrieve verified entity-level information derived from the shared documents using the [Get Entity Details API](/api-reference/kyc/entitylocker/endpoints/get_entity_details).
+
+<Accordion title="Request" defaultOpen>
+```bash
+curl --request GET \
+  --url https://api.sandbox.co.in/kyc/entitylocker/sessions/{session_id}/entity \
+  --header 'Authorization: Bearer <your-jwt-token>' \
+  --header 'x-api-key: <your-api-key>'
+```
+</Accordion>
+
+<Accordion title="Response">
+```json
+{
+  "code": 200,
+  "timestamp": 1765888767565,
+  "data": {
+    "id": "4e8455e8-27db-50a0-99e9-0b0211a4811d",
+    "@entity": "in.co.sandbox.kyc.entitylocker.entity",
+    "name": "SANDBOX FINANCIAL TECHNOLOGIES PRIVATE LIMITED",
+    "date_of_incorporation": "16/01/2023",
+    "email": "help@sandbox.co.in",
+    "mobile": "9099983246",
+    "verified_by": "cin"
+  },
+  "transaction_id": "c4124d99-4854-446f-9b04-b8f8c12785d0"
+}
+```
+</Accordion>
+
+The response includes:
+- Entity name (legal business name)
+- Date of incorporation
+- Contact email and mobile number
+- Verification source (e.g., CIN from MCA)
+
+Use this verified entity information for:
+- Business KYC and onboarding
+- Compliance verification workflows
+- Internal audit trails
+- Downstream regulatory reporting
+
+</Step>
 
 </Steps>
 
-<Info>
-**Next steps:**  
-Use the fetched documents, entity details, and user profile information for onboarding, compliance verification, internal audits, or downstream KYC workflows.
-</Info>
+## Next steps
+
+With the fetched documents, entity details, and user profile information, you can:
+
+- Complete business onboarding and KYC verification
+- Store documents securely for compliance purposes
+- Validate entity information against other data sources
+- Trigger downstream workflows like account creation or credit assessment
+
+<Card
+  title="View EntityLocker API reference"
+  icon="code"
+  href="/api-reference/kyc/entitylocker/overview"
+>
+  Explore detailed API documentation, parameters, and response schemas
+</Card>

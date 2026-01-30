@@ -1,0 +1,198 @@
+---
+title: "Aadhaar OTP authentication"
+description: "Authenticate Aadhaar holders using OTP generation and verification."
+keywords: ["Aadhaar", "OTP", "KYC", "authentication", "e-KYC", "UIDAI"]
+---
+
+Aadhaar OTP authentication enables you to verify customer identities and retrieve their e-KYC data with consent. The workflow generates an OTP sent to the Aadhaar-linked mobile number, which the user verifies to complete authentication.
+
+This recipe walks you through:
+- Generating an OTP for Aadhaar authentication
+- Verifying the OTP to complete authentication
+- Retrieving e-KYC data including name, address, and photo
+
+<Info>
+Before you begin, ensure you have:
+- Generated a Sandbox `x-api-key`
+- Obtained a JWT `authorization` token using the [**Authenticate API**](/api-reference/authenticate)
+- Obtained user consent to perform Aadhaar OTP authentication
+</Info>
+
+<Steps>
+
+<Step title="Generate Aadhaar OTP" stepNumber={1} titleSize="h2">
+
+Use the [Generate OTP API](/api-reference/kyc/aadhaar/endpoints/generate_otp) to send an OTP to the mobile number registered with the Aadhaar number.
+
+The API returns a `reference_id` that you'll use in the next step to verify the OTP and complete authentication.
+
+<Accordion title="Request" defaultOpen>
+```bash
+curl --request POST \
+  --url https://api.sandbox.co.in/kyc/aadhaar/okyc/otp \
+  --header 'Authorization: Bearer <your-jwt-token>' \
+  --header 'Content-Type: application/json' \
+  --header 'x-api-key: <your-api-key>' \
+  --header 'x-api-version: 1.0.0' \
+  --data '{
+    "@entity": "in.co.sandbox.kyc.aadhaar.okyc.otp.request",
+    "aadhaar_number": "123412341234",
+    "consent": "Y",
+    "reason": "KYC verification"
+  }'
+```
+</Accordion>
+
+<Accordion title="Response">
+```json
+{
+  "code": 200,
+  "timestamp": 1765889766000,
+  "transaction_id": "fad04935-d568-4830-a650-7abd4ecec507",
+  "data": {
+    "@entity": "in.co.sandbox.kyc.aadhaar.okyc.otp.response",
+    "reference_id": 1234567,
+    "message": "OTP sent successfully"
+  }
+}
+```
+</Accordion>
+
+<ParamField body="reference_id" type="integer" required>
+  Unique identifier to track this OTP verification session. Required for verifying the OTP.
+</ParamField>
+
+The OTP is sent to the mobile number linked with the Aadhaar. Store the `reference_id` securely for the next step.
+
+<Warning>
+OTP validity and retry limits are governed by UIDAI policies. Ensure users complete verification within the OTP validity period.
+</Warning>
+
+</Step>
+
+<Step title="Verify OTP and retrieve e-KYC data" stepNumber={2} titleSize="h2">
+
+After the user receives the OTP, verify it using the [Verify OTP API](/api-reference/kyc/aadhaar/endpoints/verify_otp) to complete authentication and retrieve e-KYC data.
+
+<Accordion title="Request" defaultOpen>
+```bash
+curl --request POST \
+  --url https://api.sandbox.co.in/kyc/aadhaar/okyc/otp/verify \
+  --header 'Authorization: Bearer <your-jwt-token>' \
+  --header 'Content-Type: application/json' \
+  --header 'x-api-key: <your-api-key>' \
+  --header 'x-api-version: 1.0.0' \
+  --data '{
+    "@entity": "in.co.sandbox.kyc.aadhaar.okyc.request",
+    "reference_id": "1234567",
+    "otp": "123456"
+  }'
+```
+</Accordion>
+
+<Accordion title="Response - Verification succeeded">
+```json
+{
+  "code": 200,
+  "timestamp": 1765889766000,
+  "transaction_id": "33d55e13-d145-4b95-ae8e-5cbafc1d6e5c",
+  "data": {
+    "@entity": "in.co.sandbox.kyc.aadhaar.okyc",
+    "reference_id": 1234567,
+    "status": "VALID",
+    "message": "Aadhaar Card Exists",
+    "care_of": "S/O: Johnny Doe",
+    "full_address": "Mangal Kanaka Niwas, Main Cross 3rd, Bengaluru, Bengaluru-Karnataka, India",
+    "date_of_birth": "21-04-1985",
+    "email_hash": "044917e2c4c62a439d068.......d9f71bbde10b1d227a914e",
+    "gender": "M",
+    "name": "John Doe",
+    "address": {
+      "@entity": "in.co.sandbox.kyc.aadhaar.okyc.address",
+      "country": "India",
+      "district": "Bengaluru",
+      "house": "Mangal Kanaka Niwas",
+      "landmark": "",
+      "pincode": "581615",
+      "post_office": "Bengaluru",
+      "state": "Karnataka",
+      "street": "Main Cross 3rd",
+      "subdistrict": "",
+      "vtc": "Bengaluru"
+    },
+    "year_of_birth": "1985",
+    "mobile_hash": "044917e2c4c62a439d068.......d9f71bbde10b1d227a914e",
+    "photo": "data:image/jpeg;base64,/9j/4AAQSk.......mj/2Q==",
+    "share_code": "1234"
+  }
+}
+```
+</Accordion>
+
+<Accordion title="Response - Invalid OTP">
+```json
+{
+  "code": 200,
+  "timestamp": 1765889766000,
+  "transaction_id": "98a4f051-7e2a-4117-bd71-3396555c74ee",
+  "data": {
+    "@entity": "in.co.sandbox.kyc.aadhaar.okyc",
+    "message": "Invalid OTP"
+  }
+}
+```
+</Accordion>
+
+<Accordion title="Response - OTP expired">
+```json
+{
+  "code": 200,
+  "timestamp": 1765889766000,
+  "transaction_id": "cd820d41-3a81-47c8-b370-1e8d9935fb85",
+  "data": {
+    "@entity": "in.co.sandbox.kyc.aadhaar.okyc",
+    "message": "OTP Expired"
+  }
+}
+```
+</Accordion>
+
+When verification succeeds, the response includes complete e-KYC data:
+- Personal details: name, date of birth, gender
+- Complete address with structured components
+- Base64-encoded photograph from Aadhaar
+- Hashed mobile number and email address
+
+Verification status:
+- `VALID` – OTP verified successfully, e-KYC data retrieved
+- Error messages indicate invalid OTP or expired session
+
+Handle these scenarios in your application:
+- **Invalid OTP**: Allow users to re-enter the OTP with retry limits
+- **OTP expired**: Generate a new OTP by repeating Step 1
+- **Invalid reference ID**: Ensure you're using the correct `reference_id` from the Generate OTP response
+
+<Tip>
+Store the `reference_id` in your session to handle cases where users navigate away and return to complete verification.
+</Tip>
+
+</Step>
+
+</Steps>
+
+## Next steps
+
+Once Aadhaar OTP authentication succeeds, you can:
+
+- Store the verified e-KYC data for customer onboarding and compliance
+- Use the authenticated identity for account creation workflows
+- Combine with other KYC checks like PAN verification or bank account validation
+- Display the photograph for visual identity confirmation
+
+<Card
+  title="View Aadhaar API reference"
+  icon="code"
+  href="/api-reference/kyc/aadhaar/overview"
+>
+  Explore detailed API documentation, parameters, and response schemas
+</Card>
