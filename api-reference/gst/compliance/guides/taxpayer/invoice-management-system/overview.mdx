@@ -9,9 +9,9 @@ Invoice Management System (IMS) is a GST portal workflow that lets recipient tax
 
 IMS is part of GST compliance and impacts Input Tax Credit (ITC) through GSTR-2B behavior—invoices are deemed accepted when no action is taken within the filing period.
 
-## Recipient View
+## Recipient view
 
-Recipient View allows buyers to manage inward invoices reported by their suppliers. Recipients can accept, reject, or mark invoices as pending to control their Input Tax Credit claims.
+Recipient view allows buyers to manage inward invoices reported by their suppliers. Recipients can accept, reject, or mark invoices as pending to control their Input Tax Credit claims.
 
 <CardGroup cols={2}>
   <Card title="Invoice status management" icon="file-circle-check" href="/api-reference/gst/compliance/endpoints/taxpayer/invoices/save">
@@ -28,9 +28,9 @@ Recipient View allows buyers to manage inward invoices reported by their supplie
   </Card>
 </CardGroup>
 
-## Supplier View
+## Supplier view
 
-Supplier View shows suppliers the status of actions taken by recipients (buyers) on invoices reported via GSTR-1, GSTR-1A, or IFF. In simple terms: **"Did my customer accept, reject, or keep my invoice pending?"**
+Supplier view shows suppliers the status of actions taken by recipients (buyers) on invoices reported via GSTR-1, GSTR-1A, or IFF. In simple terms: **"Did my customer accept, reject, or keep my invoice pending?"**
 
 <CardGroup cols={2}>
   <Card title="Get sales invoices" icon="file-invoice" href="/api-reference/gst/compliance/endpoints/taxpayer/invoices/sales">
@@ -77,7 +77,7 @@ Supplier View shows suppliers the status of actions taken by recipients (buyers)
   </Step>
 </Steps>
 
-### Recipient View APIs
+### Recipient view APIs
 
 #### Read APIs
 
@@ -99,7 +99,7 @@ Supplier View shows suppliers the status of actions taken by recipients (buyers)
 |:----|:-------|:-----|:------------|
 | [Check Invoice Status](/api-reference/gst/compliance/endpoints/taxpayer/invoices/status) | `GET` | `/gst/compliance/tax-payer/invoices/status` | Fetch status for save or reset invoice status action |
 
-### Supplier View APIs
+### Supplier view APIs
 
 | API | Method | Path | Description |
 |:----|:-------|:-----|:------------|
@@ -129,11 +129,15 @@ Use IMS APIs when you need to:
   <Accordion title="What is the Invoice Management System (IMS)?">
     Invoice Management System (IMS) is a GST portal feature that allows recipient taxpayers to manage inward invoices by accepting, rejecting, or marking them as pending. IMS was launched on October 1, 2024, and became operational for user actions from October 14, 2024.
   </Accordion>
-  <Accordion title="What is Supplier View in IMS?">
-    Supplier View allows suppliers to see the status of actions taken by recipients (buyers) on invoices reported via GSTR-1, GSTR-1A, or IFF. It answers the question: "Did my customer accept, reject, or keep my invoice pending?" Supplier View is for visibility and follow-up only—suppliers cannot take accept/reject actions through IMS.
+  <Accordion title="What is Supplier view in IMS?">
+    Supplier view allows suppliers to see the status of actions taken by recipients (buyers) on invoices reported via GSTR-1, GSTR-1A, or IFF. It answers the question: "Did my customer accept, reject, or keep my invoice pending?" Supplier view is for visibility and follow-up only—suppliers cannot take accept/reject actions through IMS.
   </Accordion>
-  <Accordion title="What do the recipient action statuses mean in Supplier View?">
-    **Accepted**: Recipient has accepted the invoice in IMS. **Rejected**: Recipient has rejected the invoice due to mismatch or incorrect details. **Pending**: Recipient has kept it pending for later decision. **No Action**: Recipient has not acted yet, or the record is not actionable in IMS for certain cases like RCM or ineligible ITC.
+  <Accordion title="What do the recipient action statuses mean in Supplier view?">
+    Recipient action statuses in Supplier view indicate how buyers responded to your invoices:
+    - **Accepted**: Recipient has accepted the invoice in IMS.
+    - **Rejected**: Recipient has rejected the invoice due to mismatch or incorrect details.
+    - **Pending**: Recipient has kept it pending for later decision.
+    - **No Action**: Recipient has not acted yet, or the record is not actionable in IMS for certain cases like RCM or ineligible ITC.
   </Accordion>
   <Accordion title="What should I do if a recipient rejects my invoice?">
     If a recipient rejects your invoice, review the invoice details and correct any errors or mismatches. You can amend the invoice in GSTR-1A or the next relevant return filing. Use Supplier View to monitor which invoices are rejected and prioritize follow-up for high-value transactions.
