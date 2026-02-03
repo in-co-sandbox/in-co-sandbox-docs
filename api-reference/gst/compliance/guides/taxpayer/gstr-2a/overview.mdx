@@ -5,22 +5,20 @@ description: "Retrieve GSTR-2A inward supplies data - B2B invoices, credit/debit
 
 # GSTR-2A API
 
-GSTR-2A is an auto-drafted inward supplies statement on the GST portal that reflects documents uploaded by suppliers for a return period. Use these APIs to retrieve GSTR-2A documents (B2B invoices, credit/debit notes, ISD, imports, TDS/TCS, amendments) so you can reconcile purchase data and track Input Tax Credit (ITC) visibility.
-
-This API enables automated GSTR-2A retrieval for GST compliance, covering all inward supply sections and amendment history.
+GSTR-2A is an auto-drafted inward supplies statement on the GST portal that reflects documents uploaded by suppliers for a return period. Use these APIs to retrieve GSTR-2A documents (B2B invoices, credit/debit notes, ISD, imports, TDS/TCS, amendments) to reconcile purchase data and monitor Input Tax Credit (ITC).
 
 <CardGroup cols={2}>
   <Card title="Section-wise inward documents" icon="file-invoice">
     Retrieve B2B invoices, credit/debit notes, ISD credits, imports (IMPG/IMPGSEZ), and TDS/TCS deductions from suppliers.
   </Card>
   <Card title="Amendment visibility" icon="database">
-    Track supplier amendments using B2BA, CDNA, ECOMA endpoints and view change history via AMDHIST.
+    Track supplier amendments with B2BA, CDNA, ECOMA endpoints and view change history through AMDHIST.
   </Card>
   <Card title="Reconciliation-ready outputs" icon="circle-check">
-    Normalize inward supply data for matching against purchase registers and vendor records.
+    Normalize inward supply data to match purchase registers and vendor records.
   </Card>
   <Card title="Compliance-safe access" icon="shield-check">
-    Access GSTR-2A through authenticated taxpayer sessions with proper error handling.
+    Access GSTR-2A through authenticated taxpayer sessions.
   </Card>
 </CardGroup>
 
@@ -52,25 +50,6 @@ This API enables automated GSTR-2A retrieval for GST compliance, covering all in
   </Step>
 </Steps>
 
-## What you can do
-
-Explore GSTR-2A retrieval workflows:
-
-<CardGroup cols={2}>
-  <Card title="Get B2B invoices" icon="file-lines" href="/api-reference/gst/compliance/endpoints/taxpayer/gstr-2a/b2b">
-    Retrieve B2B inward supplies visible in GSTR-2A for the selected period.
-  </Card>
-  <Card title="Reconcile credit/debit notes" icon="file-invoice" href="/api-reference/gst/compliance/endpoints/taxpayer/gstr-2a/cdn">
-    Fetch credit and debit notes issued by suppliers.
-  </Card>
-  <Card title="Track amendments" icon="database" href="/api-reference/gst/compliance/endpoints/taxpayer/gstr-2a/amdhist">
-    View amendment history and track changes via AMDHIST, B2BA, and CDNA endpoints.
-  </Card>
-  <Card title="Get B2B amendments" icon="circle-check" href="/api-reference/gst/compliance/endpoints/taxpayer/gstr-2a/b2ba">
-    Retrieve amended B2B invoices for reconciliation updates.
-  </Card>
-</CardGroup>
-
 ## API categories
 
 <CardGroup cols={2}>
@@ -89,7 +68,7 @@ Explore GSTR-2A retrieval workflows:
   <Card title="Other credits" icon="shield-check" href="#other-credit-apis">
     ISD and TDS endpoints for Input Service Distributor and TDS credits
   </Card>
-  <Card title="Change tracking" icon="triangle-exclamation" href="/api-reference/gst/compliance/endpoints/taxpayer/gstr-2a/amdhist">
+  <Card title="Change tracking" icon="triangle-exclamation" href="#amendment-history-api">
     AMDHIST endpoint for amendment history and change audit
   </Card>
 </CardGroup>

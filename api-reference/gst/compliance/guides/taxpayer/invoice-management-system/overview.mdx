@@ -1,13 +1,13 @@
 ---
 title: "Overview"
-description: "Automate GST invoice management with IMS APIs to fetch invoice counts, save accept/reject/pending actions, track processing status, and monitor recipient actions via Supplier View for Input Tax Credit compliance."
+description: "Automate GST invoice actions with IMS APIs—fetch counts, save accept/reject/pending status, track processing, and monitor recipient responses for ITC compliance."
 ---
 
 # Invoice Management System (IMS) API
 
-Invoice Management System (IMS) is a GST portal workflow that lets recipient taxpayers manage invoices by taking actions like accept, reject, or mark pending. Use this API to automate IMS invoice review by fetching invoice counts and invoice lists, saving or resetting recipient actions, and tracking processing status for each action.
+Invoice Management System (IMS) is a GST portal workflow that lets recipient taxpayers accept, reject, or mark invoices as pending. Automate invoice actions, track processing status, and monitor recipient responses for Input Tax Credit compliance with this API.
 
-IMS is part of GST compliance and impacts Input Tax Credit (ITC) through GSTR-2B behavior—invoices are deemed accepted when no action is taken within the filing period.
+IMS is part of GST compliance and impacts Input Tax Credit (ITC) through GSTR-2B behavior—when recipients take no action within the filing period, the system deems invoices accepted.
 
 ## Recipient view
 
@@ -30,7 +30,7 @@ Recipient view allows buyers to manage inward invoices reported by their supplie
 
 ## Supplier view
 
-Supplier view shows suppliers the status of actions taken by recipients (buyers) on invoices reported via GSTR-1, GSTR-1A, or IFF. In simple terms: **"Did my customer accept, reject, or keep my invoice pending?"**
+Supplier view shows recipient actions on invoices you reported via GSTR-1, GSTR-1A, or IFF. Use this data to identify reconciliation issues early and follow up on rejected or pending invoices before filing deadlines.
 
 <CardGroup cols={2}>
   <Card title="Get sales invoices" icon="file-invoice" href="/api-reference/gst/compliance/endpoints/taxpayer/invoices/sales">
@@ -140,7 +140,7 @@ Use IMS APIs when you need to:
     - **No Action**: Recipient has not acted yet, or the record is not actionable in IMS for certain cases like RCM or ineligible ITC.
   </Accordion>
   <Accordion title="What should I do if a recipient rejects my invoice?">
-    If a recipient rejects your invoice, review the invoice details and correct any errors or mismatches. You can amend the invoice in GSTR-1A or the next relevant return filing. Use Supplier View to monitor which invoices are rejected and prioritize follow-up for high-value transactions.
+    When a recipient rejects your invoice in IMS, review the invoice details and correct any errors or mismatches. You can amend the invoice in GSTR-1A or the next relevant return filing. Use Supplier View to monitor which invoices are rejected and prioritize follow-up for high-value transactions.
   </Accordion>
   <Accordion title="How does IMS affect Input Tax Credit (ITC)?">
     IMS directly impacts Input Tax Credit through GSTR-2B behavior. Invoices that are accepted flow into GSTR-2B for ITC claims. Invoices with no action taken are "deemed accepted" and also included in GSTR-2B. Rejected invoices are excluded from ITC claims.
