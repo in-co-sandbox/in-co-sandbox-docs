@@ -151,7 +151,7 @@ Many Income Tax calculations and report generation are async jobs:
 - **Loss Carry-forward**: Business losses that can be adjusted in future years
 
 ### Asset Classifications
-- **Securities**: Listed stocks, mutual funds, derivatives (short-term if <1yr, long-term if ≥1yr)
+- **Securities**: Listed stocks, mutual funds, derivatives (short-term if &lt;1yr, long-term if ≥1yr)
 - **Crypto**: Digital assets (classified as capital assets for taxation, holding period matters)
 - **Forex/NRE**: Foreign currency accounts and international assets
 - **Derivatives**: Futures, options, covered calls (traded on recognized exchanges)

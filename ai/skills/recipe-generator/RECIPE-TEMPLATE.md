@@ -4,7 +4,7 @@ Use this template structure when generating recipes.
 
 ## Complete template
 
-```mdx
+````mdx
 ---
 title: "{Action} {Entity}"
 description: "{Concise description of what this recipe accomplishes and its business value. Include searchable terms.}"
@@ -59,7 +59,7 @@ Before you begin:
   </Step>
 
 </Steps>
-```
+````
 
 ## Element guidelines
 
@@ -119,7 +119,7 @@ Or use ParamField for structured responses:
 
 For async/job-based APIs:
 
-```markdown
+````markdown
 <Step title="Check job status" stepNumber={N} titleSize="h2">
   Poll the job status endpoint until `status` is `succeeded`.
 
@@ -134,11 +134,11 @@ For async/job-based APIs:
   When `status` is `succeeded`, the response includes:
   - **download_url** - Signed URL to download the result (time-limited)
 </Step>
-```
+````
 
 ### File upload patterns
 
-```markdown
+````markdown
 <Step title="Upload file" stepNumber={N} titleSize="h2">
   Upload the file using the signed URL from the previous step.
 
@@ -151,7 +151,7 @@ For async/job-based APIs:
     ```
   </Accordion>
 </Step>
-```
+````
 
 ## Category card format
 
