@@ -1,21 +1,21 @@
 ---
 title: "Overview"
-description: "Generate GST e-Invoices with IRN, signed QR codes, and E-Way Bills via India's Invoice Registration Portal (IRP)"
+description: "Generate GST e-Invoices with IRN, signed QR codes, and E-Way Bills via India's Invoice Registration Portal (IRP)."
 ---
 
 # GST e-Invoice API
 
-GST e-Invoice is a GST-compliant invoice with a unique IRN (Invoice Reference Number). Use this API to generate IRNs, receive signed invoice + signed QR code, download a PDF copy, cancel or fetch e-invoices, and generate/fetch E-Way Bills linked to the IRN.
+GST e-Invoice is a GST-compliant invoice registered with the Invoice Registration Portal (IRP) and assigned an IRN (Invoice Reference Number). Use this API to generate IRNs, receive the IRP-signed invoice JSON and QR code, download PDFs, cancel or fetch e-Invoices, and create or retrieve E-Way Bills linked to the IRN.
 
 This API integrates with India's Invoice Registration Portal (IRP) for GST e-invoicing. API credentials are created on the e-Invoice portal and mapped to your GSP.
 
 <Note>
-Sandbox supports dual-IRP routing via the `x-source` header. Route e-Invoice calls to either [NIC 1](https://einvoice1.gst.gov.in/) (`primary`) or [NIC 2](https://einvoice1.gst.gov.in/) (`secondary`) for improved availability during peak traffic and resilience during IRP outages.
+Sandbox supports dual-IRP routing via the `x-source` header. Route e-Invoice calls to either [NIC 1](https://einvoice1.gst.gov.in/) (`primary`) or [NIC 2](https://einvoice2.gst.gov.in/) (`secondary`). Retry the alternate IRP if one is unavailable.
 </Note>
 
 <CardGroup cols={2}>
   <Card title="Dual-IRP routing" icon="shuffle" href="/api-reference/gst/compliance/endpoints/e-invoice/authenticate">
-    Route requests to [NIC 1](https://einvoice1.gst.gov.in/) or [NIC 2](https://einvoice1.gst.gov.in/) using the `x-source` header. Retry with the alternate IRP if one is unavailable.
+    Route requests to [NIC 1](https://einvoice1.gst.gov.in/) or [NIC 2](https://einvoice2.gst.gov.in/) using the `x-source` header. Retry with the alternate IRP if one is unavailable.
   </Card>
   <Card title="Complete e-Invoice lifecycle" icon="file-invoice" href="/recipes/gst/e-invoice/generate_e_invoice">
     Generate, fetch, cancel e-invoices, and create/retrieve E-Way Bills linked to IRN.
@@ -48,7 +48,7 @@ Sandbox supports dual-IRP routing via the `x-source` header. Route e-Invoice cal
   </Step>
   
   <Step title="Handle IRP failover (if needed)">
-    If the primary IRP is unavailable or times out, retry the e-Invoice authentication with `x-source: secondary` to route to [NIC 2](https://einvoice1.gst.gov.in/). Use the same approach for all subsequent tax-payer API calls.
+    If the primary IRP is unavailable or times out, retry the e-Invoice authentication with `x-source: secondary` to route to [NIC 2](https://einvoice2.gst.gov.in/). Use the same approach for all subsequent taxpayer API calls.
   </Step>
   
   <Step title="Generate e-Invoice">
@@ -118,11 +118,11 @@ Use GST e-Invoice API when you need to:
   </Accordion>
 
   <Accordion title="How does GST e-Invoice API work end-to-end?">
-    GST e-Invoice API workflow involves: (1) creating API credentials on the e-Invoice portal and mapping to your GSP, (2) authenticating with Sandbox for a JWT, (3) authenticating with the e-Invoice IRP for a session token, (4) posting invoice data to generate an IRN with signed invoice and QR, (5) optionally generating a PDF, and (6) fetching, cancelling, or managing E-Way Bills as needed. All tax-payer API calls support dual-IRP routing via the `x-source` header. See the [Generate e-Invoice recipe](/recipes/gst/e-invoice/generate_e_invoice) for a complete implementation example.
+    The workflow is: create e-Invoice API credentials and map them to your GSP, authenticate with Sandbox for a JWT, authenticate with the IRP for a session token, submit invoice data to generate the IRN with signed invoice and QR code, then optionally generate a PDF and manage fetch, cancel, or E-Way Bill actions. All taxpayer endpoints support dual-IRP routing via `x-source`. See the [Generate e-Invoice recipe](/recipes/gst/e-invoice/generate_e_invoice) for a complete example.
   </Accordion>
 
   <Accordion title="What is the x-source header in Sandbox e-Invoice APIs?">
-    The `x-source` header enables dual-IRP routing in Sandbox e-Invoice APIs. Set `x-source: primary` to route requests to [NIC 1](https://einvoice1.gst.gov.in/) (the primary IRP) or `x-source: secondary` to route to [NIC 2](https://einvoice1.gst.gov.in/) (the secondary IRP). If omitted, requests default to `primary`. This header is supported on all tax-payer endpoints including authentication, generate, fetch, cancel, and E-Way Bill operations.
+    The `x-source` header enables dual-IRP routing in Sandbox e-Invoice APIs. Set `x-source: primary` to route requests to [NIC 1](https://einvoice1.gst.gov.in/) (the primary IRP) or `x-source: secondary` to route to [NIC 2](https://einvoice2.gst.gov.in/) (the secondary IRP). If omitted, requests default to `primary`. This header is supported on all taxpayer endpoints, including [authentication](/api-reference/gst/compliance/endpoints/e-invoice/authenticate), generate, fetch, cancel, and E-Way Bill operations.
   </Accordion>
 
   <Accordion title="What credentials are required to call e-Invoice Authentication?">

@@ -5,9 +5,7 @@ description: "Generate, update, extend, and manage GST e-way bills. Programmatic
 
 # GST E-Way Bill API
 
-GST E-Way Bill (EWB) is an electronic permit used for tracking the movement of goods under GST. Use this API to authenticate with the E-Way Bill system and generate, fetch, update, extend, cancel, consolidate, and manage multi-vehicle movement of e-way bills programmatically.
-
-The GST E-Way Bill API enables automated compliance workflows for goods movement and lets you create and update e-way bills (Part-A/Part-B), track shipments across stakeholders (consignor, consignee, transporter), and maintain audit-ready logistics records.
+GST E-Way Bill (EWB) is an electronic permit required for transporting goods worth more than INR 50,000 under GST. Use this API to generate, update, extend, cancel, and manage e-way bills programmatically—enabling automated compliance workflows for goods movement across consignor, consignee, and transporter roles.
 
 <CardGroup cols={2}>
   <Card title="Generate and fetch EWB" icon="file-invoice">
@@ -232,7 +230,7 @@ Use the GST E-Way Bill API when you need to:
   </Accordion>
 
   <Accordion title="What is multi-vehicle movement and when is it required?">
-    Multi-vehicle movement is required when goods covered by a single e-way bill are transported using multiple vehicles. For example, partial deliveries or hub-to-hub transfers. Use [Initiate Multi-Vehicle Movement](/api-reference/gst/compliance/endpoints/e-way-bill/consignor/multi-vehicle-movement/initiate_multi_vehicle_movement) to start multi-vehicle mode, then [Add Vehicle](/api-reference/gst/compliance/endpoints/e-way-bill/consignor/multi-vehicle-movement/add_vehicle) for each additional vehicle in the shipment chain.
+    Multi-vehicle movement applies when goods covered by a single e-way bill are transported using multiple vehicles—for example, in partial deliveries or hub-to-hub transfers. Use [Initiate Multi-Vehicle Movement](/api-reference/gst/compliance/endpoints/e-way-bill/consignor/multi-vehicle-movement/initiate_multi_vehicle_movement) to start multi-vehicle mode, then [Add Vehicle](/api-reference/gst/compliance/endpoints/e-way-bill/consignor/multi-vehicle-movement/add_vehicle) for each additional vehicle in the shipment chain.
   </Accordion>
 
   <Accordion title="How do I troubleshoot E-Way Bill API errors?">
