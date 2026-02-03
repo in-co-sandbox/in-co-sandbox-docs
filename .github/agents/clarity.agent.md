@@ -1,13 +1,12 @@
 ---
 name: clarity
 description: Apply writing-clearly-and-concisely to the latest edits, then pause for human review.
-tools: ['vscode', 'execute', 'read', 'edit', 'search', 'web', 'agent', 'memory', 'ms-azuretools.vscode-containers/containerToolsConfig', 'todo']
+tools: ['execute', 'read', 'edit', 'search', 'web', 'agent', 'memory', 'ms-azuretools.vscode-containers/containerToolsConfig']
 handoffs:
   - label: Proceed to humanizer pass
     agent: humanizer
     prompt: Apply humanizer to the latest edited prose.
     send: false
-target: github-copilot
 infer: false
 ---
 Use this skill:
