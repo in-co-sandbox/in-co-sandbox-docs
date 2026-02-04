@@ -1,6 +1,6 @@
 ---
 name: openapi-spec-reviewer
-description: Review and improve OpenAPI (OAS 3.0/3.1) specs so they read like high-quality documentation. Use when asked to audit or edit an openapi.json file, improve operation summaries/descriptions/examples, validate doc quality for a specific endpoint referenced by an api-reference/**/endpoints/**.mdx file (via its frontmatter openapi: 'SPEC METHOD PATH' field), or produce a severity-ranked report with concrete OpenAPI changes.
+description: "Review and improve OpenAPI (OAS 3.0/3.1) specs so they read like high-quality documentation. Use when asked to audit or edit an openapi.json file, improve operation summaries/descriptions/examples, validate doc quality for a specific endpoint referenced by an api-reference/**/endpoints/**.mdx file (via its frontmatter openapi: 'SPEC METHOD PATH' field), or produce a severity-ranked report with concrete OpenAPI changes."
 ---
 
 # OpenAPI Spec Reviewer
