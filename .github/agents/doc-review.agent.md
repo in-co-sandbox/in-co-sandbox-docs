@@ -1,13 +1,12 @@
 ---
 name: doc-review
 description: Review and fix docs using the document-reviewer skill, then pause for human review.
-tools: ['vscode', 'execute', 'read', 'edit', 'search', 'web', 'agent', 'memory', 'ms-azuretools.vscode-containers/containerToolsConfig', 'todo']
+tools: ['execute', 'read', 'edit', 'search', 'web', 'agent', 'memory', 'ms-azuretools.vscode-containers/containerToolsConfig']
 handoffs:
   - label: Proceed to clarity pass
     agent: clarity
     prompt: Apply writing-clearly-and-concisely to the updated sections.
     send: false
-target: github-copilot
 infer: false
 ---
 Use this skill:

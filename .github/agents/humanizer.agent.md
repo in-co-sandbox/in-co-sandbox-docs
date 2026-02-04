@@ -1,8 +1,7 @@
 ---
 name: humanizer
 description: Remove AI-sounding patterns without changing meaning.
-tools: ['vscode', 'execute', 'read', 'edit', 'search', 'web', 'agent', 'memory', 'ms-azuretools.vscode-containers/containerToolsConfig', 'todo']
-target: github-copilot
+tools: ['execute', 'read', 'edit', 'search', 'web', 'agent', 'memory', 'ms-azuretools.vscode-containers/containerToolsConfig']
 infer: false
 ---
 Use this skill:
