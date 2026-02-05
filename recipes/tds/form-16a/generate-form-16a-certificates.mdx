@@ -1,0 +1,165 @@
+---
+title: "Generate Form 16A Certificates"
+description: "Generate and download Form 16A TDS certificates after filing Form 26Q or 27Q returns."
+keywords:
+  - Form 16A
+  - TDS certificate
+  - Form 26Q
+  - Form 27Q
+  - TRACES
+---
+
+Form 16A is the TDS certificate for non-salary deductions. This recipe shows how to:
+
+- Confirm the Form 26Q or Form 27Q return is filed for the quarter
+- Submit a Form 16A generation job on TRACES
+- Poll the job and download certificates when ready
+
+<Info>
+Before you begin:
+- Generate a Sandbox `authorization` token using the Authenticate endpoint.
+- File the relevant Form 26Q or Form 27Q return for the TAN, financial year, and quarter. See the [File Form 26Q TDS Returns](/recipes/tds/form-26q/file_form_26q) recipe if needed.
+- Keep TRACES credentials (username and password) and challan details for the selected quarter.
+- Prepare at least three PAN-amount pairs for the challan you will use in the security captcha.
+</Info>
+
+<Steps>
+  <Step title="Confirm the return is filed" stepNumber={1} titleSize="h2">
+    Form 16A is available only after the relevant Form 26Q or Form 27Q return is filed. If you already filed the return, skip to Step 2.
+
+    To confirm filing status, use the [**Search E-File TDS Return Jobs**](/api-reference/tds/compliance/e-file/endpoints/search_job) endpoint with the TAN, financial year, quarter, and form.
+
+    <Accordion title="cURL Request - Search E-File TDS Return Jobs" defaultOpen>
+      ```bash
+      curl --request POST \
+        --url https://api.sandbox.co.in/tds/compliance/e-file/search \
+        --header 'Authorization: {sandbox-access-token}' \
+        --header 'Content-Type: application/json' \
+        --header 'x-api-key: xxxxxxxxxxxxxxxxxx' \
+        --header 'x-api-version: 1.0.0' \
+        --data '{
+          "@entity": "in.co.sandbox.tds.compliance.e-file.search",
+          "tan": "AHMA09719B",
+          "quarter": "Q2",
+          "form": "26Q",
+          "financial_year": "FY 2024-25",
+          "from_date": 1711929600000,
+          "to_date": 1750463999000,
+          "page_size": 20
+        }'
+      ```
+    </Accordion>
+
+    Look for a job where `status` is `succeeded` for the matching form and quarter. This confirms the return is filed and you can proceed.
+  </Step>
+
+  <Step title="Submit a Form 16A job" stepNumber={2} titleSize="h2">
+    Submit a Form 16A generation job using the [**Submit Job**](/api-reference/tds/compliance/certificate-form16(a)/endpoints/submit_job) endpoint. Set the path to `form16a` and the `form` field to `26Q` (or `27Q` for non-resident payments).
+
+    <Accordion title="cURL Request - Submit Form 16A Job" defaultOpen>
+      ```bash
+      curl --request POST \
+        --url https://api.sandbox.co.in/tds/compliance/traces/deductors/forms/form16a \
+        --header 'Authorization: {sandbox-access-token}' \
+        --header 'Content-Type: application/json' \
+        --header 'x-api-key: xxxxxxxxxxxxxxxxxx' \
+        --header 'x-api-version: 1.0.0' \
+        --data '{
+          "@entity": "in.co.sandbox.tds.compliance.traces.credentials",
+          "username": "traces-username",
+          "password": "traces-password",
+          "tan": "AHMA09719B",
+          "security_captcha": {
+            "@entity": "in.co.sandbox.tds.compliance.traces.credentials.security_captcha",
+            "quarter": "Q2",
+            "financial_year": "FY 2024-25",
+            "form": "26Q",
+            "bsr_code": "0510001",
+            "challan_date": 1711929600000,
+            "challan_serial_no": "00001",
+            "provisional_receipt_number": "123456789012345",
+            "challan_amount": 150000,
+            "unique_pan_amount_combination_for_challan": [
+              ["ABCDE1234F|50000"],
+              ["PQRSX9876Z|50000"],
+              ["LMNOP4321Q|50000"]
+            ]
+          },
+          "remember_me": true
+        }'
+      ```
+    </Accordion>
+
+    A successful response returns a certificate job with:
+
+    - `job_id` - Use this to poll status and fetch certificates
+    - `status` - Typically `created` or `queued`
+    - `remember_me` - Indicates whether credentials are stored for polling
+
+    <Info>
+    If `remember_me` is `true`, you can poll status without resending TRACES credentials where supported. If `remember_me` is `false`, include credentials when polling.
+    </Info>
+
+    <Warning>
+    Make sure `unique_pan_amount_combination_for_challan` includes at least three PAN-amount pairs for the selected challan. TRACES uses this to validate access.
+    </Warning>
+  </Step>
+
+  <Step title="Poll and fetch certificates" stepNumber={3} titleSize="h2">
+    After submitting the job, poll its status and fetch completed jobs when ready.
+
+    ### 3.1 Poll a specific Form 16A job
+
+    Use the [**Poll Job**](/api-reference/tds/compliance/certificate-form16(a)/endpoints/poll_job) endpoint with the `job_id` from Step 2:
+
+    <Accordion title="cURL Request - Poll Form 16A Job Status" defaultOpen>
+      ```bash
+      curl --request POST \
+        --url 'https://api.sandbox.co.in/tds/compliance/traces/deductors/forms/form16a/status?job_id={job_id}' \
+        --header 'Authorization: {sandbox-access-token}' \
+        --header 'Content-Type: application/json' \
+        --header 'x-api-key: xxxxxxxxxxxxxxxxxx' \
+        --header 'x-api-version: 1.0.0' \
+        --data '{
+          "@entity": "in.co.sandbox.tds.compliance.traces.credentials",
+          "username": "traces-username",
+          "password": "traces-password",
+          "tan": "AHMA09719B"
+        }'
+      ```
+    </Accordion>
+
+    When processing is complete, the job `status` becomes `succeeded` or `failed`.
+
+    ### 3.2 Fetch all Form 16A jobs and download certificates
+
+    To list jobs for a TAN and period, use the [**Fetch Jobs**](/api-reference/tds/compliance/certificate-form16(a)/endpoints/fetch_job) endpoint:
+
+    <Accordion title="cURL Request - Fetch Form 16A Jobs">
+      ```bash
+      curl --request POST \
+        --url https://api.sandbox.co.in/tds/compliance/traces/deductors/forms/form16a/search \
+        --header 'Authorization: {sandbox-access-token}' \
+        --header 'Content-Type: application/json' \
+        --header 'x-api-key: xxxxxxxxxxxxxxxxxx' \
+        --header 'x-api-version: 1.0.0' \
+        --data '{
+          "@entity": "in.co.sandbox.tds.compliance.certificate.job.search",
+          "tan": "AHMA09719B",
+          "quarter": "Q2",
+          "form": "26Q",
+          "financial_year": "FY 2024-25",
+          "from_date": 1711929600000,
+          "to_date": 1750463999000,
+          "page_size": 20
+        }'
+      ```
+    </Accordion>
+
+    For `status = "succeeded"`, use the certificate download URLs in the job metadata (if enabled on your plan) to download the Form 16A PDFs and store them in your system.
+
+    <Warning>
+    If the job fails, verify TRACES credentials, challan details, and that the return is processed for the selected quarter and financial year.
+    </Warning>
+  </Step>
+</Steps>
