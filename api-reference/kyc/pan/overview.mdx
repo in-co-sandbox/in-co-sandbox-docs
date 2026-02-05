@@ -1,0 +1,113 @@
+---
+title: "Overview"
+description: "PAN Verification API to validate PAN details (name/DOB match, PAN status) and check PAN–Aadhaar link status for KYC, onboarding, and fraud prevention."
+---
+
+# PAN API
+
+PAN (Permanent Account Number) is a 10-character identifier issued under India's income-tax framework and is widely used as a primary identity proof in financial onboarding. Use this API to verify PAN details, validate holder identity (name and DOB match), check Aadhaar seeding status, and confirm PAN–Aadhaar link status for faster KYC, onboarding, and fraud prevention.
+
+This product includes two consent-based APIs:
+- **Verify PAN Details**: Validate PAN status, match holder details (name/DOB), and return Aadhaar seeding status
+- **PAN–Aadhaar Link Status**: Check whether a PAN is linked to a specific Aadhaar number with a clear status message
+
+<CardGroup cols={2}>
+  <Card title="Instant PAN validation" icon="badge-check">
+    Verify PAN status and match user-provided name and date of birth against PAN records for real-time identity validation.
+  </Card>
+  <Card title="Aadhaar link status" icon="link">
+    Check whether a PAN is seeded or linked to an Aadhaar number for compliance and tax-filing readiness.
+  </Card>
+  <Card title="Consent-based verification" icon="shield-check">
+    Both APIs require end-user consent and reason for verification, aligning with KYC privacy standards.
+  </Card>
+  <Card title="Fraud prevention signals" icon="triangle-exclamation">
+    Detect mismatches early with name/DOB validation and reduce fake or incorrect PAN submissions.
+  </Card>
+</CardGroup>
+
+## How it works
+
+<Steps>
+  <Step title="Collect details and consent">
+    Capture PAN, name, DOB (and Aadhaar if checking link status), and obtain user consent for verification.
+  </Step>
+  <Step title="Verify PAN details">
+    Call [Verify PAN Details](/api-reference/kyc/pan/endpoints/verify_pan_details) to validate PAN status, match holder name and DOB, and retrieve Aadhaar seeding status.
+  </Step>
+  <Step title="Check PAN–Aadhaar link status (optional)">
+    If your workflow requires it, call [PAN–Aadhaar Link Status](/api-reference/kyc/pan/endpoints/pan_aadhaar_link_status) with PAN and Aadhaar number to confirm linking.
+  </Step>
+</Steps>
+
+## What you can do
+
+<CardGroup cols={2}>
+  <Card title="Validate PAN for onboarding" icon="user-check">
+    Programmatically verify PAN validity and match user-provided details for account opening, lending, investments, and merchant onboarding.
+  </Card>
+  <Card title="Reduce fraud and mismatches" icon="shield-check">
+    Use name/DOB match signals and Aadhaar seeding checks to detect incorrect or fake PAN submissions early.
+  </Card>
+  <Card title="Automate compliance checks" icon="list-check">
+    Replace manual portal lookups with API-based verification for faster, audit-friendly KYC operations at scale.
+  </Card>
+  <Card title="Check tax-filing readiness" icon="file-invoice">
+    Confirm PAN–Aadhaar linking status to ensure users meet tax-filing prerequisites and regulatory requirements.
+  </Card>
+</CardGroup>
+
+## API reference
+
+<CardGroup cols={2}>
+  <Card title="Verify PAN Details" icon="badge-check" href="/api-reference/kyc/pan/endpoints/verify_pan_details">
+    Validate PAN status, match holder name and DOB, and retrieve Aadhaar seeding status.
+  </Card>
+  <Card title="PAN–Aadhaar Link Status" icon="link" href="/api-reference/kyc/pan/endpoints/pan_aadhaar_link_status">
+    Check whether a PAN is linked to a specific Aadhaar number with a clear status message.
+  </Card>
+</CardGroup>
+
+## Integration
+
+Integrate directly from your backend server to perform verification during onboarding, periodic re-verification, or compliance checks. See [Authentication](/api-reference/authenticate) for request setup and [Error codes](/guides/developer-resources/errors) for troubleshooting.
+
+**Performance tip**: The Verify PAN Details endpoint supports an optional cache-accept header (`x-accept-cache`) for faster responses in repeat-verification scenarios.
+
+## Common use cases
+
+Use PAN APIs when you need to:
+
+- Validate customer identity during **banking/NBFC account opening**
+- Perform **KYC checks** in fintech onboarding (wallets, lending, investments)
+- Verify employee/contractor identity in HR onboarding
+- Check PAN–Aadhaar link status for tax-filing readiness or policy-based onboarding gates
+- Reduce manual verification delays and improve conversion
+
+## Frequently asked questions
+
+<AccordionGroup>
+  <Accordion title="What is PAN verification?">
+    PAN verification (also called PAN validation or PAN card verification) is the process of checking whether a Permanent Account Number (PAN) is valid and whether user-provided identity details like name and date of birth match the records maintained under India's income-tax framework. Use the [Verify PAN Details](/api-reference/kyc/pan/endpoints/verify_pan_details) API to perform this check programmatically.
+  </Accordion>
+  
+  <Accordion title="What is the difference between Aadhaar seeding status and PAN–Aadhaar link status?">
+    **Aadhaar seeding status** is a simple linked/unlinked indicator returned as part of PAN verification. **PAN–Aadhaar link status** confirms the linking between a PAN and a specific Aadhaar number and returns a user-readable message. Use [PAN–Aadhaar Link Status](/api-reference/kyc/pan/endpoints/pan_aadhaar_link_status) when you need to verify linking against a particular Aadhaar.
+  </Accordion>
+  
+  <Accordion title="Why does PAN–Aadhaar linking matter?">
+    PAN–Aadhaar linking is treated as mandatory for many PAN holders under India's Income Tax regulations. Non-linking can potentially lead to PAN becoming inoperative, subject to applicable rules and notifications. The Income Tax Department provides a Link Aadhaar flow and Link Aadhaar Status check on the official e-Filing portal. Businesses use the PAN–Aadhaar Link Status API to verify linking during onboarding or for tax-filing readiness.
+  </Accordion>
+  
+  <Accordion title="Do these APIs require user consent?">
+    Yes. Both PAN APIs require end-user consent and a reason for verification. Include `consent: "Y"` and a `reason` string in your request payload. This aligns with consent-based KYC standards across Sandbox's identity verification products. See [Authentication](/api-reference/authenticate) for payload requirements.
+  </Accordion>
+  
+  <Accordion title="Can I cache PAN verification results?">
+    The Verify PAN Details API supports an optional cache-accept header (`x-accept-cache`) to retrieve cached results when available, enabling faster responses in repeat-verification scenarios. Check the [endpoint documentation](/api-reference/kyc/pan/endpoints/verify_pan_details) for header usage and cache behavior.
+  </Accordion>
+  
+  <Accordion title="What related KYC APIs does Sandbox offer?">
+    Sandbox offers comprehensive KYC verification APIs including [Aadhaar verification](/api-reference/kyc/aadhaar/overview), [DigiLocker document retrieval](/api-reference/kyc/digilocker/overview), [PAN verification](/api-reference/kyc/pan/overview), and [EntityLocker for business verification](/api-reference/kyc/entitylocker/overview). See the [KYC overview](/api-reference/kyc/overview) for the complete product suite and [KYC recipes](/recipes/kyc/introduction) for integration guides.
+  </Accordion>
+</AccordionGroup>

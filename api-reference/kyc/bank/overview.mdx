@@ -1,0 +1,105 @@
+---
+title: "Overview"
+description: "Instant Bank Account Verification API for KYC and payouts—IFSC verification, Penny Drop (₹1 micro-deposit), and Penny-Less account validation with beneficiary name match (name at bank)."
+---
+
+# Bank Account & IFSC Verification API
+
+Bank Account & IFSC Verification APIs validate bank details and branch codes for KYC and payout workflows. Use these APIs to check if an account exists, get the account holder's name, verify IFSC codes, and retrieve branch details before making payouts or onboarding users.
+
+<CardGroup cols={2}>
+  <Card title="Instant bank account verification" icon="circle-check">
+    Verify a bank account using Penny Drop (₹1 micro-deposit) or Penny-Less (no transaction).
+  </Card>
+  <Card title="Beneficiary name match" icon="id-card">
+    Get the account holder's name from the bank and match it against the name your user provided.
+  </Card>
+  <Card title="IFSC verification & branch lookup" icon="building">
+    Verify IFSC and fetch branch details like MICR, address, and supported rails (NEFT/IMPS/RTGS/UPI).
+  </Card>
+  <Card title="Audit-friendly references" icon="file-lines">
+    Track verifications using transaction identifiers and (for Penny Drop) UTR for payout traceability.
+  </Card>
+</CardGroup>
+
+## How it works
+
+<Steps>
+  <Step title="Verify IFSC (optional)">
+    Check that the IFSC code is valid and get branch details.
+  </Step>
+
+  <Step title="Choose a verification method">
+    Use Penny Drop (₹1 micro-deposit) for transaction-backed validation, or Penny-Less (no transaction) for supported banks.
+  </Step>
+
+  <Step title="Submit verification request">
+    Provide IFSC, account number, and optionally name or mobile.
+  </Step>
+
+  <Step title="Check the result">
+    You'll see if the account exists and get the account holder's name. Penny Drop also returns a UTR and the amount deposited.
+  </Step>
+
+  <Step title="Decide and proceed">
+    If the account is valid and the name matches closely enough, proceed with onboarding or payouts.
+  </Step>
+</Steps>
+
+## What you can do
+
+<CardGroup cols={2}>
+  <Card title="Verify bank accounts for KYC" icon="building-columns">
+    Validate beneficiary accounts during onboarding and profile updates.
+  </Card>
+  <Card title="Prevent payout failures" icon="circle-check">
+    Verify account details before payouts to reduce failures and reversals.
+  </Card>
+</CardGroup>
+
+## APIs
+
+| API | Purpose |
+|:----|:--------|
+| [IFSC Verification](/api-reference/kyc/bank/endpoints/ifsc_verification) | Verify an IFSC code and fetch bank branch details |
+| [Penny Drop (Bank Account Verification)](/api-reference/kyc/bank/endpoints/penny_drop) | Verify a bank account using a ₹1 credit transaction |
+| [Penny-Less (Bank Account Verification)](/api-reference/kyc/bank/endpoints/penny_less) | Verify a bank account without sending a transaction |
+| [Supported Banks (Penny-Less)](/api-reference/kyc/annexures/master_data) | Check supported banks and IFSC codes for Penny-Less coverage |
+
+## Common use cases
+
+Use Bank Account & IFSC Verification APIs when you need to:
+
+- Verify beneficiary accounts before payouts, salary disbursals, or vendor payments
+- Validate bank details during KYC onboarding or profile updates
+- Reduce payout failures, chargebacks, and refund reversals
+- Perform bank account validation for marketplaces and platforms (settlements)
+- Confirm account ownership for loan disbursals and insurance claim payouts
+
+## Frequently Asked Questions
+
+<AccordionGroup>
+  <Accordion title="What is Penny Drop verification?">
+    Penny Drop verification sends ₹1 to the bank account. If the transaction succeeds, the account exists and you get the account holder's name from the bank.
+  </Accordion>
+
+  <Accordion title="What is Penny-Less (Penniless) bank verification?">
+    Penny-Less verification checks the account without actually sending money. It's faster and won't show up in the account statement, but it only works with supported banks.
+  </Accordion>
+
+  <Accordion title="When should I use Penny Drop vs Penny-Less?">
+    Use Penny-Less when you want validation without a transaction and your bank is supported. Use Penny Drop when you want transaction-backed validation or need stronger audit traceability (e.g., UTR) for payout workflows.
+  </Accordion>
+
+  <Accordion title="What does 'name at bank' mean?">
+    It's the account holder's name as it appears in the bank's records. You can match it against your user's name using exact match, fuzzy match, or whatever approach fits your risk tolerance.
+  </Accordion>
+
+  <Accordion title="Do I need IFSC verification if I already have the IFSC?">
+    It's a good idea. IFSC verification catches typos and tells you which payment rails the branch supports, which can save you from failed transactions.
+  </Accordion>
+
+  <Accordion title="Does Penny-Less work for all banks?">
+    No. Penny-Less coverage depends on supported banks. Refer to the [supported banks list](/api-reference/kyc/annexures/master_data) before using it in production flows.
+  </Accordion>
+</AccordionGroup>

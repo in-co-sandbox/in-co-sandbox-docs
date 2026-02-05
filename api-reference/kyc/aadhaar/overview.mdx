@@ -1,0 +1,98 @@
+---
+title: "Overview"
+description: "Aadhaar Verification API (Aadhaar OTP Verification) for digital KYC—generate OTP and verify OTP to fetch verified Aadhaar identity details for onboarding, compliance, and fraud prevention."
+---
+
+# Aadhaar Verification API
+
+Aadhaar is India's 12-digit unique identity number issued by UIDAI. Use this API to verify an individual's Aadhaar by sending an OTP to the Aadhaar-linked mobile number and validating it to fetch offline e-KYC details for compliance and fraud prevention.
+
+Verify identity with user consent following UIDAI guidelines.
+
+<CardGroup cols={2}>
+  <Card title="OTP-based verification" icon="shield-check">
+    Send an OTP to the Aadhaar-linked mobile number, then verify it to retrieve identity details. Requires user consent and a verification reason.
+  </Card>
+  <Card title="Verified KYC data" icon="id-card">
+    Returns name, DOB, gender, address, photo, and hashed contact fields as per UIDAI offline e-KYC guidelines.
+  </Card>
+</CardGroup>
+
+## How it works
+
+<Steps>
+  <Step title="Generate OTP">
+    Send a request with the Aadhaar number, user consent, and verification reason.
+  </Step>
+  
+  <Step title="User receives OTP">
+    An OTP is delivered to the Aadhaar-linked mobile number.
+  </Step>
+  
+  <Step title="Verify OTP">
+    Submit the `reference_id` and OTP to retrieve offline e-KYC details.
+  </Step>
+  
+  <Step title="Use KYC response">
+    Match the verified details against your onboarding form and store what compliance requires.
+  </Step>
+</Steps>
+
+## What you can do
+
+<CardGroup cols={2}>
+  <Card title="Digital KYC & onboarding" icon="user-check">
+    Verify identity during signup, account opening, lending, and payment flows. Reduce drop-offs without compromising KYC controls.
+  </Card>
+  <Card title="Demographic verification" icon="id-card">
+    Retrieve verified name, date of birth, gender, and address for identity checks.
+  </Card>
+  <Card title="Photo & contact data" icon="image">
+    Get the user's photo and hashed contact fields for risk and deduplication checks without storing raw values.
+  </Card>
+  <Card title="Fraud prevention" icon="shield">
+    Check Aadhaar authenticity to prevent duplicate accounts and fraud in high-risk flows.
+  </Card>
+</CardGroup>
+
+## API reference
+
+| API | Purpose |
+|:----|:--------|
+| [Generate OTP](/api-reference/kyc/aadhaar/endpoints/generate_otp) | Send OTP to Aadhaar-linked mobile number |
+| [Verify OTP](/api-reference/kyc/aadhaar/endpoints/verify_otp) | Validate OTP and retrieve identity details |
+
+## Common use cases
+
+Use Aadhaar OTP verification when you need to:
+- Verify identity during **customer onboarding** (fintech, NBFCs, wallets, marketplaces)
+- Validate Aadhaar before **account opening** or **KYC refresh**
+- Reduce **fraud** and **duplicate accounts** in high-risk flows
+- Replace manual KYC checks with **real-time verification**
+- Collect verified address/DOB for regulated workflows
+
+## Frequently Asked Questions
+
+<AccordionGroup>
+  <Accordion title="What is Aadhaar OTP Verification?">
+    An identity verification method that sends an OTP to the Aadhaar-linked mobile number. After validation, the API returns offline e-KYC details per UIDAI guidelines.
+  </Accordion>
+
+  <Accordion title="What endpoints do I need?">
+    Two APIs:
+    - [Generate OTP](/api-reference/kyc/aadhaar/endpoints/generate_otp)
+    - [Verify OTP](/api-reference/kyc/aadhaar/endpoints/verify_otp)
+  </Accordion>
+
+  <Accordion title="What data do I get after verification?">
+    The API returns name, DOB, gender, address, and photo. Hashed contact fields may be included based on consent. Available fields vary by case.
+  </Accordion>
+
+  <Accordion title="Does the user need a mobile number linked to Aadhaar?">
+    Yes. The Aadhaar-linked mobile must be active to receive the OTP.
+  </Accordion>
+
+  <Accordion title="How long is the OTP valid?">
+    OTP validity is time-limited. If it expires, use the [Generate OTP](/api-reference/kyc/aadhaar/endpoints/generate_otp) endpoint to request a new one.
+  </Accordion>
+</AccordionGroup>
