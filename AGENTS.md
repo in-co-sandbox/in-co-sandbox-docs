@@ -38,6 +38,7 @@
 ## Quality checks
 - Verify internal links work.
 - Preview with `mint dev` when changes affect layout or components.
+- Check for broken links: `npx mint broken-links`
 
 ## Windows and symlinks
 - This repo uses symlinks. On Windows, enable Developer Mode so the Mintlify server can start.
