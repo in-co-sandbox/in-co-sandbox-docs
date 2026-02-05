@@ -1,0 +1,158 @@
+---
+title: "Overview"
+description: "Calculate TDS for salary and non-salary payments using Sandbox APIs for Income Tax Act compliance."
+---
+
+# TDS Calculator API
+
+TDS Calculator is an API suite for calculating tax deducted at source (TDS) for salary and non-salary payments. Use these APIs to compute TDS amounts and rates for payroll and payouts—call synchronously for immediate results or asynchronously for bulk processing.
+
+## Value proposition
+
+Correct TDS calculation requires applying the right rates and rules for each payment type, recipient status, and Income Tax Act section. Manual computation is error-prone and slow, especially when processing high volumes of salary or vendor payments.
+
+TDS Calculator APIs automate these calculations. The APIs produce accurate deductions that comply with Income Tax Act provisions and reduce compliance risk.
+
+<CardGroup cols={2}>
+  <Card title="Salary TDS calculation" icon="user">
+    Compute TDS for employee salary payments and generate detailed workbooks.
+  </Card>
+
+  <Card title="Non-salary TDS calculation" icon="file-invoice-dollar">
+    Calculate TDS for contractor, vendor, and other non-salary payouts.
+  </Card>
+
+  <Card title="Sync and async modes" icon="arrows-rotate">
+    Use synchronous APIs for real-time results or async jobs for bulk processing.
+  </Card>
+
+  <Card title="Workbook input/output" icon="table">
+    Submit salary workbooks and get computed results with TDS details.
+  </Card>
+</CardGroup>
+
+## How it works
+
+<Steps>
+  <Step title="Choose calculation mode">
+    Determine whether you need salary or non-salary TDS calculation.
+  </Step>
+
+  <Step title="Call non-salary calculator (if applicable)">
+    Send payment details to the non-salary endpoint and receive computed TDS values.
+  </Step>
+
+  <Step title="Call salary sync (for single computations)">
+    Submit the salary workbook and receive the computed output synchronously.
+  </Step>
+
+  <Step title="Submit salary job (for bulk processing)">
+    Call the submit job endpoint to get a job ID and upload URL for large payroll files.
+  </Step>
+
+  <Step title="Upload input workbook">
+    Use PUT request to upload the salary workbook to the provided upload URL.
+  </Step>
+
+  <Step title="Poll job status or receive webhook">
+    Check job status periodically or configure a [webhook](/guides/developer-resources/webhooks) to receive completion notification.
+  </Step>
+
+  <Step title="Download computed output">
+    Retrieve the computed workbook with TDS values from the job result URL.
+  </Step>
+</Steps>
+
+<Info>
+For bulk salary calculations, see the [job-based API workflow](/guides/developer-resources/job_based_apis) guide.
+</Info>
+
+## API reference
+
+<CardGroup cols={2}>
+  <Card title="Non-salary calculation" icon="calculator" href="/api-reference/tds/calculator/tds-calculator/endpoints/non_salary">
+    Calculate TDS for contractor and vendor payments.
+  </Card>
+
+  <Card title="Salary calculation (sync)" icon="user-check" href="/api-reference/tds/calculator/tds-calculator/endpoints/salary_sync">
+    Compute salary TDS with immediate response.
+  </Card>
+
+  <Card title="Submit salary job" icon="upload" href="/api-reference/tds/calculator/tds-calculator/endpoints/submit_job_salary">
+    Initiate bulk salary TDS calculation job.
+  </Card>
+
+  <Card title="Poll salary job" icon="clock" href="/api-reference/tds/calculator/tds-calculator/endpoints/poll_job_salary">
+    Check status and retrieve results for bulk jobs.
+  </Card>
+</CardGroup>
+
+## API endpoints
+
+| API | Purpose |
+|:----|:--------|
+| [Non-salary payments](/api-reference/tds/calculator/tds-calculator/endpoints/non_salary) | Calculate TDS for non-salary payments like contractor fees, rent, and professional services |
+| [Salary payments (sync)](/api-reference/tds/calculator/tds-calculator/endpoints/salary_sync) | Compute TDS for salary payments with synchronous response |
+| [Submit salary job](/api-reference/tds/calculator/tds-calculator/endpoints/submit_job_salary) | Create an async job for bulk salary TDS calculation |
+| [Poll salary job](/api-reference/tds/calculator/tds-calculator/endpoints/poll_job_salary) | Retrieve job status and download computed results |
+
+## Common use cases
+
+Use TDS Calculator APIs when you need to:
+
+- Calculate TDS for contractor or vendor payouts before initiating payment
+- Compute employee salary TDS during payroll processing and generate output workbook
+- Run bulk salary TDS calculations for enterprises with large payroll files
+- Integrate TDS computation into HRMS or ERP systems for monthly compliance workflows
+
+## Related resources
+
+<CardGroup cols={2}>
+  <Card title="Job-based APIs" icon="gears" href="/guides/developer-resources/job_based_apis">
+    Understand async job workflows for bulk processing.
+  </Card>
+
+  <Card title="Webhooks" icon="bell" href="/guides/developer-resources/webhooks">
+    Configure webhooks for job completion notifications.
+  </Card>
+
+  <Card title="Error handling" icon="triangle-exclamation" href="/guides/developer-resources/errors">
+    Handle API errors and troubleshoot issues.
+  </Card>
+
+  <Card title="Authentication" icon="key" href="/api-reference/authenticate">
+    Set up API authentication.
+  </Card>
+</CardGroup>
+
+## FAQ
+
+<AccordionGroup>
+  <Accordion title="What is TDS Calculator API?">
+    TDS Calculator API is a Sandbox API suite that computes tax deducted at source (TDS) for salary and non-salary payments. The API applies Income Tax Act rules to calculate accurate TDS amounts based on payment type, recipient details, and applicable sections.
+  </Accordion>
+
+  <Accordion title="What is the difference between salary and non-salary TDS calculation?">
+    Salary TDS calculation applies to employee compensation and uses workbook-based input/output with detailed computation. Non-salary TDS calculation applies to payments like contractor fees, rent, and professional services, using a simpler request/response format. Both follow Income Tax Act provisions but use different rate structures and exemptions.
+  </Accordion>
+
+  <Accordion title="When should I use sync vs async salary calculation?">
+    Use synchronous salary calculation via the [salary sync endpoint](/api-reference/tds/calculator/tds-calculator/endpoints/salary_sync) for single employee computations with immediate response needs. Use asynchronous job-based calculation via [submit job](/api-reference/tds/calculator/tds-calculator/endpoints/submit_job_salary) for bulk payroll processing with large workbooks. See the [job-based API workflow](/guides/developer-resources/job_based_apis) for async details.
+  </Accordion>
+
+  <Accordion title="How do I process bulk salary TDS calculations?">
+    Submit a bulk calculation job using the [submit job endpoint](/api-reference/tds/calculator/tds-calculator/endpoints/submit_job_salary), which returns a job ID and upload URL. Upload your salary workbook via PUT request to the upload URL. Poll the [poll job endpoint](/api-reference/tds/calculator/tds-calculator/endpoints/poll_job_salary) or configure a [webhook](/guides/developer-resources/webhooks) to receive completion notification. Download the computed output from the result URL in the job response.
+  </Accordion>
+
+  <Accordion title="What format does the salary workbook use?">
+    TDS Calculator accepts salary data in workbook format for both input and output. The input workbook contains employee salary details, deductions, and exemptions. The output workbook includes computed TDS amounts, applicable rates, and calculation breakdowns. Refer to the endpoint documentation for schema details.
+  </Accordion>
+
+  <Accordion title="What compliance requirements does TDS Calculator address?">
+    TDS Calculator APIs help businesses comply with Income Tax Act TDS provisions. The APIs calculate accurate tax deductions so you can deposit payments on time, issue TDS certificates (Form 16/16A), and file quarterly returns correctly. See the [TDS overview](/api-reference/tds/overview) for the complete compliance workflow.
+  </Accordion>
+
+  <Accordion title="How do I handle errors in TDS calculation requests?">
+    TDS Calculator APIs return standard error responses with error codes and messages. Common errors include invalid input data, missing required fields, or unsupported payment types. See the [error handling guide](/guides/developer-resources/errors) for error code reference and troubleshooting steps.
+  </Accordion>
+</AccordionGroup>
