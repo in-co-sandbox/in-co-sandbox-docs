@@ -1,11 +1,11 @@
 ---
 title: "TDS API Recipes"
 sidebarTitle: "Overview"
-description: "Production-ready TDS API integration recipes for Form 24Q and 26Q filing and Form 16/16A certificate generation. Step-by-step implementation guides with code samples."
-"og:description": "Ready-to-use API recipes for TDS compliance automation. Implement Form 24Q and 26Q filing and Form 16/16A generation workflows with our step-by-step guides."
+description: "API recipes for preparing and filing TDS Forms 24Q and 26Q, plus generating Form 16 certificates."
+"og:description": "API recipes for TDS compliance automation. Implement Form 24Q and 26Q preparation and filing workflows, plus Form 16 generation."
 ---
 
-Ready-made, step-by-step implementation patterns for building robust TDS workflows. Get actionable code samples and API sequences for automating return filing, generating employee certificates, and integrating TDS compliance logic into your business applications.
+Implementation patterns for Tax Deducted at Source (TDS) compliance. Use these code samples and API sequences to file returns, generate employee certificates, and add compliance features to your applications.
 
 <Tip>
 **New to Sandbox TDS APIs?** Start with our [TDS Product Overview](/api-reference/tds/overview) to understand the full capabilities, then come back here to implement specific workflows.
@@ -13,39 +13,39 @@ Ready-made, step-by-step implementation patterns for building robust TDS workflo
 
 ---
 
-## Form 24Q Filing
+## Return preparation
 
-File your quarterly TDS returns for salary payments with these step-by-step recipes. Covers preparation and submission workflows.
+Prepare your quarterly TDS returns with validated data and clean TXT output before filing.
 
 <CardGroup cols={2}>
     <Card title="Prepare Form 24Q TDS Return" icon="file-pen" href="./form-24q/prepare_form_24q">
-        Complete workflow for preparing Form 24Q with employee salary and TDS deduction details.
+        Prepare Form 24Q for salary payments with employee-level TDS details.
     </Card>
-    <Card title="File Form 24Q TDS Returns" icon="file-arrow-up" href="./form-24q/file_form_24q">
-        Submit prepared Form 24Q returns to the Income Tax Department portal.
+    <Card title="Prepare Form 26Q TDS Return" icon="file-pen" href="./form-26q/prepare_form_26q">
+        Prepare Form 26Q for non-salary payments such as vendors and contractors.
     </Card>
 </CardGroup>
 
 ---
 
-## Form 26Q Filing
+## Return filing
 
-File your quarterly TDS returns for non-salary payments with these step-by-step recipes. Covers preparation and submission workflows.
+File your prepared quarterly returns to the Income Tax Department portal.
 
 <CardGroup cols={2}>
-    <Card title="Prepare Form 26Q TDS Return" icon="file-pen" href="./form-26q/prepare_form_26q">
-        Complete workflow for preparing Form 26Q with vendor, contractor, and other non-salary payments.
+    <Card title="File Form 24Q TDS Returns" icon="file-arrow-up" href="./form-24q/file_form_24q">
+        Submit Form 24Q returns and complete the FVU and e-filing steps.
     </Card>
     <Card title="File Form 26Q TDS Returns" icon="file-arrow-up" href="./form-26q/file_form_26q">
-        Submit prepared Form 26Q returns to the Income Tax Department portal.
+        Submit Form 26Q returns and complete the FVU and e-filing steps.
     </Card>
 </CardGroup>
 
 ---
 
-## Form 16 Certificates
+## Form 16 certificates
 
-Generate TDS certificates for employees with automated data compilation and formatting.
+Generate TDS certificates for employees after filing.
 
 <CardGroup cols={2}>
     <Card title="Generate Form 16 Certificates" icon="certificate" href="./form-16/generate_form_16_certificates">
