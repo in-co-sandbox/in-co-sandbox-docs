@@ -1,6 +1,16 @@
 ---
 title: "Overview"
 description: "Generate TDS/TCS return TXT files asynchronously for Forms 24Q, 26Q, 27Q using job-based workflows for Indian Income Tax compliance."
+keywords:
+  - TDS reports
+  - TDS return TXT
+  - Form 24Q
+  - Form 26Q
+  - Form 27Q
+  - TCS statements
+  - Sheet JSON
+  - async job API
+  - TRACES TXT file
 ---
 
 # TDS Reports API
@@ -57,11 +67,8 @@ For detailed workflow patterns, see the [job-based API workflow guide](/guides/d
   <Card title="Prepare Form 24Q" icon="file-lines" href="/recipes/tds/form-24q/prepare_form_24q">
     Step-by-step guide to prepare Form 24Q TDS statements for salary payments.
   </Card>
-  <Card title="File Form 24Q" icon="paper-plane" href="/recipes/tds/form-24q/file_form_24q">
-    Complete workflow to file Form 24Q TDS returns to the Income Tax portal.
-  </Card>
-  <Card title="Generate Form 16 certificates" icon="file-invoice" href="/recipes/tds/form-16/generate_form_16_certificates">
-    Generate Form 16 certificates for employees after TDS filing.
+  <Card title="Prepare Form 26Q" icon="file-invoice" href="/recipes/tds/form-26q/prepare_form_26q">
+    Step-by-step guide to prepare Form 26Q TDS statements for non-salary payments.
   </Card>
 </CardGroup>
 
@@ -106,6 +113,17 @@ For detailed workflow patterns, see the [job-based API workflow guide](/guides/d
 | [Non-salary payments](/api-reference/tds/reports/tds-reports/non_salary_payments) | 26Q | TDS on non-salary payments (vendors, contractors, rent) |
 | [NRI payments](/api-reference/tds/reports/tds-reports/nri_payments) | 27Q | TDS on payments to non-residents |
 | [TCS payments](/api-reference/tds/reports/tcs-reports/tcs_payments) | TCS | Tax collected at source statements |
+
+## Common use cases
+
+Use the TDS Reports API when you need to:
+
+- Automate quarterly TDS return generation for Forms 24Q, 26Q, or 27Q from payroll or accounting systems
+- Generate FVU-ready TXT files from structured payment data
+- Process large volumes of deductee records using job-based workflows
+- Integrate TDS return preparation into compliance workflows with webhook notifications
+- Generate TCS (Tax Collected at Source) statements using the same job-based workflow
+- Maintain audit trails of generation jobs for compliance and operations
 
 ## Frequently asked questions
 

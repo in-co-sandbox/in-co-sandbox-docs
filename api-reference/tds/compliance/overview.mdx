@@ -9,6 +9,11 @@ keywords:
   - Form 16A
   - TRACES
   - CSI download
+  - TDS certificates
+  - quarterly returns
+  - Form 24Q
+  - Form 26Q
+  - Form 27Q
 ---
 
 # TDS Compliance API
@@ -57,6 +62,23 @@ TDS (Tax Deducted at Source) compliance is the set of processes used by a deduct
     Submit a certificate generation job with deductee details, then poll or await a webhook to fetch completed certificate outputs.
   </Step>
 </Steps>
+
+## Recipes
+
+<CardGroup cols={2}>
+  <Card title="File Form 24Q" icon="paper-plane" href="/recipes/tds/form-24q/file_form_24q">
+    E-file Form 24Q with CSI download, FVU generation, and receipt downloads.
+  </Card>
+  <Card title="File Form 26Q" icon="paper-plane" href="/recipes/tds/form-26q/file_form_26q">
+    E-file Form 26Q (non-salary TDS) with CSI download, FVU generation, and receipts.
+  </Card>
+  <Card title="Generate Form 16 certificates" icon="badge-check" href="/recipes/tds/form-16/generate_form_16_certificates">
+    Download Form 16 salary certificates after Form 24Q filing.
+  </Card>
+  <Card title="Generate Form 16A certificates" icon="badge-check" href="/recipes/tds/form-16a/generate-form-16a-certificates">
+    Download Form 16A certificates after Form 26Q or 27Q filing.
+  </Card>
+</CardGroup>
 
 ## API categories
 
