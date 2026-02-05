@@ -14,7 +14,7 @@ Verify identity with user consent following UIDAI guidelines.
     Send an OTP to the Aadhaar-linked mobile number, then verify it to retrieve identity details. Requires user consent and a verification reason.
   </Card>
   <Card title="Verified KYC data" icon="id-card">
-    Returns name, DOB, gender, address, photo, and hashed contact fields as per UIDAI offline e-KYC guidelines.
+    Returns name, DOB, gender, address, and hashed contact fields as per UIDAI offline e-KYC guidelines.
   </Card>
 </CardGroup>
 
@@ -47,8 +47,8 @@ Verify identity with user consent following UIDAI guidelines.
   <Card title="Demographic verification" icon="id-card">
     Retrieve verified name, date of birth, gender, and address for identity checks.
   </Card>
-  <Card title="Photo & contact data" icon="image">
-    Get the user's photo and hashed contact fields for risk and deduplication checks without storing raw values.
+  <Card title="Hashed contact data" icon="database">
+    Get hashed contact fields for risk and deduplication checks without storing raw values.
   </Card>
   <Card title="Fraud prevention" icon="shield">
     Check Aadhaar authenticity to prevent duplicate accounts and fraud in high-risk flows.
@@ -85,7 +85,7 @@ Use Aadhaar OTP verification when you need to:
   </Accordion>
 
   <Accordion title="What data do I get after verification?">
-    The API returns name, DOB, gender, address, and photo. Hashed contact fields may be included based on consent. Available fields vary by case.
+    The API returns name, DOB, gender, and address. Hashed contact fields may be included based on consent. Available fields vary by case.
   </Accordion>
 
   <Accordion title="Does the user need a mobile number linked to Aadhaar?">
