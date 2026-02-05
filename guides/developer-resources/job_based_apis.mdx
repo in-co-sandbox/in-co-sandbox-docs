@@ -10,7 +10,7 @@ Instead of sending the full input data directly in the API request, these APIs u
 
 1. Create a job to initialize processing
 2. Upload the input payload separately using a secure pre-signed url
-3. Poll the job until processing completes and the output is ready
+3. Poll the job until processing completes and the output is ready, or use webhooks to receive a completion notification
 
 This approach improves scalability, fault tolerance, and performance, while providing clear visibility into the processing lifecycle.
 
@@ -91,8 +91,10 @@ POST /:workload/:function/:sub_function
     Once the payload is uploaded successfully, the job automatically begins processing.
   </Step>
 
-  <Step title="Poll the job status">
-    After uploading the input payload, the system processes the job asynchronously. Poll the same endpoint using a `GET` request with the `job_id` to track progress.
+  <Step title="Get job completion status">
+    After uploading the input payload, the system processes the job asynchronously. You can poll the same endpoint using a `GET` request with the `job_id` to track progress.
+
+    If you prefer not to poll, configure webhooks to receive a completion notification instead. See [Webhooks](/guides/developer-resources/webhooks). When you receive the webhook, call the same `GET /:workload/:function/:sub_function/:job_id` endpoint to retrieve the output URL.
 
     **Endpoint pattern**
     ```http
@@ -172,6 +174,10 @@ sequenceDiagram
     
     Processor->>S3: Write output
     
+    opt Webhook configured (optional)
+        Sandbox API->>Client: POST webhook event (job completed)
+    end
+
     Client->>Sandbox API: GET /workload/function/sub_function/job_id
     Sandbox API->>Client: status: succeeded + output URL
     
