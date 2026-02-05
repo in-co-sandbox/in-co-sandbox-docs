@@ -1,0 +1,115 @@
+---
+title: "Overview"
+description: "Verify Indian companies and directors using MCA master data. Lookup CIN for company details and DIN for director profiles and directorships."
+---
+
+# MCA Master Data API
+
+MCA Master Data APIs provide access to company and director records maintained by India's Ministry of Corporate Affairs and Registrar of Companies (RoC). Verify businesses and directors programmatically through CIN (Corporate Identification Number) and DIN (Director Identification Number) lookups for KYB, vendor onboarding, and corporate due diligence.
+
+<CardGroup cols={2}>
+  <Card title="Company verification with CIN" icon="building">
+    Retrieve company master data including status, registered address, capital structure, directors and signatories, and charges.
+  </Card>
+  <Card title="Director verification with DIN" icon="id-card">
+    Fetch director profiles and associated appointments across companies and LLPs with designation and tenure details.
+  </Card>
+  <Card title="KYB compliance" icon="shield-check">
+    Automate business verification with official MCA records for vendor onboarding and corporate due diligence.
+  </Card>
+  <Card title="Real-time MCA data" icon="database">
+    Access up-to-date company registration details, compliance status, and directorship information from RoC records.
+  </Card>
+</CardGroup>
+
+## How it works
+
+<Steps>
+  <Step title="Collect the identifier">
+    Obtain the CIN (Corporate Identification Number) for company lookup or DIN (Director Identification Number) for director verification from your user.
+  </Step>
+  
+  <Step title="Capture consent and purpose">
+    Send `consent` and `reason` fields in your request for audit compliance.
+  </Step>
+  
+  <Step title="Call the MCA endpoint">
+    Use the Company Master Data API for CIN lookup or Director Master Data API for DIN verification.
+  </Step>
+  
+  <Step title="Use the response in your workflow">
+    Auto-fill onboarding forms, run KYB checks, perform due diligence, or verify directors and signatories with the returned data.
+  </Step>
+</Steps>
+
+## What you can do
+
+<CardGroup cols={2}>
+  <Card title="Verify company details" icon="file-lines">
+    Fetch company name, category, status, RoC details, registration info, and contact details for business validation.
+  </Card>
+  <Card title="Check capital structure" icon="dollar-sign">
+    Access authorized capital and paid-up capital information for financial assessment and risk evaluation.
+  </Card>
+  <Card title="Review directors and signatories" icon="users">
+    Get director and signatory details including names, designations, DIN/PAN, and appointment dates.
+  </Card>
+  <Card title="Audit company charges" icon="file-contract">
+    Retrieve charge information including amounts, creation dates, and status for due diligence.
+  </Card>
+  <Card title="Validate director credentials" icon="badge-check">
+    Verify director profiles and track all associated company and LLP appointments.
+  </Card>
+  <Card title="Automate compliance checks" icon="circle-check">
+    Access active compliance indicators and company status for real-time verification.
+  </Card>
+</CardGroup>
+
+## Integration methods
+
+<CardGroup cols={2}>
+  <Card title="Company Master Data API (CIN)" icon="building" href="/api-reference/kyc/mca/company_master_data">
+    Lookup a company by CIN and retrieve company master data, directors and signatories, and charges.
+  </Card>
+  <Card title="Director Master Data API (DIN)" icon="id-card" href="/api-reference/kyc/mca/director_master_data">
+    Lookup a director by DIN and retrieve director details and associated company and LLP appointments.
+  </Card>
+</CardGroup>
+
+## Common use cases
+
+Use MCA Master Data APIs when you need to:
+
+- Perform KYB (Know Your Business) during business onboarding
+- Verify vendors, merchants, partners, and suppliers
+- Validate company registration and status before enabling services
+- Run corporate due diligence using director, signatory, and charge information
+- Replace manual MCA portal checks with automated, auditable API calls
+
+## Frequently Asked Questions
+
+<AccordionGroup>
+  <Accordion title="What is MCA master data?">
+    MCA master data refers to company and director records maintained by the Ministry of Corporate Affairs and Registrar of Companies (RoC), including registration details, status, and director and signatory information.
+  </Accordion>
+
+  <Accordion title="What is CIN?">
+    CIN (Corporate Identification Number) uniquely identifies a company registered in India. Use it to fetch company master data like status, incorporation and registration details, capital structure, directors and signatories, and charges.
+  </Accordion>
+
+  <Accordion title="What is DIN?">
+    DIN (Director Identification Number) uniquely identifies an individual who is (or intends to be) a company director. Use it to fetch director details and directorship and appointment information across companies and LLPs.
+  </Accordion>
+
+  <Accordion title="What details can I fetch using the Company Master Data API?">
+    The Company Master Data API returns company profile details (name, status, RoC, incorporation), registered address, capital, compliance indicators, charges, and director and signatory details.
+  </Accordion>
+
+  <Accordion title="What details can I fetch using the Director Master Data API?">
+    The Director Master Data API returns director profile details and associated company and LLP appointments, including designation and begin and end dates.
+  </Accordion>
+
+  <Accordion title="Do I need consent to call these APIs?">
+    Your request includes `consent` and `reason` fields so you can capture and record user authorization within your KYC/KYB process and maintain an audit trail.
+  </Accordion>
+</AccordionGroup>
