@@ -690,8 +690,33 @@
                         "group": "Client",
                         "pages": [
                           "api-reference/it/compliance/in.gov.incometax.eri/client/endpoints/login",
+                          "api-reference/it/compliance/in.gov.incometax.eri/client/endpoints/register_client",
+                          "api-reference/it/compliance/in.gov.incometax.eri/client/endpoints/verify_client_otp",
                           "api-reference/it/compliance/in.gov.incometax.eri/client/endpoints/add_client",
                           "api-reference/it/compliance/in.gov.incometax.eri/client/endpoints/validate_client"
+                        ]
+                      },
+                      {
+                        "group": "Taxpayer",
+                        "pages": [
+                          {
+                            "group": "Prefill",
+                            "pages": [
+                              "api-reference/it/compliance/in.gov.incometax.eri/taxpayer/prefill/Generate_OTP",
+                              "api-reference/it/compliance/in.gov.incometax.eri/taxpayer/prefill/verify_otp"
+                            ]
+                          },
+                          {
+                            "group": "ITR",
+                            "pages": [
+                              "api-reference/it/compliance/in.gov.incometax.eri/taxpayer/itr/validate",
+                              "api-reference/it/compliance/in.gov.incometax.eri/taxpayer/itr/Submit_ITR",
+                              "api-reference/it/compliance/in.gov.incometax.eri/taxpayer/itr/Update_Verification_Mode",
+                              "api-reference/it/compliance/in.gov.incometax.eri/taxpayer/itr/Generate_EVC",
+                              "api-reference/it/compliance/in.gov.incometax.eri/taxpayer/itr/Validate_EVC",
+                              "api-reference/it/compliance/in.gov.incometax.eri/taxpayer/itr/Get_Acknowledgement"
+                            ]
+                          }
                         ]
                       }
                     ]
