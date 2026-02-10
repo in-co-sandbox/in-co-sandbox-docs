@@ -22918,9 +22918,14 @@
           {
             "name": "acknowledgement_number",
             "in": "query",
+            "required": true,
             "description": "Acknowledgement number associated to the ITR",
+            "deprecated": false,
             "schema": {
-              "type": "integer"
+              "type": "string",
+              "pattern": "^[0-9]{15,16}$",
+              "minLength": 15,
+              "maxLength": 16
             },
             "example": "331697130150725"
           },
@@ -32949,49 +32954,80 @@
           {
             "name": "assessment_year",
             "in": "query",
+            "required": true,
+            "description": "Assessment year for which the Income Tax Return is filed (e.g., 2025 for AY 2025–26). Must be a 4-digit year as prescribed by the Income Tax Department.",
+            "deprecated": false,
             "schema": {
-              "type": "integer"
+              "type": "string",
+              "pattern": "^(19|20)\\d{2}$",
+              "default": "2026",
+              "minLength": 4,
+              "maxLength": 4
             },
             "example": "2025"
           },
           {
             "name": "form_code",
             "in": "query",
+            "required": true,
+            "description": "Numeric code representing the ITR form type.",
+            "deprecated": false,
             "schema": {
-              "type": "integer"
+              "type": "string",
+              "pattern": "^[1-9]$",
+              "default": "1",
+              "enum": [
+                "1",
+                "2",
+                "3",
+                "4"
+              ]
             },
             "example": "1"
           },
           {
             "name": "verification_mode",
             "in": "query",
+            "required": true,
+            "description": "Mode of verification selected for the filed ITR.",
+            "deprecated": false,
             "schema": {
-              "type": "string"
+              "type": "string",
+              "pattern": "^[A-Z_]+$",
+              "default": "LATER",
+              "minLength": 5,
+              "maxLength": 20
             },
             "example": "LATER"
           },
           {
             "name": "acknowledgement_number",
             "in": "query",
+            "required": true,
+            "description": "Acknowledgement number generated after successful submission of the ITR. This identifier is required to update the verification mode of the filed return.",
+            "deprecated": false,
             "schema": {
-              "type": "integer"
+              "type": "string",
+              "pattern": "^[0-9]{15,16}$",
+              "minLength": 15,
+              "maxLength": 16
             },
             "example": "110824030180625"
           },
           {
             "name": "x-user-id",
             "in": "header",
-            "schema": {
-              "type": "string"
-            },
+            "required": false,
+            "deprecated": false,
+            "schema": {},
             "example": "ERIP000325"
           },
           {
             "name": "x-auth-token",
             "in": "header",
-            "schema": {
-              "type": "string"
-            },
+            "required": false,
+            "deprecated": false,
+            "schema": {},
             "example": "01985ae333f24ce486bff9334e16dd63"
           }
         ],
@@ -33100,11 +33136,12 @@
     },
     "/it/compliance/eri/tax-payers/{tax_payer_id}/itrs/e-verify/otp": {
       "post": {
-        "summary": "Generate Evc",
+        "summary": "Validate EVC",
         "parameters": [
           {
             "name": "assessment_year",
             "in": "query",
+            "description": "Assessment year for which the Income Tax Return is filed (e.g., 2025 for AY 2025–26). Must be a 4-digit year as prescribed by the Income Tax Department.",
             "schema": {
               "type": "integer"
             },
@@ -33113,28 +33150,50 @@
           {
             "name": "form_code",
             "in": "query",
+            "description": "Numeric code representing the ITR form type.",
             "schema": {
-              "type": "string"
-            }
+              "type": "integer"
+            },
+            "example": "1"
           },
           {
             "name": "verification_mode",
             "in": "query",
+            "description": "Mode of verification selected for the filed ITR.",
             "schema": {
               "type": "string"
-            }
+            },
+            "example": "aadhaar"
           },
           {
             "name": "acknowledgement_number",
             "in": "query",
+            "description": "Acknowledgement number generated after successful submission of the ITR. This identifier is required to update the verification mode of the filed return.",
+            "schema": {
+              "type": "integer"
+            },
+            "example": "290001380100725"
+          },
+          {
+            "name": "x-user-id",
+            "in": "header",
             "schema": {
               "type": "string"
-            }
+            },
+            "example": "ERIP000325"
+          },
+          {
+            "name": "x-auth-token",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            },
+            "example": "01985ae333f24ce486bff9334e16dd63"
           }
         ],
         "responses": {
           "200": {
-            "description": "REJECTED",
+            "description": "200 OK",
             "headers": {
               "Transfer-Encoding": {
                 "schema": {
@@ -33146,7 +33205,7 @@
                 "schema": {
                   "type": "string"
                 },
-                "example": "Wed, 18 Jun 2025 14:54:43 GMT"
+                "example": "Thu, 10 Jul 2025 10:36:41 GMT"
               },
               "Keep-Alive": {
                 "schema": {
@@ -33166,6 +33225,9 @@
                 "schema": {
                   "type": "object",
                   "properties": {
+                    "transaction_id": {
+                      "type": "string"
+                    },
                     "code": {
                       "type": "integer"
                     },
@@ -33180,9 +33242,6 @@
                               "code": {
                                 "type": "string"
                               },
-                              "fieldName": {
-                                "nullable": true
-                              },
                               "type": {
                                 "type": "string"
                               },
@@ -33192,35 +33251,31 @@
                             }
                           }
                         },
-                        "errors": {
-                          "type": "array",
-                          "items": {}
-                        },
                         "successFlag": {
                           "type": "boolean"
                         }
                       }
                     },
                     "timestamp": {
-                      "type": "integer"
+                      "type": "string",
+                      "format": "utc-millisec"
                     }
                   }
                 },
                 "example": {
+                  "transaction_id": "f5061a7a-0498-4929-9161-1b307f3233a2",
                   "code": 200,
                   "data": {
                     "messages": [
                       {
-                        "code": "EF00104",
-                        "fieldName": null,
-                        "type": "ERROR",
-                        "desc": "To generate EVC, you need to validate and enable EVC on your demat account."
+                        "code": "OTP VALIDATED",
+                        "type": "INFO",
+                        "desc": "OTP VALIDATED"
                       }
                     ],
-                    "errors": [],
-                    "successFlag": false
+                    "successFlag": true
                   },
-                  "timestamp": 1750258483162
+                  "timestamp": "1752143797442"
                 }
               }
             }
@@ -33239,7 +33294,8 @@
           "required": true,
           "schema": {
             "type": "string"
-          }
+          },
+          "example": "QUIPT2025A"
         }
       ]
     },
@@ -33250,8 +33306,15 @@
           {
             "name": "assessment_year",
             "in": "query",
+            "required": true,
+            "description": "Assessment year for which the Income Tax Return is filed (e.g., 2025 for AY 2025–26). Must be a 4-digit year as prescribed by the Income Tax Department.",
+            "deprecated": false,
             "schema": {
-              "type": "integer"
+              "type": "string",
+              "pattern": "^(19|20)\\d{2}$",
+              "default": "2026",
+              "minLength": 4,
+              "maxLength": 4
             },
             "example": "2025"
           },
@@ -33266,33 +33329,33 @@
           {
             "name": "x-user-id",
             "in": "header",
-            "schema": {
-              "type": "string"
-            },
+            "required": false,
+            "deprecated": false,
+            "schema": {},
             "example": "ERIP000325"
           },
           {
             "name": "x-auth-token",
             "in": "header",
-            "schema": {
-              "type": "string"
-            },
+            "required": false,
+            "deprecated": false,
+            "schema": {},
             "example": "3538c559f3b8445d9707facd8e64ca58"
           },
           {
             "name": "Authorization",
             "in": "header",
-            "schema": {
-              "type": "string"
-            },
+            "required": false,
+            "deprecated": false,
+            "schema": {},
             "example": "{{access_token}}"
           },
           {
             "name": "x-api-key",
             "in": "header",
-            "schema": {
-              "type": "string"
-            },
+            "required": false,
+            "deprecated": false,
+            "schema": {},
             "example": "{{api_key}}"
           }
         ],
@@ -33422,8 +33485,15 @@
           {
             "name": "assessment_year",
             "in": "query",
+            "required": true,
+            "description": "Assessment year for which the Income Tax Return is filed (e.g., 2025 for AY 2025–26). Must be a 4-digit year as prescribed by the Income Tax Department.",
+            "deprecated": false,
             "schema": {
-              "type": "integer"
+              "type": "string",
+              "pattern": "^(19|20)\\d{2}$",
+              "default": "2026",
+              "minLength": 4,
+              "maxLength": 4
             },
             "example": "2025"
           },
@@ -33470,33 +33540,33 @@
           {
             "name": "x-user-id",
             "in": "header",
-            "schema": {
-              "type": "string"
-            },
+            "required": false,
+            "deprecated": false,
+            "schema": {},
             "example": "ERIP000325"
           },
           {
             "name": "x-auth-token",
             "in": "header",
-            "schema": {
-              "type": "string"
-            },
+            "required": false,
+            "deprecated": false,
+            "schema": {},
             "example": "713a964b007346c5ba2dca7e7cf2af93"
           },
           {
             "name": "Authorization",
             "in": "header",
-            "schema": {
-              "type": "string"
-            },
+            "required": false,
+            "deprecated": false,
+            "schema": {},
             "example": "{{access_token}}"
           },
           {
             "name": "x-api-key",
             "in": "header",
-            "schema": {
-              "type": "string"
-            },
+            "required": false,
+            "deprecated": false,
+            "schema": {},
             "example": "{{api_key}}"
           }
         ],
@@ -34163,33 +34233,43 @@
           {
             "name": "dob",
             "in": "query",
+            "required": true,
+            "description": "Date of birth of the client in DD/MM/YYYY format, as per Income Tax Department records.",
+            "deprecated": false,
             "schema": {
-              "type": "string"
+              "type": "string",
+              "pattern": "^(0[1-9]|[12][0-9]|3[01])/(0[1-9]|1[0-2])/(19|20)\\d{2}$",
+              "minLength": 10,
+              "maxLength": 10
             },
             "example": "01/01/1995"
           },
           {
             "name": "source",
             "in": "query",
+            "required": true,
+            "description": "Source system initiating the prefill JSON OTP generation request.",
+            "deprecated": false,
             "schema": {
-              "type": "string"
+              "type": "string",
+              "default": "itd"
             },
             "example": "itd"
           },
           {
             "name": "Authorization",
             "in": "header",
-            "schema": {
-              "type": "string"
-            },
+            "required": false,
+            "deprecated": false,
+            "schema": {},
             "example": "eyJ0eXAiOiJKV1MiLCJhbGciOiJSU0FTU0FfUFNTX1NIQV81MTIiLCJraWQiOiJkYjlhOTJhNi1mNTg1LTQyMGUtYjAyYi02YTk0MTFiYjE5NTUifQ.eyJyZWZyZXNoX3Rva2VuIjoiZXlKMGVYQWlPaUpLVjFNaUxDSmhiR2NpT2lKU1UwRlRVMEZmVUZOVFgxTklRVjgxTVRJaUxDSnJhV1FpT2lKa1lqbGhPVEpoTmkxbU5UZzFMVFF5TUdVdFlqQXlZaTAyWVRrME1URmlZakU1TlRVaWZRLmV5SnpkV0lpT2lKclpYbGZiR2wyWlY4NE5EYzNPVEpsTm1VeFl6VTBPV0V4T1dKaU1qaGlPR1ExTURNeVltTXdPU0lzSW1Gd2FWOXJaWGtpT2lKclpYbGZiR2wyWlY4NE5EYzNPVEpsTm1VeFl6VTBPV0V4T1dKaU1qaGlPR1ExTURNeVltTXdPU0lzSW5kdmNtdHpjR0ZqWlY5cFpDSTZJbUV3WldFM01ERmlMV1UxTURrdE5HVmlaQzA0TTJReUxXRmhNREV4TkRVek9XRTRaQ0lzSW1GMVpDSTZJa0ZRU1NJc0ltbHVkR1Z1ZENJNklsSkZSbEpGVTBoZlZFOUxSVTRpTENKcGMzTWlPaUprWlhZdFlYQnBMbk5oYm1SaWIzZ3VZMjh1YVc0aUxDSmxlSEFpT2pFM09ESTVNRE14TWpRc0ltbGhkQ0k2TVRjMU1UTTJOekV5TkgwLlhLUjI0VWFrTUdYOFRSQk43NUNra3A0bkR0TU1JVUkzNVhabEZCc0x2N3hKWXZhRDJRUURucHJyWkZ0Mzl3UHRQNnRvYklEOGFnT2RydmxkdEdjOThIZnk1NmsxRWlibWx3cjlkMWktQkdmZnhzUWsxSVA3RU01RFFRRkNEU3ZDb2dJOUN6Z3dCMmFyRk43TWxJS3pHYmFYbkJpMzgzdjBiTEJNUEdvMzhSQkowQzFtZEJPa3NYWl80UHhaMHZxM0N6MXU5QkxzdEV0UElLNzhkMlJWeHN5WjR0QmxpS09oZTQ2Wng2dmFpX05XRmhBcnBnc1g1TTFvTzRQenJuMkVScXZLU3BKOUVLNXpBVlQ1Z0ZvanRhc21waUhSc0tfcnI4OE10X2s3WmdLWFhfUmlQMmNsMzNSUEFWbmRWSGJ2M04wVUVnWHVPLURwNm9Yb0x5Q216dyIsIndvcmtzcGFjZV9pZCI6ImEwZWE3MDFiLWU1MDktNGViZC04M2QyLWFhMDExNDUzOWE4ZCIsInN1YiI6ImtleV9saXZlXzg0Nzc5MmU2ZTFjNTQ5YTE5YmIyOGI4ZDUwMzJiYzA5IiwiYXBpX2tleSI6ImtleV9saXZlXzg0Nzc5MmU2ZTFjNTQ5YTE5YmIyOGI4ZDUwMzJiYzA5IiwiYXVkIjoiQVBJIiwiaW50ZW50IjoiQUNDRVNTX1RPS0VOIiwiaXNzIjoiZGV2LWFwaS5zYW5kYm94LmNvLmluIiwiaWF0IjoxNzUxMzY3MTI0LCJleHAiOjE3NTE0NTM1MjR9.O_VabB_VxRNhQ0WqNXUXDPipj1IwpJj3xMSNOOCfdybpWF6kAtzAlNIShIbkZOr2-7342k0uz_zO6mi1FTTOCYJG_pPFwA_Q8VoCDfpINGvNGHNdtD-S8FFxx2YkrnOetVh6Rwf2qNiT-pbc_Ii2NTtOzajtosZNV-mQVt-sge-bJVRaqgWqMPQK0Sy9q4alXVdQ1W2FKdjZ_i-DEf8EztJlqLm0N7GR5f0VLgkKfaBbtZ1zzt6JhpjfRydL6MW_6Wsd3Z1ZNRCNayJVoZSqrDseR7Xd4Psd9k6CaduA8sMjhLFw0aIsV_1dEyIdAHJA8ppUGDAqQUXSVaE_cC9_Bg"
           },
           {
             "name": "x-api-key",
             "in": "header",
-            "schema": {
-              "type": "string"
-            },
+            "required": false,
+            "deprecated": false,
+            "schema": {},
             "example": "key_live_847792e6e1c549a19bb28b8d5032bc09"
           }
         ],
@@ -34314,65 +34394,87 @@
           {
             "name": "otp",
             "in": "query",
+            "required": true,
+            "description": "One-time password issued for client validation. Must be provided exactly as received.",
+            "deprecated": false,
             "schema": {
-              "type": "integer"
+              "type": "string",
+              "pattern": "^[0-9]{6}$",
+              "minLength": 6,
+              "maxLength": 6
             },
             "example": "678792"
           },
           {
             "name": "source",
             "in": "query",
+            "required": true,
+            "description": "Source system initiating the prefill JSON OTP generation request.",
+            "deprecated": false,
             "schema": {
-              "type": "string"
+              "type": "string",
+              "default": "itd"
             },
             "example": "itd"
           },
           {
             "name": "valid_upto",
             "in": "query",
+            "required": true,
+            "description": "Date until which the client validation is valid, in DD/MM/YYYY format.",
+            "deprecated": false,
             "schema": {
-              "type": "string"
+              "type": "string",
+              "pattern": "^(0[1-9]|[12][0-9]|3[01])/(0[1-9]|1[0-2])/(19|20)\\d{2}$",
+              "minLength": 10,
+              "maxLength": 10
             },
             "example": "17/06/2025"
           },
           {
             "name": "transaction_id",
             "in": "query",
+            "required": true,
+            "description": "Transaction identifier associated with the OTP generation request. Required to validate the client.",
+            "deprecated": false,
             "schema": {
-              "type": "string"
+              "type": "string",
+              "pattern": "^[A-Z0-9]{10,20}$",
+              "minLength": 10,
+              "maxLength": 20
             },
             "example": "FOS000005390505"
           },
           {
             "name": "x-user-id",
             "in": "header",
-            "schema": {
-              "type": "string"
-            },
+            "required": false,
+            "deprecated": false,
+            "schema": {},
             "example": "ERIP000325"
           },
           {
             "name": "x-auth-token",
             "in": "header",
-            "schema": {
-              "type": "string"
-            },
+            "required": false,
+            "deprecated": false,
+            "schema": {},
             "example": "c392b629916f42b0a995b9476d9d4478"
           },
           {
             "name": "Authorization",
             "in": "header",
-            "schema": {
-              "type": "string"
-            },
+            "required": false,
+            "deprecated": false,
+            "schema": {},
             "example": "eyJ0eXAiOiJKV1MiLCJhbGciOiJSU0FTU0FfUFNTX1NIQV81MTIiLCJraWQiOiJjZjRiMjMwZi0wMjllLTQzYzQtYTk5ZS1jY2E3Yjk4ZGM1ODIifQ.eyJ3b3Jrc3BhY2VfaWQiOiI1OWEwZmE1ZC00NTdiLTQwMTYtYjFjNC1iYjYwNWNkYTdjMGQiLCJzdWIiOiJrZXlfbGl2ZV8xY2VlYmExOWRjMzM0M2RlYTI1MTNhMDFhZjZkZjQ5YSIsImFwaV9rZXkiOiJrZXlfbGl2ZV8xY2VlYmExOWRjMzM0M2RlYTI1MTNhMDFhZjZkZjQ5YSIsImF1ZCI6IkFQSSIsImludGVudCI6IkFDQ0VTU19UT0tFTiIsImlzcyI6InVhdDEtYXBpLnNhbmRib3guY28uaW4iLCJpYXQiOjE3NTI4MzUxMTEsImV4cCI6MTc1MjkyMTUxMX0.CRrG5yMCok_iJoCpH9vlFyMPnR0B7KfaYOdiAs7RndlghAmMe9JzqgusiSW21UBFXP6zslG6ZCZiR-MTJKVvsGAgGqMqdRrTZVp3SQYtEzXRAuBUKTRnlOU7EbUsbIewL-3Xqqseui8758aekugijoxWOFG5l5p6kRRMjS4Hvra7dfwr3jTAf27Vsi0j4aKmBU5Sa5Cv4LMvrPqHSoyDqxjTeU8qbo25xqs36fIL6vcMydQ09Ieqv0nHKw5gjhbGImK8iNlOawIPkenJgRNcW_Nk5JInj0jySpmgtxRkKr5yUiYaH1yAT4Ps37l8i3ZzJT-26SytExIwg9MZUlpYtw"
           },
           {
             "name": "x-api-key",
             "in": "header",
-            "schema": {
-              "type": "string"
-            },
+            "required": false,
+            "deprecated": false,
+            "schema": {},
             "example": "{{api_key}}"
           }
         ],
@@ -34727,65 +34829,101 @@
           {
             "name": "mobile_otp",
             "in": "query",
+            "required": true,
+            "description": "One-time password sent to the registered mobile number to verify client registration.",
+            "deprecated": false,
             "schema": {
-              "type": "integer"
+              "type": "string",
+              "pattern": "^[0-9]{6}$",
+              "minLength": 6,
+              "maxLength": 6
             },
             "example": "615076"
           },
           {
             "name": "pan",
             "in": "query",
+            "required": true,
+            "description": "Permanent Account Number (PAN) of the client, issued by the Income Tax Department.",
+            "deprecated": false,
             "schema": {
-              "type": "string"
+              "type": "string",
+              "pattern": "^[A-Z]{5}[0-9]{4}[A-Z]{1}$",
+              "minLength": 10,
+              "maxLength": 10
             },
             "example": "QUIPT2025E"
           },
           {
             "name": "mobile_transaction_id",
             "in": "query",
+            "required": true,
+            "description": "Transaction identifier returned during mobile OTP generation. Required to verify the mobile OTP.",
+            "deprecated": false,
             "schema": {
-              "type": "string"
+              "type": "string",
+              "pattern": "^[A-Z0-9]{10,20}$",
+              "minLength": 10,
+              "maxLength": 20
             },
             "example": "FOS000005396842"
           },
           {
             "name": "email_transaction_id",
             "in": "query",
+            "required": true,
+            "description": "Transaction identifier returned during email OTP generation. Required to verify the email OTP.",
+            "deprecated": false,
             "schema": {
-              "type": "string"
+              "type": "string",
+              "pattern": "^[A-Z0-9]{10,20}$",
+              "minLength": 10,
+              "maxLength": 20
             },
             "example": "FOS000005396843"
           },
           {
             "name": "email_otp",
             "in": "query",
+            "required": true,
+            "description": "One-time password sent to the registered email address to verify client registration.",
+            "deprecated": false,
             "schema": {
-              "type": "integer"
+              "type": "string",
+              "pattern": "^[0-9]{6}$",
+              "minLength": 6,
+              "maxLength": 6
             },
             "example": "542413"
           },
           {
             "name": "valid_upto",
             "in": "query",
+            "required": true,
+            "description": "Date until which the client registration OTP verification is valid, in DD/MM/YYYY format.",
+            "deprecated": false,
             "schema": {
-              "type": "string"
+              "type": "string",
+              "pattern": "^(0[1-9]|[12][0-9]|3[01])/(0[1-9]|1[0-2])/(19|20)\\d{2}$",
+              "minLength": 10,
+              "maxLength": 10
             },
             "example": "20/06/2025"
           },
           {
             "name": "x-user-id",
             "in": "header",
-            "schema": {
-              "type": "string"
-            },
+            "required": false,
+            "deprecated": false,
+            "schema": {},
             "example": "ERIP000325"
           },
           {
             "name": "x-auth-token",
             "in": "header",
-            "schema": {
-              "type": "string"
-            },
+            "required": false,
+            "deprecated": false,
+            "schema": {},
             "example": "ae2bd7b54331469aaab03a05912f0db7"
           }
         ],
