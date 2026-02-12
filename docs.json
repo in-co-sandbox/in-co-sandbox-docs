@@ -907,7 +907,19 @@
                     "group": "Tax P&L",
                     "pages": [
                       "api-reference/it/report/overview",
-                      
+                      {
+                        "group": "All assets",
+                        "hidden": true,
+                        "pages": [
+                          {
+                            "group": "Endpoints",
+                            "pages": [
+                              "api-reference/it/report/tax_pnl/all_assets/submit_job",
+                              "api-reference/it/report/tax_pnl/all_assets/job_status"
+                            ]
+                          }
+                        ]
+                      },
                       {
                         "group": "Securities",
                         "pages": [
@@ -925,6 +937,19 @@
                                 ]
                               }
                             ]
+                          },
+                          {
+                            "group": "Foreign",
+                            "hidden": true,
+                            "pages": [
+                              {
+                                "group": "Endpoints",
+                                "pages": [
+                                  "api-reference/it/report/tax_pnl/securities/foreign/submit_job",
+                                  "api-reference/it/report/tax_pnl/securities/foreign/job_status"
+                                ]
+                              }
+                            ]
                           }
                         ]
                       }
@@ -932,7 +957,7 @@
                   },
                   {
                         "group": "Capital gains",
-                        "hidden": false,
+                        "hidden": true,
                         "pages": [
                           {
                             "group": "All assets",
