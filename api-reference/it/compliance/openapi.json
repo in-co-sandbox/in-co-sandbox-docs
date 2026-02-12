@@ -15,7 +15,7 @@
     "security": [
         {}
     ],
-  "paths": {
+ "paths": {
     "/itd/portal/tax-payer/itrs/validate": {
       "post": {
         "summary": "Validate",
@@ -23,6 +23,9 @@
           {
             "name": "x-api-key",
             "in": "header",
+            "required": true,
+            "description": "Your API key used to authenticate and authorize the request.",
+            "deprecated": false,
             "schema": {
               "type": "string"
             },
@@ -1154,6 +1157,9 @@
           {
             "name": "x-api-key",
             "in": "header",
+            "required": true,
+            "description": "Your API key used to authenticate and authorize the request.",
+            "deprecated": false,
             "schema": {
               "type": "string"
             },
@@ -1960,6 +1966,9 @@
           {
             "name": "x-api-key",
             "in": "header",
+            "required": true,
+            "description": "Your API key used to authenticate and authorize the request.",
+            "deprecated": false,
             "schema": {
               "type": "string"
             },
@@ -2078,9 +2087,11 @@
           {
             "name": "acknowledgement_number",
             "in": "query",
+            "required": true,
             "description": "Acknowledgement number associated to the ITR",
+            "deprecated": false,
             "schema": {
-              "type": "integer"
+              "type": "string"
             },
             "example": "159053070150721"
           },
@@ -17961,17 +17972,23 @@
           {
             "name": "Authorization",
             "in": "header",
-            "required": false,
+            "required": true,
+            "description": "Token for user-level authorization. ",
             "deprecated": false,
-            "schema": {},
+            "schema": {
+              "type": "string"
+            },
             "example": "{{access_token}}"
           },
           {
             "name": "x-api-key",
             "in": "header",
-            "required": false,
+            "required": true,
+            "description": "Your API key used to authenticate and authorize the request.",
             "deprecated": false,
-            "schema": {},
+            "schema": {
+              "type": "string"
+            },
             "example": "{{api_key}}"
           }
         ],
@@ -22932,33 +22949,43 @@
           {
             "name": "x-user-id",
             "in": "header",
-            "required": false,
+            "required": true,
             "deprecated": false,
-            "schema": {},
+            "schema": {
+              "type": "string"
+            },
             "example": "ERIP000325"
           },
           {
             "name": "x-auth-token",
             "in": "header",
-            "required": false,
+            "required": true,
             "deprecated": false,
-            "schema": {},
+            "schema": {
+              "type": "string"
+            },
             "example": "1618f3dfaa4943caa4ff365253850506"
           },
           {
             "name": "Authorization",
             "in": "header",
-            "required": false,
+            "required": true,
+            "description": "Token for user-level authorization. ",
             "deprecated": false,
-            "schema": {},
+            "schema": {
+              "type": "string"
+            },
             "example": "{{access_token}}"
           },
           {
             "name": "x-api-key",
             "in": "header",
-            "required": false,
+            "required": true,
+            "description": "Your API key used to authenticate and authorize the request.",
             "deprecated": false,
-            "schema": {},
+            "schema": {
+              "type": "string"
+            },
             "example": "{{api_key}}"
           }
         ],
@@ -23057,6 +23084,9 @@
           {
             "name": "Authorization",
             "in": "header",
+            "required": true,
+            "description": "Token for user-level authorization. ",
+            "deprecated": false,
             "schema": {
               "type": "string"
             },
@@ -23065,6 +23095,9 @@
           {
             "name": "x-api-key",
             "in": "header",
+            "required": true,
+            "description": "Your API key used to authenticate and authorize the request.",
+            "deprecated": false,
             "schema": {
               "type": "string"
             },
@@ -33017,17 +33050,21 @@
           {
             "name": "x-user-id",
             "in": "header",
-            "required": false,
+            "required": true,
             "deprecated": false,
-            "schema": {},
+            "schema": {
+              "type": "string"
+            },
             "example": "ERIP000325"
           },
           {
             "name": "x-auth-token",
             "in": "header",
-            "required": false,
+            "required": true,
             "deprecated": false,
-            "schema": {},
+            "schema": {
+              "type": "string"
+            },
             "example": "01985ae333f24ce486bff9334e16dd63"
           }
         ],
@@ -33177,6 +33214,8 @@
           {
             "name": "x-user-id",
             "in": "header",
+            "required": true,
+            "deprecated": false,
             "schema": {
               "type": "string"
             },
@@ -33185,6 +33224,8 @@
           {
             "name": "x-auth-token",
             "in": "header",
+            "required": true,
+            "deprecated": false,
             "schema": {
               "type": "string"
             },
@@ -33329,33 +33370,43 @@
           {
             "name": "x-user-id",
             "in": "header",
-            "required": false,
+            "required": true,
             "deprecated": false,
-            "schema": {},
+            "schema": {
+              "type": "string"
+            },
             "example": "ERIP000325"
           },
           {
             "name": "x-auth-token",
             "in": "header",
-            "required": false,
+            "required": true,
             "deprecated": false,
-            "schema": {},
+            "schema": {
+              "type": "string"
+            },
             "example": "3538c559f3b8445d9707facd8e64ca58"
           },
           {
             "name": "Authorization",
             "in": "header",
-            "required": false,
+            "required": true,
+            "description": "Token for user-level authorization. ",
             "deprecated": false,
-            "schema": {},
+            "schema": {
+              "type": "string"
+            },
             "example": "{{access_token}}"
           },
           {
             "name": "x-api-key",
             "in": "header",
-            "required": false,
+            "required": true,
+            "description": "Your API key used to authenticate and authorize the request.",
             "deprecated": false,
-            "schema": {},
+            "schema": {
+              "type": "string"
+            },
             "example": "{{api_key}}"
           }
         ],
@@ -33508,65 +33559,99 @@
           {
             "name": "email_otp",
             "in": "query",
+            "required": true,
+            "description": "One-time password issued for client validation. Must be provided exactly as received.",
+            "deprecated": false,
             "schema": {
-              "type": "integer"
+              "type": "string",
+              "pattern": "^[0-9]{6}$",
+              "minLength": 6,
+              "maxLength": 6
             },
             "example": "653064"
           },
           {
             "name": "email_transaction_id",
             "in": "query",
+            "required": true,
+            "description": "Transaction identifier returned during email OTP generation. Required to verify the email OTP.",
+            "deprecated": false,
             "schema": {
-              "type": "string"
+              "type": "string",
+              "pattern": "^[A-Z0-9]{10,20}$",
+              "minLength": 10,
+              "maxLength": 20
             },
             "example": "FOS006959708148"
           },
           {
             "name": "mobile_otp",
             "in": "query",
+            "required": true,
+            "description": "One-time password issued for client validation. Must be provided exactly as received.",
+            "deprecated": false,
             "schema": {
-              "type": "integer"
+              "type": "string",
+              "pattern": "^[0-9]{6}$",
+              "minLength": 6,
+              "maxLength": 6
             },
             "example": "495100"
           },
           {
             "name": "mobile_transaction_id",
             "in": "query",
+            "required": true,
+            "description": "Transaction identifier returned during mobile OTP generation. Required to verify the mobile OTP.",
+            "deprecated": false,
             "schema": {
-              "type": "string"
+              "type": "string",
+              "pattern": "^[A-Z0-9]{10,20}$",
+              "minLength": 10,
+              "maxLength": 20
             },
             "example": "FOS006959708143"
           },
           {
             "name": "x-user-id",
             "in": "header",
-            "required": false,
+            "required": true,
             "deprecated": false,
-            "schema": {},
+            "schema": {
+              "type": "string"
+            },
             "example": "ERIP000325"
           },
           {
             "name": "x-auth-token",
             "in": "header",
-            "required": false,
+            "required": true,
             "deprecated": false,
-            "schema": {},
+            "schema": {
+              "type": "string"
+            },
             "example": "713a964b007346c5ba2dca7e7cf2af93"
           },
           {
             "name": "Authorization",
             "in": "header",
-            "required": false,
+            "required": true,
+            "description": "Token for user-level authorization. ",
             "deprecated": false,
-            "schema": {},
+            "schema": {
+              "type": "string"
+            },
             "example": "{{access_token}}"
           },
           {
             "name": "x-api-key",
             "in": "header",
-            "required": false,
+            "required": true,
+            "description": "Your API key used to authenticate and authorize the request.",
             "deprecated": false,
-            "schema": {},
+            "schema": {
+              "type": "string"
+            },
             "example": "{{api_key}}"
           }
         ],
@@ -34120,6 +34205,7 @@
           {
             "name": "Authorization",
             "in": "header",
+            "description": "Token for user-level authorization. ",
             "schema": {
               "type": "string"
             },
@@ -34128,6 +34214,7 @@
           {
             "name": "x-api-key",
             "in": "header",
+            "description": "Your API key used to authenticate and authorize the request.",
             "schema": {
               "type": "string"
             },
@@ -34260,6 +34347,7 @@
             "name": "Authorization",
             "in": "header",
             "required": false,
+            "description": "Token for user-level authorization. ",
             "deprecated": false,
             "schema": {},
             "example": "eyJ0eXAiOiJKV1MiLCJhbGciOiJSU0FTU0FfUFNTX1NIQV81MTIiLCJraWQiOiJkYjlhOTJhNi1mNTg1LTQyMGUtYjAyYi02YTk0MTFiYjE5NTUifQ.eyJyZWZyZXNoX3Rva2VuIjoiZXlKMGVYQWlPaUpLVjFNaUxDSmhiR2NpT2lKU1UwRlRVMEZmVUZOVFgxTklRVjgxTVRJaUxDSnJhV1FpT2lKa1lqbGhPVEpoTmkxbU5UZzFMVFF5TUdVdFlqQXlZaTAyWVRrME1URmlZakU1TlRVaWZRLmV5SnpkV0lpT2lKclpYbGZiR2wyWlY4NE5EYzNPVEpsTm1VeFl6VTBPV0V4T1dKaU1qaGlPR1ExTURNeVltTXdPU0lzSW1Gd2FWOXJaWGtpT2lKclpYbGZiR2wyWlY4NE5EYzNPVEpsTm1VeFl6VTBPV0V4T1dKaU1qaGlPR1ExTURNeVltTXdPU0lzSW5kdmNtdHpjR0ZqWlY5cFpDSTZJbUV3WldFM01ERmlMV1UxTURrdE5HVmlaQzA0TTJReUxXRmhNREV4TkRVek9XRTRaQ0lzSW1GMVpDSTZJa0ZRU1NJc0ltbHVkR1Z1ZENJNklsSkZSbEpGVTBoZlZFOUxSVTRpTENKcGMzTWlPaUprWlhZdFlYQnBMbk5oYm1SaWIzZ3VZMjh1YVc0aUxDSmxlSEFpT2pFM09ESTVNRE14TWpRc0ltbGhkQ0k2TVRjMU1UTTJOekV5TkgwLlhLUjI0VWFrTUdYOFRSQk43NUNra3A0bkR0TU1JVUkzNVhabEZCc0x2N3hKWXZhRDJRUURucHJyWkZ0Mzl3UHRQNnRvYklEOGFnT2RydmxkdEdjOThIZnk1NmsxRWlibWx3cjlkMWktQkdmZnhzUWsxSVA3RU01RFFRRkNEU3ZDb2dJOUN6Z3dCMmFyRk43TWxJS3pHYmFYbkJpMzgzdjBiTEJNUEdvMzhSQkowQzFtZEJPa3NYWl80UHhaMHZxM0N6MXU5QkxzdEV0UElLNzhkMlJWeHN5WjR0QmxpS09oZTQ2Wng2dmFpX05XRmhBcnBnc1g1TTFvTzRQenJuMkVScXZLU3BKOUVLNXpBVlQ1Z0ZvanRhc21waUhSc0tfcnI4OE10X2s3WmdLWFhfUmlQMmNsMzNSUEFWbmRWSGJ2M04wVUVnWHVPLURwNm9Yb0x5Q216dyIsIndvcmtzcGFjZV9pZCI6ImEwZWE3MDFiLWU1MDktNGViZC04M2QyLWFhMDExNDUzOWE4ZCIsInN1YiI6ImtleV9saXZlXzg0Nzc5MmU2ZTFjNTQ5YTE5YmIyOGI4ZDUwMzJiYzA5IiwiYXBpX2tleSI6ImtleV9saXZlXzg0Nzc5MmU2ZTFjNTQ5YTE5YmIyOGI4ZDUwMzJiYzA5IiwiYXVkIjoiQVBJIiwiaW50ZW50IjoiQUNDRVNTX1RPS0VOIiwiaXNzIjoiZGV2LWFwaS5zYW5kYm94LmNvLmluIiwiaWF0IjoxNzUxMzY3MTI0LCJleHAiOjE3NTE0NTM1MjR9.O_VabB_VxRNhQ0WqNXUXDPipj1IwpJj3xMSNOOCfdybpWF6kAtzAlNIShIbkZOr2-7342k0uz_zO6mi1FTTOCYJG_pPFwA_Q8VoCDfpINGvNGHNdtD-S8FFxx2YkrnOetVh6Rwf2qNiT-pbc_Ii2NTtOzajtosZNV-mQVt-sge-bJVRaqgWqMPQK0Sy9q4alXVdQ1W2FKdjZ_i-DEf8EztJlqLm0N7GR5f0VLgkKfaBbtZ1zzt6JhpjfRydL6MW_6Wsd3Z1ZNRCNayJVoZSqrDseR7Xd4Psd9k6CaduA8sMjhLFw0aIsV_1dEyIdAHJA8ppUGDAqQUXSVaE_cC9_Bg"
@@ -34268,6 +34356,7 @@
             "name": "x-api-key",
             "in": "header",
             "required": false,
+            "description": "Your API key used to authenticate and authorize the request.",
             "deprecated": false,
             "schema": {},
             "example": "key_live_847792e6e1c549a19bb28b8d5032bc09"
@@ -34464,17 +34553,23 @@
           {
             "name": "Authorization",
             "in": "header",
-            "required": false,
+            "required": true,
+            "description": "Token for user-level authorization. ",
             "deprecated": false,
-            "schema": {},
+            "schema": {
+              "type": "string"
+            },
             "example": "eyJ0eXAiOiJKV1MiLCJhbGciOiJSU0FTU0FfUFNTX1NIQV81MTIiLCJraWQiOiJjZjRiMjMwZi0wMjllLTQzYzQtYTk5ZS1jY2E3Yjk4ZGM1ODIifQ.eyJ3b3Jrc3BhY2VfaWQiOiI1OWEwZmE1ZC00NTdiLTQwMTYtYjFjNC1iYjYwNWNkYTdjMGQiLCJzdWIiOiJrZXlfbGl2ZV8xY2VlYmExOWRjMzM0M2RlYTI1MTNhMDFhZjZkZjQ5YSIsImFwaV9rZXkiOiJrZXlfbGl2ZV8xY2VlYmExOWRjMzM0M2RlYTI1MTNhMDFhZjZkZjQ5YSIsImF1ZCI6IkFQSSIsImludGVudCI6IkFDQ0VTU19UT0tFTiIsImlzcyI6InVhdDEtYXBpLnNhbmRib3guY28uaW4iLCJpYXQiOjE3NTI4MzUxMTEsImV4cCI6MTc1MjkyMTUxMX0.CRrG5yMCok_iJoCpH9vlFyMPnR0B7KfaYOdiAs7RndlghAmMe9JzqgusiSW21UBFXP6zslG6ZCZiR-MTJKVvsGAgGqMqdRrTZVp3SQYtEzXRAuBUKTRnlOU7EbUsbIewL-3Xqqseui8758aekugijoxWOFG5l5p6kRRMjS4Hvra7dfwr3jTAf27Vsi0j4aKmBU5Sa5Cv4LMvrPqHSoyDqxjTeU8qbo25xqs36fIL6vcMydQ09Ieqv0nHKw5gjhbGImK8iNlOawIPkenJgRNcW_Nk5JInj0jySpmgtxRkKr5yUiYaH1yAT4Ps37l8i3ZzJT-26SytExIwg9MZUlpYtw"
           },
           {
             "name": "x-api-key",
             "in": "header",
-            "required": false,
+            "required": true,
+            "description": "Your API key used to authenticate and authorize the request.",
             "deprecated": false,
-            "schema": {},
+            "schema": {
+              "type": "string"
+            },
             "example": "{{api_key}}"
           }
         ],
@@ -34595,6 +34690,8 @@
           {
             "name": "x-user-id",
             "in": "header",
+            "required": true,
+            "deprecated": false,
             "schema": {
               "type": "string"
             },
@@ -34603,6 +34700,8 @@
           {
             "name": "x-auth-token",
             "in": "header",
+            "required": true,
+            "deprecated": false,
             "schema": {
               "type": "string"
             },
@@ -34913,17 +35012,21 @@
           {
             "name": "x-user-id",
             "in": "header",
-            "required": false,
+            "required": true,
             "deprecated": false,
-            "schema": {},
+            "schema": {
+              "type": "string"
+            },
             "example": "ERIP000325"
           },
           {
             "name": "x-auth-token",
             "in": "header",
-            "required": false,
+            "required": true,
             "deprecated": false,
-            "schema": {},
+            "schema": {
+              "type": "string"
+            },
             "example": "ae2bd7b54331469aaab03a05912f0db7"
           }
         ],

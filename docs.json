@@ -682,10 +682,10 @@
               {
                 "group": "Compliance",
                 "icon": "box-check",
-                "hidden": true,
+                "hidden": false,
                 "pages": [
                   {
-                    "group": "in.gov.incometax.eri",
+                    "group": "ERI",
                     "pages": [
                       {
                         "group": "Client",
@@ -735,7 +735,7 @@
                 "pages": [
                   {
                     "group": "PnL",
-                    "hidden": true,
+                    "hidden": false,
                     "pages": [
                       {
                         "group": "Crypto",
@@ -808,7 +808,7 @@
                       "api-reference/it/calculator/overview",
                       {
                         "group": "All assets",
-                        "hidden": true,
+                        "hidden": false,
                         "pages": [
                           {
                             "group": "Endpoints",
@@ -821,14 +821,14 @@
                       },
                       {
                         "group": "Real estate",
-                        "hidden": true,
+                        "hidden": false,
                         "pages": [
                           "api-reference/it/calculator/tax_pnl/real_estate/real_estate"
                         ]
                       },
                       {
                         "group": "Other assets",
-                        "hidden": true,
+                        "hidden": false,
                         "pages": [
                           "api-reference/it/calculator/tax_pnl/other_assets/other"
                         ]
@@ -907,9 +907,32 @@
                     "group": "Tax P&L",
                     "pages": [
                       "api-reference/it/report/overview",
+                      
                       {
+                        "group": "Securities",
+                        "pages": [
+                          {
+                            "group": "Domestic",
+                            "pages": [
+                              "api-reference/it/report/tax_pnl/securities/domestic/endpoints/submit_job",
+                              "api-reference/it/report/tax_pnl/securities/domestic/endpoints/put_request",
+                              "api-reference/it/report/tax_pnl/securities/domestic/endpoints/job_status",
+                              {
+                                "group": "Annexures",
+                                "pages": [
+                                  "api-reference/it/report/tax_pnl/securities/domestic/annexures/tradebook_domestic",
+                                  "api-reference/it/report/tax_pnl/securities/domestic/annexures/tradewise_domestic"
+                                ]
+                              }
+                            ]
+                          }
+                        ]
+                      }
+                    ]
+                  },
+                  {
                         "group": "Capital gains",
-                        "hidden": true,
+                        "hidden": false,
                         "pages": [
                           {
                             "group": "All assets",
@@ -938,28 +961,6 @@
                             ]
                           }
                         ]
-                      },
-                      {
-                        "group": "Securities",
-                        "pages": [
-                          {
-                            "group": "Domestic",
-                            "pages": [
-                              "api-reference/it/report/tax_pnl/securities/domestic/endpoints/submit_job",
-                              "api-reference/it/report/tax_pnl/securities/domestic/endpoints/put_request",
-                              "api-reference/it/report/tax_pnl/securities/domestic/endpoints/job_status",
-                              {
-                                "group": "Annexures",
-                                "pages": [
-                                  "api-reference/it/report/tax_pnl/securities/domestic/annexures/tradebook_domestic",
-                                  "api-reference/it/report/tax_pnl/securities/domestic/annexures/tradewise_domestic"
-                                ]
-                              }
-                            ]
-                          }
-                        ]
-                      }
-                    ]
                   }
                 ]
               },
@@ -988,7 +989,7 @@
             "item": "Bank",
             "icon": "/static/svg/Bank.svg",
             "description": "Bank APIs",
-            "hidden": true,
+            "hidden": false,
             "groups": [
               {
                 "group": "Virtual Account",
