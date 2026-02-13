@@ -41,10 +41,12 @@ Confirm Identities with confidence.
 - [Overview](/api-reference/kyc/overview): Automate identity verification for individuals and businesses using government-authoritative data sources through Sandbox KYC APIs.
 
 ## API Reference - KYC - Aadhaar
+- [Overview](/api-reference/kyc/aadhaar/overview): Aadhaar Verification API (Aadhaar OTP Verification) for digital KYC—generate OTP and verify OTP to fetch verified Aadhaar identity details for onboarding, compliance, and fraud prevention.
 - [Generate OTP](/api-reference/kyc/aadhaar/endpoints/generate_otp): Generate OTP on the individual's registered mobile number to verify their Aadhaar number.
 - [Verify OTP](/api-reference/kyc/aadhaar/endpoints/verify_otp): Verify the Aadhaar number by passing the OTP received on the individual's registered mobile number.
 
 ## API Reference - KYC - Bank
+- [Overview](/api-reference/kyc/bank/overview): Instant Bank Account Verification API for KYC and payouts—IFSC verification, Penny Drop (₹1 micro-deposit), and Penny-Less account validation with beneficiary name match (name at bank).
 - [IFSC Verification](/api-reference/kyc/bank/endpoints/ifsc_verification): Verify the IFSC code and receive details of the associated bank branch.
 - [Penny Drop](/api-reference/kyc/bank/endpoints/penny_drop): Verify a bank account by dropping a penny into the beneficiary account.
 - [Penny-Less](/api-reference/kyc/bank/endpoints/penny_less): Verify a bank account without dropping a penny into the beneficiary account.
@@ -96,10 +98,12 @@ Confirm Identities with confidence.
 - [Fetch Document](/api-reference/kyc/entitylocker-sdk/endpoints/fetch_document)
 
 ## API Reference - KYC - MCA
+- [Overview](/api-reference/kyc/mca/overview): Verify Indian companies and directors using MCA master data. Lookup CIN for company details and DIN for director profiles and directorships.
 - [Company Master Data](/api-reference/kyc/mca/company_master_data): API takes in the Corporate Identification Number (CIN) to identify and retrieve basic information about the company.
 - [Director Master Data](/api-reference/kyc/mca/director_master_data): Director Master Data API uses Director Identification Number (DIN) to provide details about the existing director of a company, or with the intention to be one.
 
 ## API Reference - KYC - PAN
+- [Overview](/api-reference/kyc/pan/overview): PAN Verification API to validate PAN details (name/DOB match, PAN status) and check PAN–Aadhaar link status for KYC, onboarding, and fraud prevention.
 - [Verify PAN Details](/api-reference/kyc/pan/endpoints/verify_pan_details): API verifies the PAN number and the information of the holder.
 - [PAN Aadhaar Link Status](/api-reference/kyc/pan/endpoints/pan_aadhaar_link_status): API verifies the PAN Aadhaar Link for a user.
 
@@ -121,6 +125,7 @@ Simple and Secure GST Compliance.
 - [Poll Job](/api-reference/gst/analytics/endpoints/gstr-2b-reconciliation/poll_job): Poll GSTR-2B reconciliation job status and download reconciliation report on job's successful completion.
 
 ## API Reference - GST - Compliance - Public
+- [Overview](/api-reference/gst/compliance/guides/public/overview): Verify GSTIN (GST verification), track GST return filing status, and find GSTINs by PAN + state code using Sandbox GST Public APIs.
 - [Search GSTIN](/api-reference/gst/compliance/endpoints/public/search_gstin): Verify GST-registered businesses by passing their GSTIN.
 - [Track GST Returns](/api-reference/gst/compliance/endpoints/public/track_gstrs): Check compliance for a GST-registered business by passing the financial year and the GSTIN. Further, you can filter the list by passing the return type.
 - [Search GSTIN by PAN](/api-reference/gst/compliance/endpoints/public/search_pan_state_code): Verify a business registered under GST by passing the PAN and state code.
