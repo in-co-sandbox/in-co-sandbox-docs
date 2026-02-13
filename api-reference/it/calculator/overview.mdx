@@ -1,70 +1,189 @@
 ---
 title: "Overview"
-description: "Calculate profit & loss and capital gains tax across securities (domestic and foreign) and cryptocurrency transactions."
+description: "Calculate profit & loss, capital gains tax, indexed costs, and ITR for various asset classes including securities, crypto, real estate, and other investments."
+keywords:
+  - profit loss calculation
+  - capital gains tax
+  - indexed cost calculator
+  - ITR calculator
+  - tax P&L
+  - investment calculator
+  - securities P&L
+  - crypto tax
 ---
 
-# Tax P&L Calculator APIs
+# Income Tax Calculator APIs
 
-The Tax P&L Calculator APIs compute profit and loss for investment transactions across different asset classes, with automatic holding period classification and capital gains tax calculation.
+The Income Tax Calculator APIs provide comprehensive financial calculation capabilities for investment analysis, tax planning, and compliance. Calculate profit & loss, capital gains tax, indexed costs, and Income Tax Returns across multiple asset classes.
 
-## Capabilities
-
-### Profit & Loss Calculation
-
-Calculate realized and unrealized gains/losses for:
-
-- **Domestic Securities**: Equity shares, mutual funds, derivatives with holding period classification
-- **Foreign Securities**: International investments with currency conversion and holding period classification
-- **Cryptocurrency**: Digital asset transactions with holding period tracking
-
-### Tax Classification
-
-Automatic classification based on holding periods and asset types:
-
-- **Short-term Capital Gains**: Special tax rates
-- **Long-term Capital Gains**: Special tax rates with indexation benefits (for domestic securities)
-- **Currency Gains**: For foreign securities transactions
-- **Loss Tracking**: Capital losses for offset and carryforward
-
-## Calculator Modules
+## Key Features
 
 <CardGroup cols={2}>
-  <Card title="Domestic Securities Tax P&L" href="/api-reference/it/calculator/tax_pnl/securities/domestic/overview">
-    Calculate gains/losses for equity, mutual funds, and derivatives trading in India.
+  <Card title="Tax-Aware P&L" icon="calculator" href="/api-reference/it/calculator/overview#tax-pnl-calculators">
+    Calculate profit & loss with automatic capital gains tax classification and indexation benefits.
   </Card>
-  <Card title="Foreign Securities Tax P&L" href="/api-reference/it/calculator/tax_pnl/securities/foreign/overview">
-    Calculate tax impact for international investments with currency conversion.
+  <Card title="Basic P&L" icon="chart-line" href="/api-reference/it/calculator/overview#pnl-calculators">
+    Compute realized and unrealized gains/losses without tax implications for portfolio analysis.
   </Card>
-  <Card title="Crypto Tax P&L" href="/api-reference/it/calculator/tax_pnl/crypto/overview">
-    Compute capital gains and losses from cryptocurrency transactions.
+  <Card title="Indexed Cost Calculator" icon="indian-rupee-sign" href="/api-reference/it/calculator/income_tax/indexed_cost/Calculate_bulk_Indexed_Cost">
+    Calculate indexed acquisition costs for long-term capital gains tax computation.
+  </Card>
+  <Card title="ITR Calculator" icon="file-invoice" href="/api-reference/it/calculator/income_tax/itr/Calculate_itr">
+    Prepare and calculate Income Tax Return components for individual taxpayers.
   </Card>
 </CardGroup>
 
-## API Endpoints
+## Asset Classes Supported
+
+### Securities (Domestic & Foreign)
+- **Equity Shares**: Delivery and intraday trading
+- **Mutual Funds**: SIPs, lump-sum investments, redemptions
+- **Derivatives**: Futures, options, and other derivative instruments
+- **Currency Impact**: Foreign securities with automatic currency conversion
+
+### Cryptocurrency
+- **Digital Assets**: Bitcoin, Ethereum, and other cryptocurrencies
+- **Trading Pairs**: Spot and derivative crypto transactions
+- **Holding Periods**: Short-term and long-term classification
+
+### Real Estate
+- **Property Transactions**: Purchase, sale, and rental income
+- **Indexation Benefits**: Long-term capital gains with indexation
+- **Rental Calculations**: Income from property rentals
+
+### Other Assets
+- **Collectibles**: Art, antiques, and collectible items
+- **Precious Metals**: Gold, silver, and other commodities
+- **Custom Assets**: User-defined asset classes
+
+## Tax P&L Calculators
+
+Calculate profit & loss with automatic tax classification and indexation benefits:
 
 <CardGroup cols={3}>
-  <Card title="Domestic Securities" href="/api-reference/it/calculator/tax_pnl/securities/domestic/endpoints/submit_job">
-    Submit Jobs
+  <Card title="Domestic Securities" href="/api-reference/it/calculator/tax_pnl/securities/domestic/overview">
+    Indian market investments with indexation
   </Card>
-  <Card title="Foreign Securities" href="/api-reference/it/calculator/tax_pnl/securities/foreign/endpoints/submit_job">
-    Submit Jobs
+  <Card title="Foreign Securities" href="/api-reference/it/calculator/tax_pnl/securities/foreign/overview">
+    International investments with currency gains
   </Card>
-  <Card title="Crypto" href="/api-reference/it/calculator/tax_pnl/crypto/endpoints/submit_job">
-    Submit Jobs
+  <Card title="Cryptocurrency" href="/api-reference/it/calculator/tax_pnl/crypto/overview">
+    Digital asset tax calculations
+  </Card>
+  <Card title="Real Estate" href="/api-reference/it/calculator/tax_pnl/real_estate/real_estate">
+    Property investment tax analysis
+  </Card>
+  <Card title="Other Assets" href="/api-reference/it/calculator/tax_pnl/other_assets/other">
+    Collectibles and custom assets
   </Card>
 </CardGroup>
 
-## Async Job Processing
+## PnL Calculators
 
-All calculator operations use async job-based processing:
+Basic profit & loss calculations for portfolio analysis:
 
-1. **Submit Job**: POST with transaction data → Receive `job_id` and S3 upload URL
-2. **Upload Payload**: PUT transaction data to the provided S3 URL
-3. **Check Status & Get Output**: Poll job status endpoint with `job_id` → Returns processing status and results once complete
+<CardGroup cols={3}>
+  <Card title="Domestic Securities" href="/api-reference/it/calculator/pnl/securities/domestic/endpoints/submit_job">
+    Indian market P&L without tax
+  </Card>
+  <Card title="Foreign Securities" href="/api-reference/it/calculator/pnl/securities/foreign/endpoints/submit_job">
+    International investments P&L
+  </Card>
+  <Card title="Cryptocurrency" href="/api-reference/it/calculator/pnl/crypto/endpoints/submit_job">
+    Crypto trading P&L
+  </Card>
+  <Card title="Real Estate" href="/api-reference/it/calculator/pnl/real_estate/endpoints/real_estate">
+    Property investment P&L
+  </Card>
+  <Card title="Other Assets" href="/api-reference/it/calculator/pnl/other_assets/endpoints/other">
+    Custom asset P&L calculations
+  </Card>
+</CardGroup>
 
-## Related Documentation
+## How It Works
 
-- [Domestic Securities P&L](/api-reference/it/calculator/tax_pnl/securities/domestic/overview)
-- [Foreign Securities P&L](/api-reference/it/calculator/tax_pnl/securities/foreign/overview)
-- [Crypto Tax P&L](/api-reference/it/calculator/tax_pnl/crypto/overview)
-- [API Overview](/api-reference/it/overview)
+<Steps>
+  <Step title="Choose Calculator Type">
+    Select between Tax P&L (with tax implications) or basic P&L (without tax) based on your needs.
+  </Step>
+  <Step title="Prepare Transaction Data">
+    Format your investment data in the required JSON structure with trade details, dates, and amounts.
+  </Step>
+  <Step title="Submit Calculation Job">
+    Use async job APIs for large datasets with status polling or webhook notifications.
+  </Step>
+  <Step title="Retrieve Results">
+    Get detailed P&L reports with gain/loss classification, tax implications, and summary statistics.
+  </Step>
+</Steps>
+
+## API Architecture
+
+### Synchronous APIs
+- **Indexed Cost Calculator**: Real-time calculations for cost indexation
+- **ITR Calculator**: Immediate tax return component calculations
+- **Small Datasets**: Direct API responses for smaller transaction sets
+
+### Asynchronous APIs
+- **Job-Based Processing**: Large datasets processed in background jobs
+- **Status Polling**: Check job completion status
+- **Webhook Support**: Real-time notifications for job completion
+- **Batch Processing**: Handle thousands of transactions efficiently
+
+## Data Formats
+
+### Transaction Input
+```json
+{
+  "symbol": "RELIANCE",
+  "quantity": 100,
+  "price": 2500.00,
+  "date": "2023-01-15",
+  "transaction_type": "buy",
+  "brokerage": 25.00,
+  "exchange_fees": 5.00
+}
+```
+
+### Calculation Output
+```json
+{
+  "total_pnl": 15000.00,
+  "realized_gains": 12000.00,
+  "unrealized_gains": 3000.00,
+  "short_term_gains": 8000.00,
+  "long_term_gains": 4000.00,
+  "tax_liability": 1200.00
+}
+```
+
+## Tax Compliance Features
+
+- **Holding Period Classification**: Automatic STCG/LTCG categorization
+- **Indexation Benefits**: Cost inflation adjustment for long-term gains
+- **Currency Gains**: Foreign exchange impact on international investments
+- **Loss Harvesting**: Capital loss tracking for tax optimization
+- **Tax Regimes**: Support for old and new tax regimes
+
+## Integration Options
+
+- **REST APIs**: Standard HTTP endpoints for all calculations
+- **Postman Collections**: Pre-configured API testing environments
+- **SDK Support**: Client libraries for popular programming languages
+- **Webhook Integration**: Real-time data synchronization
+
+## Rate Limits & Performance
+
+- **Synchronous APIs**: Up to 100 requests per minute
+- **Asynchronous Jobs**: Unlimited job submissions with concurrent processing
+- **Data Processing**: Handle up to 10,000 transactions per job
+- **Response Times**: Real-time for small datasets, minutes for large jobs
+
+## Support & Resources
+
+- **API Reference**: Complete endpoint documentation with examples
+- **Postman Collection**: Import ready-to-use API tests
+- **Sample Data**: Pre-formatted transaction data for testing
+- **Annexures**: Detailed schema documentation for data formats
+
+For technical support or integration assistance, refer to the [API Reference](/api-reference/it/calculator) or contact Sandbox support.

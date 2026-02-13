@@ -399,7 +399,13 @@
     },
     "/it/reports/tax-pnl/securities/domestic": {
       "get": {
+        "operationId": "getTaxPnlSecuritiesDomesticJob",
         "summary": "Get Job",
+        "description": "Check the status of a domestic securities Tax P&L report job. Pass the job_id returned from the job creation endpoint to poll for completion status. Part of the job-based async workflow.",
+        "externalDocs": {
+          "description": "Job-Based API Workflow Guide",
+          "url": "/guides/developer-resources/job_based_apis"
+        },
         "parameters": [
           {
             "name": "job_id",
@@ -415,34 +421,40 @@
           {
             "name": "Authorization",
             "in": "header",
-            "required": false,
+            "required": true,
             "description": "Bearer token for user-level authorization. Typically passed as Bearer {{access_token}}.",
             "deprecated": false,
-            "schema": {},
+            "schema": {
+              "type": "string"
+            },
             "example": "{{access_token}}"
           },
           {
             "name": "x-api-key",
             "in": "header",
-            "required": false,
+            "required": true,
             "description": "Your API key used to authenticate and authorize the request.",
             "deprecated": false,
-            "schema": {},
+            "schema": {
+              "type": "string"
+            },
             "example": "{{api_key}}"
           },
           {
             "name": "x-api-version",
             "in": "header",
-            "required": false,
+            "required": true,
             "description": "Indicates the version of the API you want to use. Ensures backward-compatible behavior.",
             "deprecated": false,
-            "schema": {},
+            "schema": {
+              "type": "string"
+            },
             "example": "{{version}}"
           }
         ],
         "responses": {
           "200": {
-            "description": "Success",
+            "description": "Job status retrieved successfully",
             "headers": {
               "Date": {
                 "schema": {
@@ -487,22 +499,27 @@
                   "type": "object",
                   "properties": {
                     "transaction_id": {
-                      "type": "string"
+                      "type": "string",
+                      "description": "Unique identifier for tracking the request across systems"
                     },
                     "code": {
-                      "type": "integer"
+                      "type": "integer",
+                      "description": "HTTP status code"
                     },
                     "data": {
                       "type": "object",
+                      "description": "Response payload containing job status details",
                       "properties": {
                         "status": {
-                          "type": "string"
+                          "type": "string",
+                          "description": "Current processing status of the job (e.g., created, processing, completed, failed)"
                         }
                       }
                     },
                     "timestamp": {
                       "type": "string",
-                      "format": "utc-millisec"
+                      "format": "utc-millisec",
+                      "description": "Unix timestamp (in milliseconds) indicating when the server generated the response"
                     }
                   }
                 },
@@ -582,7 +599,13 @@
         ]
       },
       "post": {
+        "operationId": "createTaxPnlSecuritiesDomesticJob",
         "summary": "Submit Job",
+        "description": "Submit a job to generate a Tax P&L report for domestic securities. This endpoint initiates an asynchronous job-based workflow and returns a presigned URL for uploading the tradebook or tradewise settlement data.",
+        "externalDocs": {
+          "description": "Job-Based API Workflow Guide",
+          "url": "/guides/developer-resources/job_based_apis"
+        },
         "parameters": [
           {
             "name": "input",
@@ -659,7 +682,7 @@
         ],
         "responses": {
           "200": {
-            "description": "200",
+            "description": "Job created successfully, presigned URL provided for payload upload",
             "headers": {
               "Date": {
                 "schema": {
@@ -710,40 +733,50 @@
                   "type": "object",
                   "properties": {
                     "code": {
-                      "type": "integer"
+                      "type": "integer",
+                      "description": "HTTP status code"
                     },
                     "timestamp": {
-                      "type": "integer"
+                      "type": "integer",
+                      "description": "Unix timestamp (in milliseconds) indicating when the server generated the response"
                     },
                     "data": {
                       "type": "object",
+                      "description": "Response payload containing job details and presigned URL",
                       "properties": {
                         "created_at": {
-                          "type": "integer"
+                          "type": "integer",
+                          "description": "Unix timestamp (in milliseconds) when the job was created"
                         },
                         "updated_at": {
-                          "type": "integer"
+                          "type": "integer",
+                          "description": "Unix timestamp (in milliseconds) when the job was last updated"
                         },
                         "@entity": {
                           "type": "string"
                         },
                         "security_type": {
-                          "type": "string"
+                          "type": "string",
+                          "description": "Type of securities being processed (domestic or international)"
                         },
                         "url": {
                           "type": "string",
-                          "format": "uri"
+                          "format": "uri",
+                          "description": "Temporary AWS S3 presigned URL for uploading the tradebook workbook via HTTP PUT. Valid for 24 hours."
                         },
                         "status": {
-                          "type": "string"
+                          "type": "string",
+                          "description": "Current processing status of the job (e.g., created, processing, completed, failed)"
                         },
                         "job_id": {
-                          "type": "string"
+                          "type": "string",
+                          "description": "Unique identifier for this job. Use this to poll job status and retrieve results."
                         }
                       }
                     },
                     "transaction_id": {
-                      "type": "string"
+                      "type": "string",
+                      "description": "Unique identifier for tracking the request across systems"
                     }
                   }
                 },

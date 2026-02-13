@@ -717,8 +717,9 @@
               {
                 "group": "Compliance",
                 "icon": "box-check",
-                "hidden": false,
+                "hidden": true,
                 "pages": [
+                  "api-reference/it/compliance/overview",
                   {
                     "group": "ERI",
                     "pages": [
@@ -768,6 +769,7 @@
                 "group": "Calculator",
                 "icon": "calculator",
                 "pages": [
+                  "api-reference/it/calculator/overview",
                   {
                     "group": "PnL",
                     "hidden": false,
@@ -840,10 +842,10 @@
                   {
                     "group": "Tax P&L",
                     "pages": [
-                      "api-reference/it/calculator/overview",
+                      "api-reference/it/calculator/tax_pnl/overview",
                       {
                         "group": "All assets",
-                        "hidden": false,
+                        "hidden": true,
                         "pages": [
                           {
                             "group": "Endpoints",
@@ -938,13 +940,13 @@
                 "group": "Reports",
                 "icon": "file-text",
                 "pages": [
+                  "api-reference/it/report/overview",
                   {
                     "group": "Tax P&L",
                     "pages": [
-                      "api-reference/it/report/overview",
                       {
                         "group": "All assets",
-                        "hidden": false,
+                        "hidden": true,
                         "pages": [
                           {
                             "group": "Endpoints",
@@ -996,6 +998,7 @@
                         "pages": [
                           {
                             "group": "All assets",
+                             "hidden": true,
                             "pages": [
                               "api-reference/it/report/capital_gains/all_assets/submit_job",
                               "api-reference/it/report/capital_gains/all_assets/job_status"
