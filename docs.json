@@ -715,13 +715,161 @@
             "pages": [
               "api-reference/it/overview",
               {
+                "group": "Compliance",
+                "icon": "box-check",
+                "hidden": true,
+                "pages": [
+                  "api-reference/it/compliance/overview",
+                  {
+                    "group": "ERI",
+                    "pages": [
+                      {
+                        "group": "Client",
+                        "pages": [
+                          {
+                            "group": "Endpoints",
+                            "pages": [
+                              "api-reference/it/compliance/in.gov.incometax.eri/client/endpoints/login",
+                              "api-reference/it/compliance/in.gov.incometax.eri/client/endpoints/register_client",
+                              "api-reference/it/compliance/in.gov.incometax.eri/client/endpoints/add_client",
+                              "api-reference/it/compliance/in.gov.incometax.eri/client/endpoints/verify_client_otp",
+                              "api-reference/it/compliance/in.gov.incometax.eri/client/endpoints/validate_client"
+                            ]
+                          }
+                        ]
+                      },
+                      {
+                        "group": "Taxpayer",
+                        "pages": [
+                          {
+                            "group": "Prefill",
+                            "pages": [
+                              "api-reference/it/compliance/in.gov.incometax.eri/taxpayer/prefill/Generate_OTP",
+                              "api-reference/it/compliance/in.gov.incometax.eri/taxpayer/prefill/verify_otp"
+                            ]
+                          },
+                          {
+                            "group": "ITR",
+                            "pages": [
+                              "api-reference/it/compliance/in.gov.incometax.eri/taxpayer/itr/validate",
+                              "api-reference/it/compliance/in.gov.incometax.eri/taxpayer/itr/Submit_ITR",
+                              "api-reference/it/compliance/in.gov.incometax.eri/taxpayer/itr/Get_Acknowledgement",
+                              "api-reference/it/compliance/in.gov.incometax.eri/taxpayer/itr/Update_Verification_Mode",
+                              "api-reference/it/compliance/in.gov.incometax.eri/taxpayer/itr/Generate_EVC",
+                              "api-reference/it/compliance/in.gov.incometax.eri/taxpayer/itr/Validate_EVC"
+                            ]
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
                 "group": "Calculator",
                 "icon": "calculator",
                 "pages": [
+                  "api-reference/it/calculator/overview",
+                  {
+                    "group": "PnL",
+                    "hidden": false,
+                    "pages": [
+                      {
+                        "group": "Crypto",
+                        "pages": [
+                          {
+                            "group": "Endpoints",
+                            "pages": [
+                              "api-reference/it/calculator/pnl/crypto/endpoints/submit_job",
+                              "api-reference/it/calculator/pnl/crypto/endpoints/job_status"
+                            ]
+                          }
+                        ]
+                      },
+                      {
+                        "group": "Securities",
+                        "pages": [
+                          {
+                            "group": "Domestic",
+                            "pages": [
+                              {
+                                "group": "Endpoints",
+                                "pages": [
+                                  "api-reference/it/calculator/pnl/securities/domestic/endpoints/submit_job",
+                                  "api-reference/it/calculator/pnl/securities/domestic/endpoints/job_status"
+                                ]
+                              }
+                            ]
+                          },
+                          {
+                            "group": "Foreign",
+                            "pages": [
+                              {
+                                "group": "Endpoints",
+                                "pages": [
+                                  "api-reference/it/calculator/pnl/securities/foreign/endpoints/submit_job",
+                                  "api-reference/it/calculator/pnl/securities/foreign/endpoints/job_status"
+                                ]
+                              }
+                            ]
+                          }
+                        ]
+                      },
+                      {
+                        "group": "Real estate",
+                        "pages": [
+                          {
+                            "group": "Endpoints",
+                            "pages": [
+                              "api-reference/it/calculator/pnl/real_estate/endpoints/real_estate"
+                            ]
+                          }
+                        ]
+                      },
+                      {
+                        "group": "Other assets",
+                        "pages": [
+                          {
+                            "group": "Endpoints",
+                            "pages": [
+                              "api-reference/it/calculator/pnl/other_assets/endpoints/other"
+                            ]
+                          }
+                        ]
+                      }
+                    ]
+                  },
                   {
                     "group": "Tax P&L",
                     "pages": [
-                      "api-reference/it/calculator/overview",
+                      "api-reference/it/calculator/tax_pnl/overview",
+                      {
+                        "group": "All assets",
+                        "hidden": true,
+                        "pages": [
+                          {
+                            "group": "Endpoints",
+                            "pages": [
+                              "api-reference/it/calculator/tax_pnl/all_assets/submit_job",
+                              "api-reference/it/calculator/tax_pnl/all_assets/job_status"
+                            ]
+                          }
+                        ]
+                      },
+                      {
+                        "group": "Real estate",
+                        "hidden": false,
+                        "pages": [
+                          "api-reference/it/calculator/tax_pnl/real_estate/real_estate"
+                        ]
+                      },
+                      {
+                        "group": "Other assets",
+                        "hidden": false,
+                        "pages": [
+                          "api-reference/it/calculator/tax_pnl/other_assets/other"
+                        ]
+                      },
                       {
                         "group": "Securities",
                         "pages": [
@@ -792,10 +940,23 @@
                 "group": "Reports",
                 "icon": "file-text",
                 "pages": [
+                  "api-reference/it/report/overview",
                   {
                     "group": "Tax P&L",
                     "pages": [
-                      "api-reference/it/report/overview",
+                      {
+                        "group": "All assets",
+                        "hidden": true,
+                        "pages": [
+                          {
+                            "group": "Endpoints",
+                            "pages": [
+                              "api-reference/it/report/tax_pnl/all_assets/submit_job",
+                              "api-reference/it/report/tax_pnl/all_assets/job_status"
+                            ]
+                          }
+                        ]
+                      },
                       {
                         "group": "Securities",
                         "pages": [
@@ -813,10 +974,56 @@
                                 ]
                               }
                             ]
+                          },
+                          {
+                            "group": "Foreign",
+                            "hidden": false,
+                            "pages": [
+                              {
+                                "group": "Endpoints",
+                                "pages": [
+                                  "api-reference/it/report/tax_pnl/securities/foreign/submit_job",
+                                  "api-reference/it/report/tax_pnl/securities/foreign/job_status"
+                                ]
+                              }
+                            ]
                           }
                         ]
                       }
                     ]
+                  },
+                  {
+                        "group": "Capital gains",
+                        "hidden": false,
+                        "pages": [
+                          {
+                            "group": "All assets",
+                             "hidden": true,
+                            "pages": [
+                              "api-reference/it/report/capital_gains/all_assets/submit_job",
+                              "api-reference/it/report/capital_gains/all_assets/job_status"
+                            ]
+                          },
+                          {
+                            "group": "Securities",
+                            "pages": [
+                              {
+                                "group": "Domestic",
+                                "pages": [
+                                  "api-reference/it/report/capital_gains/securities/domestic/submit_job",
+                                  "api-reference/it/report/capital_gains/securities/domestic/job_status"
+                                ]
+                              },
+                              {
+                                "group": "Foreign",
+                                "pages": [
+                                  "api-reference/it/report/capital_gains/securities/foreign/submit_job",
+                                  "api-reference/it/report/capital_gains/securities/foreign/job_status"
+                                ]
+                              }
+                            ]
+                          }
+                        ]
                   }
                 ]
               },
@@ -845,7 +1052,7 @@
             "item": "Bank",
             "icon": "/static/svg/Bank.svg",
             "description": "Bank APIs",
-            "hidden": true,
+            "hidden": false,
             "groups": [
               {
                 "group": "Virtual Account",

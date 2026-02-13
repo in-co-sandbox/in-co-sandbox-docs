@@ -1,33 +1,171 @@
 ---
 title: "Overview"
-description: "Generate profit & loss reports for securities and cryptocurrency transactions."
+description: "Generate comprehensive profit & loss reports, capital gains statements, and tax analysis for securities, mutual funds, and investment portfolios."
+keywords:
+  - tax P&L reports
+  - capital gains reports
+  - securities reporting
+  - mutual fund statements
+  - investment tax reports
+  - portfolio analysis
 ---
 
 # Income Tax Report APIs
 
-The Report APIs generate profit and loss reports for investment transactions across different asset classes.
+The Income Tax Report APIs provide comprehensive reporting capabilities for investment analysis, tax planning, and compliance. Generate detailed profit & loss reports, capital gains statements, and tax analysis across multiple asset classes using job-based async processing.
 
-## Available Reports
+## Key Features
 
 <CardGroup cols={2}>
-  <Card title="Securities Tax P&L" href="/api-reference/it/report/securities/domestic/endpoints/submit_job">
-    Profit & loss report for equity, mutual funds, and derivatives trading.
+  <Card title="Tax P&L Reports" icon="chart-line" href="/api-reference/it/report/overview#tax-pnl-reports">
+    Generate profit & loss reports with automatic capital gains tax classification and indexation benefits.
   </Card>
-  <Card title="Crypto Tax P&L" href="/api-reference/it/report/crypto/endpoints/submit_job">
-    Gains/losses report for cryptocurrency transactions.
+  <Card title="Capital Gains Reports" icon="indian-rupee-sign" href="/api-reference/it/report/overview#capital-gains-reports">
+    Create detailed capital gains statements for tax assessment and compliance.
+  </Card>
+  <Card title="Mutual Fund Statements" icon="file-invoice" href="/api-reference/it/report/overview#mutual-fund-reports">
+    Generate capital gains statements for mutual fund investments with OTP verification.
+  </Card>
+  <Card title="Async Job Processing" icon="server" href="/api-reference/it/report/overview#async-processing">
+    Handle large datasets with background job processing, status polling, and webhook notifications.
   </Card>
 </CardGroup>
 
+## Tax P&L Reports
+
+Generate comprehensive profit & loss reports with tax implications:
+
+<CardGroup cols={2}>
+  <Card title="Domestic Securities" href="/api-reference/it/report/tax_pnl/securities/domestic/endpoints/submit_job">
+    Indian market investments with indexation
+  </Card>
+  <Card title="Foreign Securities" href="/api-reference/it/report/tax_pnl/securities/foreign/submit_job">
+    International investments with currency gains
+  </Card>
+</CardGroup>
+
+## Capital Gains Reports
+
+Create detailed capital gains statements for tax compliance:
+
+<CardGroup cols={2}>
+  <Card title="Domestic Securities" href="/api-reference/it/report/capital_gains/securities/domestic/submit_job">
+    Capital gains for Indian securities
+  </Card>
+  <Card title="Foreign Securities" href="/api-reference/it/report/capital_gains/securities/foreign/submit_job">
+    Capital gains for international investments
+  </Card>
+</CardGroup>
+
+
+## Asset Classes Supported
+
+### Securities (Domestic & Foreign)
+- **Equity Shares**: Delivery and intraday trading with holding period classification
+- **Mutual Funds**: SIPs, lump-sum investments, redemptions with indexation benefits
+- **Derivatives**: Futures, options, and other derivative instruments
+- **Currency Impact**: Foreign securities with automatic currency conversion and gains
+
+### Investment Portfolios
+- **Multi-Asset**: Combined reporting across different asset classes
+- **Tax Regimes**: Support for both old and new tax regimes
+- **Holding Periods**: Automatic STCG/LTCG classification
+- **Indexation**: Cost inflation adjustment for long-term gains
+
 ## Async Job Processing
 
-All report operations use async job-based processing:
+All report generation uses job-based asynchronous processing for scalability:
 
-1. **Submit Job**: POST with transaction data → Receive `job_id` and S3 upload URL
-2. **Upload Payload**: PUT transaction data to the provided S3 URL
-3. **Check Status & Get Output**: Poll job status endpoint with `job_id` → Returns processing status and results once complete
+<Steps>
+  <Step title="Submit Report Job">
+    POST request with report parameters → Receive job_id and processing confirmation
+  </Step>
+  <Step title="Upload Transaction Data (if required)">
+    For large datasets, upload transaction data via provided S3 presigned URLs
+  </Step>
+  <Step title="Monitor Job Status">
+    Poll job status endpoint with job_id to track processing progress
+  </Step>
+  <Step title="Retrieve Results">
+    Download completed reports in Excel/JSON format once processing is finished
+  </Step>
+</Steps>
 
-## Related Documentation
+### Job Status Flow
+```json
+{
+  "status": "processing", // created → processing → completed/failed
+  "progress": 75,        // Percentage completion
+  "message": "Processing 750 of 1000 transactions",
+  "result_url": "https://..." // Available when completed
+}
+```
 
-- [API Overview](/api-reference/it/overview)
-- [Calculator APIs](/api-reference/it/calculator/overview)
-- [OCR APIs](/api-reference/it/ocr/overview)
+## Report Formats
+
+### Excel Reports (.xlsx)
+- **Detailed breakdowns** by asset class and transaction type
+- **Tax calculations** with STCG/LTCG classification
+- **Summary sheets** with portfolio-level analytics
+- **Annexures** with transaction-level details
+
+### JSON Reports
+- **Structured data** for programmatic processing
+- **API integration** ready format
+- **Real-time access** to report data
+- **Custom filtering** and analysis capabilities
+
+## Tax Compliance Features
+
+- **Automatic classification**: STCG (Short-term) vs LTCG (Long-term) gains
+- **Indexation benefits**: Cost inflation adjustment for domestic securities
+- **Currency gains**: Foreign exchange impact on international investments
+- **Tax regime support**: Old and new tax regime calculations
+- **Carry forward losses**: Capital loss tracking and utilization
+
+## Integration Options
+
+- **REST APIs**: Standard HTTP endpoints for all report operations
+- **Postman Collections**: Pre-configured API testing environments
+- **Webhook Support**: Real-time notifications for job completion
+- **Batch Processing**: Handle thousands of transactions efficiently
+
+## Performance & Limits
+
+- **Job Queue**: Unlimited job submissions with concurrent processing
+- **Data Processing**: Handle up to 50,000 transactions per job
+- **Report Generation**: Excel reports up to 10MB in size
+- **Retention**: Job results available for 30 days
+- **Rate Limits**: 100 requests per minute per API key
+
+## Use Cases
+
+### Tax Planning & Filing
+- **ITR Preparation**: Generate data for Income Tax Return filing
+- **Tax Optimization**: Identify tax-saving opportunities
+- **Compliance Reporting**: Meet regulatory reporting requirements
+
+### Portfolio Analysis
+- **Performance Review**: Analyze investment performance with tax impact
+- **Rebalancing**: Optimize portfolio based on tax implications
+- **Reporting**: Generate client-ready investment reports
+
+### Financial Planning
+- **Tax Liability**: Estimate future tax obligations
+- **Capital Gains Planning**: Plan asset sales for optimal tax outcomes
+- **Wealth Management**: Comprehensive tax-aware portfolio management
+
+## Related APIs
+
+- **[Calculator APIs](/api-reference/it/calculator/overview)**: Real-time calculations without job processing
+- **[Compliance APIs](/api-reference/it/compliance/overview)**: ITR filing and ERI integration
+- **[OCR APIs](/api-reference/it/ocr/overview)**: Extract data from tax documents
+
+## Support & Resources
+
+- **API Reference**: Complete endpoint documentation with examples
+- **Postman Collection**: Import ready-to-use API tests
+- **Sample Data**: Pre-formatted transaction data for testing
+- **Annexures**: Detailed schema documentation for data formats
+
+For technical support or integration assistance, refer to the [API Reference](/api-reference/it/report) or contact Sandbox support.

@@ -1,0 +1,117 @@
+---
+title: "Overview"
+description: "File Income Tax Returns (ITR), manage clients, and handle ERI compliance workflows through direct integration with the Income Tax Department portal."
+keywords:
+  - ITR filing
+  - Income tax return
+  - ERI compliance
+  - Electronic Return Intermediary
+  - Client management
+  - ITR validation
+  - E-verify ITR
+  - Prefill data
+---
+
+# Income Tax Compliance API
+
+The Income Tax Compliance APIs enable seamless integration with the Income Tax Department's Electronic Return Intermediary (ERI) system for filing Income Tax Returns (ITR), managing taxpayer clients, and handling verification workflows. These APIs provide direct access to the ITD portal for automated tax compliance processes.
+
+## Key features
+
+<CardGroup cols={2}>
+  <Card title="ITR Filing" icon="file-invoice" href="/api-reference/it/compliance/in.gov.incometax.eri/taxpayer/itr/Submit_ITR">
+    Submit Income Tax Returns electronically through the ERI system with validation and e-verification support.
+  </Card>
+  <Card title="Client Management" icon="users" href="/api-reference/it/compliance/in.gov.incometax.eri/client/endpoints/login">
+    Register, validate, and manage taxpayer clients with OTP-based verification and profile management.
+  </Card>
+  <Card title="ITR Validation" icon="check-circle" href="/api-reference/it/compliance/in.gov.incometax.eri/taxpayer/itr/validate">
+    Validate ITR data before submission to ensure compliance with Income Tax Department requirements.
+  </Card>
+  <Card title="E-Verification" icon="shield-check" href="/api-reference/it/compliance/in.gov.incometax.eri/taxpayer/itr/Validate_EVC">
+    Verify filed ITRs using Electronic Verification Code (EVC) or Aadhaar OTP for instant confirmation.
+  </Card>
+  <Card title="Prefill Data" icon="database" href="/api-reference/it/compliance/in.gov.incometax.eri/taxpayer/prefill/Generate_OTP">
+    Access pre-filled ITR data from the Income Tax Department to simplify return preparation.
+  </Card>
+  <Card title="Return Status" icon="eye" href="/api-reference/it/compliance/in.gov.incometax.eri/taxpayer/itr/Get_Acknowledgement">
+    Check ITR filing status, download acknowledgements, and track processing updates.
+  </Card>
+</CardGroup>
+
+## How it works
+
+<Steps>
+  <Step title="Authenticate with ERI system">
+    Use client credentials to authenticate and establish a secure session with the Income Tax Department's ERI portal.
+  </Step>
+  <Step title="Register or validate clients">
+    Register new taxpayers or validate existing clients using PAN verification and OTP-based authentication.
+  </Step>
+  <Step title="Prepare and validate ITR">
+    Generate prefilled data, prepare ITR forms, and validate submissions before filing.
+  </Step>
+  <Step title="Submit and e-verify">
+    File the ITR electronically and complete e-verification using EVC or Aadhaar OTP.
+  </Step>
+  <Step title="Track and download">
+    Monitor filing status, download acknowledgements, and maintain compliance records.
+  </Step>
+</Steps>
+
+## API Categories
+
+### Client Management APIs
+Manage taxpayer clients and authentication:
+
+- **Login**: Authenticate with the ERI system
+- **Register Client**: Register new taxpayers with PAN and contact details
+- **Add Client**: Add clients to your ERI account
+- **Validate Client**: Verify client details with OTP
+- **Client Profile**: Retrieve and update client information
+
+### ITR Filing APIs
+Handle Income Tax Return preparation and submission:
+
+- **Validate ITR**: Pre-validate ITR data for compliance
+- **Submit ITR**: File ITR electronically through ERI
+- **E-Verify ITR**: Verify filed returns using EVC or OTP
+- **Update Verification Mode**: Change verification method for submitted ITRs
+- **Get Acknowledgement**: Retrieve filing status and acknowledgements
+
+### Prefill APIs
+Access pre-filled tax data from ITD:
+
+- **Generate OTP**: Request prefill data access
+- **Verify OTP**: Authenticate and retrieve prefilled ITR information
+
+## Compliance Requirements
+
+<Info>
+These APIs integrate directly with the Income Tax Department's ERI system. Ensure you have:
+- Valid ERI registration and credentials
+- Authorized access to client PANs
+- Compliance with ITD data security and privacy requirements
+- Proper consent from taxpayers for data access
+</Info>
+
+## Error Handling
+
+The APIs return standardized error responses with specific error codes for different failure scenarios:
+
+- **Authentication errors**: Invalid credentials or expired sessions
+- **Validation errors**: ITR data format or business rule violations
+- **ITD system errors**: Temporary unavailability or processing issues
+- **Client verification errors**: Invalid PAN or OTP verification failures
+
+## Rate Limits and Throttling
+
+API calls are subject to rate limits based on your ERI account tier and ITD system capacity. Implement appropriate retry logic with exponential backoff for failed requests.
+
+## Support
+
+For technical support or questions about Income Tax Compliance APIs:
+- Check the [API Reference](/api-reference/it/compliance) for detailed endpoint documentation
+- Review the [ERI Guidelines](https://www.incometaxindia.gov.in) from Income Tax Department
+- Contact Sandbox support for integration assistance
+

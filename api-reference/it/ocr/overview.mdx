@@ -1,65 +1,85 @@
 ---
 title: "Overview"
-description: "Extract structured data from income tax documents like Form 16 and Form 26AS."
+description: "Extract structured data from income tax documents like Form 16 and Form 26AS using advanced OCR technology."
 ---
 
 # Income Tax OCR APIs
 
-The OCR (Optical Character Recognition) APIs automate the extraction and classification of data from tax documents. These APIs parse PDFs and images to extract structured information for tax workflows.
+OCR APIs are advanced document processing services that extract structured data from tax documents. Use these APIs to automatically parse Form 16 and Form 26AS documents for tax compliance and income verification workflows.
 
-## Supported Documents
+## Key Features
 
 <CardGroup cols={2}>
-  <Card title="Form 16" icon="file-invoice" href="/api-reference/it/ocr/form_16/endpoints/read_form_16">
-    TDS Certificate from employers. Extract salary details, tax deducted, and investment declarations.
+  <Card title="Form 16 Extraction" icon="file-invoice">
+    Extract salary details, TDS information, and investment declarations from employer-issued TDS certificates.
   </Card>
-  <Card title="Form 26AS" icon="file-lines" href="/api-reference/it/ocr/form_26as/endpoints/read_form_26as">
-    TDS statement showing all tax deductions. Extract creditable tax amounts and deductor details.
+  <Card title="Form 26AS Extraction" icon="file-lines">
+    Extract creditable TDS amounts, deductor details, and tax payment information from annual TDS statements.
+  </Card>
+  <Card title="High Accuracy" icon="check-circle">
+    Advanced AI models with confidence scoring ensure reliable data extraction from various document formats.
+  </Card>
+  <Card title="Bulk Processing" icon="layer-group">
+    Process multiple documents asynchronously with job-based processing for scalability.
   </Card>
 </CardGroup>
 
 ## How It Works
 
-1. **Upload Document**: Submit PDF or image file
-2. **Processing**: System extracts and classifies data
-3. **Get Results**: Receive structured JSON with confidence scores
+<Steps>
+  <Step title="Upload Document">
+    Submit PDF or image file with optional metadata like taxpayer PAN and financial year.
+  </Step>
+  <Step title="AI Processing">
+    System automatically detects document type and extracts text, tables, and structured data.
+  </Step>
+  <Step title="Data Validation">
+    Extracted information is validated against expected patterns and formats.
+  </Step>
+  <Step title="Get Results">
+    Receive structured JSON response with confidence scores and extracted data.
+  </Step>
+</Steps>
 
-## Document Processing
+## API Categories
 
-Each document type has its own specialized endpoint optimized for extraction:
+<CardGroup cols={2}>
+  <Card title="Form 16 APIs" icon="file-invoice" href="/api-reference/it/ocr/form_16/endpoints/read_form_16">
+    Extract data from TDS certificates issued by employers.
+  </Card>
+  <Card title="Form 26AS APIs" icon="file-lines" href="/api-reference/it/ocr/form_26as/endpoints/read_form_26as">
+    Extract data from annual TDS statements from the Income Tax Department.
+  </Card>
+</CardGroup>
 
-**Form 16 Endpoint**: Extracts salary details, TDS information, and investment declarations from TDS certificates issued by employers.
+## API Endpoints
 
-**Form 26AS Endpoint**: Extracts creditable TDS amounts, deductor details, and tax payment information from the annual TDS statement.
+| Endpoint | Method | Description |
+|----------|--------|-------------|
+| `/it/ocr/form-16/pdf` | POST | Extract data from Form 16 PDF documents |
+| `/it/ocr/form-26as/pdf` | POST | Extract data from Form 26AS PDF documents |
 
+## Common Use Cases
 
-## Related Documentation
+- **Income Verification**: Extract salary and TDS details for loan applications and account opening
+- **Tax Compliance**: Auto-populate ITR forms with extracted data from tax documents
+- **Payroll Reconciliation**: Validate employee salary information against Form 16
+- **Document Archival**: Index and search historical tax documents for audit purposes
+- **Bulk Processing**: Process multiple employee documents for large organizations
 
-- [Calculator APIs](/api-reference/it/calculator/overview)
-- [Report APIs](/api-reference/it/report/overview)
+## Integration Examples
+
+### Basic Form 16 Extraction
 
 ```json
 {
-  "document_type": "form_16",  
-  "file": "Base64 encoded PDF/Image",
+  "file": "Base64 encoded PDF",
   "taxpayer_pan": "AAAPI0000A",
-  "financial_year": "2024-25",
-  "confidence_threshold": 0.85
+  "financial_year": "2024-25"
 }
 ```
 
-### Processing Flow
-
-1. **Upload Document**: Submit PDF/image with metadata
-2. **Initial Classification**: Auto-detect document type and version
-3. **OCR Processing**: Extract text and tabular data using advanced AI models
-4. **Data Validation**: Validate extracted fields against expected patterns
-5. **Normalization**: Standardize dates, numbers, and formats
-6. **Return Results**: Return structured JSON with confidence scores
-
-## Response Structure
-
-### Successful Extraction
+### Response Structure
 
 ```json
 {
@@ -70,174 +90,52 @@ Each document type has its own specialized endpoint optimized for extraction:
     "extraction_details": {
       "employer": {
         "name": "ABC Technologies Pvt Ltd",
-        "pan": "AABCT1234K",
-        "address": "Bangalore, Karnataka"
+        "pan": "AABCT1234K"
       },
       "employee": {
         "name": "Rajesh Kumar",
-        "pan": "BXRPK5678A",
-        "designation": "Senior Software Engineer"
+        "pan": "BXRPK5678A"
       },
       "salary": {
         "gross_salary": 2400000,
         "basic": 1000000,
-        "hra": 600000,
-        "dearness_allowance": 200000,
-        "other_allowances": 400000,
-        "deductions": 100000,
-        "net_salary": 2300000
-      },
-      "tax_details": {
-        "tds_deducted": 350000,
-        "surcharge": 15000,
-        "cess": 2000,
-        "total_tax": 367000
-      },
-      "investment_declarations": [
-        {
-          "section": "80C",
-          "investment_type": "Life Insurance",
-          "amount": 150000
-        }
-      ],
-      "fy": "2024-25",
-      "issue_date": "2025-03-31"
-    },
-    "extraction_metadata": {
-      "pages_processed": 1,
-      "extraction_timestamp": "2025-01-20T10:30:00Z",
-      "model_version": "v2.1"
-    }
-  },
-  "timestamp": 1750687659809,
-  "transaction_id": "txn_ext_123456"
-}
-```
-
-### Confidence Scores
-
-Each extracted field includes a confidence score (0.0 to 1.0):
-
-```json
-{
-  "employer_name": {
-    "value": "ABC Technologies Pvt Ltd",
-    "confidence": 0.98
-  },
-  "tds_deducted": {
-    "value": 350000,
-    "confidence": 0.92
-  }
-}
-```
-
-**Interpretation:**
-
-- **0.95+**: Very high confidence, can be used directly
-- **0.85-0.95**: High confidence, minimal validation needed
-- **0.75-0.85**: Moderate confidence, recommend review
-- **\<0.75**: Low confidence, manual verification recommended
-
-### Partial Extraction
-
-If some fields cannot be extracted:
-
-```json
-{
-  "code": 200,
-  "data": {
-    "document_type": "form_16",
-    "confidence": 0.78,
-    "extraction_details": { },
-    "warnings": [
-      {
-        "field": "investment_declarations",
-        "reason": "Page quality too low",
-        "recommendation": "Manual verification suggested"
+        "tds_deducted": 350000
       }
-    ]
+    }
   }
 }
 ```
-
-## Integration Patterns
-
-### Customer KYC/Income Verification
-
-1. Accept Form 16 upload from customer
-2. Extract income and employer details
-3. Verify against other sources
-4. Use for lending decisions or account opening
-
-### Tax Compliance Workflows
-
-1. Employee uploads Form 16 from multiple employers
-2. System extracts TDS details from each
-3. Verify total TDS matches Form 26AS (reconcile discrepancies)
-4. Auto-populate ITR with extracted data
-5. Flag any mismatches for manual review
-
-### Payroll Integration
-
-1. HR uploads employee Form 16 PDFs in bulk
-2. Extract salary information and TDS
-3. Validate against payroll records
-4. Reconcile any discrepancies
-5. Generate compliance reports
-
-### Document Archival
-
-1. Upload historical tax documents
-2. Extract and index searchable data
-3. Create audit trail of document processing
-4. Enable quick retrieval and verification
-
-## Async Processing Pattern
-
-Like Calculator APIs, OCR operations follow async job-based processing:
-
-1. **Submit Document**: POST upload request → Get `job_id`
-2. **Check Status**: GET job status endpoint → Receive processing progress
-3. **Fetch Results**: GET results endpoint → Download extraction results
-
-This enables:
-
-- Processing of large documents without timeout
-- Bulk processing of multiple documents
-- Progress tracking for UI feedback
-- Retry mechanisms for failed extractions
-
-## Error Handling & Validation
-
-### Common Issues & Solutions
-
-| Issue                | Cause                                  | Solution                                                  |
-| -------------------- | -------------------------------------- | --------------------------------------------------------- |
-| Low Confidence Score | Poor document quality or handwriting   | Manual review or re-upload with better quality            |
-| Missing Fields       | Document doesn't contain expected data | Verify correct document type, check document completeness |
-| Incorrect Extraction | Wrong field mapping or poor OCR        | Provide feedback for model improvement, manual correction |
-| Unsupported Format   | Document version not recognized        | Ensure document is original/official copy                 |
-
-### Quality Checks
-
-- **Page Count**: Verify all pages uploaded (multi-page documents)
-- **Document Completeness**: Ensure all required fields present
-- **Data Validity**: Validate extracted dates, amounts, PAN formats
-- **Cross-field Validation**: Verify relationships between fields (e.g., salary components sum to gross)
 
 ## Best Practices
 
-- **Document Quality**: Upload clear, well-lit scans or digital PDFs for best results
-- **Complete Documents**: Ensure all pages included, especially if multi-page
+- **Document Quality**: Upload clear, well-lit scans or digital PDFs for best extraction results
+- **Complete Documents**: Ensure all pages are included for multi-page documents
 - **Metadata**: Provide taxpayer PAN and financial year for better validation
-- **Confidence Thresholds**: Set appropriate confidence thresholds for your use case
+- **Confidence Thresholds**: Set appropriate confidence thresholds based on your use case
 - **Validation**: Always validate extracted data, especially for high-value decisions
-- **Feedback**: Report extraction errors to improve model accuracy over time
-- **Privacy**: Handle sensitive documents securely, follow data privacy regulations
 
 ## Related Documentation
 
 - [Form 16 Extraction API](/api-reference/it/ocr/form_16/endpoints/read_form_16)
 - [Form 26AS Extraction API](/api-reference/it/ocr/form_26as/endpoints/read_form_26as)
-- [Report Generation from Extracted Data](/api-reference/it/report/endpoints/submit_job)
-- [IT Context Guide](/it_context.md)
+- [Calculator APIs](/api-reference/it/calculator/overview)
+- [Report APIs](/api-reference/it/report/overview)
+
+<AccordionGroup>
+  <Accordion title="What document formats are supported?">
+    The APIs support PDF documents and common image formats (JPEG, PNG). For best results, use original digital PDFs rather than scanned images.
+  </Accordion>
+  <Accordion title="How accurate is the OCR extraction?">
+    Accuracy varies by document quality and type, but typically ranges from 85-95% confidence. Each extracted field includes a confidence score for validation.
+  </Accordion>
+  <Accordion title="Can I process multiple documents at once?">
+    Yes, the APIs support async job-based processing for bulk document processing. Submit multiple documents and track progress via job status endpoints.
+  </Accordion>
+  <Accordion title="What happens if extraction confidence is low?">
+    Fields with low confidence scores are flagged in the response. You can set minimum confidence thresholds or implement manual review workflows for critical data.
+  </Accordion>
+  <Accordion title="Is there a file size limit?">
+    Individual documents should be under 10MB. For larger files or bulk processing, contact support for optimized processing options.
+  </Accordion>
+</AccordionGroup>
+
