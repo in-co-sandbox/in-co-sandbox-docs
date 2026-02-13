@@ -49,6 +49,7 @@ Determine the page type from its path and structure:
 - [ ] Internal links use relative paths
 - [ ] Code blocks have language tags
 - [ ] Images have alt text
+- [ ] Page is listed in `llms-full.txt` with correct title and description
 
 #### Overview pages
 
