@@ -1,0 +1,152 @@
+---
+title: "Overview"
+description: "Generate TDS/TCS return TXT files asynchronously for Forms 24Q, 26Q, 27Q using job-based workflows for Indian Income Tax compliance."
+keywords:
+  - TDS reports
+  - TDS return TXT
+  - Form 24Q
+  - Form 26Q
+  - Form 27Q
+  - TCS statements
+  - Sheet JSON
+  - async job API
+  - TRACES TXT file
+---
+
+# TDS Reports API
+
+TDS Reports is a job-based API that generates quarterly TDS/TCS statement TXT files (Forms 24Q, 26Q, 27Q) for Indian Income Tax. Use this API to generate TXT files from Sheet JSON workbooks, track job progress via polling or webhooks, and download TXT for FVU validation and e-filing.
+
+## Key features
+
+<CardGroup cols={2}>
+  <Card title="Async job-based workflow" icon="server">
+    Submit TXT generation jobs and track progress via polling or webhooks without blocking your application.
+  </Card>
+  <Card title="Multiple form support" icon="folder">
+    Generate TXT files for Form 24Q (salary), 26Q (non-salary), and 27Q (NRI payments).
+  </Card>
+  <Card title="TCS statement support" icon="file-invoice">
+    Generate TCS TXT files using the same job-based pattern via dedicated endpoints.
+  </Card>
+  <Card title="Job search and audit" icon="database">
+    Search and list prior jobs for operations tracking and compliance audits.
+  </Card>
+</CardGroup>
+
+## How it works
+
+<Steps>
+  <Step title="Authenticate and get authorization token">
+    Obtain a Sandbox authorization token from [/api-reference/authenticate](/api-reference/authenticate) and your API key. Pass the token as `Authorization: <token>` (without "Bearer").
+  </Step>
+  <Step title="Submit a TXT generation job">
+    Call `POST /tds/reports/txt` to create a job. The response includes a `job_id` and a `json_url` for uploading your Sheet JSON.
+  </Step>
+  <Step title="Build and upload Sheet JSON">
+    Construct your Sheet JSON using the correct schema for your form type and upload it to `json_url` via PUT. Do not include Sandbox auth headers on the PUT request.
+  </Step>
+  <Step title="Track job status">
+    Monitor job progress by polling `GET /tds/reports/txt?job_id=...` or by receiving [webhook callbacks](/guides/developer-resources/webhooks#webhooks).
+  </Step>
+  <Step title="Download the generated TXT">
+    When status is `succeeded`, download the TXT file from the provided URL for FVU validation and e-filing.
+  </Step>
+  <Step title="Search prior jobs (optional)">
+    Use `POST /tds/reports/txt/search` to list and audit previous jobs for operations or compliance purposes.
+  </Step>
+</Steps>
+
+TCS TXT generation follows the same workflow via `/tcs/reports/txt` endpoints.
+
+For detailed workflow patterns, see the [job-based API workflow guide](/guides/developer-resources/job_based_apis#job-based-api-workflow) and [Sheet JSON guide](/guides/developer-resources/sheet_json).
+
+## Recipes
+
+<CardGroup cols={2}>
+  <Card title="Prepare Form 24Q" icon="file-lines" href="/recipes/tds/form-24q/prepare_form_24q">
+    Step-by-step guide to prepare Form 24Q TDS statements for salary payments.
+  </Card>
+  <Card title="Prepare Form 26Q" icon="file-invoice" href="/recipes/tds/form-26q/prepare_form_26q">
+    Step-by-step guide to prepare Form 26Q TDS statements for non-salary payments.
+  </Card>
+</CardGroup>
+
+## API categories
+
+<CardGroup cols={2}>
+  <Card title="TDS Reports endpoints" icon="server" href="/api-reference/tds/reports/tds-reports/endpoints/submit_job">
+    Submit, poll, and search TDS TXT generation jobs for Forms 24Q, 26Q, and 27Q.
+  </Card>
+  <Card title="TCS Reports endpoints" icon="server" href="/api-reference/tds/reports/tcs-reports/endpoints/submit_job">
+    Submit, poll, and search TCS TXT generation jobs using the same job-based workflow.
+  </Card>
+  <Card title="TDS schemas" icon="file-lines" href="/api-reference/tds/reports/tds-reports/salary_payments">
+    Sheet JSON schemas for Form 24Q, 26Q, and 27Q workbooks.
+  </Card>
+  <Card title="TCS schema" icon="file-lines" href="/api-reference/tds/reports/tcs-reports/tcs_payments">
+    Sheet JSON schema for TCS payment workbooks.
+  </Card>
+</CardGroup>
+
+## TDS Reports endpoints
+
+| API | Purpose |
+|:----|:--------|
+| [Submit job](/api-reference/tds/reports/tds-reports/endpoints/submit_job) | Create a TXT generation job and get `job_id` + `json_url` |
+| [Poll job](/api-reference/tds/reports/tds-reports/endpoints/poll_job) | Check job status and retrieve TXT download URL when complete |
+| [Search jobs](/api-reference/tds/reports/tds-reports/endpoints/fetch_jobs) | List and filter prior jobs for audit and operations |
+
+## TCS Reports endpoints
+
+| API | Purpose |
+|:----|:--------|
+| [Submit job](/api-reference/tds/reports/tcs-reports/endpoints/submit_job) | Create a TCS TXT generation job and get `job_id` + `json_url` |
+| [Poll job](/api-reference/tds/reports/tcs-reports/endpoints/poll_job) | Check TCS job status and retrieve TXT download URL when complete |
+| [Search jobs](/api-reference/tds/reports/tcs-reports/endpoints/fetch_jobs) | List and filter prior TCS jobs for audit and operations |
+
+## Sheet JSON schemas
+
+| Schema | Form | Description |
+|:-------|:-----|:------------|
+| [Salary payments](/api-reference/tds/reports/tds-reports/salary_payments) | 24Q | TDS on salary payments to employees |
+| [Non-salary payments](/api-reference/tds/reports/tds-reports/non_salary_payments) | 26Q | TDS on non-salary payments (vendors, contractors, rent) |
+| [NRI payments](/api-reference/tds/reports/tds-reports/nri_payments) | 27Q | TDS on payments to non-residents |
+| [TCS payments](/api-reference/tds/reports/tcs-reports/tcs_payments) | TCS | Tax collected at source statements |
+
+## Common use cases
+
+Use the TDS Reports API when you need to:
+
+- Automate quarterly TDS return generation for Forms 24Q, 26Q, or 27Q from payroll or accounting systems
+- Generate FVU-ready TXT files from structured payment data
+- Process large volumes of deductee records using job-based workflows
+- Integrate TDS return preparation into compliance workflows with webhook notifications
+- Generate TCS (Tax Collected at Source) statements using the same job-based workflow
+- Maintain audit trails of generation jobs for compliance and operations
+
+## Frequently asked questions
+
+<AccordionGroup>
+  <Accordion title="What is TDS Reports API?">
+    TDS Reports API is a job-based (asynchronous) API that generates TXT files required to prepare quarterly TDS returns for Forms 24Q, 26Q, and 27Q. TDS Reports API accepts Sheet JSON input containing deductee and payment data, processes it asynchronously, and produces TRACES-aligned TXT output for FVU validation and e-filing to the Income Tax portal.
+  </Accordion>
+  <Accordion title="How does the job-based workflow work?">
+    TDS Reports API uses an async job-based workflow: you submit a job via `POST /tds/reports/txt` and receive a `job_id` plus a `json_url`. Upload your Sheet JSON to `json_url` via PUT, then track progress by polling `GET /tds/reports/txt?job_id=...` or by receiving [webhook callbacks](/guides/developer-resources/webhooks#webhooks). When status is `succeeded`, download the generated TXT file. See the [job-based API workflow guide](/guides/developer-resources/job_based_apis#job-based-api-workflow) for details.
+  </Accordion>
+  <Accordion title="What is Sheet JSON and where are the schemas?">
+    Sheet JSON is a structured JSON format representing workbook data for TDS/TCS forms. TDS Reports API provides schemas for each form type: [Form 24Q (salary)](/api-reference/tds/reports/tds-reports/salary_payments), [Form 26Q (non-salary)](/api-reference/tds/reports/tds-reports/non_salary_payments), [Form 27Q (NRI)](/api-reference/tds/reports/tds-reports/nri_payments), and [TCS](/api-reference/tds/reports/tcs-reports/tcs_payments). See the [Sheet JSON guide](/guides/developer-resources/sheet_json) for formatting details.
+  </Accordion>
+  <Accordion title="Do I need auth headers when uploading to json_url?">
+    No. The `json_url` returned by the Submit Job endpoint is a pre-signed URL. Upload your Sheet JSON via PUT without including Sandbox authorization headers—the URL itself contains the necessary credentials.
+  </Accordion>
+  <Accordion title="When should I use webhooks vs polling?">
+    Use polling when you need simple integration or want to check status on-demand. Use [webhooks](/guides/developer-resources/webhooks#webhooks) when you want real-time notifications without repeated API calls, especially for high-volume job processing. Webhooks reduce latency and API usage compared to polling.
+  </Accordion>
+  <Accordion title="Which forms are supported and how is TCS different?">
+    TDS Reports API supports Form 24Q (salary TDS), Form 26Q (non-salary TDS), and Form 27Q (NRI TDS). TCS (Tax Collected at Source) statements use a separate set of endpoints at `/tcs/reports/txt` but follow the same job-based workflow pattern. Each form type has its own [Sheet JSON schema](/api-reference/tds/reports/tds-reports/salary_payments).
+  </Accordion>
+  <Accordion title="What should I do if a job fails?">
+    When a TDS Reports API job fails, the poll response includes error details explaining the failure reason. Check your Sheet JSON for schema violations or missing required fields. Review the [errors guide](/guides/developer-resources/errors) for common error codes and troubleshooting steps. You can resubmit a corrected job after fixing the issues.
+  </Accordion>
+</AccordionGroup>
