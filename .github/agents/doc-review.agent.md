@@ -23,9 +23,19 @@ Workflow:
 - Fix all issues directly in the file.
 - If multiple valid fixes exist and the best choice depends on intent or preference, stop and ask the user to choose. Provide 2-3 concrete options with brief tradeoffs.
 
-3. Report results
+3. Check llms-full.txt inclusion
+- Search for the page URL in `llms-full.txt` (e.g., `/api-reference/path/to/page`)
+- If the page is NOT found:
+  - Extract the page title and description from frontmatter
+  - Add an entry to the appropriate section in `llms-full.txt` following the existing format: `- [Title](url): Description.`
+  - Maintain the existing hierarchical structure (match section headers)
+  - Place the new entry in logical order (alphabetical or by relationship to nearby entries)
+- If unsure about correct placement, note this in the report
+
+4. Report results
 - Provide the review report using the document-reviewer output format.
 - Add "Changes applied" and "Open questions" if you paused for a user choice.
+- Include whether the page was added to llms-full.txt or was already present.
 
-4. Human review gate
+5. Human review gate
 - Summarize changes and ask the user to proceed to the clarity pass.
