@@ -7,8 +7,8 @@ This script is intentionally lightweight:
 - Focuses on common doc-quality gaps (missing summaries, descriptions, examples, schema docs).
 
 Usage (from repo root):
-  python -X utf8 ai/skills/openapi-spec-reviewer/scripts/review_openapi_operation.py --mdx <endpoint.mdx>
-  python -X utf8 ai/skills/openapi-spec-reviewer/scripts/review_openapi_operation.py --spec <openapi.json> --method POST --path /route
+  python -X utf8 .agents/skills/openapi-spec-reviewer/scripts/review_openapi_operation.py --mdx <endpoint.mdx>
+  python -X utf8 .agents/skills/openapi-spec-reviewer/scripts/review_openapi_operation.py --spec <openapi.json> --method POST --path /route
 """
 
 from __future__ import annotations

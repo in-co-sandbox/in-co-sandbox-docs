@@ -10,7 +10,7 @@ handoffs:
 infer: false
 ---
 Use this skill:
-`.github/skills/writing-clearly-and-concisely/SKILL.md`
+`.agents/skills/writing-clearly-and-concisely/SKILL.md`
 
 Workflow:
 1. Apply clarity pass

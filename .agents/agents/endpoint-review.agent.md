@@ -10,7 +10,7 @@ handoffs:
 infer: false
 ---
 Use this skill:
-`ai/skills/openapi-spec-reviewer/SKILL.md`
+`.agents/skills/openapi-spec-reviewer/SKILL.md`
 
 Workflow:
 1. Confirm inputs
