@@ -5,7 +5,7 @@ tools: ['execute', 'read', 'edit', 'search', 'web', 'agent', 'memory', 'ms-azure
 infer: false
 ---
 Use this skill:
-`.github/skills/humanizer/SKILL.md`
+`.agents/skills/humanizer/SKILL.md`
 
 Workflow:
 1. Apply humanizer pass

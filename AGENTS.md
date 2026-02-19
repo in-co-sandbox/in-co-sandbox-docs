@@ -16,7 +16,41 @@
 - `recipes/`: workflow recipes (MDX)
 - `static/`: images and static assets
 - `data/`: shared data files
+- `.agents/`: AI agents and skills
+  - `.agents/agents/`: Agent definitions for documentation workflow
+  - `.agents/skills/`: Reusable skills for documentation quality, SEO/GEO, and content review
 - `.github/instructions/`: path-specific writing rules
+
+## Agents and skills
+
+This repo uses a multi-agent documentation review pipeline:
+
+### Agent workflow
+1. **doc-quality-bot**: Entry point that routes to appropriate review agent
+2. **endpoint-review**: Reviews API endpoint MDX + OpenAPI specs
+3. **doc-review**: Reviews content quality and applies SEO/GEO optimization (mandatory)
+4. **clarity**: Improves writing clarity and concision
+5. **humanizer**: Removes AI-sounding patterns
+
+### Available skills
+All skills are located in `.agents/skills/`:
+- **document-reviewer**: Quality checks for API docs
+- **seo-geo**: SEO & GEO optimization for search engines and AI (ChatGPT, Perplexity, etc.)
+- **openapi-spec-reviewer**: OpenAPI spec validation
+- **writing-clearly-and-concisely**: Clarity and concision improvements
+- **humanizer**: Remove AI writing patterns
+- **recipe-generator**: Generate workflow recipes
+- **update-nav**: Update docs.json navigation
+- **mintlify**: Mintlify component usage
+- **skill-creator**: Create new skills
+
+### SEO/GEO optimization
+The doc-review agent mandatorily applies SEO/GEO improvements to all pages:
+- Optimized frontmatter keywords and descriptions
+- Statistics and data points (+37% AI visibility)
+- Authoritative citations (+40% AI visibility)
+- FAQ sections with LLM-optimized answers (+40% AI citation rate)
+- Technical terminology and domain authority
 
 ## Writing conventions
 - Use MDX with YAML frontmatter. For new pages include `title`, `description`, and `keywords`.

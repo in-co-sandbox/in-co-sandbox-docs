@@ -31,14 +31,14 @@ If given an endpoint MDX file:
 Optional helper (recommended for speed and fewer mistakes):
 
 ```powershell
-python -X utf8 ai/skills/openapi-spec-reviewer/scripts/review_openapi_operation.py `
+python -X utf8 .agents/skills/openapi-spec-reviewer/scripts/review_openapi_operation.py `
   --mdx api-reference/gst/compliance/endpoints/e-way-bill/authenticate.mdx
 ```
 
 If given a spec triple (spec file + method + path):
 
 ```powershell
-python -X utf8 ai/skills/openapi-spec-reviewer/scripts/review_openapi_operation.py `
+python -X utf8 .agents/skills/openapi-spec-reviewer/scripts/review_openapi_operation.py `
   --spec api-reference/gst/compliance/openapi.json `
   --method POST `
   --path /gst/compliance/e-way-bill/tax-payer/authenticate
