@@ -4,6 +4,37 @@ description: "Changelog for Sandbox APIs"
 rss: "true"
 ---
 
+<Update label="Feburary 19th, 2026" tags={["Feature"]}>
+  ## **DigiLocker APIs – Verify User & Get User Profile**
+
+  We’ve introduced two new APIs in the DigiLocker suite.
+
+  1. [**Verify User**](https://developer.sandbox.co.in/api-reference/kyc/digilocker/endpoints/verify_user)  
+     Checks whether a user exists on DigiLocker using their `mobile` or `aadhaar_number`.
+
+  2. [**Get User Profile**](https://developer.sandbox.co.in/api-reference/kyc/digilocker/endpoints/get_user_profile)  
+     Retrieves complete user profile details from DigiLocker after successful consent.
+
+  **Key Behaviour**
+
+  - Use the **Verify User API** to determine whether a user already exists on DigiLocker.
+  - If the user exists, you can redirect them to the **Sign-In** flow.
+  - If the user does not exist, you can redirect them to the **Sign-Up** flow.
+  - The **Get User Profile API** enables retrieval of user details like Full Name, Mobile Number, DigiLocker Id, Email Address & Gender after user's consent.
+</Update>
+
+<Update label="Feburary 19th, 2026" tags={["Improvement"]}>
+  ## **DigiLocker SDK – Get User Profile**
+
+  We've enhanced the DigiLocker SDK with new capabilities for smoother KYC integration.
+
+  - Added **Get User Profile API** support to DigiLocker SDK endpoints for smooth integration within SDK-based KYC flows.
+  - If a user cookie is provided with a `mobile` that already exists on DigiLocker, the user will now be redirected directly to the DigiLocker **Sign-In** flow.
+</Update>
+
+
+
+
 <Update label="January 7th, 2026" tags={["Feature"]}>
   ## **Introducing EntityLocker SDK**
 
