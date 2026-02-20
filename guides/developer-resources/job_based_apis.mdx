@@ -1,7 +1,7 @@
 ---
 title: "Job-based API workflow"
 description: "Learn how to use Sandbox job-based APIs with asynchronous processing for large payloads and long-running operations."
-keywords: ["job-based API", "asynchronous", "workflow", "job polling", "pre-signed url", "S3 upload"]
+keywords: ["job-based API","asynchronous","workflow","job polling","pre-signed url","S3 upload"]
 ---
 
 Several Sandbox APIs use an asynchronous, job-based execution model to handle large input payloads and long-running processing reliably.
@@ -14,6 +14,10 @@ Instead of sending the full input data directly in the API request, these APIs u
 
 This approach improves scalability, fault tolerance, and performance, while providing clear visibility into the processing lifecycle.
 
+<Info>
+  All input and output files are retained for a maximum of thirty (30) days from upload, after which they will be permanently deleted without notice.
+</Info>
+
 ## How it works
 
 Follow these steps to use job-based APIs:
@@ -22,44 +26,43 @@ Follow these steps to use job-based APIs:
   <Step title="Submit the job">
     Create a job using a `POST` request to the workload-specific endpoint. This initializes the asynchronous workflow and returns a unique `job_id` and a pre-signed S3 url for uploading the input payload.
 
-**Endpoint pattern**
-```http
-POST /:workload/:function/:sub_function
-```
+    **Endpoint pattern**
 
-**Example response**
-```json
-{
-  "code": 200,
-  "timestamp": 1767788389433,
-  "data": {
-    "created_at": 1767788396261,
-    "updated_at": 1767788396261,
-    "@entity": "in.co.sandbox.it.calculator.tax_pnl.securities.job",
-    "security_type": "domestic",
-    "url": "https://in-co-sbox-it-calc-tax-pnl-sec-dev.s3.ap-south-1.amazonaws.com/...",
-    "status": "created",
-    "job_id": "11734cbd-8f18-45ea-9eab-0717a8b3c513"
-  },
-  "transaction_id": "11734cbd-8f18-45ea-9eab-0717a8b3c513"
-}
-```
+    ```http
+    POST /:workload/:function/:sub_function
+    ```
 
-**Response fields**
+    **Example response**
 
-<ParamField path="job_id" type="string">
-  Unique identifier for the job. Use this to upload input data and poll job status.
-</ParamField>
+    ```json
+    {
+      "code": 200,
+      "timestamp": 1767788389433,
+      "data": {
+        "created_at": 1767788396261,
+        "updated_at": 1767788396261,
+        "@entity": "in.co.sandbox.it.calculator.tax_pnl.securities.job",
+        "security_type": "domestic",
+        "url": "https://in-co-sbox-it-calc-tax-pnl-sec-dev.s3.ap-south-1.amazonaws.com/...",
+        "status": "created",
+        "job_id": "11734cbd-8f18-45ea-9eab-0717a8b3c513"
+      },
+      "transaction_id": "11734cbd-8f18-45ea-9eab-0717a8b3c513"
+    }
+    ```
 
-<ParamField path="url" type="string">
-  Pre-signed AWS S3 URL for uploading the input payload in the next step.
-</ParamField>
+    **Response fields**
 
-<ParamField path="status" type="string">
-  Initial state of the job. At creation, this will always be `created`.
-</ParamField>
+    <ParamField path="job_id" type="string">
+      Unique identifier for the job. Use this to upload input data and poll job status.
+    </ParamField>
+    <ParamField path="url" type="string">
+      Pre-signed AWS S3 URL for uploading the input payload in the next step.
+    </ParamField>
+    <ParamField path="status" type="string">
+      Initial state of the job. At creation, this will always be `created`.
+    </ParamField>
   </Step>
-
   <Step title="Upload the input payload">
     Upload your input payload directly to the pre-signed S3 URL returned in the previous step using a plain HTTP `PUT` request.
 
@@ -69,14 +72,15 @@ POST /:workload/:function/:sub_function
       - Do **not** send Sandbox API keys or authorization headers
       - The URL is time-bound and expires automatically (typically 24 hours)
     </Warning>
-
     **Request requirements**
+
     - **Method**: `PUT`
     - **Headers**: `Content-Type` (appropriate for your payload)
     - **Body**: Input payload (JSON, CSV, ZIP, etc.)
     - **No authorization headers required**
 
     **Example request**
+
     ```bash cURL
     curl -X PUT 'https://in-co-sandbox-it-calculator-pnl-crypto-dev.s3.ap-south-1.amazonaws.com/...' \
          -H 'Content-Type: application/json' \
@@ -84,24 +88,26 @@ POST /:workload/:function/:sub_function
     ```
 
     **Successful response**
+
     ```text
     200 OK
     ```
 
     Once the payload is uploaded successfully, the job automatically begins processing.
   </Step>
-
   <Step title="Get job completion status">
     After uploading the input payload, the system processes the job asynchronously. You can poll the same endpoint using a `GET` request with the `job_id` to track progress.
 
     If you prefer not to poll, configure webhooks to receive a completion notification instead. See [Webhooks](/guides/developer-resources/webhooks). When you receive the webhook, call the same `GET /:workload/:function/:sub_function/:job_id` endpoint to retrieve the output URL.
 
     **Endpoint pattern**
+
     ```http
     GET /:workload/:function/:sub_function/:job_id
     ```
 
     **Job statuses**
+
     - `created` — Job created and awaiting upload
     - `queued` — Job queued for processing
     - `in_progress` — Job is being processed
@@ -109,6 +115,7 @@ POST /:workload/:function/:sub_function
     - `failed` — Job failed during processing
 
     **Example response (in progress)**
+
     ```json
     {
       "code": 200,
@@ -126,6 +133,7 @@ POST /:workload/:function/:sub_function
     ```
 
     **Example response (succeeded)**
+
     ```json
     {
       "code": 200,
