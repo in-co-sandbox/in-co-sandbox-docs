@@ -87,13 +87,13 @@ TDS (Tax Deducted at Source) compliance is the set of processes used by a deduct
     Generate and verify OTP to retrieve Challan Status Inquiry files.
   </Card>
   <Card title="Generate FVU" icon="file-lines" href="/api-reference/tds/compliance/generate-fvu/endpoints/submit_job">
-    Submit, poll, and search FVU generation jobs.
+    Submit, poll, and search FVU generation jobs, with webhook status notifications.
   </Card>
   <Card title="E-file returns" icon="paper-plane" href="/api-reference/tds/compliance/e-file/endpoints/submit_job">
-    Submit, poll, and search e-filing jobs for quarterly returns.
+    Submit, poll, and search e-filing jobs for quarterly returns, with webhook status notifications.
   </Card>
   <Card title="Form 16/16A certificates" icon="badge-check" href="/api-reference/tds/compliance/certificate-form16(a)/endpoints/submit_job">
-    Submit, poll, and fetch certificate generation jobs.
+    Submit, poll, and fetch certificate generation jobs, with webhook status notifications.
   </Card>
 </CardGroup>
 
@@ -110,6 +110,7 @@ TDS (Tax Deducted at Source) compliance is the set of processes used by a deduct
 |:----|:--------|
 | [Submit job](/api-reference/tds/compliance/generate-fvu/endpoints/submit_job) | Create a new FVU generation job with return data |
 | [Poll job](/api-reference/tds/compliance/generate-fvu/endpoints/poll_job) | Check job status and download FVU ZIP when complete |
+| [Job status webhook](/api-reference/tds/compliance/generate-fvu/endpoints/webhook) | Receive notification when an FVU generation job succeeds or fails |
 | [Search job](/api-reference/tds/compliance/generate-fvu/endpoints/search_job) | List and filter previously submitted FVU jobs |
 
 ## E-file APIs
@@ -118,6 +119,7 @@ TDS (Tax Deducted at Source) compliance is the set of processes used by a deduct
 |:----|:--------|
 | [Submit job](/api-reference/tds/compliance/e-file/endpoints/submit_job) | Submit FVU for e-filing to the income tax portal |
 | [Poll job](/api-reference/tds/compliance/e-file/endpoints/poll_job) | Check filing status and download receipt/Form 27A |
+| [Job status webhook](/api-reference/tds/compliance/e-file/endpoints/webhook) | Receive notification when an e-file job succeeds or fails |
 | [Search job](/api-reference/tds/compliance/e-file/endpoints/search_job) | List and filter previously submitted e-filing jobs |
 
 ## Form 16/16A certificate APIs
@@ -127,6 +129,7 @@ TDS (Tax Deducted at Source) compliance is the set of processes used by a deduct
 | [Submit job](/api-reference/tds/compliance/certificate-form16(a)/endpoints/submit_job) | Create a certificate generation job for Form 16 or Form 16A |
 | [Credentials](/api-reference/tds/compliance/certificate-form16(a)/credentials) | Reference for TRACES credentials required for certificate generation |
 | [Poll job](/api-reference/tds/compliance/certificate-form16(a)/endpoints/poll_job) | Check job status and retrieve certificate outputs |
+| [Job status webhook](/api-reference/tds/compliance/certificate-form16(a)/endpoints/webhook) | Receive notification when a certificate job succeeds or fails |
 | [Fetch job](/api-reference/tds/compliance/certificate-form16(a)/endpoints/fetch_job) | Retrieve details of a specific certificate generation job |
 
 ## Common use cases

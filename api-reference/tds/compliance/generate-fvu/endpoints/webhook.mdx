@@ -1,0 +1,16 @@
+---
+title: 'Job status webhook'
+description: "Receive a notification when an FVU generation job succeeds or fails."
+keywords:
+  - FVU generation webhook
+  - FVU job notification
+  - job status webhook
+  - FVU job completed
+openapi: '/api-reference/tds/compliance/openapi.json webhook FVUGenerateJobStatus'
+---
+
+<Note>
+  Webhooks fire only when an FVU generation job transitions to `succeeded` or `failed`.
+
+  To configure your webhook URL and validate the `x-sandbox-signature` header, see the [webhooks guide](/guides/developer-resources/webhooks).
+</Note>
