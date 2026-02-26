@@ -1,0 +1,17 @@
+---
+title: 'Job status webhook'
+description: "Receive a notification when a Form 16 or Form 16A certificate job succeeds or fails."
+keywords:
+  - Form 16 webhook
+  - Form 16A webhook
+  - certificate job notification
+  - job status webhook
+  - certificate job completed
+openapi: '/api-reference/tds/compliance/openapi.json webhook CertificateJobStatus'
+---
+
+<Note>
+  Webhooks fire only when a certificate job transitions to `succeeded` or `failed`.
+
+  To configure your webhook URL and validate the `x-sandbox-signature` header, see the [webhooks guide](/guides/developer-resources/webhooks).
+</Note>

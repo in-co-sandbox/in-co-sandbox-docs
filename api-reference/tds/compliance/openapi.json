@@ -1,5 +1,5 @@
 {
-    "openapi": "3.0.0",
+    "openapi": "3.1.0",
     "info": {
         "title": "compliance",
         "version": "1.0.0",
@@ -4504,6 +4504,596 @@
                     }
                 }
             ]
+        }
+    },
+    "webhooks": {
+        "FVUGenerateJobStatus": {
+            "post": {
+                "operationId": "FVUGenerateJobStatus",
+                "summary": "FVU generation job status",
+                "description": "Sandbox sends this webhook when an FVU generation job transitions to `succeeded` or `failed`, not for `created` or `queued` states. Configure your webhook URL in the Sandbox Console. See the [webhooks guide](https://docs.sandbox.co.in/guides/developer-resources/webhooks) for signature validation.",
+                "tags": [
+                    "FVU Generation"
+                ],
+                "servers": [
+                    {
+                        "url": "https://your-server.example.com",
+                        "description": "Your webhook endpoint URL, configured in the Sandbox Console"
+                    }
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type": "object",
+                                "properties": {
+                                    "data": {
+                                        "description": "Job details at the time of the status change.",
+                                        "oneOf": [
+                                            {
+                                                "title": "Job Succeeded",
+                                                "type": "object",
+                                                "required": ["@entity", "job_id", "tan", "financial_year", "quarter", "form", "status", "created_at", "updated_at", "fvu_zip_file_url"],
+                                                "properties": {
+                                                    "@entity": {
+                                                        "type": "string",
+                                                        "description": "Entity type identifier"
+                                                    },
+                                                    "job_id": {
+                                                        "type": "string",
+                                                        "description": "Unique identifier of the job"
+                                                    },
+                                                    "tan": {
+                                                        "type": "string",
+                                                        "description": "Tax Deduction Account Number"
+                                                    },
+                                                    "financial_year": {
+                                                        "type": "string",
+                                                        "description": "Financial year of the return (e.g. FY 2024-25)"
+                                                    },
+                                                    "quarter": {
+                                                        "type": "string",
+                                                        "description": "Quarter for which the return is filed (Q1–Q4)"
+                                                    },
+                                                    "form": {
+                                                        "type": "string",
+                                                        "description": "TDS form type (24Q, 26Q, or 27Q)"
+                                                    },
+                                                    "filing_type": {
+                                                        "type": "string",
+                                                        "description": "Filing type (regular or correction)"
+                                                    },
+                                                    "status": {
+                                                        "type": "string",
+                                                        "description": "Job status",
+                                                        "enum": ["succeeded"]
+                                                    },
+                                                    "created_at": {
+                                                        "type": "integer",
+                                                        "description": "Job creation time as a Unix timestamp in milliseconds"
+                                                    },
+                                                    "updated_at": {
+                                                        "type": "integer",
+                                                        "description": "Last status update time as a Unix timestamp in milliseconds"
+                                                    },
+                                                    "fvu_zip_file_url": {
+                                                        "type": "string",
+                                                        "format": "uri",
+                                                        "description": "Pre-signed URL to download the generated FVU ZIP file"
+                                                    }
+                                                }
+                                            },
+                                            {
+                                                "title": "Job Failed",
+                                                "type": "object",
+                                                "required": ["@entity", "job_id", "tan", "financial_year", "quarter", "form", "status", "created_at", "updated_at", "validation_report_file_url"],
+                                                "properties": {
+                                                    "@entity": {
+                                                        "type": "string",
+                                                        "description": "Entity type identifier"
+                                                    },
+                                                    "job_id": {
+                                                        "type": "string",
+                                                        "description": "Unique identifier of the job"
+                                                    },
+                                                    "tan": {
+                                                        "type": "string",
+                                                        "description": "Tax Deduction Account Number"
+                                                    },
+                                                    "financial_year": {
+                                                        "type": "string",
+                                                        "description": "Financial year of the return (e.g. FY 2024-25)"
+                                                    },
+                                                    "quarter": {
+                                                        "type": "string",
+                                                        "description": "Quarter for which the return is filed (Q1–Q4)"
+                                                    },
+                                                    "form": {
+                                                        "type": "string",
+                                                        "description": "TDS form type (24Q, 26Q, or 27Q)"
+                                                    },
+                                                    "filing_type": {
+                                                        "type": "string",
+                                                        "description": "Filing type (regular or correction)"
+                                                    },
+                                                    "status": {
+                                                        "type": "string",
+                                                        "description": "Job status",
+                                                        "enum": ["failed"]
+                                                    },
+                                                    "created_at": {
+                                                        "type": "integer",
+                                                        "description": "Job creation time as a Unix timestamp in milliseconds"
+                                                    },
+                                                    "updated_at": {
+                                                        "type": "integer",
+                                                        "description": "Last status update time as a Unix timestamp in milliseconds"
+                                                    },
+                                                    "validation_report_file_url": {
+                                                        "type": "string",
+                                                        "format": "uri",
+                                                        "description": "Pre-signed URL to download the validation error report (JSON)"
+                                                    }
+                                                }
+                                            }
+                                        ]
+                                    }
+                                }
+                            },
+                            "examples": {
+                                "Job Succeeded": {
+                                    "summary": "Job Succeeded",
+                                    "value": {
+                                        "data": {
+                                            "@entity": "in.co.sandbox.tds.compliance.fvu.generate.job",
+                                            "job_id": "4ef92975-aea8-4628-9eaa-18eb439c13d9",
+                                            "tan": "AHMA09719B",
+                                            "financial_year": "FY 2024-25",
+                                            "quarter": "Q3",
+                                            "form": "24Q",
+                                            "filing_type": "regular",
+                                            "status": "succeeded",
+                                            "created_at": 1763362637000,
+                                            "updated_at": 1763362650000,
+                                            "fvu_zip_file_url": "https://in-co-sandbox-tds-compliance-fvu-test.s3.ap-south-1.amazonaws.com/tan/financial_year/quarter/form/4ef92975-aea8-4628-9eaa-18eb439c13d9.zip"
+                                        }
+                                    }
+                                },
+                                "Job Failed": {
+                                    "summary": "Job Failed",
+                                    "value": {
+                                        "data": {
+                                            "@entity": "in.co.sandbox.tds.compliance.fvu.generate.job",
+                                            "job_id": "7a9176ef-1e59-4b8e-a1de-ee15b09963f8",
+                                            "tan": "AHMA09719B",
+                                            "financial_year": "FY 2024-25",
+                                            "quarter": "Q3",
+                                            "form": "24Q",
+                                            "filing_type": "regular",
+                                            "status": "failed",
+                                            "created_at": 1763362637000,
+                                            "updated_at": 1763362650000,
+                                            "validation_report_file_url": "https://in-co-sandbox-tds-compliance-fvu-test.s3.ap-south-1.amazonaws.com/tan/financial_year/quarter/form/9693f3f9-e7dd-4a70-9390-0501ab7f4d27_error.json"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Return any 2xx status to acknowledge receipt. Sandbox retries delivery on non-2xx responses."
+                    }
+                }
+            }
+        },
+        "EFileJobStatus": {
+            "post": {
+                "operationId": "EFileJobStatus",
+                "summary": "E-file job status",
+                "description": "Sandbox sends this webhook when an e-file job transitions to `succeeded` or `failed`, not for `created` or `queued` states. Configure your webhook URL in the Sandbox Console. See the [webhooks guide](https://docs.sandbox.co.in/guides/developer-resources/webhooks) for signature validation.",
+                "tags": [
+                    "E-File TDS Return"
+                ],
+                "servers": [
+                    {
+                        "url": "https://your-server.example.com",
+                        "description": "Your webhook endpoint URL, configured in the Sandbox Console"
+                    }
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type": "object",
+                                "properties": {
+                                    "data": {
+                                        "description": "Job details at the time of the status change.",
+                                        "oneOf": [
+                                            {
+                                                "title": "Job Succeeded",
+                                                "type": "object",
+                                                "required": ["@entity", "job_id", "tan", "financial_year", "quarter", "form", "filing_type", "status", "receipt_number", "created_at", "updated_at", "receipt_file_url", "fvu_file_url", "form27a_file_url"],
+                                                "properties": {
+                                                    "@entity": {
+                                                        "type": "string",
+                                                        "description": "Entity type identifier"
+                                                    },
+                                                    "job_id": {
+                                                        "type": "string",
+                                                        "description": "Unique identifier of the job"
+                                                    },
+                                                    "tan": {
+                                                        "type": "string",
+                                                        "description": "Tax Deduction Account Number"
+                                                    },
+                                                    "financial_year": {
+                                                        "type": "string",
+                                                        "description": "Financial year of the return (e.g. FY 2024-25)"
+                                                    },
+                                                    "quarter": {
+                                                        "type": "string",
+                                                        "description": "Quarter for which the return is filed (Q1–Q4)"
+                                                    },
+                                                    "form": {
+                                                        "type": "string",
+                                                        "description": "TDS form type (24Q, 26Q, 27Q, or 27EQ)"
+                                                    },
+                                                    "filing_type": {
+                                                        "type": "string",
+                                                        "description": "Filing type (regular, original, or correction)"
+                                                    },
+                                                    "status": {
+                                                        "type": "string",
+                                                        "description": "Job status",
+                                                        "enum": ["succeeded"]
+                                                    },
+                                                    "receipt_number": {
+                                                        "type": "integer",
+                                                        "description": "Receipt number from the Income Tax Department confirming successful e-filing"
+                                                    },
+                                                    "created_at": {
+                                                        "type": "integer",
+                                                        "description": "Job creation time as a Unix timestamp in milliseconds"
+                                                    },
+                                                    "updated_at": {
+                                                        "type": "integer",
+                                                        "description": "Last status update time as a Unix timestamp in milliseconds"
+                                                    },
+                                                    "receipt_file_url": {
+                                                        "type": "string",
+                                                        "format": "uri",
+                                                        "description": "Pre-signed URL to download the acknowledgement receipt PDF"
+                                                    },
+                                                    "fvu_file_url": {
+                                                        "type": "string",
+                                                        "format": "uri",
+                                                        "description": "Pre-signed URL to download the FVU file"
+                                                    },
+                                                    "form27a_file_url": {
+                                                        "type": "string",
+                                                        "format": "uri",
+                                                        "description": "Pre-signed URL to download the Form 27A PDF"
+                                                    }
+                                                }
+                                            },
+                                            {
+                                                "title": "Job Failed",
+                                                "type": "object",
+                                                "required": ["@entity", "job_id", "tan", "financial_year", "quarter", "form", "filing_type", "status", "message", "created_at", "updated_at"],
+                                                "properties": {
+                                                    "@entity": {
+                                                        "type": "string",
+                                                        "description": "Entity type identifier"
+                                                    },
+                                                    "job_id": {
+                                                        "type": "string",
+                                                        "description": "Unique identifier of the job"
+                                                    },
+                                                    "tan": {
+                                                        "type": "string",
+                                                        "description": "Tax Deduction Account Number"
+                                                    },
+                                                    "financial_year": {
+                                                        "type": "string",
+                                                        "description": "Financial year of the return (e.g. FY 2024-25)"
+                                                    },
+                                                    "quarter": {
+                                                        "type": "string",
+                                                        "description": "Quarter for which the return is filed (Q1–Q4)"
+                                                    },
+                                                    "form": {
+                                                        "type": "string",
+                                                        "description": "TDS form type (24Q, 26Q, 27Q, or 27EQ)"
+                                                    },
+                                                    "filing_type": {
+                                                        "type": "string",
+                                                        "description": "Filing type (regular, original, or correction)"
+                                                    },
+                                                    "status": {
+                                                        "type": "string",
+                                                        "description": "Job status",
+                                                        "enum": ["failed"]
+                                                    },
+                                                    "message": {
+                                                        "type": "string",
+                                                        "description": "Error message describing why the e-filing failed"
+                                                    },
+                                                    "created_at": {
+                                                        "type": "integer",
+                                                        "description": "Job creation time as a Unix timestamp in milliseconds"
+                                                    },
+                                                    "updated_at": {
+                                                        "type": "integer",
+                                                        "description": "Last status update time as a Unix timestamp in milliseconds"
+                                                    }
+                                                }
+                                            }
+                                        ]
+                                    }
+                                }
+                            },
+                            "examples": {
+                                "Job Succeeded": {
+                                    "summary": "Job Succeeded",
+                                    "value": {
+                                        "data": {
+                                            "@entity": "in.co.sandbox.tds.compliance.e-file.job",
+                                            "job_id": "f845f37e-7f05-4de9-a282-a3b23b9d370a",
+                                            "tan": "AHMA09719B",
+                                            "financial_year": "FY 2024-25",
+                                            "quarter": "Q2",
+                                            "form": "26Q",
+                                            "filing_type": "regular",
+                                            "status": "succeeded",
+                                            "receipt_number": 123456789012345,
+                                            "created_at": 1763362637000,
+                                            "updated_at": 1763362650000,
+                                            "receipt_file_url": "https://in-co-sandbox-tds-compliance-efile-test.s3.ap-south-1.amazonaws.com/tan/financial_year/quarter/form/4ef92975-aea8-4628-9eaa-18eb439c13d9_receipt.pdf",
+                                            "fvu_file_url": "https://in-co-sandbox-tds-compliance-efile-test.s3.ap-south-1.amazonaws.com/tan/financial_year/quarter/form/4ef92975-aea8-4628-9eaa-18eb439c13d9.fvu",
+                                            "form27a_file_url": "https://in-co-sandbox-tds-compliance-efile-test.s3.ap-south-1.amazonaws.com/tan/financial_year/quarter/form/2c5381d1-924d-4f8f-90c5-5082623f8786_form27a.pdf"
+                                        }
+                                    }
+                                },
+                                "Job Failed": {
+                                    "summary": "Job Failed",
+                                    "value": {
+                                        "data": {
+                                            "@entity": "in.co.sandbox.tds.compliance.e-file.job",
+                                            "job_id": "6e8d1908-c062-4846-a811-8f73054acd65",
+                                            "tan": "MUMR09719B",
+                                            "financial_year": "FY 2024-25",
+                                            "quarter": "Q2",
+                                            "form": "26Q",
+                                            "filing_type": "original",
+                                            "status": "failed",
+                                            "message": "Regular Statement with the same TAN, Financial Year, FORM and Quarter is already furnished",
+                                            "created_at": 1763362637000,
+                                            "updated_at": 1763362650000
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Return any 2xx status to acknowledge receipt. Sandbox retries delivery on non-2xx responses."
+                    }
+                }
+            }
+        },
+        "CertificateJobStatus": {
+            "post": {
+                "operationId": "CertificateJobStatus",
+                "summary": "Certificate job status",
+                "description": "Sandbox sends this webhook when a Form 16/16A certificate job transitions to `succeeded` or `failed`, not for `created`, `queued`, or `in_progress` states. Configure your webhook URL in the Sandbox Console. See the [webhooks guide](https://docs.sandbox.co.in/guides/developer-resources/webhooks) for signature validation.",
+                "tags": [
+                    "TDS Certificate"
+                ],
+                "servers": [
+                    {
+                        "url": "https://your-server.example.com",
+                        "description": "Your webhook endpoint URL, configured in the Sandbox Console"
+                    }
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type": "object",
+                                "properties": {
+                                    "data": {
+                                        "description": "Job details at the time of the status change.",
+                                        "oneOf": [
+                                            {
+                                                "title": "Job Succeeded",
+                                                "type": "object",
+                                                "required": ["@entity", "job_id", "tan", "quarter", "form", "financial_year", "status", "remember_me", "created_at", "updated_at", "certificate_zip_urls"],
+                                                "properties": {
+                                                    "@entity": {
+                                                        "type": "string",
+                                                        "description": "Entity type identifier"
+                                                    },
+                                                    "job_id": {
+                                                        "type": "string",
+                                                        "description": "Unique identifier of the job"
+                                                    },
+                                                    "tan": {
+                                                        "type": "string",
+                                                        "description": "Tax Deduction Account Number"
+                                                    },
+                                                    "quarter": {
+                                                        "type": "string",
+                                                        "description": "Quarter for which certificates are generated (Q1–Q4)"
+                                                    },
+                                                    "form": {
+                                                        "type": "string",
+                                                        "description": "TDS form type (24Q or 26Q)"
+                                                    },
+                                                    "financial_year": {
+                                                        "type": "string",
+                                                        "description": "Financial year of the return (e.g. FY 2023-24)"
+                                                    },
+                                                    "status": {
+                                                        "type": "string",
+                                                        "description": "Job status",
+                                                        "enum": ["succeeded"]
+                                                    },
+                                                    "remember_me": {
+                                                        "type": "boolean",
+                                                        "description": "Whether TRACES credentials were persisted for this job"
+                                                    },
+                                                    "created_at": {
+                                                        "type": "integer",
+                                                        "description": "Job creation time as a Unix timestamp in milliseconds"
+                                                    },
+                                                    "updated_at": {
+                                                        "type": "integer",
+                                                        "description": "Last status update time as a Unix timestamp in milliseconds"
+                                                    },
+                                                    "certificate_zip_urls": {
+                                                        "type": "array",
+                                                        "description": "Pre-signed URLs to download the certificate ZIP files",
+                                                        "items": {
+                                                            "type": "string",
+                                                            "format": "uri"
+                                                        }
+                                                    }
+                                                }
+                                            },
+                                            {
+                                                "title": "Job Failed",
+                                                "type": "object",
+                                                "required": ["@entity", "job_id", "tan", "quarter", "form", "financial_year", "status", "remember_me", "created_at", "updated_at", "message"],
+                                                "properties": {
+                                                    "@entity": {
+                                                        "type": "string",
+                                                        "description": "Entity type identifier"
+                                                    },
+                                                    "job_id": {
+                                                        "type": "string",
+                                                        "description": "Unique identifier of the job"
+                                                    },
+                                                    "tan": {
+                                                        "type": "string",
+                                                        "description": "Tax Deduction Account Number"
+                                                    },
+                                                    "quarter": {
+                                                        "type": "string",
+                                                        "description": "Quarter for which certificates are generated (Q1–Q4)"
+                                                    },
+                                                    "form": {
+                                                        "type": "string",
+                                                        "description": "TDS form type (24Q or 26Q)"
+                                                    },
+                                                    "financial_year": {
+                                                        "type": "string",
+                                                        "description": "Financial year of the return (e.g. FY 2023-24)"
+                                                    },
+                                                    "status": {
+                                                        "type": "string",
+                                                        "description": "Job status",
+                                                        "enum": ["failed"]
+                                                    },
+                                                    "remember_me": {
+                                                        "type": "boolean",
+                                                        "description": "Whether TRACES credentials were persisted for this job"
+                                                    },
+                                                    "created_at": {
+                                                        "type": "integer",
+                                                        "description": "Job creation time as a Unix timestamp in milliseconds"
+                                                    },
+                                                    "updated_at": {
+                                                        "type": "integer",
+                                                        "description": "Last status update time as a Unix timestamp in milliseconds"
+                                                    },
+                                                    "message": {
+                                                        "type": "string",
+                                                        "description": "Error message describing why the certificate job failed"
+                                                    }
+                                                }
+                                            }
+                                        ]
+                                    }
+                                }
+                            },
+                            "examples": {
+                                "Form 16 Job Succeeded": {
+                                    "summary": "Form 16 Job Succeeded",
+                                    "value": {
+                                        "data": {
+                                            "@entity": "in.co.sandbox.tds.compliance.certificate.job",
+                                            "job_id": "f24cd229-42c8-43de-af79-8ce2d3c4c3db",
+                                            "tan": "AHMA09719B",
+                                            "quarter": "Q4",
+                                            "form": "24Q",
+                                            "financial_year": "FY 2023-24",
+                                            "status": "succeeded",
+                                            "remember_me": false,
+                                            "created_at": 1716870600000,
+                                            "updated_at": 1716871500000,
+                                            "certificate_zip_urls": [
+                                                "https://in-co-sandbox-tds-compliance-certificate-test.s3.ap-south-1.amazonaws.com/tan/financial_year/quarter/form/5167fdff-507b-486b-98d1-6e6ae46776f2/1_form16_pdf.zip",
+                                                "https://in-co-sandbox-tds-compliance-certificate-test.s3.ap-south-1.amazonaws.com/tan/financial_year/quarter/form/5167fdff-507b-486b-98d1-6e6ae46776f2/2_form16_pdf.zip"
+                                            ]
+                                        }
+                                    }
+                                },
+                                "Form 16A Job Succeeded": {
+                                    "summary": "Form 16A Job Succeeded",
+                                    "value": {
+                                        "data": {
+                                            "@entity": "in.co.sandbox.tds.compliance.certificate.job",
+                                            "job_id": "67addd14-df35-4e74-b27b-2333784f5f24",
+                                            "tan": "AHMA09719B",
+                                            "quarter": "Q4",
+                                            "form": "26Q",
+                                            "financial_year": "FY 2023-24",
+                                            "status": "succeeded",
+                                            "remember_me": true,
+                                            "created_at": 1716870600000,
+                                            "updated_at": 1716871500000,
+                                            "certificate_zip_urls": [
+                                                "https://in-co-sandbox-tds-compliance-certificate-test.s3.ap-south-1.amazonaws.com/tan/financial_year/quarter/form/e5c2f029-8ddf-48e4-bcf2-c40277f0da20/1_form16a_pdf.zip",
+                                                "https://in-co-sandbox-tds-compliance-certificate-test.s3.ap-south-1.amazonaws.com/tan/financial_year/quarter/form/e5c2f029-8ddf-48e4-bcf2-c40277f0da20/2_form16a_pdf.zip"
+                                            ]
+                                        }
+                                    }
+                                },
+                                "Job Failed": {
+                                    "summary": "Job Failed",
+                                    "value": {
+                                        "data": {
+                                            "@entity": "in.co.sandbox.tds.compliance.certificate.job",
+                                            "job_id": "0b205f2c-d27d-4bf3-b128-c6b16ebc065d",
+                                            "tan": "AHMA09719B",
+                                            "quarter": "Q4",
+                                            "form": "27Q",
+                                            "financial_year": "FY 2023-24",
+                                            "status": "failed",
+                                            "remember_me": true,
+                                            "created_at": 1716870600000,
+                                            "updated_at": 1716870900000,
+                                            "message": "Invalid credentials"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Return any 2xx status to acknowledge receipt. Sandbox retries delivery on non-2xx responses."
+                    }
+                }
+            }
         }
     }
 }

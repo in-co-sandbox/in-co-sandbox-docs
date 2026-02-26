@@ -1,0 +1,16 @@
+---
+title: 'Job status webhook'
+description: "Receive a notification when an e-file job succeeds or fails."
+keywords:
+  - e-file webhook
+  - TDS return notification
+  - e-filing job status webhook
+  - e-file job completed
+openapi: '/api-reference/tds/compliance/openapi.json webhook EFileJobStatus'
+---
+
+<Note>
+  Webhooks fire only when an e-file job transitions to `succeeded` or `failed`.
+
+  To configure your webhook URL and validate the `x-sandbox-signature` header, see the [webhooks guide](/guides/developer-resources/webhooks).
+</Note>

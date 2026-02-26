@@ -1,0 +1,16 @@
+---
+title: 'Job status webhook'
+description: "Receive a notification when a TDS Reports job succeeds or fails."
+keywords:
+  - TDS reports webhook
+  - TDS job notification
+  - job status webhook
+  - TDS reports job completed
+openapi: '/api-reference/tds/reports/openapi.json webhook TDSReportsJobStatus'
+---
+
+<Note>
+  Webhooks fire only when a TDS Reports job transitions to `succeeded` or `failed`.
+
+  To configure your webhook URL and validate the `x-sandbox-signature` header, see the [webhooks guide](/guides/developer-resources/webhooks).
+</Note>
