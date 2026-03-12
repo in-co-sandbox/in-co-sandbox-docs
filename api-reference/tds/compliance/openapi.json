@@ -3763,7 +3763,7 @@
                                                 "type": "integer"
                                             },
                                             "challan_serial_no": {
-                                                "description": "Bank challan serial number. Must be exactly 5 characters. When multiple challans are available, prefer the challan with the most distinct PAN-amount pairs (up to 3).",
+                                                "description": "Bank challan serial number. Must be exactly 5 characters.\n\nWhen multiple challans are available, choose based on the number of distinct PAN-amount combinations in the challan:\n\n**3 distinct PAN-amount combinations** (highest priority)\n\n**2 distinct PAN-amount combinations**\n\n**1 distinct PAN-amount combination** (lowest priority)",
                                                 "type": "string",
                                                 "minLength": 5,
                                                 "maxLength": 5
