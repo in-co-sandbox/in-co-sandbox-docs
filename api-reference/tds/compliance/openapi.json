@@ -3614,6 +3614,78 @@
                                             "transaction_id": "f24cd229-42c8-43de-af79-8ce2d3c4c3db",
                                             "message": "Form 16 certificate can be generated only for 24Q returns"
                                         }
+                                    },
+                                    "422 Invalid Username": {
+                                        "value": {
+                                            "code": 422,
+                                            "timestamp": 1716870600000,
+                                            "transaction_id": "f24cd229-42c8-43de-af79-8ce2d3c4c3db",
+                                            "message": "Invalid username: "
+                                        }
+                                    },
+                                    "422 Invalid Password": {
+                                        "value": {
+                                            "code": 422,
+                                            "timestamp": 1716870600000,
+                                            "transaction_id": "f24cd229-42c8-43de-af79-8ce2d3c4c3db",
+                                            "message": "Invalid password: "
+                                        }
+                                    },
+                                    "422 Invalid Challan Amount": {
+                                        "value": {
+                                            "code": 422,
+                                            "timestamp": 1716870600000,
+                                            "transaction_id": "f24cd229-42c8-43de-af79-8ce2d3c4c3db",
+                                            "message": "Invalid challan_amount: 0"
+                                        }
+                                    },
+                                    "422 Invalid Provisional Receipt Number": {
+                                        "value": {
+                                            "code": 422,
+                                            "timestamp": 1716870600000,
+                                            "transaction_id": "f24cd229-42c8-43de-af79-8ce2d3c4c3db",
+                                            "message": "Invalid provisional_receipt_number length"
+                                        }
+                                    },
+                                    "422 Invalid BSR Code": {
+                                        "value": {
+                                            "code": 422,
+                                            "timestamp": 1716870600000,
+                                            "transaction_id": "f24cd229-42c8-43de-af79-8ce2d3c4c3db",
+                                            "message": "invalid bsr_code length"
+                                        }
+                                    },
+                                    "422 Invalid Challan Serial Number": {
+                                        "value": {
+                                            "code": 422,
+                                            "timestamp": 1716870600000,
+                                            "transaction_id": "f24cd229-42c8-43de-af79-8ce2d3c4c3db",
+                                            "message": "Invalid challan_serial_no length"
+                                        }
+                                    },
+                                    "422 Invalid Challan Date": {
+                                        "value": {
+                                            "code": 422,
+                                            "timestamp": 1716870600000,
+                                            "transaction_id": "f24cd229-42c8-43de-af79-8ce2d3c4c3db",
+                                            "message": "Invalid challan_date"
+                                        }
+                                    },
+                                    "422 Invalid Remember Me": {
+                                        "value": {
+                                            "code": 422,
+                                            "timestamp": 1716870600000,
+                                            "transaction_id": "f24cd229-42c8-43de-af79-8ce2d3c4c3db",
+                                            "message": "Invalid remember_me"
+                                        }
+                                    },
+                                    "422 Invalid PAN Amount Combination": {
+                                        "value": {
+                                            "code": 422,
+                                            "timestamp": 1716870600000,
+                                            "transaction_id": "f24cd229-42c8-43de-af79-8ce2d3c4c3db",
+                                            "message": "Invalid unique_pan_amount_combination_for_challan"
+                                        }
                                     }
                                 }
                             }
@@ -3627,33 +3699,37 @@
                                 "type": "object",
                                 "properties": {
                                     "@entity": {
+                                        "description": "Entity type identifier. Must be `in.co.sandbox.tds.compliance.traces.credentials`.",
                                         "type": "string",
                                         "enum": [
                                             "in.co.sandbox.tds.compliance.traces.credentials"
                                         ]
                                     },
                                     "username": {
-                                        "description": "Username of the TRACES portal",
+                                        "description": "Username of the TRACES portal. Must be a non-empty string.",
                                         "type": "string"
                                     },
                                     "password": {
-                                        "description": "The password of the TRACES portal",
+                                        "description": "Password of the TRACES portal. Must be a non-empty string.",
                                         "type": "string"
                                     },
                                     "tan": {
+                                        "description": "Tax Deduction Account Number (TAN) of the deductor. Must match `[A-Z]{4}[0-9]{5}[A-Z]{1}` (e.g., `AHMA09719B`).",
                                         "type": "string"
                                     },
                                     "security_captcha": {
-                                        "description": "Details required to generate TDS certificates",
+                                        "description": "Challan and return details used to authenticate the TRACES session and identify the certificate to download.",
                                         "type": "object",
                                         "properties": {
                                             "@entity": {
+                                                "description": "Entity type identifier. Must be `in.co.sandbox.tds.compliance.traces.credentials.security_captcha`.",
                                                 "type": "string",
                                                 "enum": [
                                                     "in.co.sandbox.tds.compliance.traces.credentials.security_captcha"
                                                 ]
                                             },
                                             "quarter": {
+                                                "description": "Quarter for which the TDS certificate is to be generated.",
                                                 "enum": [
                                                     "Q1",
                                                     "Q2",
@@ -3663,12 +3739,12 @@
                                                 "type": "string"
                                             },
                                             "financial_year": {
-                                                "description": "Financial Year (e.g. FY 2022-23)",
+                                                "description": "Financial year for which the TDS certificate is to be generated. Must match `FY YYYY-YY` (e.g., `FY 2023-24`).",
                                                 "example": "FY 2024-25",
                                                 "type": "string"
                                             },
                                             "form": {
-                                                "description": "TDS return form",
+                                                "description": "TDS return form type. Form 16 can only be generated for 24Q returns; Form 16A can be generated for 26Q or 27Q returns.",
                                                 "enum": [
                                                     "24Q",
                                                     "26Q",
@@ -3677,39 +3753,58 @@
                                                 "type": "string"
                                             },
                                             "bsr_code": {
-                                                "description": "Bank-Branch Code/ Form 24G Receipt Number",
-                                                "type": "string"
+                                                "description": "Bank-Branch Code or Form 24G Receipt Number. Must be exactly 7 characters.",
+                                                "type": "string",
+                                                "minLength": 7,
+                                                "maxLength": 7
                                             },
                                             "challan_date": {
-                                                "description": "EPOCH timestamp of challan paid on date (in milliseconds)",
+                                                "description": "Date on which the challan was paid, as an EPOCH timestamp in milliseconds. Must be a positive integer.",
                                                 "type": "integer"
                                             },
                                             "challan_serial_no": {
-                                                "description": "Bank Challan Number. Priority in choosing challan : Challan with distinct 3 payments (PAN-amount combination) > Challan with distinct 2 payments > Challan with distinct 1 payment",
-                                                "type": "string"
+                                                "description": "Bank challan serial number. Must be exactly 5 characters. When multiple challans are available, prefer the challan with the most distinct PAN-amount pairs (up to 3).",
+                                                "type": "string",
+                                                "minLength": 5,
+                                                "maxLength": 5
                                             },
                                             "provisional_receipt_number": {
-                                                "description": "Provisional regular return receipt number of recently filed return",
-                                                "type": "string"
+                                                "description": "Provisional regular return receipt number of the most recently filed return. Must be exactly 15 characters.",
+                                                "type": "string",
+                                                "minLength": 15,
+                                                "maxLength": 15
                                             },
                                             "challan_amount": {
-                                                "description": "total amount of the challan",
-                                                "type": "integer"
+                                                "description": "Total amount of the challan. Must be a positive integer.",
+                                                "type": "integer",
+                                                "minimum": 1
                                             },
                                             "unique_pan_amount_combination_for_challan": {
-                                                "description": "Three different PANs and total TDS deposited against them in the mentioned Challan",
+                                                "description": "Array of PAN-amount pairs for the selected challan. Must contain between 2 and 4 elements (1 header row + 1 to 3 data rows).\n\n**First element (header row):** `[\"sr_no\", \"pan\", \"total_amount_deposited_against_pan\"]`\n\n**Subsequent elements (data rows):**\n\n`sr_no`: positive integer\n\n`pan`: string matching `[A-Z]{3}[PCFTGHLABJ]{1}[A-Z]{1}[0-9]{4}[A-Z]{1}` (e.g., `XXXPX1234A`)\n\n`total_amount_deposited_against_pan`: non-negative number",
                                                 "type": "array",
+                                                "minItems": 2,
+                                                "maxItems": 4,
                                                 "items": {
                                                     "type": "array",
-                                                    "items": {
-                                                        "type": "string"
-                                                    }
+                                                    "items": {}
                                                 }
                                             }
-                                        }
+                                        },
+                                        "required": [
+                                            "@entity",
+                                            "quarter",
+                                            "financial_year",
+                                            "form",
+                                            "bsr_code",
+                                            "challan_date",
+                                            "challan_serial_no",
+                                            "provisional_receipt_number",
+                                            "challan_amount",
+                                            "unique_pan_amount_combination_for_challan"
+                                        ]
                                     },
                                     "remember_me": {
-                                        "description": "Whether to remember the credentials",
+                                        "description": "Whether to save the TRACES credentials for future requests. When `true`, subsequent jobs can be submitted without re-entering credentials.",
                                         "type": "boolean"
                                     }
                                 },
@@ -3721,6 +3816,56 @@
                                     "security_captcha",
                                     "remember_me"
                                 ]
+                            },
+                            "examples": {
+                                "Form 16A (26Q)": {
+                                    "value": {
+                                        "@entity": "in.co.sandbox.tds.compliance.traces.credentials",
+                                        "username": "T.STARK",
+                                        "password": "TEST1234",
+                                        "tan": "AHMA09719B",
+                                        "security_captcha": {
+                                            "@entity": "in.co.sandbox.tds.compliance.traces.credentials.security_captcha",
+                                            "quarter": "Q4",
+                                            "financial_year": "FY 2023-24",
+                                            "form": "26Q",
+                                            "bsr_code": "0510002",
+                                            "challan_date": 1701109800000,
+                                            "challan_serial_no": "01905",
+                                            "provisional_receipt_number": "770000211345676",
+                                            "challan_amount": 21,
+                                            "unique_pan_amount_combination_for_challan": [
+                                                ["sr_no", "pan", "total_amount_deposited_against_pan"],
+                                                [1, "XXXPX1234A", 1]
+                                            ]
+                                        },
+                                        "remember_me": true
+                                    }
+                                },
+                                "Form 16 (24Q, Q4 only)": {
+                                    "value": {
+                                        "@entity": "in.co.sandbox.tds.compliance.traces.credentials",
+                                        "username": "T.STARK",
+                                        "password": "TEST1234",
+                                        "tan": "AHMA09719B",
+                                        "security_captcha": {
+                                            "@entity": "in.co.sandbox.tds.compliance.traces.credentials.security_captcha",
+                                            "quarter": "Q4",
+                                            "financial_year": "FY 2023-24",
+                                            "form": "24Q",
+                                            "bsr_code": "0510002",
+                                            "challan_date": 1701109800000,
+                                            "challan_serial_no": "01905",
+                                            "provisional_receipt_number": "770000211345676",
+                                            "challan_amount": 21,
+                                            "unique_pan_amount_combination_for_challan": [
+                                                ["sr_no", "pan", "total_amount_deposited_against_pan"],
+                                                [1, "XXXPX1234A", 1]
+                                            ]
+                                        },
+                                        "remember_me": false
+                                    }
+                                }
                             }
                         }
                     }
