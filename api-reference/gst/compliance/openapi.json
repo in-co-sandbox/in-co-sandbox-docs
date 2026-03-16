@@ -99470,116 +99470,11 @@
               "type": "string",
               "example": "Y"
             }
-          },
-          {
-            "name": "gstr",
-            "in": "path",
-            "description": "Return Type",
-            "schema": {
-              "type": "string"
-            },
-            "required": true
           }
         ],
-        "requestBody": {
-          "content": {
-            "application/json": {
-              "schema": {
-                "type": "object",
-                "description": "Proceed to file GST Return"
-              }
-            }
-          }
-        },
         "responses": {
           "200": {
             "description": "200 Success / RET192409 GSTR-3B not filed / AUTH154 Invalid return type / RET00009 Return Form already filed",
-            "headers": {
-              "Connection": {
-                "schema": {
-                  "type": "string",
-                  "example": "keep-alive"
-                }
-              },
-              "Content-Length": {
-                "schema": {
-                  "type": "string",
-                  "example": "189"
-                }
-              },
-              "Date": {
-                "schema": {
-                  "type": "string",
-                  "example": "Fri, 20 Dec 2024 11:31:32 GMT"
-                }
-              },
-              "X-Amzn-Trace-Id": {
-                "schema": {
-                  "type": "string",
-                  "example": "Root=1-67655587-42d2cfd850b5e1ba1ebfb776;Parent=13febd5183689825;Sampled=0;Lineage=1:201de749:0"
-                }
-              },
-              "x-amz-apigw-id": {
-                "schema": {
-                  "type": "string",
-                  "example": "DFpNSEQ5BcwFV9w="
-                }
-              },
-              "x-amzn-Remapped-Connection": {
-                "schema": {
-                  "type": "string",
-                  "example": "keep-alive"
-                }
-              },
-              "x-amzn-Remapped-Content-Length": {
-                "schema": {
-                  "type": "string",
-                  "example": "189"
-                }
-              },
-              "x-amzn-Remapped-Date": {
-                "schema": {
-                  "type": "string",
-                  "example": "Fri, 20 Dec 2024 11:31:32 GMT"
-                }
-              },
-              "x-amzn-Remapped-x-amzn-Remapped-Connection": {
-                "schema": {
-                  "type": "string",
-                  "example": "keep-alive"
-                }
-              },
-              "x-amzn-Remapped-x-amzn-Remapped-Content-Length": {
-                "schema": {
-                  "type": "string",
-                  "example": "189"
-                }
-              },
-              "x-amzn-Remapped-x-amzn-Remapped-Date": {
-                "schema": {
-                  "type": "string",
-                  "example": "Fri, 20 Dec 2024 11:31:32 GMT"
-                }
-              },
-              "x-amzn-Remapped-x-amzn-Remapped-x-amzn-RequestId": {
-                "schema": {
-                  "type": "string",
-                  "example": "9b91308a-a98d-4fb3-a6ec-c08634fe933b"
-                }
-              },
-              "x-amzn-Remapped-x-amzn-RequestId": {
-                "schema": {
-                  "type": "string",
-                  "example": "5e6404e6-99d1-4557-b820-9d83c4612d7a"
-                }
-              },
-              "x-amzn-RequestId": {
-                "schema": {
-                  "type": "string",
-                  "example": "ed17c912-8b9a-4032-94e1-2fc430362a22"
-                }
-              }
-            },
             "content": {
               "application/json": {
                 "schema": {
