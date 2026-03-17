@@ -1,6 +1,6 @@
 ---
 title: "Enable API Access"
-description: "This guide helps you to enable API access on the GST Portal for consuming Taxpayer APIs."
+description: "Enable API access on the GST Portal before generating a GST taxpayer access token."
 ---
 
 <Warning>
@@ -9,7 +9,7 @@ description: "This guide helps you to enable API access on the GST Portal for co
 
 ## Enable API Access
 
-To automate GST Compliance, API access needs to be enabled. This can be done via the GST Portal by following the below steps.
+To create a GST taxpayer session, first enable API access on the GST Portal. Complete the following steps.
 
 <Steps>
   <Step title="Log in to GST Account" stepNumber={1} titleSize="h4">
@@ -33,15 +33,17 @@ To automate GST Compliance, API access needs to be enabled. This can be done via
   </Step>
 </Steps>
 
-Once the taxpayer has enabled the API Access, an authenticated session can be created for the GST entity with the below APIs.
+After API access is enabled, use the [Generate Taxpayer Session](/recipes/gst/authentication/generate_tax_payer_session) recipe for the full token flow.
 
-1. [Generate OTP](/api-reference/gst/compliance/endpoints/taxpayer/authentication/generate_otp)
-2. [Verify OTP](/api-reference/gst/compliance/endpoints/taxpayer/authentication/verify_otp)
+1. [Authenticate](/api-reference/authenticate) to get the Sandbox access token.
+2. [Generate OTP](/api-reference/gst/compliance/endpoints/taxpayer/authentication/generate_otp) for the GST user.
+3. [Verify OTP](/api-reference/gst/compliance/endpoints/taxpayer/authentication/verify_otp) to get the taxpayer access token.
+4. [Refresh Session](/api-reference/gst/compliance/endpoints/taxpayer/authentication/refresh_session) before expiry, if needed.
 
 ## Session
 
 An authenticated session is valid for **6 hours** and can be [refreshed](/api-reference/gst/compliance/endpoints/taxpayer/authentication/refresh_session) before expiry till the duration set on the GST Portal per the above steps.
 
 <Warning> 
-  **Note:** After the set GST Portal duration has passed or token is not refreshed before expiry, OTP verification is to be done again for a new authenticated session.
+  **Note:** After the GST Portal access duration ends, or if the token is not refreshed before expiry, complete OTP verification again to start a new authenticated session.
 </Warning>
