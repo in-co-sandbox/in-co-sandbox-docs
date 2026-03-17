@@ -3,4 +3,7 @@ title: 'Generate EVC OTP'
 description: "Generate EVC OTP to authenticate tax payer for filing returns."
 openapi: '/api-reference/gst/compliance/openapi.json POST /gst/compliance/tax-payer/evc/otp'
 ---
+<Info>
+  **Authentication:** This endpoint does not use standard Sandbox JWT authentication. Pass the GST taxpayer `access_token` in the `Authorization` header. Refer to the [**Generate Taxpayer Session**](/recipes/gst/authentication/generate_tax_payer_session) recipe for steps to generate this token.
+</Info>
 

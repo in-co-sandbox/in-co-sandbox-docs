@@ -3,3 +3,7 @@ title: 'List Sales E-Invoices Job Status'
 description: "Poll with job id to get a signed url to list of sales e-Invoice details for the specified return period."
 openapi: '/api-reference/gst/compliance/openapi.json GET /gst/compliance/tax-payer/e-invoices/{year}/{month}/sales'
 ---
+<Info>
+  **Authentication:** This endpoint does not use standard Sandbox JWT authentication. Pass the GST taxpayer `access_token` in the `Authorization` header. Refer to the [**Generate Taxpayer Session**](/recipes/gst/authentication/generate_tax_payer_session) recipe for steps to generate this token.
+</Info>
+

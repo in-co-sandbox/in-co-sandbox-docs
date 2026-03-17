@@ -3,3 +3,7 @@ title: 'Check Invoice Status'
 description: "Fetch the status for save or reset invoice status action in real time."
 openapi: '/api-reference/gst/compliance/openapi.json GET /gst/compliance/tax-payer/invoices/status'
 ---
+<Info>
+  **Authentication:** This endpoint does not use standard Sandbox JWT authentication. Pass the GST taxpayer `access_token` in the `Authorization` header. Refer to the [**Generate Taxpayer Session**](/recipes/gst/authentication/generate_tax_payer_session) recipe for steps to generate this token.
+</Info>
+

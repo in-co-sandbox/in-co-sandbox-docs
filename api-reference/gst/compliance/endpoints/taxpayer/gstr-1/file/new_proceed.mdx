@@ -3,3 +3,7 @@ title: 'New Proceed to File'
 description: "Proceed to file generates the summary and marks the return ready for filing. Post this Summary can be fetched and EVC OTP can be generated for filing."
 openapi: '/api-reference/gst/compliance/openapi.json POST /gst/compliance/tax-payer/gstrs/{gstr}/{year}/{month}/new-proceed'
 ---
+<Info>
+  **Authentication:** This endpoint does not use standard Sandbox JWT authentication. Pass the GST taxpayer `access_token` in the `Authorization` header. Refer to the [**Generate Taxpayer Session**](/recipes/gst/authentication/generate_tax_payer_session) recipe for steps to generate this token.
+</Info>
+
