@@ -4,9 +4,5 @@ description: "Fetch the e-Invoice by passing the invoice registration number (IR
 openapi: '/api-reference/gst/compliance/openapi.json GET /gst/compliance/tax-payer/e-invoice/{irn}'
 ---
 <Info>
-  **Authentication:** This endpoint does not use standard Sandbox JWT authentication. Pass the GST taxpayer `access_token` in the `Authorization` header. Refer to the [**Generate Taxpayer Session**](/recipes/gst/authentication/generate_tax_payer_session) recipe for steps to generate this token.
-</Info>
-
-<Info>
 Only e-Invoices within the last 6 months can be fetched.
 </Info>
