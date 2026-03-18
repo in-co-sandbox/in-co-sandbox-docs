@@ -47,78 +47,6 @@
         "responses": {
           "200": {
             "description": "200",
-            "headers": {
-              "Date": {
-                "schema": {
-                  "type": "string"
-                }
-              },
-              "Content-Length": {
-                "schema": {
-                  "type": "integer"
-                }
-              },
-              "Connection": {
-                "schema": {
-                  "type": "string"
-                }
-              },
-              "x-amzn-RequestId": {
-                "schema": {
-                  "type": "integer"
-                }
-              },
-              "x-amzn-Remapped-x-amzn-RequestId": {
-                "schema": {
-                  "type": "string"
-                }
-              },
-              "Access-Control-Allow-Origin": {
-                "schema": {
-                  "type": "string"
-                }
-              },
-              "Content-Encoding": {
-                "schema": {
-                  "type": "string"
-                }
-              },
-              "Access-Control-Allow-Headers": {
-                "schema": {
-                  "type": "string"
-                }
-              },
-              "x-amzn-Remapped-Content-Length": {
-                "schema": {
-                  "type": "integer"
-                }
-              },
-              "x-amzn-Remapped-Connection": {
-                "schema": {
-                  "type": "string"
-                }
-              },
-              "x-amz-apigw-id": {
-                "schema": {
-                  "type": "string"
-                }
-              },
-              "X-Requested-With": {
-                "schema": {
-                  "type": "string"
-                }
-              },
-              "X-Amzn-Trace-Id": {
-                "schema": {
-                  "type": "string"
-                }
-              },
-              "x-amzn-Remapped-Date": {
-                "schema": {
-                  "type": "string"
-                }
-              }
-            },
             "content": {
               "application/json": {
                 "schema": {
@@ -220,38 +148,6 @@
         "responses": {
           "200": {
             "description": "Get Account Statement Job",
-            "headers": {
-              "Date": {
-                "schema": {
-                  "type": "string"
-                }
-              },
-              "Content-Length": {
-                "schema": {
-                  "type": "integer"
-                }
-              },
-              "Connection": {
-                "schema": {
-                  "type": "string"
-                }
-              },
-              "x-amzn-RequestId": {
-                "schema": {
-                  "type": "integer"
-                }
-              },
-              "x-amz-apigw-id": {
-                "schema": {
-                  "type": "string"
-                }
-              },
-              "X-Amzn-Trace-Id": {
-                "schema": {
-                  "type": "string"
-                }
-              }
-            },
             "content": {
               "application/json": {
                 "schema": {
@@ -369,43 +265,6 @@
         "responses": {
           "200": {
             "description": "200 - Account created",
-            "headers": {
-              "Date": {
-                "schema": {
-                  "type": "string"
-                }
-              },
-              "Content-Length": {
-                "schema": {
-                  "type": "integer"
-                }
-              },
-              "Connection": {
-                "schema": {
-                  "type": "string"
-                }
-              },
-              "x-amzn-RequestId": {
-                "schema": {
-                  "type": "integer"
-                }
-              },
-              "content-encoding": {
-                "schema": {
-                  "type": "string"
-                }
-              },
-              "x-amz-apigw-id": {
-                "schema": {
-                  "type": "string"
-                }
-              },
-              "X-Amzn-Trace-Id": {
-                "schema": {
-                  "type": "string"
-                }
-              }
-            },
             "content": {
               "application/json": {
                 "schema": {
@@ -477,43 +336,6 @@
           },
           "520": {
             "description": "520 - Account already exist",
-            "headers": {
-              "Date": {
-                "schema": {
-                  "type": "string"
-                }
-              },
-              "Content-Length": {
-                "schema": {
-                  "type": "integer"
-                }
-              },
-              "Connection": {
-                "schema": {
-                  "type": "string"
-                }
-              },
-              "x-amzn-RequestId": {
-                "schema": {
-                  "type": "integer"
-                }
-              },
-              "content-encoding": {
-                "schema": {
-                  "type": "string"
-                }
-              },
-              "x-amz-apigw-id": {
-                "schema": {
-                  "type": "string"
-                }
-              },
-              "X-Amzn-Trace-Id": {
-                "schema": {
-                  "type": "string"
-                }
-              }
-            },
             "content": {
               "application/json": {
                 "schema": {
@@ -583,43 +405,6 @@
         "responses": {
           "200": {
             "description": "200 - Fetch Account",
-            "headers": {
-              "Date": {
-                "schema": {
-                  "type": "string"
-                }
-              },
-              "Content-Length": {
-                "schema": {
-                  "type": "integer"
-                }
-              },
-              "Connection": {
-                "schema": {
-                  "type": "string"
-                }
-              },
-              "x-amzn-RequestId": {
-                "schema": {
-                  "type": "integer"
-                }
-              },
-              "content-encoding": {
-                "schema": {
-                  "type": "string"
-                }
-              },
-              "x-amz-apigw-id": {
-                "schema": {
-                  "type": "string"
-                }
-              },
-              "X-Amzn-Trace-Id": {
-                "schema": {
-                  "type": "string"
-                }
-              }
-            },
             "content": {
               "application/json": {
                 "schema": {
@@ -694,36 +479,6 @@
           },
           "403": {
             "description": "403 - Access Not Permitted",
-            "headers": {
-              "Date": {
-                "deprecated": false,
-                "schema": {}
-              },
-              "Content-Length": {
-                "deprecated": false,
-                "schema": {}
-              },
-              "Connection": {
-                "deprecated": false,
-                "schema": {}
-              },
-              "x-amzn-RequestId": {
-                "deprecated": false,
-                "schema": {}
-              },
-              "content-encoding": {
-                "deprecated": false,
-                "schema": {}
-              },
-              "x-amz-apigw-id": {
-                "deprecated": false,
-                "schema": {}
-              },
-              "X-Amzn-Trace-Id": {
-                "deprecated": false,
-                "schema": {}
-              }
-            },
             "content": {
               "application/json": {
                 "schema": {
@@ -786,78 +541,6 @@
         "responses": {
           "200": {
             "description": "200",
-            "headers": {
-              "Date": {
-                "schema": {
-                  "type": "string"
-                }
-              },
-              "Content-Length": {
-                "schema": {
-                  "type": "integer"
-                }
-              },
-              "Connection": {
-                "schema": {
-                  "type": "string"
-                }
-              },
-              "x-amzn-RequestId": {
-                "schema": {
-                  "type": "string"
-                }
-              },
-              "x-amzn-Remapped-x-amzn-RequestId": {
-                "schema": {
-                  "type": "integer"
-                }
-              },
-              "Access-Control-Allow-Origin": {
-                "schema": {
-                  "type": "string"
-                }
-              },
-              "Content-Encoding": {
-                "schema": {
-                  "type": "string"
-                }
-              },
-              "Access-Control-Allow-Headers": {
-                "schema": {
-                  "type": "string"
-                }
-              },
-              "x-amzn-Remapped-Content-Length": {
-                "schema": {
-                  "type": "integer"
-                }
-              },
-              "x-amzn-Remapped-Connection": {
-                "schema": {
-                  "type": "string"
-                }
-              },
-              "x-amz-apigw-id": {
-                "schema": {
-                  "type": "string"
-                }
-              },
-              "X-Requested-With": {
-                "schema": {
-                  "type": "string"
-                }
-              },
-              "X-Amzn-Trace-Id": {
-                "schema": {
-                  "type": "string"
-                }
-              },
-              "x-amzn-Remapped-Date": {
-                "schema": {
-                  "type": "string"
-                }
-              }
-            },
             "content": {
               "application/json": {
                 "schema": {
@@ -957,78 +640,6 @@
         "responses": {
           "200": {
             "description": "200",
-            "headers": {
-              "Date": {
-                "schema": {
-                  "type": "string"
-                }
-              },
-              "Content-Length": {
-                "schema": {
-                  "type": "integer"
-                }
-              },
-              "Connection": {
-                "schema": {
-                  "type": "string"
-                }
-              },
-              "x-amzn-RequestId": {
-                "schema": {
-                  "type": "string"
-                }
-              },
-              "x-amzn-Remapped-x-amzn-RequestId": {
-                "schema": {
-                  "type": "integer"
-                }
-              },
-              "Access-Control-Allow-Origin": {
-                "schema": {
-                  "type": "string"
-                }
-              },
-              "Content-Encoding": {
-                "schema": {
-                  "type": "string"
-                }
-              },
-              "Access-Control-Allow-Headers": {
-                "schema": {
-                  "type": "string"
-                }
-              },
-              "x-amzn-Remapped-Content-Length": {
-                "schema": {
-                  "type": "integer"
-                }
-              },
-              "x-amzn-Remapped-Connection": {
-                "schema": {
-                  "type": "string"
-                }
-              },
-              "x-amz-apigw-id": {
-                "schema": {
-                  "type": "string"
-                }
-              },
-              "X-Requested-With": {
-                "schema": {
-                  "type": "string"
-                }
-              },
-              "X-Amzn-Trace-Id": {
-                "schema": {
-                  "type": "string"
-                }
-              },
-              "x-amzn-Remapped-Date": {
-                "schema": {
-                  "type": "string"
-                }
-              }
-            },
             "content": {
               "application/json": {
                 "schema": {
@@ -1082,36 +693,6 @@
         "responses": {
           "200": {
             "description": "200 - Fetch Balance",
-            "headers": {
-              "Date": {
-                "deprecated": false,
-                "schema": {}
-              },
-              "Content-Length": {
-                "deprecated": false,
-                "schema": {}
-              },
-              "Connection": {
-                "deprecated": false,
-                "schema": {}
-              },
-              "x-amzn-RequestId": {
-                "deprecated": false,
-                "schema": {}
-              },
-              "content-encoding": {
-                "deprecated": false,
-                "schema": {}
-              },
-              "x-amz-apigw-id": {
-                "deprecated": false,
-                "schema": {}
-              },
-              "X-Amzn-Trace-Id": {
-                "deprecated": false,
-                "schema": {}
-              }
-            },
             "content": {
               "application/json": {
                 "schema": {
@@ -1227,36 +808,6 @@
         "responses": {
           "200": {
             "description": "200 - Fetch all accounts",
-            "headers": {
-              "Date": {
-                "deprecated": false,
-                "schema": {}
-              },
-              "Content-Length": {
-                "deprecated": false,
-                "schema": {}
-              },
-              "Connection": {
-                "deprecated": false,
-                "schema": {}
-              },
-              "x-amzn-RequestId": {
-                "deprecated": false,
-                "schema": {}
-              },
-              "content-encoding": {
-                "deprecated": false,
-                "schema": {}
-              },
-              "x-amz-apigw-id": {
-                "deprecated": false,
-                "schema": {}
-              },
-              "X-Amzn-Trace-Id": {
-                "deprecated": false,
-                "schema": {}
-              }
-            },
             "content": {
               "application/json": {
                 "schema": {
@@ -1345,78 +896,6 @@
         "responses": {
           "200": {
             "description": "200",
-            "headers": {
-              "Date": {
-                "schema": {
-                  "type": "string"
-                }
-              },
-              "Content-Length": {
-                "schema": {
-                  "type": "integer"
-                }
-              },
-              "Connection": {
-                "schema": {
-                  "type": "string"
-                }
-              },
-              "x-amzn-RequestId": {
-                "schema": {
-                  "type": "integer"
-                }
-              },
-              "x-amzn-Remapped-x-amzn-RequestId": {
-                "schema": {
-                  "type": "string"
-                }
-              },
-              "Access-Control-Allow-Origin": {
-                "schema": {
-                  "type": "string"
-                }
-              },
-              "Content-Encoding": {
-                "schema": {
-                  "type": "string"
-                }
-              },
-              "Access-Control-Allow-Headers": {
-                "schema": {
-                  "type": "string"
-                }
-              },
-              "x-amzn-Remapped-Content-Length": {
-                "schema": {
-                  "type": "integer"
-                }
-              },
-              "x-amzn-Remapped-Connection": {
-                "schema": {
-                  "type": "string"
-                }
-              },
-              "x-amz-apigw-id": {
-                "schema": {
-                  "type": "string"
-                }
-              },
-              "X-Requested-With": {
-                "schema": {
-                  "type": "string"
-                }
-              },
-              "X-Amzn-Trace-Id": {
-                "schema": {
-                  "type": "string"
-                }
-              },
-              "x-amzn-Remapped-Date": {
-                "schema": {
-                  "type": "string"
-                }
-              }
-            },
             "content": {
               "application/json": {
                 "schema": {
@@ -1493,78 +972,6 @@
         "responses": {
           "200": {
             "description": "200",
-            "headers": {
-              "Date": {
-                "schema": {
-                  "type": "string"
-                }
-              },
-              "Content-Length": {
-                "schema": {
-                  "type": "integer"
-                }
-              },
-              "Connection": {
-                "schema": {
-                  "type": "string"
-                }
-              },
-              "x-amzn-RequestId": {
-                "schema": {
-                  "type": "string"
-                }
-              },
-              "x-amzn-Remapped-x-amzn-RequestId": {
-                "schema": {
-                  "type": "integer"
-                }
-              },
-              "Access-Control-Allow-Origin": {
-                "schema": {
-                  "type": "string"
-                }
-              },
-              "Content-Encoding": {
-                "schema": {
-                  "type": "string"
-                }
-              },
-              "Access-Control-Allow-Headers": {
-                "schema": {
-                  "type": "string"
-                }
-              },
-              "x-amzn-Remapped-Content-Length": {
-                "schema": {
-                  "type": "integer"
-                }
-              },
-              "x-amzn-Remapped-Connection": {
-                "schema": {
-                  "type": "string"
-                }
-              },
-              "x-amz-apigw-id": {
-                "schema": {
-                  "type": "string"
-                }
-              },
-              "X-Requested-With": {
-                "schema": {
-                  "type": "string"
-                }
-              },
-              "X-Amzn-Trace-Id": {
-                "schema": {
-                  "type": "string"
-                }
-              },
-              "x-amzn-Remapped-Date": {
-                "schema": {
-                  "type": "string"
-                }
-              }
-            },
             "content": {
               "application/json": {
                 "schema": {
@@ -1662,78 +1069,6 @@
         "responses": {
           "200": {
             "description": "200",
-            "headers": {
-              "Date": {
-                "schema": {
-                  "type": "string"
-                }
-              },
-              "Content-Length": {
-                "schema": {
-                  "type": "integer"
-                }
-              },
-              "Connection": {
-                "schema": {
-                  "type": "string"
-                }
-              },
-              "x-amzn-RequestId": {
-                "schema": {
-                  "type": "integer"
-                }
-              },
-              "x-amzn-Remapped-x-amzn-RequestId": {
-                "schema": {
-                  "type": "integer"
-                }
-              },
-              "Access-Control-Allow-Origin": {
-                "schema": {
-                  "type": "string"
-                }
-              },
-              "Content-Encoding": {
-                "schema": {
-                  "type": "string"
-                }
-              },
-              "Access-Control-Allow-Headers": {
-                "schema": {
-                  "type": "string"
-                }
-              },
-              "x-amzn-Remapped-Content-Length": {
-                "schema": {
-                  "type": "integer"
-                }
-              },
-              "x-amzn-Remapped-Connection": {
-                "schema": {
-                  "type": "string"
-                }
-              },
-              "x-amz-apigw-id": {
-                "schema": {
-                  "type": "string"
-                }
-              },
-              "X-Requested-With": {
-                "schema": {
-                  "type": "string"
-                }
-              },
-              "X-Amzn-Trace-Id": {
-                "schema": {
-                  "type": "string"
-                }
-              },
-              "x-amzn-Remapped-Date": {
-                "schema": {
-                  "type": "string"
-                }
-              }
-            },
             "content": {
               "application/json": {
                 "schema": {
@@ -1935,78 +1270,6 @@
         "responses": {
           "200": {
             "description": "200",
-            "headers": {
-              "Date": {
-                "schema": {
-                  "type": "string"
-                }
-              },
-              "Content-Length": {
-                "schema": {
-                  "type": "integer"
-                }
-              },
-              "Connection": {
-                "schema": {
-                  "type": "string"
-                }
-              },
-              "x-amzn-RequestId": {
-                "schema": {
-                  "type": "integer"
-                }
-              },
-              "x-amzn-Remapped-x-amzn-RequestId": {
-                "schema": {
-                  "type": "integer"
-                }
-              },
-              "Access-Control-Allow-Origin": {
-                "schema": {
-                  "type": "string"
-                }
-              },
-              "Content-Encoding": {
-                "schema": {
-                  "type": "string"
-                }
-              },
-              "Access-Control-Allow-Headers": {
-                "schema": {
-                  "type": "string"
-                }
-              },
-              "x-amzn-Remapped-Content-Length": {
-                "schema": {
-                  "type": "integer"
-                }
-              },
-              "x-amzn-Remapped-Connection": {
-                "schema": {
-                  "type": "string"
-                }
-              },
-              "x-amz-apigw-id": {
-                "schema": {
-                  "type": "string"
-                }
-              },
-              "X-Requested-With": {
-                "schema": {
-                  "type": "string"
-                }
-              },
-              "X-Amzn-Trace-Id": {
-                "schema": {
-                  "type": "string"
-                }
-              },
-              "x-amzn-Remapped-Date": {
-                "schema": {
-                  "type": "string"
-                }
-              }
-            },
             "content": {
               "application/json": {
                 "schema": {
@@ -2216,43 +1479,6 @@
         "responses": {
           "200": {
             "description": "200",
-            "headers": {
-              "Date": {
-                "schema": {
-                  "type": "string"
-                }
-              },
-              "Content-Length": {
-                "schema": {
-                  "type": "integer"
-                }
-              },
-              "Connection": {
-                "schema": {
-                  "type": "string"
-                }
-              },
-              "x-amzn-RequestId": {
-                "schema": {
-                  "type": "integer"
-                }
-              },
-              "Content-Encoding": {
-                "schema": {
-                  "type": "string"
-                }
-              },
-              "x-amz-apigw-id": {
-                "schema": {
-                  "type": "string"
-                }
-              },
-              "X-Amzn-Trace-Id": {
-                "schema": {
-                  "type": "string"
-                }
-              }
-            },
             "content": {
               "application/json": {
                 "schema": {
@@ -2436,78 +1662,6 @@
         "responses": {
           "200": {
             "description": "200",
-            "headers": {
-              "Date": {
-                "schema": {
-                  "type": "string"
-                }
-              },
-              "Content-Length": {
-                "schema": {
-                  "type": "integer"
-                }
-              },
-              "Connection": {
-                "schema": {
-                  "type": "string"
-                }
-              },
-              "x-amzn-RequestId": {
-                "schema": {
-                  "type": "integer"
-                }
-              },
-              "x-amzn-Remapped-x-amzn-RequestId": {
-                "schema": {
-                  "type": "string"
-                }
-              },
-              "Access-Control-Allow-Origin": {
-                "schema": {
-                  "type": "string"
-                }
-              },
-              "Content-Encoding": {
-                "schema": {
-                  "type": "string"
-                }
-              },
-              "Access-Control-Allow-Headers": {
-                "schema": {
-                  "type": "string"
-                }
-              },
-              "x-amzn-Remapped-Content-Length": {
-                "schema": {
-                  "type": "integer"
-                }
-              },
-              "x-amzn-Remapped-Connection": {
-                "schema": {
-                  "type": "string"
-                }
-              },
-              "x-amz-apigw-id": {
-                "schema": {
-                  "type": "string"
-                }
-              },
-              "X-Requested-With": {
-                "schema": {
-                  "type": "string"
-                }
-              },
-              "X-Amzn-Trace-Id": {
-                "schema": {
-                  "type": "string"
-                }
-              },
-              "x-amzn-Remapped-Date": {
-                "schema": {
-                  "type": "string"
-                }
-              }
-            },
             "content": {
               "application/json": {
                 "schema": {
@@ -2673,78 +1827,6 @@
         "responses": {
           "200": {
             "description": "200",
-            "headers": {
-              "Date": {
-                "schema": {
-                  "type": "string"
-                }
-              },
-              "Content-Length": {
-                "schema": {
-                  "type": "integer"
-                }
-              },
-              "Connection": {
-                "schema": {
-                  "type": "string"
-                }
-              },
-              "x-amzn-RequestId": {
-                "schema": {
-                  "type": "string"
-                }
-              },
-              "x-amzn-Remapped-x-amzn-RequestId": {
-                "schema": {
-                  "type": "string"
-                }
-              },
-              "Access-Control-Allow-Origin": {
-                "schema": {
-                  "type": "string"
-                }
-              },
-              "Content-Encoding": {
-                "schema": {
-                  "type": "string"
-                }
-              },
-              "Access-Control-Allow-Headers": {
-                "schema": {
-                  "type": "string"
-                }
-              },
-              "x-amzn-Remapped-Content-Length": {
-                "schema": {
-                  "type": "integer"
-                }
-              },
-              "x-amzn-Remapped-Connection": {
-                "schema": {
-                  "type": "string"
-                }
-              },
-              "x-amz-apigw-id": {
-                "schema": {
-                  "type": "string"
-                }
-              },
-              "X-Requested-With": {
-                "schema": {
-                  "type": "string"
-                }
-              },
-              "X-Amzn-Trace-Id": {
-                "schema": {
-                  "type": "string"
-                }
-              },
-              "x-amzn-Remapped-Date": {
-                "schema": {
-                  "type": "string"
-                }
-              }
-            },
             "content": {
               "application/json": {
                 "schema": {
