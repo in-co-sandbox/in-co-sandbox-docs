@@ -3,6 +3,10 @@ title: "Generate E-Invoice Session"
 description: "To automate e-Invoicing using APIs, an E-Invoice session needs to be created with API credentials created on the portal. This recipe takes you through the steps to get a GST E-Invoice access token."
 ---
 
+<Info>
+  **Prerequisites:** If you haven't created API credentials on the E-Invoice portal (NIC) yet, follow the steps in the [**Create API Credentials**](/api-reference/gst/compliance/guides/e-invoice/authentication/create_api_credentials) guide first, then return to this recipe.
+</Info>
+
 <Steps>
   <Step title="Authenticate" stepNumber={1} titleSize="h2">
     To begin the GST E-Invoice workflow, your application must first authenticate using the [**Authenticate**](../../../api-reference/authenticate) endpoint to obtain the **Sandbox JWT access token**.
@@ -45,9 +49,5 @@ description: "To automate e-Invoicing using APIs, an E-Invoice session needs to 
     </Accordion>
 
     When authentication is successful, you'll receive an **E-Invoice access token** in the response along with an expiry timestamp. The `x-source` header specifies which NIC server to use: `primary` (NIC 1) or `secondary` (NIC 2).
-
-    <Warning>
-      **Prerequisites:** You must have API credentials created on the E-Invoice portal (NIC) to use this endpoint. If you haven't created them yet, follow the steps to [create API credentials](/api-reference/gst/compliance/guides/e-invoice/authentication/create_api_credentials).
-    </Warning>
   </Step>
 </Steps>
