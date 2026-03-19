@@ -1,20 +1,20 @@
 {
-    "openapi": "3.1.0",
-    "info": {
-      "title": "Sandbox API [Prod]",
-      "version": "1.0"
-    },
-    "servers": [
-      {
-        "url": "https://api.sandbox.co.in"
-      }
-    ],
-    "components": {
-      "securitySchemes": {}
-    },
-    "security": [
-      {}
-    ],
+  "openapi": "3.1.0",
+  "info": {
+    "title": "Sandbox API [Prod]",
+    "version": "1.0"
+  },
+  "servers": [
+    {
+      "url": "https://api.sandbox.co.in"
+    }
+  ],
+  "components": {
+    "securitySchemes": {}
+  },
+  "security": [
+    {}
+  ],
   "paths": {
     "/it/reports/capital-gains/securities/domestic": {
       "post": {
@@ -94,50 +94,6 @@
         "responses": {
           "200": {
             "description": "200",
-            "headers": {
-              "Date": {
-                "schema": {
-                  "type": "string"
-                },
-                "example": "Thu, 22 May 2025 05:19:36 GMT"
-              },
-              "Content-Length": {
-                "schema": {
-                  "type": "integer"
-                },
-                "example": "555"
-              },
-              "Connection": {
-                "schema": {
-                  "type": "string"
-                },
-                "example": "keep-alive"
-              },
-              "x-amzn-RequestId": {
-                "schema": {
-                  "type": "string"
-                },
-                "example": "9c6846f0-92db-4da3-b982-1b97967c320e"
-              },
-              "Content-Encoding": {
-                "schema": {
-                  "type": "string"
-                },
-                "example": "gzip"
-              },
-              "x-amz-apigw-id": {
-                "schema": {
-                  "type": "string"
-                },
-                "example": "K9EMOGeMhcwEDdA="
-              },
-              "X-Amzn-Trace-Id": {
-                "schema": {
-                  "type": "string"
-                },
-                "example": "Root=1-682eb3e7-665f40986390cfd9708b3ce5;Parent=30e48adca11273eb;Sampled=0;Lineage=2:07fece59:0"
-              }
-            },
             "content": {
               "application/json": {
                 "schema": {
@@ -189,7 +145,7 @@
                     "updated_at": 1747891176339,
                     "@entity": "in.co.sandbox.it.reports.tax_pnl.securities.job",
                     "security_type": "domestic",
-                    "url": "https://in-co-sandbox-it-reports-tax-pnl-sec-dev.s3.ap-south-1.amazonaws.com/domestic/9c6846f0-92db-4da3-b982-1b97967c320e/workbook.input?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Credential=AKIARB4EOKMVAV67SXUX%2F20250522%2Fap-south-1%2Fs3%2Faws4_request&X-Amz-Date=20250522T051936Z&X-Amz-Expires=86400&X-Amz-Signature=015b4acb06aa428915338c6f76a03aafe8af0e9ab56d90a4dbac1fd202efabfb&X-Amz-SignedHeaders=host&x-amz-checksum-crc32=AAAAAA%3D%3D&x-amz-sdk-checksum-algorithm=CRC32&x-id=PutObject",
+                    "url": "https://in-co-sandbox-it-reports-tax-pnl-sec-dev.s3.ap-south-1.amazonaws.com/domestic/9c6846f0-92db-4da3-b982-1b97967c320e/workbook.input?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Credential=EXAMPLEACCESSKEY%2F20250522%2Fap-south-1%2Fs3%2Faws4_request&X-Amz-Date=20250522T051936Z&X-Amz-Expires=86400&X-Amz-Signature=EXAMPLE_SIGNATURE&X-Amz-SignedHeaders=host&x-amz-checksum-crc32=AAAAAA%3D%3D&x-amz-sdk-checksum-algorithm=CRC32&x-id=PutObject",
                     "status": "created",
                     "job_id": "9c6846f0-92db-4da3-b982-1b97967c320e"
                   },
@@ -257,44 +213,6 @@
         "responses": {
           "200": {
             "description": "Success",
-            "headers": {
-              "Date": {
-                "schema": {
-                  "type": "string"
-                },
-                "example": "Tue, 19 Sep 2023 10:05:24 GMT"
-              },
-              "Content-Length": {
-                "schema": {
-                  "type": "integer"
-                },
-                "example": "124"
-              },
-              "Connection": {
-                "schema": {
-                  "type": "string"
-                },
-                "example": "keep-alive"
-              },
-              "x-amzn-RequestId": {
-                "schema": {
-                  "type": "string"
-                },
-                "example": "f3dcdd8e-6226-4198-b0c2-a4d98b3477a7"
-              },
-              "x-amz-apigw-id": {
-                "schema": {
-                  "type": "string"
-                },
-                "example": "Lf7PsEmGBcwFZzA="
-              },
-              "X-Amzn-Trace-Id": {
-                "schema": {
-                  "type": "string"
-                },
-                "example": "Root=1-65097264-031201533731cfc03d70d2de;Sampled=0;lineage=a374957f:0"
-              }
-            },
             "content": {
               "application/json": {
                 "schema": {
@@ -455,44 +373,6 @@
         "responses": {
           "200": {
             "description": "Job status retrieved successfully",
-            "headers": {
-              "Date": {
-                "schema": {
-                  "type": "string"
-                },
-                "example": "Tue, 19 Sep 2023 10:05:24 GMT"
-              },
-              "Content-Length": {
-                "schema": {
-                  "type": "integer"
-                },
-                "example": "124"
-              },
-              "Connection": {
-                "schema": {
-                  "type": "string"
-                },
-                "example": "keep-alive"
-              },
-              "x-amzn-RequestId": {
-                "schema": {
-                  "type": "string"
-                },
-                "example": "f3dcdd8e-6226-4198-b0c2-a4d98b3477a7"
-              },
-              "x-amz-apigw-id": {
-                "schema": {
-                  "type": "string"
-                },
-                "example": "Lf7PsEmGBcwFZzA="
-              },
-              "X-Amzn-Trace-Id": {
-                "schema": {
-                  "type": "string"
-                },
-                "example": "Root=1-65097264-031201533731cfc03d70d2de;Sampled=0;lineage=a374957f:0"
-              }
-            },
             "content": {
               "application/json": {
                 "schema": {
@@ -683,50 +563,6 @@
         "responses": {
           "200": {
             "description": "Job created successfully, presigned URL provided for payload upload",
-            "headers": {
-              "Date": {
-                "schema": {
-                  "type": "string"
-                },
-                "example": "Thu, 22 May 2025 05:19:36 GMT"
-              },
-              "Content-Length": {
-                "schema": {
-                  "type": "integer"
-                },
-                "example": "555"
-              },
-              "Connection": {
-                "schema": {
-                  "type": "string"
-                },
-                "example": "keep-alive"
-              },
-              "x-amzn-RequestId": {
-                "schema": {
-                  "type": "string"
-                },
-                "example": "9c6846f0-92db-4da3-b982-1b97967c320e"
-              },
-              "Content-Encoding": {
-                "schema": {
-                  "type": "string"
-                },
-                "example": "gzip"
-              },
-              "x-amz-apigw-id": {
-                "schema": {
-                  "type": "string"
-                },
-                "example": "K9EMOGeMhcwEDdA="
-              },
-              "X-Amzn-Trace-Id": {
-                "schema": {
-                  "type": "string"
-                },
-                "example": "Root=1-682eb3e7-665f40986390cfd9708b3ce5;Parent=30e48adca11273eb;Sampled=0;Lineage=2:07fece59:0"
-              }
-            },
             "content": {
               "application/json": {
                 "schema": {
@@ -788,7 +624,7 @@
                     "updated_at": 1747891176339,
                     "@entity": "in.co.sandbox.it.reports.tax_pnl.securities.job",
                     "security_type": "domestic",
-                    "url": "https://in-co-sandbox-it-reports-tax-pnl-sec-dev.s3.ap-south-1.amazonaws.com/domestic/9c6846f0-92db-4da3-b982-1b97967c320e/workbook.input?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Credential=AKIARB4EOKMVAV67SXUX%2F20250522%2Fap-south-1%2Fs3%2Faws4_request&X-Amz-Date=20250522T051936Z&X-Amz-Expires=86400&X-Amz-Signature=015b4acb06aa428915338c6f76a03aafe8af0e9ab56d90a4dbac1fd202efabfb&X-Amz-SignedHeaders=host&x-amz-checksum-crc32=AAAAAA%3D%3D&x-amz-sdk-checksum-algorithm=CRC32&x-id=PutObject",
+                    "url": "https://in-co-sandbox-it-reports-tax-pnl-sec-dev.s3.ap-south-1.amazonaws.com/domestic/9c6846f0-92db-4da3-b982-1b97967c320e/workbook.input?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Credential=EXAMPLEACCESSKEY%2F20250522%2Fap-south-1%2Fs3%2Faws4_request&X-Amz-Date=20250522T051936Z&X-Amz-Expires=86400&X-Amz-Signature=EXAMPLE_SIGNATURE&X-Amz-SignedHeaders=host&x-amz-checksum-crc32=AAAAAA%3D%3D&x-amz-sdk-checksum-algorithm=CRC32&x-id=PutObject",
                     "status": "created",
                     "job_id": "9c6846f0-92db-4da3-b982-1b97967c320e"
                   },
@@ -7121,50 +6957,6 @@
         "responses": {
           "200": {
             "description": "200",
-            "headers": {
-              "Date": {
-                "schema": {
-                  "type": "string"
-                },
-                "example": "Thu, 22 May 2025 05:19:36 GMT"
-              },
-              "Content-Length": {
-                "schema": {
-                  "type": "integer"
-                },
-                "example": "555"
-              },
-              "Connection": {
-                "schema": {
-                  "type": "string"
-                },
-                "example": "keep-alive"
-              },
-              "x-amzn-RequestId": {
-                "schema": {
-                  "type": "string"
-                },
-                "example": "9c6846f0-92db-4da3-b982-1b97967c320e"
-              },
-              "Content-Encoding": {
-                "schema": {
-                  "type": "string"
-                },
-                "example": "gzip"
-              },
-              "x-amz-apigw-id": {
-                "schema": {
-                  "type": "string"
-                },
-                "example": "K9EMOGeMhcwEDdA="
-              },
-              "X-Amzn-Trace-Id": {
-                "schema": {
-                  "type": "string"
-                },
-                "example": "Root=1-682eb3e7-665f40986390cfd9708b3ce5;Parent=30e48adca11273eb;Sampled=0;Lineage=2:07fece59:0"
-              }
-            },
             "content": {
               "application/json": {
                 "schema": {
@@ -7216,7 +7008,7 @@
                     "updated_at": 1747891176339,
                     "@entity": "in.co.sandbox.it.reports.tax_pnl.securities.job",
                     "security_type": "domestic",
-                    "url": "https://in-co-sandbox-it-reports-tax-pnl-sec-dev.s3.ap-south-1.amazonaws.com/domestic/9c6846f0-92db-4da3-b982-1b97967c320e/workbook.input?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Credential=AKIARB4EOKMVAV67SXUX%2F20250522%2Fap-south-1%2Fs3%2Faws4_request&X-Amz-Date=20250522T051936Z&X-Amz-Expires=86400&X-Amz-Signature=015b4acb06aa428915338c6f76a03aafe8af0e9ab56d90a4dbac1fd202efabfb&X-Amz-SignedHeaders=host&x-amz-checksum-crc32=AAAAAA%3D%3D&x-amz-sdk-checksum-algorithm=CRC32&x-id=PutObject",
+                    "url": "https://in-co-sandbox-it-reports-tax-pnl-sec-dev.s3.ap-south-1.amazonaws.com/domestic/9c6846f0-92db-4da3-b982-1b97967c320e/workbook.input?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Credential=EXAMPLEACCESSKEY%2F20250522%2Fap-south-1%2Fs3%2Faws4_request&X-Amz-Date=20250522T051936Z&X-Amz-Expires=86400&X-Amz-Signature=EXAMPLE_SIGNATURE&X-Amz-SignedHeaders=host&x-amz-checksum-crc32=AAAAAA%3D%3D&x-amz-sdk-checksum-algorithm=CRC32&x-id=PutObject",
                     "status": "created",
                     "job_id": "9c6846f0-92db-4da3-b982-1b97967c320e"
                   },
@@ -7284,44 +7076,6 @@
         "responses": {
           "200": {
             "description": "Success",
-            "headers": {
-              "Date": {
-                "schema": {
-                  "type": "string"
-                },
-                "example": "Tue, 19 Sep 2023 10:05:24 GMT"
-              },
-              "Content-Length": {
-                "schema": {
-                  "type": "integer"
-                },
-                "example": "124"
-              },
-              "Connection": {
-                "schema": {
-                  "type": "string"
-                },
-                "example": "keep-alive"
-              },
-              "x-amzn-RequestId": {
-                "schema": {
-                  "type": "string"
-                },
-                "example": "f3dcdd8e-6226-4198-b0c2-a4d98b3477a7"
-              },
-              "x-amz-apigw-id": {
-                "schema": {
-                  "type": "string"
-                },
-                "example": "Lf7PsEmGBcwFZzA="
-              },
-              "X-Amzn-Trace-Id": {
-                "schema": {
-                  "type": "string"
-                },
-                "example": "Root=1-65097264-031201533731cfc03d70d2de;Sampled=0;lineage=a374957f:0"
-              }
-            },
             "content": {
               "application/json": {
                 "schema": {
@@ -7503,50 +7257,6 @@
         "responses": {
           "200": {
             "description": "200",
-            "headers": {
-              "Date": {
-                "schema": {
-                  "type": "string"
-                },
-                "example": "Thu, 22 May 2025 05:19:36 GMT"
-              },
-              "Content-Length": {
-                "schema": {
-                  "type": "integer"
-                },
-                "example": "555"
-              },
-              "Connection": {
-                "schema": {
-                  "type": "string"
-                },
-                "example": "keep-alive"
-              },
-              "x-amzn-RequestId": {
-                "schema": {
-                  "type": "string"
-                },
-                "example": "9c6846f0-92db-4da3-b982-1b97967c320e"
-              },
-              "Content-Encoding": {
-                "schema": {
-                  "type": "string"
-                },
-                "example": "gzip"
-              },
-              "x-amz-apigw-id": {
-                "schema": {
-                  "type": "string"
-                },
-                "example": "K9EMOGeMhcwEDdA="
-              },
-              "X-Amzn-Trace-Id": {
-                "schema": {
-                  "type": "string"
-                },
-                "example": "Root=1-682eb3e7-665f40986390cfd9708b3ce5;Parent=30e48adca11273eb;Sampled=0;Lineage=2:07fece59:0"
-              }
-            },
             "content": {
               "application/json": {
                 "schema": {
@@ -7598,7 +7308,7 @@
                     "updated_at": 1747891176339,
                     "@entity": "in.co.sandbox.it.reports.tax_pnl.securities.job",
                     "security_type": "domestic",
-                    "url": "https://in-co-sandbox-it-reports-tax-pnl-sec-dev.s3.ap-south-1.amazonaws.com/domestic/9c6846f0-92db-4da3-b982-1b97967c320e/workbook.input?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Credential=AKIARB4EOKMVAV67SXUX%2F20250522%2Fap-south-1%2Fs3%2Faws4_request&X-Amz-Date=20250522T051936Z&X-Amz-Expires=86400&X-Amz-Signature=015b4acb06aa428915338c6f76a03aafe8af0e9ab56d90a4dbac1fd202efabfb&X-Amz-SignedHeaders=host&x-amz-checksum-crc32=AAAAAA%3D%3D&x-amz-sdk-checksum-algorithm=CRC32&x-id=PutObject",
+                    "url": "https://in-co-sandbox-it-reports-tax-pnl-sec-dev.s3.ap-south-1.amazonaws.com/domestic/9c6846f0-92db-4da3-b982-1b97967c320e/workbook.input?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Credential=EXAMPLEACCESSKEY%2F20250522%2Fap-south-1%2Fs3%2Faws4_request&X-Amz-Date=20250522T051936Z&X-Amz-Expires=86400&X-Amz-Signature=EXAMPLE_SIGNATURE&X-Amz-SignedHeaders=host&x-amz-checksum-crc32=AAAAAA%3D%3D&x-amz-sdk-checksum-algorithm=CRC32&x-id=PutObject",
                     "status": "created",
                     "job_id": "9c6846f0-92db-4da3-b982-1b97967c320e"
                   },
@@ -7665,44 +7375,6 @@
         "responses": {
           "200": {
             "description": "Success",
-            "headers": {
-              "Date": {
-                "schema": {
-                  "type": "string"
-                },
-                "example": "Tue, 19 Sep 2023 10:05:24 GMT"
-              },
-              "Content-Length": {
-                "schema": {
-                  "type": "integer"
-                },
-                "example": "124"
-              },
-              "Connection": {
-                "schema": {
-                  "type": "string"
-                },
-                "example": "keep-alive"
-              },
-              "x-amzn-RequestId": {
-                "schema": {
-                  "type": "string"
-                },
-                "example": "f3dcdd8e-6226-4198-b0c2-a4d98b3477a7"
-              },
-              "x-amz-apigw-id": {
-                "schema": {
-                  "type": "string"
-                },
-                "example": "Lf7PsEmGBcwFZzA="
-              },
-              "X-Amzn-Trace-Id": {
-                "schema": {
-                  "type": "string"
-                },
-                "example": "Root=1-65097264-031201533731cfc03d70d2de;Sampled=0;lineage=a374957f:0"
-              }
-            },
             "content": {
               "application/json": {
                 "schema": {
@@ -7882,51 +7554,7 @@
         ],
         "responses": {
           "200": {
-            "description": "200 OK",
-            "headers": {
-              "Date": {
-                "schema": {
-                  "type": "string"
-                },
-                "example": "Mon, 12 Jan 2026 12:45:37 GMT"
-              },
-              "Content-Length": {
-                "schema": {
-                  "type": "integer"
-                },
-                "example": "529"
-              },
-              "Connection": {
-                "schema": {
-                  "type": "string"
-                },
-                "example": "keep-alive"
-              },
-              "x-amzn-RequestId": {
-                "schema": {
-                  "type": "string"
-                },
-                "example": "922d7c0f-0747-49e1-8074-b67d0a19beaf"
-              },
-              "content-encoding": {
-                "schema": {
-                  "type": "string"
-                },
-                "example": "gzip"
-              },
-              "x-amz-apigw-id": {
-                "schema": {
-                  "type": "string"
-                },
-                "example": "XEn0OG7BhcwFTrw="
-              },
-              "X-Amzn-Trace-Id": {
-                "schema": {
-                  "type": "string"
-                },
-                "example": "Root=1-6964ece7-0d467a7941da4faf1a26ea6f;Parent=1194912afea88049;Sampled=0;Lineage=3:eaf00e97:0"
-              }
-            }
+            "description": "200 OK"
           }
         },
         "tags": [
@@ -7985,51 +7613,7 @@
         ],
         "responses": {
           "200": {
-            "description": "Invalid FY",
-            "headers": {
-              "Date": {
-                "schema": {
-                  "type": "string"
-                },
-                "example": "Mon, 12 Jan 2026 12:53:13 GMT"
-              },
-              "Content-Length": {
-                "schema": {
-                  "type": "integer"
-                },
-                "example": "252"
-              },
-              "Connection": {
-                "schema": {
-                  "type": "string"
-                },
-                "example": "keep-alive"
-              },
-              "x-amzn-RequestId": {
-                "schema": {
-                  "type": "string"
-                },
-                "example": "1d979b7f-292f-4f64-8062-f1795da5eddd"
-              },
-              "content-encoding": {
-                "schema": {
-                  "type": "string"
-                },
-                "example": "gzip"
-              },
-              "x-amz-apigw-id": {
-                "schema": {
-                  "type": "string"
-                },
-                "example": "XEo8rF3EhcwFnbA="
-              },
-              "X-Amzn-Trace-Id": {
-                "schema": {
-                  "type": "string"
-                },
-                "example": "Root=1-6964eeb7-277ab6a90568181f50eca9c8;Parent=1f1c33c73c7b780c;Sampled=0;Lineage=3:eaf00e97:0"
-              }
-            }
+            "description": "Invalid FY"
           }
         },
         "tags": [
@@ -8118,50 +7702,6 @@
         "responses": {
           "200": {
             "description": "200",
-            "headers": {
-              "Date": {
-                "schema": {
-                  "type": "string"
-                },
-                "example": "Thu, 22 May 2025 05:19:36 GMT"
-              },
-              "Content-Length": {
-                "schema": {
-                  "type": "integer"
-                },
-                "example": "555"
-              },
-              "Connection": {
-                "schema": {
-                  "type": "string"
-                },
-                "example": "keep-alive"
-              },
-              "x-amzn-RequestId": {
-                "schema": {
-                  "type": "string"
-                },
-                "example": "9c6846f0-92db-4da3-b982-1b97967c320e"
-              },
-              "Content-Encoding": {
-                "schema": {
-                  "type": "string"
-                },
-                "example": "gzip"
-              },
-              "x-amz-apigw-id": {
-                "schema": {
-                  "type": "string"
-                },
-                "example": "K9EMOGeMhcwEDdA="
-              },
-              "X-Amzn-Trace-Id": {
-                "schema": {
-                  "type": "string"
-                },
-                "example": "Root=1-682eb3e7-665f40986390cfd9708b3ce5;Parent=30e48adca11273eb;Sampled=0;Lineage=2:07fece59:0"
-              }
-            },
             "content": {
               "application/json": {
                 "schema": {
@@ -8213,7 +7753,7 @@
                     "updated_at": 1747891176339,
                     "@entity": "in.co.sandbox.it.reports.tax_pnl.securities.job",
                     "security_type": "domestic",
-                    "url": "https://in-co-sandbox-it-reports-tax-pnl-sec-dev.s3.ap-south-1.amazonaws.com/domestic/9c6846f0-92db-4da3-b982-1b97967c320e/workbook.input?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Credential=AKIARB4EOKMVAV67SXUX%2F20250522%2Fap-south-1%2Fs3%2Faws4_request&X-Amz-Date=20250522T051936Z&X-Amz-Expires=86400&X-Amz-Signature=015b4acb06aa428915338c6f76a03aafe8af0e9ab56d90a4dbac1fd202efabfb&X-Amz-SignedHeaders=host&x-amz-checksum-crc32=AAAAAA%3D%3D&x-amz-sdk-checksum-algorithm=CRC32&x-id=PutObject",
+                    "url": "https://in-co-sandbox-it-reports-tax-pnl-sec-dev.s3.ap-south-1.amazonaws.com/domestic/9c6846f0-92db-4da3-b982-1b97967c320e/workbook.input?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Credential=EXAMPLEACCESSKEY%2F20250522%2Fap-south-1%2Fs3%2Faws4_request&X-Amz-Date=20250522T051936Z&X-Amz-Expires=86400&X-Amz-Signature=EXAMPLE_SIGNATURE&X-Amz-SignedHeaders=host&x-amz-checksum-crc32=AAAAAA%3D%3D&x-amz-sdk-checksum-algorithm=CRC32&x-id=PutObject",
                     "status": "created",
                     "job_id": "9c6846f0-92db-4da3-b982-1b97967c320e"
                   },
@@ -8279,44 +7819,6 @@
         "responses": {
           "200": {
             "description": "Success",
-            "headers": {
-              "Date": {
-                "schema": {
-                  "type": "string"
-                },
-                "example": "Tue, 19 Sep 2023 10:05:24 GMT"
-              },
-              "Content-Length": {
-                "schema": {
-                  "type": "integer"
-                },
-                "example": "124"
-              },
-              "Connection": {
-                "schema": {
-                  "type": "string"
-                },
-                "example": "keep-alive"
-              },
-              "x-amzn-RequestId": {
-                "schema": {
-                  "type": "string"
-                },
-                "example": "f3dcdd8e-6226-4198-b0c2-a4d98b3477a7"
-              },
-              "x-amz-apigw-id": {
-                "schema": {
-                  "type": "string"
-                },
-                "example": "Lf7PsEmGBcwFZzA="
-              },
-              "X-Amzn-Trace-Id": {
-                "schema": {
-                  "type": "string"
-                },
-                "example": "Root=1-65097264-031201533731cfc03d70d2de;Sampled=0;lineage=a374957f:0"
-              }
-            },
             "content": {
               "application/json": {
                 "schema": {
@@ -8441,92 +7943,6 @@
         "responses": {
           "200": {
             "description": "200 OK",
-            "headers": {
-              "Date": {
-                "schema": {
-                  "type": "string"
-                },
-                "example": "Tue, 08 Aug 2023 09:14:30 GMT"
-              },
-              "Content-Length": {
-                "schema": {
-                  "type": "integer"
-                },
-                "example": "1584"
-              },
-              "Connection": {
-                "schema": {
-                  "type": "string"
-                },
-                "example": "keep-alive"
-              },
-              "x-amzn-RequestId": {
-                "schema": {
-                  "type": "string"
-                },
-                "example": "76b7beb1-ed2c-4030-ac90-a24b1295d0bb"
-              },
-              "x-amzn-Remapped-x-amzn-RequestId": {
-                "schema": {
-                  "type": "string"
-                },
-                "example": "49f15670-1516-4e4f-9821-9dff154d3154"
-              },
-              "access-control-allow-origin": {
-                "schema": {
-                  "type": "string"
-                },
-                "example": "*"
-              },
-              "access-control-allow-headers": {
-                "schema": {
-                  "type": "string"
-                },
-                "example": "x-requested-with, accept, content-type, x-auth-token, x-auth-role, x-api-key, x-api-token, authorization"
-              },
-              "x-amzn-Remapped-Content-Length": {
-                "schema": {
-                  "type": "integer"
-                },
-                "example": "1584"
-              },
-              "x-amzn-Remapped-Connection": {
-                "schema": {
-                  "type": "string"
-                },
-                "example": "keep-alive"
-              },
-              "x-amz-apigw-id": {
-                "schema": {
-                  "type": "string"
-                },
-                "example": "JVYWXEj_hcwFdCg="
-              },
-              "access-control-allow-methods": {
-                "schema": {
-                  "type": "string"
-                },
-                "example": "POST, GET, OPTIONS, DELETE"
-              },
-              "X-Amzn-Trace-Id": {
-                "schema": {
-                  "type": "string"
-                },
-                "example": "Root=1-64d2075b-5a4e1d3e7a77b16b4634b4c0;Sampled=0;lineage=00fbddb4:0|a23f6d4e:0"
-              },
-              "x-amzn-Remapped-Date": {
-                "schema": {
-                  "type": "string"
-                },
-                "example": "Tue, 08 Aug 2023 09:14:30 GMT"
-              },
-              "access-control-max-age": {
-                "schema": {
-                  "type": "integer"
-                },
-                "example": "3600"
-              }
-            },
             "content": {
               "application/json": {
                 "schema": {
@@ -8580,92 +7996,6 @@
           },
           "400": {
             "description": "400 Invalid PAN, Mobile or Email",
-            "headers": {
-              "Date": {
-                "schema": {
-                  "type": "string"
-                },
-                "example": "Tue, 08 Aug 2023 09:14:30 GMT"
-              },
-              "Content-Length": {
-                "schema": {
-                  "type": "integer"
-                },
-                "example": "1584"
-              },
-              "Connection": {
-                "schema": {
-                  "type": "string"
-                },
-                "example": "keep-alive"
-              },
-              "x-amzn-RequestId": {
-                "schema": {
-                  "type": "string"
-                },
-                "example": "76b7beb1-ed2c-4030-ac90-a24b1295d0bb"
-              },
-              "x-amzn-Remapped-x-amzn-RequestId": {
-                "schema": {
-                  "type": "string"
-                },
-                "example": "49f15670-1516-4e4f-9821-9dff154d3154"
-              },
-              "access-control-allow-origin": {
-                "schema": {
-                  "type": "string"
-                },
-                "example": "*"
-              },
-              "access-control-allow-headers": {
-                "schema": {
-                  "type": "string"
-                },
-                "example": "x-requested-with, accept, content-type, x-auth-token, x-auth-role, x-api-key, x-api-token, authorization"
-              },
-              "x-amzn-Remapped-Content-Length": {
-                "schema": {
-                  "type": "integer"
-                },
-                "example": "1584"
-              },
-              "x-amzn-Remapped-Connection": {
-                "schema": {
-                  "type": "string"
-                },
-                "example": "keep-alive"
-              },
-              "x-amz-apigw-id": {
-                "schema": {
-                  "type": "string"
-                },
-                "example": "JVYWXEj_hcwFdCg="
-              },
-              "access-control-allow-methods": {
-                "schema": {
-                  "type": "string"
-                },
-                "example": "POST, GET, OPTIONS, DELETE"
-              },
-              "X-Amzn-Trace-Id": {
-                "schema": {
-                  "type": "string"
-                },
-                "example": "Root=1-64d2075b-5a4e1d3e7a77b16b4634b4c0;Sampled=0;lineage=00fbddb4:0|a23f6d4e:0"
-              },
-              "x-amzn-Remapped-Date": {
-                "schema": {
-                  "type": "string"
-                },
-                "example": "Tue, 08 Aug 2023 09:14:30 GMT"
-              },
-              "access-control-max-age": {
-                "schema": {
-                  "type": "integer"
-                },
-                "example": "3600"
-              }
-            },
             "content": {
               "application/json": {
                 "schema": {
@@ -8696,92 +8026,6 @@
           },
           "403": {
             "description": "403 Not Invested In Mutual Funds",
-            "headers": {
-              "Date": {
-                "schema": {
-                  "type": "string"
-                },
-                "example": "Tue, 08 Aug 2023 09:14:30 GMT"
-              },
-              "Content-Length": {
-                "schema": {
-                  "type": "integer"
-                },
-                "example": "1584"
-              },
-              "Connection": {
-                "schema": {
-                  "type": "string"
-                },
-                "example": "keep-alive"
-              },
-              "x-amzn-RequestId": {
-                "schema": {
-                  "type": "string"
-                },
-                "example": "76b7beb1-ed2c-4030-ac90-a24b1295d0bb"
-              },
-              "x-amzn-Remapped-x-amzn-RequestId": {
-                "schema": {
-                  "type": "string"
-                },
-                "example": "49f15670-1516-4e4f-9821-9dff154d3154"
-              },
-              "access-control-allow-origin": {
-                "schema": {
-                  "type": "string"
-                },
-                "example": "*"
-              },
-              "access-control-allow-headers": {
-                "schema": {
-                  "type": "string"
-                },
-                "example": "x-requested-with, accept, content-type, x-auth-token, x-auth-role, x-api-key, x-api-token, authorization"
-              },
-              "x-amzn-Remapped-Content-Length": {
-                "schema": {
-                  "type": "integer"
-                },
-                "example": "1584"
-              },
-              "x-amzn-Remapped-Connection": {
-                "schema": {
-                  "type": "string"
-                },
-                "example": "keep-alive"
-              },
-              "x-amz-apigw-id": {
-                "schema": {
-                  "type": "string"
-                },
-                "example": "JVYWXEj_hcwFdCg="
-              },
-              "access-control-allow-methods": {
-                "schema": {
-                  "type": "string"
-                },
-                "example": "POST, GET, OPTIONS, DELETE"
-              },
-              "X-Amzn-Trace-Id": {
-                "schema": {
-                  "type": "string"
-                },
-                "example": "Root=1-64d2075b-5a4e1d3e7a77b16b4634b4c0;Sampled=0;lineage=00fbddb4:0|a23f6d4e:0"
-              },
-              "x-amzn-Remapped-Date": {
-                "schema": {
-                  "type": "string"
-                },
-                "example": "Tue, 08 Aug 2023 09:14:30 GMT"
-              },
-              "access-control-max-age": {
-                "schema": {
-                  "type": "integer"
-                },
-                "example": "3600"
-              }
-            },
             "content": {
               "application/json": {
                 "schema": {
@@ -8869,92 +8113,6 @@
         "responses": {
           "200": {
             "description": "200 OK",
-            "headers": {
-              "Date": {
-                "schema": {
-                  "type": "string"
-                },
-                "example": "Tue, 08 Aug 2023 09:14:30 GMT"
-              },
-              "Content-Length": {
-                "schema": {
-                  "type": "integer"
-                },
-                "example": "1584"
-              },
-              "Connection": {
-                "schema": {
-                  "type": "string"
-                },
-                "example": "keep-alive"
-              },
-              "x-amzn-RequestId": {
-                "schema": {
-                  "type": "string"
-                },
-                "example": "76b7beb1-ed2c-4030-ac90-a24b1295d0bb"
-              },
-              "x-amzn-Remapped-x-amzn-RequestId": {
-                "schema": {
-                  "type": "string"
-                },
-                "example": "49f15670-1516-4e4f-9821-9dff154d3154"
-              },
-              "access-control-allow-origin": {
-                "schema": {
-                  "type": "string"
-                },
-                "example": "*"
-              },
-              "access-control-allow-headers": {
-                "schema": {
-                  "type": "string"
-                },
-                "example": "x-requested-with, accept, content-type, x-auth-token, x-auth-role, x-api-key, x-api-token, authorization"
-              },
-              "x-amzn-Remapped-Content-Length": {
-                "schema": {
-                  "type": "integer"
-                },
-                "example": "1584"
-              },
-              "x-amzn-Remapped-Connection": {
-                "schema": {
-                  "type": "string"
-                },
-                "example": "keep-alive"
-              },
-              "x-amz-apigw-id": {
-                "schema": {
-                  "type": "string"
-                },
-                "example": "JVYWXEj_hcwFdCg="
-              },
-              "access-control-allow-methods": {
-                "schema": {
-                  "type": "string"
-                },
-                "example": "POST, GET, OPTIONS, DELETE"
-              },
-              "X-Amzn-Trace-Id": {
-                "schema": {
-                  "type": "string"
-                },
-                "example": "Root=1-64d2075b-5a4e1d3e7a77b16b4634b4c0;Sampled=0;lineage=00fbddb4:0|a23f6d4e:0"
-              },
-              "x-amzn-Remapped-Date": {
-                "schema": {
-                  "type": "string"
-                },
-                "example": "Tue, 08 Aug 2023 09:14:30 GMT"
-              },
-              "access-control-max-age": {
-                "schema": {
-                  "type": "integer"
-                },
-                "example": "3600"
-              }
-            },
             "content": {
               "application/json": {
                 "schema": {
@@ -8996,92 +8154,6 @@
           },
           "401": {
             "description": "401 Invalid OTP",
-            "headers": {
-              "Date": {
-                "schema": {
-                  "type": "string"
-                },
-                "example": "Tue, 08 Aug 2023 09:14:30 GMT"
-              },
-              "Content-Length": {
-                "schema": {
-                  "type": "integer"
-                },
-                "example": "1584"
-              },
-              "Connection": {
-                "schema": {
-                  "type": "string"
-                },
-                "example": "keep-alive"
-              },
-              "x-amzn-RequestId": {
-                "schema": {
-                  "type": "string"
-                },
-                "example": "76b7beb1-ed2c-4030-ac90-a24b1295d0bb"
-              },
-              "x-amzn-Remapped-x-amzn-RequestId": {
-                "schema": {
-                  "type": "string"
-                },
-                "example": "49f15670-1516-4e4f-9821-9dff154d3154"
-              },
-              "access-control-allow-origin": {
-                "schema": {
-                  "type": "string"
-                },
-                "example": "*"
-              },
-              "access-control-allow-headers": {
-                "schema": {
-                  "type": "string"
-                },
-                "example": "x-requested-with, accept, content-type, x-auth-token, x-auth-role, x-api-key, x-api-token, authorization"
-              },
-              "x-amzn-Remapped-Content-Length": {
-                "schema": {
-                  "type": "integer"
-                },
-                "example": "1584"
-              },
-              "x-amzn-Remapped-Connection": {
-                "schema": {
-                  "type": "string"
-                },
-                "example": "keep-alive"
-              },
-              "x-amz-apigw-id": {
-                "schema": {
-                  "type": "string"
-                },
-                "example": "JVYWXEj_hcwFdCg="
-              },
-              "access-control-allow-methods": {
-                "schema": {
-                  "type": "string"
-                },
-                "example": "POST, GET, OPTIONS, DELETE"
-              },
-              "X-Amzn-Trace-Id": {
-                "schema": {
-                  "type": "string"
-                },
-                "example": "Root=1-64d2075b-5a4e1d3e7a77b16b4634b4c0;Sampled=0;lineage=00fbddb4:0|a23f6d4e:0"
-              },
-              "x-amzn-Remapped-Date": {
-                "schema": {
-                  "type": "string"
-                },
-                "example": "Tue, 08 Aug 2023 09:14:30 GMT"
-              },
-              "access-control-max-age": {
-                "schema": {
-                  "type": "integer"
-                },
-                "example": "3600"
-              }
-            },
             "content": {
               "application/json": {
                 "schema": {
@@ -9174,92 +8246,6 @@
         "responses": {
           "200": {
             "description": "200 OK | AIMPV6407E (Single AMC)",
-            "headers": {
-              "Date": {
-                "schema": {
-                  "type": "string"
-                },
-                "example": "Tue, 08 Aug 2023 09:14:30 GMT"
-              },
-              "Content-Length": {
-                "schema": {
-                  "type": "integer"
-                },
-                "example": "1584"
-              },
-              "Connection": {
-                "schema": {
-                  "type": "string"
-                },
-                "example": "keep-alive"
-              },
-              "x-amzn-RequestId": {
-                "schema": {
-                  "type": "string"
-                },
-                "example": "76b7beb1-ed2c-4030-ac90-a24b1295d0bb"
-              },
-              "x-amzn-Remapped-x-amzn-RequestId": {
-                "schema": {
-                  "type": "string"
-                },
-                "example": "49f15670-1516-4e4f-9821-9dff154d3154"
-              },
-              "access-control-allow-origin": {
-                "schema": {
-                  "type": "string"
-                },
-                "example": "*"
-              },
-              "access-control-allow-headers": {
-                "schema": {
-                  "type": "string"
-                },
-                "example": "x-requested-with, accept, content-type, x-auth-token, x-auth-role, x-api-key, x-api-token, authorization"
-              },
-              "x-amzn-Remapped-Content-Length": {
-                "schema": {
-                  "type": "integer"
-                },
-                "example": "1584"
-              },
-              "x-amzn-Remapped-Connection": {
-                "schema": {
-                  "type": "string"
-                },
-                "example": "keep-alive"
-              },
-              "x-amz-apigw-id": {
-                "schema": {
-                  "type": "string"
-                },
-                "example": "JVYWXEj_hcwFdCg="
-              },
-              "access-control-allow-methods": {
-                "schema": {
-                  "type": "string"
-                },
-                "example": "POST, GET, OPTIONS, DELETE"
-              },
-              "X-Amzn-Trace-Id": {
-                "schema": {
-                  "type": "string"
-                },
-                "example": "Root=1-64d2075b-5a4e1d3e7a77b16b4634b4c0;Sampled=0;lineage=00fbddb4:0|a23f6d4e:0"
-              },
-              "x-amzn-Remapped-Date": {
-                "schema": {
-                  "type": "string"
-                },
-                "example": "Tue, 08 Aug 2023 09:14:30 GMT"
-              },
-              "access-control-max-age": {
-                "schema": {
-                  "type": "integer"
-                },
-                "example": "3600"
-              }
-            },
             "content": {
               "application/json": {
                 "schema": {
@@ -10090,92 +9076,6 @@
           },
           "202": {
             "description": "202 In Progress Request",
-            "headers": {
-              "Date": {
-                "schema": {
-                  "type": "string"
-                },
-                "example": "Tue, 08 Aug 2023 09:14:30 GMT"
-              },
-              "Content-Length": {
-                "schema": {
-                  "type": "integer"
-                },
-                "example": "1584"
-              },
-              "Connection": {
-                "schema": {
-                  "type": "string"
-                },
-                "example": "keep-alive"
-              },
-              "x-amzn-RequestId": {
-                "schema": {
-                  "type": "string"
-                },
-                "example": "76b7beb1-ed2c-4030-ac90-a24b1295d0bb"
-              },
-              "x-amzn-Remapped-x-amzn-RequestId": {
-                "schema": {
-                  "type": "string"
-                },
-                "example": "49f15670-1516-4e4f-9821-9dff154d3154"
-              },
-              "access-control-allow-origin": {
-                "schema": {
-                  "type": "string"
-                },
-                "example": "*"
-              },
-              "access-control-allow-headers": {
-                "schema": {
-                  "type": "string"
-                },
-                "example": "x-requested-with, accept, content-type, x-auth-token, x-auth-role, x-api-key, x-api-token, authorization"
-              },
-              "x-amzn-Remapped-Content-Length": {
-                "schema": {
-                  "type": "integer"
-                },
-                "example": "1584"
-              },
-              "x-amzn-Remapped-Connection": {
-                "schema": {
-                  "type": "string"
-                },
-                "example": "keep-alive"
-              },
-              "x-amz-apigw-id": {
-                "schema": {
-                  "type": "string"
-                },
-                "example": "JVYWXEj_hcwFdCg="
-              },
-              "access-control-allow-methods": {
-                "schema": {
-                  "type": "string"
-                },
-                "example": "POST, GET, OPTIONS, DELETE"
-              },
-              "X-Amzn-Trace-Id": {
-                "schema": {
-                  "type": "string"
-                },
-                "example": "Root=1-64d2075b-5a4e1d3e7a77b16b4634b4c0;Sampled=0;lineage=00fbddb4:0|a23f6d4e:0"
-              },
-              "x-amzn-Remapped-Date": {
-                "schema": {
-                  "type": "string"
-                },
-                "example": "Tue, 08 Aug 2023 09:14:30 GMT"
-              },
-              "access-control-max-age": {
-                "schema": {
-                  "type": "integer"
-                },
-                "example": "3600"
-              }
-            },
             "content": {
               "application/json": {
                 "schema": {
@@ -10234,92 +9134,6 @@
         "responses": {
           "200": {
             "description": "Success",
-            "headers": {
-              "Date": {
-                "schema": {
-                  "type": "string"
-                },
-                "example": "Tue, 08 Aug 2023 09:14:30 GMT"
-              },
-              "Content-Length": {
-                "schema": {
-                  "type": "integer"
-                },
-                "example": "1584"
-              },
-              "Connection": {
-                "schema": {
-                  "type": "string"
-                },
-                "example": "keep-alive"
-              },
-              "x-amzn-RequestId": {
-                "schema": {
-                  "type": "string"
-                },
-                "example": "76b7beb1-ed2c-4030-ac90-a24b1295d0bb"
-              },
-              "x-amzn-Remapped-x-amzn-RequestId": {
-                "schema": {
-                  "type": "string"
-                },
-                "example": "49f15670-1516-4e4f-9821-9dff154d3154"
-              },
-              "access-control-allow-origin": {
-                "schema": {
-                  "type": "string"
-                },
-                "example": "*"
-              },
-              "access-control-allow-headers": {
-                "schema": {
-                  "type": "string"
-                },
-                "example": "x-requested-with, accept, content-type, x-auth-token, x-auth-role, x-api-key, x-api-token, authorization"
-              },
-              "x-amzn-Remapped-Content-Length": {
-                "schema": {
-                  "type": "integer"
-                },
-                "example": "1584"
-              },
-              "x-amzn-Remapped-Connection": {
-                "schema": {
-                  "type": "string"
-                },
-                "example": "keep-alive"
-              },
-              "x-amz-apigw-id": {
-                "schema": {
-                  "type": "string"
-                },
-                "example": "JVYWXEj_hcwFdCg="
-              },
-              "access-control-allow-methods": {
-                "schema": {
-                  "type": "string"
-                },
-                "example": "POST, GET, OPTIONS, DELETE"
-              },
-              "X-Amzn-Trace-Id": {
-                "schema": {
-                  "type": "string"
-                },
-                "example": "Root=1-64d2075b-5a4e1d3e7a77b16b4634b4c0;Sampled=0;lineage=00fbddb4:0|a23f6d4e:0"
-              },
-              "x-amzn-Remapped-Date": {
-                "schema": {
-                  "type": "string"
-                },
-                "example": "Tue, 08 Aug 2023 09:14:30 GMT"
-              },
-              "access-control-max-age": {
-                "schema": {
-                  "type": "integer"
-                },
-                "example": "3600"
-              }
-            },
             "content": {
               "application/json": {
                 "schema": {
@@ -10353,7 +9167,7 @@
                   "code": 200,
                   "job": {
                     "job_id": "49f15670-1516-4e4f-9821-9dff154d3154",
-                    "presigned_url": "https://s3.ap-south-1.amazonaws.com/in-co-sandbox-it-reports-tax-computation-dev/49f15670-1516-4e4f-9821-9dff154d3154.json?X-Amz-Security-Token=IQoJb3JpZ2luX2VjEOH%2F%2F%2F%2F%2F%2F%2F%2F%2F%2FwEaCmFwLXNvdXRoLTEiRzBFAiEA%2FiPsaYIM8zRbh4YcgZV%2BN5j%2BI44vMdvJNlkX1jVFzsMCIDwdCp2MVnqBjRKBqBmA%2BWOZAM%2FZn64HkAQfT6tw9dFbKpUDCIr%2F%2F%2F%2F%2F%2F%2F%2F%2F%2FwEQABoMMDcyNzU1MzM1OTc4Igy33qyVmJA1B2%2BVSIEq6QJTkFupEq8dAHazsRZGSqAHxs3WmDic7oBIwgYKRAah9Ag%2BpPbK41%2FkQO5cym8N4QNF9UyKuTiYtDCEyw1zqD6NF6myTJIoBfKsXw3XP8SJQ5kxd%2FwSFUaUiG2F2%2B8x9zjC8cPiJ07R%2ByVrlVeCHHjiLedRW%2FC7Q2xxr40iCxXuTvkwU4PJZFqh6QvPPAtAa5t9NUq2i5lhaedxK2QvxOVKV29Lqv2bU7iE81zaG6JcpPfz11F4onysTmtVcUtBGfC7V4XLW4jl9e4s4doGMPbx3Yk1QisdYtW05TYZjDt2s4kWrVajQfrFSZuirNFDazilUEDQbeEXfqsWq5xkYByuooEsWCnuJJdD%2FOIm5pzJPH5Js4exvrCw6IMyHciQLPFPFn0L95UKBOe3ExiTGcbdvh63XETP1yOynZnNSPwzyQE1%2Fx2kcnvxNakX6OZJOep8iM9sKRqR9g%2BwrgOOvg66HFw7XQ%2BOGY1tMOiOyKYGOp0BiF%2FA6ppfhGPDT5u6FqsDIGqPAGd%2FBETtLjwJaPDVFd0%2BzVuQHr42iEwyUqhvTOpPyMfTTj7eznR%2FVpeXaI2tth%2FEgdpD5zU1HLzE1qbMOhkQqk5uvYg5WE%2FfhPwIv2EFkKFZ8i%2FV61jXR5KUmdU9g03wAboM0islFGUCVuT9eLOr1i67bv0LluX%2FW86jb93aMHYzPGwh1sDa9hMFcw%3D%3D&X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Date=20230808T091427Z&X-Amz-SignedHeaders=host&X-Amz-Expires=298&X-Amz-Credential=ASIARB4EOKMVK3QUNAHV%2F20230808%2Fap-south-1%2Fs3%2Faws4_request&X-Amz-Signature=e69aa853caac0f014296a8e988c1ca9ca9ef548b76496cce35fe2ba56c169a26"
+                    "presigned_url": "https://s3.ap-south-1.amazonaws.com/in-co-sandbox-it-reports-tax-computation-dev/49f15670-1516-4e4f-9821-9dff154d3154.json?X-Amz-Security-Token=EXAMPLE_SECURITY_TOKEN&X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Date=20230808T091427Z&X-Amz-SignedHeaders=host&X-Amz-Expires=298&X-Amz-Credential=EXAMPLEACCESSKEY%2F20230808%2Fap-south-1%2Fs3%2Faws4_request&X-Amz-Signature=EXAMPLE_SIGNATURE"
                   },
                   "timestamp": 1691486043000
                 }
@@ -10398,92 +9212,6 @@
         "responses": {
           "200": {
             "description": "Success",
-            "headers": {
-              "Date": {
-                "schema": {
-                  "type": "string"
-                },
-                "example": "Tue, 08 Aug 2023 09:15:58 GMT"
-              },
-              "Content-Length": {
-                "schema": {
-                  "type": "integer"
-                },
-                "example": "1525"
-              },
-              "Connection": {
-                "schema": {
-                  "type": "string"
-                },
-                "example": "keep-alive"
-              },
-              "x-amzn-RequestId": {
-                "schema": {
-                  "type": "string"
-                },
-                "example": "08f6ad38-4ef1-42d4-a921-0d0b61831ca2"
-              },
-              "x-amzn-Remapped-x-amzn-RequestId": {
-                "schema": {
-                  "type": "string"
-                },
-                "example": "7d0e9b77-a112-49a9-a204-0eec00205d78"
-              },
-              "access-control-allow-origin": {
-                "schema": {
-                  "type": "string"
-                },
-                "example": "*"
-              },
-              "access-control-allow-headers": {
-                "schema": {
-                  "type": "string"
-                },
-                "example": "x-requested-with, accept, content-type, x-auth-token, x-auth-role, x-api-key, x-api-token, authorization"
-              },
-              "x-amzn-Remapped-Content-Length": {
-                "schema": {
-                  "type": "integer"
-                },
-                "example": "1525"
-              },
-              "x-amzn-Remapped-Connection": {
-                "schema": {
-                  "type": "string"
-                },
-                "example": "keep-alive"
-              },
-              "x-amz-apigw-id": {
-                "schema": {
-                  "type": "string"
-                },
-                "example": "JVYmMFr-BcwFZqA="
-              },
-              "access-control-allow-methods": {
-                "schema": {
-                  "type": "string"
-                },
-                "example": "POST, GET, OPTIONS, DELETE"
-              },
-              "X-Amzn-Trace-Id": {
-                "schema": {
-                  "type": "string"
-                },
-                "example": "Root=1-64d207c0-0dccbd5575aa0730761337fa;Sampled=0;lineage=a23f6d4e:0"
-              },
-              "x-amzn-Remapped-Date": {
-                "schema": {
-                  "type": "string"
-                },
-                "example": "Tue, 08 Aug 2023 09:15:58 GMT"
-              },
-              "access-control-max-age": {
-                "schema": {
-                  "type": "integer"
-                },
-                "example": "3600"
-              }
-            },
             "content": {
               "application/json": {
                 "schema": {
@@ -10516,7 +9244,7 @@
                   "transaction_id": "7d0e9b77-a112-49a9-a204-0eec00205d78",
                   "code": 200,
                   "job": {
-                    "url": "https://s3.ap-south-1.amazonaws.com/in-co-sandbox-it-reports-tax-computation-dev/49f15670-1516-4e4f-9821-9dff154d3154.pdf?X-Amz-Security-Token=IQoJb3JpZ2luX2VjEOH%2F%2F%2F%2F%2F%2F%2F%2F%2F%2FwEaCmFwLXNvdXRoLTEiRzBFAiAtZgVlemk1AHQryNnG3IMaAQUIlQaBV1AFTU2jWDyoEAIhAM36EduLVfUzxkqlABo5m3H3zbmfAYYLncp74Lg2wE9nKpUDCIr%2F%2F%2F%2F%2F%2F%2F%2F%2F%2FwEQABoMMDcyNzU1MzM1OTc4IgwHmtwaDnulLeLMy78q6QLz1ZGqr4zLcN4NGgPRswrnNug8srRtGGluWrJpoLO3MDV9Xzzk7z5bScCgzZHEaZxvCIMy6rH0sYEE8oDudPF2N7i0m7psTRAPYGDAz5i0mJi8N42JXrQSv4Aw%2BmbFs3%2FFVKoQzLOGErFv6%2BUDE8JA02fl7UQVyvDVJGLHGoed5wiQ2rrFp3qYoJdTvGSw4n2ymramBkE1NfrxH5P2DefvF9MpxpA6nHRsfKpzMjqfKh9O%2BCY2E07fPP8hn%2BkrWVuBFZWUdwT%2BLLcHGW5HsMPNZmqiRwSsDNhkGXtozt8HtydFcRWG%2B7ztijYItAxSrZrusv%2BmI1Oaverp1aXRViwsnBw1Qaeq2EilS6jkn0MX5d4nlYMcJ%2F0Ta3ros4fecY7Kyr7XYu3TnY%2FhnTxEBgU1SLW1MOJFh4Zzw6WQCtmTOw7a1X7wSLjjOIn7CLiYzkLsRGnTTdUVvN6csKqecN8mP9YFxrTeeiA3MMGPyKYGOp0By2viFjHJfVOWMO4r%2BV83y3ExgYl4FpHNkr1gwkYb77EWfxvtZdAp8WT0nFvTIP8asqtKiJSA5MLMk2l%2F59CI1bLg4y6Yudf6roDqDHtlMaKUEiP%2BUj4SZ6lDNcuUwFDX6e8fETm81BjpaJbbJMjkV6ELZz53IOIH9gEDxJCXDlhYyBxKzonD6Pzq4IgDYewsYAj0FVRcQsswSaifew%3D%3D&X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Date=20230808T091558Z&X-Amz-SignedHeaders=host&X-Amz-Expires=604795&X-Amz-Credential=ASIARB4EOKMVNYO3L7UO%2F20230808%2Fap-south-1%2Fs3%2Faws4_request&X-Amz-Signature=4504a7a7cefaf41037637f4c50a85976fc2ffbd4f391778af59edf62faf1f35d",
+                    "url": "https://s3.ap-south-1.amazonaws.com/in-co-sandbox-it-reports-tax-computation-dev/49f15670-1516-4e4f-9821-9dff154d3154.pdf?X-Amz-Security-Token=EXAMPLE_SECURITY_TOKEN&X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Date=20230808T091558Z&X-Amz-SignedHeaders=host&X-Amz-Expires=604795&X-Amz-Credential=EXAMPLEACCESSKEY%2F20230808%2Fap-south-1%2Fs3%2Faws4_request&X-Amz-Signature=EXAMPLE_SIGNATURE",
                     "status": "JOBDONE"
                   },
                   "timestamp": 1691486144000
@@ -10614,50 +9342,6 @@
         "responses": {
           "200": {
             "description": "200 OK",
-            "headers": {
-              "Date": {
-                "schema": {
-                  "type": "string"
-                },
-                "example": "Tue, 03 Jun 2025 18:32:45 GMT"
-              },
-              "Content-Length": {
-                "schema": {
-                  "type": "integer"
-                },
-                "example": "1190"
-              },
-              "Connection": {
-                "schema": {
-                  "type": "string"
-                },
-                "example": "keep-alive"
-              },
-              "x-amzn-RequestId": {
-                "schema": {
-                  "type": "string"
-                },
-                "example": "fa1cf8ee-c667-4a81-b132-d02bace2dba2"
-              },
-              "Content-Encoding": {
-                "schema": {
-                  "type": "string"
-                },
-                "example": "gzip"
-              },
-              "x-amz-apigw-id": {
-                "schema": {
-                  "type": "string"
-                },
-                "example": "LmboDEkLhcwEbPw="
-              },
-              "X-Amzn-Trace-Id": {
-                "schema": {
-                  "type": "string"
-                },
-                "example": "Root=1-683f3fcc-045128bd2e098808044635ff;Parent=659a16614587e70e;Sampled=0;Lineage=2:af3da987:0"
-              }
-            },
             "content": {
               "application/json": {
                 "schema": {
@@ -21389,4 +20073,4 @@
       }
     }
   }
-  }
+}

@@ -1,20 +1,20 @@
 {
-    "openapi": "3.1.0",
-    "info": {
-        "title": "Sandbox API [Prod]",
-        "version": "1.0"
-    },
-    "servers": [
-        {
-            "url": "https://api.sandbox.co.in"
-        }
-    ],
-    "components": {
-        "securitySchemes": {}
-    },
-    "security": [
-        {}
-    ],
+  "openapi": "3.1.0",
+  "info": {
+    "title": "Sandbox API [Prod]",
+    "version": "1.0"
+  },
+  "servers": [
+    {
+      "url": "https://api.sandbox.co.in"
+    }
+  ],
+  "components": {
+    "securitySchemes": {}
+  },
+  "security": [
+    {}
+  ],
   "paths": {
     "/it/calculator/tax-pnl/real-estate": {
       "post": {
@@ -4118,50 +4118,6 @@
         "responses": {
           "200": {
             "description": "Success",
-            "headers": {
-              "Date": {
-                "schema": {
-                  "type": "string"
-                },
-                "example": "Thu, 27 Nov 2025 10:11:30 GMT"
-              },
-              "Content-Length": {
-                "schema": {
-                  "type": "integer"
-                },
-                "example": "557"
-              },
-              "Connection": {
-                "schema": {
-                  "type": "string"
-                },
-                "example": "keep-alive"
-              },
-              "x-amzn-RequestId": {
-                "schema": {
-                  "type": "string"
-                },
-                "example": "cae21a50-9940-48d9-9c20-800df31e0e81"
-              },
-              "content-encoding": {
-                "schema": {
-                  "type": "string"
-                },
-                "example": "gzip"
-              },
-              "x-amz-apigw-id": {
-                "schema": {
-                  "type": "string"
-                },
-                "example": "UsqHZFXgBcwFe-g="
-              },
-              "X-Amzn-Trace-Id": {
-                "schema": {
-                  "type": "string"
-                },
-                "example": "Root=1-692823c8-2e3a3788240d89d819c25ae8;Parent=3db07b29b1dd4a8a;Sampled=0;Lineage=3:eaf00e97:0"
-              }
-            },
             "content": {
               "application/json": {
                 "schema": {
@@ -4213,7 +4169,7 @@
                     "updated_at": 1764238289996,
                     "@entity": "in.co.sandbox.it.calculator.tax_pnl.securities.job",
                     "security_type": "domestic",
-                    "url": "https://in-co-sbox-it-calc-tax-pnl-sec-dev.s3.ap-south-1.amazonaws.com/domestic/cae21a50-9940-48d9-9c20-800df31e0e81/workbook.input?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Credential=AKIARB4EOKMVLGPKU5NY%2F20251127%2Fap-south-1%2Fs3%2Faws4_request&X-Amz-Date=20251127T101130Z&X-Amz-Expires=86400&X-Amz-Signature=6e70c52007ba557aafe3a96ed6d557dd046633d6984fb42e5c3db5911a58dd3d&X-Amz-SignedHeaders=host&x-amz-checksum-crc32=AAAAAA%3D%3D&x-amz-sdk-checksum-algorithm=CRC32&x-id=PutObject",
+                    "url": "https://in-co-sbox-it-calc-tax-pnl-sec-dev.s3.ap-south-1.amazonaws.com/domestic/cae21a50-9940-48d9-9c20-800df31e0e81/workbook.input?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Credential=EXAMPLEACCESSKEY%2F20251127%2Fap-south-1%2Fs3%2Faws4_request&X-Amz-Date=20251127T101130Z&X-Amz-Expires=86400&X-Amz-Signature=EXAMPLE_SIGNATURE&X-Amz-SignedHeaders=host&x-amz-checksum-crc32=AAAAAA%3D%3D&x-amz-sdk-checksum-algorithm=CRC32&x-id=PutObject",
                     "status": "created",
                     "job_id": "cae21a50-9940-48d9-9c20-800df31e0e81"
                   },
@@ -4224,50 +4180,6 @@
           },
           "422": {
             "description": "Invalid Request",
-            "headers": {
-              "Date": {
-                "schema": {
-                  "type": "string"
-                },
-                "example": "Thu, 27 Nov 2025 10:12:16 GMT"
-              },
-              "Content-Length": {
-                "schema": {
-                  "type": "integer"
-                },
-                "example": "140"
-              },
-              "Connection": {
-                "schema": {
-                  "type": "string"
-                },
-                "example": "keep-alive"
-              },
-              "x-amzn-RequestId": {
-                "schema": {
-                  "type": "string"
-                },
-                "example": "cdd0702e-1575-4d1e-99f6-29ffe4074277"
-              },
-              "content-encoding": {
-                "schema": {
-                  "type": "string"
-                },
-                "example": "gzip"
-              },
-              "x-amz-apigw-id": {
-                "schema": {
-                  "type": "string"
-                },
-                "example": "UsqQIEVdBcwFqpw="
-              },
-              "X-Amzn-Trace-Id": {
-                "schema": {
-                  "type": "string"
-                },
-                "example": "Root=1-69282400-314d6d90475fc1e57ea8051a;Parent=4b4ec7693dee7137;Sampled=0;Lineage=2:cd4d0f89:0"
-              }
-            },
             "content": {
               "application/json": {
                 "schema": {
@@ -4356,50 +4268,6 @@
         "responses": {
           "200": {
             "description": "Success",
-            "headers": {
-              "Date": {
-                "schema": {
-                  "type": "string"
-                },
-                "example": "Thu, 27 Nov 2025 10:12:52 GMT"
-              },
-              "Content-Length": {
-                "schema": {
-                  "type": "integer"
-                },
-                "example": "246"
-              },
-              "Connection": {
-                "schema": {
-                  "type": "string"
-                },
-                "example": "keep-alive"
-              },
-              "x-amzn-RequestId": {
-                "schema": {
-                  "type": "string"
-                },
-                "example": "df484e5b-20fc-42b2-8b52-6bd9dc3909f2"
-              },
-              "content-encoding": {
-                "schema": {
-                  "type": "string"
-                },
-                "example": "gzip"
-              },
-              "x-amz-apigw-id": {
-                "schema": {
-                  "type": "string"
-                },
-                "example": "UsqVyFZShcwFdLw="
-              },
-              "X-Amzn-Trace-Id": {
-                "schema": {
-                  "type": "string"
-                },
-                "example": "Root=1-69282424-6b59df4c0f97f33872381b36;Parent=456e6dec2df85bb1;Sampled=0;Lineage=2:cd4d0f89:0"
-              }
-            },
             "content": {
               "application/json": {
                 "schema": {
@@ -4457,43 +4325,6 @@
           },
           "500": {
             "description": "Failed to get job",
-            "headers": {
-              "Date": {
-                "deprecated": false,
-                "schema": {},
-                "example": "Fri, 28 Nov 2025 09:26:19 GMT"
-              },
-              "Content-Length": {
-                "deprecated": false,
-                "schema": {},
-                "example": "139"
-              },
-              "Connection": {
-                "deprecated": false,
-                "schema": {},
-                "example": "keep-alive"
-              },
-              "x-amzn-RequestId": {
-                "deprecated": false,
-                "schema": {},
-                "example": "f1265664-d64c-4ec6-ba6e-529cb766b884"
-              },
-              "content-encoding": {
-                "deprecated": false,
-                "schema": {},
-                "example": "gzip"
-              },
-              "x-amz-apigw-id": {
-                "deprecated": false,
-                "schema": {},
-                "example": "Uv2bzGMsBcwFkjA="
-              },
-              "X-Amzn-Trace-Id": {
-                "deprecated": false,
-                "schema": {},
-                "example": "Root=1-69296ab1-1dc50c1c4a8aaee47177cada;Parent=51b780a387d6c2ae;Sampled=0;Lineage=3:eaf00e97:0"
-              }
-            },
             "content": {
               "application/json": {
                 "schema": {
@@ -4611,68 +4442,6 @@
         "responses": {
           "200": {
             "description": "Test 1 - STCG | 3bb242a8-c46e-4eef-a75f-99bbd41fe60c",
-            "headers": {
-              "Date": {
-                "schema": {
-                  "type": "string"
-                },
-                "example": "Fri, 07 Mar 2025 09:54:02 GMT"
-              },
-              "Content-Length": {
-                "schema": {
-                  "type": "integer"
-                },
-                "example": "37484"
-              },
-              "Connection": {
-                "schema": {
-                  "type": "string"
-                },
-                "example": "keep-alive"
-              },
-              "x-amzn-RequestId": {
-                "schema": {
-                  "type": "string"
-                },
-                "example": "2d390222-1a4a-430d-b83e-445b4162644d"
-              },
-              "x-amzn-Remapped-x-amzn-RequestId": {
-                "schema": {
-                  "type": "string"
-                },
-                "example": "5c925628-08f3-418e-8f57-c4ec9c86316b"
-              },
-              "x-amzn-Remapped-Content-Length": {
-                "schema": {
-                  "type": "integer"
-                },
-                "example": "37484"
-              },
-              "x-amzn-Remapped-Connection": {
-                "schema": {
-                  "type": "string"
-                },
-                "example": "keep-alive"
-              },
-              "x-amz-apigw-id": {
-                "schema": {
-                  "type": "string"
-                },
-                "example": "HDNJIHfRBcwFYHA="
-              },
-              "X-Amzn-Trace-Id": {
-                "schema": {
-                  "type": "string"
-                },
-                "example": "Root=1-67cac23a-1c1812af631314692ba3a2db;Parent=1f098c518aa310f1;Sampled=0;Lineage=1:39961013:0"
-              },
-              "x-amzn-Remapped-Date": {
-                "schema": {
-                  "type": "string"
-                },
-                "example": "Fri, 07 Mar 2025 09:54:02 GMT"
-              }
-            },
             "content": {
               "application/json": {
                 "schema": {
@@ -10919,50 +10688,6 @@
         "responses": {
           "200": {
             "description": "Success",
-            "headers": {
-              "Date": {
-                "schema": {
-                  "type": "string"
-                },
-                "example": "Thu, 27 Nov 2025 10:13:33 GMT"
-              },
-              "Content-Length": {
-                "schema": {
-                  "type": "integer"
-                },
-                "example": "555"
-              },
-              "Connection": {
-                "schema": {
-                  "type": "string"
-                },
-                "example": "keep-alive"
-              },
-              "x-amzn-RequestId": {
-                "schema": {
-                  "type": "string"
-                },
-                "example": "d56aded2-8632-44ca-9283-240a2b6ba3e2"
-              },
-              "content-encoding": {
-                "schema": {
-                  "type": "string"
-                },
-                "example": "gzip"
-              },
-              "x-amz-apigw-id": {
-                "schema": {
-                  "type": "string"
-                },
-                "example": "UsqcLHHKhcwFjCQ="
-              },
-              "X-Amzn-Trace-Id": {
-                "schema": {
-                  "type": "string"
-                },
-                "example": "Root=1-6928244d-1dc129d97cde7e715b74daec;Parent=42d9d5902ebf7ec0;Sampled=0;Lineage=2:cd4d0f89:0"
-              }
-            },
             "content": {
               "application/json": {
                 "schema": {
@@ -11014,7 +10739,7 @@
                     "updated_at": 1764238413653,
                     "@entity": "in.co.sandbox.it.calculator.tax_pnl.securities.job",
                     "security_type": "foreign",
-                    "url": "https://in-co-sbox-it-calc-tax-pnl-sec-dev.s3.ap-south-1.amazonaws.com/foreign/d56aded2-8632-44ca-9283-240a2b6ba3e2/workbook.input?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Credential=AKIARB4EOKMVLGPKU5NY%2F20251127%2Fap-south-1%2Fs3%2Faws4_request&X-Amz-Date=20251127T101333Z&X-Amz-Expires=86400&X-Amz-Signature=ecb18fb0688202818b93bbb6925baaa7cd40dd3bc41a7f6ce4e5a7fb5d53e62f&X-Amz-SignedHeaders=host&x-amz-checksum-crc32=AAAAAA%3D%3D&x-amz-sdk-checksum-algorithm=CRC32&x-id=PutObject",
+                    "url": "https://in-co-sbox-it-calc-tax-pnl-sec-dev.s3.ap-south-1.amazonaws.com/foreign/d56aded2-8632-44ca-9283-240a2b6ba3e2/workbook.input?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Credential=EXAMPLEACCESSKEY%2F20251127%2Fap-south-1%2Fs3%2Faws4_request&X-Amz-Date=20251127T101333Z&X-Amz-Expires=86400&X-Amz-Signature=EXAMPLE_SIGNATURE&X-Amz-SignedHeaders=host&x-amz-checksum-crc32=AAAAAA%3D%3D&x-amz-sdk-checksum-algorithm=CRC32&x-id=PutObject",
                     "status": "created",
                     "job_id": "d56aded2-8632-44ca-9283-240a2b6ba3e2"
                   },
@@ -11025,50 +10750,6 @@
           },
           "422": {
             "description": "Invalid Request",
-            "headers": {
-              "Date": {
-                "schema": {
-                  "type": "string"
-                },
-                "example": "Thu, 27 Nov 2025 10:13:54 GMT"
-              },
-              "Content-Length": {
-                "schema": {
-                  "type": "integer"
-                },
-                "example": "139"
-              },
-              "Connection": {
-                "schema": {
-                  "type": "string"
-                },
-                "example": "keep-alive"
-              },
-              "x-amzn-RequestId": {
-                "schema": {
-                  "type": "string"
-                },
-                "example": "9079efe0-8ff4-4912-acc1-ad6c069015bd"
-              },
-              "content-encoding": {
-                "schema": {
-                  "type": "string"
-                },
-                "example": "gzip"
-              },
-              "x-amz-apigw-id": {
-                "schema": {
-                  "type": "string"
-                },
-                "example": "UsqffHzNBcwFRsQ="
-              },
-              "X-Amzn-Trace-Id": {
-                "schema": {
-                  "type": "string"
-                },
-                "example": "Root=1-69282462-52a6d24423b944cf55a39c74;Parent=156af09554acdb73;Sampled=0;Lineage=2:cd4d0f89:0"
-              }
-            },
             "content": {
               "application/json": {
                 "schema": {
@@ -11420,50 +11101,6 @@
         "responses": {
           "200": {
             "description": "Success",
-            "headers": {
-              "Date": {
-                "schema": {
-                  "type": "string"
-                },
-                "example": "Thu, 27 Nov 2025 10:15:16 GMT"
-              },
-              "Content-Length": {
-                "schema": {
-                  "type": "integer"
-                },
-                "example": "244"
-              },
-              "Connection": {
-                "schema": {
-                  "type": "string"
-                },
-                "example": "keep-alive"
-              },
-              "x-amzn-RequestId": {
-                "schema": {
-                  "type": "string"
-                },
-                "example": "3d334c06-eaa1-4fbc-92be-8cfc378fde7f"
-              },
-              "content-encoding": {
-                "schema": {
-                  "type": "string"
-                },
-                "example": "gzip"
-              },
-              "x-amz-apigw-id": {
-                "schema": {
-                  "type": "string"
-                },
-                "example": "UsqsQGGyBcwFdIA="
-              },
-              "X-Amzn-Trace-Id": {
-                "schema": {
-                  "type": "string"
-                },
-                "example": "Root=1-692824b4-2c0de6a7293da1e87024ab15;Parent=28e311898efa1ad0;Sampled=0;Lineage=2:cd4d0f89:0"
-              }
-            },
             "content": {
               "application/json": {
                 "schema": {
@@ -11521,43 +11158,6 @@
           },
           "500": {
             "description": "Failed to get job",
-            "headers": {
-              "Date": {
-                "deprecated": false,
-                "schema": {},
-                "example": "Fri, 28 Nov 2025 09:30:45 GMT"
-              },
-              "Content-Length": {
-                "deprecated": false,
-                "schema": {},
-                "example": "140"
-              },
-              "Connection": {
-                "deprecated": false,
-                "schema": {},
-                "example": "keep-alive"
-              },
-              "x-amzn-RequestId": {
-                "deprecated": false,
-                "schema": {},
-                "example": "70a13e97-99bc-4dec-8e30-e7b720fdd0b6"
-              },
-              "content-encoding": {
-                "deprecated": false,
-                "schema": {},
-                "example": "gzip"
-              },
-              "x-amz-apigw-id": {
-                "deprecated": false,
-                "schema": {},
-                "example": "Uv3GtEy8hcwFoJw="
-              },
-              "X-Amzn-Trace-Id": {
-                "deprecated": false,
-                "schema": {},
-                "example": "Root=1-69296bc4-598c520b17cc2a7d458eefd9;Parent=6a94db2d6a226d3c;Sampled=0;Lineage=2:cd4d0f89:0"
-              }
-            },
             "content": {
               "application/json": {
                 "schema": {
@@ -11667,44 +11267,6 @@
         "responses": {
           "200": {
             "description": "Success",
-            "headers": {
-              "Date": {
-                "schema": {
-                  "type": "string"
-                },
-                "example": "Tue, 19 Sep 2023 10:00:48 GMT"
-              },
-              "Content-Length": {
-                "schema": {
-                  "type": "integer"
-                },
-                "example": "1646"
-              },
-              "Connection": {
-                "schema": {
-                  "type": "string"
-                },
-                "example": "keep-alive"
-              },
-              "x-amzn-RequestId": {
-                "schema": {
-                  "type": "string"
-                },
-                "example": "df7e958a-3837-400d-a169-4337351915da"
-              },
-              "x-amz-apigw-id": {
-                "schema": {
-                  "type": "string"
-                },
-                "example": "Lf6krF1ahcwFuxQ="
-              },
-              "X-Amzn-Trace-Id": {
-                "schema": {
-                  "type": "string"
-                },
-                "example": "Root=1-65097150-2aeb89c066c1e80549d08a6c;Sampled=0;lineage=a374957f:0"
-              }
-            },
             "content": {
               "application/json": {
                 "schema": {
@@ -11739,7 +11301,7 @@
                   "code": 200,
                   "data": {
                     "job_id": "df7e958a-3837-400d-a169-4337351915da",
-                    "url": "https://s3.ap-south-1.amazonaws.com/in-co-sandbox-it-calculator-securities-tax-pnl-dev/df7e958a-3837-400d-a169-4337351915da.input?X-Amz-Security-Token=IQoJb3JpZ2luX2VjENL%2F%2F%2F%2F%2F%2F%2F%2F%2F%2FwEaCmFwLXNvdXRoLTEiSDBGAiEA67xcZ9GjxnNvDiQpDLAJw65OA%2BiILzUrLmFDflTzrBUCIQCVtWi6wHQ4d%2FbI%2F6uM8j7qzm7wwHlTkfnv14qsXkxAYiq7Awi7%2F%2F%2F%2F%2F%2F%2F%2F%2F%2F8BEAAaDDA3Mjc1NTMzNTk3OCIMv3n31iRmmOC7Y%2F4xKo8DXPmo%2FrkTuuj4Y2NFDjVFdgkSDZr%2FXc68K3vTyqPYpLVXNL2X1FXY4HNN0pbNMSbE4GoHs308VnSJV6lKUZEHcKcUixkqbyFV0bPKruzHnsnAj0Do7Ma4YO%2BaXuYaRjatnPRYmtq9TAh%2BMWOFonDgHnoLukU%2BU6vkDvP9HWYB2GwmWd2mk4PSXLK%2FdJBsggjd8h6rhWHneqaQ9HAJWphuCnTgDE2ClSWexKgNmnguOS2eysaceUutja8lqJQbPbeIaWRtOrwDhzFZ2vfA0w%2FOqb7DbXT4R%2Bh6Nkc1XdPQuURA3KGsQuUSHgrxKxizjYAenj3j6Uih5coS56d%2B4cRv4jAPxhzavUbguSDjBnpdZfjJKkg4xo1Vvvv3Ulvdk%2FpqVCGfYtmn0541iqtnTvf6Ggx9jljRE9vX%2Fxw0QSetCHsPczPMG6TIHFImxoGGOhARwK3l1we2oHP8VP3OqiaMEU%2ByAMfj5sjEOlMmvJMMcu9v91vyeGGRt9bJzOUSSKkrmUjDcQH%2BwESU%2FCpDHgxUMMfipagGOp0BiQlpq0GAPlxXSvtNUMF%2FPoH8s7IxtpXsatDLZeCaIaFcT1gL%2BTIyBfSzl76u3ls%2Bf28CXatl9Ekgp3W76%2FCu3IX%2FtqDFwCDjS7hjXgldm1tIxLMBB%2BclTZIOQku2w%2FGpO1Zt2LKswT5PM%2BzVOWs1FUgKJfOMFK%2BjKsi8jUUO8z%2FZguBZURzvIwVlJqxz5N2Bd5dr9cfx62PmcIAlJw%3D%3D&X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Date=20230919T100048Z&X-Amz-SignedHeaders=host&X-Amz-Expires=86399&X-Amz-Credential=ASIARB4EOKMVEAXRE2AL%2F20230919%2Fap-south-1%2Fs3%2Faws4_request&X-Amz-Signature=b327f891339b04f3ca8fbb1a33d05d19245188ce8ff30801e543dde74ce8f896"
+                    "url": "https://s3.ap-south-1.amazonaws.com/in-co-sandbox-it-calculator-securities-tax-pnl-dev/df7e958a-3837-400d-a169-4337351915da.input?X-Amz-Security-Token=EXAMPLE_SECURITY_TOKEN&X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Date=20230919T100048Z&X-Amz-SignedHeaders=host&X-Amz-Expires=86399&X-Amz-Credential=EXAMPLEACCESSKEY%2F20230919%2Fap-south-1%2Fs3%2Faws4_request&X-Amz-Signature=EXAMPLE_SIGNATURE"
                   },
                   "timestamp": "1695117648000"
                 }
@@ -12596,68 +12158,6 @@
         "responses": {
           "200": {
             "description": "tw_s_to_tw_tax_pnl - 1",
-            "headers": {
-              "Date": {
-                "schema": {
-                  "type": "string"
-                },
-                "example": "Fri, 14 Jun 2024 06:28:19 GMT"
-              },
-              "Content-Length": {
-                "schema": {
-                  "type": "integer"
-                },
-                "example": "4782"
-              },
-              "Connection": {
-                "schema": {
-                  "type": "string"
-                },
-                "example": "keep-alive"
-              },
-              "x-amzn-RequestId": {
-                "schema": {
-                  "type": "string"
-                },
-                "example": "05d53df5-308d-46cc-a80b-00515445a113"
-              },
-              "x-amzn-Remapped-x-amzn-RequestId": {
-                "schema": {
-                  "type": "string"
-                },
-                "example": "1983e212-1d3e-43f7-a806-7514ef8d97a9"
-              },
-              "x-amzn-Remapped-Content-Length": {
-                "schema": {
-                  "type": "integer"
-                },
-                "example": "4782"
-              },
-              "x-amzn-Remapped-Connection": {
-                "schema": {
-                  "type": "string"
-                },
-                "example": "keep-alive"
-              },
-              "x-amz-apigw-id": {
-                "schema": {
-                  "type": "string"
-                },
-                "example": "ZWBogGfYBcwFtfA="
-              },
-              "X-Amzn-Trace-Id": {
-                "schema": {
-                  "type": "string"
-                },
-                "example": "Root=1-666be302-18951e067749dfcb0bbe3ecd;Parent=7f3e156acf2fb684;Sampled=0;lineage=95822e3e:0"
-              },
-              "x-amzn-Remapped-Date": {
-                "schema": {
-                  "type": "string"
-                },
-                "example": "Fri, 14 Jun 2024 06:28:19 GMT"
-              }
-            },
             "content": {
               "application/json": {
                 "schema": {
@@ -80230,44 +79730,6 @@
         "responses": {
           "200": {
             "description": "Success",
-            "headers": {
-              "Date": {
-                "schema": {
-                  "type": "string"
-                },
-                "example": "Tue, 19 Sep 2023 10:05:24 GMT"
-              },
-              "Content-Length": {
-                "schema": {
-                  "type": "integer"
-                },
-                "example": "124"
-              },
-              "Connection": {
-                "schema": {
-                  "type": "string"
-                },
-                "example": "keep-alive"
-              },
-              "x-amzn-RequestId": {
-                "schema": {
-                  "type": "string"
-                },
-                "example": "f3dcdd8e-6226-4198-b0c2-a4d98b3477a7"
-              },
-              "x-amz-apigw-id": {
-                "schema": {
-                  "type": "string"
-                },
-                "example": "Lf7PsEmGBcwFZzA="
-              },
-              "X-Amzn-Trace-Id": {
-                "schema": {
-                  "type": "string"
-                },
-                "example": "Root=1-65097264-031201533731cfc03d70d2de;Sampled=0;lineage=a374957f:0"
-              }
-            },
             "content": {
               "application/json": {
                 "schema": {
@@ -80469,86 +79931,6 @@
         "responses": {
           "200": {
             "description": "200 OK",
-            "headers": {
-              "Date": {
-                "schema": {
-                  "type": "string"
-                },
-                "example": "Tue, 21 Jan 2025 07:41:17 GMT"
-              },
-              "Content-Length": {
-                "schema": {
-                  "type": "integer"
-                },
-                "example": "1831"
-              },
-              "Connection": {
-                "schema": {
-                  "type": "string"
-                },
-                "example": "keep-alive"
-              },
-              "x-amzn-RequestId": {
-                "schema": {
-                  "type": "string"
-                },
-                "example": "b79c6b43-e322-41d0-b8d1-72fd6e2a7f32"
-              },
-              "x-amzn-Remapped-x-amzn-RequestId": {
-                "schema": {
-                  "type": "string"
-                },
-                "example": "0d931fe5-5a9f-4e6d-bde7-c28d95e00706"
-              },
-              "access-control-allow-origin": {
-                "schema": {
-                  "type": "string"
-                },
-                "example": "*"
-              },
-              "access-control-allow-headers": {
-                "schema": {
-                  "type": "string"
-                },
-                "example": "Content-Type,X-Amz-Date,Authorization,X-Api-Key,X-Api-Version,X-Amz-Security-Token"
-              },
-              "x-amzn-Remapped-Content-Length": {
-                "schema": {
-                  "type": "integer"
-                },
-                "example": "1831"
-              },
-              "x-amzn-Remapped-Connection": {
-                "schema": {
-                  "type": "string"
-                },
-                "example": "keep-alive"
-              },
-              "x-amz-apigw-id": {
-                "schema": {
-                  "type": "string"
-                },
-                "example": "EulgmFdwBcwFgeQ="
-              },
-              "X-Requested-With": {
-                "schema": {
-                  "type": "string"
-                },
-                "example": "*"
-              },
-              "X-Amzn-Trace-Id": {
-                "schema": {
-                  "type": "string"
-                },
-                "example": "Root=1-678f4f9d-2476d8837e6ab88b5d54f7fd;Parent=43a3d17df4853e82;Sampled=0;Lineage=1:af630e69:0"
-              },
-              "x-amzn-Remapped-Date": {
-                "schema": {
-                  "type": "string"
-                },
-                "example": "Tue, 21 Jan 2025 07:41:17 GMT"
-              }
-            },
             "content": {
               "application/json": {
                 "schema": {
@@ -80594,7 +79976,7 @@
                   "data": {
                     "@entity": "in.co.sandbox.it.calculator.pnl.securities.job",
                     "job_id": "0d931fe5-5a9f-4e6d-bde7-c28d95e00706",
-                    "url": "https://in-co-sandbox-it-calculator-pnl-securities-dev.s3.ap-south-1.amazonaws.com/domestic/0d931fe5-5a9f-4e6d-bde7-c28d95e00706/workbook.input?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Credential=ASIARB4EOKMVFH7274FA%2F20250121%2Fap-south-1%2Fs3%2Faws4_request&X-Amz-Date=20250121T074117Z&X-Amz-Expires=86400&X-Amz-Security-Token=IQoJb3JpZ2luX2VjEL%2F%2F%2F%2F%2F%2F%2F%2F%2F%2F%2FwEaCmFwLXNvdXRoLTEiRzBFAiBo4d6JJUm9E1HtYb4hX3h2vzPCCP9yuYnDkDh0Fab6lAIhAJ782GssR5yycAc6hhQS7vx1QWTrF6KSRttFVvp6uyE5KrsDCLn%2F%2F%2F%2F%2F%2F%2F%2F%2F%2FwEQABoMMDcyNzU1MzM1OTc4IgyVC5e1MNp9kpK1QdYqjwMKV4QWxEac3TF2zvsq3GAjnji8B4fuMNdmMSRTZi3BtWUPnylGKPb7l%2FK%2BD0t0RxMPaBpspPsXSGZK%2FiZ3cGXmvDbCE808bCUwsz2N33ebir7dh%2FmSjvntRotmZqrJW4KFirU1vWBEDbeleDQAlV3GNvT5JUp%2FjId4p%2FqAqMRAUWKfwRq7Ud6%2BFztZbeteOzl4GIgsRP%2Bm7NS8y06YcVE2ZcKuA2WprBbR1mKsreqKzvxw5PTZQztHGzJO5IBFM7rSPSfn6TowRgkf2Q9pTbsh2rG7BJZklcbe%2BiYG9gXOfbeFX66m1R7OKWS7XgVi%2BtzRG5YMxaBrgzfCcYbJZswECXnpdSm7ne1sM%2FPJnAtgLaStc%2F1VOQCf7oq0tmnamRgo8uou1VwrhD9oDcLXMbvujOg2QcKJgDw2Tag%2FCYIq57KugDZUgWmeOmzp61CumxeYjpfDCV6zK6%2F5DIGJrUTjJV%2BsotVROVXMv679h1QOULzRVYKiNMqgrTNB%2FbaWiQS0qwGI7RrmtPJIXDWKELIwg5q9vAY6ngGG0lHpUoSm2g9f9663xtOYvjFmVCNr%2FgReV%2BNurV%2BGZTXTW6N6TpzwKz%2FRUJEJHhU27mawtDCfZ6VU5XvGR1vo6uTqHNnWO2QPNcV7IRZqObtdqLb%2BUcwSGpyLBWECTFNiaxzdZskxOvgT%2FmgiINKszi%2FquANPf%2BdB1vIGXfkkgomiZu54mcw0QVcVogyXyAZQxy677eaTDTWVPTDCAg%3D%3D&X-Amz-Signature=ea0297aa89e8f5d9e04ee4aa0a5d5860b9bb8b207573b213c0f12e904c4f4675&X-Amz-SignedHeaders=host&x-id=PutObject",
+                    "url": "https://in-co-sandbox-it-calculator-pnl-securities-dev.s3.ap-south-1.amazonaws.com/domestic/0d931fe5-5a9f-4e6d-bde7-c28d95e00706/workbook.input?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Credential=EXAMPLEACCESSKEY%2F20250121%2Fap-south-1%2Fs3%2Faws4_request&X-Amz-Date=20250121T074117Z&X-Amz-Expires=86400&X-Amz-Security-Token=EXAMPLE_SECURITY_TOKEN&X-Amz-Signature=EXAMPLE_SIGNATURE&X-Amz-SignedHeaders=host&x-id=PutObject",
                     "type": "pnl",
                     "created_at": 1737445277235,
                     "updated_at": 1737445277235
@@ -86901,86 +86283,6 @@
         "responses": {
           "200": {
             "description": "200 OK",
-            "headers": {
-              "Date": {
-                "schema": {
-                  "type": "string"
-                },
-                "example": "Tue, 21 Jan 2025 07:42:23 GMT"
-              },
-              "Content-Length": {
-                "schema": {
-                  "type": "integer"
-                },
-                "example": "296"
-              },
-              "Connection": {
-                "schema": {
-                  "type": "string"
-                },
-                "example": "keep-alive"
-              },
-              "x-amzn-RequestId": {
-                "schema": {
-                  "type": "string"
-                },
-                "example": "4764bd35-39c7-4e33-a7bf-5e7bbf6aaee4"
-              },
-              "x-amzn-Remapped-x-amzn-RequestId": {
-                "schema": {
-                  "type": "string"
-                },
-                "example": "2e7005a0-6c9c-4bbb-8d17-6fb853c6d871"
-              },
-              "access-control-allow-origin": {
-                "schema": {
-                  "type": "string"
-                },
-                "example": "*"
-              },
-              "access-control-allow-headers": {
-                "schema": {
-                  "type": "string"
-                },
-                "example": "Content-Type,X-Amz-Date,Authorization,X-Api-Key,X-Api-Version,X-Amz-Security-Token"
-              },
-              "x-amzn-Remapped-Content-Length": {
-                "schema": {
-                  "type": "integer"
-                },
-                "example": "296"
-              },
-              "x-amzn-Remapped-Connection": {
-                "schema": {
-                  "type": "string"
-                },
-                "example": "keep-alive"
-              },
-              "x-amz-apigw-id": {
-                "schema": {
-                  "type": "string"
-                },
-                "example": "Eulq8FkohcwFndg="
-              },
-              "X-Requested-With": {
-                "schema": {
-                  "type": "string"
-                },
-                "example": "*"
-              },
-              "X-Amzn-Trace-Id": {
-                "schema": {
-                  "type": "string"
-                },
-                "example": "Root=1-678f4fdf-03332ca443ed61f05c16cad6;Parent=666037da8fb31dfb;Sampled=0;Lineage=1:af630e69:0"
-              },
-              "x-amzn-Remapped-Date": {
-                "schema": {
-                  "type": "string"
-                },
-                "example": "Tue, 21 Jan 2025 07:42:23 GMT"
-              }
-            },
             "content": {
               "application/json": {
                 "schema": {
@@ -87176,44 +86478,6 @@
         "responses": {
           "200": {
             "description": "Success",
-            "headers": {
-              "Date": {
-                "schema": {
-                  "type": "string"
-                },
-                "example": "Tue, 19 Sep 2023 10:00:48 GMT"
-              },
-              "Content-Length": {
-                "schema": {
-                  "type": "integer"
-                },
-                "example": "1646"
-              },
-              "Connection": {
-                "schema": {
-                  "type": "string"
-                },
-                "example": "keep-alive"
-              },
-              "x-amzn-RequestId": {
-                "schema": {
-                  "type": "string"
-                },
-                "example": "df7e958a-3837-400d-a169-4337351915da"
-              },
-              "x-amz-apigw-id": {
-                "schema": {
-                  "type": "string"
-                },
-                "example": "Lf6krF1ahcwFuxQ="
-              },
-              "X-Amzn-Trace-Id": {
-                "schema": {
-                  "type": "string"
-                },
-                "example": "Root=1-65097150-2aeb89c066c1e80549d08a6c;Sampled=0;lineage=a374957f:0"
-              }
-            },
             "content": {
               "application/json": {
                 "schema": {
@@ -87248,7 +86512,7 @@
                   "code": 200,
                   "data": {
                     "job_id": "df7e958a-3837-400d-a169-4337351915da",
-                    "url": "https://s3.ap-south-1.amazonaws.com/in-co-sandbox-it-calculator-securities-tax-pnl-dev/df7e958a-3837-400d-a169-4337351915da.input?X-Amz-Security-Token=IQoJb3JpZ2luX2VjENL%2F%2F%2F%2F%2F%2F%2F%2F%2F%2FwEaCmFwLXNvdXRoLTEiSDBGAiEA67xcZ9GjxnNvDiQpDLAJw65OA%2BiILzUrLmFDflTzrBUCIQCVtWi6wHQ4d%2FbI%2F6uM8j7qzm7wwHlTkfnv14qsXkxAYiq7Awi7%2F%2F%2F%2F%2F%2F%2F%2F%2F%2F8BEAAaDDA3Mjc1NTMzNTk3OCIMv3n31iRmmOC7Y%2F4xKo8DXPmo%2FrkTuuj4Y2NFDjVFdgkSDZr%2FXc68K3vTyqPYpLVXNL2X1FXY4HNN0pbNMSbE4GoHs308VnSJV6lKUZEHcKcUixkqbyFV0bPKruzHnsnAj0Do7Ma4YO%2BaXuYaRjatnPRYmtq9TAh%2BMWOFonDgHnoLukU%2BU6vkDvP9HWYB2GwmWd2mk4PSXLK%2FdJBsggjd8h6rhWHneqaQ9HAJWphuCnTgDE2ClSWexKgNmnguOS2eysaceUutja8lqJQbPbeIaWRtOrwDhzFZ2vfA0w%2FOqb7DbXT4R%2Bh6Nkc1XdPQuURA3KGsQuUSHgrxKxizjYAenj3j6Uih5coS56d%2B4cRv4jAPxhzavUbguSDjBnpdZfjJKkg4xo1Vvvv3Ulvdk%2FpqVCGfYtmn0541iqtnTvf6Ggx9jljRE9vX%2Fxw0QSetCHsPczPMG6TIHFImxoGGOhARwK3l1we2oHP8VP3OqiaMEU%2ByAMfj5sjEOlMmvJMMcu9v91vyeGGRt9bJzOUSSKkrmUjDcQH%2BwESU%2FCpDHgxUMMfipagGOp0BiQlpq0GAPlxXSvtNUMF%2FPoH8s7IxtpXsatDLZeCaIaFcT1gL%2BTIyBfSzl76u3ls%2Bf28CXatl9Ekgp3W76%2FCu3IX%2FtqDFwCDjS7hjXgldm1tIxLMBB%2BclTZIOQku2w%2FGpO1Zt2LKswT5PM%2BzVOWs1FUgKJfOMFK%2BjKsi8jUUO8z%2FZguBZURzvIwVlJqxz5N2Bd5dr9cfx62PmcIAlJw%3D%3D&X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Date=20230919T100048Z&X-Amz-SignedHeaders=host&X-Amz-Expires=86399&X-Amz-Credential=ASIARB4EOKMVEAXRE2AL%2F20230919%2Fap-south-1%2Fs3%2Faws4_request&X-Amz-Signature=b327f891339b04f3ca8fbb1a33d05d19245188ce8ff30801e543dde74ce8f896"
+                    "url": "https://s3.ap-south-1.amazonaws.com/in-co-sandbox-it-calculator-securities-tax-pnl-dev/df7e958a-3837-400d-a169-4337351915da.input?X-Amz-Security-Token=EXAMPLE_SECURITY_TOKEN&X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Date=20230919T100048Z&X-Amz-SignedHeaders=host&X-Amz-Expires=86399&X-Amz-Credential=EXAMPLEACCESSKEY%2F20230919%2Fap-south-1%2Fs3%2Faws4_request&X-Amz-Signature=EXAMPLE_SIGNATURE"
                   },
                   "timestamp": "1695117648000"
                 }
@@ -87361,44 +86625,6 @@
         "responses": {
           "200": {
             "description": "Success",
-            "headers": {
-              "Date": {
-                "schema": {
-                  "type": "string"
-                },
-                "example": "Tue, 19 Sep 2023 10:05:24 GMT"
-              },
-              "Content-Length": {
-                "schema": {
-                  "type": "integer"
-                },
-                "example": "124"
-              },
-              "Connection": {
-                "schema": {
-                  "type": "string"
-                },
-                "example": "keep-alive"
-              },
-              "x-amzn-RequestId": {
-                "schema": {
-                  "type": "string"
-                },
-                "example": "f3dcdd8e-6226-4198-b0c2-a4d98b3477a7"
-              },
-              "x-amz-apigw-id": {
-                "schema": {
-                  "type": "string"
-                },
-                "example": "Lf7PsEmGBcwFZzA="
-              },
-              "X-Amzn-Trace-Id": {
-                "schema": {
-                  "type": "string"
-                },
-                "example": "Root=1-65097264-031201533731cfc03d70d2de;Sampled=0;lineage=a374957f:0"
-              }
-            },
             "content": {
               "application/json": {
                 "schema": {
@@ -87575,68 +86801,6 @@
         "responses": {
           "200": {
             "description": "Success - Scripwise",
-            "headers": {
-              "Date": {
-                "schema": {
-                  "type": "string"
-                },
-                "example": "Wed, 06 Dec 2023 10:54:05 GMT"
-              },
-              "Content-Length": {
-                "schema": {
-                  "type": "integer"
-                },
-                "example": "36635"
-              },
-              "Connection": {
-                "schema": {
-                  "type": "string"
-                },
-                "example": "keep-alive"
-              },
-              "x-amzn-RequestId": {
-                "schema": {
-                  "type": "string"
-                },
-                "example": "8a5d9a3b-f2bd-450c-9f19-02d65e1b7b1b"
-              },
-              "x-amzn-Remapped-x-amzn-RequestId": {
-                "schema": {
-                  "type": "string"
-                },
-                "example": "f29d70ba-fa11-4fff-9b53-cdfe488d81a4"
-              },
-              "x-amzn-Remapped-Content-Length": {
-                "schema": {
-                  "type": "integer"
-                },
-                "example": "36635"
-              },
-              "x-amzn-Remapped-Connection": {
-                "schema": {
-                  "type": "string"
-                },
-                "example": "keep-alive"
-              },
-              "x-amz-apigw-id": {
-                "schema": {
-                  "type": "string"
-                },
-                "example": "PhHgIHkkBcwFmfA="
-              },
-              "X-Amzn-Trace-Id": {
-                "schema": {
-                  "type": "string"
-                },
-                "example": "Root=1-657052cd-565b66342fd75b7f59b6640d;Sampled=0;lineage=6e1201b7:0"
-              },
-              "x-amzn-Remapped-Date": {
-                "schema": {
-                  "type": "string"
-                },
-                "example": "Wed, 06 Dec 2023 10:54:05 GMT"
-              }
-            },
             "content": {
               "application/json": {
                 "schema": {
@@ -93411,68 +92575,6 @@
         "responses": {
           "200": {
             "description": "200 OK",
-            "headers": {
-              "Date": {
-                "schema": {
-                  "type": "string"
-                },
-                "example": "Thu, 20 Feb 2025 13:28:38 GMT"
-              },
-              "Content-Length": {
-                "schema": {
-                  "type": "integer"
-                },
-                "example": "2193"
-              },
-              "Connection": {
-                "schema": {
-                  "type": "string"
-                },
-                "example": "keep-alive"
-              },
-              "x-amzn-RequestId": {
-                "schema": {
-                  "type": "string"
-                },
-                "example": "9f62fb42-4cc1-4a6b-a620-8456172bd008"
-              },
-              "x-amzn-Remapped-x-amzn-RequestId": {
-                "schema": {
-                  "type": "string"
-                },
-                "example": "9e3f9759-5190-4a61-8f24-2ada23680936"
-              },
-              "x-amzn-Remapped-Content-Length": {
-                "schema": {
-                  "type": "integer"
-                },
-                "example": "2193"
-              },
-              "x-amzn-Remapped-Connection": {
-                "schema": {
-                  "type": "string"
-                },
-                "example": "keep-alive"
-              },
-              "x-amz-apigw-id": {
-                "schema": {
-                  "type": "string"
-                },
-                "example": "GSQg1HZyBcwFaeA="
-              },
-              "X-Amzn-Trace-Id": {
-                "schema": {
-                  "type": "string"
-                },
-                "example": "Root=1-67b72e04-76aeb63e3d867fb64b3952d2;Parent=738806d616f3da43;Sampled=0;Lineage=1:bad68b39:0"
-              },
-              "x-amzn-Remapped-Date": {
-                "schema": {
-                  "type": "string"
-                },
-                "example": "Thu, 20 Feb 2025 13:28:38 GMT"
-              }
-            },
             "content": {
               "application/json": {
                 "schema": {
@@ -93959,68 +93061,6 @@
         "responses": {
           "200": {
             "description": "200 OK",
-            "headers": {
-              "Date": {
-                "schema": {
-                  "type": "string"
-                },
-                "example": "Thu, 20 Feb 2025 12:56:12 GMT"
-              },
-              "Content-Length": {
-                "schema": {
-                  "type": "integer"
-                },
-                "example": "2117"
-              },
-              "Connection": {
-                "schema": {
-                  "type": "string"
-                },
-                "example": "keep-alive"
-              },
-              "x-amzn-RequestId": {
-                "schema": {
-                  "type": "string"
-                },
-                "example": "d297ed20-523e-4e70-b6b2-b14319a81ca6"
-              },
-              "x-amzn-Remapped-x-amzn-RequestId": {
-                "schema": {
-                  "type": "string"
-                },
-                "example": "9529f60d-ab22-4138-ac58-9b6bcdbd843c"
-              },
-              "x-amzn-Remapped-Content-Length": {
-                "schema": {
-                  "type": "integer"
-                },
-                "example": "2117"
-              },
-              "x-amzn-Remapped-Connection": {
-                "schema": {
-                  "type": "string"
-                },
-                "example": "keep-alive"
-              },
-              "x-amz-apigw-id": {
-                "schema": {
-                  "type": "string"
-                },
-                "example": "GSLw1GeVBcwFj0g="
-              },
-              "X-Amzn-Trace-Id": {
-                "schema": {
-                  "type": "string"
-                },
-                "example": "Root=1-67b7266b-4bd06c765db199d41c5c46aa;Parent=1c5b657dd8e2aaee;Sampled=0;Lineage=2:ba111f22:0"
-              },
-              "x-amzn-Remapped-Date": {
-                "schema": {
-                  "type": "string"
-                },
-                "example": "Thu, 20 Feb 2025 12:56:12 GMT"
-              }
-            },
             "content": {
               "application/json": {
                 "schema": {
@@ -94693,51 +93733,7 @@
         ],
         "responses": {
           "200": {
-            "description": "Test 2",
-            "headers": {
-              "Date": {
-                "schema": {
-                  "type": "string"
-                },
-                "example": "Wed, 03 Dec 2025 09:33:25 GMT"
-              },
-              "Content-Length": {
-                "schema": {
-                  "type": "integer"
-                },
-                "example": "593"
-              },
-              "Connection": {
-                "schema": {
-                  "type": "string"
-                },
-                "example": "keep-alive"
-              },
-              "x-amzn-RequestId": {
-                "schema": {
-                  "type": "string"
-                },
-                "example": "a703e56b-7cb8-424d-92e5-7a3c5436d8fb"
-              },
-              "content-encoding": {
-                "schema": {
-                  "type": "string"
-                },
-                "example": "gzip"
-              },
-              "x-amz-apigw-id": {
-                "schema": {
-                  "type": "string"
-                },
-                "example": "VAWL0Er5BcwFivw="
-              },
-              "X-Amzn-Trace-Id": {
-                "schema": {
-                  "type": "string"
-                },
-                "example": "Root=1-693003e4-6b4a736926db93b071bbd973;Parent=732e3fb6da1ea228;Sampled=0;Lineage=3:eaf00e97:0"
-              }
-            }
+            "description": "Test 2"
           },
           "default": {
             "description": "Test_Trades_Postman"
@@ -95136,44 +94132,6 @@
         "responses": {
           "200": {
             "description": "/it/calculator/income-tax/indexed-cost",
-            "headers": {
-              "Date": {
-                "schema": {
-                  "type": "string"
-                },
-                "example": "Tue, 26 Mar 2024 07:51:44 GMT"
-              },
-              "Content-Length": {
-                "schema": {
-                  "type": "integer"
-                },
-                "example": "512"
-              },
-              "Connection": {
-                "schema": {
-                  "type": "string"
-                },
-                "example": "keep-alive"
-              },
-              "x-amzn-RequestId": {
-                "schema": {
-                  "type": "string"
-                },
-                "example": "6739a7d0-ad02-4da2-8e7b-3ca31c27bab7"
-              },
-              "x-amz-apigw-id": {
-                "schema": {
-                  "type": "string"
-                },
-                "example": "VOi2mGAKBcwEbSg="
-              },
-              "X-Amzn-Trace-Id": {
-                "schema": {
-                  "type": "string"
-                },
-                "example": "Root=1-66027e90-146777c11eddca2c6fe4b099;Parent=5db2053f2e17e5be;Sampled=0;lineage=89aca443:0"
-              }
-            },
             "content": {
               "application/json": {
                 "schema": {

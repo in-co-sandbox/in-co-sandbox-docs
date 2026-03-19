@@ -131,7 +131,7 @@ Simple and Secure GST Compliance.
 - [Search GSTIN by PAN](/api-reference/gst/compliance/endpoints/public/search_pan_state_code): Verify a business registered under GST by passing the PAN and state code.
 
 ## API Reference - GST - Compliance - Taxpayer - Authentication
-- [Enable API Access](/api-reference/gst/compliance/guides/taxpayer/authentication/enable_api_access): This guide helps you to enable API access on the GST Portal for consuming Taxpayer APIs.
+- [Enable API Access](/api-reference/gst/compliance/guides/taxpayer/authentication/enable_api_access): Enable API access on the GST Portal before generating a GST taxpayer access token.
 - [Generate OTP](/api-reference/gst/compliance/endpoints/taxpayer/authentication/generate_otp): Generate OTP to authenticate taxpayer.
 - [Verify OTP](/api-reference/gst/compliance/endpoints/taxpayer/authentication/verify_otp): Verify OTP to authenticate taxpayer. This API will start a session and provide access valid for 6 hrs. Returns date timestamp of expiry of session.
 - [Refresh Access Token](/api-reference/gst/compliance/endpoints/taxpayer/authentication/refresh_session): Extend access to data on behalf of taxpayer / tax consultant without user intervention.
@@ -507,7 +507,7 @@ Easy steps for smooth, error-free GST workflows.
 - [Overview](/recipes/gst/introduction): Production-ready GST API integration recipes for GSTR-1, GSTR-3B, GSTR-9, E-Invoice, and E-Way Bill. Step-by-step implementation guides with code samples.
 
 ## Recipes - GST - Authentication
-- [Generate Taxpayer Session](/recipes/gst/authentication/generate_tax_payer_session): Using GST Taxpayer APIs requires an OTP verification process to generate an taxpayer session. This recipe takes you through the steps to get a GST Taxpayer access token.
+- [Generate Taxpayer Session](/recipes/gst/authentication/generate_tax_payer_session): Enable GST Portal API access and complete OTP verification to create a GST taxpayer session. This recipe shows how to get a GST taxpayer access token.
 - [Generate E-Invoice Session](/recipes/gst/authentication/generate_e_invoice_session): To automate e-Invoicing using APIs, an E-Invoice session needs to be created with API credentials created on the portal. This recipe takes you through the steps to get a GST E-Invoice access token.
 - [Generate E-Way Bill Session](/recipes/gst/authentication/generate_e_way_bill_session): To automate E-Way Billing using APIs, an E-Way Bill session needs to be created with API credentials created on the portal. This recipe takes you through the steps to get a GST E-Way Bill access token.
 
