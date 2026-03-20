@@ -16,24 +16,19 @@
     {}
   ],
   "paths": {
-    "/form-26as/pdf": {
+    "/form-26as/pdf/classify": {
       "post": {
-        "summary": "Read Form 26AS Document",
+        "summary": "Form26AS Classify",
+        "deprecated": false,
         "description": "",
-        "operationId": "read-form-26as-document-api",
+        "tags": [],
         "parameters": [
           {
-            "name": "email",
-            "in": "query",
-            "description": "email id",
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "password",
-            "in": "query",
-            "description": "Password of encrypted Form 26AS",
+            "name": "x-api-key",
+            "in": "header",
+            "description": "",
+            "required": true,
+            "example": "{{api_key}}",
             "schema": {
               "type": "string"
             }
@@ -41,258 +36,101 @@
           {
             "name": "Authorization",
             "in": "header",
-            "description": "JWT Authorization token",
+            "description": "",
             "required": true,
+            "example": "{{access_token}}",
             "schema": {
               "type": "string"
-            }
-          },
-          {
-            "name": "x-api-key",
-            "in": "header",
-            "description": "Public key required to authorize API access.",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "x-api-version",
-            "in": "header",
-            "required": true,
-            "schema": {
-              "type": "string",
-              "default": "1.0"
             }
           }
         ],
-        "responses": {
-          "200": {
-            "description": "200",
-            "content": {
-              "application/json": {
-                "examples": {
-                  "Result": {
-                    "value": "{\n    \"Part VI\": [],\n    \"financial_year\": \"2022-23\",\n    \"assessment_year\": \"2023-24\",\n    \"name\": \"TONY STARK\",\n    \"Part II\": [\n        {\n            \"deduction_wise\": [\n                [\n                    \"sr_no\",\n                    \"section\",\n                    \"transaction_date\",\n                    \"date_of_booking\",\n                    \"remarks\",\n                    \"amount_paid_credited\",\n                    \"tax_deducted\",\n                    \"tds_deposited\"\n                ],\n                [\n                    \"1\",\n                    \"194\",\n                    \"22-Jul-2022\",\n                    \"30-Oct-2022\",\n                    \"-\",\n                    \"11582.50\",\n                    \"0.00\",\n                    \"0.00\"\n                ]\n            ],\n            \"total_amount_paid_credited\": \"11582.50\",\n            \"name_of_deductor\": \"UBA Ltd.\",\n            \"total_tax_deducted\": \"0.00\",\n            \"sr_no\": \"1\",\n            \"total_tds_deposited\": \"0.00\",\n            \"tan_of_deductor\": \"HRAB00275C\"\n        },\n        {\n            \"deduction_wise\": [\n                [\n                    \"sr_no\",\n                    \"section\",\n                    \"transaction_date\",\n                    \"date_of_booking\",\n                    \"remarks\",\n                    \"amount_paid_credited\",\n                    \"tax_deducted\",\n                    \"tds_deposited\"\n                ],\n                [\n                    \"1\",\n                    \"193\",\n                    \"30-Jun-2022\",\n                    \"02-Aug-2022\",\n                    \"-\",\n                    \"413.00\",\n                    \"0.00\",\n                    \"0.00\"\n                ],\n                [\n                    \"2\",\n                    \"194\",\n                    \"30-Jun-2022\",\n                    \"02-Aug-2022\",\n                    \"-\",\n                    \"413.00\",\n                    \"0.00\",\n                    \"0.00\"\n                ],\n                [\n                    \"3\",\n                    \"193\",\n                    \"30-Jun-2022\",\n                    \"02-Aug-2022\",\n                    \"B\",\n                    \"-413.00\",\n                    \"0.00\",\n                    \"0.00\"\n                ]\n            ],\n            \"total_amount_paid_credited\": \"413.00\",\n            \"name_of_deductor\": \"Jio Finance Ltd.\",\n            \"total_tax_deducted\": \"0.00\",\n            \"sr_no\": \"2\",\n            \"total_tds_deposited\": \"0.00\",\n            \"tan_of_deductor\": \"ANDC03708F\"\n        }\n    ],\n    \"Part III\": [],\n    \"Part V\": [],\n    \"pan\": \"ACPPA2608F\",\n    \"Part I\": [\n        {\n            \"deduction_wise\": [\n                [\n                    \"sr_no\",\n                    \"section\",\n                    \"transaction_date\",\n                    \"status_of_booking\",\n                    \"date_of_booking\",\n                    \"remarks\",\n                    \"amount_paid_credited\",\n                    \"tax_deducted\",\n                    \"tds_deposited\"\n                ],\n                [\n                    \"1\",\n                    \"194\",\n                    \"09-Nov-2022\",\n                    \"F\",\n                    \"08-Feb-2023\",\n                    \"-\",\n                    \"6912.00\",\n                    \"691.00\",\n                    \"691.00\"\n                ],\n                [\n                    \"2\",\n                    \"194\",\n                    \"25-Jul-2022\",\n                    \"F\",\n                    \"31-Oct-2022\",\n                    \"-\",\n                    \"5031.00\",\n                    \"504.00\",\n                    \"504.00\"\n                ]\n            ],\n            \"total_amount_paid_credited\": \"11943.00\",\n            \"name_of_deductor\": \"STARK INDUSTRIES\",\n            \"total_tax_deducted\": \"1195.00\",\n            \"sr_no\": \"1\",\n            \"total_tds_deposited\": \"1195.00\",\n            \"tan_of_deductor\": \"AHMS41521B\"\n        },\n        {\n            \"deduction_wise\": [\n                [\n                    \"sr_no\",\n                    \"section\",\n                    \"transaction_date\",\n                    \"status_of_booking\",\n                    \"date_of_booking\",\n                    \"remarks\",\n                    \"amount_paid_credited\",\n                    \"tax_deducted\",\n                    \"tds_deposited\"\n                ],\n                [\n                    \"1\",\n                    \"194\",\n                    \"02-Dec-2022\",\n                    \"F\",\n                    \"29-Jan-2023\",\n                    \"-\",\n                    \"516.00\",\n                    \"0.00\",\n                    \"0.00\"\n                ]\n            ],\n            \"total_amount_paid_credited\": \"\",\n            \"name_of_deductor\": \"PEARSON SPECTER LITT\",\n            \"total_tax_deducted\": \"\",\n            \"sr_no\": \"\",\n            \"total_tds_deposited\": \"\",\n            \"tan_of_deductor\": \"CMBF04227G\"\n        },\n        {\n            \"deduction_wise\": [\n                [\n                    \"sr_no\",\n                    \"section\",\n                    \"transaction_date\",\n                    \"status_of_booking\",\n                    \"date_of_booking\",\n                    \"remarks\",\n                    \"amount_paid_credited\",\n                    \"tax_deducted\",\n                    \"tds_deposited\"\n                ],\n                [\n                    \"1\",\n                    \"194\",\n                    \"23-Nov-2022\",\n                    \"F\",\n                    \"07-Feb-2023\",\n                    \"-\",\n                    \"1692.00\",\n                    \"0.00\",\n                    \"0.00\"\n                ]\n            ],\n            \"total_amount_paid_credited\": \"1692.00\",\n            \"name_of_deductor\": \"PEARSON HARDMAN\",\n            \"total_tax_deducted\": \"0.00\",\n            \"sr_no\": \"3\",\n            \"total_tds_deposited\": \"0.00\",\n            \"tan_of_deductor\": \"CMBF04227K\"\n        },\n        {\n            \"deduction_wise\": [\n                [\n                    \"sr_no\",\n                    \"section\",\n                    \"transaction_date\",\n                    \"status_of_booking\",\n                    \"date_of_booking\",\n                    \"remarks\",\n                    \"amount_paid_credited\",\n                    \"tax_deducted\",\n                    \"tds_deposited\"\n                ],\n                [\n                    \"1\",\n                    \"194\",\n                    \"10-Nov-2022\",\n                    \"F\",\n                    \"31-Jan-2023\",\n                    \"-\",\n                    \"450.00\",\n                    \"0.00\",\n                    \"0.00\"\n                ]\n            ]\n        },\n        {\n            \"deduction_wise\": [\n                [\n                    \"sr_no\",\n                    \"section\",\n                    \"transaction_date\",\n                    \"status_of_booking\",\n                    \"date_of_booking\",\n                    \"remarks\",\n                    \"amount_paid_credited\",\n                    \"tax_deducted\",\n                    \"tds_deposited\"\n                ],\n                [\n                    \"1\",\n                    \"194\",\n                    \"20-Jul-2022\",\n                    \"F\",\n                    \"03-Nov-2022\",\n                    \"-\",\n                    \"1332.87\",\n                    \"0.00\",\n                    \"0.00\"\n                ],\n                [\n                    \"2\",\n                    \"194\",\n                    \"20-Jul-2022\",\n                    \"F\",\n                    \"03-Nov-2022\",\n                    \"-\",\n                    \"1332.87\",\n                    \"0.00\",\n                    \"0.00\"\n                ],\n                [\n                    \"3\",\n                    \"194\",\n                    \"20-Jul-2022\",\n                    \"F\",\n                    \"03-Nov-2022\",\n                    \"B\",\n                    \"-1332.87\",\n                    \"0.00\",\n                    \"0.00\"\n                ],\n                [\n                    \"4\",\n                    \"194\",\n                    \"20-Jul-2022\",\n                    \"F\",\n                    \"03-Nov-2022\",\n                    \"-\",\n                    \"1332.87\",\n                    \"0.00\",\n                    \"0.00\"\n                ],\n                [\n                    \"5\",\n                    \"194\",\n                    \"20-Jul-2022\",\n                    \"F\",\n                    \"03-Nov-2022\",\n                    \"B\",\n                    \"-1332.87\",\n                    \"0.00\",\n                    \"0.00\"\n                ],\n                [\n                    \"6\",\n                    \"194\",\n                    \"20-Jul-2022\",\n                    \"F\",\n                    \"03-Nov-2022\",\n                    \"-\",\n                    \"1332.87\",\n                    \"0.00\",\n                    \"0.00\"\n                ],\n                [\n                    \"7\",\n                    \"194\",\n                    \"20-Jul-2022\",\n                    \"F\",\n                    \"03-Nov-2022\",\n                    \"B\",\n                    \"-1332.87\",\n                    \"0.00\",\n                    \"0.00\"\n                ]\n            ]\n        }\n    ],\n    \"Part IV\": []\n}"
+        "requestBody": {
+          "content": {
+            "multipart/form-data": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "file": {
+                    "type": "string",
+                    "format": "binary"
                   }
                 },
+                "required": [
+                  "file"
+                ]
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
                 "schema": {
                   "type": "object",
                   "properties": {
-                    "Part VI": {
-                      "type": "array",
-                      "items": {
-                        "type": "object",
-                        "properties": {}
-                      }
+                    "transaction_id": {
+                      "type": "string"
                     },
-                    "financial_year": {
-                      "type": "string",
-                      "example": "2022-23"
+                    "code": {
+                      "type": "integer"
                     },
-                    "assessment_year": {
-                      "type": "string",
-                      "example": "2023-24"
-                    },
-                    "name": {
-                      "type": "string",
-                      "example": "TONY STARK"
-                    },
-                    "Part II": {
-                      "type": "array",
-                      "items": {
-                        "type": "object",
-                        "properties": {
-                          "deduction_wise": {
-                            "type": "array",
-                            "items": {
-                              "type": "array",
-                              "items": {
-                                "type": "string",
-                                "example": "sr_no"
-                              }
-                            }
-                          },
-                          "total_amount_paid_credited": {
-                            "type": "string",
-                            "example": "11582.50"
-                          },
-                          "name_of_deductor": {
-                            "type": "string",
-                            "example": "UBA Ltd."
-                          },
-                          "total_tax_deducted": {
-                            "type": "string",
-                            "example": "0.00"
-                          },
-                          "sr_no": {
-                            "type": "string",
-                            "example": "1"
-                          },
-                          "total_tds_deposited": {
-                            "type": "string",
-                            "example": "0.00"
-                          },
-                          "tan_of_deductor": {
-                            "type": "string",
-                            "example": "HRAB00275C"
-                          }
+                    "data": {
+                      "type": "object",
+                      "properties": {
+                        "type": {
+                          "type": "string"
+                        },
+                        "version": {
+                          "type": "string"
                         }
-                      }
+                      },
+                      "required": [
+                        "type",
+                        "version"
+                      ]
                     },
-                    "Part III": {
-                      "type": "array",
-                      "items": {
-                        "type": "object",
-                        "properties": {}
-                      }
-                    },
-                    "Part V": {
-                      "type": "array",
-                      "items": {
-                        "type": "object",
-                        "properties": {}
-                      }
-                    },
-                    "pan": {
-                      "type": "string",
-                      "example": "ACPPA2608F"
-                    },
-                    "Part I": {
-                      "type": "array",
-                      "items": {
-                        "type": "object",
-                        "properties": {
-                          "deduction_wise": {
-                            "type": "array",
-                            "items": {
-                              "type": "array",
-                              "items": {
-                                "type": "string",
-                                "example": "sr_no"
-                              }
-                            }
-                          },
-                          "total_amount_paid_credited": {
-                            "type": "string",
-                            "example": "11943.00"
-                          },
-                          "name_of_deductor": {
-                            "type": "string",
-                            "example": "STARK INDUSTRIES"
-                          },
-                          "total_tax_deducted": {
-                            "type": "string",
-                            "example": "1195.00"
-                          },
-                          "sr_no": {
-                            "type": "string",
-                            "example": "1"
-                          },
-                          "total_tds_deposited": {
-                            "type": "string",
-                            "example": "1195.00"
-                          },
-                          "tan_of_deductor": {
-                            "type": "string",
-                            "example": "AHMS41521B"
-                          }
-                        }
-                      }
-                    },
-                    "Part IV": {
-                      "type": "array",
-                      "items": {
-                        "type": "object",
-                        "properties": {}
-                      }
+                    "timestamp": {
+                      "type": "integer"
                     }
-                  }
-                }
-              }
-            }
-          },
-          "500": {
-            "description": "500",
-            "content": {
-              "application/json": {
-                "examples": {
-                  "Incorrect Password": {
-                    "value": "{\n  \"status\": 500,\n  \"message\": \"Invalid password\"\n}"
                   },
-                  "Password Protected": {
-                    "value": "{\n  \"status\": 500,\n  \"message\": \"Form 26AS is password protected\"\n}"
-                  },
-                  "Failure": {
-                    "value": "{\n  \"status\": 500,\n  \"message\": \"Unable to read Form 26AS\"\n}"
-                  }
-                },
-                "schema": {
-                  "oneOf": [
-                    {
-                      "title": "Incorrect Password",
-                      "type": "object",
-                      "properties": {
-                        "status": {
-                          "type": "integer",
-                          "example": 500,
-                          "default": 0
-                        },
-                        "message": {
-                          "type": "string",
-                          "example": "Invalid password"
-                        }
-                      }
-                    },
-                    {
-                      "title": "Password Protected",
-                      "type": "object",
-                      "properties": {
-                        "status": {
-                          "type": "integer",
-                          "example": 500,
-                          "default": 0
-                        },
-                        "message": {
-                          "type": "string",
-                          "example": "Form 26AS is password protected"
-                        }
-                      }
-                    },
-                    {
-                      "title": "Failure",
-                      "type": "object",
-                      "properties": {
-                        "status": {
-                          "type": "integer",
-                          "example": 500,
-                          "default": 0
-                        },
-                        "message": {
-                          "type": "string",
-                          "example": "Unable to read Form 26AS"
-                        }
-                      }
-                    }
+                  "required": [
+                    "transaction_id",
+                    "code",
+                    "data",
+                    "timestamp"
                   ]
+                },
+                "example": {
+                  "transaction_id": "6fe49b7a-3b31-4c99-b106-783f67789c4f",
+                  "code": 200,
+                  "data": {
+                    "type": "Form 26AS",
+                    "version": "2023.1.0"
+                  },
+                  "timestamp": 1713508024000
                 }
               }
             }
           }
         },
-        "deprecated": false
+        "security": []
       }
     },
     "/it/ocr/form-26as/pdf": {
       "post": {
         "summary": "Form26AS Read",
-        "tags": [
-          "form26AS"
-        ],
+        "deprecated": false,
+        "description": "",
+        "tags": [],
         "parameters": [
           {
             "name": "x-api-key",
             "in": "header",
+            "description": "",
+            "required": true,
+            "example": "{{api_key}}",
             "schema": {
               "type": "string"
             }
@@ -300,14 +138,35 @@
           {
             "name": "Authorization",
             "in": "header",
+            "description": "",
+            "required": true,
+            "example": "{{access_token}}",
             "schema": {
               "type": "string"
             }
           }
         ],
+        "requestBody": {
+          "content": {
+            "multipart/form-data": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "file": {
+                    "type": "string",
+                    "format": "binary"
+                  }
+                },
+                "required": [
+                  "file"
+                ]
+              }
+            }
+          }
+        },
         "responses": {
           "200": {
-            "description": "200 OK",
+            "description": "",
             "content": {
               "application/json": {
                 "schema": {
@@ -365,57 +224,317 @@
                                 }
                               },
                               "total_amount_paid_credited": {
-                                "type": "string",
-                                "format": "utc-millisec"
+                                "type": "string"
                               },
                               "name_of_deductor": {
                                 "type": "string"
                               },
                               "total_tax_deducted": {
-                                "type": "string",
-                                "format": "utc-millisec"
+                                "type": "string"
                               },
                               "sr_no": {
-                                "type": "string",
-                                "format": "utc-millisec"
+                                "type": "string"
                               },
                               "total_tds_deposited": {
-                                "type": "string",
-                                "format": "utc-millisec"
+                                "type": "string"
                               },
                               "tan_of_deductor": {
                                 "type": "string"
                               }
-                            }
+                            },
+                            "required": [
+                              "deduction_wise",
+                              "total_amount_paid_credited",
+                              "name_of_deductor",
+                              "total_tax_deducted",
+                              "sr_no",
+                              "total_tds_deposited",
+                              "tan_of_deductor"
+                            ]
                           }
                         },
                         "Part IV": {
                           "type": "array",
                           "items": {}
                         }
-                      }
+                      },
+                      "required": [
+                        "Part VI",
+                        "financial_year",
+                        "assessment_year",
+                        "name",
+                        "Part II",
+                        "Part III",
+                        "Part V",
+                        "pan",
+                        "Part I",
+                        "Part IV"
+                      ]
                     },
                     "timestamp": {
                       "type": "integer"
                     }
-                  }
+                  },
+                  "required": [
+                    "transaction_id",
+                    "code",
+                    "data",
+                    "timestamp"
+                  ]
+                },
+                "example": {
+                  "transaction_id": "4942c06a-4f2b-4299-87c2-59c8b84e5fae",
+                  "code": 200,
+                  "data": {
+                    "Part VI": [],
+                    "financial_year": "2023-24",
+                    "assessment_year": "2024-25",
+                    "name": "HEENA TRIVEDI",
+                    "Part II": [],
+                    "Part III": [],
+                    "Part V": [],
+                    "pan": "ABVPT1571F",
+                    "Part I": [
+                      {
+                        "deduction_wise": [
+                          [
+                            "sr_no",
+                            "section",
+                            "transaction_date",
+                            "status_of_booking",
+                            "date_of_booking",
+                            "remarks",
+                            "amount_paid_credited",
+                            "tax_deducted",
+                            "tds_deposited"
+                          ],
+                          [
+                            "1",
+                            "194JA",
+                            "30-Jun-2023",
+                            "F",
+                            "01-Oct-2023",
+                            "-",
+                            "13000.00",
+                            "260.00",
+                            "260.00"
+                          ],
+                          [
+                            "2",
+                            "194JA",
+                            "23-Jun-2023",
+                            "F",
+                            "01-Oct-2023",
+                            "-",
+                            "14500.00",
+                            "290.00",
+                            "290.00"
+                          ],
+                          [
+                            "3",
+                            "194JA",
+                            "06-Jun-2023",
+                            "F",
+                            "01-Oct-2023",
+                            "-",
+                            "13000.00",
+                            "260.00",
+                            "260.00"
+                          ]
+                        ],
+                        "total_amount_paid_credited": "40500.00",
+                        "name_of_deductor": "GUJARAT STATE WOMEN SEWA CO-OP FEDERATION LTD",
+                        "total_tax_deducted": "810.00",
+                        "sr_no": "1",
+                        "total_tds_deposited": "810.00",
+                        "tan_of_deductor": "AHMG01790F"
+                      },
+                      {
+                        "deduction_wise": [
+                          [
+                            "sr_no",
+                            "section",
+                            "transaction_date",
+                            "status_of_booking",
+                            "date_of_booking",
+                            "remarks",
+                            "amount_paid_credited",
+                            "tax_deducted",
+                            "tds_deposited"
+                          ],
+                          [
+                            "1",
+                            "194JB",
+                            "30-Sep-2023",
+                            "F",
+                            "27-Oct-2023",
+                            "-",
+                            "13500.00",
+                            "1350.00",
+                            "1350.00"
+                          ],
+                          [
+                            "2",
+                            "194JB",
+                            "31-Aug-2023",
+                            "F",
+                            "27-Oct-2023",
+                            "-",
+                            "12500.00",
+                            "1250.00",
+                            "1250.00"
+                          ],
+                          [
+                            "3",
+                            "194JB",
+                            "18-Aug-2023",
+                            "F",
+                            "27-Oct-2023",
+                            "-",
+                            "2500.00",
+                            "250.00",
+                            "250.00"
+                          ],
+                          [
+                            "4",
+                            "194JB",
+                            "31-Jul-2023",
+                            "F",
+                            "27-Oct-2023",
+                            "-",
+                            "12500.00",
+                            "1250.00",
+                            "1250.00"
+                          ]
+                        ],
+                        "total_amount_paid_credited": "41000.00",
+                        "name_of_deductor": "SHRI GUJARAT MAHILA LOKSWATHYA SEWA SAHAKARI MANDLI ",
+                        "total_tax_deducted": "4100.00",
+                        "sr_no": "2",
+                        "total_tds_deposited": "4100.00",
+                        "tan_of_deductor": "AHMS03410B"
+                      },
+                      {
+                        "deduction_wise": [
+                          [
+                            "sr_no",
+                            "section",
+                            "transaction_date",
+                            "status_of_booking",
+                            "date_of_booking",
+                            "remarks",
+                            "amount_paid_credited",
+                            "tax_deducted",
+                            "tds_deposited"
+                          ],
+                          [
+                            "1",
+                            "194",
+                            "01-Aug-2023",
+                            "F",
+                            "08-Nov-2023",
+                            "-",
+                            "15.60",
+                            "0.00",
+                            "0.00"
+                          ]
+                        ],
+                        "total_amount_paid_credited": "15.60",
+                        "name_of_deductor": "ASHOK LEYLAND LIMITED",
+                        "total_tax_deducted": "0.00",
+                        "sr_no": "3",
+                        "total_tds_deposited": "0.00",
+                        "tan_of_deductor": "CHEA31306C"
+                      },
+                      {
+                        "deduction_wise": [
+                          [
+                            "sr_no",
+                            "section",
+                            "transaction_date",
+                            "status_of_booking",
+                            "date_of_booking",
+                            "remarks",
+                            "amount_paid_credited",
+                            "tax_deducted",
+                            "tds_deposited"
+                          ],
+                          [
+                            "1",
+                            "194",
+                            "30-Aug-2023",
+                            "F",
+                            "28-Oct-2023",
+                            "-",
+                            "45.00",
+                            "0.00",
+                            "0.00"
+                          ]
+                        ],
+                        "total_amount_paid_credited": "45.00",
+                        "name_of_deductor": "LIFE INSURANCE CORPORATION OF INDIA",
+                        "total_tax_deducted": "0.00",
+                        "sr_no": "4",
+                        "total_tds_deposited": "0.00",
+                        "tan_of_deductor": "MUML13465E"
+                      },
+                      {
+                        "deduction_wise": [
+                          [
+                            "sr_no",
+                            "section",
+                            "transaction_date",
+                            "status_of_booking",
+                            "date_of_booking",
+                            "remarks",
+                            "amount_paid_credited",
+                            "tax_deducted",
+                            "tds_deposited"
+                          ],
+                          [
+                            "1",
+                            "194",
+                            "05-Sep-2023",
+                            "F",
+                            "05-Nov-2023",
+                            "-",
+                            "52.00",
+                            "0.00",
+                            "0.00"
+                          ]
+                        ],
+                        "total_amount_paid_credited": "52.00",
+                        "name_of_deductor": "BHARAT PETROLEUM CORPORATION LIMITED",
+                        "total_tax_deducted": "0.00",
+                        "sr_no": "5",
+                        "total_tds_deposited": "0.00",
+                        "tan_of_deductor": "PNEB16470G"
+                      }
+                    ],
+                    "Part IV": []
+                  },
+                  "timestamp": 1713508071000
                 }
               }
             }
           }
-        }
+        },
+        "security": []
       }
     },
     "/it/ocr/form-16/pdf/classify": {
       "post": {
         "summary": "Form16 Classify",
-        "tags": [
-          "form16"
-        ],
+        "deprecated": false,
+        "description": "",
+        "tags": [],
         "parameters": [
           {
             "name": "x-api-key",
             "in": "header",
+            "description": "",
+            "required": true,
+            "example": "{{api_key}}",
             "schema": {
               "type": "string"
             }
@@ -423,6 +542,9 @@
           {
             "name": "Authorization",
             "in": "header",
+            "description": "",
+            "required": true,
+            "example": "{{access_token}}",
             "schema": {
               "type": "string"
             }
@@ -430,6 +552,9 @@
           {
             "name": "x-api-transaction-id",
             "in": "header",
+            "description": "",
+            "required": false,
+            "example": "test",
             "schema": {
               "type": "string"
             }
@@ -437,14 +562,35 @@
           {
             "name": "x-request-time",
             "in": "header",
+            "description": "",
+            "required": false,
+            "example": "0",
             "schema": {
-              "type": "integer"
+              "type": "string"
             }
           }
         ],
+        "requestBody": {
+          "content": {
+            "multipart/form-data": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "file": {
+                    "type": "string",
+                    "format": "binary"
+                  }
+                },
+                "required": [
+                  "file"
+                ]
+              }
+            }
+          }
+        },
         "responses": {
           "200": {
-            "description": "200 OK (Part A)",
+            "description": "",
             "content": {
               "application/json": {
                 "schema": {
@@ -463,21 +609,39 @@
                           "type": "string"
                         },
                         "version": {
-                          "type": "string",
-                          "format": "utc-millisec"
+                          "type": "string"
                         }
-                      }
+                      },
+                      "required": [
+                        "type",
+                        "version"
+                      ]
                     },
                     "timestamp": {
                       "type": "integer"
                     }
-                  }
+                  },
+                  "required": [
+                    "transaction_id",
+                    "code",
+                    "data",
+                    "timestamp"
+                  ]
+                },
+                "example": {
+                  "transaction_id": "f9006a8d-8032-4c50-892d-99d93a193fd2",
+                  "code": 200,
+                  "data": {
+                    "type": "Part A",
+                    "version": "2022"
+                  },
+                  "timestamp": 1724824564000
                 }
               }
             }
           },
           "500": {
-            "description": "500 (Password Protected)",
+            "description": "",
             "content": {
               "application/json": {
                 "schema": {
@@ -495,81 +659,40 @@
                     "timestamp": {
                       "type": "integer"
                     }
-                  }
-                }
-              }
-            }
-          }
-        }
-      }
-    },
-    "/it/ocr/form-16": {
-      "post": {
-        "summary": "Read Form16",
-        "description": "",
-        "operationId": "read-form16",
-        "requestBody": {
-          "content": {
-            "application/json": {
-              "schema": {
-                "type": "object",
-                "properties": {
-                  "file": {
-                    "type": "string",
-                    "format": "binary"
-                  }
+                  },
+                  "required": [
+                    "transaction_id",
+                    "code",
+                    "message",
+                    "timestamp"
+                  ]
+                },
+                "example": {
+                  "transaction_id": "d07811e7-3bca-4588-833d-30881255a56c",
+                  "code": 500,
+                  "message": "Form 16 is password protected",
+                  "timestamp": 1724825001000
                 }
               }
             }
           }
         },
-        "responses": {
-          "200": {
-            "description": "200",
-            "content": {
-              "application/json": {
-                "examples": {
-                  "Result": {
-                    "value": "{}"
-                  }
-                },
-                "schema": {
-                  "type": "object",
-                  "properties": {}
-                }
-              }
-            }
-          },
-          "400": {
-            "description": "400",
-            "content": {
-              "application/json": {
-                "examples": {
-                  "Result": {
-                    "value": "{}"
-                  }
-                },
-                "schema": {
-                  "type": "object",
-                  "properties": {}
-                }
-              }
-            }
-          }
-        },
-        "deprecated": false
+        "security": []
       }
     },
     "/it/ocr/form-16/pdf": {
       "post": {
         "summary": "Form16 Read",
-        "tags": [
-          "form16"
-        ],
+        "deprecated": false,
+        "description": "",
+        "tags": [],
         "parameters": [
           {
             "name": "password",
             "in": "query",
+            "description": "",
+            "required": false,
+            "example": "a",
             "schema": {
               "type": "string"
             }
@@ -577,6 +700,9 @@
           {
             "name": "x-api-key",
             "in": "header",
+            "description": "",
+            "required": true,
+            "example": "{{api_key}}",
             "schema": {
               "type": "string"
             }
@@ -584,14 +710,35 @@
           {
             "name": "Authorization",
             "in": "header",
+            "description": "",
+            "required": true,
+            "example": "{{access_token}}",
             "schema": {
               "type": "string"
             }
           }
         ],
+        "requestBody": {
+          "content": {
+            "multipart/form-data": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "file": {
+                    "type": "string",
+                    "format": "binary"
+                  }
+                },
+                "required": [
+                  "file"
+                ]
+              }
+            }
+          }
+        },
         "responses": {
           "200": {
-            "description": "200 OK",
+            "description": "",
             "content": {
               "application/json": {
                 "schema": {
@@ -614,7 +761,17 @@
                               "items": {
                                 "type": "array",
                                 "items": {
-                                  "type": "string"
+                                  "oneOf": [
+                                    {
+                                      "type": "string"
+                                    },
+                                    {
+                                      "type": "null"
+                                    },
+                                    {
+                                      "type": "integer"
+                                    }
+                                  ]
                                 }
                               }
                             },
@@ -637,10 +794,14 @@
                                       "type": "string"
                                     },
                                     "postal_code": {
-                                      "type": "string",
-                                      "format": "color"
+                                      "type": "string"
                                     }
-                                  }
+                                  },
+                                  "required": [
+                                    "area",
+                                    "street",
+                                    "postal_code"
+                                  ]
                                 },
                                 "name": {
                                   "type": "string"
@@ -648,7 +809,13 @@
                                 "pan": {
                                   "type": "string"
                                 }
-                              }
+                              },
+                              "required": [
+                                "tan",
+                                "address",
+                                "name",
+                                "pan"
+                              ]
                             },
                             "employee": {
                               "type": "object",
@@ -663,10 +830,14 @@
                                       "type": "string"
                                     },
                                     "postal_code": {
-                                      "type": "string",
-                                      "format": "color"
+                                      "type": "string"
                                     }
-                                  }
+                                  },
+                                  "required": [
+                                    "area",
+                                    "street",
+                                    "postal_code"
+                                  ]
                                 },
                                 "last_name": {
                                   "type": "string"
@@ -680,9 +851,22 @@
                                 "first_name": {
                                   "type": "string"
                                 }
-                              }
+                              },
+                              "required": [
+                                "address",
+                                "last_name",
+                                "pan",
+                                "middle_name",
+                                "first_name"
+                              ]
                             }
-                          }
+                          },
+                          "required": [
+                            "tds",
+                            "assessment_year",
+                            "employer",
+                            "employee"
+                          ]
                         },
                         "Part B": {
                           "type": "object",
@@ -706,10 +890,14 @@
                                       "type": "string"
                                     },
                                     "postal_code": {
-                                      "type": "string",
-                                      "format": "color"
+                                      "type": "string"
                                     }
-                                  }
+                                  },
+                                  "required": [
+                                    "area",
+                                    "street",
+                                    "postal_code"
+                                  ]
                                 },
                                 "name": {
                                   "type": "string"
@@ -717,7 +905,13 @@
                                 "pan": {
                                   "type": "string"
                                 }
-                              }
+                              },
+                              "required": [
+                                "tan",
+                                "address",
+                                "name",
+                                "pan"
+                              ]
                             },
                             "employee": {
                               "type": "object",
@@ -732,10 +926,14 @@
                                       "type": "string"
                                     },
                                     "postal_code": {
-                                      "type": "string",
-                                      "format": "color"
+                                      "type": "string"
                                     }
-                                  }
+                                  },
+                                  "required": [
+                                    "area",
+                                    "street",
+                                    "postal_code"
+                                  ]
                                 },
                                 "last_name": {
                                   "type": "string"
@@ -749,7 +947,14 @@
                                 "first_name": {
                                   "type": "string"
                                 }
-                              }
+                              },
+                              "required": [
+                                "address",
+                                "last_name",
+                                "pan",
+                                "middle_name",
+                                "first_name"
+                              ]
                             },
                             "details_of_salary_paid": {
                               "type": "object",
@@ -772,7 +977,13 @@
                                     "salary_as_per_provisions_contained_in_section_17_1": {
                                       "type": "integer"
                                     }
-                                  }
+                                  },
+                                  "required": [
+                                    "reported_total_amount_of_salary_received_from_other_employer",
+                                    "profits_in_lieu_of_salary_us_17_3",
+                                    "value_of_perquisites_us_17_2",
+                                    "salary_as_per_provisions_contained_in_section_17_1"
+                                  ]
                                 },
                                 "gross_total_income": {
                                   "type": "integer"
@@ -804,7 +1015,16 @@
                                     "cash_equivalent_of_leave_salary_encashment_us_10_10_aa": {
                                       "type": "integer"
                                     }
-                                  }
+                                  },
+                                  "required": [
+                                    "house_rent_allowance_us_10_13_a",
+                                    "commuted_value_of_pension_us_10_10_a",
+                                    "death_cum_retirement_gratuity_us_10_10",
+                                    "total_amount_of_any_other_exemption_us_10",
+                                    "total_amount_of_exemption_claimed_us_10",
+                                    "travel_concession_or_assistance_us_10_5",
+                                    "cash_equivalent_of_leave_salary_encashment_us_10_10_aa"
+                                  ]
                                 },
                                 "total_amount_of_deductions_us_16": {
                                   "type": "integer"
@@ -816,36 +1036,58 @@
                                   "type": "object",
                                   "properties": {
                                     "deduction_us_80_ccc": {
-                                      "type": "object"
+                                      "type": "object",
+                                      "properties": {}
                                     },
                                     "deduction_us_80_tta": {
-                                      "type": "object"
+                                      "type": "object",
+                                      "properties": {}
                                     },
                                     "total_deduction_us_80_cce": {
-                                      "type": "object"
+                                      "type": "object",
+                                      "properties": {}
                                     },
                                     "deduction_us_80_ccd_2": {
-                                      "type": "object"
+                                      "type": "object",
+                                      "properties": {}
                                     },
                                     "deduction_us_80_ccd_1": {
-                                      "type": "object"
+                                      "type": "object",
+                                      "properties": {}
                                     },
                                     "deduction_us_80_d": {
-                                      "type": "object"
+                                      "type": "object",
+                                      "properties": {}
                                     },
                                     "deduction_us_80_ccd_1_b": {
-                                      "type": "object"
+                                      "type": "object",
+                                      "properties": {}
                                     },
                                     "deduction_us_80_e": {
-                                      "type": "object"
+                                      "type": "object",
+                                      "properties": {}
                                     },
                                     "deduction_us_80_g": {
-                                      "type": "object"
+                                      "type": "object",
+                                      "properties": {}
                                     },
                                     "deduction_us_80_c": {
-                                      "type": "object"
+                                      "type": "object",
+                                      "properties": {}
                                     }
-                                  }
+                                  },
+                                  "required": [
+                                    "deduction_us_80_ccc",
+                                    "deduction_us_80_tta",
+                                    "total_deduction_us_80_cce",
+                                    "deduction_us_80_ccd_2",
+                                    "deduction_us_80_ccd_1",
+                                    "deduction_us_80_d",
+                                    "deduction_us_80_ccd_1_b",
+                                    "deduction_us_80_e",
+                                    "deduction_us_80_g",
+                                    "deduction_us_80_c"
+                                  ]
                                 },
                                 "rebate_us_87_a": {
                                   "type": "integer"
@@ -877,7 +1119,11 @@
                                     "income_from_house_property_reported_by_employee_offered_for_tds": {
                                       "type": "integer"
                                     }
-                                  }
+                                  },
+                                  "required": [
+                                    "income_under_the_head_other_sources_offered_for_tds",
+                                    "income_from_house_property_reported_by_employee_offered_for_tds"
+                                  ]
                                 },
                                 "income_chargeable_under_the_head_salaries": {
                                   "type": "integer"
@@ -897,27 +1143,222 @@
                                     "tax_on_employment_us_16_iii": {
                                       "type": "integer"
                                     }
-                                  }
+                                  },
+                                  "required": [
+                                    "entertainment_allowance_us_16_ii",
+                                    "standard_deduction_us_16_ia",
+                                    "tax_on_employment_us_16_iii"
+                                  ]
                                 },
                                 "total_taxable_income": {
                                   "type": "integer"
                                 }
-                              }
+                              },
+                              "required": [
+                                "surcharge",
+                                "gross_salary",
+                                "gross_total_income",
+                                "tax_payable",
+                                "allowances_us_10",
+                                "total_amount_of_deductions_us_16",
+                                "health_and_eduction_cess",
+                                "deduction_under_chapter_vi_a",
+                                "rebate_us_87_a",
+                                "relief_us_89",
+                                "aggregate_deductible_amount_under_chapter_vi_a",
+                                "opting_out_of_taxation_us_115_bac",
+                                "net_tax_payable",
+                                "tax_on_total_income",
+                                "total_amount_of_other_income_reported_by_employee",
+                                "other_income_reported_by_employee_us_192_2_b",
+                                "income_chargeable_under_the_head_salaries",
+                                "total_amount_of_salary_received_from_current_employer",
+                                "deduction_us_16",
+                                "total_taxable_income"
+                              ]
                             }
-                          }
+                          },
+                          "required": [
+                            "assessment_year",
+                            "employer",
+                            "employee",
+                            "details_of_salary_paid"
+                          ]
                         }
-                      }
+                      },
+                      "required": [
+                        "Part A",
+                        "Part B"
+                      ]
                     },
                     "timestamp": {
                       "type": "integer"
                     }
-                  }
+                  },
+                  "required": [
+                    "transaction_id",
+                    "code",
+                    "data",
+                    "timestamp"
+                  ]
+                },
+                "example": {
+                  "transaction_id": "478527ab-9e73-4e08-97e7-63122b5b9072",
+                  "code": 200,
+                  "data": {
+                    "Part A": {
+                      "tds": [
+                        [
+                          "quarter",
+                          "receipt_number",
+                          "credit_amount",
+                          "tax_deducted",
+                          "tax_deposited"
+                        ],
+                        [
+                          "Q4",
+                          "QVQYSSEF",
+                          360030,
+                          28428,
+                          28428
+                        ],
+                        [
+                          "Q3",
+                          "QVOLJKOE",
+                          240000,
+                          9704,
+                          9704
+                        ],
+                        [
+                          "Q2",
+                          "QVMVLPLC",
+                          250000,
+                          9704,
+                          9704
+                        ],
+                        [
+                          "Q1",
+                          "QVKCNDHC",
+                          230000,
+                          19249,
+                          19249
+                        ],
+                        [
+                          "Total",
+                          null,
+                          1080030,
+                          67085,
+                          67085
+                        ]
+                      ],
+                      "assessment_year": "2024-25",
+                      "employer": {
+                        "tan": "HYDU00904B",
+                        "address": {
+                          "area": "",
+                          "street": "8-2-596/5, Star Hospitals, Road No.10, ",
+                          "postal_code": "500034"
+                        },
+                        "name": "UNIMED HEALTH CARE PRIVATE LIMITED",
+                        "pan": "AAACU8638B"
+                      },
+                      "employee": {
+                        "address": {
+                          "area": "WARANGAL - 506002, ",
+                          "street": "H.NO-14-8-271, CHARBOWLI, GIRMAJIPET, ",
+                          "postal_code": "506002"
+                        },
+                        "last_name": "GUTHIKONDA",
+                        "pan": "DCDPG7297B",
+                        "middle_name": "SAI",
+                        "first_name": "SRI"
+                      }
+                    },
+                    "Part B": {
+                      "assessment_year": "2024-25",
+                      "employer": {
+                        "tan": "HYDU00904B",
+                        "address": {
+                          "area": "",
+                          "street": "8-2-596/5, Star Hospitals, Road No.10, ",
+                          "postal_code": "500034"
+                        },
+                        "name": "UNIMED HEALTH CARE PRIVATE LIMITED",
+                        "pan": "AAACU8638B"
+                      },
+                      "employee": {
+                        "address": {
+                          "area": "WARANGAL - 506002, ",
+                          "street": "H.NO-14-8-271, CHARBOWLI, GIRMAJIPET, ",
+                          "postal_code": "506002"
+                        },
+                        "last_name": "GUTHIKONDA",
+                        "pan": "DCDPG7297B",
+                        "middle_name": "SAI",
+                        "first_name": "SRI"
+                      },
+                      "details_of_salary_paid": {
+                        "surcharge": 0,
+                        "gross_salary": {
+                          "reported_total_amount_of_salary_received_from_other_employer": 0,
+                          "profits_in_lieu_of_salary_us_17_3": 0,
+                          "value_of_perquisites_us_17_2": 0,
+                          "salary_as_per_provisions_contained_in_section_17_1": 1080030
+                        },
+                        "gross_total_income": 1030030,
+                        "tax_payable": 67084,
+                        "allowances_us_10": {
+                          "house_rent_allowance_us_10_13_a": 0,
+                          "commuted_value_of_pension_us_10_10_a": 0,
+                          "death_cum_retirement_gratuity_us_10_10": 0,
+                          "total_amount_of_any_other_exemption_us_10": 0,
+                          "total_amount_of_exemption_claimed_us_10": 0,
+                          "travel_concession_or_assistance_us_10_5": 0,
+                          "cash_equivalent_of_leave_salary_encashment_us_10_10_aa": 0
+                        },
+                        "total_amount_of_deductions_us_16": 50000,
+                        "health_and_eduction_cess": 2580,
+                        "deduction_under_chapter_vi_a": {
+                          "deduction_us_80_ccc": {},
+                          "deduction_us_80_tta": {},
+                          "total_deduction_us_80_cce": {},
+                          "deduction_us_80_ccd_2": {},
+                          "deduction_us_80_ccd_1": {},
+                          "deduction_us_80_d": {},
+                          "deduction_us_80_ccd_1_b": {},
+                          "deduction_us_80_e": {},
+                          "deduction_us_80_g": {},
+                          "deduction_us_80_c": {}
+                        },
+                        "rebate_us_87_a": 0,
+                        "relief_us_89": 0,
+                        "aggregate_deductible_amount_under_chapter_vi_a": 0,
+                        "opting_out_of_taxation_us_115_bac": "No",
+                        "net_tax_payable": 67084,
+                        "tax_on_total_income": 64504,
+                        "total_amount_of_other_income_reported_by_employee": 0,
+                        "other_income_reported_by_employee_us_192_2_b": {
+                          "income_under_the_head_other_sources_offered_for_tds": 0,
+                          "income_from_house_property_reported_by_employee_offered_for_tds": 0
+                        },
+                        "income_chargeable_under_the_head_salaries": 1030030,
+                        "total_amount_of_salary_received_from_current_employer": 1080030,
+                        "deduction_us_16": {
+                          "entertainment_allowance_us_16_ii": 0,
+                          "standard_deduction_us_16_ia": 50000,
+                          "tax_on_employment_us_16_iii": 0
+                        },
+                        "total_taxable_income": 1030030
+                      }
+                    }
+                  },
+                  "timestamp": 1724824712000
                 }
               }
             }
           },
           "500": {
-            "description": "500 (Password Protected)",
+            "description": "",
             "content": {
               "application/json": {
                 "schema": {
@@ -935,12 +1376,872 @@
                     "timestamp": {
                       "type": "integer"
                     }
-                  }
+                  },
+                  "required": [
+                    "transaction_id",
+                    "code",
+                    "message",
+                    "timestamp"
+                  ]
+                },
+                "example": {
+                  "transaction_id": "b8efe8d1-dd0d-49e1-9a95-748c9554746a",
+                  "code": 500,
+                  "message": "Form 16 is password protected",
+                  "timestamp": 1724824934000
                 }
               }
             }
           }
-        }
+        },
+        "security": []
+      }
+    },
+    "/it/ocr/form-16": {
+      "post": {
+        "summary": "Read",
+        "deprecated": false,
+        "description": "",
+        "tags": [],
+        "parameters": [
+          {
+            "name": "x-api-key",
+            "in": "header",
+            "description": "",
+            "required": true,
+            "example": "{{api_key}}",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "Authorization",
+            "in": "header",
+            "description": "",
+            "required": true,
+            "example": "{{access_token}}",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "x-api-transaction-id",
+            "in": "header",
+            "description": "",
+            "required": false,
+            "example": "cbd518d6-8daf-42b0-9913-9b374833b3c6",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "multipart/form-data": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "file": {
+                    "type": "string",
+                    "format": "binary"
+                  }
+                },
+                "required": [
+                  "file"
+                ]
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "timestamp": {
+                      "type": "integer"
+                    },
+                    "transaction_id": {
+                      "type": "string"
+                    },
+                    "data": {
+                      "type": "object",
+                      "properties": {
+                        "part_a": {
+                          "type": "object",
+                          "properties": {
+                            "tds": {
+                              "type": "array",
+                              "items": {
+                                "type": "array",
+                                "items": {
+                                  "type": "string"
+                                }
+                              }
+                            },
+                            "assessment_year": {
+                              "type": "string"
+                            },
+                            "employer": {
+                              "type": "object",
+                              "properties": {
+                                "tan": {
+                                  "type": "string"
+                                },
+                                "address": {
+                                  "type": "object",
+                                  "properties": {
+                                    "area": {
+                                      "type": "string"
+                                    },
+                                    "street": {
+                                      "type": "string"
+                                    },
+                                    "city": {
+                                      "type": "string"
+                                    },
+                                    "state": {
+                                      "type": "string"
+                                    },
+                                    "postal_code": {
+                                      "type": "string"
+                                    }
+                                  },
+                                  "required": [
+                                    "area",
+                                    "street",
+                                    "city",
+                                    "state",
+                                    "postal_code"
+                                  ]
+                                },
+                                "name": {
+                                  "type": "string"
+                                },
+                                "pan": {
+                                  "type": "string"
+                                }
+                              },
+                              "required": [
+                                "tan",
+                                "address",
+                                "name",
+                                "pan"
+                              ]
+                            },
+                            "employee": {
+                              "type": "object",
+                              "properties": {
+                                "address": {
+                                  "type": "object",
+                                  "properties": {
+                                    "area": {
+                                      "type": "string"
+                                    },
+                                    "street": {
+                                      "type": "string"
+                                    },
+                                    "city": {
+                                      "type": "string"
+                                    },
+                                    "state": {
+                                      "type": "string"
+                                    },
+                                    "postal_code": {
+                                      "type": "string"
+                                    }
+                                  },
+                                  "required": [
+                                    "area",
+                                    "street",
+                                    "city",
+                                    "state",
+                                    "postal_code"
+                                  ]
+                                },
+                                "last_name": {
+                                  "type": "string"
+                                },
+                                "pan": {
+                                  "type": "string"
+                                },
+                                "middle_name": {
+                                  "type": "string"
+                                },
+                                "first_name": {
+                                  "type": "string"
+                                }
+                              },
+                              "required": [
+                                "address",
+                                "last_name",
+                                "pan",
+                                "middle_name",
+                                "first_name"
+                              ]
+                            }
+                          },
+                          "required": [
+                            "tds",
+                            "assessment_year",
+                            "employer",
+                            "employee"
+                          ]
+                        },
+                        "part_b": {
+                          "type": "object",
+                          "properties": {
+                            "assessment_year": {
+                              "type": "string"
+                            },
+                            "details_of_salary_paid_and_any_other_income_and_tax_deducted": {
+                              "type": "object",
+                              "properties": {
+                                "whether_opting_out_of_taxation_us_115_bac_1_a": {
+                                  "type": "string"
+                                },
+                                "gross_salary": {
+                                  "type": "object",
+                                  "properties": {
+                                    "salary_as_per_provisions_contained_in_section_17_1": {
+                                      "type": "string"
+                                    },
+                                    "value_of_perquisites_us_17_2": {
+                                      "type": "string"
+                                    },
+                                    "profits_in_lieu_of_salary_us_17_3": {
+                                      "type": "string"
+                                    },
+                                    "total": {
+                                      "type": "string"
+                                    },
+                                    "reported_total_amount_of_salary_received_from_other_employer": {
+                                      "type": "string"
+                                    }
+                                  },
+                                  "required": [
+                                    "salary_as_per_provisions_contained_in_section_17_1",
+                                    "value_of_perquisites_us_17_2",
+                                    "profits_in_lieu_of_salary_us_17_3",
+                                    "total",
+                                    "reported_total_amount_of_salary_received_from_other_employer"
+                                  ]
+                                },
+                                "less_allowances_to_the_extent_exempt_us_10": {
+                                  "type": "object",
+                                  "properties": {
+                                    "travel_concession_or_assistance_us_10_5": {
+                                      "type": "string"
+                                    },
+                                    "death_cum_retirement_gratuity_us_10_10": {
+                                      "type": "string"
+                                    },
+                                    "commuted_value_of_pension_us_10_10_a": {
+                                      "type": "string"
+                                    },
+                                    "cash_equivalent_of_leave_salary_encashment_us_10_10_aa": {
+                                      "type": "string"
+                                    },
+                                    "house_rent_allowance_us_10_13_a": {
+                                      "type": "string"
+                                    },
+                                    "other_special_allowances_us_10_14": {
+                                      "type": "string"
+                                    },
+                                    "total_amount_of_any_other_exemption_us_10": {
+                                      "type": "string"
+                                    },
+                                    "total_amount_of_exemption_claimed_us_10": {
+                                      "type": "string"
+                                    }
+                                  },
+                                  "required": [
+                                    "travel_concession_or_assistance_us_10_5",
+                                    "death_cum_retirement_gratuity_us_10_10",
+                                    "commuted_value_of_pension_us_10_10_a",
+                                    "cash_equivalent_of_leave_salary_encashment_us_10_10_aa",
+                                    "house_rent_allowance_us_10_13_a",
+                                    "other_special_allowances_us_10_14",
+                                    "total_amount_of_any_other_exemption_us_10",
+                                    "total_amount_of_exemption_claimed_us_10"
+                                  ]
+                                },
+                                "total_amount_of_salary_received_from_current_employer_1_d_2_i": {
+                                  "type": "string"
+                                },
+                                "less_deduction_us_16": {
+                                  "type": "object",
+                                  "properties": {
+                                    "standard_deduction_us_16_ia": {
+                                      "type": "string"
+                                    },
+                                    "entertainment_allowance_us_16_ii": {
+                                      "type": "string"
+                                    },
+                                    "tax_on_employment_us_16_iii": {
+                                      "type": "string"
+                                    }
+                                  },
+                                  "required": [
+                                    "standard_deduction_us_16_ia",
+                                    "entertainment_allowance_us_16_ii",
+                                    "tax_on_employment_us_16_iii"
+                                  ]
+                                },
+                                "total_amount_of_deductions_us_16": {
+                                  "type": "string"
+                                },
+                                "income_chargeable_under_the_head_salaries": {
+                                  "type": "string"
+                                },
+                                "add_any_other_income_reported_by_employee_us_192_2_b": {
+                                  "type": "object",
+                                  "properties": {
+                                    "income_or_admissible_loss_from_house_property_reported_by_employee_offered_for_TDS": {
+                                      "type": "string"
+                                    },
+                                    "income_under_the_head_other_sources_offered_for_TDS": {
+                                      "type": "string"
+                                    }
+                                  },
+                                  "required": [
+                                    "income_or_admissible_loss_from_house_property_reported_by_employee_offered_for_TDS",
+                                    "income_under_the_head_other_sources_offered_for_TDS"
+                                  ]
+                                },
+                                "total_amount_of_other_income_reported_by_employee_7_a_7_b": {
+                                  "type": "string"
+                                },
+                                "gross_total_income": {
+                                  "type": "string"
+                                },
+                                "deduction_under_chapter_vi_a": {
+                                  "type": "object",
+                                  "properties": {
+                                    "deduction_in_respect_of_life_insurance_premia_contributions_to_provident_fund_etc_us_80_c": {
+                                      "type": "object",
+                                      "properties": {
+                                        "gross_amount": {
+                                          "type": "string"
+                                        },
+                                        "deductible_amount": {
+                                          "type": "string"
+                                        }
+                                      },
+                                      "required": [
+                                        "gross_amount",
+                                        "deductible_amount"
+                                      ]
+                                    },
+                                    "deduction_in_respect_of_contribution_to_certain_pension_funds_us_80_ccc": {
+                                      "type": "object",
+                                      "properties": {
+                                        "gross_amount": {
+                                          "type": "string"
+                                        },
+                                        "deductible_amount": {
+                                          "type": "string"
+                                        }
+                                      },
+                                      "required": [
+                                        "gross_amount",
+                                        "deductible_amount"
+                                      ]
+                                    },
+                                    "deduction_in_respect_of_contribution_by_taxpayer_to_pension_scheme_us_80_ccd_1": {
+                                      "type": "object",
+                                      "properties": {
+                                        "gross_amount": {
+                                          "type": "string"
+                                        },
+                                        "deductible_amount": {
+                                          "type": "string"
+                                        }
+                                      },
+                                      "required": [
+                                        "gross_amount",
+                                        "deductible_amount"
+                                      ]
+                                    },
+                                    "total_deduction_us_80_c_80_ccc_80_ccd_1": {
+                                      "type": "object",
+                                      "properties": {
+                                        "gross_amount": {
+                                          "type": "string"
+                                        },
+                                        "deductible_amount": {
+                                          "type": "string"
+                                        }
+                                      },
+                                      "required": [
+                                        "gross_amount",
+                                        "deductible_amount"
+                                      ]
+                                    },
+                                    "deductions_in_respect_of_amount_paid_deposited_to_notified_pension_scheme_us_80_ccd_1_b": {
+                                      "type": "object",
+                                      "properties": {
+                                        "gross_amount": {
+                                          "type": "string"
+                                        },
+                                        "deductible_amount": {
+                                          "type": "string"
+                                        }
+                                      },
+                                      "required": [
+                                        "gross_amount",
+                                        "deductible_amount"
+                                      ]
+                                    },
+                                    "deduction_in_respect_of_contribution_by_employer_to_pension_scheme_us_80_ccd_2": {
+                                      "type": "object",
+                                      "properties": {
+                                        "gross_amount": {
+                                          "type": "string"
+                                        },
+                                        "deductible_amount": {
+                                          "type": "string"
+                                        }
+                                      },
+                                      "required": [
+                                        "gross_amount",
+                                        "deductible_amount"
+                                      ]
+                                    },
+                                    "deduction_in_respect_of_health_insurance_premia_us_80_d": {
+                                      "type": "object",
+                                      "properties": {
+                                        "gross_amount": {
+                                          "type": "string"
+                                        },
+                                        "deductible_amount": {
+                                          "type": "string"
+                                        }
+                                      },
+                                      "required": [
+                                        "gross_amount",
+                                        "deductible_amount"
+                                      ]
+                                    },
+                                    "deduction_in_respect_of_interest_on_loan_taken_for_higher_education_us_80_e": {
+                                      "type": "object",
+                                      "properties": {
+                                        "gross_amount": {
+                                          "type": "string"
+                                        },
+                                        "deductible_amount": {
+                                          "type": "string"
+                                        }
+                                      },
+                                      "required": [
+                                        "gross_amount",
+                                        "deductible_amount"
+                                      ]
+                                    },
+                                    "deduction_in_respect_of_contribution_by_the_employee_to_agnipath_scheme_us_80_cch": {
+                                      "type": "object",
+                                      "properties": {
+                                        "gross_amount": {
+                                          "type": "string"
+                                        },
+                                        "deductible_amount": {
+                                          "type": "string"
+                                        }
+                                      },
+                                      "required": [
+                                        "gross_amount",
+                                        "deductible_amount"
+                                      ]
+                                    },
+                                    "deduction_in_respect_of_contribution_by_the_central_government_to_agnipath_scheme_us_80_cch": {
+                                      "type": "object",
+                                      "properties": {
+                                        "gross_amount": {
+                                          "type": "string"
+                                        },
+                                        "deductible_amount": {
+                                          "type": "string"
+                                        }
+                                      },
+                                      "required": [
+                                        "gross_amount",
+                                        "deductible_amount"
+                                      ]
+                                    },
+                                    "total_deduction_in_respect_of_donations_to_certain_funds_charitable_institutions_etc_us_80_g": {
+                                      "type": "object",
+                                      "properties": {
+                                        "gross_amount": {
+                                          "type": "string"
+                                        },
+                                        "qualifying_amount": {
+                                          "type": "string"
+                                        },
+                                        "deductible_amount": {
+                                          "type": "string"
+                                        }
+                                      },
+                                      "required": [
+                                        "gross_amount",
+                                        "qualifying_amount",
+                                        "deductible_amount"
+                                      ]
+                                    },
+                                    "deduction_in_respect_of_interest_on_deposits_in_savings_account_us_80_tta": {
+                                      "type": "object",
+                                      "properties": {
+                                        "gross_amount": {
+                                          "type": "string"
+                                        },
+                                        "qualifying_amount": {
+                                          "type": "string"
+                                        },
+                                        "deductible_amount": {
+                                          "type": "string"
+                                        }
+                                      },
+                                      "required": [
+                                        "gross_amount",
+                                        "qualifying_amount",
+                                        "deductible_amount"
+                                      ]
+                                    },
+                                    "total_of_amount_deductible_under_any_other_provisions_of_chapter_vi_a": {
+                                      "type": "object",
+                                      "properties": {
+                                        "gross_amount": {
+                                          "type": "string"
+                                        },
+                                        "qualifying_amount": {
+                                          "type": "string"
+                                        },
+                                        "deductible_amount": {
+                                          "type": "string"
+                                        }
+                                      },
+                                      "required": [
+                                        "gross_amount",
+                                        "qualifying_amount",
+                                        "deductible_amount"
+                                      ]
+                                    }
+                                  },
+                                  "required": [
+                                    "deduction_in_respect_of_life_insurance_premia_contributions_to_provident_fund_etc_us_80_c",
+                                    "deduction_in_respect_of_contribution_to_certain_pension_funds_us_80_ccc",
+                                    "deduction_in_respect_of_contribution_by_taxpayer_to_pension_scheme_us_80_ccd_1",
+                                    "total_deduction_us_80_c_80_ccc_80_ccd_1",
+                                    "deductions_in_respect_of_amount_paid_deposited_to_notified_pension_scheme_us_80_ccd_1_b",
+                                    "deduction_in_respect_of_contribution_by_employer_to_pension_scheme_us_80_ccd_2",
+                                    "deduction_in_respect_of_health_insurance_premia_us_80_d",
+                                    "deduction_in_respect_of_interest_on_loan_taken_for_higher_education_us_80_e",
+                                    "deduction_in_respect_of_contribution_by_the_employee_to_agnipath_scheme_us_80_cch",
+                                    "deduction_in_respect_of_contribution_by_the_central_government_to_agnipath_scheme_us_80_cch",
+                                    "total_deduction_in_respect_of_donations_to_certain_funds_charitable_institutions_etc_us_80_g",
+                                    "deduction_in_respect_of_interest_on_deposits_in_savings_account_us_80_tta",
+                                    "total_of_amount_deductible_under_any_other_provisions_of_chapter_vi_a"
+                                  ]
+                                },
+                                "aggregate_of_deductible_amount_under_chapter_vi_a": {
+                                  "type": "string"
+                                },
+                                "total_taxable_income": {
+                                  "type": "string"
+                                },
+                                "tax_on_total_income": {
+                                  "type": "string"
+                                },
+                                "rebate_us_87_a": {
+                                  "type": "string"
+                                },
+                                "surcharge": {
+                                  "type": "string"
+                                },
+                                "health_and_eduction_cess": {
+                                  "type": "string"
+                                },
+                                "tax_payable_13_15_16_14": {
+                                  "type": "string"
+                                },
+                                "less_relief_us_89": {
+                                  "type": "string"
+                                },
+                                "net_tax_payable": {
+                                  "type": "string"
+                                }
+                              },
+                              "required": [
+                                "whether_opting_out_of_taxation_us_115_bac_1_a",
+                                "gross_salary",
+                                "less_allowances_to_the_extent_exempt_us_10",
+                                "total_amount_of_salary_received_from_current_employer_1_d_2_i",
+                                "less_deduction_us_16",
+                                "total_amount_of_deductions_us_16",
+                                "income_chargeable_under_the_head_salaries",
+                                "add_any_other_income_reported_by_employee_us_192_2_b",
+                                "total_amount_of_other_income_reported_by_employee_7_a_7_b",
+                                "gross_total_income",
+                                "deduction_under_chapter_vi_a",
+                                "aggregate_of_deductible_amount_under_chapter_vi_a",
+                                "total_taxable_income",
+                                "tax_on_total_income",
+                                "rebate_us_87_a",
+                                "surcharge",
+                                "health_and_eduction_cess",
+                                "tax_payable_13_15_16_14",
+                                "less_relief_us_89",
+                                "net_tax_payable"
+                              ]
+                            }
+                          },
+                          "required": [
+                            "assessment_year",
+                            "details_of_salary_paid_and_any_other_income_and_tax_deducted"
+                          ]
+                        }
+                      },
+                      "required": [
+                        "part_a",
+                        "part_b"
+                      ]
+                    },
+                    "code": {
+                      "type": "integer"
+                    }
+                  },
+                  "required": [
+                    "timestamp",
+                    "transaction_id",
+                    "data",
+                    "code"
+                  ]
+                },
+                "example": {
+                  "timestamp": 1738234377586,
+                  "transaction_id": "faa322b4-f461-4663-aca6-96d3baae39e4",
+                  "data": {
+                    "part_a": {
+                      "tds": [
+                        [
+                          "quarter",
+                          "receipt_numbers_of_original_quarterly_statements_of_TDS_under_sub_section_3_of_section_200",
+                          "amount_paid_credited",
+                          "amount_of_tax_deducted",
+                          "amount_of_tax_deposited_remitted"
+                        ],
+                        [
+                          "q1",
+                          "QVKRRNEA",
+                          "488255.15",
+                          "87798.00",
+                          "87798.00"
+                        ],
+                        [
+                          "q2",
+                          "QVMZJYOC",
+                          "480678.43",
+                          "85662.00",
+                          "85662.00"
+                        ],
+                        [
+                          "q3",
+                          "QVOTEBRB",
+                          "529833.35",
+                          "100031.00",
+                          "100031.00"
+                        ],
+                        [
+                          "q4",
+                          "QVQLPEED",
+                          "730892.56",
+                          "153973.81",
+                          "153973.81"
+                        ],
+                        [
+                          "total",
+                          "",
+                          "2229659.49",
+                          "427464.81",
+                          "427464.81"
+                        ]
+                      ],
+                      "assessment_year": "2024-25",
+                      "employer": {
+                        "tan": "MUMJ05980C",
+                        "address": {
+                          "area": "GOREGAON (E)",
+                          "street": "TOWER A BLK9,, NIRLON KNOWLEDGE PARK,, WESTERN EXPRESS HIGHWAY",
+                          "city": "MUMBAI",
+                          "state": "Maharashtra",
+                          "postal_code": "400063"
+                        },
+                        "name": "JP MORGAN SERVICES INDIA PRIVATE LIMITED",
+                        "pan": "AABCD0503B"
+                      },
+                      "employee": {
+                        "address": {
+                          "area": "GHODBUNDER ROAD",
+                          "street": "FLAT NO.1006, BLDG NO.2, VIJAYGALAXY WAGHBIL, NAKA",
+                          "city": "THANE",
+                          "state": "Maharashtra",
+                          "postal_code": "400615"
+                        },
+                        "last_name": "BHAMBHANI",
+                        "pan": "ΑΚΤΡΒ1556D",
+                        "middle_name": "HARESH",
+                        "first_name": "RAHUL"
+                      }
+                    },
+                    "part_b": {
+                      "assessment_year": "2024-25",
+                      "details_of_salary_paid_and_any_other_income_and_tax_deducted": {
+                        "whether_opting_out_of_taxation_us_115_bac_1_a": "Yes",
+                        "gross_salary": {
+                          "salary_as_per_provisions_contained_in_section_17_1": "2228206.00",
+                          "value_of_perquisites_us_17_2": "1453.00",
+                          "profits_in_lieu_of_salary_us_17_3": "0.00",
+                          "total": "2229659.00",
+                          "reported_total_amount_of_salary_received_from_other_employer": "0.00"
+                        },
+                        "less_allowances_to_the_extent_exempt_us_10": {
+                          "travel_concession_or_assistance_us_10_5": "0.00",
+                          "death_cum_retirement_gratuity_us_10_10": "0.00",
+                          "commuted_value_of_pension_us_10_10_a": "0.00",
+                          "cash_equivalent_of_leave_salary_encashment_us_10_10_aa": "0.00",
+                          "house_rent_allowance_us_10_13_a": "0.00",
+                          "other_special_allowances_us_10_14": "0.00",
+                          "total_amount_of_any_other_exemption_us_10": "0.00",
+                          "total_amount_of_exemption_claimed_us_10": "0.00"
+                        },
+                        "total_amount_of_salary_received_from_current_employer_1_d_2_i": "2229659.00",
+                        "less_deduction_us_16": {
+                          "standard_deduction_us_16_ia": "50000.00",
+                          "entertainment_allowance_us_16_ii": "0.00",
+                          "tax_on_employment_us_16_iii": "2500.00"
+                        },
+                        "total_amount_of_deductions_us_16": "52500.00",
+                        "income_chargeable_under_the_head_salaries": "2177159.00",
+                        "add_any_other_income_reported_by_employee_us_192_2_b": {
+                          "income_or_admissible_loss_from_house_property_reported_by_employee_offered_for_TDS": "0.00",
+                          "income_under_the_head_other_sources_offered_for_TDS": "0.00"
+                        },
+                        "total_amount_of_other_income_reported_by_employee_7_a_7_b": "0.00",
+                        "gross_total_income": "2177159.00",
+                        "deduction_under_chapter_vi_a": {
+                          "deduction_in_respect_of_life_insurance_premia_contributions_to_provident_fund_etc_us_80_c": {
+                            "gross_amount": "150000.00",
+                            "deductible_amount": "150000.00"
+                          },
+                          "deduction_in_respect_of_contribution_to_certain_pension_funds_us_80_ccc": {
+                            "gross_amount": "0.00",
+                            "deductible_amount": "0.00"
+                          },
+                          "deduction_in_respect_of_contribution_by_taxpayer_to_pension_scheme_us_80_ccd_1": {
+                            "gross_amount": "0.00",
+                            "deductible_amount": "0.00"
+                          },
+                          "total_deduction_us_80_c_80_ccc_80_ccd_1": {
+                            "gross_amount": "150000.00",
+                            "deductible_amount": "150000.00"
+                          },
+                          "deductions_in_respect_of_amount_paid_deposited_to_notified_pension_scheme_us_80_ccd_1_b": {
+                            "gross_amount": "0.00",
+                            "deductible_amount": "0.00"
+                          },
+                          "deduction_in_respect_of_contribution_by_employer_to_pension_scheme_us_80_ccd_2": {
+                            "gross_amount": "0.00",
+                            "deductible_amount": "0.00"
+                          },
+                          "deduction_in_respect_of_health_insurance_premia_us_80_d": {
+                            "gross_amount": "32079.48",
+                            "deductible_amount": "32079.48"
+                          },
+                          "deduction_in_respect_of_interest_on_loan_taken_for_higher_education_us_80_e": {
+                            "gross_amount": "0.00",
+                            "deductible_amount": "0.00"
+                          },
+                          "deduction_in_respect_of_contribution_by_the_employee_to_agnipath_scheme_us_80_cch": {
+                            "gross_amount": "0.00",
+                            "deductible_amount": "0.00"
+                          },
+                          "deduction_in_respect_of_contribution_by_the_central_government_to_agnipath_scheme_us_80_cch": {
+                            "gross_amount": "0.00",
+                            "deductible_amount": "0.00"
+                          },
+                          "total_deduction_in_respect_of_donations_to_certain_funds_charitable_institutions_etc_us_80_g": {
+                            "gross_amount": "0.00",
+                            "qualifying_amount": "0.00",
+                            "deductible_amount": "0.00"
+                          },
+                          "deduction_in_respect_of_interest_on_deposits_in_savings_account_us_80_tta": {
+                            "gross_amount": "0.00",
+                            "qualifying_amount": "0.00",
+                            "deductible_amount": "0.00"
+                          },
+                          "total_of_amount_deductible_under_any_other_provisions_of_chapter_vi_a": {
+                            "gross_amount": "0.00",
+                            "qualifying_amount": "0.00",
+                            "deductible_amount": "0.00"
+                          }
+                        },
+                        "aggregate_of_deductible_amount_under_chapter_vi_a": "182079.48",
+                        "total_taxable_income": "1995079.52",
+                        "tax_on_total_income": "411023.86",
+                        "rebate_us_87_a": "0.00",
+                        "surcharge": "0.00",
+                        "health_and_eduction_cess": "16440.95",
+                        "tax_payable_13_15_16_14": "427464.81",
+                        "less_relief_us_89": "0.00",
+                        "net_tax_payable": "427464.81"
+                      }
+                    }
+                  },
+                  "code": 200
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "timestamp": {
+                      "type": "integer"
+                    },
+                    "transaction_id": {
+                      "type": "string"
+                    },
+                    "message": {
+                      "type": "string"
+                    },
+                    "code": {
+                      "type": "integer"
+                    }
+                  },
+                  "required": [
+                    "timestamp",
+                    "transaction_id",
+                    "message",
+                    "code"
+                  ]
+                },
+                "example": {
+                  "timestamp": 1728907434930,
+                  "transaction_id": "b2db212d-4dcb-4885-a3a3-81d4ce7cd27b",
+                  "message": "Invalid Content-Type multipart/form-data missing",
+                  "code": 422
+                }
+              }
+            }
+          }
+        },
+        "security": []
       }
     }
   }
