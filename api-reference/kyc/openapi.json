@@ -1454,6 +1454,16 @@
                   "consent",
                   "reason"
                 ]
+              },
+              "examples": {
+                "Generate OTP": {
+                  "value": {
+                    "@entity": "in.co.sandbox.kyc.aadhaar.okyc.otp.request",
+                    "aadhaar_number": "123456789012",
+                    "consent": "y",
+                    "reason": "For KYC"
+                  }
+                }
               }
             }
           }
@@ -1789,6 +1799,15 @@
                   "reference_id",
                   "otp"
                 ]
+              },
+              "examples": {
+                "Verify OTP": {
+                  "value": {
+                    "@entity": "in.co.sandbox.kyc.aadhaar.okyc.request",
+                    "otp": "121212",
+                    "reference_id": "1234567"
+                  }
+                }
               }
             }
           }
@@ -6888,6 +6907,18 @@
                   "consent",
                   "reason"
                 ]
+              },
+              "examples": {
+                "Verify PAN": {
+                  "value": {
+                    "@entity": "in.co.sandbox.kyc.pan_verification.request",
+                    "pan": "XXXPX1234A",
+                    "name_as_per_pan": "John Ronald Doe",
+                    "date_of_birth": "11/11/2001",
+                    "consent": "Y",
+                    "reason": "For onboarding customers"
+                  }
+                }
               }
             }
           }
