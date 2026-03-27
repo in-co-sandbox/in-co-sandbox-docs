@@ -2,42 +2,33 @@
   "openapi": "3.0.0",
   "info": {
     "title": "kyc-internal",
-    "version": "1.0.0",
-    "description": ""
+    "version": "1.0.0"
   },
   "servers": [
     {
-      "url": "{{sandbox_host}}"
+      "url": "https://api.sandbox.co.in"
     },
     {
-      "url": "{{digilocker_sdk_internal_api}}"
-    },
-    {
-      "url": "{{entitylocker_sdk_internal_api}}"
-    },
-    {
-      "url": "{{SBX_HOST}}"
-    },
-    {
-      "url": "{{cryptography_api_base_url}}"
-    },
-    {
-      "url": ""
+      "url": "https://test-api.sandbox.co.in"
     }
   ],
+  "security": [],
+  "components": {},
   "paths": {
     "/kyc/pan/search": {
       "post": {
         "summary": "Search PAN",
+        "operationId": "searchPAN",
         "tags": [
           "PAN"
         ],
         "parameters": [
           {
-            "name": "authorization",
+            "name": "Authorization",
             "in": "header",
+            "description": "JWT access token",
             "required": true,
-            "deprecated": false,
+            "example": "{{access_token}}",
             "schema": {
               "type": "string"
             }
@@ -45,21 +36,100 @@
           {
             "name": "x-api-key",
             "in": "header",
+            "description": "API key for identification",
             "required": true,
-            "deprecated": false,
+            "example": "{{api_key}}",
             "schema": {
               "type": "string"
             }
           },
           {
-            "name": "Cache-Control",
+            "name": "x-api-transaction-id",
+            "in": "header",
+            "description": "Client-supplied identifier for this transaction. Used to correlate requests with your own system's records.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "x-workspace-id",
+            "in": "header",
+            "description": "Identifier for the workspace making the request.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "x-api-version",
             "in": "header",
             "required": false,
-            "description": "pass unique everytime to get non-cached response",
-            "deprecated": false,
-            "schema": {}
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "x-accept-cache",
+            "in": "header",
+            "required": false,
+            "description": "Pass true to accept the cached response. If the header is not passed, or if false is sent as the value, the request will hit the origin.",
+            "schema": {
+              "type": "string"
+            }
           }
         ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "required": [
+                  "@entity",
+                  "pan",
+                  "consent",
+                  "reason"
+                ],
+                "properties": {
+                  "@entity": {
+                    "type": "string",
+                    "enum": [
+                      "in.co.sandbox.kyc.pan_search.request"
+                    ],
+                    "description": "Entity type identifier for the PAN search request."
+                  },
+                  "pan": {
+                    "type": "string",
+                    "description": "10-character Permanent Account Number to look up. Must follow the standard PAN format: five letters, four digits, one letter.",
+                    "pattern": "^[A-Z]{5}[0-9]{4}[A-Z]{1}$",
+                    "minLength": 10,
+                    "maxLength": 10
+                  },
+                  "consent": {
+                    "type": "string",
+                    "enum": [
+                      "Y",
+                      "y"
+                    ],
+                    "description": "Explicit consent from the end user to look up their PAN details. Must be passed as \"Y\" or \"y\" to proceed."
+                  },
+                  "reason": {
+                    "type": "string",
+                    "description": "Purpose for initiating the PAN search, such as identity verification or KYC compliance. Used for audit and compliance traceability.",
+                    "minLength": 1
+                  }
+                }
+              },
+              "example": {
+                "@entity": "in.co.sandbox.kyc.pan_search.request",
+                "pan": "XXXPX1234A",
+                "consent": "y",
+                "reason": "For KYC"
+              }
+            }
+          }
+        },
         "responses": {
           "200": {
             "description": "200 - OK",
@@ -67,85 +137,180 @@
               "application/json": {
                 "schema": {
                   "type": "object",
+                  "required": [
+                    "code",
+                    "timestamp",
+                    "transaction_id",
+                    "data"
+                  ],
                   "properties": {
                     "code": {
-                      "type": "integer"
+                      "type": "integer",
+                      "description": "HTTP status code of the response."
                     },
                     "timestamp": {
-                      "type": "integer"
+                      "type": "integer",
+                      "description": "Unix timestamp in milliseconds indicating when the response was generated."
                     },
                     "transaction_id": {
-                      "type": "string"
+                      "type": "string",
+                      "format": "uuid",
+                      "description": "Unique identifier for this API transaction, used for support and traceability."
                     },
                     "data": {
                       "type": "object",
+                      "required": [
+                        "@entity",
+                        "pan",
+                        "status",
+                        "category"
+                      ],
                       "properties": {
                         "@entity": {
-                          "type": "string"
+                          "type": "string",
+                          "enum": [
+                            "in.co.sandbox.kyc.pan_search.response"
+                          ],
+                          "description": "Entity type identifier for the PAN search response."
                         },
                         "status": {
-                          "type": "string"
+                          "type": "string",
+                          "enum": [
+                            "valid",
+                            "invalid"
+                          ],
+                          "description": "Validity status of the PAN as reported by the income tax authority."
+                        },
+                        "message": {
+                          "type": "string",
+                          "nullable": true,
+                          "description": "Additional context about the result, typically present when status is invalid."
                         },
                         "pan": {
-                          "type": "string"
+                          "type": "string",
+                          "description": "The queried PAN.",
+                          "pattern": "^[A-Z]{5}[0-9]{4}[A-Z]{1}$",
+                          "minLength": 10,
+                          "maxLength": 10
                         },
                         "full_name": {
-                          "type": "string"
+                          "type": "string",
+                          "nullable": true,
+                          "description": "Full name of the PAN holder as registered with the income tax authority."
+                        },
+                        "name_pan_card": {
+                          "type": "string",
+                          "nullable": true,
+                          "description": "Name as printed on the PAN card. May differ from full_name, which reflects the income tax database record."
                         },
                         "category": {
-                          "type": "string"
+                          "type": "string",
+                          "enum": [
+                            "Individual",
+                            "Company",
+                            "Firm",
+                            "HUF",
+                            "Trust",
+                            "Government",
+                            "Body of Individuals",
+                            "Association of Persons",
+                            "Local Authority",
+                            "Artificial Judicial Person",
+                            "Pan not Available"
+                          ],
+                          "description": "Category of the PAN holder, derived from the fourth character of the PAN."
                         },
                         "gender": {
-                          "type": "string"
+                          "type": "string",
+                          "nullable": true,
+                          "description": "Gender of the PAN holder. Returns null for non-individual categories such as companies and firms."
                         },
                         "date_of_birth": {
-                          "type": "string"
+                          "type": "string",
+                          "nullable": true,
+                          "description": "Date of birth of an individual, or date of incorporation for a company or firm. Format: DD-MM-YYYY."
                         },
                         "masked_aadhaar_number": {
-                          "type": "string"
+                          "type": "string",
+                          "nullable": true,
+                          "description": "Aadhaar number with the first eight digits masked, shown only when Aadhaar is linked to the PAN. Returns null for non-individual categories."
                         },
                         "email": {
                           "type": "string",
-                          "format": "email"
+                          "format": "email",
+                          "nullable": true,
+                          "description": "Email address registered with the PAN."
                         },
                         "mobile_number": {
-                          "type": "string"
+                          "type": "string",
+                          "nullable": true,
+                          "description": "Mobile number registered with the PAN."
                         },
                         "first_name": {
-                          "type": "string"
+                          "type": "string",
+                          "nullable": true,
+                          "description": "First name of the PAN holder. For non-individual categories, this field contains the full registered name."
                         },
                         "middle_name": {
-                          "type": "string"
+                          "type": "string",
+                          "nullable": true,
+                          "description": "Middle name of the PAN holder. Returns null when not available or for non-individual categories."
                         },
                         "last_name": {
-                          "type": "string"
+                          "type": "string",
+                          "nullable": true,
+                          "description": "Last name of the PAN holder. Returns null for non-individual categories."
                         },
                         "aadhaar_seeding_status": {
-                          "type": "string"
+                          "type": "string",
+                          "enum": [
+                            "y",
+                            "n",
+                            "na"
+                          ],
+                          "description": "Indicates whether the PAN is linked to an Aadhaar number. \"y\" means linked, \"n\" means not linked, \"na\" means not applicable for non-individual categories."
                         },
                         "address": {
                           "type": "object",
+                          "nullable": true,
+                          "description": "Address of the PAN holder as registered with the income tax authority.",
                           "properties": {
                             "@entity": {
-                              "type": "string"
+                              "type": "string",
+                              "enum": [
+                                "in.co.sandbox.kyc.pan_search.address"
+                              ],
+                              "description": "Entity type identifier for the address object."
                             },
                             "full_address": {
-                              "type": "string"
+                              "type": "string",
+                              "nullable": true,
+                              "description": "Complete address as a single formatted string."
                             },
                             "street": {
-                              "type": "string"
+                              "type": "string",
+                              "nullable": true,
+                              "description": "Street or locality component of the address."
                             },
                             "city": {
-                              "type": "string"
+                              "type": "string",
+                              "nullable": true,
+                              "description": "City component of the address."
                             },
                             "state": {
-                              "type": "string"
+                              "type": "string",
+                              "nullable": true,
+                              "description": "State component of the address."
                             },
                             "pincode": {
-                              "type": "integer"
+                              "type": "integer",
+                              "nullable": true,
+                              "description": "6-digit postal code."
                             },
                             "country": {
-                              "type": "string"
+                              "type": "string",
+                              "nullable": true,
+                              "description": "Country component of the address."
                             }
                           }
                         }
@@ -155,6 +320,7 @@
                 },
                 "examples": {
                   "successful response for individual": {
+                    "summary": "Successful response for individual",
                     "value": {
                       "code": 200,
                       "timestamp": 1763727760000,
@@ -164,7 +330,7 @@
                         "status": "valid",
                         "pan": "XXXPX1234A",
                         "full_name": "AARAV SHARMA",
-                        "category": "individual",
+                        "category": "Individual",
                         "gender": "male",
                         "date_of_birth": "21-04-1985",
                         "masked_aadhaar_number": "XXXXXXXXX012",
@@ -176,7 +342,7 @@
                         "aadhaar_seeding_status": "y",
                         "address": {
                           "@entity": "in.co.sandbox.kyc.pan_search.address",
-                          "full_address": "Mangal Kanaka Niwas, Main Cross 3rd, Bengaluru, Bengaluru-Karnataka, India ",
+                          "full_address": "Mangal Kanaka Niwas, Main Cross 3rd, Bengaluru, Bengaluru-Karnataka, India",
                           "street": "Main Cross 3rd",
                           "city": "Bengaluru",
                           "state": "Karnataka",
@@ -187,6 +353,7 @@
                     }
                   },
                   "successful response for company": {
+                    "summary": "Successful response for company",
                     "value": {
                       "code": 200,
                       "timestamp": 1717082916254,
@@ -196,7 +363,7 @@
                         "status": "valid",
                         "pan": "XXXCX1234A",
                         "full_name": "JOHN DOE TECHNOLOGIES PRIVATE LIMITED",
-                        "category": "company",
+                        "category": "Company",
                         "gender": null,
                         "date_of_birth": "02-10-2008",
                         "masked_aadhaar_number": null,
@@ -207,7 +374,7 @@
                         "last_name": null,
                         "middle_name": null,
                         "address": {
-                          "@entity": "in.co.sandbox.kyc.pan_details.address",
+                          "@entity": "in.co.sandbox.kyc.pan_search.address",
                           "full_address": "Quarter - A, Block - B Sample Area, ABC Street MUMBAI MAHARASTRA INDIA 700011",
                           "street": "ABC Street",
                           "city": "MUMBAI",
@@ -219,6 +386,7 @@
                     }
                   },
                   "invalid pan": {
+                    "summary": "Invalid PAN",
                     "value": {
                       "code": 200,
                       "timestamp": 1763727760000,
@@ -226,7 +394,7 @@
                       "data": {
                         "@entity": "in.co.sandbox.kyc.pan_search.response",
                         "pan": "XXXFX1234J",
-                        "category": "firm",
+                        "category": "Firm",
                         "status": "invalid"
                       }
                     }
@@ -241,23 +409,35 @@
               "application/json": {
                 "schema": {
                   "type": "object",
+                  "required": [
+                    "code",
+                    "timestamp",
+                    "transaction_id",
+                    "message"
+                  ],
                   "properties": {
                     "code": {
-                      "type": "integer"
+                      "type": "integer",
+                      "description": "HTTP status code of the response."
                     },
                     "timestamp": {
-                      "type": "integer"
+                      "type": "integer",
+                      "description": "Unix timestamp in milliseconds indicating when the response was generated."
                     },
                     "transaction_id": {
-                      "type": "string"
+                      "type": "string",
+                      "format": "uuid",
+                      "description": "Unique identifier for this API transaction, used for support and traceability."
                     },
                     "message": {
-                      "type": "string"
+                      "type": "string",
+                      "description": "Human-readable description of the validation error."
                     }
                   }
                 },
                 "examples": {
                   "invalid pan pattern": {
+                    "summary": "Invalid PAN pattern",
                     "value": {
                       "code": 422,
                       "timestamp": 1763727760000,
@@ -266,6 +446,7 @@
                     }
                   },
                   "consent required": {
+                    "summary": "Consent required",
                     "value": {
                       "code": 422,
                       "timestamp": 1718020448513,
@@ -274,6 +455,7 @@
                     }
                   },
                   "reason cannot be empty": {
+                    "summary": "Reason cannot be empty",
                     "value": {
                       "code": 422,
                       "timestamp": 1718020660106,
@@ -285,42 +467,56 @@
               }
             }
           }
-        },
-        "requestBody": {
-          "content": {
-            "application/json": {
-              "schema": {
-                "type": "object",
-                "properties": {
-                  "@entity": {
-                    "type": "string"
-                  },
-                  "pan": {
-                    "type": "string"
-                  },
-                  "consent": {
-                    "type": "string"
-                  },
-                  "reason": {
-                    "type": "string"
-                  }
-                }
-              }
-            }
-          }
         }
       }
     },
-    "/kyc/pan/basic": {
-      "post": {
+    "/pans/{pan}/verify": {
+      "get": {
         "summary": "PAN Verification [Basic]",
+        "operationId": "verifyPANBasic",
         "tags": [
-          "Deprecated"
+          "PAN"
         ],
         "parameters": [
           {
+            "name": "pan",
+            "in": "path",
+            "description": "10-character Permanent Account Number to verify. Must follow the standard PAN format: five letters, four digits, one letter.",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "pattern": "^[A-Z]{5}[0-9]{4}[A-Z]{1}$"
+            }
+          },
+          {
+            "name": "consent",
+            "in": "query",
+            "description": "Explicit consent from the end user to verify their PAN details. Must be passed as \"Y\" or \"y\" to proceed.",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "enum": [
+                "Y",
+                "y"
+              ]
+            }
+          },
+          {
+            "name": "reason",
+            "in": "query",
+            "description": "Purpose for initiating the PAN verification, such as identity verification or KYC compliance. Used for audit and compliance traceability.",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "minLength": 1
+            }
+          },
+          {
             "name": "Authorization",
             "in": "header",
+            "description": "JWT access token",
+            "required": true,
+            "example": "{{access_token}}",
             "schema": {
               "type": "string"
             }
@@ -328,13 +524,44 @@
           {
             "name": "x-api-key",
             "in": "header",
+            "description": "API key for identification",
+            "required": true,
+            "example": "{{api_key}}",
             "schema": {
               "type": "string"
             }
           },
           {
-            "name": "version",
+            "name": "x-api-transaction-id",
             "in": "header",
+            "description": "Client-supplied identifier for this transaction. Used to correlate requests with your own system's records.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "x-workspace-id",
+            "in": "header",
+            "description": "Identifier for the workspace making the request.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "x-api-version",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "x-accept-cache",
+            "in": "header",
+            "required": false,
+            "description": "Pass true to accept the cached response. If the header is not passed, or if false is sent as the value, the request will hit the origin.",
             "schema": {
               "type": "string"
             }
@@ -347,40 +574,85 @@
               "application/json": {
                 "schema": {
                   "type": "object",
+                  "required": [
+                    "code",
+                    "timestamp",
+                    "transaction_id",
+                    "data"
+                  ],
                   "properties": {
                     "code": {
-                      "type": "integer"
+                      "type": "integer",
+                      "description": "HTTP status code of the response."
                     },
                     "timestamp": {
-                      "type": "integer"
+                      "type": "integer",
+                      "description": "Unix timestamp in milliseconds indicating when the response was generated."
                     },
                     "transaction_id": {
-                      "type": "string"
+                      "type": "string",
+                      "format": "uuid",
+                      "description": "Unique identifier for this API transaction, used for support and traceability."
                     },
                     "data": {
                       "type": "object",
+                      "required": [
+                        "@entity",
+                        "pan",
+                        "status",
+                        "category"
+                      ],
                       "properties": {
                         "@entity": {
-                          "type": "string"
+                          "type": "string",
+                          "enum": [
+                            "pan"
+                          ],
+                          "description": "Entity type identifier for the PAN verification response."
                         },
                         "pan": {
-                          "type": "string"
+                          "type": "string",
+                          "description": "The verified PAN.",
+                          "pattern": "^[A-Z]{5}[0-9]{4}[A-Z]{1}$",
+                          "minLength": 10,
+                          "maxLength": 10
                         },
                         "full_name": {
-                          "type": "string"
+                          "type": "string",
+                          "description": "Full name of the PAN holder as registered with the income tax authority."
                         },
                         "status": {
-                          "type": "string"
+                          "type": "string",
+                          "enum": [
+                            "VALID",
+                            "INVALID"
+                          ],
+                          "description": "Validity status of the PAN as reported by the income tax authority."
                         },
                         "category": {
-                          "type": "string"
+                          "type": "string",
+                          "enum": [
+                            "Individual",
+                            "Company",
+                            "Firm",
+                            "HUF",
+                            "Trust",
+                            "Government",
+                            "Body of Individuals",
+                            "Association of Persons",
+                            "Local Authority",
+                            "Artificial Judicial Person",
+                            "Pan not Available"
+                          ],
+                          "description": "Category of the PAN holder, derived from the fourth character of the PAN."
                         }
                       }
                     }
                   }
                 },
                 "examples": {
-                  "Success (Individual)": {
+                  "successful response for individual": {
+                    "summary": "Successful response for individual",
                     "value": {
                       "code": 200,
                       "timestamp": 1688557921287,
@@ -389,20 +661,6 @@
                         "@entity": "pan",
                         "pan": "XXXPX1234A",
                         "full_name": "JOHN RONALD DOE",
-                        "status": "VALID",
-                        "category": "Individual"
-                      }
-                    }
-                  },
-                  "PAN Verification [shivam]": {
-                    "value": {
-                      "code": 200,
-                      "timestamp": 1710323346882,
-                      "transaction_id": "e2a5c7e0-9f34-4a3b-a748-6382e09a62cc",
-                      "data": {
-                        "@entity": "in.co.sandbox.kyc.pan.response",
-                        "pan": "KGJPK1169R",
-                        "full_name": "SHIVAM KANSAGARA",
                         "status": "VALID",
                         "category": "Individual"
                       }
@@ -418,90 +676,41 @@
               "application/json": {
                 "schema": {
                   "type": "object",
+                  "required": [
+                    "code",
+                    "timestamp",
+                    "transaction_id",
+                    "message"
+                  ],
                   "properties": {
                     "code": {
-                      "type": "integer"
+                      "type": "integer",
+                      "description": "HTTP status code of the response."
                     },
                     "timestamp": {
-                      "type": "integer"
+                      "type": "integer",
+                      "description": "Unix timestamp in milliseconds indicating when the response was generated."
                     },
                     "transaction_id": {
-                      "type": "string"
+                      "type": "string",
+                      "format": "uuid",
+                      "description": "Unique identifier for this API transaction, used for support and traceability."
                     },
                     "message": {
-                      "type": "string"
+                      "type": "string",
+                      "description": "Human-readable description of the validation error."
                     }
                   }
                 },
                 "examples": {
                   "Invalid PAN": {
+                    "summary": "Invalid PAN pattern",
                     "value": {
                       "code": 422,
                       "timestamp": 1707480990556,
                       "transaction_id": "8e4d4578-28d0-4f23-bf0f-3f1b5a0c2f7b",
                       "message": "Invalid Pan pattern"
                     }
-                  }
-                }
-              }
-            }
-          },
-          "default": {
-            "description": "PAN Verification [Basic]",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "object",
-                  "properties": {
-                    "code": {
-                      "type": "integer"
-                    },
-                    "timestamp": {
-                      "type": "integer"
-                    },
-                    "transaction_id": {
-                      "type": "string"
-                    },
-                    "data": {
-                      "type": "object",
-                      "properties": {
-                        "@entity": {
-                          "type": "string"
-                        },
-                        "pan": {
-                          "type": "string"
-                        },
-                        "full_name": {
-                          "type": "string"
-                        },
-                        "status": {
-                          "type": "string"
-                        },
-                        "category": {
-                          "type": "string"
-                        }
-                      }
-                    }
-                  }
-                }
-              }
-            }
-          }
-        },
-        "requestBody": {
-          "content": {
-            "application/json": {
-              "schema": {
-                "type": "object",
-                "properties": {
-                  "pan": {
-                    "type": "string"
-                  },
-                  "consent": {
-                    "type": "string"
-                  },
-                  "reason": {
-                    "type": "string"
                   }
                 }
               }
