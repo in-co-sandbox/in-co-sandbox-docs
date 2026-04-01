@@ -44,24 +44,6 @@
             }
           },
           {
-            "name": "x-api-transaction-id",
-            "in": "header",
-            "description": "Client-supplied identifier for this transaction. Used to correlate requests with your own system's records.",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "x-workspace-id",
-            "in": "header",
-            "description": "Identifier for the workspace making the request.",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
             "name": "x-api-version",
             "in": "header",
             "required": false,
@@ -470,7 +452,7 @@
         }
       }
     },
-    "/pans/{pan}/verify": {
+    "/kyc/pan/basic": {
       "get": {
         "summary": "PAN Verification [Basic]",
         "operationId": "verifyPANBasic",
@@ -527,24 +509,6 @@
             "description": "API key for identification",
             "required": true,
             "example": "{{api_key}}",
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "x-api-transaction-id",
-            "in": "header",
-            "description": "Client-supplied identifier for this transaction. Used to correlate requests with your own system's records.",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "x-workspace-id",
-            "in": "header",
-            "description": "Identifier for the workspace making the request.",
-            "required": true,
             "schema": {
               "type": "string"
             }
