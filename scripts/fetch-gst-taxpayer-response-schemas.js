@@ -4,6 +4,7 @@ const path = require('path');
 const ROOT = path.resolve(__dirname, '..');
 const MDX_ROOT = path.join(ROOT, 'api-reference', 'gst', 'compliance', 'endpoints', 'taxpayer');
 const DATA_ROOT = path.join(ROOT, 'data', 'gst', 'schema', 'request', 'taxpayer');
+const REPORT_FILE = path.join(MDX_ROOT, 'schema-status-report.md');
 const PORTAL_BASE = 'https://developer.gst.gov.in/pages/apiportal/data';
 const RAW_BASE = 'https://raw.githubusercontent.com/in-co-sandbox/in-co-sandbox-docs/refs/heads/main/';
 
@@ -86,6 +87,11 @@ const EXPLICIT_MAPPINGS = {
     apiName: 'All - GET PREFERENCE',
     version: VERSIONS.RETURNS_PREFERENCE,
   },
+  'common/save_filing_preference.mdx': {
+    moduleFolder: 'Returns',
+    apiName: 'All - SAVE PREFERENCE',
+    version: VERSIONS.RETURNS_PREFERENCE,
+  },
   'common/gst_return_status.mdx': {
     moduleFolder: 'Returns',
     apiName: 'All - Get Return Status',
@@ -100,6 +106,26 @@ const EXPLICIT_MAPPINGS = {
     moduleFolder: 'Returns',
     apiName: 'GSTR2B - Get All Details',
     version: VERSIONS.GSTR2B,
+  },
+  'gstr-2b/regenerate_gstr_2b.mdx': {
+    moduleFolder: 'Returns',
+    apiName: 'GSTR2B - Generate 2B On Demand API',
+    version: VERSIONS.GSTR2B,
+  },
+  'gstr-1/file/file.mdx': {
+    moduleFolder: 'Returns',
+    apiName: 'GSTR1 - File Gstr1',
+    version: VERSIONS.GSTR1,
+  },
+  'gstr-1/file/new_proceed.mdx': {
+    moduleFolder: 'Returns',
+    apiName: 'All - New Proceed to File(for GSTR6,GSTR5,GSTR1)',
+    version: VERSIONS.RETURNS,
+  },
+  'gstr-1/file/reset.mdx': {
+    moduleFolder: 'Returns',
+    apiName: 'GSTR1 - Reset GSTR1',
+    version: VERSIONS.GSTR1,
   },
   'gstr-2b/gstr_2b_regeneration_status.mdx': {
     moduleFolder: 'Returns',
@@ -121,15 +147,40 @@ const EXPLICIT_MAPPINGS = {
     apiName: 'GSTR9 - Get Autocalculated Details',
     version: VERSIONS.GSTR9,
   },
+  'gstr-9/file.mdx': {
+    moduleFolder: 'Returns',
+    apiName: 'GSTR9 - File GSTR9',
+    version: VERSIONS.GSTR9,
+  },
   'gstr-9/gstr_9_details.mdx': {
     moduleFolder: 'Returns',
     apiName: 'GSTR9 - Get Details',
+    version: VERSIONS.GSTR9,
+  },
+  'gstr-9/proceed.mdx': {
+    moduleFolder: 'Returns',
+    apiName: 'All - Proceed to File',
+    version: VERSIONS.RETURNS,
+  },
+  'gstr-9/save.mdx': {
+    moduleFolder: 'Returns',
+    apiName: 'GSTR9 - Save GSTR9 data',
     version: VERSIONS.GSTR9,
   },
   'gstr-9/section_8a_details.mdx': {
     moduleFolder: 'Returns',
     apiName: 'GSTR9 - Get 8A Details',
     version: VERSIONS.GSTR9,
+  },
+  'invoices/reset.mdx': {
+    moduleFolder: 'Returns',
+    apiName: 'IMS - Reset IMS Action',
+    version: VERSIONS.IMS,
+  },
+  'invoices/save.mdx': {
+    moduleFolder: 'Returns',
+    apiName: 'IMS - Save IMS Action',
+    version: VERSIONS.IMS,
   },
 };
 
@@ -156,12 +207,54 @@ function toPosix(inputPath) {
   return inputPath.split(path.sep).join('/');
 }
 
+function parseArguments() {
+  const options = {
+    method: 'GET',
+    scope: 'all',
+    syncReport: false,
+  };
+
+  for (const arg of process.argv.slice(2)) {
+    if (arg.startsWith('--method=')) {
+      options.method = arg.split('=')[1].toUpperCase();
+    } else if (arg.startsWith('--scope=')) {
+      options.scope = arg.split('=')[1].toLowerCase();
+    } else if (arg === '--sync-report') {
+      options.syncReport = true;
+    }
+  }
+
+  if (!['GET', 'POST'].includes(options.method)) {
+    throw new Error(`Unsupported method filter: ${options.method}`);
+  }
+
+  if (!['all', 'report'].includes(options.scope)) {
+    throw new Error(`Unsupported scope: ${options.scope}`);
+  }
+
+  return options;
+}
+
 function encodeSegment(segment) {
   return encodeURIComponent(segment).replace(/%2F/g, '/');
 }
 
 function getRelativeMdxPath(filePath) {
   return toPosix(path.relative(MDX_ROOT, filePath));
+}
+
+function getMethodFromContent(content) {
+  const openapiMatch = content.match(/^openapi:\s*'.*? (GET|POST|PUT|PATCH|DELETE) .+?'$/m);
+  return openapiMatch ? openapiMatch[1] : null;
+}
+
+function getSchemaType(method) {
+  return method === 'GET' ? 'response' : 'request';
+}
+
+function hasSchemaCard(content, schemaType) {
+  const heading = schemaType === 'response' ? 'Response body schema' : 'Request body schema';
+  return new RegExp(`## ${heading}[\\s\\S]*?<CardGroup>`, 'm').test(content);
 }
 
 function getPortalMapping(relativePath) {
@@ -215,13 +308,16 @@ function getPortalMapping(relativePath) {
   return null;
 }
 
-function getResponseSchemaCard(href) {
+function getSchemaCard(schemaType, href) {
+  const heading = schemaType === 'response' ? 'Response body schema' : 'Request body schema';
+  const title = schemaType === 'response' ? 'View response body schema' : 'View request body schema';
+
   return [
-    '## Response body schema',
+    `## ${heading}`,
     '',
     '<CardGroup>',
     '  <Card',
-    '    title="View response body schema"',
+    `    title="${title}"`,
     '    icon="code"',
     `    href="${href}"`,
     '    arrow="true"',
@@ -232,12 +328,13 @@ function getResponseSchemaCard(href) {
   ].join('\n');
 }
 
-function insertResponseSchemaCard(content, href) {
-  if (content.includes('## Response body schema')) {
+function insertSchemaCard(content, schemaType, href) {
+  const heading = schemaType === 'response' ? 'Response body schema' : 'Request body schema';
+  if (content.includes(`## ${heading}`)) {
     return content;
   }
 
-  const card = getResponseSchemaCard(href);
+  const card = getSchemaCard(schemaType, href);
   const frontmatterMatch = content.match(/^---\r?\n[\s\S]*?\r?\n---\r?\n?/);
 
   if (!frontmatterMatch) {
@@ -287,9 +384,9 @@ async function fetchPortalAsset(url, expectedType) {
   return { buffer, contentType };
 }
 
-async function downloadSchemaAsset(mapping) {
+async function downloadSchemaAsset(mapping, schemaType) {
   const basePath = [PORTAL_BASE, encodeSegment(mapping.moduleFolder), encodeSegment(mapping.apiName), encodeSegment(mapping.version)].join('/');
-  const jsonUrl = `${basePath}/${encodeSegment(`${mapping.apiName} response_schema.json`)}`;
+  const jsonUrl = `${basePath}/${encodeSegment(`${mapping.apiName} ${schemaType}_schema.json`)}`;
   const jsonResult = await fetchPortalAsset(jsonUrl, 'json');
   if (jsonResult) {
     return { extension: '.json', sourceUrl: jsonUrl, buffer: jsonResult.buffer };
@@ -312,19 +409,105 @@ function writeSchemaFile(relativePath, extension, buffer) {
   return toPosix(outputRelativePath);
 }
 
-function getGetPagesWithoutResponseCard() {
+function getFilesWithoutSchemaCard(methodFilter) {
   return walk(MDX_ROOT).filter((filePath) => {
     const content = fs.readFileSync(filePath, 'utf8');
-    const openapiMatch = content.match(/^openapi:\s*'.*? (GET|POST|PUT|PATCH|DELETE) .+?'$/m);
-    if (!openapiMatch || openapiMatch[1] !== 'GET') {
+    const method = getMethodFromContent(content);
+    if (!method) {
       return false;
     }
-    return !content.includes('## Response body schema');
+
+    if (methodFilter === 'GET' && method !== 'GET') {
+      return false;
+    }
+
+    if (methodFilter === 'POST' && method !== 'POST' && method !== 'PUT') {
+      return false;
+    }
+
+    return !hasSchemaCard(content, getSchemaType(method));
   });
 }
 
+function getMissingFilesFromReport(methodFilter) {
+  const report = fs.readFileSync(REPORT_FILE, 'utf8');
+  const files = [];
+
+  for (const line of report.split(/\r?\n/)) {
+    const match = line.match(/^\|\s*(GET|POST|PUT|PATCH|DELETE)\s*\|\s*`([^`]+)`\s*\|\s*([^|]+?)\s*\|\s*(Present|Missing)\s*\|$/);
+    if (!match) {
+      continue;
+    }
+
+    const [, method, filePath, , status] = match;
+    if (status !== 'Missing') {
+      continue;
+    }
+
+    if (methodFilter === 'GET' && method !== 'GET') {
+      continue;
+    }
+
+    if (methodFilter === 'POST' && method !== 'POST' && method !== 'PUT') {
+      continue;
+    }
+
+    const absolutePath = path.join(ROOT, filePath.replace(/\//g, path.sep));
+    if (fs.existsSync(absolutePath)) {
+      files.push(absolutePath);
+    }
+  }
+
+  return files;
+}
+
+function syncReportFile() {
+  const lines = fs.readFileSync(REPORT_FILE, 'utf8').split(/\r?\n/);
+  let presentCount = 0;
+  let missingCount = 0;
+
+  const updatedLines = lines.map((line) => {
+    const match = line.match(/^\|\s*(GET|POST|PUT|PATCH|DELETE)\s*\|\s*`([^`]+)`\s*\|\s*([^|]+?)\s*\|\s*(Present|Missing)\s*\|$/);
+    if (!match) {
+      return line;
+    }
+
+    const [, method, filePath, expectedSchema] = match;
+    const absolutePath = path.join(ROOT, filePath.replace(/\//g, path.sep));
+
+    let nextStatus = 'Missing';
+    if (fs.existsSync(absolutePath)) {
+      const content = fs.readFileSync(absolutePath, 'utf8');
+      nextStatus = hasSchemaCard(content, getSchemaType(method)) ? 'Present' : 'Missing';
+    }
+
+    if (nextStatus === 'Present') {
+      presentCount += 1;
+    } else {
+      missingCount += 1;
+    }
+
+    return `| ${method} | \`${filePath}\` | ${expectedSchema.trim()} | ${nextStatus} |`;
+  }).map((line) => {
+    if (/^\| Present \|/.test(line)) {
+      return `| Present | ${presentCount} |`;
+    }
+
+    if (/^\| Missing \|/.test(line)) {
+      return `| Missing | ${missingCount} |`;
+    }
+
+    return line;
+  });
+
+  fs.writeFileSync(REPORT_FILE, `${updatedLines.join('\n')}\n`, 'utf8');
+}
+
 async function main() {
-  const files = getGetPagesWithoutResponseCard();
+  const options = parseArguments();
+  const files = options.scope === 'report'
+    ? getMissingFilesFromReport(options.method)
+    : getFilesWithoutSchemaCard(options.method);
   const updated = [];
   const skipped = [];
   const failed = [];
@@ -333,7 +516,11 @@ async function main() {
     const relativePath = getRelativeMdxPath(filePath);
 
     try {
-      if (SKIPPED_FILES[relativePath]) {
+      const content = fs.readFileSync(filePath, 'utf8');
+      const method = getMethodFromContent(content);
+      const schemaType = getSchemaType(method);
+
+      if (schemaType === 'response' && SKIPPED_FILES[relativePath]) {
         skipped.push({ relativePath, reason: SKIPPED_FILES[relativePath] });
         continue;
       }
@@ -344,21 +531,22 @@ async function main() {
         continue;
       }
 
-      const asset = await downloadSchemaAsset(mapping);
+      const asset = await downloadSchemaAsset(mapping, schemaType);
       if (!asset) {
-        failed.push({ relativePath, reason: 'No response schema JSON or Excel asset found on the GST portal.', mapping });
+        failed.push({ relativePath, reason: `No ${schemaType} schema JSON or Excel asset found on the GST portal.`, mapping });
         continue;
       }
 
       const schemaRelativePath = writeSchemaFile(relativePath, asset.extension, asset.buffer);
       const href = `${RAW_BASE}${schemaRelativePath}`;
 
-      const content = fs.readFileSync(filePath, 'utf8');
-      const updatedContent = insertResponseSchemaCard(content, href);
+      const updatedContent = insertSchemaCard(content, schemaType, href);
       fs.writeFileSync(filePath, updatedContent, 'utf8');
 
       updated.push({
         relativePath,
+        method,
+        schemaType,
         apiName: mapping.apiName,
         version: mapping.version,
         asset: schemaRelativePath,
@@ -367,6 +555,10 @@ async function main() {
     } catch (error) {
       failed.push({ relativePath, reason: error.message });
     }
+  }
+
+  if (options.syncReport) {
+    syncReportFile();
   }
 
   console.log(JSON.stringify({ updated, skipped, failed }, null, 2));
