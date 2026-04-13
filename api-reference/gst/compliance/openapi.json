@@ -15,6 +15,530 @@
     }
   ],
   "paths": {
+    "/gst/compliance/public/gstrs/preference": {
+      "post": {
+        "tags": [
+          "Public"
+        ],
+        "summary": "Get Return Preference",
+        "description": "API to get Return preference for taxpayers",
+        "operationId": "getReturnPreference",
+        "parameters": [
+          {
+            "name": "Authorization",
+            "in": "header",
+            "description": "JWT Authorization token",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "x-accept-cache",
+            "in": "header",
+            "description": "Pass true to get cached response.",
+            "schema": {
+              "type": "boolean"
+            },
+            "required": false
+          },
+          {
+            "name": "x-api-key",
+            "in": "header",
+            "description": "Public key required to authorize API access.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "x-api-version",
+            "in": "header",
+            "description": "API version",
+            "schema": {
+              "type": "string",
+              "default": "1.0.0"
+            },
+            "required": false
+          },
+          {
+            "name": "financial_year",
+            "in": "query",
+            "description": "Financial year for which the return preference is requested",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "example": "FY 2025-26"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "required": [
+                  "gstin"
+                ],
+                "properties": {
+                  "gstin": {
+                    "type": "string",
+                    "description": "GSTIN for which the return preference is requested"
+                  }
+                }
+              },
+              "examples": {
+                "Monthly preference": {
+                  "value": {
+                    "gstin": "27ABCDE1234F1Z5"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "200 Monthly preference",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "code": {
+                      "type": "number",
+                      "example": 200
+                    },
+                    "data": {
+                      "type": "object",
+                      "properties": {
+                        "data": {
+                          "type": "object",
+                          "properties": {
+                            "response": {
+                              "type": "array",
+                              "items": {
+                                "type": "object",
+                                "properties": {
+                                  "preference": {
+                                    "type": "string",
+                                    "example": "M",
+                                    "description": "Return filing preference"
+                                  },
+                                  "quarter": {
+                                    "type": "string",
+                                    "example": "Q1",
+                                    "description": "Quarter for which the preference applies"
+                                  }
+                                },
+                                "required": [
+                                  "preference",
+                                  "quarter"
+                                ]
+                              },
+                              "example": [
+                                {
+                                  "preference": "M",
+                                  "quarter": "Q1"
+                                },
+                                {
+                                  "preference": "M",
+                                  "quarter": "Q2"
+                                },
+                                {
+                                  "preference": "M",
+                                  "quarter": "Q3"
+                                },
+                                {
+                                  "preference": "M",
+                                  "quarter": "Q4"
+                                }
+                              ]
+                            }
+                          },
+                          "required": [
+                            "response"
+                          ]
+                        },
+                        "status_cd": {
+                          "type": "string",
+                          "example": "1"
+                        }
+                      },
+                      "required": [
+                        "data",
+                        "status_cd"
+                      ]
+                    },
+                    "timestamp": {
+                      "type": "number",
+                      "example": 1775825033134
+                    },
+                    "transaction_id": {
+                      "type": "string",
+                      "example": "903962ca-bc29-45c5-b879-3e51c7f9887d"
+                    }
+                  },
+                  "required": [
+                    "code",
+                    "data",
+                    "timestamp",
+                    "transaction_id"
+                  ]
+                },
+                "examples": {
+                  "200 Monthly preference": {
+                    "value": {
+                      "code": 200,
+                      "timestamp": 1775825033134,
+                      "data": {
+                        "data": {
+                          "response": [
+                            {
+                              "preference": "M",
+                              "quarter": "Q1"
+                            },
+                            {
+                              "preference": "M",
+                              "quarter": "Q2"
+                            },
+                            {
+                              "preference": "M",
+                              "quarter": "Q3"
+                            },
+                            {
+                              "preference": "M",
+                              "quarter": "Q4"
+                            }
+                          ]
+                        },
+                        "status_cd": "1"
+                      },
+                      "transaction_id": "903962ca-bc29-45c5-b879-3e51c7f9887d"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/gst/compliance/public/gstin/verify": {
+      "post": {
+        "tags": [
+          "Public"
+        ],
+        "summary": "Verify GSTIN",
+        "description": "Validate GST-registered businesses by passing their GSTIN and return basic taxpayer registration details.",
+        "operationId": "verifyGstin",
+        "parameters": [
+          {
+            "name": "Authorization",
+            "in": "header",
+            "description": "JWT access token",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "x-accept-cache",
+            "in": "header",
+            "description": "Pass true to accept the cached response. If the header is not passed, or if false is sent as the value, the request will hit the origin.",
+            "schema": {
+              "type": "boolean"
+            },
+            "required": false
+          },
+          {
+            "name": "x-api-key",
+            "in": "header",
+            "description": "API key for identification",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "x-api-version",
+            "in": "header",
+            "description": "API version",
+            "schema": {
+              "type": "string",
+              "default": "1.0.0"
+            },
+            "required": false
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "required": [
+                  "gstin"
+                ],
+                "properties": {
+                  "gstin": {
+                    "type": "string",
+                    "description": "GSTIN of the taxpayer"
+                  }
+                }
+              },
+              "examples": {
+                "Valid GSTIN": {
+                  "value": {
+                    "gstin": "24ABKCS2033B1ZV"
+                  }
+                },
+                "Cancelled GSTIN": {
+                  "value": {
+                    "gstin": "33EIUPS5109E1ZZ"
+                  }
+                },
+                "NRI GSTIN": {
+                  "value": {
+                    "gstin": "9917SGP29002OSR"
+                  }
+                },
+                "Bank GSTIN": {
+                  "value": {
+                    "gstin": "24AAACS8577K1ZV"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "200 Valid GSTIN / 200 Cancelled GSTIN / 200 NRI GSTIN / 200 Bank GSTIN",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "code": {
+                      "type": "number",
+                      "example": 200
+                    },
+                    "data": {
+                      "type": "object",
+                      "properties": {
+                        "data": {
+                          "type": "object",
+                          "properties": {
+                            "legalName": {
+                              "type": "string",
+                              "example": "SANDBOX FINANCIAL TECHNOLOGIES PRIVATE LIMITED",
+                              "description": "Legal name of the taxpayer"
+                            },
+                            "bussNature": {
+                              "type": "string",
+                              "example": "Service Provider and Others",
+                              "description": "Business nature of the taxpayer"
+                            },
+                            "stateName": {
+                              "type": "string",
+                              "example": "Gujarat",
+                              "description": "State name"
+                            },
+                            "validGstin": {
+                              "type": "boolean",
+                              "example": true,
+                              "description": "Whether the GSTIN is valid"
+                            },
+                            "stateCode": {
+                              "type": "string",
+                              "example": "24",
+                              "description": "State code"
+                            },
+                            "pan": {
+                              "type": "string",
+                              "example": "ABKCS2033B",
+                              "description": "PAN of the taxpayer"
+                            },
+                            "gstin": {
+                              "type": "string",
+                              "example": "24ABKCS2033B1ZV",
+                              "description": "GST Identification Number"
+                            },
+                            "regStartDate": {
+                              "type": "string",
+                              "example": "06/02/2023",
+                              "description": "Registration start date"
+                            },
+                            "status": {
+                              "type": "string",
+                              "example": "Active",
+                              "description": "GST registration status"
+                            }
+                          },
+                          "required": [
+                            "legalName",
+                            "bussNature",
+                            "stateName",
+                            "validGstin",
+                            "stateCode",
+                            "pan",
+                            "gstin",
+                            "regStartDate",
+                            "status"
+                          ]
+                        },
+                        "status_cd": {
+                          "type": "string",
+                          "example": "1"
+                        }
+                      },
+                      "required": [
+                        "data",
+                        "status_cd"
+                      ]
+                    },
+                    "timestamp": {
+                      "type": "number",
+                      "example": 1775824753133
+                    },
+                    "transaction_id": {
+                      "type": "string",
+                      "example": "31ac0ccf-39b6-42e0-9646-aebf47d8d980"
+                    }
+                  }
+                },
+                "examples": {
+                  "200 Valid GSTIN": {
+                    "value": {
+                      "code": 200,
+                      "timestamp": 1775824753133,
+                      "data": {
+                        "data": {
+                          "legalName": "SANDBOX FINANCIAL TECHNOLOGIES PRIVATE LIMITED",
+                          "bussNature": "Service Provider and Others",
+                          "stateName": "Gujarat",
+                          "validGstin": true,
+                          "stateCode": "24",
+                          "pan": "ABKCS2033B",
+                          "gstin": "24ABKCS2033B1ZV",
+                          "regStartDate": "06/02/2023",
+                          "status": "Active"
+                        },
+                        "status_cd": "1"
+                      },
+                      "transaction_id": "31ac0ccf-39b6-42e0-9646-aebf47d8d980"
+                    }
+                  },
+                  "200 Cancelled GSTIN": {
+                    "value": {
+                      "code": 200,
+                      "timestamp": 1775824883550,
+                      "data": {
+                        "data": {
+                          "legalName": "SRINIVASAN",
+                          "bussNature": "Service Provider and Others",
+                          "stateName": "Tamil Nadu",
+                          "validGstin": true,
+                          "stateCode": "33",
+                          "pan": "EIUPS5109E",
+                          "gstin": "33EIUPS5109E1ZZ",
+                          "regStartDate": "11/02/2021",
+                          "status": "Cancelled on application of Taxpayer"
+                        },
+                        "status_cd": "1"
+                      },
+                      "transaction_id": "e0d44d67-957a-48d1-8cd5-f48879a1bde4"
+                    }
+                  },
+                  "200 NRI GSTIN": {
+                    "value": {
+                      "code": 200,
+                      "timestamp": 1775824954977,
+                      "data": {
+                        "data": {
+                          "legalName": "LINKEDIN SINGAPORE PTE. LTD.",
+                          "bussNature": "",
+                          "stateName": "CBIC",
+                          "validGstin": true,
+                          "stateCode": "99",
+                          "pan": "AADCL0508Q",
+                          "gstin": "9917SGP29002OSR",
+                          "regStartDate": "01/07/2017",
+                          "status": "Active"
+                        },
+                        "status_cd": "1"
+                      },
+                      "transaction_id": "c1d91a87-fe0d-471f-8e69-02a9fe363383"
+                    }
+                  },
+                  "200 Bank GSTIN": {
+                    "value": {
+                      "code": 200,
+                      "timestamp": 1775824996094,
+                      "data": {
+                        "data": {
+                          "legalName": "STATE BANK OF INDIA",
+                          "bussNature": "Service Provider and Others",
+                          "stateName": "Gujarat",
+                          "validGstin": true,
+                          "stateCode": "24",
+                          "pan": "AAACS8577K",
+                          "gstin": "24AAACS8577K1ZV",
+                          "regStartDate": "01/07/2017",
+                          "status": "Active"
+                        },
+                        "status_cd": "1"
+                      },
+                      "transaction_id": "dd61da24-1e0b-4956-ab37-28d99bee75ef"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Invalid GSTIN pattern",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "code": {
+                      "type": "number",
+                      "example": 422
+                    },
+                    "message": {
+                      "type": "string",
+                      "example": "Invalid GSTIN pattern"
+                    },
+                    "timestamp": {
+                      "type": "number",
+                      "example": 1775824753133
+                    },
+                    "transaction_id": {
+                      "type": "string",
+                      "example": "71060364-7cc1-4436-84d7-3bdf4a47de55"
+                    }
+                  }
+                },
+                "examples": {
+                  "Invalid GSTIN pattern": {
+                    "value": {
+                      "code": 422,
+                      "message": "Invalid GSTIN pattern",
+                      "timestamp": 1775824753133,
+                      "transaction_id": "71060364-7cc1-4436-84d7-3bdf4a47de55"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "deprecated": false,
+        "security": []
+      }
+    },
     "/gst/compliance/public/gstin/search": {
       "post": {
         "tags": [
