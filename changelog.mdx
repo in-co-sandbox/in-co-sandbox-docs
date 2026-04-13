@@ -4,6 +4,43 @@ description: "Changelog for Sandbox APIs"
 rss: "true"
 ---
 
+<Update label="April 10th, 2026" tags={["Feature"]}>
+  ## **GST Public APIs – Verify GSTIN & Get Return Preference**
+
+  Two new public APIs are now available in the GST Compliance suite. These endpoints do not require taxpayer authentication, making them suitable for KYC and pre-filing checks.
+
+  1. [**Verify GSTIN**](/api-reference/gst/compliance/endpoints/public/verify_gstin)
+     Validate a GSTIN and retrieve the associated taxpayer registration details. Use this to confirm whether a GSTIN is active and valid before initiating transactions.
+
+  2. [**Get Return Preference**](/api-reference/gst/compliance/endpoints/public/get_preference)
+     Retrieve the return filing preferences configured for a taxpayer. This helps determine the filing frequency and form types applicable to a GSTIN.
+</Update>
+
+<Update label="January 30th, 2026" tags={["Feature"]}>
+  ## **GST Compliance – New GSTR-1, GSTR-2A & IMS endpoints**
+
+  New endpoints across GSTR-1, GSTR-2A, and Invoice Management System (IMS) for authenticated taxpayers.
+
+  **GSTR-1 – New document types**
+
+  - [**TXP**](/api-reference/gst/compliance/endpoints/taxpayer/gstr-1/documents/txp) – Get tax payer details for a return period
+  - [**TXPA**](/api-reference/gst/compliance/endpoints/taxpayer/gstr-1/documents/txpa) – Get tax payer amendment details for a return period
+  - [**ECOM**](/api-reference/gst/compliance/endpoints/taxpayer/gstr-1/documents/ecom) – Get e-commerce details for a return period
+  - [**ECOMA**](/api-reference/gst/compliance/endpoints/taxpayer/gstr-1/documents/ecoma) – Get e-commerce amendment details for a return period
+  - [**SUPECO**](/api-reference/gst/compliance/endpoints/taxpayer/gstr-1/documents/supeco) – Get supplies through e-commerce details for a return period
+  - [**SUPECOA**](/api-reference/gst/compliance/endpoints/taxpayer/gstr-1/documents/supecoa) – Get supplies through e-commerce amendment details for a return period
+
+  **GSTR-2A – E-commerce sections**
+
+  - [**ECOM**](/api-reference/gst/compliance/endpoints/taxpayer/gstr-2a/ecom) – Get all ECOM details in GSTR-2A for a return period
+  - [**ECOMA**](/api-reference/gst/compliance/endpoints/taxpayer/gstr-2a/ecoma) – Get amended ECOM details in GSTR-2A for a return period
+
+  **IMS – Supplier view**
+
+  - [**Get Sales Invoices**](/api-reference/gst/compliance/endpoints/taxpayer/invoices/sales) – Retrieve sales invoices with recipient action statuses
+  - [**Get Added Back Liability Records**](/api-reference/gst/compliance/endpoints/taxpayer/invoices/added-back-liabilities) – Retrieve invoices previously rejected by recipients and added back for liability consideration
+</Update>
+
 <Update label="Feburary 19th, 2026" tags={["Feature"]}>
   ## **DigiLocker APIs – Verify User & Get User Profile**
 
