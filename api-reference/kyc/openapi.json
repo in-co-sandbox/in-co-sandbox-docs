@@ -1,7 +1,7 @@
 {
   "openapi": "3.1.0",
   "info": {
-    "title": "in-co-sandbox-kyc-postman",
+    "title": "in-co-sandbox-kyc",
     "description": "",
     "version": "1.0.0"
   },
@@ -280,7 +280,7 @@
             "in": "path",
             "description": "Session identifier generated during DigiLocker SDK [Create Session API](https://developer.sandbox.co.in/api-reference/kyc/digilocker-sdk/endpoints/create-session) .",
             "required": true,
-            "example": "{{session_id}}",
+            "example": "839fd8a0-d645-42e1-a904-bb43353b0139",
             "schema": {
               "type": "string"
             }
@@ -473,7 +473,7 @@
             "in": "path",
             "description": "Session identifier generated during DigiLocker SDK [Create Session API](https://developer.sandbox.co.in/api-reference/kyc/digilocker-sdk/endpoints/create-session) .",
             "required": true,
-            "example": "{{session_id}}",
+            "example": "4b4bf7aa-f4da-47a8-9b32-895edfc03630",
             "schema": {
               "type": "string"
             }
@@ -762,7 +762,7 @@
             "in": "path",
             "description": "Session identifier generated during DigiLocker SDK [Create Session API](https://developer.sandbox.co.in/api-reference/kyc/digilocker-sdk/endpoints/create-session) .",
             "required": true,
-            "example": "{{session_id}}",
+            "example": "6a4779c9-b11a-457e-ae56-bbb1fdd3dd2c",
             "schema": {
               "type": "string"
             }
@@ -879,24 +879,18 @@
                     "summary": "200 - OK",
                     "value": {
                       "code": 200,
-                      "timestamp": 1751975529441,
+                      "timestamp": 1777276051968,
                       "data": {
-                        "files": [
-                          {
-                            "@entity": "org.quicko.drive.file",
-                            "url": "https://in-co-sandbox-kyc-digilocker-dev.s3.ap-south-1.amazonaws.com/non-persistent/e385432b-575c-4b6f-8928-79136dbc0d4f/4b4bf7aa-f4da-47a8-9b32-895edfc03630/in.gov.uidai-ADHAR-0d5fe4d692c73e23c59a694eaaabc75a.xml?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Credential=%2F20250708%2Fap-south-1%2Fs3%2Faws4_request&X-Amz-Date=20250708T115214Z&X-Amz-Expires=3600&X-Amz-Signature=8cc4b0e8eb3794601c7fdb7e85f3a6bb3a8e1842403c8aeae5c05b7af03bdadb&X-Amz-SignedHeaders=host&x-amz-checksum-mode=ENABLED&x-id=GetObject",
-                            "size": 16598,
-                            "metadata": {
-                              "ContentType": "application/xml",
-                              "issuer_id": "in.gov.uidai",
-                              "issuer": "Unique Identification Authority of India (UIDAI)",
-                              "LastModified": "09/05/2025",
-                              "description": "Aadhaar Card"
-                            }
-                          }
-                        ]
+                        "id": "b5522c8f-2321-577b-8e73-ae1366d9c591",
+                        "@entity": "in.co.sandbox.kyc.digilocker.user.profile",
+                        "date_of_birth": "18/08/2003",
+                        "mobile": "9004813042",
+                        "name": "Anurag Bansal",
+                        "gender": "male",
+                        "eaadhaar": true,
+                        "email": ""
                       },
-                      "transaction_id": "a4d43b74-0f9c-480c-9300-f011100b674b"
+                      "transaction_id": "6e76fc24-2491-4582-8a03-685fbda4acf7"
                     }
                   }
                 }
@@ -1370,7 +1364,7 @@
             "in": "path",
             "description": "Session identifier generated during DigiLocker [Initiate Session API](https://developer.sandbox.co.in/api-reference/kyc/digilocker/endpoints/initiate_session) .",
             "required": true,
-            "example": "{{session_id}}",
+            "example": "839fd8a0-d645-42e1-a904-bb43353b0139",
             "schema": {
               "type": "string"
             }
@@ -1494,7 +1488,7 @@
             "in": "path",
             "description": "Session identifier generated during DigiLocker [Initiate Session API](https://developer.sandbox.co.in/api-reference/kyc/digilocker/endpoints/initiate_session) .",
             "required": true,
-            "example": "{{session_id}}",
+            "example": "b5522c8f-2321-577b-8e73-ae1366d9c591",
             "schema": {
               "type": "string"
             }
@@ -1605,6 +1599,20 @@
                     "data",
                     "transaction_id"
                   ]
+                },
+                "example": {
+                  "code": 200,
+                  "timestamp": 1744874068219,
+                  "data": {
+                    "id": "b5522c8f-2321-577b-8e73-ae1366d9c591",
+                    "@entity": "in.co.sandbox.kyc.digilocker.user.profile",
+                    "date_of_birth": 1071145000000,
+                    "mobile": "9825013730",
+                    "name": "Kaival Mehta",
+                    "gender": "male",
+                    "eaadhaar": true
+                  },
+                  "transaction_id": "0793c784-fcaa-44d9-b8fc-f6a382a67f70"
                 }
               }
             },
@@ -1630,7 +1638,7 @@
             "in": "path",
             "description": "Session identifier generated during DigiLocker [Initiate Session API](https://developer.sandbox.co.in/api-reference/kyc/digilocker/endpoints/initiate_session) .",
             "required": true,
-            "example": "{{session_id}}",
+            "example": "4b4bf7aa-f4da-47a8-9b32-895edfc03630",
             "schema": {
               "type": "string"
             }
@@ -1640,7 +1648,7 @@
             "in": "path",
             "description": "Document type identifying which DigiLocker document to retrieve. Must match one of the consented doc_types values.",
             "required": true,
-            "example": "{{doc_type}}",
+            "example": "aadhaar",
             "schema": {
               "type": "string",
               "enum": [
@@ -1809,9 +1817,9 @@
                 "200 - OTP Generated": {
                   "value": {
                     "@entity": "in.co.sandbox.kyc.aadhaar.okyc.otp.request",
-                    "aadhaar_number": "{{aadhaar_number}}",
-                    "consent": "{{consent}}",
-                    "reason": "{{reason}}"
+                    "aadhaar_number": "123456789012",
+                    "consent": "y",
+                    "reason": "For KYC"
                   },
                   "summary": "200 - OTP Generated"
                 },
@@ -1863,18 +1871,18 @@
                 "422 - Invalid Aadhaar number pattern": {
                   "value": {
                     "@entity": "in.co.sandbox.kyc.aadhaar.okyc.otp.request",
-                    "aadhaar_number": "{{aadhaar_number}}",
-                    "consent": "{{consent}}",
-                    "reason": "{{reason}}"
+                    "aadhaar_number": "1234567890123",
+                    "consent": "y",
+                    "reason": "For KYC"
                   },
                   "summary": "422 - Invalid Aadhaar number pattern"
                 },
                 "503 - Source Unavailable": {
                   "value": {
                     "@entity": "in.co.sandbox.kyc.aadhaar.okyc.otp.request",
-                    "aadhaar_number": "{{aadhaar_number}}",
-                    "consent": "{{consent}}",
-                    "reason": "{{reason}}"
+                    "aadhaar_number": "123456789020",
+                    "consent": "y",
+                    "reason": "For KYC"
                   },
                   "summary": "503 - Source Unavailable"
                 }
@@ -2177,8 +2185,8 @@
                 "200 - Success": {
                   "value": {
                     "@entity": "in.co.sandbox.kyc.aadhaar.okyc.request",
-                    "reference_id": "{{ref_id}}",
-                    "otp": "{{otp}}"
+                    "reference_id": "1234567",
+                    "otp": "121212"
                   },
                   "summary": "200 - Success"
                 },
@@ -2209,22 +2217,23 @@
                 "422 - OTP missing in request": {
                   "value": {
                     "@entity": "in.co.sandbox.kyc.aadhaar.okyc.request",
-                    "reference_id": "{{ref_id}}",
-                    "otp": "{{otp}}"
+                    "ref_id": "1234567",
+                    "otp": ""
                   },
                   "summary": "422 - OTP missing in request"
                 },
                 "503 - Source Unavailable": {
                   "value": {
                     "@entity": "in.co.sandbox.kyc.aadhaar.okyc.request",
-                    "reference_id": "{{ref_id}}",
-                    "otp": "{{otp}}"
+                    "reference_id": "1234567",
+                    "otp": "112233"
                   },
                   "summary": "503 - Source Unavailable"
                 }
               }
             }
-          }
+          },
+          "required": true
         },
         "responses": {
           "200": {
@@ -2551,7 +2560,7 @@
             "in": "path",
             "description": "11-digit alpha-numeric code used to identify the bank branches",
             "required": true,
-            "example": "{{ifsc}}",
+            "example": "HDFC0001234",
             "schema": {
               "type": "string",
               "pattern": "^[A-Za-z]{4}[a-zA-Z0-9]{7}$"
@@ -2716,7 +2725,7 @@
       "get": {
         "summary": "Bank Account Verification [Penny-Drop]",
         "deprecated": false,
-        "description": "Bank account verification or penny drop check as is commonly referred to is a way to verify the authenticity of a customer's bank account. This operation can be used to verify a bank account and ifsc code combination. The operation will return a success response (billable) in two cases:\n\n1. The bank account or ifsc code or both are invalid\n2. The bank account and ifsc combination are verified",
+        "description": "",
         "operationId": "verifyBankUsingPennyDrop",
         "tags": [
           "kyc",
@@ -2728,7 +2737,7 @@
             "in": "path",
             "description": "11-digit alpha-numeric code used to identify the bank branches",
             "required": true,
-            "example": "",
+            "example": "SBIN0021745",
             "schema": {
               "type": "string",
               "pattern": "^[A-Za-z]{4}[a-zA-Z0-9]{7}$"
@@ -2739,7 +2748,7 @@
             "in": "path",
             "description": "Bank account number. Max length: 40 characters",
             "required": true,
-            "example": "",
+            "example": "40100123456781",
             "schema": {
               "type": "string"
             }
@@ -3169,7 +3178,7 @@
             "in": "path",
             "description": "11-digit alpha-numeric code used to identify the bank branches",
             "required": true,
-            "example": "",
+            "example": "SBIN0021745",
             "schema": {
               "type": "string",
               "pattern": "^[A-Za-z]{4}[a-zA-Z0-9]{7}$"
@@ -3180,7 +3189,7 @@
             "in": "path",
             "description": "Bank account number. Max length: 40 characters",
             "required": true,
-            "example": "",
+            "example": "60100123456781",
             "schema": {
               "type": "string"
             }
@@ -3556,11 +3565,11 @@
                 "200 - Sucess Individual": {
                   "value": {
                     "@entity": "in.co.sandbox.kyc.pan_verification.request",
-                    "pan": "{{pan}}",
-                    "name_as_per_pan": "{{name}}",
-                    "date_of_birth": "{{date_of_birth}}",
-                    "consent": "{{consent}}",
-                    "reason": "{{reason}}"
+                    "pan": "XXXPX1234A",
+                    "name_as_per_pan": "John Ronald Doe",
+                    "date_of_birth": "11/11/2001",
+                    "consent": "Y",
+                    "reason": "For onboarding customers"
                   },
                   "summary": "200 - Sucess Individual"
                 },
@@ -3643,23 +3652,22 @@
                 },
                 "422 - Invalid PAN Pattern": {
                   "value": {
-                    "@entity": "in.co.sandbox.kyc.pan_verification.request",
-                    "pan": "{{pan}}",
-                    "name_as_per_pan": "{{name}}",
-                    "date_of_birth": "{{date_of_birth}}",
-                    "consent": "{{consent}}",
-                    "reason": "{{reason}}"
+                    "pan": "XXXPX123EE",
+                    "name_as_per_pan": "Bob Hope",
+                    "date_of_birth": "10/11/1999",
+                    "consent": "Y",
+                    "reason": "For onboarding customers"
                   },
                   "summary": "422 - Invalid PAN Pattern"
                 },
                 "503 - Source Unavailable": {
                   "value": {
                     "@entity": "in.co.sandbox.kyc.pan_verification.request",
-                    "pan": "{{pan}}",
-                    "name_as_per_pan": "{{name}}",
-                    "date_of_birth": "{{date_of_birth}}",
-                    "consent": "{{consent}}",
-                    "reason": "{{reason}}"
+                    "pan": "XXXPX1234Z",
+                    "name_as_per_pan": "John Ronald Doe",
+                    "date_of_birth": "11/11/2001",
+                    "consent": "Y",
+                    "reason": "For onboarding customers"
                   },
                   "summary": "503 - Source Unavailable"
                 }
@@ -3967,10 +3975,10 @@
                 "200 - Success": {
                   "value": {
                     "@entity": "in.co.sandbox.kyc.pan_aadhaar.status",
-                    "pan": "{{pan}}",
-                    "aadhaar_number": "{{aadhaar_number}}",
-                    "consent": "{{consent}}",
-                    "reason": "{{reason}}"
+                    "pan": "XXXPX1234A",
+                    "aadhaar_number": "123456789012",
+                    "consent": "y",
+                    "reason": "For Testing"
                   },
                   "summary": "200 - Success"
                 },
@@ -4007,10 +4015,10 @@
                 "422 - Individual pan required": {
                   "value": {
                     "@entity": "in.co.sandbox.kyc.pan_aadhaar.status",
-                    "pan": "{{pan}}",
-                    "aadhaar_number": "{{aadhaar_number}}",
-                    "consent": "{{consent}}",
-                    "reason": "{{reason}}"
+                    "pan": "XXPP45X",
+                    "aadhaar_number": "666666666666",
+                    "consent": "y",
+                    "reason": "For Testing"
                   },
                   "summary": "422 - Individual pan required"
                 },
@@ -4236,9 +4244,9 @@
                 "200 - Success (LLP)": {
                   "value": {
                     "@entity": "in.co.sandbox.kyc.mca.master_data.request",
-                    "id": "{{cin}}",
-                    "consent": "{{consent}}",
-                    "reason": "{{reason}}"
+                    "id": "ABC-1234",
+                    "consent": "y",
+                    "reason": "For Company KYC"
                   },
                   "summary": "200 - Success (LLP)"
                 },
@@ -4797,18 +4805,18 @@
                 "200 - Success": {
                   "value": {
                     "@entity": "in.co.sandbox.kyc.mca.master_data.request",
-                    "id": "{{din}}",
-                    "consent": "{{consent}}",
-                    "reason": "{{reason}}"
+                    "id": "9999999",
+                    "consent": "y",
+                    "reason": "For Director KYC"
                   },
                   "summary": "200 - Success"
                 },
                 "422 - Invalid DIN": {
                   "value": {
                     "@entity": "in.co.sandbox.kyc.mca.master_data.request",
-                    "id": "{{din}}",
-                    "consent": "{{consent}}",
-                    "reason": "{{reason}}"
+                    "id": "9999991",
+                    "consent": "y",
+                    "reason": "For Director KYC"
                   },
                   "summary": "422 - Invalid DIN"
                 }
@@ -4831,7 +4839,7 @@
                     "value": {
                       "code": 200,
                       "timestamp": 1000000000000,
-                      "transaction_id": "88511b7a-7118-43b2-b8ba-6ac80e489d87",
+                      "transaction_id": "48a196a7-e1c3-44da-b833-fe705af36f32",
                       "data": {
                         "@entity": "in.co.sandbox.kyc.mca.director",
                         "director_data": {
@@ -5085,7 +5093,7 @@
             "in": "path",
             "description": "Session identifier generated during EntityLocker [Initiate Session API](https://developer.sandbox.co.in/api-reference/kyc/entitylocker/endpoints/initiate_session) .",
             "required": true,
-            "example": "{{session_id}}",
+            "example": "139fd8a0-d645-42e1-a904-bb43353b0139",
             "schema": {
               "type": "string"
             }
@@ -5272,7 +5280,7 @@
             "in": "path",
             "description": "Session identifier generated during EntityLocker [Initiate Session API](https://developer.sandbox.co.in/api-reference/kyc/entitylocker/endpoints/initiate_session) .",
             "required": true,
-            "example": "{{session_id}}",
+            "example": "eed074e1-3bf0-4733-bc5a-4718fced542e",
             "schema": {
               "type": "string"
             }
@@ -5282,7 +5290,7 @@
             "in": "path",
             "description": "Document type identifying which EntityLocker document to retrieve. Must match one of the consented doc_types values.",
             "required": true,
-            "example": "udhyam_certificate",
+            "example": "company_master_details",
             "schema": {
               "type": "string",
               "enum": [
@@ -5504,7 +5512,7 @@
             "in": "path",
             "description": "Session identifier generated during EntityLocker [Initiate Session API](https://developer.sandbox.co.in/api-reference/kyc/entitylocker/endpoints/initiate_session) .",
             "required": true,
-            "example": "{{session_id}}",
+            "example": "c4124d99-4854-446f-9b04-b8f8c12785d0",
             "schema": {
               "type": "string"
             }
@@ -5662,7 +5670,7 @@
             "in": "path",
             "description": "Session identifier generated during EntityLocker [Initiate Session API](https://developer.sandbox.co.in/api-reference/kyc/entitylocker/endpoints/initiate_session) .",
             "required": true,
-            "example": "{{session_id}}",
+            "example": "7603165e-e591-4342-bb19-1d9f4caabb0f",
             "schema": {
               "type": "string"
             }
@@ -5985,7 +5993,7 @@
             "in": "path",
             "description": "Session identifier generated during EntityLocker SDK [Create Session API](https://developer.sandbox.co.in/api-reference/kyc/entitylocker-sdk/endpoints/create_session) .",
             "required": true,
-            "example": "{{sdk_session_id}}",
+            "example": "5ed01344-d9b2-4b44-b0c7-e2901c834999",
             "schema": {
               "type": "string"
             }
@@ -6433,17 +6441,16 @@
       }
     }
   },
-  "components": {
-    "schemas": {},
-    "responses": {},
-    "securitySchemes": {}
-  },
+  "webhooks": {},
+  "components": {},
   "servers": [
     {
-      "url": "https://api.sandbox.co.in"
+      "url": "https://api.sandbox.co.in",
+      "description": "prod"
     },
     {
-      "url": "https://test-api.sandbox.co.in"
+      "url": "https://test-api.sandbox.co.in",
+      "description": "test"
     }
   ],
   "security": []
