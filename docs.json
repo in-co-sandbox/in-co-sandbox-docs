@@ -305,6 +305,7 @@
                         "group": "GSTR-1",
                         "pages": [
                           "api-reference/gst/compliance/guides/taxpayer/gstr-1/overview",
+                          "api-reference/gst/compliance/endpoints/taxpayer/gstr-1/documents/gstr_1",
                           {
                             "group": "GSTR-1 Documents",
                             "pages": [
@@ -336,7 +337,6 @@
                           {
                             "group": "File GSTR-1",
                             "pages": [
-                              "api-reference/gst/compliance/endpoints/taxpayer/gstr-1/documents/gstr_1",
                               "api-reference/gst/compliance/endpoints/taxpayer/gstr-1/file/save",
                               "api-reference/gst/compliance/endpoints/taxpayer/common/gst_return_status",
                               "api-reference/gst/compliance/endpoints/taxpayer/gstr-1/file/new_proceed",
@@ -378,10 +378,10 @@
                         "group": "GSTR-3B",
                         "pages": [
                           "api-reference/gst/compliance/guides/taxpayer/gstr-3b/overview",
+                          "api-reference/gst/compliance/endpoints/taxpayer/gstr-3b/gstr_3b_details",
                           {
                             "group": "File GSTR-3B",
                             "pages": [
-                              "api-reference/gst/compliance/endpoints/taxpayer/gstr-3b/gstr_3b_details",
                               "api-reference/gst/compliance/endpoints/taxpayer/gstr-3b/auto_liability_calc",
                               "api-reference/gst/compliance/endpoints/taxpayer/gstr-3b/save",
                               "api-reference/gst/compliance/endpoints/taxpayer/common/gst_return_status",
@@ -1009,37 +1009,37 @@
                     ]
                   },
                   {
-                        "group": "Capital gains",
-                        "hidden": false,
+                    "group": "Capital gains",
+                    "hidden": false,
+                    "pages": [
+                      {
+                        "group": "All assets",
+                        "hidden": true,
+                        "pages": [
+                          "api-reference/it/report/capital_gains/all_assets/submit_job",
+                          "api-reference/it/report/capital_gains/all_assets/job_status"
+                        ]
+                      },
+                      {
+                        "group": "Securities",
                         "pages": [
                           {
-                            "group": "All assets",
-                             "hidden": true,
+                            "group": "Domestic",
                             "pages": [
-                              "api-reference/it/report/capital_gains/all_assets/submit_job",
-                              "api-reference/it/report/capital_gains/all_assets/job_status"
+                              "api-reference/it/report/capital_gains/securities/domestic/submit_job",
+                              "api-reference/it/report/capital_gains/securities/domestic/job_status"
                             ]
                           },
                           {
-                            "group": "Securities",
+                            "group": "Foreign",
                             "pages": [
-                              {
-                                "group": "Domestic",
-                                "pages": [
-                                  "api-reference/it/report/capital_gains/securities/domestic/submit_job",
-                                  "api-reference/it/report/capital_gains/securities/domestic/job_status"
-                                ]
-                              },
-                              {
-                                "group": "Foreign",
-                                "pages": [
-                                  "api-reference/it/report/capital_gains/securities/foreign/submit_job",
-                                  "api-reference/it/report/capital_gains/securities/foreign/job_status"
-                                ]
-                              }
+                              "api-reference/it/report/capital_gains/securities/foreign/submit_job",
+                              "api-reference/it/report/capital_gains/securities/foreign/job_status"
                             ]
                           }
                         ]
+                      }
+                    ]
                   }
                 ]
               },
