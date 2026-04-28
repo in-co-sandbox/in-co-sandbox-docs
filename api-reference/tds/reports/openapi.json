@@ -111,6 +111,7 @@
                                 },
                                 "examples": {
                                     "200 - Success": {
+                                        "summary": "200 - Success",
                                         "value": {
                                             "code": 200,
                                             "timestamp": 1708926739000,
@@ -130,6 +131,7 @@
                                         }
                                     },
                                     "200 Form 27Q Job created": {
+                                        "summary": "200 Form 27Q Job created",
                                         "value": {
                                             "code": 200,
                                             "timestamp": 1763362637000,
@@ -149,6 +151,7 @@
                                         }
                                     },
                                     "200 Form 24Q-Q3 Job created": {
+                                        "summary": "200 Form 24Q-Q3 Job created",
                                         "value": {
                                             "code": 200,
                                             "timestamp": 1763362637000,
@@ -168,6 +171,7 @@
                                         }
                                     },
                                     "200 Form 24Q-Q4 Job created": {
+                                        "summary": "200 Form 24Q-Q4 Job created",
                                         "value": {
                                             "code": 200,
                                             "timestamp": 1763362637000,
@@ -187,6 +191,7 @@
                                         }
                                     },
                                     "200 Submitted Job will fail": {
+                                        "summary": "200 Submitted Job will fail",
                                         "value": {
                                             "code": 200,
                                             "timestamp": 1763362637000,
@@ -232,6 +237,7 @@
                                 },
                                 "examples": {
                                     "422 - Unprocessable Entity": {
+                                        "summary": "422 - Unprocessable Entity",
                                         "value": {
                                             "code": 422,
                                             "timestamp": 1763362637000,
@@ -240,6 +246,7 @@
                                         }
                                     },
                                     "422 Invalid Form": {
+                                        "summary": "422 Invalid Form",
                                         "value": {
                                             "code": 422,
                                             "timestamp": 1763362637000,
@@ -248,6 +255,7 @@
                                         }
                                     },
                                     "422 Invalid Financial Year": {
+                                        "summary": "422 Invalid Financial Year",
                                         "value": {
                                             "code": 422,
                                             "timestamp": 1763362637000,
@@ -256,6 +264,7 @@
                                         }
                                     },
                                     "422 Invalid Quarter": {
+                                        "summary": "422 Invalid Quarter",
                                         "value": {
                                             "code": 422,
                                             "timestamp": 1763362637000,
@@ -323,6 +332,96 @@
                                     "quarter",
                                     "tan"
                                 ]
+                            },
+                            "examples": {
+                                "200 - Success": {
+                                    "summary": "200 - Success",
+                                    "value": {
+                                        "@entity": "in.co.sandbox.tds.reports.request",
+                                        "financial_year": "FY 2023-24",
+                                        "quarter": "Q3",
+                                        "form": "26Q",
+                                        "previous_receipt_number": "123456789012345",
+                                        "tan": "AHMA09719B"
+                                    }
+                                },
+                                "200 Form 27Q Job created": {
+                                    "summary": "200 Form 27Q Job created",
+                                    "value": {
+                                        "@entity": "in.co.sandbox.tds.reports.request",
+                                        "financial_year": "FY 2023-24",
+                                        "quarter": "Q3",
+                                        "form": "27Q",
+                                        "previous_receipt_number": "123456789012345",
+                                        "tan": "AHMA09719B"
+                                    }
+                                },
+                                "200 Form 24Q-Q3 Job created": {
+                                    "summary": "200 Form 24Q-Q3 Job created",
+                                    "value": {
+                                        "@entity": "in.co.sandbox.tds.reports.request",
+                                        "financial_year": "FY 2023-24",
+                                        "quarter": "Q3",
+                                        "form": "24Q",
+                                        "previous_receipt_number": "123456789012345",
+                                        "tan": "AHMA09719B"
+                                    }
+                                },
+                                "200 Form 24Q-Q4 Job created": {
+                                    "summary": "200 Form 24Q-Q4 Job created",
+                                    "value": {
+                                        "@entity": "in.co.sandbox.tds.reports.request",
+                                        "financial_year": "FY 2023-24",
+                                        "quarter": "Q4",
+                                        "form": "24Q",
+                                        "previous_receipt_number": "123456789012345",
+                                        "tan": "AHMA09719B"
+                                    }
+                                },
+                                "200 Submitted Job will fail": {
+                                    "summary": "200 Submitted Job will fail",
+                                    "value": {
+                                        "@entity": "in.co.sandbox.tds.reports.request",
+                                        "financial_year": "FY 2023-24",
+                                        "quarter": "Q4",
+                                        "form": "26Q",
+                                        "previous_receipt_number": "123456789012345",
+                                        "tan": "BLRC23456F"
+                                    }
+                                },
+                                "422 Invalid Form": {
+                                    "summary": "422 Invalid Form",
+                                    "value": {
+                                        "@entity": "in.co.sandbox.tds.reports.request",
+                                        "financial_year": "FY 2022-23",
+                                        "quarter": "Q4",
+                                        "previous_receipt_number": "575829600070771",
+                                        "tan": "AHMA09719B",
+                                        "form": "22Q"
+                                    }
+                                },
+                                "422 Invalid Financial Year": {
+                                    "summary": "422 Invalid Financial Year",
+                                    "value": {
+                                        "@entity": "in.co.sandbox.tds.reports.request",
+                                        "financial_year": "FY 2022-2",
+                                        "quarter": "Q1",
+                                        "previous_receipt_number": "575829600070771",
+                                        "tan": "AHMA09719B",
+                                        "form": "24Q"
+                                    }
+                                },
+                                "422 Invalid Quarter": {
+                                    "summary": "422 Invalid Quarter",
+                                    "value": {
+                                        "@entity": "in.co.sandbox.tds.reports.request",
+                                        "financial_year": "FY 2022-23",
+                                        "quarter": "Q9",
+                                        "previous_receipt_number": "575829600070771",
+                                        "tan": "AHMA09719B",
+                                        "form": "24Q"
+                                    }
+                                }
                             }
                         }
                     }
@@ -342,6 +441,40 @@
                         "deprecated": false,
                         "schema": {
                             "type": "string"
+                        },
+                        "examples": {
+                            "200 - Job Created": {
+                                "summary": "200 - Job Created",
+                                "value": "48c70ad8-f5df-4dd7-8aff-a71d48992336"
+                            },
+                            "200 - Job Queued": {
+                                "summary": "200 - Job Queued",
+                                "value": "0fb396f6-9eb6-48b9-926d-25296286f9ee"
+                            },
+                            "200 - Job Succeeded": {
+                                "summary": "200 - Job Succeeded",
+                                "value": "c01f847c-c42e-4577-9d01-a7208401a922"
+                            },
+                            "200 Form 27Q Job Succeeded": {
+                                "summary": "200 Form 27Q Job Succeeded",
+                                "value": "46d96540-e4e0-4188-81f5-959f4732490f"
+                            },
+                            "200 Form 24Q-Q3 Job Succeeded": {
+                                "summary": "200 Form 24Q-Q3 Job Succeeded",
+                                "value": "24043690-b905-491e-9dc3-950995532e2f"
+                            },
+                            "200 Form 24Q-Q4 Job Succeeded": {
+                                "summary": "200 Form 24Q-Q4 Job Succeeded",
+                                "value": "c8c2b692-9742-4842-b72e-3441f07be0a0"
+                            },
+                            "200 Job Failed": {
+                                "summary": "200 Job Failed",
+                                "value": "77a45361-9646-4ee0-93ed-9471bb8a615e"
+                            },
+                            "521 - Data not found": {
+                                "summary": "521 - Data not found",
+                                "value": "{{job_id}}"
+                            }
                         }
                     },
                     {
@@ -543,6 +676,7 @@
                                 },
                                 "examples": {
                                     "200 - Job Created": {
+                                        "summary": "200 - Job Created",
                                         "value": {
                                             "code": 200,
                                             "timestamp": 1763362637000,
@@ -561,6 +695,7 @@
                                         }
                                     },
                                     "200 - Job Queued": {
+                                        "summary": "200 - Job Queued",
                                         "value": {
                                             "code": 200,
                                             "timestamp": 1763362637000,
@@ -580,6 +715,7 @@
                                         }
                                     },
                                     "200 - Job Succeeded": {
+                                        "summary": "200 - Job Succeeded",
                                         "value": {
                                             "code": 200,
                                             "timestamp": 1763362637000,
@@ -600,6 +736,7 @@
                                         }
                                     },
                                     "200 Form 27Q Job Succeeded": {
+                                        "summary": "200 Form 27Q Job Succeeded",
                                         "value": {
                                             "code": 200,
                                             "timestamp": 1763362637000,
@@ -620,6 +757,7 @@
                                         }
                                     },
                                     "200 Form 24Q-Q3 Job Succeeded": {
+                                        "summary": "200 Form 24Q-Q3 Job Succeeded",
                                         "value": {
                                             "code": 200,
                                             "timestamp": 1763362637000,
@@ -639,7 +777,29 @@
                                             }
                                         }
                                     },
+                                    "200 Form 26Q-Q3 Job Succeeded": {
+                                        "summary": "200 Form 26Q-Q3 Job Succeeded",
+                                        "value": {
+                                            "code": 200,
+                                            "timestamp": 1763362637999,
+                                            "transaction_id": "e2b9145f-69d5-4bbe-a6de-be6fc08b426f",
+                                            "data": {
+                                                "@entity": "in.co.sandbox.tds.reports.job",
+                                                "job_id": "24043690-b905-491e-9dc3-950995532e2f",
+                                                "tan": "AHMA09719B",
+                                                "quarter": "Q3",
+                                                "form": "24Q",
+                                                "financial_year": "FY 2023-24",
+                                                "previous_receipt_number": "123456789012345",
+                                                "status": "succeeded",
+                                                "created_at": 1701250588000,
+                                                "updated_at": 17012506055000,
+                                                "txt_url": "https://in-co-sandbox-tds-test-storage.s3.ap-south-1.amazonaws.com/AHMS45586C/FY+2025-26/Q3/26Q/4049c226-4988-4978-b5ad-d25705453da8/26Q.txt"
+                                            }
+                                        }
+                                    },
                                     "200 Form 24Q-Q4 Job Succeeded": {
+                                        "summary": "200 Form 24Q-Q4 Job Succeeded",
                                         "value": {
                                             "code": 200,
                                             "timestamp": 1763362637000,
@@ -660,6 +820,7 @@
                                         }
                                     },
                                     "200 Job Failed": {
+                                        "summary": "200 Job Failed",
                                         "value": {
                                             "code": 200,
                                             "timestamp": 1763362637000,
@@ -706,6 +867,7 @@
                                 },
                                 "examples": {
                                     "521 - Data not found": {
+                                        "summary": "521 - Data not found",
                                         "value": {
                                             "code": 521,
                                             "timestamp": 1763362637000,
@@ -828,6 +990,7 @@
                                 },
                                 "examples": {
                                     "200 - Success": {
+                                        "summary": "200 - Success",
                                         "value": {
                                             "code": 200,
                                             "timestamp": 1715757773000,
@@ -944,6 +1107,22 @@
                                 "required": [
                                     "@entity"
                                 ]
+                            },
+                            "examples": {
+                                "200 - Success": {
+                                    "summary": "200 - Success",
+                                    "value": {
+                                        "@entity": "in.co.sandbox.tds.reports.jobs.search",
+                                        "tan": "AHMS12345C",
+                                        "quarter": "Q2",
+                                        "form": "26Q",
+                                        "financial_year": "FY 2023-24",
+                                        "from_date": 1714529045000,
+                                        "to_date": 1716170645000,
+                                        "page_size": 10,
+                                        "last_evaluated_key": "eydadadadada...=="
+                                    }
+                                }
                             }
                         }
                     }
@@ -1044,6 +1223,7 @@
                                 },
                                 "examples": {
                                     "200 - Success": {
+                                        "summary": "200 - Success",
                                         "value": {
                                             "code": 200,
                                             "timestamp": 1763362637000,
@@ -1062,6 +1242,7 @@
                                         }
                                     },
                                     "200 Submitted Job will fail": {
+                                        "summary": "200 Submitted Job will fail",
                                         "value": {
                                             "code": 200,
                                             "timestamp": 1763362637000,
@@ -1106,6 +1287,7 @@
                                 },
                                 "examples": {
                                     "422 - Unprocessable Entity": {
+                                        "summary": "422 - Unprocessable Entity",
                                         "value": {
                                             "code": 422,
                                             "timestamp": 1763362637000,
@@ -1114,11 +1296,21 @@
                                         }
                                     },
                                     "422 Invalid Quarter": {
+                                        "summary": "422 Invalid Quarter",
                                         "value": {
                                             "code": 422,
                                             "timestamp": 1763362637000,
                                             "transaction_id": "e2b9145f-69d5-4bbe-a6de-be6fc08b426f",
                                             "message": "Invalid quarter: Q5"
+                                        }
+                                    },
+                                    "422 Invalid Financial Year": {
+                                        "summary": "422 Invalid Financial Year",
+                                        "value": {
+                                            "code": 422,
+                                            "timestamp": 1763362637999,
+                                            "transaction_id": "e2b9145f-69d5-4bbe-a6de-be6fc08b426f",
+                                            "message": "Invalid financial year: FY 2023-25"
                                         }
                                     }
                                 }
@@ -1195,6 +1387,58 @@
                                     "quarter",
                                     "tan"
                                 ]
+                            },
+                            "examples": {
+                                "200 - Success": {
+                                    "summary": "200 - Success",
+                                    "value": {
+                                        "@entity": "in.co.sandbox.tcs.reports.request",
+                                        "financial_year": "FY 2023-24",
+                                        "quarter": "Q3",
+                                        "previous_receipt_number": "123456789012345",
+                                        "tan": "AHMA09719B"
+                                    }
+                                },
+                                "200 Submitted Job will fail": {
+                                    "summary": "200 Submitted Job will fail",
+                                    "value": {
+                                        "@entity": "in.co.sandbox.tcs.reports.request",
+                                        "financial_year": "FY 2023-24",
+                                        "quarter": "Q3",
+                                        "previous_receipt_number": "123456789012345",
+                                        "tan": "BLRC23456F"
+                                    }
+                                },
+                                "422 - Unprocessable Entity": {
+                                    "summary": "422 - Unprocessable Entity",
+                                    "value": {
+                                        "@entity": "in.co.sandbox.tcs.reports.request",
+                                        "financial_year": "FY 2023-24",
+                                        "quarter": "Q2",
+                                        "previous_receipt_number": "123456789012345",
+                                        "tan": "DABC2345DD"
+                                    }
+                                },
+                                "422 Invalid Quarter": {
+                                    "summary": "422 Invalid Quarter",
+                                    "value": {
+                                        "@entity": "in.co.sandbox.tcs.reports.request",
+                                        "financial_year": "FY 2023-24",
+                                        "quarter": "Q5",
+                                        "previous_receipt_number": "123456789012345",
+                                        "tan": "EABC23456N"
+                                    }
+                                },
+                                "422 Invalid Financial Year": {
+                                    "summary": "422 Invalid Financial Year",
+                                    "value": {
+                                        "@entity": "in.co.sandbox.tcs.reports.request",
+                                        "financial_year": "FY 2023-25",
+                                        "quarter": "Q4",
+                                        "previous_receipt_number": "123456789012345",
+                                        "tan": "AHMJ09719B"
+                                    }
+                                }
                             }
                         }
                     }
@@ -1214,6 +1458,28 @@
                         "deprecated": false,
                         "schema": {
                             "type": "string"
+                        },
+                        "examples": {
+                            "200 - Success": {
+                                "summary": "200 - Success",
+                                "value": "c01f847c-c42e-4577-9d01-a7208401a922"
+                            },
+                            "200 - Job Queued": {
+                                "summary": "200 - Job Queued",
+                                "value": "0fb396f6-9eb6-48b9-926d-25296286f9ee"
+                            },
+                            "200 - Job Succeeded": {
+                                "summary": "200 - Job Succeeded",
+                                "value": "46d96540-e4e0-4188-81f5-959f4732490f"
+                            },
+                            "200 - Job Failed": {
+                                "summary": "200 - Job Failed",
+                                "value": "77a45361-9646-4ee0-93ed-9471bb8a615e"
+                            },
+                            "521 - Data not found": {
+                                "summary": "521 - Data not found",
+                                "value": "{{job_id}}"
+                            }
                         }
                     },
                     {
@@ -1404,6 +1670,7 @@
                                 },
                                 "examples": {
                                     "200 - Success": {
+                                        "summary": "200 - Success",
                                         "value": {
                                             "code": 200,
                                             "timestamp": 1763102487000,
@@ -1421,6 +1688,7 @@
                                         }
                                     },
                                     "200 - Job Queued": {
+                                        "summary": "200 - Job Queued",
                                         "value": {
                                             "code": 200,
                                             "timestamp": 1763362637000,
@@ -1439,6 +1707,7 @@
                                         }
                                     },
                                     "200 - Job Succeeded": {
+                                        "summary": "200 - Job Succeeded",
                                         "value": {
                                             "code": 200,
                                             "timestamp": 1763362637000,
@@ -1458,6 +1727,7 @@
                                         }
                                     },
                                     "200 - Job Failed": {
+                                        "summary": "200 - Job Failed",
                                         "value": {
                                             "code": 200,
                                             "timestamp": 1763362637000,
@@ -1503,6 +1773,7 @@
                                 },
                                 "examples": {
                                     "521 - Data not found": {
+                                        "summary": "521 - Data not found",
                                         "value": {
                                             "code": 521,
                                             "timestamp": 1763362637000,
@@ -1619,6 +1890,7 @@
                                 },
                                 "examples": {
                                     "200 - Success": {
+                                        "summary": "200 - Success",
                                         "value": {
                                             "code": 200,
                                             "timestamp": 1715757773000,
@@ -1732,6 +2004,15 @@
                                         "type": "string"
                                     }
                                 }
+                            },
+                            "examples": {
+                                "200 - Success": {
+                                    "summary": "200 - Success",
+                                    "value": {
+                                        "@entity": "in.co.sandbox.tcs.reports.jobs.search",
+                                        "page_size": 10
+                                    }
+                                }
                             }
                         }
                     }
@@ -1761,7 +2042,18 @@
                                             {
                                                 "title": "Job Succeeded",
                                                 "type": "object",
-                                                "required": ["@entity", "job_id", "tan", "quarter", "form", "financial_year", "status", "created_at", "updated_at", "txt_url"],
+                                                "required": [
+                                                    "@entity",
+                                                    "job_id",
+                                                    "tan",
+                                                    "quarter",
+                                                    "form",
+                                                    "financial_year",
+                                                    "status",
+                                                    "created_at",
+                                                    "updated_at",
+                                                    "txt_url"
+                                                ],
                                                 "properties": {
                                                     "@entity": {
                                                         "type": "string",
@@ -1794,7 +2086,9 @@
                                                     "status": {
                                                         "type": "string",
                                                         "description": "Job status",
-                                                        "enum": ["succeeded"]
+                                                        "enum": [
+                                                            "succeeded"
+                                                        ]
                                                     },
                                                     "created_at": {
                                                         "type": "integer",
@@ -1814,7 +2108,18 @@
                                             {
                                                 "title": "Job Failed",
                                                 "type": "object",
-                                                "required": ["@entity", "job_id", "tan", "quarter", "form", "financial_year", "status", "created_at", "updated_at", "validation_report_url"],
+                                                "required": [
+                                                    "@entity",
+                                                    "job_id",
+                                                    "tan",
+                                                    "quarter",
+                                                    "form",
+                                                    "financial_year",
+                                                    "status",
+                                                    "created_at",
+                                                    "updated_at",
+                                                    "validation_report_url"
+                                                ],
                                                 "properties": {
                                                     "@entity": {
                                                         "type": "string",
@@ -1847,7 +2152,9 @@
                                                     "status": {
                                                         "type": "string",
                                                         "description": "Job status",
-                                                        "enum": ["failed"]
+                                                        "enum": [
+                                                            "failed"
+                                                        ]
                                                     },
                                                     "created_at": {
                                                         "type": "integer",
@@ -1991,7 +2298,17 @@
                                             {
                                                 "title": "Job Succeeded",
                                                 "type": "object",
-                                                "required": ["@entity", "job_id", "tan", "quarter", "financial_year", "status", "created_at", "updated_at", "txt_url"],
+                                                "required": [
+                                                    "@entity",
+                                                    "job_id",
+                                                    "tan",
+                                                    "quarter",
+                                                    "financial_year",
+                                                    "status",
+                                                    "created_at",
+                                                    "updated_at",
+                                                    "txt_url"
+                                                ],
                                                 "properties": {
                                                     "@entity": {
                                                         "type": "string",
@@ -2020,7 +2337,9 @@
                                                     "status": {
                                                         "type": "string",
                                                         "description": "Job status",
-                                                        "enum": ["succeeded"]
+                                                        "enum": [
+                                                            "succeeded"
+                                                        ]
                                                     },
                                                     "created_at": {
                                                         "type": "integer",
@@ -2040,7 +2359,17 @@
                                             {
                                                 "title": "Job Failed",
                                                 "type": "object",
-                                                "required": ["@entity", "job_id", "tan", "quarter", "financial_year", "status", "created_at", "updated_at", "validation_report_url"],
+                                                "required": [
+                                                    "@entity",
+                                                    "job_id",
+                                                    "tan",
+                                                    "quarter",
+                                                    "financial_year",
+                                                    "status",
+                                                    "created_at",
+                                                    "updated_at",
+                                                    "validation_report_url"
+                                                ],
                                                 "properties": {
                                                     "@entity": {
                                                         "type": "string",
@@ -2069,7 +2398,9 @@
                                                     "status": {
                                                         "type": "string",
                                                         "description": "Job status",
-                                                        "enum": ["failed"]
+                                                        "enum": [
+                                                            "failed"
+                                                        ]
                                                     },
                                                     "created_at": {
                                                         "type": "integer",
