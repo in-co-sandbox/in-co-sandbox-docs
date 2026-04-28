@@ -1,1792 +1,1794 @@
 {
-    "openapi": "3.1.0",
-    "info": {
-        "title": "analytics",
-        "version": "1.0.0",
-        "description": ""
+  "openapi": "3.1.0",
+  "info": {
+    "title": "analytics",
+    "version": "1.0.0",
+    "description": ""
+  },
+  "servers": [
+    {
+      "url": "https://test-api.sandbox.co.in",
+      "description": "test"
     },
-    "servers": [
-        {
-            "url": "https://test-api.sandbox.co.in"
-        },
-        {
-            "url": "https://api.sandbox.co.in"
-        }
-    ],
-    "paths": {
-        "/tds/analytics/potential-notices": {
-            "post": {
-                "summary": "Create TDS Potential Notice Job",
-                "tags": [
-                    "Potential Notices",
-                    "TDS"
-                ],
-                "parameters": [
-                    {
-                        "name": "x-api-key",
-                        "in": "header",
-                        "required": true,
-                        "description": "API key for identification",
-                        "deprecated": false,
-                        "schema": {
-                            "type": "string"
-                        }
-                    },
-                    {
-                        "name": "Authorization",
-                        "in": "header",
-                        "required": true,
-                        "description": "JWT access token",
-                        "deprecated": false,
-                        "schema": {
-                            "type": "string"
-                        }
-                    },
-                    {
-                        "name": "x-api-version",
-                        "in": "header",
-                        "description": "API Version",
-                        "schema": {
-                            "type": "string"
-                        }
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "200 - OK",
-                        "content": {
-                            "application/json": {
-                                "schema": {
-                                    "type": "object",
-                                    "properties": {
-                                        "code": {
-                                            "type": "integer"
-                                        },
-                                        "timestamp": {
-                                            "type": "integer"
-                                        },
-                                        "transaction_id": {
-                                            "type": "string"
-                                        },
-                                        "data": {
-                                            "type": "object",
-                                            "properties": {
-                                                "@entity": {
-                                                    "type": "string",
-                                                    "enum": [
-                                                        "in.co.sandbox.tds.analytics.potential_notices.job"
-                                                    ]
-                                                },
-                                                "job_id": {
-                                                    "type": "string"
-                                                },
-                                                "tan": {
-                                                    "type": "string"
-                                                },
-                                                "quarter": {
-                                                    "type": "string"
-                                                },
-                                                "financial_year": {
-                                                    "type": "string"
-                                                },
-                                                "form": {
-                                                    "type": "string"
-                                                },
-                                                "status": {
-                                                    "type": "string"
-                                                },
-                                                "created_at": {
-                                                    "type": "integer"
-                                                },
-                                                "json_url": {
-                                                    "type": "string",
-                                                    "format": "uri"
-                                                }
-                                            }
-                                        }
-                                    }
-                                },
-                                "examples": {
-                                    "200 Form 26Q Job created": {
-                                        "value": {
-                                            "code": 200,
-                                            "timestamp": 1763633700000,
-                                            "transaction_id": "1c1e4905-d07e-4c51-b8c5-1163050ded7f",
-                                            "data": {
-                                                "@entity": "in.co.sandbox.tds.analytics.potential_notices.job",
-                                                "job_id": "1c1e4905-d07e-4c51-b8c5-1163050ded7f",
-                                                "tan": "AHMA09719B",
-                                                "quarter": "Q4",
-                                                "financial_year": "FY 2023-24",
-                                                "form": "26Q",
-                                                "status": "created",
-                                                "created_at": 1716515767000,
-                                                "json_url": "https://test-api.sandbox.co.in/tds/analytics/in-co-sandbox-tds-analytics-potential-notices-test/tan/financial_year/quarter/80716d9a-4aa0-4905-8ff1-0aca61042a0e.json"
-                                            }
-                                        }
-                                    },
-                                    "200 Form 24Q Job created": {
-                                        "value": {
-                                            "code": 200,
-                                            "timestamp": 1763633700000,
-                                            "transaction_id": "1434930f-1516-42ff-945e-44d4105cca18",
-                                            "data": {
-                                                "@entity": "in.co.sandbox.tds.analytics.potential_notices.job",
-                                                "job_id": "1434930f-1516-42ff-945e-44d4105cca18",
-                                                "tan": "AHMA09719B",
-                                                "quarter": "Q4",
-                                                "financial_year": "FY 2023-24",
-                                                "form": "24Q",
-                                                "status": "created",
-                                                "created_at": 1716515767000,
-                                                "json_url": "https://test-api.sandbox.co.in/tds/analytics/in-co-sandbox-tds-analytics-potential-notices-test/tan/financial_year/quarter/80716d9a-4aa0-4905-8ff1-0aca61042a0e.json"
-                                            }
-                                        }
-                                    },
-                                    "200 Form 27Q Job created": {
-                                        "value": {
-                                            "code": 200,
-                                            "timestamp": 1763633700000,
-                                            "transaction_id": "7f4c8126-0a4c-48f3-939a-b73721092d2f",
-                                            "data": {
-                                                "@entity": "in.co.sandbox.tds.analytics.potential_notices.job",
-                                                "job_id": "7f4c8126-0a4c-48f3-939a-b73721092d2f",
-                                                "tan": "AHMA09719B",
-                                                "quarter": "Q4",
-                                                "financial_year": "FY 2023-24",
-                                                "form": "27Q",
-                                                "status": "created",
-                                                "created_at": 1716515767000,
-                                                "json_url": "https://test-api.sandbox.co.in/tds/analytics/in-co-sandbox-tds-analytics-potential-notices-test/tan/financial_year/quarter/80716d9a-4aa0-4905-8ff1-0aca61042a0e.json"
-                                            }
-                                        }
-                                    },
-                                    "200 Submitted Job will fail": {
-                                        "value": {
-                                            "code": 200,
-                                            "timestamp": 1763633700000,
-                                            "transaction_id": "05a3f586-5b2c-4f62-9f56-6600fcf9bc85",
-                                            "data": {
-                                                "@entity": "in.co.sandbox.tds.analytics.potential_notices.job",
-                                                "job_id": "05a3f586-5b2c-4f62-9f56-6600fcf9bc85",
-                                                "tan": "BLRC23456F",
-                                                "quarter": "Q3",
-                                                "financial_year": "FY 2023-24",
-                                                "form": "26Q",
-                                                "status": "created",
-                                                "created_at": 1716515767000,
-                                                "json_url": "https://test-api.sandbox.co.in/tds/analytics/in-co-sandbox-tds-analytics-potential-notices-test/tan/financial_year/quarter/80716d9a-4aa0-4905-8ff1-0aca61042a0e.json"
-                                            }
-                                        }
-                                    }
-                                }
-                            }
-                        }
-                    },
-                    "422": {
-                        "description": "422 - Unprocessable Entity",
-                        "content": {
-                            "application/json": {
-                                "schema": {
-                                    "type": "object",
-                                    "properties": {
-                                        "code": {
-                                            "type": "integer"
-                                        },
-                                        "timestamp": {
-                                            "type": "integer"
-                                        },
-                                        "transaction_id": {
-                                            "type": "string"
-                                        },
-                                        "message": {
-                                            "type": "string"
-                                        }
-                                    }
-                                },
-                                "examples": {
-                                    "422 Invalid TAN": {
-                                        "value": {
-                                            "code": 422,
-                                            "timestamp": 1763633700000,
-                                            "transaction_id": "e9bf56c1-086e-41d4-9b1c-feebe35207e0",
-                                            "message": "Invalid TAN: DABC2345DD"
-                                        }
-                                    },
-                                    "422 Invalid Quarter": {
-                                        "value": {
-                                            "code": 422,
-                                            "timestamp": 1763633700000,
-                                            "transaction_id": "90c354b0-0cad-403b-b840-892384d0e14d",
-                                            "message": "Invalid quarter: Q5"
-                                        }
-                                    },
-                                    "422 Invalid Form": {
-                                        "value": {
-                                            "code": 422,
-                                            "timestamp": 1763633700000,
-                                            "transaction_id": "35a11c62-3dc7-48db-a930-2788c7a098ef",
-                                            "message": "Invalid form type: 25Q"
-                                        }
-                                    },
-                                    "422 Invalid Financial Year": {
-                                        "value": {
-                                            "code": 422,
-                                            "timestamp": 1763633700000,
-                                            "transaction_id": "f07c5a4b-1c16-429f-8941-9981eed6fd3e",
-                                            "message": "Invalid financial year: 2022"
-                                        }
-                                    },
-                                    "422 Invalid Entity": {
-                                        "value": {
-                                            "code": 422,
-                                            "timestamp": 1763633700000,
-                                            "transaction_id": "1062275f-0c31-4b20-adbe-3d2f896c77f6",
-                                            "message": "Invalid entity: wrong.entity"
-                                        }
-                                    }
-                                }
-                            }
-                        }
-                    }
-                },
-                "requestBody": {
-                    "content": {
-                        "application/json": {
-                            "examples": {
-                                "form_26q_job_created": {
-                                    "summary": "200 Form 26Q Job created",
-                                    "value": {
-                                        "@entity": "in.co.sandbox.tds.analytics.potential_notice.request",
-                                        "quarter": "Q4",
-                                        "form": "26Q",
-                                        "tan": "AHMA09719B",
-                                        "financial_year": "FY 2023-24"
-                                    }
-                                },
-                                "form_24q_job_created": {
-                                    "summary": "200 Form 24Q Job created",
-                                    "value": {
-                                        "@entity": "in.co.sandbox.tds.analytics.potential_notice.request",
-                                        "quarter": "Q4",
-                                        "form": "24Q",
-                                        "tan": "AHMA09719B",
-                                        "financial_year": "FY 2023-24"
-                                    }
-                                },
-                                "form_27q_job_created": {
-                                    "summary": "200 Form 27Q Job created",
-                                    "value": {
-                                        "@entity": "in.co.sandbox.tds.analytics.potential_notice.request",
-                                        "quarter": "Q4",
-                                        "form": "27Q",
-                                        "tan": "AHMA09719B",
-                                        "financial_year": "FY 2023-24"
-                                    }
-                                },
-                                "submitted_job_will_fail": {
-                                    "summary": "200 Submitted Job will fail",
-                                    "value": {
-                                        "@entity": "in.co.sandbox.tds.analytics.potential_notice.request",
-                                        "quarter": "Q3",
-                                        "form": "26Q",
-                                        "tan": "BLRC23456F",
-                                        "financial_year": "FY 2023-24"
-                                    }
-                                },
-                                "invalid_tan": {
-                                    "summary": "422 Invalid TAN",
-                                    "value": {
-                                        "@entity": "in.co.sandbox.tds.analytics.potential_notice.request",
-                                        "quarter": "Q3",
-                                        "form": "26Q",
-                                        "tan": "DABC2345DD",
-                                        "financial_year": "FY 2023-24"
-                                    }
-                                },
-                                "invalid_quarter": {
-                                    "summary": "422 Invalid Quarter",
-                                    "value": {
-                                        "@entity": "in.co.sandbox.tds.analytics.potential_notice.request",
-                                        "quarter": "Q5",
-                                        "form": "28Q",
-                                        "tan": "EABC23456N",
-                                        "financial_year": "FY 2023-24"
-                                    }
-                                },
-                                "invalid_form": {
-                                    "summary": "422 Invalid Form",
-                                    "value": {
-                                        "@entity": "in.co.sandbox.tds.analytics.potential_notice.request",
-                                        "quarter": "Q3",
-                                        "form": "25Q",
-                                        "tan": "EABC23456N",
-                                        "financial_year": "FY 2023-24"
-                                    }
-                                },
-                                "invalid_financial_year": {
-                                    "summary": "422 Invalid Financial Year",
-                                    "value": {
-                                        "@entity": "in.co.sandbox.tds.analytics.potential_notice.request",
-                                        "quarter": "Q3",
-                                        "form": "24Q",
-                                        "tan": "EABC23456N",
-                                        "financial_year": "2022"
-                                    }
-                                },
-                                "invalid_entity": {
-                                    "summary": "422 Invalid Entity",
-                                    "value": {
-                                        "@entity": "wrong.entity",
-                                        "quarter": "Q3",
-                                        "form": "24Q",
-                                        "tan": "EABC23456N",
-                                        "financial_year": "FY 2023-24"
-                                    }
-                                }
-                            },
-                            "schema": {
-                                "type": "object",
-                                "properties": {
-                                    "@entity": {
-                                        "type": "string",
-                                        "const": "in.co.sandbox.tds.analytics.potential_notice.request"
-                                    },
-                                    "quarter": {
-                                        "type": "string",
-                                        "description": "Quarter for which TDS is being filed",
-                                        "enum": [
-                                            "Q1",
-                                            "Q2",
-                                            "Q3",
-                                            "Q4"
-                                        ]
-                                    },
-                                    "tan": {
-                                        "type": "string",
-                                        "description": "TAN of deductor. Regular Expression: [A-Z]{4}[0-9]{5}[A-Z]{1}",
-                                        "pattern": "[A-Z]{4}[0-9]{5}[A-Z]{1}"
-                                    },
-                                    "form": {
-                                        "type": "string",
-                                        "description": "TDS return form",
-                                        "enum": [
-                                            "24Q",
-                                            "26Q",
-                                            "27Q"
-                                        ]
-                                    },
-                                    "financial_year": {
-                                        "type": "string",
-                                        "description": "Financial Year for which TDS is being filed. (eg. FY 2024-25)",
-                                        "example": "FY 2024-25"
-                                    }
-                                },
-                                "required": [
-                                    "@entity",
-                                    "quarter",
-                                    "tan",
-                                    "form",
-                                    "financial_year"
-                                ]
-                            }
-                        }
-                    }
-                }
-            },
-            "get": {
-                "summary": "Fetch Potential Notice status",
-                "tags": [
-                    "Potential Notices",
-                    "TDS"
-                ],
-                "parameters": [
-                    {
-                        "name": "job_id",
-                        "in": "query",
-                        "required": true,
-                        "description": "Unique identifier of the job",
-                        "deprecated": false,
-                        "schema": {
-                            "type": "string",
-                            "format": "uuid"
-                        }
-                    },
-                    {
-                        "name": "x-api-key",
-                        "in": "header",
-                        "required": true,
-                        "description": "API key for identification",
-                        "deprecated": false,
-                        "schema": {
-                            "type": "string"
-                        }
-                    },
-                    {
-                        "name": "Authorization",
-                        "in": "header",
-                        "required": true,
-                        "description": "JWT access token",
-                        "deprecated": false,
-                        "schema": {
-                            "type": "string"
-                        }
-                    },
-                    {
-                        "name": "x-api-version",
-                        "in": "header",
-                        "description": "API Version",
-                        "schema": {
-                            "type": "string"
-                        }
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "200 - OK",
-                        "content": {
-                            "application/json": {
-                                "schema": {
-                                    "oneOf": [
-                                        {
-                                            "title": "Job Succeeded",
-                                            "type": "object",
-                                            "properties": {
-                                                "code": {
-                                                    "type": "integer"
-                                                },
-                                                "timestamp": {
-                                                    "type": "integer"
-                                                },
-                                                "transaction_id": {
-                                                    "type": "string"
-                                                },
-                                                "data": {
-                                                    "type": "object",
-                                                    "properties": {
-                                                        "@entity": {
-                                                            "type": "string",
-                                                            "const": "in.co.sandbox.tds.analytics.potential_notices.job"
-                                                        },
-                                                        "job_id": {
-                                                            "type": "string"
-                                                        },
-                                                        "tan": {
-                                                            "type": "string"
-                                                        },
-                                                        "quarter": {
-                                                            "type": "string"
-                                                        },
-                                                        "financial_year": {
-                                                            "type": "string"
-                                                        },
-                                                        "form": {
-                                                            "type": "string"
-                                                        },
-                                                        "status": {
-                                                            "type": "string"
-                                                        },
-                                                        "created_at": {
-                                                            "type": "integer"
-                                                        },
-                                                        "updated_at": {
-                                                            "type": "integer"
-                                                        },
-                                                        "potential_notice_report_url": {
-                                                            "type": "string",
-                                                            "format": "uri"
-                                                        }
-                                                    }
-                                                }
-                                            }
-                                        },
-                                        {
-                                            "title": "Job Failed",
-                                            "type": "object",
-                                            "properties": {
-                                                "code": {
-                                                    "type": "integer"
-                                                },
-                                                "timestamp": {
-                                                    "type": "integer"
-                                                },
-                                                "transaction_id": {
-                                                    "type": "string"
-                                                },
-                                                "data": {
-                                                    "type": "object",
-                                                    "properties": {
-                                                        "@entity": {
-                                                            "type": "string",
-                                                            "const": "in.co.sandbox.tds.analytics.potential_notices.job"
-                                                        },
-                                                        "job_id": {
-                                                            "type": "string"
-                                                        },
-                                                        "tan": {
-                                                            "type": "string"
-                                                        },
-                                                        "quarter": {
-                                                            "type": "string"
-                                                        },
-                                                        "financial_year": {
-                                                            "type": "string"
-                                                        },
-                                                        "form": {
-                                                            "type": "string"
-                                                        },
-                                                        "status": {
-                                                            "type": "string"
-                                                        },
-                                                        "created_at": {
-                                                            "type": "integer"
-                                                        },
-                                                        "updated_at": {
-                                                            "type": "integer"
-                                                        },
-                                                        "validation_report_url": {
-                                                            "type": "string",
-                                                            "format": "uri"
-                                                        }
-                                                    }
-                                                }
-                                            }
-                                        },
-                                        {
-                                            "title": "Job Queued",
-                                            "type": "object",
-                                            "properties": {
-                                                "code": {
-                                                    "type": "integer"
-                                                },
-                                                "timestamp": {
-                                                    "type": "integer"
-                                                },
-                                                "transaction_id": {
-                                                    "type": "string"
-                                                },
-                                                "data": {
-                                                    "type": "object",
-                                                    "properties": {
-                                                        "@entity": {
-                                                            "type": "string",
-                                                            "const": "in.co.sandbox.tds.analytics.potential_notices.job"
-                                                        },
-                                                        "job_id": {
-                                                            "type": "string"
-                                                        },
-                                                        "tan": {
-                                                            "type": "string"
-                                                        },
-                                                        "quarter": {
-                                                            "type": "string"
-                                                        },
-                                                        "financial_year": {
-                                                            "type": "string"
-                                                        },
-                                                        "form": {
-                                                            "type": "string"
-                                                        },
-                                                        "status": {
-                                                            "type": "string"
-                                                        },
-                                                        "created_at": {
-                                                            "type": "integer"
-                                                        },
-                                                        "updated_at": {
-                                                            "type": "integer"
-                                                        }
-                                                    }
-                                                }
-                                            }
-                                        }
-                                    ]
-                                },
-                                "examples": {
-                                    "200 Form 26Q Job Succeeded": {
-                                        "value": {
-                                            "code": 200,
-                                            "timestamp": 1763633700,
-                                            "transaction_id": "3b334f6d-dc27-4970-b90c-5c8b66bde88d",
-                                            "data": {
-                                                "@entity": "in.co.sandbox.tds.analytics.potential_notices.job",
-                                                "job_id": "1c1e4905-d07e-4c51-b8c5-1163050ded7f",
-                                                "tan": "AHMA09719B",
-                                                "quarter": "Q3",
-                                                "financial_year": "FY 2023-24",
-                                                "form": "26Q",
-                                                "status": "succeeded",
-                                                "created_at": 1709026684599,
-                                                "updated_at": 1711544847339,
-                                                "potential_notice_report_url": "https://in-co-sandbox-tds-analytics-potential-notices-test.s3.ap-south-1.amazonaws.com/tan/financial_year/quarter/form/80716d9a-4aa0-4905-8ff1-0aca61042a0e_potential_notice.xlsx"
-                                            }
-                                        }
-                                    },
-                                    "200 Form 27Q Job Succeeded": {
-                                        "value": {
-                                            "code": 200,
-                                            "timestamp": 1763633700,
-                                            "transaction_id": "fd469cfd-6b11-494c-acac-5f8a6d87bb70",
-                                            "data": {
-                                                "@entity": "in.co.sandbox.tds.analytics.potential_notices.job",
-                                                "job_id": "7f4c8126-0a4c-48f3-939a-b73721092d2f",
-                                                "tan": "AHMA09719B",
-                                                "quarter": "Q3",
-                                                "financial_year": "FY 2023-24",
-                                                "form": "27Q",
-                                                "status": "succeeded",
-                                                "created_at": 1709026684599,
-                                                "updated_at": 1711544847339,
-                                                "potential_notice_report_url": "https://in-co-sandbox-tds-analytics-potential-notices-test.s3.ap-south-1.amazonaws.com/tan/financial_year/quarter/form/4f3380b0-d416-427e-b901-34d801265b99_potential_notice.xlsx"
-                                            }
-                                        }
-                                    },
-                                    "200 Form 24Q Job Succeeded": {
-                                        "value": {
-                                            "code": 200,
-                                            "timestamp": 1763633700,
-                                            "transaction_id": "a2af8434-a699-497e-b7d7-4ca35813c860",
-                                            "data": {
-                                                "@entity": "in.co.sandbox.tds.analytics.potential_notices.job",
-                                                "job_id": "1434930f-1516-42ff-945e-44d4105cca18",
-                                                "tan": "AHMA09719B",
-                                                "quarter": "Q4",
-                                                "financial_year": "FY 2023-24",
-                                                "form": "24Q",
-                                                "status": "succeeded",
-                                                "created_at": 1709026684599,
-                                                "updated_at": 1711544847339,
-                                                "potential_notice_report_urls": "https://in-co-sandbox-tds-analytics-potential-notices-test.s3.ap-south-1.amazonaws.com/tan/financial_year/quarter/form/183edaf3-4085-452c-b337-d05730ba16d0_potential_notice.xlsx"
-                                            }
-                                        }
-                                    },
-                                    "200 Job Queued": {
-                                        "value": {
-                                            "code": 200,
-                                            "timestamp": 1763633700000,
-                                            "transaction_id": "138658c5-2c5b-417f-8de4-2589f3263b5e",
-                                            "data": {
-                                                "@entity": "in.co.sandbox.tds.analytics.potential_notices.job",
-                                                "job_id": "53b385f8-8d76-4a72-8ccd-b6e81648c426",
-                                                "tan": "AHMA09719B",
-                                                "quarter": "Q3",
-                                                "financial_year": "FY 2023-24",
-                                                "form": "26Q",
-                                                "status": "queued",
-                                                "created_at": 1709026684599,
-                                                "updated_at": 1711544847339
-                                            }
-                                        }
-                                    },
-                                    "200 Job Failed": {
-                                        "value": {
-                                            "code": 200,
-                                            "timestamp": 1763633700000,
-                                            "transaction_id": "c6750e71-0ad4-4061-a591-52ef02413c49",
-                                            "data": {
-                                                "@entity": "in.co.sandbox.tds.analytics.potential_notices.job",
-                                                "job_id": "05a3f586-5b2c-4f62-9f56-6600fcf9bc85",
-                                                "tan": "BLRC23456F",
-                                                "quarter": "Q3",
-                                                "financial_year": "FY 2023-24",
-                                                "form": "26Q",
-                                                "status": "failed",
-                                                "created_at": 1709026684599,
-                                                "updated_at": 1711544847339,
-                                                "validation_report_url": "https://in-co-sandbox-tds-analytics-potential-notices-test.s3.ap-south-1.amazonaws.com/tan/financial_year/quarter/form/5eb034b6-4b6f-4440-9ee0-88f7a220039b_validation_report.xlsx"
-                                            }
-                                        }
-                                    }
-                                }
-                            }
-                        }
-                    },
-                    "422": {
-                        "description": "422 - Unprocessable Entity",
-                        "content": {
-                            "application/json": {
-                                "schema": {
-                                    "type": "object",
-                                    "properties": {
-                                        "code": {
-                                            "type": "integer"
-                                        },
-                                        "timestamp": {
-                                            "type": "integer"
-                                        },
-                                        "transaction_id": {
-                                            "type": "string"
-                                        },
-                                        "message": {
-                                            "type": "string"
-                                        }
-                                    }
-                                },
-                                "examples": {
-                                    "422 Invalid Job ID": {
-                                        "value": {
-                                            "code": 422,
-                                            "timestamp": 1763633700000,
-                                            "transaction_id": "1d84cdcd-e9c4-4daf-a98c-983a18bc059f",
-                                            "message": "Invalid job id: 12234-555"
-                                        }
-                                    }
-                                }
-                            }
-                        }
-                    },
-                    "521": {
-                        "description": "521 - Data Not Found",
-                        "content": {
-                            "application/json": {
-                                "schema": {
-                                    "type": "object",
-                                    "properties": {
-                                        "code": {
-                                            "type": "integer"
-                                        },
-                                        "timestamp": {
-                                            "type": "integer"
-                                        },
-                                        "transaction_id": {
-                                            "type": "string"
-                                        },
-                                        "message": {
-                                            "type": "string"
-                                        }
-                                    }
-                                },
-                                "examples": {
-                                    "521 Data not found": {
-                                        "value": {
-                                            "code": 521,
-                                            "timestamp": 1763633700000,
-                                            "transaction_id": "f79037ec-d96f-48d2-bf4a-d8978294bb50",
-                                            "message": "Data not found: null"
-                                        }
-                                    }
-                                }
-                            }
-                        }
-                    }
-                }
-            }
-        },
-        "/tds/analytics/potential-notices/search": {
-            "post": {
-                "summary": "Fetch Jobs",
-                "tags": [
-                    "Potential Notices",
-                    "TDS"
-                ],
-                "parameters": [
-                    {
-                        "name": "x-api-key",
-                        "in": "header",
-                        "required": true,
-                        "description": "API key for identification",
-                        "deprecated": false,
-                        "schema": {
-                            "type": "string"
-                        }
-                    },
-                    {
-                        "name": "Authorization",
-                        "in": "header",
-                        "required": true,
-                        "description": "JWT access token",
-                        "deprecated": false,
-                        "schema": {
-                            "type": "string"
-                        }
-                    },
-                    {
-                        "name": "x-api-version",
-                        "in": "header",
-                        "description": "API Version",
-                        "schema": {
-                            "type": "string"
-                        }
-                    }
-                ],
-                "responses": {
-                    "default": {
-                        "description": "200 - Success",
-                        "content": {
-                            "application/json": {
-                                "schema": {
-                                    "type": "object",
-                                    "properties": {
-                                        "code": {
-                                            "type": "integer"
-                                        },
-                                        "timestamp": {
-                                            "type": "integer"
-                                        },
-                                        "transaction_id": {
-                                            "type": "string"
-                                        },
-                                        "data": {
-                                            "type": "object",
-                                            "properties": {
-                                                "@entity": {
-                                                    "type": "string",
-                                                    "const": "in.co.sandbox.tds.analytics.potential_notice.paginated_list"
-                                                },
-                                                "items": {
-                                                    "type": "array",
-                                                    "items": {
-                                                        "type": "object",
-                                                        "properties": {
-                                                            "@entity": {
-                                                                "type": "string",
-                                                                "const": "in.co.sandbox.tds.analytics.potential_notice.job"
-                                                            },
-                                                            "job_id": {
-                                                                "type": "string"
-                                                            },
-                                                            "tan": {
-                                                                "type": "string"
-                                                            },
-                                                            "financial_year": {
-                                                                "type": "string"
-                                                            },
-                                                            "quarter": {
-                                                                "type": "string"
-                                                            },
-                                                            "form": {
-                                                                "type": "string"
-                                                            },
-                                                            "created_at": {
-                                                                "type": "integer"
-                                                            },
-                                                            "updated_at": {
-                                                                "type": "integer"
-                                                            },
-                                                            "status": {
-                                                                "type": "string"
-                                                            },
-                                                            "return_receipt_number": {
-                                                                "type": "integer"
-                                                            }
-                                                        }
-                                                    }
-                                                },
-                                                "last_evaluated_key": {
-                                                    "type": "string"
-                                                }
-                                            }
-                                        }
-                                    }
-                                }
-                            }
-                        }
-                    }
-                },
-                "requestBody": {
-                    "content": {
-                        "application/json": {
-                            "schema": {
-                                "type": "object",
-                                "properties": {
-                                    "@entity": {
-                                        "type": "string",
-                                        "const": "in.co.sandbox.tds.analytics.potential_notice.jobs.search"
-                                    },
-                                    "tan": {
-                                        "type": "string",
-                                        "description": "TAN of deductor. Regular Expression: [A-Z]{4}[0-9]{5}[A-Z]{1}",
-                                        "pattern": "[A-Z]{4}[0-9]{5}[A-Z]{1}"
-                                    },
-                                    "quarter": {
-                                        "type": "string",
-                                        "description": "Quarter for which TDS is being filed",
-                                        "enum": [
-                                            "Q1",
-                                            "Q2",
-                                            "Q3",
-                                            "Q4"
-                                        ]
-                                    },
-                                    "form": {
-                                        "type": "string",
-                                        "description": "TDS return form",
-                                        "enum": [
-                                            "24Q",
-                                            "26Q",
-                                            "27Q"
-                                        ]
-                                    },
-                                    "financial_year": {
-                                        "type": "string",
-                                        "description": "Financial Year for which TDS is being filed. (eg. FY 2024-25)",
-                                        "example": "FY 2024-25"
-                                    },
-                                    "from_date": {
-                                        "type": "integer",
-                                        "description": "Date from which jobs are to be fetched. Value in EPOCH timestamp"
-                                    },
-                                    "to_date": {
-                                        "type": "integer",
-                                        "description": "Date till which jobs are to be fetched. Value in EPOCH timestamp"
-                                    },
-                                    "page_size": {
-                                        "type": "integer",
-                                        "maximum": 50,
-                                        "description": "Number of records in the API response. Maximum allowed size is 50"
-                                    },
-                                    "last_evaluated_key": {
-                                        "type": "string",
-                                        "description": "Base64 encoding of the stringified JSON object, which includes x-api-key, created_at, and job_id"
-                                    }
-                                }
-                            }
-                        }
-                    }
-                }
-            }
-        },
-        "/tcs/analytics/potential-notices": {
-            "post": {
-                "summary": "Create TCS Potential Notice Job",
-                "tags": [
-                    "Potential Notices",
-                    "TCS"
-                ],
-                "parameters": [
-                    {
-                        "name": "x-api-key",
-                        "in": "header",
-                        "required": true,
-                        "description": "API key for identification",
-                        "deprecated": false,
-                        "schema": {
-                            "type": "string"
-                        }
-                    },
-                    {
-                        "name": "Authorization",
-                        "in": "header",
-                        "required": true,
-                        "description": "JWT access token",
-                        "deprecated": false,
-                        "schema": {
-                            "type": "string"
-                        }
-                    },
-                    {
-                        "name": "x-api-version",
-                        "in": "header",
-                        "description": "API Version",
-                        "schema": {
-                            "type": "string"
-                        }
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "200 - OK",
-                        "content": {
-                            "application/json": {
-                                "schema": {
-                                    "type": "object",
-                                    "properties": {
-                                        "code": {
-                                            "type": "integer"
-                                        },
-                                        "timestamp": {
-                                            "type": "integer"
-                                        },
-                                        "transaction_id": {
-                                            "type": "string"
-                                        },
-                                        "data": {
-                                            "type": "object",
-                                            "properties": {
-                                                "@entity": {
-                                                    "type": "string",
-                                                    "const": "in.co.sandbox.tcs.analytics.potential_notices.job"
-                                                },
-                                                "job_id": {
-                                                    "type": "string"
-                                                },
-                                                "tan": {
-                                                    "type": "string"
-                                                },
-                                                "quarter": {
-                                                    "type": "string"
-                                                },
-                                                "financial_year": {
-                                                    "type": "string"
-                                                },
-                                                "status": {
-                                                    "type": "string"
-                                                },
-                                                "created_at": {
-                                                    "type": "integer"
-                                                },
-                                                "json_url": {
-                                                    "type": "string",
-                                                    "format": "uri"
-                                                }
-                                            }
-                                        }
-                                    }
-                                },
-                                "examples": {
-                                    "200 Q2 Job created": {
-                                        "value": {
-                                            "code": 200,
-                                            "timestamp": 1763633700000,
-                                            "transaction_id": "1c1e4905-d07e-4c51-b8c5-1163050ded7f",
-                                            "data": {
-                                                "@entity": "in.co.sandbox.tcs.analytics.potential_notices.job",
-                                                "job_id": "1c1e4905-d07e-4c51-b8c5-1163050ded7f",
-                                                "tan": "AHMA09719B",
-                                                "quarter": "Q2",
-                                                "financial_year": "FY 2023-24",
-                                                "status": "created",
-                                                "created_at": 1709026684599,
-                                                "json_url": "https://test-api.sandbox.co.in/tcs/analytics/in-co-sandbox-tcs-analytics-potential-notices-test/tan/financial_year/quarter/80716d9a-4aa0-4905-8ff1-0aca61042a0e.json"
-                                            }
-                                        }
-                                    },
-                                    "200 Q3 Job created": {
-                                        "value": {
-                                            "code": 200,
-                                            "timestamp": 1763633700000,
-                                            "transaction_id": "6588064b-38d5-4f01-b93c-795dbec4a5df",
-                                            "data": {
-                                                "@entity": "in.co.sandbox.tcs.analytics.potential_notices.job",
-                                                "job_id": "6588064b-38d5-4f01-b93c-795dbec4a5df",
-                                                "tan": "AHMA09719B",
-                                                "quarter": "Q3",
-                                                "financial_year": "FY 2023-24",
-                                                "status": "created",
-                                                "created_at": 1709026684599,
-                                                "json_url": "https://test-api.sandbox.co.in/tcs/analytics/in-co-sandbox-tcs-analytics-potential-notices-test/tan/financial_year/quarter/80716d9a-4aa0-4905-8ff1-0aca61042a0e.json"
-                                            }
-                                        }
-                                    },
-                                    "200 Submitted Job will fail": {
-                                        "value": {
-                                            "code": 200,
-                                            "timestamp": 1763633700000,
-                                            "transaction_id": "05a3f586-5b2c-4f62-9f56-6600fcf9bc85",
-                                            "data": {
-                                                "@entity": "in.co.sandbox.tcs.analytics.potential_notices.job",
-                                                "job_id": "05a3f586-5b2c-4f62-9f56-6600fcf9bc85",
-                                                "tan": "BLRC23456F",
-                                                "quarter": "Q3",
-                                                "financial_year": "FY 2023-24",
-                                                "status": "created",
-                                                "created_at": 1709026684599,
-                                                "json_url": "https://test-api.sandbox.co.in/tcs/analytics/in-co-sandbox-tcs-analytics-potential-notices-test/tan/financial_year/quarter/80716d9a-4aa0-4905-8ff1-0aca61042a0e.json"
-                                            }
-                                        }
-                                    }
-                                }
-                            }
-                        }
-                    },
-                    "422": {
-                        "description": "422 - Unprocessable Entity",
-                        "content": {
-                            "application/json": {
-                                "schema": {
-                                    "type": "object",
-                                    "properties": {
-                                        "code": {
-                                            "type": "integer"
-                                        },
-                                        "timestamp": {
-                                            "type": "integer"
-                                        },
-                                        "transaction_id": {
-                                            "type": "string"
-                                        },
-                                        "message": {
-                                            "type": "string"
-                                        }
-                                    }
-                                },
-                                "examples": {
-                                    "422 Invalid TAN": {
-                                        "value": {
-                                            "code": 422,
-                                            "timestamp": 1763633700000,
-                                            "transaction_id": "ed94514f-b51b-434e-9a0e-8e655192031a",
-                                            "message": "Invalid TAN: DABC2345DD"
-                                        }
-                                    },
-                                    "422 Invalid Quarter": {
-                                        "value": {
-                                            "code": 422,
-                                            "timestamp": 1763633700000,
-                                            "transaction_id": "6a506aff-70bd-4e86-ac7c-4ba51a5a87d2",
-                                            "message": "Invalid quarter: Q5"
-                                        }
-                                    },
-                                    "422 Invalid Financial Year": {
-                                        "value": {
-                                            "code": 422,
-                                            "timestamp": 1763633700000,
-                                            "transaction_id": "7b21bee8-bb21-4f60-a5ae-73a16b073cb2",
-                                            "message": "Invalid financial year: 2022"
-                                        }
-                                    }
-                                }
-                            }
-                        }
-                    }
-                },
-                "requestBody": {
-                    "content": {
-                        "application/json": {
-                            "examples": {
-                                "q2_job_created": {
-                                    "summary": "200 Q2 Job created",
-                                    "value": {
-                                        "@entity": "in.co.sandbox.tcs.analytics.potential_notice.request",
-                                        "quarter": "Q2",
-                                        "tan": "AHMA09719B",
-                                        "financial_year": "FY 2023-24"
-                                    }
-                                },
-                                "q3_job_created": {
-                                    "summary": "200 Q3 Job created",
-                                    "value": {
-                                        "@entity": "in.co.sandbox.tcs.analytics.potential_notice.request",
-                                        "quarter": "Q3",
-                                        "tan": "AHMA09719B",
-                                        "financial_year": "FY 2023-24"
-                                    }
-                                },
-                                "submitted_job_will_fail": {
-                                    "summary": "200 Submitted Job will fail",
-                                    "value": {
-                                        "@entity": "in.co.sandbox.tcs.analytics.potential_notice.request",
-                                        "quarter": "Q3",
-                                        "tan": "BLRC23456F",
-                                        "financial_year": "FY 2023-24"
-                                    }
-                                },
-                                "invalid_tan": {
-                                    "summary": "422 Invalid TAN",
-                                    "value": {
-                                        "@entity": "in.co.sandbox.tcs.analytics.potential_notice.request",
-                                        "quarter": "Q3",
-                                        "tan": "DABC2345DD",
-                                        "financial_year": "FY 2023-24"
-                                    }
-                                },
-                                "invalid_quarter": {
-                                    "summary": "422 Invalid Quarter",
-                                    "value": {
-                                        "@entity": "in.co.sandbox.tcs.analytics.potential_notice.job",
-                                        "quarter": "Q5",
-                                        "tan": "EABC23456N",
-                                        "financial_year": "FY 2023-24"
-                                    }
-                                },
-                                "invalid_financial_year": {
-                                    "summary": "422 Invalid Financial Year",
-                                    "value": {
-                                        "@entity": "in.co.sandbox.tcs.analytics.potential_notice.request",
-                                        "quarter": "Q3",
-                                        "tan": "AHMA09719B",
-                                        "financial_year": "2022"
-                                    }
-                                }
-                            },
-                            "schema": {
-                                "type": "object",
-                                "properties": {
-                                    "@entity": {
-                                        "type": "string",
-                                        "const": "in.co.sandbox.tcs.analytics.potential_notice.request"
-                                    },
-                                    "quarter": {
-                                        "type": "string",
-                                        "description": "Quarter for which TDS is being filed",
-                                        "enum": [
-                                            "Q1",
-                                            "Q2",
-                                            "Q3",
-                                            "Q4"
-                                        ]
-                                    },
-                                    "tan": {
-                                        "type": "string",
-                                        "description": "TAN of deductor. Regular Expression: [A-Z]{4}[0-9]{5}[A-Z]{1}",
-                                        "pattern": "[A-Z]{4}[0-9]{5}[A-Z]{1}"
-                                    },
-                                    "financial_year": {
-                                        "type": "string",
-                                        "description": "Financial Year for which TDS is being filed. (eg. FY 2024-25)",
-                                        "example": "FY 2024-25"
-                                    }
-                                },
-                                "required": [
-                                    "@entity",
-                                    "quarter",
-                                    "tan",
-                                    "financial_year"
-                                ]
-                            }
-                        }
-                    }
-                }
-            },
-            "get": {
-                "summary": "Fetch Potential Notice status",
-                "tags": [
-                    "Potential Notices",
-                    "TCS"
-                ],
-                "parameters": [
-                    {
-                        "name": "job_id",
-                        "in": "query",
-                        "required": true,
-                        "description": "Unique identifier of the job",
-                        "deprecated": false,
-                        "schema": {
-                            "type": "string",
-                            "format": "uuid"
-                        }
-                    },
-                    {
-                        "name": "x-api-key",
-                        "in": "header",
-                        "required": true,
-                        "description": "API key for identification",
-                        "deprecated": false,
-                        "schema": {
-                            "type": "string"
-                        }
-                    },
-                    {
-                        "name": "Authorization",
-                        "in": "header",
-                        "required": true,
-                        "description": "JWT access token",
-                        "deprecated": false,
-                        "schema": {
-                            "type": "string"
-                        }
-                    },
-                    {
-                        "name": "x-api-version",
-                        "in": "header",
-                        "description": "API Version",
-                        "schema": {
-                            "type": "string"
-                        }
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "200 - OK",
-                        "content": {
-                            "application/json": {
-                                "schema": {
-                                    "oneOf": [
-                                        {
-                                            "title": "Job Succeeded",
-                                            "type": "object",
-                                            "properties": {
-                                                "code": {
-                                                    "type": "integer"
-                                                },
-                                                "timestamp": {
-                                                    "type": "integer"
-                                                },
-                                                "transaction_id": {
-                                                    "type": "string"
-                                                },
-                                                "data": {
-                                                    "type": "object",
-                                                    "properties": {
-                                                        "@entity": {
-                                                            "type": "string",
-                                                            "const": "in.co.sandbox.tcs.analytics.potential_notices.job"
-                                                        },
-                                                        "job_id": {
-                                                            "type": "string"
-                                                        },
-                                                        "tan": {
-                                                            "type": "string"
-                                                        },
-                                                        "quarter": {
-                                                            "type": "string"
-                                                        },
-                                                        "financial_year": {
-                                                            "type": "string"
-                                                        },
-                                                        "status": {
-                                                            "type": "string"
-                                                        },
-                                                        "created_at": {
-                                                            "type": "integer"
-                                                        },
-                                                        "updated_at": {
-                                                            "type": "integer"
-                                                        },
-                                                        "potential_notice_report_url": {
-                                                            "type": "string",
-                                                            "format": "uri"
-                                                        }
-                                                    }
-                                                }
-                                            }
-                                        },
-                                        {
-                                            "title": "Job Failed",
-                                            "type": "object",
-                                            "properties": {
-                                                "code": {
-                                                    "type": "integer"
-                                                },
-                                                "timestamp": {
-                                                    "type": "integer"
-                                                },
-                                                "transaction_id": {
-                                                    "type": "string"
-                                                },
-                                                "data": {
-                                                    "type": "object",
-                                                    "properties": {
-                                                        "@entity": {
-                                                            "type": "string",
-                                                            "const": "in.co.sandbox.tcs.analytics.potential_notices.job"
-                                                        },
-                                                        "job_id": {
-                                                            "type": "string"
-                                                        },
-                                                        "tan": {
-                                                            "type": "string"
-                                                        },
-                                                        "quarter": {
-                                                            "type": "string"
-                                                        },
-                                                        "financial_year": {
-                                                            "type": "string"
-                                                        },
-                                                        "status": {
-                                                            "type": "string"
-                                                        },
-                                                        "created_at": {
-                                                            "type": "integer"
-                                                        },
-                                                        "updated_at": {
-                                                            "type": "integer"
-                                                        },
-                                                        "validation_report_url": {
-                                                            "type": "string",
-                                                            "format": "uri"
-                                                        }
-                                                    }
-                                                }
-                                            }
-                                        },
-                                        {
-                                            "title": "Job Queued",
-                                            "type": "object",
-                                            "properties": {
-                                                "code": {
-                                                    "type": "integer"
-                                                },
-                                                "timestamp": {
-                                                    "type": "integer"
-                                                },
-                                                "transaction_id": {
-                                                    "type": "string"
-                                                },
-                                                "data": {
-                                                    "type": "object",
-                                                    "properties": {
-                                                        "@entity": {
-                                                            "type": "string",
-                                                            "const": "in.co.sandbox.tcs.analytics.potential_notices.job"
-                                                        },
-                                                        "job_id": {
-                                                            "type": "string"
-                                                        },
-                                                        "tan": {
-                                                            "type": "string"
-                                                        },
-                                                        "quarter": {
-                                                            "type": "string"
-                                                        },
-                                                        "financial_year": {
-                                                            "type": "string"
-                                                        },
-                                                        "status": {
-                                                            "type": "string"
-                                                        },
-                                                        "created_at": {
-                                                            "type": "integer"
-                                                        },
-                                                        "updated_at": {
-                                                            "type": "integer"
-                                                        }
-                                                    }
-                                                }
-                                            }
-                                        }
-                                    ]
-                                },
-                                "examples": {
-                                    "200 Q2 Job Succeeded": {
-                                        "value": {
-                                            "code": 200,
-                                            "timestamp": 1763633700,
-                                            "transaction_id": "f4bf8069-29c9-4e10-8c90-b4b221146b35",
-                                            "data": {
-                                                "@entity": "in.co.sandbox.tcs.analytics.potential_notices.job",
-                                                "job_id": "1c1e4905-d07e-4c51-b8c5-1163050ded7f",
-                                                "tan": "AHMA09719B",
-                                                "quarter": "Q3",
-                                                "financial_year": "FY 2023-24",
-                                                "status": "succeeded",
-                                                "created_at": 1709026684599,
-                                                "updated_at": 1711544847339,
-                                                "potential_notice_report_url": "https://in-co-sandbox-tcs-analytics-potential-notices-test.s3.ap-south-1.amazonaws.com/tan/financial_year/quarter/form/45b5569c-6e1d-4cd6-aaa1-5a9c5462da23_potential_notice.xlsx"
-                                            }
-                                        }
-                                    },
-                                    "200 Q3 Job Succeeded": {
-                                        "value": {
-                                            "code": 200,
-                                            "timestamp": 1763633700,
-                                            "transaction_id": "7d608750-469e-47a8-9b6c-d7f5d6370925",
-                                            "data": {
-                                                "@entity": "in.co.sandbox.tcs.analytics.potential_notices.job",
-                                                "job_id": "6588064b-38d5-4f01-b93c-795dbec4a5df",
-                                                "tan": "AHMA09719B",
-                                                "quarter": "Q3",
-                                                "financial_year": "FY 2023-24",
-                                                "status": "succeeded",
-                                                "created_at": 1709026684599,
-                                                "updated_at": 1711544847339,
-                                                "potential_notice_report_url": "https://in-co-sandbox-tcs-analytics-potential-notices-test.s3.ap-south-1.amazonaws.com/tan/financial_year/quarter/form/45b5569c-6e1d-4cd6-aaa1-5a9c5462da23_potential_notice.xlsx"
-                                            }
-                                        }
-                                    },
-                                    "200 Job Failed": {
-                                        "value": {
-                                            "code": 200,
-                                            "timestamp": 1763633700000,
-                                            "transaction_id": "e85cb0e9-0129-4ff1-93ee-404e4e0f6b8b",
-                                            "data": {
-                                                "@entity": "in.co.sandbox.tcs.analytics.potential_notices.job",
-                                                "job_id": "05a3f586-5b2c-4f62-9f56-6600fcf9bc85",
-                                                "tan": "BLRC23456F",
-                                                "quarter": "Q3",
-                                                "financial_year": "FY 2023-24",
-                                                "status": "failed",
-                                                "created_at": 1709026684599,
-                                                "updated_at": 1711544847339,
-                                                "validation_report_url": "https://in-co-sandbox-tcs-analytics-potential-notices-test.s3.ap-south-1.amazonaws.com/tan/financial_year/quarter/form/653a843c-2fa2-422a-b074-875f74383125_validation_report.xlsx"
-                                            }
-                                        }
-                                    },
-                                    "200 Job Queued": {
-                                        "value": {
-                                            "code": 200,
-                                            "timestamp": 1763633700000,
-                                            "transaction_id": "24b6c1fb-ae5c-4692-993c-00432dccb5bf",
-                                            "data": {
-                                                "@entity": "in.co.sandbox.tcs.analytics.potential_notices.job",
-                                                "job_id": "53b385f8-8d76-4a72-8ccd-b6e81648c426",
-                                                "tan": "AHMA09719B",
-                                                "quarter": "Q3",
-                                                "financial_year": "FY 2023-24",
-                                                "status": "queued",
-                                                "created_at": 1709026684599,
-                                                "updated_at": 1711544847339
-                                            }
-                                        }
-                                    }
-                                }
-                            }
-                        }
-                    },
-                    "422": {
-                        "description": "422 - Unprocessable Entity",
-                        "content": {
-                            "application/json": {
-                                "schema": {
-                                    "type": "object",
-                                    "properties": {
-                                        "code": {
-                                            "type": "integer"
-                                        },
-                                        "timestamp": {
-                                            "type": "integer"
-                                        },
-                                        "transaction_id": {
-                                            "type": "string"
-                                        },
-                                        "message": {
-                                            "type": "string"
-                                        }
-                                    }
-                                },
-                                "examples": {
-                                    "422 Invalid Job ID": {
-                                        "value": {
-                                            "code": 422,
-                                            "timestamp": 1763633700000,
-                                            "transaction_id": "ca8411ca-e9df-4d1f-bf36-f86d9012bc8c",
-                                            "message": "Invalid job id: 12234-555"
-                                        }
-                                    }
-                                }
-                            }
-                        }
-                    },
-                    "521": {
-                        "description": "521 - Data Not Found",
-                        "content": {
-                            "application/json": {
-                                "schema": {
-                                    "type": "object",
-                                    "properties": {
-                                        "code": {
-                                            "type": "integer"
-                                        },
-                                        "timestamp": {
-                                            "type": "integer"
-                                        },
-                                        "transaction_id": {
-                                            "type": "string"
-                                        },
-                                        "message": {
-                                            "type": "string"
-                                        }
-                                    }
-                                },
-                                "examples": {
-                                    "521 Data not found": {
-                                        "value": {
-                                            "code": 521,
-                                            "timestamp": 1763633700000,
-                                            "transaction_id": "e35586d4-7b55-47d7-a93a-ff87f4724c8f",
-                                            "message": "Data not found: null"
-                                        }
-                                    }
-                                }
-                            }
-                        }
-                    }
-                }
-            }
-        },
-        "/tcs/analytics/potential-notices/search": {
-            "post": {
-                "summary": "Fetch Jobs",
-                "tags": [
-                    "Potential Notices",
-                    "TCS"
-                ],
-                "parameters": [
-                    {
-                        "name": "x-api-key",
-                        "in": "header",
-                        "required": true,
-                        "description": "API key for identification",
-                        "deprecated": false,
-                        "schema": {
-                            "type": "string"
-                        }
-                    },
-                    {
-                        "name": "Authorization",
-                        "in": "header",
-                        "required": true,
-                        "description": "JWT access token",
-                        "deprecated": false,
-                        "schema": {
-                            "type": "string"
-                        }
-                    },
-                    {
-                        "name": "x-api-version",
-                        "in": "header",
-                        "description": "API Version",
-                        "schema": {
-                            "type": "string"
-                        }
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "200 - OK",
-                        "content": {
-                            "application/json": {
-                                "schema": {
-                                    "type": "object",
-                                    "properties": {
-                                        "code": {
-                                            "type": "integer"
-                                        },
-                                        "timestamp": {
-                                            "type": "integer"
-                                        },
-                                        "transaction_id": {
-                                            "type": "string"
-                                        },
-                                        "data": {
-                                            "type": "object",
-                                            "properties": {
-                                                "@entity": {
-                                                    "type": "string",
-                                                    "const": "in.co.sandbox.tcs.analytics.potential_notice.paginated_list"
-                                                },
-                                                "items": {
-                                                    "type": "array",
-                                                    "items": {
-                                                        "type": "object",
-                                                        "properties": {
-                                                            "@entity": {
-                                                                "type": "string",
-                                                                "const": "in.co.sandbox.tcs.analytics.potential_notices.job"
-                                                            },
-                                                            "job_id": {
-                                                                "type": "string"
-                                                            },
-                                                            "tan": {
-                                                                "type": "string"
-                                                            },
-                                                            "financial_year": {
-                                                                "type": "string"
-                                                            },
-                                                            "quarter": {
-                                                                "type": "string"
-                                                            },
-                                                            "form": {
-                                                                "type": "string"
-                                                            },
-                                                            "created_at": {
-                                                                "type": "integer"
-                                                            },
-                                                            "updated_at": {
-                                                                "type": "integer"
-                                                            },
-                                                            "status": {
-                                                                "type": "string"
-                                                            },
-                                                            "return_receipt_number": {
-                                                                "type": "integer"
-                                                            }
-                                                        }
-                                                    }
-                                                },
-                                                "last_evaluated_key": {
-                                                    "type": "string"
-                                                }
-                                            }
-                                        }
-                                    }
-                                },
-                                "examples": {
-                                    "200 - Success": {
-                                        "value": {
-                                            "code": 200,
-                                            "timestamp": 1715757773000,
-                                            "transaction_id": "109469b2-0748-4135-a569-e86fc9e45756",
-                                            "data": {
-                                                "@entity": "in.co.sandbox.tcs.analytics.potential_notice.paginated_list",
-                                                "items": [
-                                                    {
-                                                        "@entity": "in.co.sandbox.tcs.analytics.potential_notices.job",
-                                                        "job_id": "096c4812-1829-4ee1-a3c6-3bd291654b72",
-                                                        "tan": "AHMS12345C",
-                                                        "financial_year": "FY 2023-24",
-                                                        "quarter": "Q2",
-                                                        "form": "26Q",
-                                                        "created_at": 1714529043000,
-                                                        "updated_at": 1714529044000,
-                                                        "status": "succeeded",
-                                                        "return_receipt_number": 123456789012345
-                                                    },
-                                                    {
-                                                        "@entity": "in.co.sandbox.tcs.analytics.potential_notices.job",
-                                                        "job_id": "096c4812-1829-4ee1-a3c6-3bd291654b72",
-                                                        "tan": "AHMS12345C",
-                                                        "financial_year": "FY 2023-24",
-                                                        "quarter": "Q2",
-                                                        "form": "26Q",
-                                                        "created_at": 1714530043000,
-                                                        "updated_at": 1714530044000,
-                                                        "status": "failed",
-                                                        "message": "Validation error"
-                                                    }
-                                                ],
-                                                "last_evaluated_key": "eydadadadada...=="
-                                            }
-                                        }
-                                    }
-                                }
-                            }
-                        }
-                    }
-                },
-                "requestBody": {
-                    "content": {
-                        "application/json": {
-                            "schema": {
-                                "type": "object",
-                                "properties": {
-                                    "@entity": {
-                                        "type": "string",
-                                        "const": "in.co.sandbox.tds.analytics.potential_notice.jobs.search"
-                                    },
-                                    "tan": {
-                                        "type": "string",
-                                        "description": "TAN of deductor. Regular Expression: [A-Z]{4}[0-9]{5}[A-Z]{1}",
-                                        "pattern": "[A-Z]{4}[0-9]{5}[A-Z]{1}"
-                                    },
-                                    "quarter": {
-                                        "type": "string",
-                                        "description": "Quarter for which TDS is being filed",
-                                        "enum": [
-                                            "Q1",
-                                            "Q2",
-                                            "Q3",
-                                            "Q4"
-                                        ]
-                                    },
-                                    "financial_year": {
-                                        "type": "string",
-                                        "description": "Financial Year for which TDS is being filed. (eg. FY 2024-25)",
-                                        "example": "FY 2024-25"
-                                    },
-                                    "from_date": {
-                                        "type": "integer",
-                                        "description": "Date from which jobs are to be fetched. Value in EPOCH timestamp"
-                                    },
-                                    "to_date": {
-                                        "type": "integer",
-                                        "description": "Date till which jobs are to be fetched. Value in EPOCH timestamp"
-                                    },
-                                    "page_size": {
-                                        "type": "integer",
-                                        "maximum": 50,
-                                        "description": "Number of records in the API response. Maximum allowed size is 50"
-                                    },
-                                    "last_evaluated_key": {
-                                        "type": "string",
-                                        "description": "Base64 encoding of the stringified JSON object, which includes x-api-key, created_at, and job_id"
-                                    }
-                                }
-                            }
-                        }
-                    }
-                }
-            }
-        }
+    {
+      "url": "https://api.sandbox.co.in",
+      "description": "prod"
     }
+  ],
+  "paths": {
+    "/tds/analytics/potential-notices": {
+      "post": {
+        "summary": "Create TDS Potential Notice Job",
+        "tags": [
+          "Potential Notices",
+          "TDS"
+        ],
+        "parameters": [
+          {
+            "name": "x-api-key",
+            "in": "header",
+            "required": true,
+            "description": "API key for identification",
+            "deprecated": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "Authorization",
+            "in": "header",
+            "required": true,
+            "description": "JWT access token",
+            "deprecated": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "x-api-version",
+            "in": "header",
+            "description": "API Version",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "200 - OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "code": {
+                      "type": "integer"
+                    },
+                    "timestamp": {
+                      "type": "integer"
+                    },
+                    "transaction_id": {
+                      "type": "string"
+                    },
+                    "data": {
+                      "type": "object",
+                      "properties": {
+                        "@entity": {
+                          "type": "string",
+                          "enum": [
+                            "in.co.sandbox.tds.analytics.potential_notices.job"
+                          ]
+                        },
+                        "job_id": {
+                          "type": "string"
+                        },
+                        "tan": {
+                          "type": "string"
+                        },
+                        "quarter": {
+                          "type": "string"
+                        },
+                        "financial_year": {
+                          "type": "string"
+                        },
+                        "form": {
+                          "type": "string"
+                        },
+                        "status": {
+                          "type": "string"
+                        },
+                        "created_at": {
+                          "type": "integer"
+                        },
+                        "json_url": {
+                          "type": "string",
+                          "format": "uri"
+                        }
+                      }
+                    }
+                  }
+                },
+                "examples": {
+                  "200 Form 26Q Job created": {
+                    "value": {
+                      "code": 200,
+                      "timestamp": 1763633700000,
+                      "transaction_id": "1c1e4905-d07e-4c51-b8c5-1163050ded7f",
+                      "data": {
+                        "@entity": "in.co.sandbox.tds.analytics.potential_notices.job",
+                        "job_id": "1c1e4905-d07e-4c51-b8c5-1163050ded7f",
+                        "tan": "AHMA09719B",
+                        "quarter": "Q4",
+                        "financial_year": "FY 2023-24",
+                        "form": "26Q",
+                        "status": "created",
+                        "created_at": 1716515767000,
+                        "json_url": "https://test-api.sandbox.co.in/tds/analytics/in-co-sandbox-tds-analytics-potential-notices-test/tan/financial_year/quarter/80716d9a-4aa0-4905-8ff1-0aca61042a0e.json"
+                      }
+                    }
+                  },
+                  "200 Form 24Q Job created": {
+                    "value": {
+                      "code": 200,
+                      "timestamp": 1763633700000,
+                      "transaction_id": "1434930f-1516-42ff-945e-44d4105cca18",
+                      "data": {
+                        "@entity": "in.co.sandbox.tds.analytics.potential_notices.job",
+                        "job_id": "1434930f-1516-42ff-945e-44d4105cca18",
+                        "tan": "AHMA09719B",
+                        "quarter": "Q4",
+                        "financial_year": "FY 2023-24",
+                        "form": "24Q",
+                        "status": "created",
+                        "created_at": 1716515767000,
+                        "json_url": "https://test-api.sandbox.co.in/tds/analytics/in-co-sandbox-tds-analytics-potential-notices-test/tan/financial_year/quarter/80716d9a-4aa0-4905-8ff1-0aca61042a0e.json"
+                      }
+                    }
+                  },
+                  "200 Form 27Q Job created": {
+                    "value": {
+                      "code": 200,
+                      "timestamp": 1763633700000,
+                      "transaction_id": "7f4c8126-0a4c-48f3-939a-b73721092d2f",
+                      "data": {
+                        "@entity": "in.co.sandbox.tds.analytics.potential_notices.job",
+                        "job_id": "7f4c8126-0a4c-48f3-939a-b73721092d2f",
+                        "tan": "AHMA09719B",
+                        "quarter": "Q4",
+                        "financial_year": "FY 2023-24",
+                        "form": "27Q",
+                        "status": "created",
+                        "created_at": 1716515767000,
+                        "json_url": "https://test-api.sandbox.co.in/tds/analytics/in-co-sandbox-tds-analytics-potential-notices-test/tan/financial_year/quarter/80716d9a-4aa0-4905-8ff1-0aca61042a0e.json"
+                      }
+                    }
+                  },
+                  "200 Submitted Job will fail": {
+                    "value": {
+                      "code": 200,
+                      "timestamp": 1763633700000,
+                      "transaction_id": "05a3f586-5b2c-4f62-9f56-6600fcf9bc85",
+                      "data": {
+                        "@entity": "in.co.sandbox.tds.analytics.potential_notices.job",
+                        "job_id": "05a3f586-5b2c-4f62-9f56-6600fcf9bc85",
+                        "tan": "BLRC23456F",
+                        "quarter": "Q3",
+                        "financial_year": "FY 2023-24",
+                        "form": "26Q",
+                        "status": "created",
+                        "created_at": 1716515767000,
+                        "json_url": "https://test-api.sandbox.co.in/tds/analytics/in-co-sandbox-tds-analytics-potential-notices-test/tan/financial_year/quarter/80716d9a-4aa0-4905-8ff1-0aca61042a0e.json"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "422 - Unprocessable Entity",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "code": {
+                      "type": "integer"
+                    },
+                    "timestamp": {
+                      "type": "integer"
+                    },
+                    "transaction_id": {
+                      "type": "string"
+                    },
+                    "message": {
+                      "type": "string"
+                    }
+                  }
+                },
+                "examples": {
+                  "422 Invalid TAN": {
+                    "value": {
+                      "code": 422,
+                      "timestamp": 1763633700000,
+                      "transaction_id": "e9bf56c1-086e-41d4-9b1c-feebe35207e0",
+                      "message": "Invalid TAN: DABC2345DD"
+                    }
+                  },
+                  "422 Invalid Quarter": {
+                    "value": {
+                      "code": 422,
+                      "timestamp": 1763633700000,
+                      "transaction_id": "90c354b0-0cad-403b-b840-892384d0e14d",
+                      "message": "Invalid quarter: Q5"
+                    }
+                  },
+                  "422 Invalid Form": {
+                    "value": {
+                      "code": 422,
+                      "timestamp": 1763633700000,
+                      "transaction_id": "35a11c62-3dc7-48db-a930-2788c7a098ef",
+                      "message": "Invalid form type: 25Q"
+                    }
+                  },
+                  "422 Invalid Financial Year": {
+                    "value": {
+                      "code": 422,
+                      "timestamp": 1763633700000,
+                      "transaction_id": "f07c5a4b-1c16-429f-8941-9981eed6fd3e",
+                      "message": "Invalid financial year: 2022"
+                    }
+                  },
+                  "422 Invalid Entity": {
+                    "value": {
+                      "code": 422,
+                      "timestamp": 1763633700000,
+                      "transaction_id": "1062275f-0c31-4b20-adbe-3d2f896c77f6",
+                      "message": "Invalid entity: wrong.entity"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "examples": {
+                "form_26q_job_created": {
+                  "summary": "200 Form 26Q Job created",
+                  "value": {
+                    "@entity": "in.co.sandbox.tds.analytics.potential_notice.request",
+                    "quarter": "Q4",
+                    "form": "26Q",
+                    "tan": "AHMA09719B",
+                    "financial_year": "FY 2023-24"
+                  }
+                },
+                "form_24q_job_created": {
+                  "summary": "200 Form 24Q Job created",
+                  "value": {
+                    "@entity": "in.co.sandbox.tds.analytics.potential_notice.request",
+                    "quarter": "Q4",
+                    "form": "24Q",
+                    "tan": "AHMA09719B",
+                    "financial_year": "FY 2023-24"
+                  }
+                },
+                "form_27q_job_created": {
+                  "summary": "200 Form 27Q Job created",
+                  "value": {
+                    "@entity": "in.co.sandbox.tds.analytics.potential_notice.request",
+                    "quarter": "Q4",
+                    "form": "27Q",
+                    "tan": "AHMA09719B",
+                    "financial_year": "FY 2023-24"
+                  }
+                },
+                "submitted_job_will_fail": {
+                  "summary": "200 Submitted Job will fail",
+                  "value": {
+                    "@entity": "in.co.sandbox.tds.analytics.potential_notice.request",
+                    "quarter": "Q3",
+                    "form": "26Q",
+                    "tan": "BLRC23456F",
+                    "financial_year": "FY 2023-24"
+                  }
+                },
+                "invalid_tan": {
+                  "summary": "422 Invalid TAN",
+                  "value": {
+                    "@entity": "in.co.sandbox.tds.analytics.potential_notice.request",
+                    "quarter": "Q3",
+                    "form": "26Q",
+                    "tan": "DABC2345DD",
+                    "financial_year": "FY 2023-24"
+                  }
+                },
+                "invalid_quarter": {
+                  "summary": "422 Invalid Quarter",
+                  "value": {
+                    "@entity": "in.co.sandbox.tds.analytics.potential_notice.request",
+                    "quarter": "Q5",
+                    "form": "28Q",
+                    "tan": "EABC23456N",
+                    "financial_year": "FY 2023-24"
+                  }
+                },
+                "invalid_form": {
+                  "summary": "422 Invalid Form",
+                  "value": {
+                    "@entity": "in.co.sandbox.tds.analytics.potential_notice.request",
+                    "quarter": "Q3",
+                    "form": "25Q",
+                    "tan": "EABC23456N",
+                    "financial_year": "FY 2023-24"
+                  }
+                },
+                "invalid_financial_year": {
+                  "summary": "422 Invalid Financial Year",
+                  "value": {
+                    "@entity": "in.co.sandbox.tds.analytics.potential_notice.request",
+                    "quarter": "Q3",
+                    "form": "24Q",
+                    "tan": "EABC23456N",
+                    "financial_year": "2022"
+                  }
+                },
+                "invalid_entity": {
+                  "summary": "422 Invalid Entity",
+                  "value": {
+                    "@entity": "wrong.entity",
+                    "quarter": "Q3",
+                    "form": "24Q",
+                    "tan": "EABC23456N",
+                    "financial_year": "FY 2023-24"
+                  }
+                }
+              },
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "@entity": {
+                    "type": "string",
+                    "const": "in.co.sandbox.tds.analytics.potential_notice.request"
+                  },
+                  "quarter": {
+                    "type": "string",
+                    "description": "Quarter for which TDS is being filed",
+                    "enum": [
+                      "Q1",
+                      "Q2",
+                      "Q3",
+                      "Q4"
+                    ]
+                  },
+                  "tan": {
+                    "type": "string",
+                    "description": "TAN of deductor. Regular Expression: [A-Z]{4}[0-9]{5}[A-Z]{1}",
+                    "pattern": "[A-Z]{4}[0-9]{5}[A-Z]{1}"
+                  },
+                  "form": {
+                    "type": "string",
+                    "description": "TDS return form",
+                    "enum": [
+                      "24Q",
+                      "26Q",
+                      "27Q"
+                    ]
+                  },
+                  "financial_year": {
+                    "type": "string",
+                    "description": "Financial Year for which TDS is being filed. (eg. FY 2024-25)",
+                    "example": "FY 2024-25"
+                  }
+                },
+                "required": [
+                  "@entity",
+                  "quarter",
+                  "tan",
+                  "form",
+                  "financial_year"
+                ]
+              }
+            }
+          }
+        }
+      },
+      "get": {
+        "summary": "Fetch Potential Notice status",
+        "tags": [
+          "Potential Notices",
+          "TDS"
+        ],
+        "parameters": [
+          {
+            "name": "job_id",
+            "in": "query",
+            "required": true,
+            "description": "Unique identifier of the job",
+            "deprecated": false,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          },
+          {
+            "name": "x-api-key",
+            "in": "header",
+            "required": true,
+            "description": "API key for identification",
+            "deprecated": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "Authorization",
+            "in": "header",
+            "required": true,
+            "description": "JWT access token",
+            "deprecated": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "x-api-version",
+            "in": "header",
+            "description": "API Version",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "200 - OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "oneOf": [
+                    {
+                      "title": "Job Succeeded",
+                      "type": "object",
+                      "properties": {
+                        "code": {
+                          "type": "integer"
+                        },
+                        "timestamp": {
+                          "type": "integer"
+                        },
+                        "transaction_id": {
+                          "type": "string"
+                        },
+                        "data": {
+                          "type": "object",
+                          "properties": {
+                            "@entity": {
+                              "type": "string",
+                              "const": "in.co.sandbox.tds.analytics.potential_notices.job"
+                            },
+                            "job_id": {
+                              "type": "string"
+                            },
+                            "tan": {
+                              "type": "string"
+                            },
+                            "quarter": {
+                              "type": "string"
+                            },
+                            "financial_year": {
+                              "type": "string"
+                            },
+                            "form": {
+                              "type": "string"
+                            },
+                            "status": {
+                              "type": "string"
+                            },
+                            "created_at": {
+                              "type": "integer"
+                            },
+                            "updated_at": {
+                              "type": "integer"
+                            },
+                            "potential_notice_report_url": {
+                              "type": "string",
+                              "format": "uri"
+                            }
+                          }
+                        }
+                      }
+                    },
+                    {
+                      "title": "Job Failed",
+                      "type": "object",
+                      "properties": {
+                        "code": {
+                          "type": "integer"
+                        },
+                        "timestamp": {
+                          "type": "integer"
+                        },
+                        "transaction_id": {
+                          "type": "string"
+                        },
+                        "data": {
+                          "type": "object",
+                          "properties": {
+                            "@entity": {
+                              "type": "string",
+                              "const": "in.co.sandbox.tds.analytics.potential_notices.job"
+                            },
+                            "job_id": {
+                              "type": "string"
+                            },
+                            "tan": {
+                              "type": "string"
+                            },
+                            "quarter": {
+                              "type": "string"
+                            },
+                            "financial_year": {
+                              "type": "string"
+                            },
+                            "form": {
+                              "type": "string"
+                            },
+                            "status": {
+                              "type": "string"
+                            },
+                            "created_at": {
+                              "type": "integer"
+                            },
+                            "updated_at": {
+                              "type": "integer"
+                            },
+                            "validation_report_url": {
+                              "type": "string",
+                              "format": "uri"
+                            }
+                          }
+                        }
+                      }
+                    },
+                    {
+                      "title": "Job Queued",
+                      "type": "object",
+                      "properties": {
+                        "code": {
+                          "type": "integer"
+                        },
+                        "timestamp": {
+                          "type": "integer"
+                        },
+                        "transaction_id": {
+                          "type": "string"
+                        },
+                        "data": {
+                          "type": "object",
+                          "properties": {
+                            "@entity": {
+                              "type": "string",
+                              "const": "in.co.sandbox.tds.analytics.potential_notices.job"
+                            },
+                            "job_id": {
+                              "type": "string"
+                            },
+                            "tan": {
+                              "type": "string"
+                            },
+                            "quarter": {
+                              "type": "string"
+                            },
+                            "financial_year": {
+                              "type": "string"
+                            },
+                            "form": {
+                              "type": "string"
+                            },
+                            "status": {
+                              "type": "string"
+                            },
+                            "created_at": {
+                              "type": "integer"
+                            },
+                            "updated_at": {
+                              "type": "integer"
+                            }
+                          }
+                        }
+                      }
+                    }
+                  ]
+                },
+                "examples": {
+                  "200 Form 26Q Job Succeeded": {
+                    "value": {
+                      "code": 200,
+                      "timestamp": 1763633700,
+                      "transaction_id": "3b334f6d-dc27-4970-b90c-5c8b66bde88d",
+                      "data": {
+                        "@entity": "in.co.sandbox.tds.analytics.potential_notices.job",
+                        "job_id": "1c1e4905-d07e-4c51-b8c5-1163050ded7f",
+                        "tan": "AHMA09719B",
+                        "quarter": "Q3",
+                        "financial_year": "FY 2023-24",
+                        "form": "26Q",
+                        "status": "succeeded",
+                        "created_at": 1709026684599,
+                        "updated_at": 1711544847339,
+                        "potential_notice_report_url": "https://in-co-sandbox-tds-analytics-potential-notices-test.s3.ap-south-1.amazonaws.com/tan/financial_year/quarter/form/80716d9a-4aa0-4905-8ff1-0aca61042a0e_potential_notice.xlsx"
+                      }
+                    }
+                  },
+                  "200 Form 27Q Job Succeeded": {
+                    "value": {
+                      "code": 200,
+                      "timestamp": 1763633700,
+                      "transaction_id": "fd469cfd-6b11-494c-acac-5f8a6d87bb70",
+                      "data": {
+                        "@entity": "in.co.sandbox.tds.analytics.potential_notices.job",
+                        "job_id": "7f4c8126-0a4c-48f3-939a-b73721092d2f",
+                        "tan": "AHMA09719B",
+                        "quarter": "Q3",
+                        "financial_year": "FY 2023-24",
+                        "form": "27Q",
+                        "status": "succeeded",
+                        "created_at": 1709026684599,
+                        "updated_at": 1711544847339,
+                        "potential_notice_report_url": "https://in-co-sandbox-tds-analytics-potential-notices-test.s3.ap-south-1.amazonaws.com/tan/financial_year/quarter/form/4f3380b0-d416-427e-b901-34d801265b99_potential_notice.xlsx"
+                      }
+                    }
+                  },
+                  "200 Form 24Q Job Succeeded": {
+                    "value": {
+                      "code": 200,
+                      "timestamp": 1763633700,
+                      "transaction_id": "a2af8434-a699-497e-b7d7-4ca35813c860",
+                      "data": {
+                        "@entity": "in.co.sandbox.tds.analytics.potential_notices.job",
+                        "job_id": "1434930f-1516-42ff-945e-44d4105cca18",
+                        "tan": "AHMA09719B",
+                        "quarter": "Q4",
+                        "financial_year": "FY 2023-24",
+                        "form": "24Q",
+                        "status": "succeeded",
+                        "created_at": 1709026684599,
+                        "updated_at": 1711544847339,
+                        "potential_notice_report_urls": "https://in-co-sandbox-tds-analytics-potential-notices-test.s3.ap-south-1.amazonaws.com/tan/financial_year/quarter/form/183edaf3-4085-452c-b337-d05730ba16d0_potential_notice.xlsx"
+                      }
+                    }
+                  },
+                  "200 Job Queued": {
+                    "value": {
+                      "code": 200,
+                      "timestamp": 1763633700000,
+                      "transaction_id": "138658c5-2c5b-417f-8de4-2589f3263b5e",
+                      "data": {
+                        "@entity": "in.co.sandbox.tds.analytics.potential_notices.job",
+                        "job_id": "53b385f8-8d76-4a72-8ccd-b6e81648c426",
+                        "tan": "AHMA09719B",
+                        "quarter": "Q3",
+                        "financial_year": "FY 2023-24",
+                        "form": "26Q",
+                        "status": "queued",
+                        "created_at": 1709026684599,
+                        "updated_at": 1711544847339
+                      }
+                    }
+                  },
+                  "200 Job Failed": {
+                    "value": {
+                      "code": 200,
+                      "timestamp": 1763633700000,
+                      "transaction_id": "c6750e71-0ad4-4061-a591-52ef02413c49",
+                      "data": {
+                        "@entity": "in.co.sandbox.tds.analytics.potential_notices.job",
+                        "job_id": "05a3f586-5b2c-4f62-9f56-6600fcf9bc85",
+                        "tan": "BLRC23456F",
+                        "quarter": "Q3",
+                        "financial_year": "FY 2023-24",
+                        "form": "26Q",
+                        "status": "failed",
+                        "created_at": 1709026684599,
+                        "updated_at": 1711544847339,
+                        "validation_report_url": "https://in-co-sandbox-tds-analytics-potential-notices-test.s3.ap-south-1.amazonaws.com/tan/financial_year/quarter/form/5eb034b6-4b6f-4440-9ee0-88f7a220039b_validation_report.xlsx"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "422 - Unprocessable Entity",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "code": {
+                      "type": "integer"
+                    },
+                    "timestamp": {
+                      "type": "integer"
+                    },
+                    "transaction_id": {
+                      "type": "string"
+                    },
+                    "message": {
+                      "type": "string"
+                    }
+                  }
+                },
+                "examples": {
+                  "422 Invalid Job ID": {
+                    "value": {
+                      "code": 422,
+                      "timestamp": 1763633700000,
+                      "transaction_id": "1d84cdcd-e9c4-4daf-a98c-983a18bc059f",
+                      "message": "Invalid job id: 12234-555"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "521": {
+            "description": "521 - Data Not Found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "code": {
+                      "type": "integer"
+                    },
+                    "timestamp": {
+                      "type": "integer"
+                    },
+                    "transaction_id": {
+                      "type": "string"
+                    },
+                    "message": {
+                      "type": "string"
+                    }
+                  }
+                },
+                "examples": {
+                  "521 Data not found": {
+                    "value": {
+                      "code": 521,
+                      "timestamp": 1763633700000,
+                      "transaction_id": "f79037ec-d96f-48d2-bf4a-d8978294bb50",
+                      "message": "Data not found: null"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/tds/analytics/potential-notices/search": {
+      "post": {
+        "summary": "Fetch Jobs",
+        "tags": [
+          "Potential Notices",
+          "TDS"
+        ],
+        "parameters": [
+          {
+            "name": "x-api-key",
+            "in": "header",
+            "required": true,
+            "description": "API key for identification",
+            "deprecated": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "Authorization",
+            "in": "header",
+            "required": true,
+            "description": "JWT access token",
+            "deprecated": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "x-api-version",
+            "in": "header",
+            "description": "API Version",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "default": {
+            "description": "200 - Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "code": {
+                      "type": "integer"
+                    },
+                    "timestamp": {
+                      "type": "integer"
+                    },
+                    "transaction_id": {
+                      "type": "string"
+                    },
+                    "data": {
+                      "type": "object",
+                      "properties": {
+                        "@entity": {
+                          "type": "string",
+                          "const": "in.co.sandbox.tds.analytics.potential_notice.paginated_list"
+                        },
+                        "items": {
+                          "type": "array",
+                          "items": {
+                            "type": "object",
+                            "properties": {
+                              "@entity": {
+                                "type": "string",
+                                "const": "in.co.sandbox.tds.analytics.potential_notice.job"
+                              },
+                              "job_id": {
+                                "type": "string"
+                              },
+                              "tan": {
+                                "type": "string"
+                              },
+                              "financial_year": {
+                                "type": "string"
+                              },
+                              "quarter": {
+                                "type": "string"
+                              },
+                              "form": {
+                                "type": "string"
+                              },
+                              "created_at": {
+                                "type": "integer"
+                              },
+                              "updated_at": {
+                                "type": "integer"
+                              },
+                              "status": {
+                                "type": "string"
+                              },
+                              "return_receipt_number": {
+                                "type": "integer"
+                              }
+                            }
+                          }
+                        },
+                        "last_evaluated_key": {
+                          "type": "string"
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "@entity": {
+                    "type": "string",
+                    "const": "in.co.sandbox.tds.analytics.potential_notice.jobs.search"
+                  },
+                  "tan": {
+                    "type": "string",
+                    "description": "TAN of deductor. Regular Expression: [A-Z]{4}[0-9]{5}[A-Z]{1}",
+                    "pattern": "[A-Z]{4}[0-9]{5}[A-Z]{1}"
+                  },
+                  "quarter": {
+                    "type": "string",
+                    "description": "Quarter for which TDS is being filed",
+                    "enum": [
+                      "Q1",
+                      "Q2",
+                      "Q3",
+                      "Q4"
+                    ]
+                  },
+                  "form": {
+                    "type": "string",
+                    "description": "TDS return form",
+                    "enum": [
+                      "24Q",
+                      "26Q",
+                      "27Q"
+                    ]
+                  },
+                  "financial_year": {
+                    "type": "string",
+                    "description": "Financial Year for which TDS is being filed. (eg. FY 2024-25)",
+                    "example": "FY 2024-25"
+                  },
+                  "from_date": {
+                    "type": "integer",
+                    "description": "Date from which jobs are to be fetched. Value in EPOCH timestamp"
+                  },
+                  "to_date": {
+                    "type": "integer",
+                    "description": "Date till which jobs are to be fetched. Value in EPOCH timestamp"
+                  },
+                  "page_size": {
+                    "type": "integer",
+                    "maximum": 50,
+                    "description": "Number of records in the API response. Maximum allowed size is 50"
+                  },
+                  "last_evaluated_key": {
+                    "type": "string",
+                    "description": "Base64 encoding of the stringified JSON object, which includes x-api-key, created_at, and job_id"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/tcs/analytics/potential-notices": {
+      "post": {
+        "summary": "Create TCS Potential Notice Job",
+        "tags": [
+          "Potential Notices",
+          "TCS"
+        ],
+        "parameters": [
+          {
+            "name": "x-api-key",
+            "in": "header",
+            "required": true,
+            "description": "API key for identification",
+            "deprecated": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "Authorization",
+            "in": "header",
+            "required": true,
+            "description": "JWT access token",
+            "deprecated": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "x-api-version",
+            "in": "header",
+            "description": "API Version",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "200 - OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "code": {
+                      "type": "integer"
+                    },
+                    "timestamp": {
+                      "type": "integer"
+                    },
+                    "transaction_id": {
+                      "type": "string"
+                    },
+                    "data": {
+                      "type": "object",
+                      "properties": {
+                        "@entity": {
+                          "type": "string",
+                          "const": "in.co.sandbox.tcs.analytics.potential_notices.job"
+                        },
+                        "job_id": {
+                          "type": "string"
+                        },
+                        "tan": {
+                          "type": "string"
+                        },
+                        "quarter": {
+                          "type": "string"
+                        },
+                        "financial_year": {
+                          "type": "string"
+                        },
+                        "status": {
+                          "type": "string"
+                        },
+                        "created_at": {
+                          "type": "integer"
+                        },
+                        "json_url": {
+                          "type": "string",
+                          "format": "uri"
+                        }
+                      }
+                    }
+                  }
+                },
+                "examples": {
+                  "200 Q2 Job created": {
+                    "value": {
+                      "code": 200,
+                      "timestamp": 1763633700000,
+                      "transaction_id": "1c1e4905-d07e-4c51-b8c5-1163050ded7f",
+                      "data": {
+                        "@entity": "in.co.sandbox.tcs.analytics.potential_notices.job",
+                        "job_id": "1c1e4905-d07e-4c51-b8c5-1163050ded7f",
+                        "tan": "AHMA09719B",
+                        "quarter": "Q2",
+                        "financial_year": "FY 2023-24",
+                        "status": "created",
+                        "created_at": 1709026684599,
+                        "json_url": "https://test-api.sandbox.co.in/tcs/analytics/in-co-sandbox-tcs-analytics-potential-notices-test/tan/financial_year/quarter/80716d9a-4aa0-4905-8ff1-0aca61042a0e.json"
+                      }
+                    }
+                  },
+                  "200 Q3 Job created": {
+                    "value": {
+                      "code": 200,
+                      "timestamp": 1763633700000,
+                      "transaction_id": "6588064b-38d5-4f01-b93c-795dbec4a5df",
+                      "data": {
+                        "@entity": "in.co.sandbox.tcs.analytics.potential_notices.job",
+                        "job_id": "6588064b-38d5-4f01-b93c-795dbec4a5df",
+                        "tan": "AHMA09719B",
+                        "quarter": "Q3",
+                        "financial_year": "FY 2023-24",
+                        "status": "created",
+                        "created_at": 1709026684599,
+                        "json_url": "https://test-api.sandbox.co.in/tcs/analytics/in-co-sandbox-tcs-analytics-potential-notices-test/tan/financial_year/quarter/80716d9a-4aa0-4905-8ff1-0aca61042a0e.json"
+                      }
+                    }
+                  },
+                  "200 Submitted Job will fail": {
+                    "value": {
+                      "code": 200,
+                      "timestamp": 1763633700000,
+                      "transaction_id": "05a3f586-5b2c-4f62-9f56-6600fcf9bc85",
+                      "data": {
+                        "@entity": "in.co.sandbox.tcs.analytics.potential_notices.job",
+                        "job_id": "05a3f586-5b2c-4f62-9f56-6600fcf9bc85",
+                        "tan": "BLRC23456F",
+                        "quarter": "Q3",
+                        "financial_year": "FY 2023-24",
+                        "status": "created",
+                        "created_at": 1709026684599,
+                        "json_url": "https://test-api.sandbox.co.in/tcs/analytics/in-co-sandbox-tcs-analytics-potential-notices-test/tan/financial_year/quarter/80716d9a-4aa0-4905-8ff1-0aca61042a0e.json"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "422 - Unprocessable Entity",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "code": {
+                      "type": "integer"
+                    },
+                    "timestamp": {
+                      "type": "integer"
+                    },
+                    "transaction_id": {
+                      "type": "string"
+                    },
+                    "message": {
+                      "type": "string"
+                    }
+                  }
+                },
+                "examples": {
+                  "422 Invalid TAN": {
+                    "value": {
+                      "code": 422,
+                      "timestamp": 1763633700000,
+                      "transaction_id": "ed94514f-b51b-434e-9a0e-8e655192031a",
+                      "message": "Invalid TAN: DABC2345DD"
+                    }
+                  },
+                  "422 Invalid Quarter": {
+                    "value": {
+                      "code": 422,
+                      "timestamp": 1763633700000,
+                      "transaction_id": "6a506aff-70bd-4e86-ac7c-4ba51a5a87d2",
+                      "message": "Invalid quarter: Q5"
+                    }
+                  },
+                  "422 Invalid Financial Year": {
+                    "value": {
+                      "code": 422,
+                      "timestamp": 1763633700000,
+                      "transaction_id": "7b21bee8-bb21-4f60-a5ae-73a16b073cb2",
+                      "message": "Invalid financial year: 2022"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "examples": {
+                "q2_job_created": {
+                  "summary": "200 Q2 Job created",
+                  "value": {
+                    "@entity": "in.co.sandbox.tcs.analytics.potential_notice.request",
+                    "quarter": "Q2",
+                    "tan": "AHMA09719B",
+                    "financial_year": "FY 2023-24"
+                  }
+                },
+                "q3_job_created": {
+                  "summary": "200 Q3 Job created",
+                  "value": {
+                    "@entity": "in.co.sandbox.tcs.analytics.potential_notice.request",
+                    "quarter": "Q3",
+                    "tan": "AHMA09719B",
+                    "financial_year": "FY 2023-24"
+                  }
+                },
+                "submitted_job_will_fail": {
+                  "summary": "200 Submitted Job will fail",
+                  "value": {
+                    "@entity": "in.co.sandbox.tcs.analytics.potential_notice.request",
+                    "quarter": "Q3",
+                    "tan": "BLRC23456F",
+                    "financial_year": "FY 2023-24"
+                  }
+                },
+                "invalid_tan": {
+                  "summary": "422 Invalid TAN",
+                  "value": {
+                    "@entity": "in.co.sandbox.tcs.analytics.potential_notice.request",
+                    "quarter": "Q3",
+                    "tan": "DABC2345DD",
+                    "financial_year": "FY 2023-24"
+                  }
+                },
+                "invalid_quarter": {
+                  "summary": "422 Invalid Quarter",
+                  "value": {
+                    "@entity": "in.co.sandbox.tcs.analytics.potential_notice.job",
+                    "quarter": "Q5",
+                    "tan": "EABC23456N",
+                    "financial_year": "FY 2023-24"
+                  }
+                },
+                "invalid_financial_year": {
+                  "summary": "422 Invalid Financial Year",
+                  "value": {
+                    "@entity": "in.co.sandbox.tcs.analytics.potential_notice.request",
+                    "quarter": "Q3",
+                    "tan": "AHMA09719B",
+                    "financial_year": "2022"
+                  }
+                }
+              },
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "@entity": {
+                    "type": "string",
+                    "const": "in.co.sandbox.tcs.analytics.potential_notice.request"
+                  },
+                  "quarter": {
+                    "type": "string",
+                    "description": "Quarter for which TDS is being filed",
+                    "enum": [
+                      "Q1",
+                      "Q2",
+                      "Q3",
+                      "Q4"
+                    ]
+                  },
+                  "tan": {
+                    "type": "string",
+                    "description": "TAN of deductor. Regular Expression: [A-Z]{4}[0-9]{5}[A-Z]{1}",
+                    "pattern": "[A-Z]{4}[0-9]{5}[A-Z]{1}"
+                  },
+                  "financial_year": {
+                    "type": "string",
+                    "description": "Financial Year for which TDS is being filed. (eg. FY 2024-25)",
+                    "example": "FY 2024-25"
+                  }
+                },
+                "required": [
+                  "@entity",
+                  "quarter",
+                  "tan",
+                  "financial_year"
+                ]
+              }
+            }
+          }
+        }
+      },
+      "get": {
+        "summary": "Fetch Potential Notice status",
+        "tags": [
+          "Potential Notices",
+          "TCS"
+        ],
+        "parameters": [
+          {
+            "name": "job_id",
+            "in": "query",
+            "required": true,
+            "description": "Unique identifier of the job",
+            "deprecated": false,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          },
+          {
+            "name": "x-api-key",
+            "in": "header",
+            "required": true,
+            "description": "API key for identification",
+            "deprecated": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "Authorization",
+            "in": "header",
+            "required": true,
+            "description": "JWT access token",
+            "deprecated": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "x-api-version",
+            "in": "header",
+            "description": "API Version",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "200 - OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "oneOf": [
+                    {
+                      "title": "Job Succeeded",
+                      "type": "object",
+                      "properties": {
+                        "code": {
+                          "type": "integer"
+                        },
+                        "timestamp": {
+                          "type": "integer"
+                        },
+                        "transaction_id": {
+                          "type": "string"
+                        },
+                        "data": {
+                          "type": "object",
+                          "properties": {
+                            "@entity": {
+                              "type": "string",
+                              "const": "in.co.sandbox.tcs.analytics.potential_notices.job"
+                            },
+                            "job_id": {
+                              "type": "string"
+                            },
+                            "tan": {
+                              "type": "string"
+                            },
+                            "quarter": {
+                              "type": "string"
+                            },
+                            "financial_year": {
+                              "type": "string"
+                            },
+                            "status": {
+                              "type": "string"
+                            },
+                            "created_at": {
+                              "type": "integer"
+                            },
+                            "updated_at": {
+                              "type": "integer"
+                            },
+                            "potential_notice_report_url": {
+                              "type": "string",
+                              "format": "uri"
+                            }
+                          }
+                        }
+                      }
+                    },
+                    {
+                      "title": "Job Failed",
+                      "type": "object",
+                      "properties": {
+                        "code": {
+                          "type": "integer"
+                        },
+                        "timestamp": {
+                          "type": "integer"
+                        },
+                        "transaction_id": {
+                          "type": "string"
+                        },
+                        "data": {
+                          "type": "object",
+                          "properties": {
+                            "@entity": {
+                              "type": "string",
+                              "const": "in.co.sandbox.tcs.analytics.potential_notices.job"
+                            },
+                            "job_id": {
+                              "type": "string"
+                            },
+                            "tan": {
+                              "type": "string"
+                            },
+                            "quarter": {
+                              "type": "string"
+                            },
+                            "financial_year": {
+                              "type": "string"
+                            },
+                            "status": {
+                              "type": "string"
+                            },
+                            "created_at": {
+                              "type": "integer"
+                            },
+                            "updated_at": {
+                              "type": "integer"
+                            },
+                            "validation_report_url": {
+                              "type": "string",
+                              "format": "uri"
+                            }
+                          }
+                        }
+                      }
+                    },
+                    {
+                      "title": "Job Queued",
+                      "type": "object",
+                      "properties": {
+                        "code": {
+                          "type": "integer"
+                        },
+                        "timestamp": {
+                          "type": "integer"
+                        },
+                        "transaction_id": {
+                          "type": "string"
+                        },
+                        "data": {
+                          "type": "object",
+                          "properties": {
+                            "@entity": {
+                              "type": "string",
+                              "const": "in.co.sandbox.tcs.analytics.potential_notices.job"
+                            },
+                            "job_id": {
+                              "type": "string"
+                            },
+                            "tan": {
+                              "type": "string"
+                            },
+                            "quarter": {
+                              "type": "string"
+                            },
+                            "financial_year": {
+                              "type": "string"
+                            },
+                            "status": {
+                              "type": "string"
+                            },
+                            "created_at": {
+                              "type": "integer"
+                            },
+                            "updated_at": {
+                              "type": "integer"
+                            }
+                          }
+                        }
+                      }
+                    }
+                  ]
+                },
+                "examples": {
+                  "200 Q2 Job Succeeded": {
+                    "value": {
+                      "code": 200,
+                      "timestamp": 1763633700,
+                      "transaction_id": "f4bf8069-29c9-4e10-8c90-b4b221146b35",
+                      "data": {
+                        "@entity": "in.co.sandbox.tcs.analytics.potential_notices.job",
+                        "job_id": "1c1e4905-d07e-4c51-b8c5-1163050ded7f",
+                        "tan": "AHMA09719B",
+                        "quarter": "Q3",
+                        "financial_year": "FY 2023-24",
+                        "status": "succeeded",
+                        "created_at": 1709026684599,
+                        "updated_at": 1711544847339,
+                        "potential_notice_report_url": "https://in-co-sandbox-tcs-analytics-potential-notices-test.s3.ap-south-1.amazonaws.com/tan/financial_year/quarter/form/45b5569c-6e1d-4cd6-aaa1-5a9c5462da23_potential_notice.xlsx"
+                      }
+                    }
+                  },
+                  "200 Q3 Job Succeeded": {
+                    "value": {
+                      "code": 200,
+                      "timestamp": 1763633700,
+                      "transaction_id": "7d608750-469e-47a8-9b6c-d7f5d6370925",
+                      "data": {
+                        "@entity": "in.co.sandbox.tcs.analytics.potential_notices.job",
+                        "job_id": "6588064b-38d5-4f01-b93c-795dbec4a5df",
+                        "tan": "AHMA09719B",
+                        "quarter": "Q3",
+                        "financial_year": "FY 2023-24",
+                        "status": "succeeded",
+                        "created_at": 1709026684599,
+                        "updated_at": 1711544847339,
+                        "potential_notice_report_url": "https://in-co-sandbox-tcs-analytics-potential-notices-test.s3.ap-south-1.amazonaws.com/tan/financial_year/quarter/form/45b5569c-6e1d-4cd6-aaa1-5a9c5462da23_potential_notice.xlsx"
+                      }
+                    }
+                  },
+                  "200 Job Failed": {
+                    "value": {
+                      "code": 200,
+                      "timestamp": 1763633700000,
+                      "transaction_id": "e85cb0e9-0129-4ff1-93ee-404e4e0f6b8b",
+                      "data": {
+                        "@entity": "in.co.sandbox.tcs.analytics.potential_notices.job",
+                        "job_id": "05a3f586-5b2c-4f62-9f56-6600fcf9bc85",
+                        "tan": "BLRC23456F",
+                        "quarter": "Q3",
+                        "financial_year": "FY 2023-24",
+                        "status": "failed",
+                        "created_at": 1709026684599,
+                        "updated_at": 1711544847339,
+                        "validation_report_url": "https://in-co-sandbox-tcs-analytics-potential-notices-test.s3.ap-south-1.amazonaws.com/tan/financial_year/quarter/form/653a843c-2fa2-422a-b074-875f74383125_validation_report.xlsx"
+                      }
+                    }
+                  },
+                  "200 Job Queued": {
+                    "value": {
+                      "code": 200,
+                      "timestamp": 1763633700000,
+                      "transaction_id": "24b6c1fb-ae5c-4692-993c-00432dccb5bf",
+                      "data": {
+                        "@entity": "in.co.sandbox.tcs.analytics.potential_notices.job",
+                        "job_id": "53b385f8-8d76-4a72-8ccd-b6e81648c426",
+                        "tan": "AHMA09719B",
+                        "quarter": "Q3",
+                        "financial_year": "FY 2023-24",
+                        "status": "queued",
+                        "created_at": 1709026684599,
+                        "updated_at": 1711544847339
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "422 - Unprocessable Entity",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "code": {
+                      "type": "integer"
+                    },
+                    "timestamp": {
+                      "type": "integer"
+                    },
+                    "transaction_id": {
+                      "type": "string"
+                    },
+                    "message": {
+                      "type": "string"
+                    }
+                  }
+                },
+                "examples": {
+                  "422 Invalid Job ID": {
+                    "value": {
+                      "code": 422,
+                      "timestamp": 1763633700000,
+                      "transaction_id": "ca8411ca-e9df-4d1f-bf36-f86d9012bc8c",
+                      "message": "Invalid job id: 12234-555"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "521": {
+            "description": "521 - Data Not Found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "code": {
+                      "type": "integer"
+                    },
+                    "timestamp": {
+                      "type": "integer"
+                    },
+                    "transaction_id": {
+                      "type": "string"
+                    },
+                    "message": {
+                      "type": "string"
+                    }
+                  }
+                },
+                "examples": {
+                  "521 Data not found": {
+                    "value": {
+                      "code": 521,
+                      "timestamp": 1763633700000,
+                      "transaction_id": "e35586d4-7b55-47d7-a93a-ff87f4724c8f",
+                      "message": "Data not found: null"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/tcs/analytics/potential-notices/search": {
+      "post": {
+        "summary": "Fetch Jobs",
+        "tags": [
+          "Potential Notices",
+          "TCS"
+        ],
+        "parameters": [
+          {
+            "name": "x-api-key",
+            "in": "header",
+            "required": true,
+            "description": "API key for identification",
+            "deprecated": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "Authorization",
+            "in": "header",
+            "required": true,
+            "description": "JWT access token",
+            "deprecated": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "x-api-version",
+            "in": "header",
+            "description": "API Version",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "200 - OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "code": {
+                      "type": "integer"
+                    },
+                    "timestamp": {
+                      "type": "integer"
+                    },
+                    "transaction_id": {
+                      "type": "string"
+                    },
+                    "data": {
+                      "type": "object",
+                      "properties": {
+                        "@entity": {
+                          "type": "string",
+                          "const": "in.co.sandbox.tcs.analytics.potential_notice.paginated_list"
+                        },
+                        "items": {
+                          "type": "array",
+                          "items": {
+                            "type": "object",
+                            "properties": {
+                              "@entity": {
+                                "type": "string",
+                                "const": "in.co.sandbox.tcs.analytics.potential_notices.job"
+                              },
+                              "job_id": {
+                                "type": "string"
+                              },
+                              "tan": {
+                                "type": "string"
+                              },
+                              "financial_year": {
+                                "type": "string"
+                              },
+                              "quarter": {
+                                "type": "string"
+                              },
+                              "form": {
+                                "type": "string"
+                              },
+                              "created_at": {
+                                "type": "integer"
+                              },
+                              "updated_at": {
+                                "type": "integer"
+                              },
+                              "status": {
+                                "type": "string"
+                              },
+                              "return_receipt_number": {
+                                "type": "integer"
+                              }
+                            }
+                          }
+                        },
+                        "last_evaluated_key": {
+                          "type": "string"
+                        }
+                      }
+                    }
+                  }
+                },
+                "examples": {
+                  "200 - Success": {
+                    "value": {
+                      "code": 200,
+                      "timestamp": 1715757773000,
+                      "transaction_id": "109469b2-0748-4135-a569-e86fc9e45756",
+                      "data": {
+                        "@entity": "in.co.sandbox.tcs.analytics.potential_notice.paginated_list",
+                        "items": [
+                          {
+                            "@entity": "in.co.sandbox.tcs.analytics.potential_notices.job",
+                            "job_id": "096c4812-1829-4ee1-a3c6-3bd291654b72",
+                            "tan": "AHMS12345C",
+                            "financial_year": "FY 2023-24",
+                            "quarter": "Q2",
+                            "form": "26Q",
+                            "created_at": 1714529043000,
+                            "updated_at": 1714529044000,
+                            "status": "succeeded",
+                            "return_receipt_number": 123456789012345
+                          },
+                          {
+                            "@entity": "in.co.sandbox.tcs.analytics.potential_notices.job",
+                            "job_id": "096c4812-1829-4ee1-a3c6-3bd291654b72",
+                            "tan": "AHMS12345C",
+                            "financial_year": "FY 2023-24",
+                            "quarter": "Q2",
+                            "form": "26Q",
+                            "created_at": 1714530043000,
+                            "updated_at": 1714530044000,
+                            "status": "failed",
+                            "message": "Validation error"
+                          }
+                        ],
+                        "last_evaluated_key": "eydadadadada...=="
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "@entity": {
+                    "type": "string",
+                    "const": "in.co.sandbox.tds.analytics.potential_notice.jobs.search"
+                  },
+                  "tan": {
+                    "type": "string",
+                    "description": "TAN of deductor. Regular Expression: [A-Z]{4}[0-9]{5}[A-Z]{1}",
+                    "pattern": "[A-Z]{4}[0-9]{5}[A-Z]{1}"
+                  },
+                  "quarter": {
+                    "type": "string",
+                    "description": "Quarter for which TDS is being filed",
+                    "enum": [
+                      "Q1",
+                      "Q2",
+                      "Q3",
+                      "Q4"
+                    ]
+                  },
+                  "financial_year": {
+                    "type": "string",
+                    "description": "Financial Year for which TDS is being filed. (eg. FY 2024-25)",
+                    "example": "FY 2024-25"
+                  },
+                  "from_date": {
+                    "type": "integer",
+                    "description": "Date from which jobs are to be fetched. Value in EPOCH timestamp"
+                  },
+                  "to_date": {
+                    "type": "integer",
+                    "description": "Date till which jobs are to be fetched. Value in EPOCH timestamp"
+                  },
+                  "page_size": {
+                    "type": "integer",
+                    "maximum": 50,
+                    "description": "Number of records in the API response. Maximum allowed size is 50"
+                  },
+                  "last_evaluated_key": {
+                    "type": "string",
+                    "description": "Base64 encoding of the stringified JSON object, which includes x-api-key, created_at, and job_id"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
 }
