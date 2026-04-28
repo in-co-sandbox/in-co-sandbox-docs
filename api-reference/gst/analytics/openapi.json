@@ -166,6 +166,28 @@
                       "type": "integer"
                     }
                   }
+                },
+                "examples": {
+                  "200 Job Created": {
+                    "summary": "200 Job Created",
+                    "value": {
+                      "code": 200,
+                      "timestamp": 1777273620309,
+                      "data": {
+                        "created_at": 1777273620951,
+                        "@entity": "in.co.sandbox.gst.analytics.gstr-2a_reconciliation.job",
+                        "job_id": "f42e3d84-409a-4351-a9d7-9697750e7f98",
+                        "gstin": "24ABKCS2033B1ZV",
+                        "year": 2026,
+                        "month": 3,
+                        "reconciliation_criteria": "strict",
+                        "purchase_ledger_url": "https://in-co-sandbox-gst-analytics-gstr-2a-reconciliation-prod1.s3.ap-south-1.amazonaws.com/24ABKCS2033B1ZV/2026/3/f42e3d84-409a-4351-a9d7-9697750e7f98/input/purchase-ledger.json?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Credential=AKIAZ7SALLC62I6JYZLI%2F20260427%2Fap-south-1%2Fs3%2Faws4_request&X-Amz-Date=20260427T070700Z&X-Amz-Expires=86400&X-Amz-Signature=183508cd69e073cf98eec19692c7e6866e1f44fdd750197e3ad9887615c3ef20&X-Amz-SignedHeaders=host&x-amz-checksum-crc32=AAAAAA%3D%3D&x-amz-sdk-checksum-algorithm=CRC32&x-id=PutObject",
+                        "gstr_2a_url": "https://in-co-sandbox-gst-analytics-gstr-2a-reconciliation-prod1.s3.ap-south-1.amazonaws.com/24ABKCS2033B1ZV/2026/3/f42e3d84-409a-4351-a9d7-9697750e7f98/input/gstr-2a.json?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Credential=AKIAZ7SALLC62I6JYZLI%2F20260427%2Fap-south-1%2Fs3%2Faws4_request&X-Amz-Date=20260427T070700Z&X-Amz-Expires=86400&X-Amz-Signature=0513bc9d9564293406d6ad849b8af5a021f44f73aeee5b82d5e4acee432ee26d&X-Amz-SignedHeaders=host&x-amz-checksum-crc32=AAAAAA%3D%3D&x-amz-sdk-checksum-algorithm=CRC32&x-id=PutObject",
+                        "status": "created"
+                      },
+                      "transaction_id": "f42e3d84-409a-4351-a9d7-9697750e7f98"
+                    }
+                  }
                 }
               }
             }
@@ -212,6 +234,18 @@
                   "month",
                   "reconciliation_criteria"
                 ]
+              },
+              "examples": {
+                "Reconcile GSTR-2A Job": {
+                  "summary": "Reconcile GSTR-2A Job",
+                  "value": {
+                    "@entity": "in.co.sandbox.gst.analytics.gstr-2a_reconciliation.request",
+                    "gstin": "24ABKCS2033B1ZV",
+                    "year": 2026,
+                    "month": 3,
+                    "reconciliation_criteria": "strict"
+                  }
+                }
               }
             }
           }
@@ -230,6 +264,16 @@
             "required": true,
             "description": "Job id of the created job",
             "deprecated": false,
+            "examples": {
+              "200 Reconciliation Job Done": {
+                "summary": "200 Reconciliation Job Done",
+                "value": "d3d19997-c48a-4867-95b9-5a77c3567098"
+              },
+              "200 Validation failed": {
+                "summary": "200 Validation failed",
+                "value": "0cf9ae62-545a-403a-a206-f3f99df30570"
+              }
+            },
             "schema": {
               "type": "string",
               "format": "uuid"
@@ -363,6 +407,50 @@
                     },
                     "timestamp": {
                       "type": "integer"
+                    }
+                  }
+                },
+                "examples": {
+                  "200 Reconciliation Job Done": {
+                    "summary": "200 Reconciliation Job Done",
+                    "value": {
+                      "code": 200,
+                      "transaction_id": "d3d19997-c48a-4867-95b9-5a77c3567098",
+                      "data": {
+                        "@entity": "in.co.sandbox.gst.analytics.gstr-2a_reconciliation.job",
+                        "job_id": "d3d19997-c48a-4867-95b9-5a77c3567098",
+                        "gstin": "24EGCAZ2081S7Z4",
+                        "year": 2023,
+                        "month": 12,
+                        "reconciliation_criteria": "strict",
+                        "status": "succeeded",
+                        "reconciliation_report_url": "https://in-co-sandbox-gst-analytics-gstr-2a-reconciliation-test.s3.ap-south-1.amazonaws.com/24EGCAZ2081S7Z4/2023/12/d3d19997-c48a-4867-95b9-5a77c3567098/output/reconciliation-report.xlsx?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIA3TV6GFJR7IJKDZZQ%2F20240117%2Fap-south-1%2Fs3%2Faws4_request&X-Amz-Date=20240117T103515Z&X-Amz-Expires=86400&X-Amz-Signature=54342b3ae5d5cb13941e974379eceb009f750f998a52119a7fbbc82e768b1fc5&X-Amz-SignedHeaders=host",
+                        "created_at": 123,
+                        "updated_at": 123
+                      },
+                      "timestamp": 123
+                    }
+                  },
+                  "200 Validation failed": {
+                    "summary": "200 Validation failed",
+                    "value": {
+                      "code": 200,
+                      "transaction_id": "d3d19997-c48a-4867-95b9-5a77c3567098",
+                      "data": {
+                        "@entity": "in.co.sandbox.gst.analytics.gstr-2a_reconciliation.job",
+                        "job_id": "0cf9ae62-545a-403a-a206-f3f99df30570",
+                        "gstin": "24EGCAZ2081S7Z4",
+                        "year": 2023,
+                        "month": 12,
+                        "filing_preference": "monthly",
+                        "reconciliation_criteria": "strict",
+                        "status": "failed",
+                        "message": "Purchase ledger invalid as per schema",
+                        "validation_report_url": "https://in-co-sandbox-gst-analytics-gstr-2a-reconciliation-test.s3.ap-south-1.amazonaws.com/24EGCAZ2081S7Z4/2023/12/0cf9ae62-545a-403a-a206-f3f99df30570/output/validation-report.xlsx?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIA3TV6GFJR7IJKDZZQ%2F20240117%2Fap-south-1%2Fs3%2Faws4_request&X-Amz-Date=20240117T103515Z&X-Amz-Expires=86400&X-Amz-Signature=54342b3ae5d5cb13941e974379eceb009f750f998a52119a7fbbc82e768b1fc5&X-Amz-SignedHeaders=host",
+                        "created_at": 1777291058000,
+                        "updated_at": 1777291058000
+                      },
+                      "timestamp": 1777291058000
                     }
                   }
                 }
@@ -518,6 +606,29 @@
                       "type": "integer"
                     }
                   }
+                },
+                "examples": {
+                  "200 Job Created": {
+                    "summary": "200 Job Created",
+                    "value": {
+                      "code": 200,
+                      "transaction_id": "d3d19997-c48a-4867-95b9-5a77c3567098",
+                      "data": {
+                        "@entity": "in.co.sandbox.gst.analytics.gstr-2b_reconciliation.job",
+                        "job_id": "d3d19997-c48a-4867-95b9-5a77c3567098",
+                        "gstin": "24EGCAZ2081S7Z4",
+                        "year": 2023,
+                        "month": 12,
+                        "filing_preference": "monthly",
+                        "reconciliation_criteria": "strict",
+                        "status": "created",
+                        "gstr_2b_url": "https://in-co-sandbox-gst-analytics-gstr-2b-reconciliation-test.s3.ap-south-1.amazonaws.com/24EGCAZ2081S7Z4/2023/12/d3d19997-c48a-4867-95b9-5a77c3567098/input/gstr-2b.json?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIA3TV6GFJR7IJKDZZQ%2F20240117%2Fap-south-1%2Fs3%2Faws4_request&X-Amz-Date=20240117T103515Z&X-Amz-Expires=86400&X-Amz-Signature=54342b3ae5d5cb13941e974379eceb009f750f998a52119a7fbbc82e768b1fc5&X-Amz-SignedHeaders=host",
+                        "purchase_ledger_url": "https://in-co-sandbox-gst-analytics-gstr-2b-reconciliation-test.s3.ap-south-1.amazonaws.com/24EGCAZ2081S7Z4/2023/12/d3d19997-c48a-4867-95b9-5a77c3567098/input/purchase-ledger.json?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIA3TV6GFJR7IJKDZZQ%2F20240117%2Fap-south-1%2Fs3%2Faws4_request&X-Amz-Date=20240117T103515Z&X-Amz-Expires=86400&X-Amz-Signature=54342b3ae5d5cb13941e974379eceb009f750f998a52119a7fbbc82e768b1fc5&X-Amz-SignedHeaders=host",
+                        "created_at": 123
+                      },
+                      "timestamp": 123
+                    }
+                  }
                 }
               }
             }
@@ -547,6 +658,13 @@
                     "type": "integer",
                     "description": "Month e.g. 10"
                   },
+                  "filing_preference": {
+                    "type": "string",
+                    "enum": [
+                      "monthly"
+                    ],
+                    "description": "Return filing preference for the reconciliation job."
+                  },
                   "reconciliation_criteria": {
                     "type": "string",
                     "enum": [
@@ -564,6 +682,19 @@
                   "month",
                   "reconciliation_criteria"
                 ]
+              },
+              "examples": {
+                "Reconcile GSTR-2B Job": {
+                  "summary": "Reconcile GSTR-2B Job",
+                  "value": {
+                    "@entity": "in.co.sandbox.gst.analytics.gstr-2b_reconciliation.request",
+                    "gstin": "24EGCAZ2081S7Z4",
+                    "year": 2023,
+                    "month": 12,
+                    "filing_preference": "monthly",
+                    "reconciliation_criteria": "strict"
+                  }
+                }
               }
             }
           }
@@ -581,6 +712,20 @@
             "in": "query",
             "required": true,
             "description": "Job id of the created job",
+            "examples": {
+              "200 Reconciliation Job Done": {
+                "summary": "200 Reconciliation Job Done",
+                "value": "d3d19997-c48a-4867-95b9-5a77c3567098"
+              },
+              "200 Purchase ledger validation failed": {
+                "summary": "200 Purchase ledger validation failed",
+                "value": "d1cfcffb-15d5-44c3-ae13-cca04c8c4310"
+              },
+              "200 GSTR-2B not as per schema": {
+                "summary": "200 GSTR-2B not as per schema",
+                "value": "d65ab027-1250-40e1-9af1-12ea9efa36ce"
+              }
+            },
             "schema": {
               "type": "string"
             }
@@ -703,6 +848,68 @@
                     },
                     "timestamp": {
                       "type": "integer"
+                    }
+                  }
+                },
+                "examples": {
+                  "200 Reconciliation Job Done": {
+                    "summary": "200 Reconciliation Job Done",
+                    "value": {
+                      "code": 200,
+                      "transaction_id": "d3d19997-c48a-4867-95b9-5a77c3567098",
+                      "data": {
+                        "@entity": "in.co.sandbox.gst.analytics.gstr-2b_reconciliation.job",
+                        "job_id": "d3d19997-c48a-4867-95b9-5a77c3567098",
+                        "gstin": "24EGCAZ2081S7Z4",
+                        "year": 2023,
+                        "month": 12,
+                        "filing_preference": "monthly",
+                        "reconciliation_criteria": "strict",
+                        "status": "succeeded",
+                        "reconciliation_report_url": "https://in-co-sandbox-gst-analytics-gstr-2b-reconciliation-test.s3.ap-south-1.amazonaws.com/24EGCAZ2081S7Z4/2023/10/d3d19997-c48a-4867-95b9-5a77c3567098/output/reconciliation-report.xlsx?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIA3TV6GFJR7IJKDZZQ%2F20240117%2Fap-south-1%2Fs3%2Faws4_request&X-Amz-Date=20240117T103515Z&X-Amz-Expires=86400&X-Amz-Signature=54342b3ae5d5cb13941e974379eceb009f750f998a52119a7fbbc82e768b1fc5&X-Amz-SignedHeaders=host",
+                        "created_at": 123,
+                        "updated_at": 123
+                      },
+                      "timestamp": 1777273236000
+                    }
+                  },
+                  "200 Purchase ledger validation failed": {
+                    "summary": "200 Purchase ledger validation failed",
+                    "value": {
+                      "code": 200,
+                      "transaction_id": "d3d19997-c48a-4867-95b9-5a77c3567098",
+                      "data": {
+                        "@entity": "in.co.sandbox.gst.analytics.gstr-2b_reconciliation.job",
+                        "job_id": "d1cfcffb-15d5-44c3-ae13-cca04c8c4310",
+                        "gstin": "24EGCAZ2081S7Z4",
+                        "year": 2023,
+                        "month": 12,
+                        "filing_preference": "monthly",
+                        "reconciliation_criteria": "strict",
+                        "status": "failed",
+                        "message": "Purchase ledger is invalid as per schema",
+                        "validation_report_url": "https://in-co-sandbox-gst-analytics-gstr-2b-reconciliation-test.s3.ap-south-1.amazonaws.com/24EGCAZ2081S7Z4/2023/12/d1cfcffb-15d5-44c3-ae13-cca04c8c4310/output/validation-report.xlsx?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIA3TV6GFJR7IJKDZZQ%2F20240117%2Fap-south-1%2Fs3%2Faws4_request&X-Amz-Date=20240117T103515Z&X-Amz-Expires=86400&X-Amz-Signature=54342b3ae5d5cb13941e974379eceb009f750f998a52119a7fbbc82e768b1fc5&X-Amz-SignedHeaders=host"
+                      },
+                      "timestamp": 1777273236000
+                    }
+                  },
+                  "200 GSTR-2B not as per schema": {
+                    "summary": "200 GSTR-2B not as per schema",
+                    "value": {
+                      "code": 200,
+                      "transaction_id": "d3d19997-c48a-4867-95b9-5a77c3567098",
+                      "data": {
+                        "@entity": "in.co.sandbox.gst.analytics.gstr-2b_reconciliation.job",
+                        "job_id": "d65ab027-1250-40e1-9af1-12ea9efa36ce",
+                        "gstin": "24EGCAZ2081S7Z4",
+                        "year": 2023,
+                        "month": 12,
+                        "filing_preference": "monthly",
+                        "reconciliation_criteria": "strict",
+                        "status": "failed",
+                        "message": "GSTR-2B is invalid as per schema"
+                      },
+                      "timestamp": 1777273236000
                     }
                   }
                 }
