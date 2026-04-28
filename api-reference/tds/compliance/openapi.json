@@ -323,6 +323,96 @@
                   "consent",
                   "reason"
                 ]
+              },
+              "examples": {
+                "200 Specified person": {
+                  "value": {
+                    "@entity": "in.co.sandbox.tds.compliance.206ab_check.request",
+                    "pan": "XXXPX1234A",
+                    "consent": "y",
+                    "reason": "TDS compliance"
+                  }
+                },
+                "200 Specified person (2)": {
+                  "value": {
+                    "@entity": "in.co.sandbox.tds.compliance.206ab_check.request",
+                    "pan": "XXXPX1234L",
+                    "consent": "y",
+                    "reason": "TDS compliance"
+                  }
+                },
+                "200 Specified person (3)": {
+                  "value": {
+                    "@entity": "in.co.sandbox.tds.compliance.206ab_check.request",
+                    "pan": "XXXPX1234L",
+                    "consent": "y",
+                    "reason": "TDS compliance"
+                  }
+                },
+                "200 Specified person with inoperative pan": {
+                  "value": {
+                    "@entity": "in.co.sandbox.tds.compliance.206ab_check.request",
+                    "pan": "XXXPX1234H",
+                    "consent": "y",
+                    "reason": "TDS compliance"
+                  }
+                },
+                "200 Specified person with inoperative pan (2)": {
+                  "value": {
+                    "@entity": "in.co.sandbox.tds.compliance.206ab_check.request",
+                    "pan": "XXXAX2345A",
+                    "consent": "y",
+                    "reason": "TDS compliance"
+                  }
+                },
+                "200 Not a specified person": {
+                  "value": {
+                    "@entity": "in.co.sandbox.tds.compliance.206ab_check.request",
+                    "pan": "XXXPX2345A",
+                    "consent": "y",
+                    "reason": "TDS complaince"
+                  }
+                },
+                "200 Not a specified person (2)": {
+                  "value": {
+                    "@entity": "in.co.sandbox.tds.compliance.206ab_check.request",
+                    "pan": "XXXBX3456B",
+                    "consent": "y",
+                    "reason": "TDS complaince"
+                  }
+                },
+                "200 Not a specified person with inoperative pan": {
+                  "value": {
+                    "@entity": "in.co.sandbox.tds.compliance.206ab_check.request",
+                    "pan": "XXXPX1234O",
+                    "consent": "y",
+                    "reason": "TDS complaince"
+                  }
+                },
+                "200 Not a specified person with inoperative pan (2)": {
+                  "value": {
+                    "@entity": "in.co.sandbox.tds.compliance.206ab_check.request",
+                    "pan": "XXXTX1234P",
+                    "consent": "y",
+                    "reason": "TDS complaince"
+                  }
+                },
+                "200 Invalid PAN": {
+                  "value": {
+                    "@entity": "in.co.sandbox.tds.compliance.206ab_check.request",
+                    "pan": "XXXPX1234C",
+                    "consent": "y",
+                    "reason": "TDS compliance"
+                  }
+                },
+                "422 Invalid PAN pattern": {
+                  "value": {
+                    "@entity": "in.co.sandbox.tds.compliance.206ab_check.request",
+                    "pan": "XXXQX1234A",
+                    "consent": "y",
+                    "reason": "TDS compliance"
+                  }
+                }
               }
             }
           }
@@ -537,6 +627,52 @@
                   "consent",
                   "reason"
                 ]
+              },
+              "examples": {
+                "200 - Success": {
+                  "value": {
+                    "@entity": "in.co.sandbox.tds.compliance.deductors.otp.request",
+                    "tan": "AHMA09719B",
+                    "mobile_number": "1234567890",
+                    "from": 1722450600000,
+                    "to": 1730313000000,
+                    "consent": "Y",
+                    "reason": "TDS Return"
+                  }
+                },
+                "200 Invalid TAN": {
+                  "value": {
+                    "@entity": "in.co.sandbox.tds.compliance.deductors.otp.request",
+                    "tan": "AABC23456D",
+                    "mobile_number": "1234567890",
+                    "from": 1722450600000,
+                    "to": 1730313000000,
+                    "consent": "Y",
+                    "reason": "TDS Return"
+                  }
+                },
+                "200 OTP already generated": {
+                  "value": {
+                    "@entity": "in.co.sandbox.tds.compliance.deductors.otp.request",
+                    "tan": "PDES03028E",
+                    "mobile_number": "1234567890",
+                    "from": 1722450600000,
+                    "to": 1730313000000,
+                    "consent": "Y",
+                    "reason": "TDS Return"
+                  }
+                },
+                "422 - Unprocessable Entity": {
+                  "value": {
+                    "@entity": "in.co.sandbox.tds.compliance.deductors.otp.request",
+                    "tan": "DABC2345DD",
+                    "mobile_number": "1234567890",
+                    "from": 1722450600000,
+                    "to": 1730313000000,
+                    "consent": "Y",
+                    "reason": "TDS Return"
+                  }
+                }
               }
             }
           }
@@ -689,6 +825,29 @@
                   "reference_id",
                   "otp"
                 ]
+              },
+              "examples": {
+                "200 - Success": {
+                  "value": {
+                    "@entity": "in.co.sandbox.tds.compliance.deductors.csi.request",
+                    "reference_id": "FOS005981930273",
+                    "otp": "834201"
+                  }
+                },
+                "200 Invalid OTP": {
+                  "value": {
+                    "@entity": "in.co.sandbox.tds.compliance.deductors.csi.request",
+                    "reference_id": "FOS101212121212121",
+                    "otp": "121212"
+                  }
+                },
+                "200 OTP Expired": {
+                  "value": {
+                    "@entity": "in.co.sandbox.tds.compliance.deductors.csi.request",
+                    "reference_id": "FOS101212121212121",
+                    "otp": "121212"
+                  }
+                }
               }
             }
           }
@@ -964,6 +1123,78 @@
                   "quarter",
                   "filing_type"
                 ]
+              },
+              "examples": {
+                "200 - Success": {
+                  "value": {
+                    "@entity": "in.co.sandbox.tds.compliance.fvu.generate.request",
+                    "financial_year": "FY 2024-25",
+                    "form": "24Q",
+                    "quarter": "Q3",
+                    "tan": "AHMA09719B",
+                    "filing_type": "regular"
+                  }
+                },
+                "200 Job created for Correction return": {
+                  "value": {
+                    "@entity": "in.co.sandbox.tds.compliance.fvu.generate.request",
+                    "financial_year": "FY 2022-23",
+                    "form": "24Q",
+                    "quarter": "Q4",
+                    "tan": "AHMA09719B",
+                    "filing_type": "correction"
+                  }
+                },
+                "422 - Unprocessable Entity": {
+                  "value": {
+                    "@entity": "in.co.sandbox.tds.compliance.fvu.generate.request",
+                    "financial_year": "FY 2023-24",
+                    "form": "26Q",
+                    "quarter": "Q2",
+                    "tan": "DABC2345DD",
+                    "filing_type": "regular"
+                  }
+                },
+                "422 Invalid Form": {
+                  "value": {
+                    "@entity": "in.co.sandbox.tds.compliance.fvu.generate.request",
+                    "financial_year": "FY 2022-23",
+                    "form": "22Q",
+                    "quarter": "Q4",
+                    "tan": "AHMA09719B",
+                    "filing_type": "regular"
+                  }
+                },
+                "422 Invalid Financial Year": {
+                  "value": {
+                    "@entity": "in.co.sandbox.tds.compliance.fvu.generate.request",
+                    "financial_year": "FY 2022-2",
+                    "form": "24Q",
+                    "quarter": "Q1",
+                    "tan": "AHMA09719B",
+                    "filing_type": "regular"
+                  }
+                },
+                "422 Invalid Quarter": {
+                  "value": {
+                    "@entity": "in.co.sandbox.tds.compliance.fvu.generate.request",
+                    "financial_year": "FY 2022-23",
+                    "form": "24Q",
+                    "quarter": "Q9",
+                    "tan": "AHMA09719B",
+                    "filing_type": "regular"
+                  }
+                },
+                "422 Invalid Filing Type": {
+                  "value": {
+                    "@entity": "in.co.sandbox.tds.compliance.fvu.generate.request",
+                    "financial_year": "FY 2024-25",
+                    "form": "24Q",
+                    "quarter": "Q3",
+                    "tan": "AHMA09719B",
+                    "filing_type": "original"
+                  }
+                }
               }
             }
           }
@@ -981,7 +1212,18 @@
             "required": false,
             "description": "Unique identifier of a job",
             "deprecated": false,
-            "schema": {}
+            "schema": {},
+            "examples": {
+              "200 - Job Success": {
+                "value": "4ef92975-aea8-4628-9eaa-18eb439c13d9"
+              },
+              "200 - Job Failed": {
+                "value": "{{job_id}}"
+              },
+              "422 - Invalid job Id": {
+                "value": "123313jojj"
+              }
+            }
           },
           {
             "name": "Authorization",
@@ -1179,7 +1421,7 @@
                   ]
                 },
                 "examples": {
-                  "200 - Success": {
+                  "200 - Job Success": {
                     "value": {
                       "code": 200,
                       "timestamp": 1763362637000,
@@ -1195,7 +1437,7 @@
                         "status": "succeeded",
                         "created_at": 1763362637000,
                         "updated_at": 1763362637000,
-                        "fvu_zip_file_url": "https://in-co-sandbox-tds-compliance-fvu-test.s3.ap-south-1.amazonaws.com/tan/financial_year/quarter/form/4ef92975-aea8-4628-9eaa-18eb439c13d9.zip"
+                        "fvu_zip_file_url": "https://in-co-sandbox-tds-test-storage.s3.ap-south-1.amazonaws.com/AHMS45586C/FY+2025-26/Q3/26Q/4049c226-4988-4978-b5ad-d25705453da8/26Q.zip"
                       }
                     }
                   },
@@ -1219,7 +1461,7 @@
                       }
                     }
                   },
-                  "200 Job failed": {
+                  "200 - Job Failed": {
                     "value": {
                       "code": 200,
                       "timestamp": 1763362637000,
@@ -1235,7 +1477,7 @@
                         "status": "failed",
                         "created_at": 1763362637000,
                         "updated_at": 1763362637000,
-                        "validation_report_file_url": "https://in-co-sandbox-tds-compliance-fvu-test.s3.ap-south-1.amazonaws.com/tan/financial_year/quarter/form/9693f3f9-e7dd-4a70-9390-0501ab7f4d27_error.json"
+                        "validation_report_file_url": "https://in-co-sandbox-cms-prod1.s3.ap-south-1.amazonaws.com/test-api-mock/tds/json.json"
                       }
                     }
                   },
@@ -1302,7 +1544,7 @@
                   }
                 },
                 "examples": {
-                  "422 Invalid Job ID": {
+                  "422 - Invalid job Id": {
                     "value": {
                       "code": 422,
                       "timestamp": 1763362637000,
@@ -1724,6 +1966,13 @@
                 "required": [
                   "@entity"
                 ]
+              },
+              "examples": {
+                "200 job success": {
+                  "value": {
+                    "@entity": "in.co.sandbox.tds.compliance.fvu.generate.search"
+                  }
+                }
               }
             }
           }
@@ -2036,6 +2285,9 @@
                         "fvu_upload_file_url": "https://test-api.sandbox.co.in/tds/compliance/tan/financial_year/quarter/form/e61fd4d6-dedd-4803-ab45.zip"
                       }
                     }
+                  },
+                  "test csi file": {
+                    "value": "csi mock data"
                   }
                 }
               }
@@ -2149,6 +2401,161 @@
                   "tan",
                   "form"
                 ]
+              },
+              "examples": {
+                "200 Job created": {
+                  "value": {
+                    "@entity": "in.co.sandbox.tds.compliance.e-file.request",
+                    "financial_year": "FY 2024-25",
+                    "form": "24Q",
+                    "quarter": "Q2",
+                    "tan": "AHMA09719B"
+                  }
+                },
+                "200 Job created: Statement furnished": {
+                  "value": {
+                    "@entity": "in.co.sandbox.tds.compliance.e-file.request",
+                    "financial_year": "FY 2024-25",
+                    "form": "26Q",
+                    "quarter": "Q2",
+                    "tan": "MUMR09719B"
+                  }
+                },
+                "200 Job created: Unacceptable fvu": {
+                  "value": {
+                    "@entity": "in.co.sandbox.tds.compliance.e-file.request",
+                    "financial_year": "FY 2024-25",
+                    "form": "27Q",
+                    "quarter": "Q2",
+                    "tan": "AABC23456D"
+                  }
+                },
+                "200 Job created: invalid archive": {
+                  "value": {
+                    "@entity": "in.co.sandbox.tds.compliance.e-file.request",
+                    "financial_year": "FY 2024-25",
+                    "form": "26Q",
+                    "quarter": "Q4",
+                    "tan": "PDES03028E"
+                  }
+                },
+                "200 Job created: Form type mismatch": {
+                  "value": {
+                    "@entity": "in.co.sandbox.tds.compliance.e-file.request",
+                    "financial_year": "FY 2024-25",
+                    "form": "24Q",
+                    "quarter": "Q4",
+                    "tan": "HYDC23456G"
+                  }
+                },
+                "200 Job created: Quarter mismatch": {
+                  "value": {
+                    "@entity": "in.co.sandbox.tds.compliance.e-file.request",
+                    "financial_year": "FY 2024-25",
+                    "form": "26Q",
+                    "quarter": "Q2",
+                    "tan": "MUMC23456H"
+                  }
+                },
+                "200 Job created: Barcode mismatch": {
+                  "value": {
+                    "@entity": "in.co.sandbox.tds.compliance.e-file.request",
+                    "financial_year": "FY 2023-24",
+                    "form": "27Q",
+                    "quarter": "Q3",
+                    "tan": "DELC23456I"
+                  }
+                },
+                "200 Job created: Invalid entries": {
+                  "value": {
+                    "@entity": "in.co.sandbox.tds.compliance.e-file.request",
+                    "financial_year": "FY 2024-25",
+                    "form": "26Q",
+                    "quarter": "Q2",
+                    "tan": "BLRC23456F"
+                  }
+                },
+                "200 Job created: Financial year mismatch": {
+                  "value": {
+                    "@entity": "in.co.sandbox.tds.compliance.e-file.request",
+                    "financial_year": "FY 2023-24",
+                    "form": "24Q",
+                    "quarter": "Q4",
+                    "tan": "PUNC23456J"
+                  }
+                },
+                "200 Job created: TAN mismatch": {
+                  "value": {
+                    "@entity": "in.co.sandbox.tds.compliance.e-file.request",
+                    "financial_year": "FY 2024-25",
+                    "form": "24Q",
+                    "quarter": "Q2",
+                    "tan": "KOLT23456K"
+                  }
+                },
+                "200 Job created: Form27A missing": {
+                  "value": {
+                    "@entity": "in.co.sandbox.tds.compliance.e-file.request",
+                    "financial_year": "FY 2024-25",
+                    "form": "27Q",
+                    "quarter": "Q3",
+                    "tan": "CABC23456M"
+                  }
+                },
+                "200 Job created: FVU missing": {
+                  "value": {
+                    "@entity": "in.co.sandbox.tds.compliance.e-file.request",
+                    "financial_year": "FY 2024-25",
+                    "form": "26Q",
+                    "quarter": "Q1",
+                    "tan": "BABC23456L"
+                  }
+                },
+                "422 Invalid Form": {
+                  "value": {
+                    "@entity": "in.co.sandbox.tds.compliance.efile.request",
+                    "financial_year": "FY 2024-25",
+                    "form": "23",
+                    "quarter": "Q2",
+                    "tan": "EABC23456N"
+                  }
+                },
+                "422 Invalid TAN pattern": {
+                  "value": {
+                    "@entity": "in.co.sandbox.tds.compliance.efile.request",
+                    "financial_year": "FY 2024-25",
+                    "form": "24Q",
+                    "quarter": "Q2",
+                    "tan": "DABC2345DD"
+                  }
+                },
+                "422 Invalid Quarter": {
+                  "value": {
+                    "@entity": "in.co.sandbox.tds.compliance.efile.request",
+                    "financial_year": "FY 2023-25",
+                    "form": "Q5",
+                    "quarter": "Q2",
+                    "tan": "EABC23456N"
+                  }
+                },
+                "422 Invalid Financial Year": {
+                  "value": {
+                    "@entity": "in.co.sandbox.tds.compliance.efile.request",
+                    "financial_year": "FY 2023-25",
+                    "form": "24Q",
+                    "quarter": "Q2",
+                    "tan": "EABC23456N"
+                  }
+                },
+                "test csi file": {
+                  "value": {
+                    "@entity": "in.co.sandbox.tds.compliance.e-file.request",
+                    "financial_year": "FY 2023-24",
+                    "form": "26Q",
+                    "quarter": "Q2",
+                    "tan": "SRTH05889C"
+                  }
+                }
               }
             }
           }
@@ -2168,6 +2575,50 @@
             "deprecated": false,
             "schema": {
               "type": "string"
+            },
+            "examples": {
+              "200 Job Succeeded": {
+                "value": "f845f37e-7f05-4de9-a282-a3b23b9d370a"
+              },
+              "200 Job Queued": {
+                "value": "2aa54d2b-68f6-4871-866a-4eba957a8672"
+              },
+              "200 Job Failed: Statement furnished": {
+                "value": "6e8d1908-c062-4846-a811-8f73054acd65"
+              },
+              "200 Job Failed: Unacceptable fvu": {
+                "value": "d75c3d26-4f81-451f-ab38-e217ea801ea1"
+              },
+              "200 Job Failed: Invalid archive": {
+                "value": "d1213059-ec22-4e10-b0c1-a91814377001"
+              },
+              "200 Job Failed: Form type mismatch": {
+                "value": "d6f5b340-440b-400c-9b86-16e691e768b0"
+              },
+              "200 Job Failed: Quarter mismatch": {
+                "value": "7a62876a-d638-430c-ad77-8fe33d9e63d5"
+              },
+              "200 Job Failed: Barcode mismatch": {
+                "value": "6b11d176-b3c5-483c-9052-b533a6e92377"
+              },
+              "200 Job Failed: Invalid number of entries in archive": {
+                "value": "3b979ce9-ef4e-4157-a4a3-51e8747e76d7"
+              },
+              "200 Job Failed: Financial year mismatch": {
+                "value": "7928082e-34ca-474c-ba05-4ede9598b9b5"
+              },
+              "200 Job Failed: TAN mismatch": {
+                "value": "5fd2679f-040f-435c-a285-df5817a150b5"
+              },
+              "200 Job Failed: Form27A missing": {
+                "value": "b411fbee-68e4-4da3-9f62-8de8ca09a74c"
+              },
+              "200 Job Failed: FVU missing": {
+                "value": "9bf0b6f8-5957-484f-9aea-0d235054974c"
+              },
+              "521 Data not found": {
+                "value": "{{job_id}}"
+              }
             }
           },
           {
@@ -2889,6 +3340,13 @@
                 "required": [
                   "@entity"
                 ]
+              },
+              "examples": {
+                "200 Job succeeded": {
+                  "value": {
+                    "@entity": "in.co.sandbox.tds.compliance.e-file.search"
+                  }
+                }
               }
             }
           }
@@ -3409,7 +3867,39 @@
                 ]
               },
               "examples": {
-                "Form 16A (26Q)": {
+                "200 - Success": {
+                  "value": {
+                    "@entity": "in.co.sandbox.tds.compliance.traces.credentials",
+                    "username": "T.STARK",
+                    "password": "TEST1234",
+                    "tan": "AHMA09719B",
+                    "security_captcha": {
+                      "@entity": "in.co.sandbox.tds.compliance.traces.credentials.security_captcha",
+                      "quarter": "Q4",
+                      "financial_year": "FY 2023-24",
+                      "form": "24Q",
+                      "bsr_code": "0510002",
+                      "challan_date": 1701109800000,
+                      "challan_serial_no": "01905",
+                      "provisional_receipt_number": "770000211345676",
+                      "challan_amount": 21,
+                      "unique_pan_amount_combination_for_challan": [
+                        [
+                          "sr_no",
+                          "pan",
+                          "total_amount_deposited_against_pan"
+                        ],
+                        [
+                          1,
+                          "XXXPX1234A",
+                          1
+                        ]
+                      ]
+                    },
+                    "remember_me": false
+                  }
+                },
+                "200 Job created: Form 16A": {
                   "value": {
                     "@entity": "in.co.sandbox.tds.compliance.traces.credentials",
                     "username": "T.STARK",
@@ -3441,7 +3931,7 @@
                     "remember_me": true
                   }
                 },
-                "Form 16 (24Q, Q4 only)": {
+                "200 Job created: Invalid Credentials": {
                   "value": {
                     "@entity": "in.co.sandbox.tds.compliance.traces.credentials",
                     "username": "T.STARK",
@@ -3451,6 +3941,353 @@
                       "@entity": "in.co.sandbox.tds.compliance.traces.credentials.security_captcha",
                       "quarter": "Q4",
                       "financial_year": "FY 2023-24",
+                      "form": "26Q",
+                      "bsr_code": "0510002",
+                      "challan_date": 1701109800000,
+                      "challan_serial_no": "01906",
+                      "provisional_receipt_number": "770000211345676",
+                      "challan_amount": 50000,
+                      "unique_pan_amount_combination_for_challan": [
+                        [
+                          "sr_no",
+                          "pan",
+                          "total_amount_deposited_against_pan"
+                        ],
+                        [
+                          1,
+                          "XXXPX1234H",
+                          100
+                        ],
+                        [
+                          2,
+                          "XXXPX1234O",
+                          50
+                        ],
+                        [
+                          3,
+                          "XXXPX1234L",
+                          2000
+                        ]
+                      ]
+                    },
+                    "remember_me": true
+                  }
+                },
+                "200 Job created: Invalid Security Captcha": {
+                  "value": {
+                    "@entity": "in.co.sandbox.tds.compliance.traces.credentials",
+                    "username": "T.STARK",
+                    "password": "TEST1234",
+                    "tan": "AHMA09719B",
+                    "security_captcha": {
+                      "@entity": "in.co.sandbox.tds.compliance.traces.credentials.security_captcha",
+                      "quarter": "Q4",
+                      "financial_year": "FY 2023-24",
+                      "form": "26Q",
+                      "bsr_code": "0510002",
+                      "challan_date": 1701109800000,
+                      "challan_serial_no": "01906",
+                      "provisional_receipt_number": "770000211345676",
+                      "challan_amount": 50000,
+                      "unique_pan_amount_combination_for_challan": [
+                        [
+                          "sr_no",
+                          "pan",
+                          "total_amount_deposited_against_pan"
+                        ],
+                        [
+                          1,
+                          "XXXCX1234B",
+                          1000
+                        ],
+                        [
+                          2,
+                          "XXXAX2345A ",
+                          2222
+                        ],
+                        [
+                          3,
+                          "XXXBX3456B",
+                          7999
+                        ]
+                      ]
+                    },
+                    "remember_me": true
+                  }
+                },
+                "200 Job created: Invalid TAN": {
+                  "value": {
+                    "@entity": "in.co.sandbox.tds.compliance.traces.credentials",
+                    "username": "T.STARK",
+                    "password": "TEST1234",
+                    "tan": "AHMA09719B",
+                    "security_captcha": {
+                      "@entity": "in.co.sandbox.tds.compliance.traces.credentials.security_captcha",
+                      "quarter": "Q4",
+                      "financial_year": "FY 2023-24",
+                      "form": "27Q",
+                      "bsr_code": "0510002",
+                      "challan_date": 1701109800000,
+                      "challan_serial_no": "01907",
+                      "provisional_receipt_number": "770000211345676",
+                      "challan_amount": 12000,
+                      "unique_pan_amount_combination_for_challan": [
+                        [
+                          "sr_no",
+                          "pan",
+                          "total_amount_deposited_against_pan"
+                        ],
+                        [
+                          1,
+                          "XXXTX1234P",
+                          10000
+                        ]
+                      ]
+                    },
+                    "remember_me": true
+                  }
+                },
+                "200 Job created: Form not available": {
+                  "value": {
+                    "@entity": "in.co.sandbox.tds.compliance.traces.credentials",
+                    "username": "T.STARK",
+                    "password": "TEST1234",
+                    "tan": "AHMA09719B",
+                    "security_captcha": {
+                      "@entity": "in.co.sandbox.tds.compliance.traces.credentials.security_captcha",
+                      "quarter": "Q4",
+                      "financial_year": "FY 2023-24",
+                      "form": "26Q",
+                      "bsr_code": "0510002",
+                      "challan_date": 1701109800000,
+                      "challan_serial_no": "01905",
+                      "provisional_receipt_number": "770000211345676",
+                      "challan_amount": 21,
+                      "unique_pan_amount_combination_for_challan": [
+                        [
+                          "sr_no",
+                          "pan",
+                          "total_amount_deposited_against_pan"
+                        ],
+                        [
+                          1,
+                          "XXXPX1234B",
+                          21
+                        ]
+                      ]
+                    },
+                    "remember_me": true
+                  }
+                },
+                "200 Job created: Job already submitted": {
+                  "value": {
+                    "@entity": "in.co.sandbox.tds.compliance.traces.credentials",
+                    "username": "T.STARK",
+                    "password": "TEST1234",
+                    "tan": "AHMA09719B",
+                    "security_captcha": {
+                      "@entity": "in.co.sandbox.tds.compliance.traces.credentials.security_captcha",
+                      "quarter": "Q4",
+                      "financial_year": "FY 2023-24",
+                      "form": "26Q",
+                      "bsr_code": "0910005",
+                      "challan_date": 1701109800000,
+                      "challan_serial_no": "03905",
+                      "provisional_receipt_number": "770000211345596",
+                      "challan_amount": 21,
+                      "unique_pan_amount_combination_for_challan": [
+                        [
+                          "sr_no",
+                          "pan",
+                          "total_amount_deposited_against_pan"
+                        ],
+                        [
+                          1,
+                          "XXXPX1234B",
+                          21
+                        ]
+                      ]
+                    },
+                    "remember_me": true
+                  }
+                },
+                "422 Missing Credentials": {
+                  "value": {
+                    "@entity": "in.co.sandbox.tds.compliance.traces.credentials",
+                    "tan": "AHMA09719B",
+                    "security_captcha": {
+                      "@entity": "in.co.sandbox.tds.compliance.traces.credentials.security_captcha",
+                      "quarter": "Q4",
+                      "financial_year": "FY 2023-24",
+                      "form": "26Q",
+                      "bsr_code": "0510002",
+                      "challan_date": 1701109800000,
+                      "challan_serial_no": "01905",
+                      "provisional_receipt_number": "770000211345676",
+                      "challan_amount": 21,
+                      "unique_pan_amount_combination_for_challan": [
+                        [
+                          "sr_no",
+                          "pan",
+                          "total_amount_deposited_against_pan"
+                        ],
+                        [
+                          1,
+                          "XXXPX1234A",
+                          1
+                        ]
+                      ]
+                    },
+                    "remember_me": true
+                  }
+                },
+                "422 Security Captcha Missing": {
+                  "value": {
+                    "@entity": "in.co.sandbox.tds.compliance.traces.credentials",
+                    "username": "T.STARK",
+                    "password": "TEST1234",
+                    "tan": "AHMA09719B",
+                    "remember_me": true
+                  }
+                },
+                "422 Invalid TAN pattern": {
+                  "value": {
+                    "@entity": "in.co.sandbox.tds.compliance.traces.credentials",
+                    "username": "T.STARK",
+                    "password": "TEST1234",
+                    "tan": "DABC2345DD",
+                    "security_captcha": {
+                      "@entity": "in.co.sandbox.tds.compliance.traces.credentials.security_captcha",
+                      "quarter": "Q4",
+                      "financial_year": "FY 2023-24",
+                      "form": "26Q",
+                      "bsr_code": "0510002",
+                      "challan_date": 1701109800000,
+                      "challan_serial_no": "01905",
+                      "provisional_receipt_number": "770000211345676",
+                      "challan_amount": 21,
+                      "unique_pan_amount_combination_for_challan": [
+                        [
+                          "sr_no",
+                          "pan",
+                          "total_amount_deposited_against_pan"
+                        ],
+                        [
+                          1,
+                          "XXXPX1234A",
+                          1
+                        ]
+                      ]
+                    },
+                    "remember_me": true
+                  }
+                },
+                "422 Invalid Form Type": {
+                  "value": {
+                    "@entity": "in.co.sandbox.tds.compliance.traces.credentials",
+                    "username": "T.STARK",
+                    "password": "TEST1234",
+                    "tan": "AHMA09719B",
+                    "security_captcha": {
+                      "@entity": "in.co.sandbox.tds.compliance.traces.credentials.security_captcha",
+                      "quarter": "Q4",
+                      "financial_year": "FY 2023-24",
+                      "form": "27Q",
+                      "bsr_code": "0510002",
+                      "challan_date": 1701109800000,
+                      "challan_serial_no": "01905",
+                      "provisional_receipt_number": "770000211345676",
+                      "challan_amount": 21,
+                      "unique_pan_amount_combination_for_challan": [
+                        [
+                          "sr_no",
+                          "pan",
+                          "total_amount_deposited_against_pan"
+                        ],
+                        [
+                          1,
+                          "XXXPX1234A",
+                          1
+                        ]
+                      ]
+                    },
+                    "remember_me": true
+                  }
+                },
+                "422 Invalid Quarter": {
+                  "value": {
+                    "@entity": "in.co.sandbox.tds.compliance.traces.credentials",
+                    "username": "T.STARK",
+                    "password": "TEST1234",
+                    "tan": "AHMA09719B",
+                    "security_captcha": {
+                      "@entity": "in.co.sandbox.tds.compliance.traces.credentials.security_captcha",
+                      "quarter": "Q9",
+                      "financial_year": "FY 2023-24",
+                      "form": "26Q",
+                      "bsr_code": "0510002",
+                      "challan_date": 1701109800000,
+                      "challan_serial_no": "01905",
+                      "provisional_receipt_number": "770000211345676",
+                      "challan_amount": 21,
+                      "unique_pan_amount_combination_for_challan": [
+                        [
+                          "sr_no",
+                          "pan",
+                          "total_amount_deposited_against_pan"
+                        ],
+                        [
+                          1,
+                          "XXXPX1234A",
+                          1
+                        ]
+                      ]
+                    },
+                    "remember_me": true
+                  }
+                },
+                "422 Invalid Financial Year": {
+                  "value": {
+                    "@entity": "in.co.sandbox.tds.compliance.traces.credentials",
+                    "username": "T.STARK",
+                    "password": "TEST1234",
+                    "tan": "AHMA09719B",
+                    "security_captcha": {
+                      "@entity": "in.co.sandbox.tds.compliance.traces.credentials.security_captcha",
+                      "quarter": "Q4",
+                      "financial_year": "FY 2022-2",
+                      "form": "26Q",
+                      "bsr_code": "0510002",
+                      "challan_date": 1701109800000,
+                      "challan_serial_no": "01905",
+                      "provisional_receipt_number": "770000211345676",
+                      "challan_amount": 21,
+                      "unique_pan_amount_combination_for_challan": [
+                        [
+                          "sr_no",
+                          "pan",
+                          "total_amount_deposited_against_pan"
+                        ],
+                        [
+                          1,
+                          "XXXPX1234A",
+                          1
+                        ]
+                      ]
+                    },
+                    "remember_me": true
+                  }
+                },
+                "422 Form Mismatch: Form16A": {
+                  "value": {
+                    "@entity": "in.co.sandbox.tds.compliance.traces.credentials",
+                    "username": "T.STARK",
+                    "password": "TEST1234",
+                    "tan": "AHMA09719B",
+                    "security_captcha": {
+                      "@entity": "in.co.sandbox.tds.compliance.traces.credentials.security_captcha",
+                      "quarter": "Q4",
+                      "financial_year": "FY 2022-2",
                       "form": "24Q",
                       "bsr_code": "0510002",
                       "challan_date": 1701109800000,
@@ -3470,7 +4307,71 @@
                         ]
                       ]
                     },
-                    "remember_me": false
+                    "remember_me": true
+                  }
+                },
+                "422 Quarter Mismatch: Form 16": {
+                  "value": {
+                    "@entity": "in.co.sandbox.tds.compliance.traces.credentials",
+                    "username": "T.STARK",
+                    "password": "TEST1234",
+                    "tan": "AHMA09719B",
+                    "security_captcha": {
+                      "@entity": "in.co.sandbox.tds.compliance.traces.credentials.security_captcha",
+                      "quarter": "Q3",
+                      "financial_year": "FY 2022-2",
+                      "form": "24Q",
+                      "bsr_code": "0510002",
+                      "challan_date": 1701109800000,
+                      "challan_serial_no": "01905",
+                      "provisional_receipt_number": "770000211345676",
+                      "challan_amount": 21,
+                      "unique_pan_amount_combination_for_challan": [
+                        [
+                          "sr_no",
+                          "pan",
+                          "total_amount_deposited_against_pan"
+                        ],
+                        [
+                          1,
+                          "XXXPX1234A",
+                          1
+                        ]
+                      ]
+                    },
+                    "remember_me": true
+                  }
+                },
+                "422 Form Mismatch: Form16": {
+                  "value": {
+                    "@entity": "in.co.sandbox.tds.compliance.traces.credentials",
+                    "username": "T.STARK",
+                    "password": "TEST1234",
+                    "tan": "AHMA09719B",
+                    "security_captcha": {
+                      "@entity": "in.co.sandbox.tds.compliance.traces.credentials.security_captcha",
+                      "quarter": "Q4",
+                      "financial_year": "FY 2022-2",
+                      "form": "27Q",
+                      "bsr_code": "0510002",
+                      "challan_date": 1701109800000,
+                      "challan_serial_no": "01905",
+                      "provisional_receipt_number": "770000211345676",
+                      "challan_amount": 21,
+                      "unique_pan_amount_combination_for_challan": [
+                        [
+                          "sr_no",
+                          "pan",
+                          "total_amount_deposited_against_pan"
+                        ],
+                        [
+                          1,
+                          "XXXPX1234A",
+                          1
+                        ]
+                      ]
+                    },
+                    "remember_me": true
                   }
                 }
               }
@@ -3509,6 +4410,44 @@
             "deprecated": false,
             "schema": {
               "type": "string"
+            },
+            "examples": {
+              "200 - Success": {
+                "value": "52a52404-0b10-4029-acda-967eebcd5bce"
+              },
+              "200 Job Queued": {
+                "value": "32a4c93f-cff5-4c78-b90f-590f82ebd169"
+              },
+              "200 Job In Progress": {
+                "value": "474c9caf-e7e9-4ed7-ac28-9450a9218056"
+              },
+              "200 Job Succeeded: Form 16": {
+                "value": "f24cd229-42c8-43de-af79-8ce2d3c4c3db"
+              },
+              "200 Job Succeeded: Form 16A": {
+                "value": "67addd14-df35-4e74-b27b-2333784f5f24"
+              },
+              "200 Job Failed: Invalid Credentials": {
+                "value": "0b205f2c-d27d-4bf3-b128-c6b16ebc065d"
+              },
+              "200 Job Failed: Invalid Security Captcha": {
+                "value": "c6cb65db-51dd-4369-882c-b90faccaeb28"
+              },
+              "200 Job Failed: Invalid TAN": {
+                "value": "ff78e6e2-3ea9-402b-9a09-a88c2413165f"
+              },
+              "200 Job Failed: Form Not Available": {
+                "value": "3e93481b-b9fb-41f7-9eeb-f76369b8291e"
+              },
+              "200 Job Failed: Job Already Submitted": {
+                "value": "28cc5c28-db2d-4224-be5c-9842c213c100"
+              },
+              "422 - Unprocessable Entity": {
+                "value": "123313jojj"
+              },
+              "521 Data Not Found": {
+                "value": "{{job_id}}"
+              }
             }
           },
           {
@@ -4005,6 +4944,71 @@
                 "required": [
                   "@entity"
                 ]
+              },
+              "examples": {
+                "200 - Success": {
+                  "value": {
+                    "@entity": "in.co.sandbox.tds.compliance.traces.credentials"
+                  }
+                },
+                "200 Job Queued": {
+                  "value": {
+                    "@entity": "in.co.sandbox.tds.compliance.traces.credentials"
+                  }
+                },
+                "200 Job In Progress": {
+                  "value": {
+                    "@entity": "in.co.sandbox.tds.compliance.traces.credentials"
+                  }
+                },
+                "200 Job Succeeded: Form 16": {
+                  "value": {
+                    "@entity": "in.co.sandbox.tds.compliance.traces.credentials",
+                    "username": "T.STARK",
+                    "password": "TEST1234",
+                    "tan": "AHMA09719B"
+                  }
+                },
+                "200 Job Succeeded: Form 16A": {
+                  "value": {
+                    "@entity": "in.co.sandbox.tds.compliance.traces.credentials"
+                  }
+                },
+                "200 Job Failed: Invalid Credentials": {
+                  "value": {
+                    "@entity": "in.co.sandbox.tds.compliance.traces.credentials"
+                  }
+                },
+                "200 Job Failed: Invalid Security Captcha": {
+                  "value": {
+                    "@entity": "in.co.sandbox.tds.compliance.traces.credentials"
+                  }
+                },
+                "200 Job Failed: Invalid TAN": {
+                  "value": {
+                    "@entity": "in.co.sandbox.tds.compliance.traces.credentials"
+                  }
+                },
+                "200 Job Failed: Form Not Available": {
+                  "value": {
+                    "@entity": "in.co.sandbox.tds.compliance.traces.credentials"
+                  }
+                },
+                "200 Job Failed: Job Already Submitted": {
+                  "value": {
+                    "@entity": "in.co.sandbox.tds.compliance.traces.credentials"
+                  }
+                },
+                "422 - Unprocessable Entity": {
+                  "value": {
+                    "@entity": "in.co.sandbox.tds.compliance.traces.credentials"
+                  }
+                },
+                "521 Data Not Found": {
+                  "value": {
+                    "@entity": "in.co.sandbox.tds.compliance.traces.credentials"
+                  }
+                }
               }
             }
           }
@@ -4236,6 +5240,13 @@
                 "required": [
                   "@entity"
                 ]
+              },
+              "examples": {
+                "200 Jobs fetched": {
+                  "value": {
+                    "@entity": "in.co.sandbox.tds.compliance.certificate.job.search"
+                  }
+                }
               }
             }
           }

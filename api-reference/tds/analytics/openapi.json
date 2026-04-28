@@ -253,6 +253,98 @@
                 "requestBody": {
                     "content": {
                         "application/json": {
+                            "examples": {
+                                "form_26q_job_created": {
+                                    "summary": "200 Form 26Q Job created",
+                                    "value": {
+                                        "@entity": "in.co.sandbox.tds.analytics.potential_notice.request",
+                                        "quarter": "Q4",
+                                        "form": "26Q",
+                                        "tan": "AHMA09719B",
+                                        "financial_year": "FY 2023-24"
+                                    }
+                                },
+                                "form_24q_job_created": {
+                                    "summary": "200 Form 24Q Job created",
+                                    "value": {
+                                        "@entity": "in.co.sandbox.tds.analytics.potential_notice.request",
+                                        "quarter": "Q4",
+                                        "form": "24Q",
+                                        "tan": "AHMA09719B",
+                                        "financial_year": "FY 2023-24"
+                                    }
+                                },
+                                "form_27q_job_created": {
+                                    "summary": "200 Form 27Q Job created",
+                                    "value": {
+                                        "@entity": "in.co.sandbox.tds.analytics.potential_notice.request",
+                                        "quarter": "Q4",
+                                        "form": "27Q",
+                                        "tan": "AHMA09719B",
+                                        "financial_year": "FY 2023-24"
+                                    }
+                                },
+                                "submitted_job_will_fail": {
+                                    "summary": "200 Submitted Job will fail",
+                                    "value": {
+                                        "@entity": "in.co.sandbox.tds.analytics.potential_notice.request",
+                                        "quarter": "Q3",
+                                        "form": "26Q",
+                                        "tan": "BLRC23456F",
+                                        "financial_year": "FY 2023-24"
+                                    }
+                                },
+                                "invalid_tan": {
+                                    "summary": "422 Invalid TAN",
+                                    "value": {
+                                        "@entity": "in.co.sandbox.tds.analytics.potential_notice.request",
+                                        "quarter": "Q3",
+                                        "form": "26Q",
+                                        "tan": "DABC2345DD",
+                                        "financial_year": "FY 2023-24"
+                                    }
+                                },
+                                "invalid_quarter": {
+                                    "summary": "422 Invalid Quarter",
+                                    "value": {
+                                        "@entity": "in.co.sandbox.tds.analytics.potential_notice.request",
+                                        "quarter": "Q5",
+                                        "form": "28Q",
+                                        "tan": "EABC23456N",
+                                        "financial_year": "FY 2023-24"
+                                    }
+                                },
+                                "invalid_form": {
+                                    "summary": "422 Invalid Form",
+                                    "value": {
+                                        "@entity": "in.co.sandbox.tds.analytics.potential_notice.request",
+                                        "quarter": "Q3",
+                                        "form": "25Q",
+                                        "tan": "EABC23456N",
+                                        "financial_year": "FY 2023-24"
+                                    }
+                                },
+                                "invalid_financial_year": {
+                                    "summary": "422 Invalid Financial Year",
+                                    "value": {
+                                        "@entity": "in.co.sandbox.tds.analytics.potential_notice.request",
+                                        "quarter": "Q3",
+                                        "form": "24Q",
+                                        "tan": "EABC23456N",
+                                        "financial_year": "2022"
+                                    }
+                                },
+                                "invalid_entity": {
+                                    "summary": "422 Invalid Entity",
+                                    "value": {
+                                        "@entity": "wrong.entity",
+                                        "quarter": "Q3",
+                                        "form": "24Q",
+                                        "tan": "EABC23456N",
+                                        "financial_year": "FY 2023-24"
+                                    }
+                                }
+                            },
                             "schema": {
                                 "type": "object",
                                 "properties": {
@@ -1051,6 +1143,62 @@
                 "requestBody": {
                     "content": {
                         "application/json": {
+                            "examples": {
+                                "q2_job_created": {
+                                    "summary": "200 Q2 Job created",
+                                    "value": {
+                                        "@entity": "in.co.sandbox.tcs.analytics.potential_notice.request",
+                                        "quarter": "Q2",
+                                        "tan": "AHMA09719B",
+                                        "financial_year": "FY 2023-24"
+                                    }
+                                },
+                                "q3_job_created": {
+                                    "summary": "200 Q3 Job created",
+                                    "value": {
+                                        "@entity": "in.co.sandbox.tcs.analytics.potential_notice.request",
+                                        "quarter": "Q3",
+                                        "tan": "AHMA09719B",
+                                        "financial_year": "FY 2023-24"
+                                    }
+                                },
+                                "submitted_job_will_fail": {
+                                    "summary": "200 Submitted Job will fail",
+                                    "value": {
+                                        "@entity": "in.co.sandbox.tcs.analytics.potential_notice.request",
+                                        "quarter": "Q3",
+                                        "tan": "BLRC23456F",
+                                        "financial_year": "FY 2023-24"
+                                    }
+                                },
+                                "invalid_tan": {
+                                    "summary": "422 Invalid TAN",
+                                    "value": {
+                                        "@entity": "in.co.sandbox.tcs.analytics.potential_notice.request",
+                                        "quarter": "Q3",
+                                        "tan": "DABC2345DD",
+                                        "financial_year": "FY 2023-24"
+                                    }
+                                },
+                                "invalid_quarter": {
+                                    "summary": "422 Invalid Quarter",
+                                    "value": {
+                                        "@entity": "in.co.sandbox.tcs.analytics.potential_notice.job",
+                                        "quarter": "Q5",
+                                        "tan": "EABC23456N",
+                                        "financial_year": "FY 2023-24"
+                                    }
+                                },
+                                "invalid_financial_year": {
+                                    "summary": "422 Invalid Financial Year",
+                                    "value": {
+                                        "@entity": "in.co.sandbox.tcs.analytics.potential_notice.request",
+                                        "quarter": "Q3",
+                                        "tan": "AHMA09719B",
+                                        "financial_year": "2022"
+                                    }
+                                }
+                            },
                             "schema": {
                                 "type": "object",
                                 "properties": {
