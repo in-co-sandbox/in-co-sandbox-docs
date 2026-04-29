@@ -51,7 +51,7 @@
             "in": "header",
             "description": "JWT access token. For token-generation steps, refer to the [Quickstart Guide](https://developer.sandbox.co.in/guides/get-started/quickstart).",
             "required": true,
-            "example": "eyJhbGciOiJI.....",
+            "example": "{{access_token}}",
             "schema": {
               "type": "string"
             }
@@ -61,7 +61,7 @@
             "in": "header",
             "description": "API key used to identify and authenticate the client.",
             "required": true,
-            "example": "key_live....",
+            "example": "{{api_key}}",
             "schema": {
               "type": "string"
             }
@@ -74,6 +74,19 @@
             "example": "1.0.0",
             "schema": {
               "type": "string"
+            }
+          },
+          {
+            "name": "Content-Type",
+            "in": "header",
+            "description": "Media type of the request body.",
+            "required": false,
+            "example": "application/json",
+            "schema": {
+              "type": "string",
+              "enum": [
+                "application/json"
+              ]
             }
           }
         ],
@@ -290,7 +303,7 @@
             "in": "header",
             "description": "JWT access token. For token-generation steps, refer to the [Quickstart Guide](https://developer.sandbox.co.in/guides/get-started/quickstart).",
             "required": true,
-            "example": "eyJhbGciOiJI.....",
+            "example": "{{access_token}}",
             "schema": {
               "type": "string"
             }
@@ -300,7 +313,7 @@
             "in": "header",
             "description": "API key used to identify and authenticate the client.",
             "required": true,
-            "example": "key_live....",
+            "example": "{{api_key}}",
             "schema": {
               "type": "string"
             }
@@ -498,7 +511,7 @@
             "in": "header",
             "description": "JWT access token. For token-generation steps, refer to the [Quickstart Guide](https://developer.sandbox.co.in/guides/get-started/quickstart).",
             "required": true,
-            "example": "eyJhbGciOiJI.....",
+            "example": "{{access_token}}",
             "schema": {
               "type": "string"
             }
@@ -508,7 +521,7 @@
             "in": "header",
             "description": "API key used to identify and authenticate the client.",
             "required": true,
-            "example": "key_live....",
+            "example": "{{api_key}}",
             "schema": {
               "type": "string"
             }
@@ -772,7 +785,7 @@
             "in": "header",
             "description": "JWT access token. For token-generation steps, refer to the [Quickstart Guide](https://developer.sandbox.co.in/guides/get-started/quickstart).",
             "required": true,
-            "example": "eyJhbGciOiJI.....",
+            "example": "{{access_token}}",
             "schema": {
               "type": "string"
             }
@@ -782,7 +795,7 @@
             "in": "header",
             "description": "API key used to identify and authenticate the client.",
             "required": true,
-            "example": "key_live....",
+            "example": "{{api_key}}",
             "schema": {
               "type": "string"
             }
@@ -918,7 +931,7 @@
             "in": "header",
             "description": "JWT access token. For token-generation steps, refer to the [Quickstart Guide](https://developer.sandbox.co.in/guides/get-started/quickstart).",
             "required": true,
-            "example": "eyJhbGciOiJI.....",
+            "example": "{{access_token}}",
             "schema": {
               "type": "string"
             }
@@ -928,7 +941,7 @@
             "in": "header",
             "description": "API key used to identify and authenticate the client.",
             "required": true,
-            "example": "key_live....",
+            "example": "{{api_key}}",
             "schema": {
               "type": "string"
             }
@@ -941,6 +954,19 @@
             "example": "1.0.0",
             "schema": {
               "type": "string"
+            }
+          },
+          {
+            "name": "Content-Type",
+            "in": "header",
+            "description": "Media type of the request body.",
+            "required": false,
+            "example": "application/json",
+            "schema": {
+              "type": "string",
+              "enum": [
+                "application/json"
+              ]
             }
           }
         ],
@@ -1142,7 +1168,7 @@
             "in": "header",
             "description": "JWT access token. For token-generation steps, refer to the [Quickstart Guide](https://developer.sandbox.co.in/guides/get-started/quickstart).",
             "required": true,
-            "example": "eyJhbGciOiJI.....",
+            "example": "{{access_token}}",
             "schema": {
               "type": "string"
             }
@@ -1152,7 +1178,7 @@
             "in": "header",
             "description": "API key used to identify and authenticate the client.",
             "required": true,
-            "example": "key_live....",
+            "example": "{{api_key}}",
             "schema": {
               "type": "string"
             }
@@ -1165,6 +1191,19 @@
             "example": "1.0.0",
             "schema": {
               "type": "string"
+            }
+          },
+          {
+            "name": "Content-Type",
+            "in": "header",
+            "description": "Media type of the request body.",
+            "required": false,
+            "example": "application/json",
+            "schema": {
+              "type": "string",
+              "enum": [
+                "application/json"
+              ]
             }
           }
         ],
@@ -1272,8 +1311,7 @@
                       "pinless": true,
                       "usernameless": true,
                       "verified_mobile": "9999999999"
-                    },
-                    "consent_expiry": 1751975600361
+                    }
                   },
                   "summary": "200 - OK"
                 }
@@ -1374,7 +1412,7 @@
             "in": "header",
             "description": "JWT access token. For token-generation steps, refer to the [Quickstart Guide](https://developer.sandbox.co.in/guides/get-started/quickstart).",
             "required": true,
-            "example": "eyJhbGciOiJI.....",
+            "example": "{{access_token}}",
             "schema": {
               "type": "string"
             }
@@ -1384,7 +1422,7 @@
             "in": "header",
             "description": "API key used to identify and authenticate the client.",
             "required": true,
-            "example": "key_live....",
+            "example": "{{api_key}}",
             "schema": {
               "type": "string"
             }
@@ -1498,7 +1536,7 @@
             "in": "header",
             "description": "JWT access token. For token-generation steps, refer to the [Quickstart Guide](https://developer.sandbox.co.in/guides/get-started/quickstart).",
             "required": true,
-            "example": "eyJhbGciOiJI.....",
+            "example": "{{access_token}}",
             "schema": {
               "type": "string"
             }
@@ -1508,7 +1546,7 @@
             "in": "header",
             "description": "API key used to identify and authenticate the client.",
             "required": true,
-            "example": "key_live....",
+            "example": "{{api_key}}",
             "schema": {
               "type": "string"
             }
@@ -1663,7 +1701,7 @@
             "in": "header",
             "description": "JWT access token. For token-generation steps, refer to the [Quickstart Guide](https://developer.sandbox.co.in/guides/get-started/quickstart).",
             "required": true,
-            "example": "eyJhbGciOiJI.....",
+            "example": "{{access_token}}",
             "schema": {
               "type": "string"
             }
@@ -1673,7 +1711,7 @@
             "in": "header",
             "description": "API key used to identify and authenticate the client.",
             "required": true,
-            "example": "key_live....",
+            "example": "{{api_key}}",
             "schema": {
               "type": "string"
             }
@@ -1748,7 +1786,7 @@
             "in": "header",
             "description": "JWT access token. For token-generation steps, refer to the [Quickstart Guide](https://developer.sandbox.co.in/guides/get-started/quickstart).",
             "required": true,
-            "example": "eyJhbGciOiJI.....",
+            "example": "{{access_token}}",
             "schema": {
               "type": "string"
             }
@@ -1758,7 +1796,7 @@
             "in": "header",
             "description": "API key used to identify and authenticate the client.",
             "required": true,
-            "example": "key_live....",
+            "example": "{{api_key}}",
             "schema": {
               "type": "string"
             }
@@ -1771,6 +1809,19 @@
             "example": "1.0.0",
             "schema": {
               "type": "string"
+            }
+          },
+          {
+            "name": "Content-Type",
+            "in": "header",
+            "description": "Media type of the request body.",
+            "required": false,
+            "example": "application/json",
+            "schema": {
+              "type": "string",
+              "enum": [
+                "application/json"
+              ]
             }
           }
         ],
@@ -2127,7 +2178,7 @@
             "in": "header",
             "description": "JWT access token. For token-generation steps, refer to the [Quickstart Guide](https://developer.sandbox.co.in/guides/get-started/quickstart).",
             "required": true,
-            "example": "eyJhbGciOiJI.....",
+            "example": "{{access_token}}",
             "schema": {
               "type": "string"
             }
@@ -2137,7 +2188,7 @@
             "in": "header",
             "description": "API key used to identify and authenticate the client.",
             "required": true,
-            "example": "key_live....",
+            "example": "{{api_key}}",
             "schema": {
               "type": "string"
             }
@@ -2150,6 +2201,19 @@
             "example": "1.0.0",
             "schema": {
               "type": "string"
+            }
+          },
+          {
+            "name": "Content-Type",
+            "in": "header",
+            "description": "Media type of the request body.",
+            "required": false,
+            "example": "application/json",
+            "schema": {
+              "type": "string",
+              "enum": [
+                "application/json"
+              ]
             }
           }
         ],
@@ -2571,7 +2635,7 @@
             "in": "header",
             "description": "JWT access token. For token-generation steps, refer to the [Quickstart Guide](https://developer.sandbox.co.in/guides/get-started/quickstart).",
             "required": true,
-            "example": "eyJhbGciOiJI.....",
+            "example": "{{access_token}}",
             "schema": {
               "type": "string"
             }
@@ -2581,7 +2645,7 @@
             "in": "header",
             "description": "API key used to identify and authenticate the client.",
             "required": true,
-            "example": "key_live....",
+            "example": "{{api_key}}",
             "schema": {
               "type": "string"
             }
@@ -2779,7 +2843,7 @@
             "in": "header",
             "description": "JWT access token. For token-generation steps, refer to the [Quickstart Guide](https://developer.sandbox.co.in/guides/get-started/quickstart).",
             "required": true,
-            "example": "eyJhbGciOiJI.....",
+            "example": "{{access_token}}",
             "schema": {
               "type": "string"
             }
@@ -2799,7 +2863,7 @@
             "in": "header",
             "description": "API key used to identify and authenticate the client.",
             "required": true,
-            "example": "key_live....",
+            "example": "{{api_key}}",
             "schema": {
               "type": "string"
             }
@@ -3219,7 +3283,7 @@
             "in": "header",
             "description": "JWT access token. For token-generation steps, refer to the [Quickstart Guide](https://developer.sandbox.co.in/guides/get-started/quickstart).",
             "required": true,
-            "example": "eyJhbGciOiJI.....",
+            "example": "{{access_token}}",
             "schema": {
               "type": "string"
             }
@@ -3239,7 +3303,7 @@
             "in": "header",
             "description": "API key used to identify and authenticate the client.",
             "required": true,
-            "example": "key_live....",
+            "example": "{{api_key}}",
             "schema": {
               "type": "string"
             }
@@ -3474,7 +3538,7 @@
             "in": "header",
             "description": "JWT access token. For token-generation steps, refer to the [Quickstart Guide](https://developer.sandbox.co.in/guides/get-started/quickstart).",
             "required": true,
-            "example": "eyJhbGciOiJI.....",
+            "example": "{{access_token}}",
             "schema": {
               "type": "string"
             }
@@ -3494,7 +3558,7 @@
             "in": "header",
             "description": "API key used to identify and authenticate the client.",
             "required": true,
-            "example": "key_live....",
+            "example": "{{api_key}}",
             "schema": {
               "type": "string"
             }
@@ -3507,6 +3571,19 @@
             "example": "1.0.0",
             "schema": {
               "type": "string"
+            }
+          },
+          {
+            "name": "Content-Type",
+            "in": "header",
+            "description": "Media type of the request body.",
+            "required": false,
+            "example": "application/json",
+            "schema": {
+              "type": "string",
+              "enum": [
+                "application/json"
+              ]
             }
           }
         ],
@@ -3900,7 +3977,7 @@
             "in": "header",
             "description": "JWT access token. For token-generation steps, refer to the [Quickstart Guide](https://developer.sandbox.co.in/guides/get-started/quickstart).",
             "required": true,
-            "example": "eyJhbGciOiJI.....",
+            "example": "{{access_token}}",
             "schema": {
               "type": "string"
             }
@@ -3910,7 +3987,7 @@
             "in": "header",
             "description": "API key used to identify and authenticate the client.",
             "required": true,
-            "example": "key_live....",
+            "example": "{{api_key}}",
             "schema": {
               "type": "string"
             }
@@ -3923,6 +4000,19 @@
             "example": "1.0.0",
             "schema": {
               "type": "string"
+            }
+          },
+          {
+            "name": "Content-Type",
+            "in": "header",
+            "description": "Media type of the request body.",
+            "required": false,
+            "example": "application/json",
+            "schema": {
+              "type": "string",
+              "enum": [
+                "application/json"
+              ]
             }
           }
         ],
@@ -4174,7 +4264,7 @@
             "in": "header",
             "description": "JWT access token. For token-generation steps, refer to the [Quickstart Guide](https://developer.sandbox.co.in/guides/get-started/quickstart).",
             "required": true,
-            "example": "eyJhbGciOiJI.....",
+            "example": "{{access_token}}",
             "schema": {
               "type": "string"
             }
@@ -4184,7 +4274,7 @@
             "in": "header",
             "description": "API key used to identify and authenticate the client.",
             "required": true,
-            "example": "key_live....",
+            "example": "{{api_key}}",
             "schema": {
               "type": "string"
             }
@@ -4197,6 +4287,19 @@
             "example": "1.0.0",
             "schema": {
               "type": "string"
+            }
+          },
+          {
+            "name": "Content-Type",
+            "in": "header",
+            "description": "Media type of the request body.",
+            "required": false,
+            "example": "application/json",
+            "schema": {
+              "type": "string",
+              "enum": [
+                "application/json"
+              ]
             }
           }
         ],
@@ -4736,7 +4839,7 @@
             "in": "header",
             "description": "JWT access token. For token-generation steps, refer to the [Quickstart Guide](https://developer.sandbox.co.in/guides/get-started/quickstart).",
             "required": true,
-            "example": "eyJhbGciOiJI.....",
+            "example": "{{access_token}}",
             "schema": {
               "type": "string"
             }
@@ -4746,7 +4849,7 @@
             "in": "header",
             "description": "API key used to identify and authenticate the client.",
             "required": true,
-            "example": "key_live....",
+            "example": "{{api_key}}",
             "schema": {
               "type": "string"
             }
@@ -4759,6 +4862,19 @@
             "example": "1.0.0",
             "schema": {
               "type": "string"
+            }
+          },
+          {
+            "name": "Content-Type",
+            "in": "header",
+            "description": "Media type of the request body.",
+            "required": false,
+            "example": "application/json",
+            "schema": {
+              "type": "string",
+              "enum": [
+                "application/json"
+              ]
             }
           }
         ],
@@ -4926,7 +5042,7 @@
             "in": "header",
             "description": "JWT access token. For token-generation steps, refer to the [Quickstart Guide](https://developer.sandbox.co.in/guides/get-started/quickstart).",
             "required": true,
-            "example": "eyJhbGciOiJI.....",
+            "example": "{{access_token}}",
             "schema": {
               "type": "string"
             }
@@ -4936,7 +5052,7 @@
             "in": "header",
             "description": "API key used to identify and authenticate the client.",
             "required": true,
-            "example": "key_live....",
+            "example": "{{api_key}}",
             "schema": {
               "type": "string"
             }
@@ -4949,6 +5065,19 @@
             "example": "1.0.0",
             "schema": {
               "type": "string"
+            }
+          },
+          {
+            "name": "Content-Type",
+            "in": "header",
+            "description": "Media type of the request body.",
+            "required": false,
+            "example": "application/json",
+            "schema": {
+              "type": "string",
+              "enum": [
+                "application/json"
+              ]
             }
           }
         ],
@@ -5103,7 +5232,7 @@
             "in": "header",
             "description": "JWT access token. For token-generation steps, refer to the [Quickstart Guide](https://developer.sandbox.co.in/guides/get-started/quickstart).",
             "required": true,
-            "example": "eyJhbGciOiJI.....",
+            "example": "{{access_token}}",
             "schema": {
               "type": "string"
             }
@@ -5113,7 +5242,7 @@
             "in": "header",
             "description": "API key used to identify and authenticate the client.",
             "required": true,
-            "example": "key_live....",
+            "example": "{{api_key}}",
             "schema": {
               "type": "string"
             }
@@ -5305,7 +5434,7 @@
             "in": "header",
             "description": "JWT access token. For token-generation steps, refer to the [Quickstart Guide](https://developer.sandbox.co.in/guides/get-started/quickstart).",
             "required": true,
-            "example": "eyJhbGciOiJI.....",
+            "example": "{{access_token}}",
             "schema": {
               "type": "string"
             }
@@ -5315,7 +5444,7 @@
             "in": "header",
             "description": "API key used to identify and authenticate the client.",
             "required": true,
-            "example": "key_live....",
+            "example": "{{api_key}}",
             "schema": {
               "type": "string"
             }
@@ -5522,7 +5651,7 @@
             "in": "header",
             "description": "JWT access token. For token-generation steps, refer to the [Quickstart Guide](https://developer.sandbox.co.in/guides/get-started/quickstart).",
             "required": true,
-            "example": "eyJhbGciOiJI.....",
+            "example": "{{access_token}}",
             "schema": {
               "type": "string"
             }
@@ -5532,7 +5661,7 @@
             "in": "header",
             "description": "API key used to identify and authenticate the client.",
             "required": true,
-            "example": "key_live....",
+            "example": "{{api_key}}",
             "schema": {
               "type": "string"
             }
@@ -5680,7 +5809,7 @@
             "in": "header",
             "description": "JWT access token. For token-generation steps, refer to the [Quickstart Guide](https://developer.sandbox.co.in/guides/get-started/quickstart).",
             "required": true,
-            "example": "eyJhbGciOiJI.....",
+            "example": "{{access_token}}",
             "schema": {
               "type": "string"
             }
@@ -5690,7 +5819,7 @@
             "in": "header",
             "description": "API key used to identify and authenticate the client.",
             "required": true,
-            "example": "key_live....",
+            "example": "{{api_key}}",
             "schema": {
               "type": "string"
             }
@@ -5819,7 +5948,7 @@
             "in": "header",
             "description": "JWT access token. For token-generation steps, refer to the [Quickstart Guide](https://developer.sandbox.co.in/guides/get-started/quickstart).",
             "required": true,
-            "example": "eyJhbGciOiJI.....",
+            "example": "{{access_token}}",
             "schema": {
               "type": "string"
             }
@@ -5829,7 +5958,7 @@
             "in": "header",
             "description": "API key used to identify and authenticate the client.",
             "required": true,
-            "example": "key_live....",
+            "example": "{{api_key}}",
             "schema": {
               "type": "string"
             }
@@ -5842,6 +5971,19 @@
             "example": "1.0.0",
             "schema": {
               "type": "string"
+            }
+          },
+          {
+            "name": "Content-Type",
+            "in": "header",
+            "description": "Media type of the request body.",
+            "required": false,
+            "example": "application/json",
+            "schema": {
+              "type": "string",
+              "enum": [
+                "application/json"
+              ]
             }
           }
         ],
@@ -6003,7 +6145,7 @@
             "in": "header",
             "description": "JWT access token. For token-generation steps, refer to the [Quickstart Guide](https://developer.sandbox.co.in/guides/get-started/quickstart).",
             "required": true,
-            "example": "eyJhbGciOiJI.....",
+            "example": "{{access_token}}",
             "schema": {
               "type": "string"
             }
@@ -6013,7 +6155,7 @@
             "in": "header",
             "description": "API key used to identify and authenticate the client.",
             "required": true,
-            "example": "key_live....",
+            "example": "{{api_key}}",
             "schema": {
               "type": "string"
             }
@@ -6150,7 +6292,7 @@
             "in": "path",
             "description": "Session identifier generated during EntityLocker SDK [Create Session API](https://developer.sandbox.co.in/api-reference/kyc/entitylocker-sdk/endpoints/create_session) .",
             "required": true,
-            "example": "{{sdk_session_id}}",
+            "example": "4b4bf7aa-f4da-47a8-9b32-895edfc03630",
             "schema": {
               "type": "string"
             }
@@ -6160,7 +6302,7 @@
             "in": "path",
             "description": "Document type identifying which EntityLocker document to retrieve. Must match one of the consented doc_types values.",
             "required": true,
-            "example": "{{doc_type}}",
+            "example": "company_master_details",
             "schema": {
               "type": "string",
               "enum": [
@@ -6175,7 +6317,7 @@
             "in": "header",
             "description": "JWT access token. For token-generation steps, refer to the [Quickstart Guide](https://developer.sandbox.co.in/guides/get-started/quickstart).",
             "required": true,
-            "example": "eyJhbGciOiJI.....",
+            "example": "{{access_token}}",
             "schema": {
               "type": "string"
             }
@@ -6185,7 +6327,7 @@
             "in": "header",
             "description": "API key used to identify and authenticate the client.",
             "required": true,
-            "example": "key_live....",
+            "example": "{{api_key}}",
             "schema": {
               "type": "string"
             }
@@ -6442,7 +6584,11 @@
     }
   },
   "webhooks": {},
-  "components": {},
+  "components": {
+    "schemas": {},
+    "responses": {},
+    "securitySchemes": {}
+  },
   "servers": [
     {
       "url": "https://test-api.sandbox.co.in",
