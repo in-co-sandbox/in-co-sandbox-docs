@@ -1,0 +1,38 @@
+{
+  "name": "domestic_securities_tradewise_tax_pnl_workbook",
+  "@entity": "workbook",
+  "sheets": [
+    {
+      "name": "tax_pnl_summary_sheet",
+      "@entity": "sheet",
+      "blocks": [
+        {
+          "name": "asset_wise_tax_pnl_summary_table",
+          "@entity": "table",
+          "header": ["asset_class", "asset_type", "total_turnover", "realized_pnl", "unrealized_pnl", "taxable_income", "tax_payable"],
+          "rows": [
+            ["Equity", "Stocks", 1000000, 50000, 25000, 75000, 11250],
+            ["Debt", "Bonds", 500000, 10000, 5000, 15000, 2250]
+          ]
+        }
+      ]
+    },
+    {
+      "name": "equity_tradewise_tax_pnl_sheet",
+      "@entity": "sheet",
+      "blocks": [
+        {
+          "name": "equity_delivery_tradewise_tax_pnl_table",
+          "@entity": "table",
+          "header": ["trade_date", "scrip_code", "scrip_name", "buy_sell", "quantity", "price", "value", "brokerage", "net_pnl", "tax_rate", "tax_amount"],
+          "rows": [
+            ["2024-01-15", "RELIANCE", "Reliance Industries Ltd", "BUY", 100, 2500, 250000, 100, 0, 0, 0],
+            ["2024-02-15", "RELIANCE", "Reliance Industries Ltd", "SELL", 100, 2750, 275000, 100, 25000, 0.125, 3125],
+            ["2024-01-20", "TCS", "Tata Consultancy Services Ltd", "BUY", 50, 6000, 300000, 150, 0, 0, 0],
+            ["2024-02-20", "TCS", "Tata Consultancy Services Ltd", "SELL", 50, 6400, 320000, 150, 20000, 0.125, 2500]
+          ]
+        }
+      ]
+    }
+  ]
+}
