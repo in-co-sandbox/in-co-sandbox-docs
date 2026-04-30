@@ -1,0 +1,36 @@
+{
+  "name": "domestic_securities_scripwise_tax_pnl_workbook",
+  "@entity": "workbook",
+  "sheets": [
+    {
+      "name": "tax_pnl_summary_sheet",
+      "@entity": "sheet",
+      "blocks": [
+        {
+          "name": "asset_wise_tax_pnl_summary_table",
+          "@entity": "table",
+          "header": ["asset_class", "asset_type", "total_turnover", "realized_pnl", "unrealized_pnl", "taxable_income", "tax_payable"],
+          "rows": [
+            ["Equity", "Stocks", 1000000, 50000, 25000, 75000, 11250],
+            ["Debt", "Bonds", 500000, 10000, 5000, 15000, 2250]
+          ]
+        }
+      ]
+    },
+    {
+      "name": "stock_scripwise_tax_pnl_sheet",
+      "@entity": "sheet",
+      "blocks": [
+        {
+          "name": "stock_delivery_scripwise_tax_pnl_table",
+          "@entity": "table",
+          "header": ["scrip_code", "scrip_name", "quantity", "buy_value", "sell_value", "realized_pnl", "tax_rate", "tax_amount"],
+          "rows": [
+            ["RELIANCE", "Reliance Industries Ltd", 100, 250000, 275000, 25000, 0.125, 3125],
+            ["TCS", "Tata Consultancy Services Ltd", 50, 300000, 320000, 20000, 0.125, 2500]
+          ]
+        }
+      ]
+    }
+  ]
+}

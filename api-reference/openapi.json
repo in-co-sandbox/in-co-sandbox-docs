@@ -1,102 +1,104 @@
 {
-    "openapi": "3.0.3",
-    "info": {
-        "title": "Authentication",
-        "description": "Authentication is the initial step to accessing the Sandbox API. It involves using the API Key and Secret to generate an access token. This token serves as a secure authorization method, enabling the API client to make authenticated API requests on behalf of the user or application.\n\n> Your unique API Key and API Secret are accessible via the dashboard, with separate sets for live and test environments, identified by the prefixes \"live\" and \"test\"",
-        "version": "1.0.0",
-        "contact": {}
+  "openapi": "3.0.3",
+  "info": {
+    "title": "Authentication",
+    "description": "Authentication is the initial step to accessing the Sandbox API. It involves using the API Key and Secret to generate an access token. This token serves as a secure authorization method, enabling the API client to make authenticated API requests on behalf of the user or application.\n\n> Your unique API Key and API Secret are accessible via the dashboard, with separate sets for live and test environments, identified by the prefixes \"live\" and \"test\"",
+    "version": "1.0.0",
+    "contact": {}
+  },
+  "servers": [
+    {
+      "url": "https://test-api.sandbox.co.in",
+      "description": "test"
     },
-    "servers": [
-        {
-            "url": "https://api.sandbox.co.in"
-        },
-        {
-            "url": "https://test-api.sandbox.co.in"
-        }
-    ],
-    "paths": {
-        "/authenticate": {
-            "post": {
-                "summary": "Authenticate",
-                "description": "Authenticate",
-                "operationId": "authenticate",
-                "parameters": [
-                    {
-                        "name": "x-api-key",
-                        "in": "header",
-                        "required": true,
-                        "schema": {
-                            "type": "string",
-                            "example": "key_live...."
-                        }
-                    },
-                    {
-                        "name": "x-api-secret",
-                        "in": "header",
-                        "required": true,
-                        "schema": {
-                            "type": "string",
-                            "example": "secret_live...."
-                        }
-                    },
-                    {
-                        "name": "x-api-version",
-                        "in": "header",
-                        "schema": {
-                            "type": "string",
-                            "example": "1.0"
-                        }
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "200",
-                        "content": {
-                            "application/json": {
-                                "schema": {
-                                    "type": "object",
-                                    "properties": {
-                                        "code": {
-                                            "type": "number",
-                                            "example": 200
-                                        },
-                                        "data": {
-                                            "type": "object",
-                                            "properties": {
-                                                "access_token": {
-                                                    "type": "string",
-                                                    "example": "eyJ0e...."
-                                                }
-                                            }
-                                        },
-                                        "timestamp": {
-                                            "type": "number",
-                                            "example": 1750687659809
-                                        },
-                                        "transaction_id": {
-                                            "type": "string",
-                                            "example": "3a31716a-6a4d-4670-83fe-849d8209e35a"
-                                        }
-                                    }
-                                },
-                                "examples": {
-                                    "200": {
-                                        "value": {
-                                            "code": 200,
-                                            "data": {
-                                                "access_token": "eyJ0e...."
-                                            },
-                                            "timestamp": 1750687659809,
-                                            "transaction_id": "3a31716a-6a4d-4670-83fe-849d8209e35a"
-                                        }
-                                    }
-                                }
-                            }
-                        }
-                    }
-                }
+    {
+      "url": "https://api.sandbox.co.in",
+      "description": "prod"
+    }
+  ],
+  "paths": {
+    "/authenticate": {
+      "post": {
+        "summary": "Authenticate",
+        "description": "Authenticate",
+        "operationId": "authenticate",
+        "parameters": [
+          {
+            "name": "x-api-key",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "example": "key_live...."
             }
+          },
+          {
+            "name": "x-api-secret",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "example": "secret_live...."
+            }
+          },
+          {
+            "name": "x-api-version",
+            "in": "header",
+            "schema": {
+              "type": "string",
+              "example": "1.0"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "200",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "code": {
+                      "type": "number",
+                      "example": 200
+                    },
+                    "data": {
+                      "type": "object",
+                      "properties": {
+                        "access_token": {
+                          "type": "string",
+                          "example": "eyJ0e...."
+                        }
+                      }
+                    },
+                    "timestamp": {
+                      "type": "number",
+                      "example": 1750687659809
+                    },
+                    "transaction_id": {
+                      "type": "string",
+                      "example": "3a31716a-6a4d-4670-83fe-849d8209e35a"
+                    }
+                  }
+                },
+                "examples": {
+                  "200": {
+                    "value": {
+                      "code": 200,
+                      "data": {
+                        "access_token": "eyJ0e...."
+                      },
+                      "timestamp": 1750687659809,
+                      "transaction_id": "3a31716a-6a4d-4670-83fe-849d8209e35a"
+                    }
+                  }
+                }
+              }
+            }
+          }
         }
-    },
-    "tags": []
+      }
+    }
+  },
+  "tags": []
 }
