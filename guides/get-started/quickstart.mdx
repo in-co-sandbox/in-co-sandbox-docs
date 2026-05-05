@@ -14,11 +14,7 @@ This guide shows you how to authenticate and make your first API call to Sandbox
 
 <Steps>
   <Step title="Get your API credentials">
-    Navigate to [Sandbox Console](https://console.sandbox.co.in) and go to **Settings** → **API Keys** to retrieve your API Key and API Secret.
-    
-    You'll see two sets of credentials:
-    - **Test environment**: Keys prefixed with `key_test` for development
-    - **Live environment**: Keys prefixed with `key_live` for production
+    Navigate to [Sandbox Console](https://console.sandbox.co.in) and go to **Settings** → **API Keys** to retrieve your API Key and API Secret. Sandbox provides separate credentials for test and production [environments](/guides/developer-resources/environments).
     
     Follow this guide to generate your keys: [Generate your API Keys](https://help.sandbox.co.in/portal/en/kb/articles/generate-your-api-keys).
 
@@ -95,17 +91,6 @@ This guide shows you how to authenticate and make your first API call to Sandbox
   You are all set to use Sandbox APIs
 </Check>
 
-## Environment host URLs
-
-| **Environment** | **Host url**                     |
-| :-------------- | :------------------------------- |
-| Test            | `https://test-api.sandbox.co.in` |
-| Production      | `https://api.sandbox.co.in`      |
-
-<Info>
-  The same workflow works for both test and production environments. Use the appropriate host url based on your environment.
-</Info>
-
 ## Next steps
 
 <CardGroup cols={2}>
@@ -117,5 +102,8 @@ This guide shows you how to authenticate and make your first API call to Sandbox
   </Card>
   <Card title="Webhooks" icon="webhook" href="/guides/developer-resources/webhooks">
     Set up webhooks for real-time notifications
+  </Card>
+  <Card title="Test environment" icon="flask-vial" href="/guides/developer-resources/test_environment">
+    Set up Postman collections and run test requests
   </Card>
 </CardGroup>
