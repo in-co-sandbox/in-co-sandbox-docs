@@ -1,0 +1,70 @@
+---
+title: "PUT Request"
+description: "Once the job is successfully created, upload the payload using HTTP PUT method on generated presigned url."
+---
+## Overview
+
+After submitting a job, the API responds with a **presigned S3 URL**.  
+Use this URL to upload the workbook via an HTTP **PUT** request.
+
+<Note>
+This endpoint is part of a larger **job-based workflow**. To understand how job creation, payload upload, and status polling work together, see the **Job-Based API Workflow Guide**.
+
+[Read the Job-Based API Workflow Guide](/guides/developer-resources/job_based_apis)
+</Note>
+
+
+
+> It's a **temporary AWS S3 presigned URL** generated uniquely for each job.
+## Example Presigned URL
+
+
+https://in-co-sandbox-it-reports-tax-pnl-sec-dev.s3.ap-south-1.amazonaws.com/{{file_path}}?{{signed_query_params}}
+
+
+# **Sample Payload Requests**
+
+This API accepts payload in following formats: 
+
+## **Tradebook**
+
+<CardGroup>
+  <Card
+  title="View Schema"
+  icon="file-spreadsheet"
+  href="https://sheet-tools.quicko.org.in/sheet-schema-builder?schema_url=https://raw.githubusercontent.com/in-co-sandbox/in-co-sandbox-docs/refs/heads/main/data/it/calculator/tax_pnl/securities/foreign/tradebook_workbook.schema.json"
+  arrow="true"
+  horizontal
+>
+</Card>
+  <Card
+  title="View Sample"
+  icon="file-spreadsheet"
+  href="https://sheet-tools.quicko.org.in/sheet-visualiser?schema_url=https://raw.githubusercontent.com/in-co-sandbox/in-co-sandbox-docs/refs/heads/main/data/it/calculator/tax_pnl/securities/foreign/tradebook_workbook.schema.json&data_url=https://raw.githubusercontent.com/in-co-sandbox/in-co-sandbox-docs/refs/heads/main/data/it/calculator/tax_pnl/securities/foreign/foreign_tradebook.json"
+  arrow="true"
+  horizontal
+>
+</Card>
+</CardGroup>
+
+## **Tradewise Settlements**
+
+<CardGroup>
+  <Card
+  title="View Schema"
+  icon="file-spreadsheet"
+  href="https://sheet-tools.quicko.org.in/sheet-schema-builder?schema_url=https://raw.githubusercontent.com/in-co-sandbox/in-co-sandbox-docs/refs/heads/main/data/it/calculator/tax_pnl/securities/foreign/tradewise_settlement_workbook.schema.json"
+  arrow="true"
+  horizontal
+>
+</Card>
+  <Card
+  title="View Sample"
+  icon="file-spreadsheet"
+  href="https://sheet-tools.quicko.org.in/sheet-visualiser?schema_url=https://raw.githubusercontent.com/in-co-sandbox/in-co-sandbox-docs/refs/heads/main/data/it/calculator/tax_pnl/securities/foreign/tradewise_settlement_workbook.schema.json&data_url=https://raw.githubusercontent.com/in-co-sandbox/in-co-sandbox-docs/refs/heads/main/data/it/calculator/tax_pnl/securities/foreign/foreign_tradewise_settlements.json"
+  arrow="true"
+  horizontal
+>
+</Card>
+</CardGroup>
+
