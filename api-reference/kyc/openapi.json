@@ -1015,7 +1015,7 @@
                 "User exists - validated with mobile": {
                   "value": {
                     "@entity": "in.co.sandbox.kyc.digilocker.user.verification.request",
-                    "mobile": "9876543210"
+                    "mobile": "9687205427"
                   },
                   "summary": "User exists - validated with mobile"
                 },
@@ -1310,7 +1310,7 @@
                       ],
                       "pinless": true,
                       "usernameless": true,
-                      "verified_mobile": "9999999999"
+                      "verified_mobile": "9687205427"
                     }
                   },
                   "summary": "200 - OK"
@@ -1734,7 +1734,78 @@
               "application/json": {
                 "schema": {
                   "type": "object",
-                  "properties": {}
+                  "properties": {
+                    "code": {
+                      "type": "integer"
+                    },
+                    "timestamp": {
+                      "type": "integer"
+                    },
+                    "data": {
+                      "type": "object",
+                      "properties": {
+                        "files": {
+                          "type": "array",
+                          "items": {
+                            "type": "object",
+                            "properties": {
+                              "@entity": {
+                                "type": "string",
+                                "enum": [
+                                  "org.quicko.drive.file"
+                                ]
+                              },
+                              "url": {
+                                "type": "string"
+                              },
+                              "size": {
+                                "type": "integer"
+                              },
+                              "metadata": {
+                                "type": "object",
+                                "properties": {
+                                  "ContentType": {
+                                    "type": "string"
+                                  },
+                                  "issuer_id": {
+                                    "type": "string"
+                                  },
+                                  "issuer": {
+                                    "type": "string"
+                                  },
+                                  "LastModified": {
+                                    "type": "string"
+                                  },
+                                  "description": {
+                                    "type": "string"
+                                  }
+                                },
+                                "required": [
+                                  "ContentType",
+                                  "issuer_id",
+                                  "issuer",
+                                  "LastModified",
+                                  "description"
+                                ]
+                              }
+                            }
+                          }
+                        }
+                      },
+                      "required": [
+                        "files"
+                      ]
+                    },
+                    "transaction_id": {
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "code",
+                    "timestamp",
+                    "data",
+                    "transaction_id"
+                  ]
                 },
                 "examples": {
                   "200 - OK": {
@@ -2801,7 +2872,7 @@
             "in": "path",
             "description": "11-digit alpha-numeric code used to identify the bank branches",
             "required": true,
-            "example": "SBIN0021745",
+            "example": "SBIN0061411",
             "schema": {
               "type": "string",
               "pattern": "^[A-Za-z]{4}[a-zA-Z0-9]{7}$"
@@ -2812,7 +2883,7 @@
             "in": "path",
             "description": "Bank account number. Max length: 40 characters",
             "required": true,
-            "example": "40100123456781",
+            "example": "42090969996",
             "schema": {
               "type": "string"
             }
@@ -2853,7 +2924,7 @@
             "in": "header",
             "description": "Controls cache behavior for the request:\ntrue — Return cached response if available\nfalse — Bypass cache and fetch fresh data from origin\nDefault: If omitted, returns fresh data from origin",
             "required": false,
-            "example": "true",
+            "example": "false",
             "schema": {
               "type": "boolean"
             }
