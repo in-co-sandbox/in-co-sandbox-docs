@@ -1,0 +1,163 @@
+---
+title: "Sample Responses"
+description: "Sample XML structures returned by EntityLocker for GSTN Details and Udyam Certificate documents"
+icon: "file-code"
+---
+
+When you fetch a document using the [EntityLocker API](/api-reference/kyc/entitylocker/endpoints/fetch_document) or [EntityLocker SDK](/api-reference/kyc/entitylocker/sdk/endpoints/fetch_document), the response contains a `url` to download the document file. For XML format documents, the downloaded file is a signed XML certificate issued via EntityLocker.
+
+The XML structure varies by document type. Below are sample XML responses for commonly fetched business documents.
+
+## GSTN Details (GSTND)
+
+The GSTN Details XML contains GST registration information including taxpayer type, legal name, constitution of business, and jurisdiction details.
+
+```xml
+<?xml version="1.0" encoding="UTF-8"?>
+<Certificate language="99" name="GSTN Details" type="GSTND"
+             number="00XXXXX0000X0XX" issuedAt=""
+             issueDate="01-01-2023" validFromDate="01-04-2023" status="">
+  <IssuedBy>
+    <Organization name="Goods and Services Tax Network" code="" tin="" uid="" type="CG">
+      <Address type="official" line1="" line2="" house="" landmark=""
+               locality="" vtc="" district="" pin="" state="" country="IN"/>
+    </Organization>
+  </IssuedBy>
+  <IssuedTo>
+    <Organization uid="" title=""
+                  name="SAMPLE ENTERPRISE PRIVATE LIMITED"
+                  phone="" email="">
+      <Address type="" line1="Sample City" line2="" house="" landmark=""
+               locality="SAMPLE LOCALITY" vtc="" district="Sample District"
+               pin="000000" state="Gujarat" country="IN"/>
+      <Photo/>
+    </Organization>
+  </IssuedTo>
+  <CertificateData>
+    <GSTNDetails taxpayerType="Regular"
+                 gstidentificationNumber="00XXXXX0000X0XX"
+                 dateofRegistration="01-01-2023"
+                 lastupdatedDate="01-04-2023"
+                 tradeName=""
+                 legalnameofBusiness="SAMPLE ENTERPRISE PRIVATE LIMITED"
+                 constitutionofBusiness="Private Limited Company"
+                 stateJurisdiction="Sample Jurisdiction"/>
+  </CertificateData>
+  <Signature xmlns="http://www.w3.org/2000/09/xmldsig#">
+    <!-- Digital signature issued by National e-Governance Division -->
+  </Signature>
+</Certificate>
+```
+
+### Key fields
+
+| Element | Attribute | Description |
+| --- | --- | --- |
+| `Certificate` | `type`, `number` | Document type (`GSTND`), GSTIN number |
+| `Certificate` | `issueDate`, `validFromDate` | Registration and validity dates |
+| `IssuedBy > Organization` | `name` | Issuing authority — Goods and Services Tax Network |
+| `IssuedTo > Organization` | `name` | Registered business name |
+| `IssuedTo > Organization > Address` | `locality`, `district`, `state`, `pin` | Business address details |
+| `GSTNDetails` | `taxpayerType` | Taxpayer classification (Regular, Composition, etc.) |
+| `GSTNDetails` | `gstidentificationNumber` | Full GSTIN |
+| `GSTNDetails` | `legalnameofBusiness` | Legal name as registered |
+| `GSTNDetails` | `constitutionofBusiness` | Business structure (Private Limited, LLP, etc.) |
+| `GSTNDetails` | `stateJurisdiction` | Assigned state-level tax jurisdiction |
+
+---
+
+## Udyam Certificate (UDCER)
+
+The Udyam Certificate XML contains MSME registration details including enterprise classification, NIC codes, and unit information.
+
+```xml
+<?xml version="1.0" encoding="UTF-8"?>
+<Certificate language="99" name="Udaym Certificate" type="UDCER"
+             number="UDYAM-XX-00-0000000" issuedAt=""
+             issueDate="01-01-2023" validFromDate="" status="A">
+  <IssuedBy>
+    <Organization name="Ministry of Micro, Small and Medium Enterprises"
+                  code="" tin="" uid="" type="CG">
+      <Address type="official" line1="" line2="" house="" landmark=""
+               locality="" vtc="" district="SAMPLE DISTRICT"
+               pin="000000" state="GUJARAT" country="IN"/>
+    </Organization>
+  </IssuedBy>
+  <IssuedTo>
+    <Enterprise uid="" title=""
+                name="M/S SAMPLE ENTERPRISE PRIVATE LIMITED"
+                dob="dd-mm-yyyy" age="" swd="" swdIndicator=""
+                gender="" maritalStatus="" religion=""
+                phone="0000000000" email="sample@example.com">
+      <Address type="" line1="" line2=""
+               flatDoorBlockNo="X-000"
+               nameOfPremisesBuilding="SAMPLE TOWER"
+               block="BLOCK X"
+               roadStreetLane="SAMPLE ROAD"
+               vtc="SAMPLE CITY" district="SAMPLE DISTRICT"
+               city="SAMPLE CITY" pin="000000"
+               state="GUJARAT" country="IN"/>
+      <Photo/>
+    </Enterprise>
+  </IssuedTo>
+  <CertificateData>
+    <UdyamRegistrationCertificate
+        udyamRegNo="UDYAM-XX-00-0000000"
+        dateOfReg="01-01-2023"
+        majorActivity="Services"
+        dateOfIncorporation="01-01-2023"
+        dateOfCommencement="01-01-2023"
+        enterpreneurCategory="General">
+      <TypeOfEnterprise>
+        <Enterprise1 type="Micro ( Based on FY 2022-23 )"/>
+        <Enterprise2 type="Micro ( During FY 2021-22 )"/>
+        <Enterprise3 type="Micro ( During FY 2020-21 )"/>
+      </TypeOfEnterprise>
+      <NameOfUnits>
+        <Unit1 name="M/S SAMPLE ENTERPRISE PRIVATE LIMITED"/>
+      </NameOfUnits>
+      <NationalIndustryClassification>
+        <Classification1
+            nic2Digit="63 - Information service activities"
+            nic4Digit="6399 - Other information service activities n.e.c."
+            nic5Digit="63999 - Other information service activities n.e.c."
+            activity="Services"/>
+        <Classification2
+            nic2Digit="64 - Financial service activities, except insurance and pension funding"
+            nic4Digit="6499 - Other financial service activities, except insurance and pension funding activities, n.e.c."
+            nic5Digit="64990 - Other financial service activities, except insurance and pension funding activities, n.e.c"
+            activity="Services"/>
+      </NationalIndustryClassification>
+    </UdyamRegistrationCertificate>
+  </CertificateData>
+  <Signature xmlns="http://www.w3.org/2000/09/xmldsig#">
+    <!-- Digital signature issued by National e-Governance Division -->
+  </Signature>
+</Certificate>
+```
+
+### Key fields
+
+| Element | Attribute | Description |
+| --- | --- | --- |
+| `Certificate` | `type`, `number`, `status` | Document type (`UDCER`), Udyam registration number, status |
+| `IssuedBy > Organization` | `name` | Issuing authority — Ministry of MSME |
+| `IssuedTo > Enterprise` | `name`, `phone`, `email` | Enterprise identity and contact details |
+| `IssuedTo > Enterprise > Address` | `flatDoorBlockNo`, `nameOfPremisesBuilding`, `city`, `state`, `pin` | Registered office address |
+| `UdyamRegistrationCertificate` | `udyamRegNo`, `dateOfReg` | Registration number and date |
+| `UdyamRegistrationCertificate` | `majorActivity` | Primary activity type (Services / Manufacturing) |
+| `UdyamRegistrationCertificate` | `enterpreneurCategory` | Entrepreneur category (General, SC, ST, OBC, etc.) |
+| `TypeOfEnterprise` | `Enterprise1..3 > type` | Classification across financial years (Micro / Small / Medium) |
+| `NameOfUnits` | `Unit1..N > name` | Names of registered business units |
+| `NationalIndustryClassification` | `nic2Digit`, `nic4Digit`, `nic5Digit` | NIC codes describing business activities |
+
+---
+
+## Digital signature verification
+
+All XML responses are digitally signed by **National e-Governance Division** using an enveloped XML signature (`xmldsig#`). Each document includes:
+
+- A `<Signature>` block with the signed digest and signature value
+- An `<X509Certificate>` containing the signer's public certificate
+
+You can verify document authenticity by validating the `<Signature>` block against the X.509 certificate embedded in the XML.
