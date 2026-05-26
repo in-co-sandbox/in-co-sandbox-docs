@@ -1,18 +1,188 @@
 ---
-title: 'Fetch Document'
-description: 'Pass the session id and the document type to fetch the document.'
-openapi: '/api-reference/kyc/openapi.json GET /kyc/digilocker/sessions/{session_id}/documents/{doc_type}'
+title: "Fetch Document"
+description: "Pass the session id and the document type to fetch the document."
+openapi: "/api-reference/kyc/openapi.json GET /kyc/digilocker/sessions/{session_id}/documents/{doc_type}"
 ---
 
-<Card 
-title="Run in Postman"
-icon="/static/svg/Postman.svg" 
-horizontal 
-arrow="true" 
-href="https://www.postman.com/in-co-sandbox/sandbox-api/request/bhuf4n1/fetch-document"
-/>
+<Card title="Run in Postman" icon="/static/svg/Postman.svg" horizontal href="https://www.postman.com/in-co-sandbox/sandbox-api/request/bhuf4n1/fetch-document" arrow="true">
+</Card>
 
 <Info>
-A document can only be fetched if the user has provided consent for it.
+  A document can only be fetched if the user has provided consent for it.
 </Info>
 
+## XML response samples
+
+When you download the document file from the `url` returned in the response, you receive a signed XML certificate from DigiLocker. The XML structure varies by document type. Below are sample XML responses for commonly fetched documents.
+
+<AccordionGroup>
+  <Accordion title="Aadhaar (ADHAR)">
+    The Aadhaar XML contains identity and address details within a `KycRes` envelope. The `UidData` element includes `Poi` (Proof of Identity), `Poa` (Proof of Address), `LData` (local language data), and `Pht` (base64-encoded photo).
+
+    ```xml
+    <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+    <Certificate>
+      <CertificateData>
+        <KycRes code="xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx" ret="Y"
+                ts="2026-01-15T12:00:00.000+05:30"
+                ttl="2027-01-15T12:00:00"
+                txn="UKC:xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx">
+          <UidData tkn="" uid="xxxxxxxx1234">
+            <Poi dob="01-01-1990" gender="M" name="SAMPLE NAME"/>
+            <Poa co="C/O SAMPLE GUARDIAN"
+                 country="India"
+                 dist="Sample District"
+                 house="A 101, Sample Apartment"
+                 lm="Nr Sample Landmark"
+                 loc="Sample Locality"
+                 pc="380001"
+                 po="Sample Post Office"
+                 state="Gujarat"
+                 subdist="Sample Sub-District"
+                 vtc="Sample City"/>
+            <LData co="C/O सैंपल गार्जियन"
+                   country=" "
+                   dist="સેમ્પલ ડિસ્ટ્રિક્ટ"
+                   house="એ 101, સેમ્પલ એપાર્ટમેન્ટ"
+                   lang="06"
+                   lm="સેમ્પલ લેન્ડમાર્ક પાસે"
+                   loc="સેમ્પલ લોકેલિટી"
+                   name="सैंपल नाम"
+                   pc="380001"
+                   state="ગુજરાત"
+                   vtc="સેમ્પલ શહેર"/>
+            <Pht><!-- Base64-encoded JPEG photo --></Pht>
+          </UidData>
+        </KycRes>
+      </CertificateData>
+      <Signature xmlns="http://www.w3.org/2000/09/xmldsig#">
+        <!-- Digital signature issued by Digital India Corporation -->
+      </Signature>
+    </Certificate>
+    ```
+
+    **Key fields**
+
+    | Element | Attribute | Description |
+    | --- | --- | --- |
+    | `UidData` | `uid` | Masked Aadhaar number (last 4 digits visible) |
+    | `Poi` | `name`, `dob`, `gender` | Proof of Identity — name, date of birth, gender |
+    | `Poa` | `house`, `loc`, `dist`, `state`, `pc` | Proof of Address — full address details |
+    | `LData` | `name`, `house`, `dist`, `state` | Address and name in local/regional language |
+    | `Pht` | — | Base64-encoded JPEG photograph |
+  </Accordion>
+
+  <Accordion title="PAN (PANCR)">
+    The PAN XML follows a standard DigiLocker `Certificate` structure with `IssuedBy`, `IssuedTo`, and `CertificateData` sections.
+
+    ```xml
+    <?xml version="1.0" encoding="utf-8"?>
+    <Certificate language="99" name="PAN Verification Record" type="PANCR"
+                 number="XXXPX0000X" issuedAt="DigiLocker"
+                 issueDate="" validFromDate="" status="A">
+      <IssuedBy>
+        <Organization name="Income Tax Department" code="" tin="" uid="" type="CG">
+          <Address type="" line1="" line2="" house="" landmark=""
+                   locality="" vtc="" district="" pin="" state="" country="IN"/>
+        </Organization>
+      </IssuedBy>
+      <IssuedTo>
+        <Person uid="xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx" title=""
+                name="SAMPLE NAME" dob="01-01-1990" swd=""
+                swdIndicator="" gender="MALE" maritalStatus=""
+                religion="" phone="" email="">
+          <Address type="permanent" line1="" line2="" house="" landmark=""
+                   locality="" vtc="" district="" pin="" state="" country="IN"/>
+          <Photo format=""/>
+        </Person>
+      </IssuedTo>
+      <CertificateData>
+        <PAN num="XXXPX0000X" verifiedOn="01-01-2026 12:00:00"/>
+      </CertificateData>
+      <QRMeta><!-- Base64-encoded QR code PNG --></QRMeta>
+      <Signature xmlns="http://www.w3.org/2000/09/xmldsig#">
+        <!-- Digital signature issued by Digital India Corporation -->
+      </Signature>
+    </Certificate>
+    ```
+
+    **Key fields**
+
+    | Element | Attribute | Description |
+    | --- | --- | --- |
+    | `Certificate` | `type`, `number`, `status` | Document type (`PANCR`), PAN number, status (`A` = Active) |
+    | `IssuedBy > Organization` | `name` | Issuing authority — Income Tax Department |
+    | `IssuedTo > Person` | `name`, `dob`, `gender` | PAN holder's identity details |
+    | `CertificateData > PAN` | `num`, `verifiedOn` | PAN number and verification timestamp |
+    | `QRMeta` | — | Base64-encoded PNG of the QR code |
+  </Accordion>
+
+  <Accordion title="Driving License (DRVLC)">
+    The Driving License XML includes license details, vehicle categories, and both present and permanent addresses.
+
+    ```xml
+    <?xml version="1.0" encoding="UTF-8"?>
+    <Certificate language="99" name="Driving License" type="DRVLC"
+                 number="XX00 00000000000" prevNumber=""
+                 issuedAt="RTO,SAMPLE-CITY" issueDate="01-01-2020"
+                 expiryDate="01-01-2040" validFromDate="01-01-2020"
+                 status="Active">
+      <IssuedBy>
+        <Organization name="RTO,SAMPLE-CITY" code="" tin="" uid="" type="CG">
+          <Address type="" line1="" line2="" house="" landmark=""
+                   locality="" vtc="" district="" pin="" state="" country="IN"/>
+        </Organization>
+      </IssuedBy>
+      <IssuedTo>
+        <Person uid="" uidToken="" aadhaarName="" title=""
+                name="SAMPLE NAME" dlConcateName="SAMPLE NAME"
+                dlNatName="SAMPLE NAME" dob="01-01-1990" age=""
+                swd="SAMPLE GUARDIAN" swdIndicator="M"
+                gender="Male" maritalStatus="" religion=""
+                phone="" email="">
+          <Address type="present"
+                   line1="SAMPLE ADDRESS LINE 1, SAMPLE CITY, 000000"
+                   line2="" house="" landmark="" locality=""
+                   vtc="" district="" pin="" state="" country="IN"/>
+          <Address2 type="permanent"
+                    line1="SAMPLE ADDRESS LINE 1, SAMPLE CITY, 000000"
+                    line2="" house="" landmark="" locality=""
+                    vtc="" district="" pin="" state="" country="IN"/>
+          <Photo format=""><!-- Base64-encoded JPEG photo --></Photo>
+        </Person>
+      </IssuedTo>
+      <CertificateData>
+        <DrivingLicense verifiedOn="01-01-2026 12:00:00">
+          <Categories>
+            <Category code="NT" abbreviation="MCWG"
+                      description="Motor Cycle with Gear(Non Transport)"
+                      issueDate="01-01-2020" endorseDate=""/>
+            <Category code="NT" abbreviation="LMV"
+                      description="LIGHT MOTOR VEHICLE"
+                      issueDate="01-01-2025" endorseDate=""/>
+          </Categories>
+        </DrivingLicense>
+      </CertificateData>
+      <Signature xmlns="http://www.w3.org/2000/09/xmldsig#">
+        <!-- Digital signature issued by Digital India Corporation -->
+      </Signature>
+    </Certificate>
+    ```
+
+    **Key fields**
+
+    | Element | Attribute | Description |
+    | --- | --- | --- |
+    | `Certificate` | `type`, `number`, `status` | Document type (`DRVLC`), DL number, status |
+    | `Certificate` | `issueDate`, `expiryDate` | License validity period |
+    | `IssuedBy > Organization` | `name` | Issuing RTO name |
+    | `IssuedTo > Person` | `name`, `dob`, `gender`, `swd` | License holder details and guardian name |
+    | `Address` / `Address2` | `type`, `line1` | Present and permanent addresses |
+    | `Category` | `abbreviation`, `description`, `code` | Vehicle categories — `NT` (Non Transport) / `T` (Transport) |
+    | `Photo` | — | Base64-encoded JPEG photograph |
+  </Accordion>
+</AccordionGroup>
+
+<Note>
+  All XML responses are digitally signed by **Digital India Corporation** using an enveloped XML signature (`xmldsig#`). You can verify the document authenticity by validating the `<Signature>` block against the X.509 certificate included in the XML.
+</Note>
