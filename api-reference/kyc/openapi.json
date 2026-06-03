@@ -3828,7 +3828,71 @@
               "application/json": {
                 "schema": {
                   "type": "object",
-                  "properties": {}
+                  "properties": {
+                    "code": {
+                      "type": "integer"
+                    },
+                    "timestamp": {
+                      "type": "integer"
+                    },
+                    "transaction_id": {
+                      "type": "string"
+                    },
+                    "data": {
+                      "type": "object",
+                      "properties": {
+                        "@entity": {
+                          "type": "string",
+                          "const": "in.co.sandbox.kyc.pan_verification.response"
+                        },
+                        "pan": {
+                          "type": "string"
+                        },
+                        "category": {
+                          "type": "string"
+                        },
+                        "status": {
+                          "type": "string"
+                        },
+                        "remarks": {
+                          "type": [
+                            "string",
+                            "null"
+                          ]
+                        },
+                        "name_as_per_pan_match": {
+                          "type": "boolean"
+                        },
+                        "date_of_birth_match": {
+                          "type": "boolean"
+                        },
+                        "aadhaar_seeding_status": {
+                          "type": "string",
+                          "enum": [
+                            "y",
+                            "n",
+                            "na"
+                          ]
+                        }
+                      },
+                      "required": [
+                        "@entity",
+                        "pan",
+                        "category",
+                        "status",
+                        "remarks",
+                        "name_as_per_pan_match",
+                        "date_of_birth_match",
+                        "aadhaar_seeding_status"
+                      ]
+                    }
+                  },
+                  "required": [
+                    "code",
+                    "timestamp",
+                    "transaction_id",
+                    "data"
+                  ]
                 },
                 "examples": {
                   "200 - Sucess Individual": {
@@ -4212,7 +4276,47 @@
               "application/json": {
                 "schema": {
                   "type": "object",
-                  "properties": {}
+                  "properties": {
+                    "code": {
+                      "type": "integer"
+                    },
+                    "timestamp": {
+                      "type": "integer"
+                    },
+                    "transaction_id": {
+                      "type": "string"
+                    },
+                    "data": {
+                      "type": "object",
+                      "properties": {
+                        "@entity": {
+                          "type": "string"
+                        },
+                        "aadhaar_seeding_status": {
+                          "type": "string",
+                          "enum": [
+                            "y",
+                            "n",
+                            "na"
+                          ]
+                        },
+                        "message": {
+                          "type": "string"
+                        }
+                      },
+                      "required": [
+                        "@entity",
+                        "aadhaar_seeding_status",
+                        "message"
+                      ]
+                    }
+                  },
+                  "required": [
+                    "code",
+                    "timestamp",
+                    "transaction_id",
+                    "data"
+                  ]
                 },
                 "examples": {
                   "200 - Success": {
