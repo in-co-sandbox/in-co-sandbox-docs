@@ -8,10 +8,10 @@ Sandbox applies rate limits to ensure stable and reliable API performance for al
 
 ## Rate limits by environment
 
-| **Environment** | **Host url**                     | **Requests per minute** |
-| :-------------- | :------------------------------- | :---------------------- |
-| Test            | `https://test-api.sandbox.co.in` | 25                      |
-| Production      | `https://api.sandbox.co.in`      | 500                     |
+| **Environment** | **Host url** | **Requests per minute** |
+| :-- | :-- | :-- |
+| Test | `https://test-api.sandbox.co.in` | 25 |
+| Production | `https://api.sandbox.co.in` | 500 |
 
 ## Handling rate limits
 
@@ -22,6 +22,7 @@ When you receive a `429` response:
 3. **Reduce frequency** - Spread requests over time
 
 <CodeGroup>
+
 ```javascript JavaScript
 async function makeRequestWithRetry(url, options, maxRetries = 3) {
   for (let i = 0; i < maxRetries; i++) {
@@ -56,18 +57,19 @@ def make_request_with_retry(url, headers, max_retries=3):
     
     raise Exception('Max retries exceeded')
 ```
+
 </CodeGroup>
 
 <Note>
-Once your request rate falls within the limits, API access automatically resumes.
+  Once your request rate falls within the limits, API access automatically resumes.
 </Note>
 
 ## Custom rate limits
 
-If your app requires higher rate limits than the standard production limit of 100 requests per minute, you can request a custom rate limit increase.
+If your app requires higher rate limits than the standard production limit of 500 requests per minute, you can request a custom rate limit increase.
 
 <Tip>
-Contact the [support team](mailto:help@sandbox.co.in?subject=Rate%20Limit%20Increase%20Request) with your use case, expected traffic, and business needs. The team reviews requests and configures suitable limits.
+  Contact the [support team](mailto:help@sandbox.co.in?subject=Rate%20Limit%20Increase%20Request) with your use case, expected traffic, and business needs. The team reviews requests and configures suitable limits.
 </Tip>
 
 When requesting a rate limit increase, include:
