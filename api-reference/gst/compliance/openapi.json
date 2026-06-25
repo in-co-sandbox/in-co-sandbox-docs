@@ -166371,7 +166371,7 @@
       "get": {
         "summary": "List Notices",
         "deprecated": false,
-        "description": "Get the taxpayer's notice list. The `date` query parameter is optional for this default list flow.",
+        "description": "Get the taxpayer's notice list.",
         "operationId": "getTaxpayerNotices",
         "tags": [
           "Taxpayer",
@@ -166466,7 +166466,7 @@
       "get": {
         "summary": "Get AATO Values",
         "deprecated": false,
-        "description": "Get annual aggregate turnover (AATO) values for a taxpayer for a financial year. The external compliance contract accepts `financial_year`, while the underlying GST FO service maps the normalized year to its `fy` or `finyr` request shape.",
+        "description": "Get annual aggregate turnover (AATO) values for a taxpayer for a financial year.",
         "operationId": "getAatoValues",
         "tags": [
           "Taxpayer",
