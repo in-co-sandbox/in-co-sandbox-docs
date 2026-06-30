@@ -435,6 +435,29 @@
             },
             "headers": {}
           },
+          "503": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {}
+                },
+                "examples": {
+                  "503 - Source unavailable": {
+                    "summary": "503 - Source unavailable",
+                    "value": {
+                      "code": 503,
+                      "timestamp": 1000000000000,
+                      "transaction_id": "6c05f692-c32f-4de0-92b4-56684bdf16f0",
+                      "message": "Source Unavailable"
+                    }
+                  }
+                }
+              }
+            },
+            "headers": {}
+          },
           "521": {
             "description": "",
             "content": {
@@ -461,6 +484,17 @@
                     "message",
                     "transaction_id"
                   ]
+                },
+                "examples": {
+                  "521 - Data Not Found": {
+                    "summary": "521 - Data Not Found",
+                    "value": {
+                      "code": 521,
+                      "timestamp": 1782806266274,
+                      "message": "Data not found for: 55470e27-3d8a-451f-ac1e-9c0f3d1454821",
+                      "transaction_id": "a599615c-c732-4538-9840-4bb5cd3c19d2"
+                    }
+                  }
                 }
               }
             },
@@ -693,6 +727,29 @@
             },
             "headers": {}
           },
+          "503": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {}
+                },
+                "examples": {
+                  "503 - Source unavailable": {
+                    "summary": "503 - Source unavailable",
+                    "value": {
+                      "code": 503,
+                      "timestamp": 1000000000000,
+                      "transaction_id": "6c05f692-c32f-4de0-92b4-56684bdf16f0",
+                      "message": "Source Unavailable"
+                    }
+                  }
+                }
+              }
+            },
+            "headers": {}
+          },
           "521": {
             "description": "",
             "content": {
@@ -719,6 +776,17 @@
                     "message",
                     "transaction_id"
                   ]
+                },
+                "examples": {
+                  "521 - Data Not Found": {
+                    "summary": "521 - Data Not Found",
+                    "value": {
+                      "code": 521,
+                      "timestamp": 1782806266274,
+                      "message": "Data not found for: 55470e27-3d8a-451f-ac1e-9c0f3d1454821",
+                      "transaction_id": "a599615c-c732-4538-9840-4bb5cd3c19d2"
+                    }
+                  }
                 }
               }
             },
@@ -750,6 +818,17 @@
                     "message",
                     "transaction_id"
                   ]
+                },
+                "examples": {
+                  "523 - Invalid Session Status": {
+                    "summary": "523 - Invalid Session Status",
+                    "value": {
+                      "code": 523,
+                      "timestamp": 1782806184804,
+                      "message": "Invalid session status: created",
+                      "transaction_id": "de90173f-8255-4ac0-b26b-a41b8a872fee"
+                    }
+                  }
                 }
               }
             },
@@ -904,6 +983,113 @@
                         "email": ""
                       },
                       "transaction_id": "6e76fc24-2491-4582-8a03-685fbda4acf7"
+                    }
+                  }
+                }
+              }
+            },
+            "headers": {}
+          },
+          "503": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {}
+                },
+                "examples": {
+                  "503 - Source unavailable": {
+                    "summary": "503 - Source unavailable",
+                    "value": {
+                      "code": 503,
+                      "timestamp": 1000000000000,
+                      "transaction_id": "6c05f692-c32f-4de0-92b4-56684bdf16f0",
+                      "message": "Source Unavailable"
+                    }
+                  }
+                }
+              }
+            },
+            "headers": {}
+          },
+          "521": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "code": {
+                      "type": "integer"
+                    },
+                    "timestamp": {
+                      "type": "integer"
+                    },
+                    "message": {
+                      "type": "string"
+                    },
+                    "transaction_id": {
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "code",
+                    "timestamp",
+                    "message",
+                    "transaction_id"
+                  ]
+                },
+                "examples": {
+                  "521 - Data Not Found": {
+                    "summary": "521 - Data Not Found",
+                    "value": {
+                      "code": 521,
+                      "timestamp": 1782806266274,
+                      "message": "Data not found for: 55470e27-3d8a-451f-ac1e-9c0f3d1454821",
+                      "transaction_id": "a599615c-c732-4538-9840-4bb5cd3c19d2"
+                    }
+                  }
+                }
+              }
+            },
+            "headers": {}
+          },
+          "523": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "code": {
+                      "type": "integer"
+                    },
+                    "timestamp": {
+                      "type": "integer"
+                    },
+                    "message": {
+                      "type": "string"
+                    },
+                    "transaction_id": {
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "code",
+                    "timestamp",
+                    "message",
+                    "transaction_id"
+                  ]
+                },
+                "examples": {
+                  "523 - Invalid Session Status": {
+                    "summary": "523 - Invalid Session Status",
+                    "value": {
+                      "code": 523,
+                      "timestamp": 1782806184804,
+                      "message": "Invalid session status: created",
+                      "transaction_id": "de90173f-8255-4ac0-b26b-a41b8a872fee"
                     }
                   }
                 }
@@ -1505,6 +1691,71 @@
               }
             },
             "headers": {}
+          },
+          "503": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {}
+                },
+                "examples": {
+                  "503 - Source unavailable": {
+                    "summary": "503 - Source unavailable",
+                    "value": {
+                      "code": 503,
+                      "timestamp": 1000000000000,
+                      "transaction_id": "6c05f692-c32f-4de0-92b4-56684bdf16f0",
+                      "message": "Source Unavailable"
+                    }
+                  }
+                }
+              }
+            },
+            "headers": {}
+          },
+          "521": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "code": {
+                      "type": "integer"
+                    },
+                    "timestamp": {
+                      "type": "integer"
+                    },
+                    "message": {
+                      "type": "string"
+                    },
+                    "transaction_id": {
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "code",
+                    "timestamp",
+                    "message",
+                    "transaction_id"
+                  ]
+                },
+                "examples": {
+                  "521 - Data Not Found": {
+                    "summary": "521 - Data Not Found",
+                    "value": {
+                      "code": 521,
+                      "timestamp": 1782806266274,
+                      "message": "Data not found for: 55470e27-3d8a-451f-ac1e-9c0f3d1454821",
+                      "transaction_id": "a599615c-c732-4538-9840-4bb5cd3c19d2"
+                    }
+                  }
+                }
+              }
+            },
+            "headers": {}
           }
         },
         "security": []
@@ -1651,6 +1902,113 @@
                     "eaadhaar": true
                   },
                   "transaction_id": "0793c784-fcaa-44d9-b8fc-f6a382a67f70"
+                }
+              }
+            },
+            "headers": {}
+          },
+          "503": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {}
+                },
+                "examples": {
+                  "503 - Source unavailable": {
+                    "summary": "503 - Source unavailable",
+                    "value": {
+                      "code": 503,
+                      "timestamp": 1000000000000,
+                      "transaction_id": "6c05f692-c32f-4de0-92b4-56684bdf16f0",
+                      "message": "Source Unavailable"
+                    }
+                  }
+                }
+              }
+            },
+            "headers": {}
+          },
+          "521": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "code": {
+                      "type": "integer"
+                    },
+                    "timestamp": {
+                      "type": "integer"
+                    },
+                    "message": {
+                      "type": "string"
+                    },
+                    "transaction_id": {
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "code",
+                    "timestamp",
+                    "message",
+                    "transaction_id"
+                  ]
+                },
+                "examples": {
+                  "521 - Data Not Found": {
+                    "summary": "521 - Data Not Found",
+                    "value": {
+                      "code": 521,
+                      "timestamp": 1782806266274,
+                      "message": "Data not found for: 55470e27-3d8a-451f-ac1e-9c0f3d1454821",
+                      "transaction_id": "a599615c-c732-4538-9840-4bb5cd3c19d2"
+                    }
+                  }
+                }
+              }
+            },
+            "headers": {}
+          },
+          "523": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "code": {
+                      "type": "integer"
+                    },
+                    "timestamp": {
+                      "type": "integer"
+                    },
+                    "message": {
+                      "type": "string"
+                    },
+                    "transaction_id": {
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "code",
+                    "timestamp",
+                    "message",
+                    "transaction_id"
+                  ]
+                },
+                "examples": {
+                  "523 - Invalid Session Status": {
+                    "summary": "523 - Invalid Session Status",
+                    "value": {
+                      "code": 523,
+                      "timestamp": 1782806184804,
+                      "message": "Invalid session status: created",
+                      "transaction_id": "de90173f-8255-4ac0-b26b-a41b8a872fee"
+                    }
+                  }
                 }
               }
             },
@@ -1828,6 +2186,113 @@
                         ]
                       },
                       "transaction_id": "a4d43b74-0f9c-480c-9300-f011100b674b"
+                    }
+                  }
+                }
+              }
+            },
+            "headers": {}
+          },
+          "503": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {}
+                },
+                "examples": {
+                  "503 - Source unavailable": {
+                    "summary": "503 - Source unavailable",
+                    "value": {
+                      "code": 503,
+                      "timestamp": 1000000000000,
+                      "transaction_id": "6c05f692-c32f-4de0-92b4-56684bdf16f0",
+                      "message": "Source Unavailable"
+                    }
+                  }
+                }
+              }
+            },
+            "headers": {}
+          },
+          "521": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "code": {
+                      "type": "integer"
+                    },
+                    "timestamp": {
+                      "type": "integer"
+                    },
+                    "message": {
+                      "type": "string"
+                    },
+                    "transaction_id": {
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "code",
+                    "timestamp",
+                    "message",
+                    "transaction_id"
+                  ]
+                },
+                "examples": {
+                  "521 - Data Not Found": {
+                    "summary": "521 - Data Not Found",
+                    "value": {
+                      "code": 521,
+                      "timestamp": 1782806266274,
+                      "message": "Data not found for: 55470e27-3d8a-451f-ac1e-9c0f3d1454821",
+                      "transaction_id": "a599615c-c732-4538-9840-4bb5cd3c19d2"
+                    }
+                  }
+                }
+              }
+            },
+            "headers": {}
+          },
+          "523": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "code": {
+                      "type": "integer"
+                    },
+                    "timestamp": {
+                      "type": "integer"
+                    },
+                    "message": {
+                      "type": "string"
+                    },
+                    "transaction_id": {
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "code",
+                    "timestamp",
+                    "message",
+                    "transaction_id"
+                  ]
+                },
+                "examples": {
+                  "523 - Invalid Session Status": {
+                    "summary": "523 - Invalid Session Status",
+                    "value": {
+                      "code": 523,
+                      "timestamp": 1782806184804,
+                      "message": "Invalid session status: created",
+                      "transaction_id": "de90173f-8255-4ac0-b26b-a41b8a872fee"
                     }
                   }
                 }
@@ -4416,6 +4881,29 @@
               }
             },
             "headers": {}
+          },
+          "503": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {}
+                },
+                "examples": {
+                  "503 - Source unavailable": {
+                    "summary": "503 - Source unavailable",
+                    "value": {
+                      "code": 503,
+                      "timestamp": 1000000000000,
+                      "transaction_id": "6c05f692-c32f-4de0-92b4-56684bdf16f0",
+                      "message": "Source Unavailable"
+                    }
+                  }
+                }
+              }
+            },
+            "headers": {}
           }
         },
         "security": []
@@ -5561,6 +6049,71 @@
               }
             },
             "headers": {}
+          },
+          "503": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {}
+                },
+                "examples": {
+                  "503 - Source unavailable": {
+                    "summary": "503 - Source unavailable",
+                    "value": {
+                      "code": 503,
+                      "timestamp": 1000000000000,
+                      "transaction_id": "6c05f692-c32f-4de0-92b4-56684bdf16f0",
+                      "message": "Source Unavailable"
+                    }
+                  }
+                }
+              }
+            },
+            "headers": {}
+          },
+          "521": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "code": {
+                      "type": "integer"
+                    },
+                    "timestamp": {
+                      "type": "integer"
+                    },
+                    "message": {
+                      "type": "string"
+                    },
+                    "transaction_id": {
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "code",
+                    "timestamp",
+                    "message",
+                    "transaction_id"
+                  ]
+                },
+                "examples": {
+                  "521 - Data Not Found": {
+                    "summary": "521 - Data Not Found",
+                    "value": {
+                      "code": 521,
+                      "timestamp": 1782806266274,
+                      "message": "Data not found for: 55470e27-3d8a-451f-ac1e-9c0f3d1454821",
+                      "transaction_id": "a599615c-c732-4538-9840-4bb5cd3c19d2"
+                    }
+                  }
+                }
+              }
+            },
+            "headers": {}
           }
         },
         "security": []
@@ -5787,6 +6340,113 @@
                       "timestamp": 1765888053322,
                       "message": "Consent for udhyam_certificate not provided",
                       "transaction_id": "3f0590ab-b977-43ae-8b9d-667d984cceb2"
+                    }
+                  }
+                }
+              }
+            },
+            "headers": {}
+          },
+          "503": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {}
+                },
+                "examples": {
+                  "503 - Source unavailable": {
+                    "summary": "503 - Source unavailable",
+                    "value": {
+                      "code": 503,
+                      "timestamp": 1000000000000,
+                      "transaction_id": "6c05f692-c32f-4de0-92b4-56684bdf16f0",
+                      "message": "Source Unavailable"
+                    }
+                  }
+                }
+              }
+            },
+            "headers": {}
+          },
+          "521": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "code": {
+                      "type": "integer"
+                    },
+                    "timestamp": {
+                      "type": "integer"
+                    },
+                    "message": {
+                      "type": "string"
+                    },
+                    "transaction_id": {
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "code",
+                    "timestamp",
+                    "message",
+                    "transaction_id"
+                  ]
+                },
+                "examples": {
+                  "521 - Data Not Found": {
+                    "summary": "521 - Data Not Found",
+                    "value": {
+                      "code": 521,
+                      "timestamp": 1782806266274,
+                      "message": "Data not found for: 55470e27-3d8a-451f-ac1e-9c0f3d1454821",
+                      "transaction_id": "a599615c-c732-4538-9840-4bb5cd3c19d2"
+                    }
+                  }
+                }
+              }
+            },
+            "headers": {}
+          },
+          "523": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "code": {
+                      "type": "integer"
+                    },
+                    "timestamp": {
+                      "type": "integer"
+                    },
+                    "message": {
+                      "type": "string"
+                    },
+                    "transaction_id": {
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "code",
+                    "timestamp",
+                    "message",
+                    "transaction_id"
+                  ]
+                },
+                "examples": {
+                  "523 - Invalid Session Status": {
+                    "summary": "523 - Invalid Session Status",
+                    "value": {
+                      "code": 523,
+                      "timestamp": 1782806184804,
+                      "message": "Invalid session status: created",
+                      "transaction_id": "de90173f-8255-4ac0-b26b-a41b8a872fee"
                     }
                   }
                 }
@@ -6094,6 +6754,113 @@
                         "name": "Henil Rupesh Shah"
                       },
                       "transaction_id": "7603165e-e591-4342-bb19-1d9f4caabb0f"
+                    }
+                  }
+                }
+              }
+            },
+            "headers": {}
+          },
+          "503": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {}
+                },
+                "examples": {
+                  "503 - Source unavailable": {
+                    "summary": "503 - Source unavailable",
+                    "value": {
+                      "code": 503,
+                      "timestamp": 1000000000000,
+                      "transaction_id": "6c05f692-c32f-4de0-92b4-56684bdf16f0",
+                      "message": "Source Unavailable"
+                    }
+                  }
+                }
+              }
+            },
+            "headers": {}
+          },
+          "521": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "code": {
+                      "type": "integer"
+                    },
+                    "timestamp": {
+                      "type": "integer"
+                    },
+                    "message": {
+                      "type": "string"
+                    },
+                    "transaction_id": {
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "code",
+                    "timestamp",
+                    "message",
+                    "transaction_id"
+                  ]
+                },
+                "examples": {
+                  "521 - Data Not Found": {
+                    "summary": "521 - Data Not Found",
+                    "value": {
+                      "code": 521,
+                      "timestamp": 1782806266274,
+                      "message": "Data not found for: 55470e27-3d8a-451f-ac1e-9c0f3d1454821",
+                      "transaction_id": "a599615c-c732-4538-9840-4bb5cd3c19d2"
+                    }
+                  }
+                }
+              }
+            },
+            "headers": {}
+          },
+          "523": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "code": {
+                      "type": "integer"
+                    },
+                    "timestamp": {
+                      "type": "integer"
+                    },
+                    "message": {
+                      "type": "string"
+                    },
+                    "transaction_id": {
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "code",
+                    "timestamp",
+                    "message",
+                    "transaction_id"
+                  ]
+                },
+                "examples": {
+                  "523 - Invalid Session Status": {
+                    "summary": "523 - Invalid Session Status",
+                    "value": {
+                      "code": 523,
+                      "timestamp": 1782806184804,
+                      "message": "Invalid session status: created",
+                      "transaction_id": "de90173f-8255-4ac0-b26b-a41b8a872fee"
                     }
                   }
                 }
@@ -6444,6 +7211,71 @@
               }
             },
             "headers": {}
+          },
+          "503": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {}
+                },
+                "examples": {
+                  "503 - Source unavailable": {
+                    "summary": "503 - Source unavailable",
+                    "value": {
+                      "code": 503,
+                      "timestamp": 1000000000000,
+                      "transaction_id": "6c05f692-c32f-4de0-92b4-56684bdf16f0",
+                      "message": "Source Unavailable"
+                    }
+                  }
+                }
+              }
+            },
+            "headers": {}
+          },
+          "521": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "code": {
+                      "type": "integer"
+                    },
+                    "timestamp": {
+                      "type": "integer"
+                    },
+                    "message": {
+                      "type": "string"
+                    },
+                    "transaction_id": {
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "code",
+                    "timestamp",
+                    "message",
+                    "transaction_id"
+                  ]
+                },
+                "examples": {
+                  "521 - Data Not Found": {
+                    "summary": "521 - Data Not Found",
+                    "value": {
+                      "code": 521,
+                      "timestamp": 1782806266274,
+                      "message": "Data not found for: 55470e27-3d8a-451f-ac1e-9c0f3d1454821",
+                      "transaction_id": "a599615c-c732-4538-9840-4bb5cd3c19d2"
+                    }
+                  }
+                }
+              }
+            },
+            "headers": {}
           }
         },
         "security": []
@@ -6660,6 +7492,29 @@
                       "timestamp": 1760432035872,
                       "message": "Consent for gstn_details not provided",
                       "transaction_id": "3d1d2d37-3179-4a3c-8397-2287084d1de1"
+                    }
+                  }
+                }
+              }
+            },
+            "headers": {}
+          },
+          "503": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {}
+                },
+                "examples": {
+                  "503 - Source unavailable": {
+                    "summary": "503 - Source unavailable",
+                    "value": {
+                      "code": 503,
+                      "timestamp": 1000000000000,
+                      "transaction_id": "6c05f692-c32f-4de0-92b4-56684bdf16f0",
+                      "message": "Source Unavailable"
                     }
                   }
                 }
