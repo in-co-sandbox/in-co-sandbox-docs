@@ -1,115 +1,174 @@
 ---
 title: "Overview"
-description: "Verify Indian companies and directors using MCA master data. Lookup CIN for company details and DIN for director profiles and directorships."
+description: "Use MCA APIs to fetch company master data using CIN or LLPIN, or search companies from the Sandbox database using exact CIN or partial company name."
 ---
 
-# MCA Master Data API
+# MCA APIs
 
-MCA Master Data APIs provide access to company and director records maintained by India's Ministry of Corporate Affairs and Registrar of Companies (RoC). Verify businesses and directors programmatically through CIN (Corporate Identification Number) and DIN (Director Identification Number) lookups for KYB, vendor onboarding, and corporate due diligence.
+MCA APIs help you work with company records sourced from India's Ministry of Corporate Affairs (MCA). Use them when you already know the company's CIN or LLPIN and need its master data, or when you first need to search for the right company before proceeding with an exact lookup.
+
+<Warning>The Director Master Data API has been discontinued.</Warning>
+
+<Note>The active MCA endpoints documented here are Company Master Data and Search Company.</Note>
 
 <CardGroup cols={2}>
-  <Card title="Company verification with CIN" icon="building">
-    Retrieve company master data including status, registered address, capital structure, directors and signatories, and charges.
+  <Card title="Exact company lookup" icon="building">
+    Fetch company master data using a Corporate Identification Number (CIN) or Limited Liability Partnership Identification Number (LLPIN).
   </Card>
-  <Card title="Director verification with DIN" icon="id-card">
-    Fetch director profiles and associated appointments across companies and LLPs with designation and tenure details.
+  <Card title="Search before lookup" icon="magnifying-glass">
+    Search the Sandbox database using exact `cin` or partial `company_name` when you do not yet have the final identifier.
   </Card>
-  <Card title="KYB compliance" icon="shield-check">
-    Automate business verification with official MCA records for vendor onboarding and corporate due diligence.
+  <Card title="KYB and onboarding" icon="shield-check">
+    Use MCA company records in vendor onboarding, business verification, and corporate due diligence workflows.
   </Card>
-  <Card title="Real-time MCA data" icon="database">
-    Access up-to-date company registration details, compliance status, and directorship information from RoC records.
+  <Card title="Source-aware retrieval" icon="database">
+    The company master data flow supports primary and secondary source selection, along with cache-aware behavior.
   </Card>
 </CardGroup>
 
 ## How it works
 
 <Steps>
-  <Step title="Collect the identifier">
-    Obtain the CIN (Corporate Identification Number) for company lookup or DIN (Director Identification Number) for director verification from your user.
+  <Step title="Collect the company input">
+    Start with either a `cin`/`llpin` or a company name, depending on what your workflow already knows.
   </Step>
-  
-  <Step title="Capture consent and purpose">
-    Send `consent` and `reason` fields in your request for audit compliance.
+
+  <Step title="Choose the right endpoint">
+    Use Company Master Data for an exact company lookup, or Search Company when you want to find matching companies first.
   </Step>
-  
-  <Step title="Call the MCA endpoint">
-    Use the Company Master Data API for CIN lookup or Director Master Data API for DIN verification.
+
+  <Step title="Send the request">
+    Call the MCA endpoint that matches your use case and pass the identifier or search query in the documented request shape.
   </Step>
-  
+
   <Step title="Use the response in your workflow">
-    Auto-fill onboarding forms, run KYB checks, perform due diligence, or verify directors and signatories with the returned data.
+    Prefill forms, validate a business, shortlist matching companies, or continue to downstream KYB checks using the returned data.
   </Step>
 </Steps>
 
 ## What you can do
 
 <CardGroup cols={2}>
-  <Card title="Verify company details" icon="file-lines">
-    Fetch company name, category, status, RoC details, registration info, and contact details for business validation.
+  <Card title="Fetch company profile details" icon="file-lines">
+    Retrieve company name, RoC code, category, class, status, registration date, address, and industrial classification.
   </Card>
-  <Card title="Check capital structure" icon="dollar-sign">
-    Access authorized capital and paid-up capital information for financial assessment and risk evaluation.
+  <Card title="Lookup using CIN or LLPIN" icon="id-card">
+    Use the same `cin` field for both company CIN values and LLPIN values in exact company lookups.
   </Card>
-  <Card title="Review directors and signatories" icon="users">
-    Get director and signatory details including names, designations, DIN/PAN, and appointment dates.
+  <Card title="Search by company name" icon="magnifying-glass">
+    Search using a partial company name when you need to identify the right company before performing an exact lookup.
   </Card>
-  <Card title="Audit company charges" icon="file-contract">
-    Retrieve charge information including amounts, creation dates, and status for due diligence.
-  </Card>
-  <Card title="Validate director credentials" icon="badge-check">
-    Verify director profiles and track all associated company and LLP appointments.
-  </Card>
-  <Card title="Automate compliance checks" icon="circle-check">
-    Access active compliance indicators and company status for real-time verification.
+  <Card title="Build onboarding flows" icon="circle-check">
+    Use MCA data for business verification, merchant onboarding, vendor checks, and internal review workflows.
   </Card>
 </CardGroup>
+
+## Source routing and cache behavior
+
+<Info>`x-source` applies to the Company Master Data API. Search Company does not use `x-source`.</Info>
+
+For `POST /kyc/mca/company/master-data`, the response behavior depends on two optional headers:
+
+- `x-source`
+- `x-accept-cache`
+
+### How `x-source` behaves
+
+- `x-source: primary` returns the response from the primary source
+- `x-source: secondary` returns the response from the secondary source
+- if `x-source` is omitted, the API first tries the primary source and can fall back to the secondary source when needed
+
+### How `x-accept-cache` behaves
+
+- `x-accept-cache: true` allows the API to reuse and populate cache
+- if `x-accept-cache` is not `true`, the request is treated as cache bypass
+
+```mermaid
+flowchart TD
+    A["Call Company Master Data API"] --> B{"x-source"}
+
+    B -->|primary| C["Pinned to primary"]
+    B -->|secondary| D["Pinned to secondary"]
+    B -->|missing| E["Default behavior"]
+
+    C --> F{"x-accept-cache = true?"}
+    D --> G{"x-accept-cache = true?"}
+    E --> H["Try primary first\nIf needed, use secondary"]
+
+    F -->|yes| I["Uses cache only for primary-pinned requests"]
+    F -->|no| J["Fetch a fresh primary response"]
+
+    G -->|yes| K["Uses cache only for secondary-pinned requests"]
+    G -->|no| L["Fetch a fresh secondary response"]
+
+    H --> M{"x-accept-cache = true?"}
+    M -->|yes| N["Uses a shared default cache for unpinned requests"]
+    M -->|no| O["Fetch a fresh unpinned response"]
+
+    N --> P["Later cached responses may reflect whichever source\ncreated that default cache entry"]
+```
+
+In simple terms:
+
+- use `x-source: primary` when you want a vendor-only read
+- use `x-source: secondary` when you want a secondary-source read
+- omit `x-source` when you want primary-first behavior with fallback to secondary
+- use `x-accept-cache: true` when you are okay with cached responses being reused
+
+Important note:
+
+- `x-source: primary` and `x-source: secondary` are cached separately from one another
+- when `x-source` is omitted and caching is allowed, the API uses a different default cache behavior
+- in that default mode, a later cached response may reflect either the primary source or the secondary source, depending on which one created the cache entry
 
 ## Integration methods
 
 <CardGroup cols={2}>
-  <Card title="Company Master Data API (CIN)" icon="building" href="/api-reference/kyc/mca/company_master_data">
-    Lookup a company by CIN and retrieve company master data, directors and signatories, and charges.
+  <Card title="Company Master Data API" icon="building" href="/api-reference/kyc/mca/company_master_data">
+    POST endpoint for exact company lookup using `cin`, where `cin` can contain either a CIN or an LLPIN.
   </Card>
-  <Card title="Director Master Data API (DIN)" icon="id-card" href="/api-reference/kyc/mca/director_master_data">
-    Lookup a director by DIN and retrieve director details and associated company and LLP appointments.
+  <Card title="Search Company API" icon="magnifying-glass" href="/api-reference/kyc/mca/search_company">
+    GET endpoint for searching the Sandbox database using exact `cin` or partial `company_name`, with optional `limit` and `offset`.
+  </Card>
+  <Card title="Director Master Data API (Discontinued)" icon="id-card" href="/api-reference/kyc/mca/director_master_data">
+    Older MCA director endpoint retained in docs for reference. It is no longer active for new integration work.
   </Card>
 </CardGroup>
 
 ## Common use cases
 
-Use MCA Master Data APIs when you need to:
+Use MCA APIs when you need to:
 
-- Perform KYB (Know Your Business) during business onboarding
-- Verify vendors, merchants, partners, and suppliers
-- Validate company registration and status before enabling services
-- Run corporate due diligence using director, signatory, and charge information
-- Replace manual MCA portal checks with automated, auditable API calls
+- Fetch master data for a known company using CIN or LLPIN
+- Search for companies by name before proceeding with an exact lookup
+- Perform KYB during business onboarding
+- Validate merchants, vendors, partners, and suppliers
+- Replace manual MCA portal checks with an API-first workflow
 
 ## Frequently Asked Questions
 
 <AccordionGroup>
-  <Accordion title="What is MCA master data?">
-    MCA master data refers to company and director records maintained by the Ministry of Corporate Affairs and Registrar of Companies (RoC), including registration details, status, and director and signatory information.
+  <Accordion title="What is the difference between Company Master Data and Search Company?">
+    Company Master Data is for exact lookup when you already know the company's CIN or LLPIN. Search Company is for finding matching companies first using exact `cin` or partial `company_name`.
   </Accordion>
 
-  <Accordion title="What is CIN?">
-    CIN (Corporate Identification Number) uniquely identifies a company registered in India. Use it to fetch company master data like status, incorporation and registration details, capital structure, directors and signatories, and charges.
+  <Accordion title="Can I pass LLPIN in the cin field?">
+    Yes. For the Company Master Data API, the `cin` field can carry either a Corporate Identification Number (CIN) or a Limited Liability Partnership Identification Number (LLPIN).
   </Accordion>
 
-  <Accordion title="What is DIN?">
-    DIN (Director Identification Number) uniquely identifies an individual who is (or intends to be) a company director. Use it to fetch director details and directorship and appointment information across companies and LLPs.
+  <Accordion title="Can I search by company name?">
+    Yes. Use the Search Company API and pass a partial `company_name`. The endpoint also supports exact `cin` search.
   </Accordion>
 
-  <Accordion title="What details can I fetch using the Company Master Data API?">
-    The Company Master Data API returns company profile details (name, status, RoC, incorporation), registered address, capital, compliance indicators, charges, and director and signatory details.
+  <Accordion title="What does the Search Company API return?">
+    Search Company is intended for shortlist and discovery workflows. It returns lightweight company search results that help you identify the correct company before making an exact lookup.
   </Accordion>
 
-  <Accordion title="What details can I fetch using the Director Master Data API?">
-    The Director Master Data API returns director profile details and associated company and LLP appointments, including designation and begin and end dates.
+  <Accordion title="How do x-source and x-accept-cache work?">
+    For Company Master Data, `x-source` controls which source serves the request. `primary` means the primary source, `secondary` means the secondary source, and omitting it gives you primary-first behavior with fallback to secondary when needed. If caching is allowed, primary-pinned and secondary-pinned requests are cached separately, while requests without `x-source` use a separate default cache behavior.
   </Accordion>
 
-  <Accordion title="Do I need consent to call these APIs?">
-    Your request includes `consent` and `reason` fields so you can capture and record user authorization within your KYC/KYB process and maintain an audit trail.
+  <Accordion title="Is Director Master Data still available?">
+    No. The Director Master Data API has been discontinued and should not be used for new integrations.
   </Accordion>
 </AccordionGroup>

@@ -4,6 +4,30 @@ description: "Changelog for Sandbox APIs"
 rss: "true"
 ---
 
+<Update label="July 7th, 2026" tags={["Feature"]}>
+  ## **MCA APIs – Company Master Data & Search Company**
+
+  We’ve released the updated MCA company APIs for exact company lookup and company discovery workflows.
+
+  1. [**Company Master Data**](/api-reference/kyc/mca/company_master_data)  
+     Fetch company master data using a `cin`, where `cin` can contain either a CIN or an LLPIN.
+
+  2. [**Search Company**](/api-reference/kyc/mca/search_company)  
+     Search companies using exact `cin` or partial `company_name`, with pagination support through `limit` and `offset`.
+
+  **Key Behaviour**
+
+  - `Company Master Data` supports optional `x-source` and `x-accept-cache` headers.
+  - `x-source: primary` pins the request to the primary source.
+  - `x-source: secondary` pins the request to the secondary source.
+  - If `x-source` is omitted, the API follows primary-first behavior with fallback to secondary when needed.
+  - `x-accept-cache: true` allows cached responses to be reused for similar requests.
+  - `Search Company` is intended for shortlist and discovery workflows before an exact company lookup.
+
+  For the full source-selection and request-behavior details, refer to the [**MCA Overview**](/api-reference/kyc/mca/overview).  
+  For general caching guidance, please refer to our [**Response Caching**](https://developer.sandbox.co.in/docs/response-caching#x-accept-cache-header) documentation.
+</Update>
+
 <Update label="April 10th, 2026" tags={["Feature"]}>
   ## **GST Public APIs – Verify GSTIN & Get Return Preference**
 
