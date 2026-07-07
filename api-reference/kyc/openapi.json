@@ -4966,7 +4966,7 @@
           {
             "name": "x-accept-cache",
             "in": "header",
-            "description": "",
+            "description": "Optional cache-control header. For cache behavior details, refer to [Response Caching](https://developer.sandbox.co.in/docs/response-caching#x-accept-cache-header).",
             "required": false,
             "example": "true",
             "schema": {
@@ -4976,7 +4976,7 @@
           {
             "name": "x-source",
             "in": "header",
-            "description": "",
+            "description": "Optional source selector. Allowed values are `primary` and `secondary`. For request-behavior details, refer to the [MCA Overview](https://developer.sandbox.co.in/api-reference/kyc/mca/overview).",
             "required": false,
             "example": "primary",
             "schema": {
@@ -5309,21 +5309,11 @@
           {
             "name": "x-accept-cache",
             "in": "header",
-            "description": "",
+            "description": "Optional cache-control header. For cache behavior details, refer to [Response Caching](https://developer.sandbox.co.in/docs/response-caching#x-accept-cache-header).",
             "required": false,
             "example": "true",
             "schema": {
               "type": "boolean"
-            }
-          },
-          {
-            "name": "x-source",
-            "in": "header",
-            "description": "",
-            "required": false,
-            "example": "primary",
-            "schema": {
-              "type": "string"
             }
           }
         ],
