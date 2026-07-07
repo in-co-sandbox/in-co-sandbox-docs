@@ -1,0 +1,226 @@
+{
+  "name": "form138_workbook",
+  "@entity": "workbook",
+  "sheets": [
+    {
+      "name": "payer_sheet",
+      "@entity": "sheet",
+      "blocks": [
+        {
+          "name": "payer_list",
+          "@entity": "list",
+          "items": [
+            {
+              "name": "ACME PRIVATE LIMITED"
+            },
+            {
+              "tan": "AHMA00000C"
+            },
+            {
+              "pan": "AAACA1234Z"
+            },
+            {
+              "country": "INDIA"
+            },
+            {
+              "flat_door_block_number": "A-901"
+            },
+            {
+              "post_office": "NAVRANGPURA"
+            },
+            {
+              "road_street_block_sector": "RELIEF ROAD"
+            },
+            {
+              "area_locality": "CBD"
+            },
+            {
+              "district": "AHMEDABAD"
+            },
+            {
+              "state": "GUJARAT"
+            },
+            {
+              "postal_code": "380001"
+            },
+            {
+              "email": "EMAIL@GMAIL.COM"
+            },
+            {
+              "contact_country_code": "91"
+            },
+            {
+              "contact_number": "9876543210"
+            },
+            {
+              "deductor_type": "K"
+            },
+            {
+              "government_state_code": null
+            },
+            {
+              "ministry_code": null
+            },
+            {
+              "ministry_name_other": null
+            },
+            {
+              "account_office_identification_number": null
+            },
+            {
+              "gstin": "24AAACA1234Z1ZP"
+            }
+          ]
+        },
+        {
+          "name": "responsible_person_list",
+          "@entity": "list",
+          "items": [
+            {
+              "name": "TONY STARK"
+            },
+            {
+              "designation": "MANAGER"
+            },
+            {
+              "pan": "DKLPT3483J"
+            },
+            {
+              "flat_door_block_number": "A-901"
+            },
+            {
+              "post_office": "NAVRANGPURA"
+            },
+            {
+              "road_street_block_sector": "RELIEF ROAD"
+            },
+            {
+              "area_locality": "CBD"
+            },
+            {
+              "district": "AHMEDABAD"
+            },
+            {
+              "state": "GUJARAT"
+            },
+            {
+              "postal_code": "380001"
+            },
+            {
+              "email": "EMAIL@GMAIL.COM"
+            },
+            {
+              "country": "INDIA"
+            },
+            {
+              "contact_country_code": "91"
+            },
+            {
+              "contact_number": "9876543210"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "payee_sheet",
+      "@entity": "sheet",
+      "blocks": [
+        {
+          "name": "payee_table",
+          "@entity": "table",
+          "header": [
+            "sr_no",
+            "pan",
+            "name"
+          ],
+          "rows": [
+            [
+              1,
+              "ABCCA1234A",
+              "WAYNE ENTERPRISES PRIVATE LIMITED"
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "name": "challan_sheet",
+      "@entity": "sheet",
+      "blocks": [
+        {
+          "name": "challan_table",
+          "@entity": "table",
+          "header": [
+            "bank_challan_number_or_ddo_serial_number",
+            "bsr_code_or_form_24g_receipt_number",
+            "bank_challan_or_transfer_voucher_date_epoch",
+            "minor_head",
+            "mode_of_payment",
+            "nil_challan_indicator",
+            "total_tax_deducted",
+            "total_interest",
+            "total_fee",
+            "total_penalty",
+            "total_tax_deposited"
+          ],
+          "rows": [
+            [
+              "12345",
+              "1234567",
+              1777507200000,
+              "tds_payable_by_taxpayer",
+              "C",
+              "N",
+              5000,
+              0,
+              0,
+              0,
+              5000
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "name": "payment_sheet",
+      "@entity": "sheet",
+      "blocks": [
+        {
+          "name": "payment_table",
+          "@entity": "table",
+          "header": [
+            "payee_sr_no",
+            "bank_challan_number_or_ddo_serial_number",
+            "bsr_code_or_form_24g_receipt_number",
+            "nature_of_payment",
+            "payment_amount",
+            "payment_date_epoch",
+            "total_tax_deducted",
+            "deduction_date_epoch",
+            "total_tax_deposited",
+            "deposit_date_epoch",
+            "reason_for_lower_deduction",
+            "certificate_number"
+          ],
+          "rows": [
+            [
+              1,
+              "12345",
+              "1234567",
+              "payments_made_to_employees_other_than_government_employees",
+              100000,
+              1776211200000,
+              5000,
+              1776211200000,
+              4500,
+              1777507200000,
+              "in_case_of_lower_deduction_on_account_of_certificate_under_section_395_1",
+              "CERT138A001"
+            ]
+          ]
+        }
+      ]
+    }
+  ]
+}

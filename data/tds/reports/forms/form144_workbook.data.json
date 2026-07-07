@@ -1,0 +1,250 @@
+{
+  "name": "form144_workbook",
+  "@entity": "workbook",
+  "sheets": [
+    {
+      "name": "payer_sheet",
+      "@entity": "sheet",
+      "blocks": [
+        {
+          "name": "payer_list",
+          "@entity": "list",
+          "items": [
+            {
+              "name": "ACME PRIVATE LIMITED"
+            },
+            {
+              "tan": "AHMA00000C"
+            },
+            {
+              "pan": "AAACA1234Z"
+            },
+            {
+              "country": "INDIA"
+            },
+            {
+              "flat_door_block_number": "A-901"
+            },
+            {
+              "post_office": "NAVRANGPURA"
+            },
+            {
+              "road_street_block_sector": "RELIEF ROAD"
+            },
+            {
+              "area_locality": "CBD"
+            },
+            {
+              "district": "AHMEDABAD"
+            },
+            {
+              "state": "GUJARAT"
+            },
+            {
+              "postal_code": "380001"
+            },
+            {
+              "email": "EMAIL@GMAIL.COM"
+            },
+            {
+              "contact_country_code": "91"
+            },
+            {
+              "contact_number": "9876543210"
+            },
+            {
+              "deductor_type": "K"
+            },
+            {
+              "government_state_code": null
+            },
+            {
+              "ministry_code": null
+            },
+            {
+              "ministry_name_other": null
+            },
+            {
+              "account_office_identification_number": null
+            },
+            {
+              "gstin": "24AAACA1234Z1ZP"
+            }
+          ]
+        },
+        {
+          "name": "responsible_person_list",
+          "@entity": "list",
+          "items": [
+            {
+              "name": "TONY STARK"
+            },
+            {
+              "designation": "MANAGER"
+            },
+            {
+              "pan": "DKLPT3483J"
+            },
+            {
+              "flat_door_block_number": "A-901"
+            },
+            {
+              "post_office": "NAVRANGPURA"
+            },
+            {
+              "road_street_block_sector": "RELIEF ROAD"
+            },
+            {
+              "area_locality": "CBD"
+            },
+            {
+              "district": "AHMEDABAD"
+            },
+            {
+              "state": "GUJARAT"
+            },
+            {
+              "postal_code": "380001"
+            },
+            {
+              "email": "EMAIL@GMAIL.COM"
+            },
+            {
+              "country": "INDIA"
+            },
+            {
+              "contact_country_code": "91"
+            },
+            {
+              "contact_number": "9876543210"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "payee_sheet",
+      "@entity": "sheet",
+      "blocks": [
+        {
+          "name": "payee_table",
+          "@entity": "table",
+          "header": [
+            "sr_no",
+            "pan",
+            "name",
+            "opting_out_of_taxation_regime_under_section_202_1",
+            "country",
+            "address_in_country_of_residence",
+            "email",
+            "isd_code",
+            "mobile",
+            "tax_identification_number"
+          ],
+          "rows": [
+            [
+              1,
+              "ABCCA1234A",
+              "WAYNE ENTERPRISES PRIVATE LIMITED",
+              false,
+              "UNITED STATES OF AMERICA",
+              "12 WALL STREET NEW YORK",
+              "PAYEE@EXAMPLE.COM",
+              1,
+              9876543210,
+              "TIN123456"
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "name": "challan_sheet",
+      "@entity": "sheet",
+      "blocks": [
+        {
+          "name": "challan_table",
+          "@entity": "table",
+          "header": [
+            "bank_challan_number_or_ddo_serial_number",
+            "bsr_code_or_form_24g_receipt_number",
+            "bank_challan_or_transfer_voucher_date_epoch",
+            "minor_head",
+            "mode_of_payment",
+            "nil_challan_indicator",
+            "total_tax_deducted",
+            "total_interest",
+            "total_fee",
+            "total_penalty",
+            "total_tax_deposited"
+          ],
+          "rows": [
+            [
+              "12345",
+              "1234567",
+              1777507200000,
+              "tds_payable_by_taxpayer",
+              "C",
+              "N",
+              5000,
+              0,
+              0,
+              0,
+              5000
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "name": "payment_sheet",
+      "@entity": "sheet",
+      "blocks": [
+        {
+          "name": "payment_table",
+          "@entity": "table",
+          "header": [
+            "payee_sr_no",
+            "bank_challan_number_or_ddo_serial_number",
+            "bsr_code_or_form_24g_receipt_number",
+            "nature_of_payment",
+            "nature_of_remittance",
+            "payment_amount",
+            "payment_date_epoch",
+            "total_tax_deducted",
+            "deduction_date_epoch",
+            "total_tax_deposited",
+            "grossed_up_under_section_393_10",
+            "applicability_of_tds_rate_under_dtaa",
+            "unique_identification_number_form_121",
+            "reason_for_lower_deduction",
+            "certificate_number",
+            "amount_of_cash_withdrawal_more_than_1_crore_under_section_393_3",
+            "amount_of_cash_withdrawal_more_than_3_crore_for_cooperative_societies_under_section_393_3"
+          ],
+          "rows": [
+            [
+              1,
+              "12345",
+              "1234567",
+              "interest_on_long_term_or_rupee_denominated_bond_listed_on_ifsc_exchange_issued_before_1_july_2023",
+              "fee_for_technical_services_or_included_services",
+              100000,
+              1776211200000,
+              5000,
+              1776211200000,
+              4500,
+              false,
+              true,
+              null,
+              "lower_or_no_deduction_on_account_of_certificate_under_section_395_1_and_395_2",
+              "CERT144A001",
+              null,
+              null
+            ]
+          ]
+        }
+      ]
+    }
+  ]
+}

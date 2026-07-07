@@ -3,57 +3,33 @@ title: Salary Payments
 mode: "wide"
 ---
 
+To generate the TXT file, upload the deduction details in Sheet JSON format. Use the sample workbook to understand the expected payload structure.
 
-To generate the TXT file, you must pass the deduction-related details in a sheet JSON format. A sample payload is mentioned for your reference. Note that you can refer to the sample payload in the form of a workbook.
+<Note>
+  After you create the job, upload the payload to the generated pre-signed URL with an HTTP PUT request. [Read more](https://docs.aws.amazon.com/AmazonS3/latest/userguide/PresignedUrlUploadObject.html)
+</Note>
 
+<Note>
+  The Form 138 salary workbook currently supports Q1 to Q3 only.
+</Note>
 
-  <Note>
-  Once the job is successfully created, upload the payload using HTTP PUT method on generated presigned url. [Read More](https://docs.aws.amazon.com/AmazonS3/latest/userguide/PresignedUrlUploadObject.html)
-  </Note>
-
-  ### Form 24Q workbook (Q1 - Q3)
+### Form 138 workbook (Q1 to Q3)
 
 <CardGroup>
-
-
   <Card
-  title="View Schema"
-  icon="file-spreadsheet"
-  href="https://sheet-tools.quicko.org.in/sheet-schema-builder?schema_url=https://raw.githubusercontent.com/in-co-sandbox/in-co-sandbox-docs/refs/heads/main/data/tds/reports/forms/form24q_workbook.schema.json"
-  arrow="true"
-  horizontal
->
-</Card>
+    title="View Schema"
+    icon="file-spreadsheet"
+    href="https://sheet-tools.quicko.org.in/sheet-schema-builder?schema_url=https://raw.githubusercontent.com/in-co-sandbox/in-co-sandbox-docs/refs/heads/main/data/tds/reports/forms/form138_workbook.schema.json"
+    arrow="true"
+    horizontal
+  >
+  </Card>
   <Card
-  title="View Sample"
-  icon="file-spreadsheet"
-  href="https://sheet-tools.quicko.org.in/sheet-visualiser?schema_url=https://raw.githubusercontent.com/in-co-sandbox/in-co-sandbox-docs/refs/heads/main/data/tds/reports/forms/form24q_workbook.schema.json&data_url=https://raw.githubusercontent.com/in-co-sandbox/in-co-sandbox-docs/refs/heads/main/data/tds/reports/forms/form24q_workbook.data.json"
-  arrow="true"
-  horizontal
->
-</Card>
-</CardGroup>
-
-
-  ### Form 24Q workbook (Q4)
-
-  <CardGroup>
-
-  <Card
-  title="View Schema"
-  icon="file-spreadsheet"
-  href="https://sheet-tools.quicko.org.in/sheet-schema-builder?schema_url=https://raw.githubusercontent.com/in-co-sandbox/in-co-sandbox-docs/refs/heads/main/data/tds/reports/forms/form24q_workbook.schema.json"
-  arrow="true"
-  horizontal
->
-</Card>
-  <Card
-  title="View Sample"
-  icon="file-spreadsheet"
-  href="https://sheet-tools.quicko.org.in/sheet-visualiser?schema_url=https://raw.githubusercontent.com/in-co-sandbox/in-co-sandbox-docs/refs/heads/main/data/tds/reports/forms/form24q_workbook.schema.json&data_url=https://raw.githubusercontent.com/in-co-sandbox/in-co-sandbox-docs/refs/heads/main/data/tds/reports/forms/form24q_workbook_q4.data.json"
-  arrow="true"
-  horizontal
->
-</Card>
-
+    title="View Sample"
+    icon="file-spreadsheet"
+    href="https://sheet-tools.quicko.org.in/sheet-visualiser?schema_url=https://raw.githubusercontent.com/in-co-sandbox/in-co-sandbox-docs/refs/heads/main/data/tds/reports/forms/form138_workbook.schema.json&data_url=https://raw.githubusercontent.com/in-co-sandbox/in-co-sandbox-docs/refs/heads/main/data/tds/reports/forms/form138_workbook.data.json"
+    arrow="true"
+    horizontal
+  >
+  </Card>
 </CardGroup>
