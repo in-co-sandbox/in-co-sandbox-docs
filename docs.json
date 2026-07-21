@@ -604,6 +604,15 @@
                     ]
                   }
                 ]
+              },
+              {
+                "group": "Annexures",
+                "pages": [
+                  "api-reference/gst/annexures/e-invoice-master-data",
+                  "api-reference/gst/annexures/e-invoice-error-codes",
+                  "api-reference/gst/annexures/e-way-bill-master-data",
+                  "api-reference/gst/annexures/e-way-bill-error-codes"
+                ]
               }
             ]
           },
@@ -1352,6 +1361,18 @@
     }
   },
   "redirects": [
+    {
+      "source": "api-reference/gst/annexures/e_invoice_master_data",
+      "destination": "api-reference/gst/annexures/e-invoice-master-data"
+    },
+    {
+      "source": "api-reference/gst/annexures/master_data",
+      "destination": "api-reference/gst/annexures/e-way-bill-master-data"
+    },
+    {
+      "source": "api-reference/gst/annexures/error_codes",
+      "destination": "api-reference/gst/annexures/e-way-bill-error-codes"
+    },
     {
       "source": "changelog?page=1",
       "destination": "changelog"
