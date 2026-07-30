@@ -1,0 +1,70 @@
+{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "type": "object",
+  "properties": {
+    "tpgcnt": {
+      "type": "integer"
+    },
+    "cpgnum": {
+      "type": "integer"
+    },
+    "ismpg": {
+      "type": "string"
+    },
+    "cnt": {
+      "type": "integer"
+    },
+    "gstLst": {
+      "type": "array",
+      "items": 
+        {
+          "type": "object",
+          "properties": {
+            "state_cd": {
+              "type": "string"
+            },
+            "gstdtls": {
+              "type": "array",
+              "items": 
+                {
+                  "type": "object",
+                  "properties": {
+                    "chng_typ": {
+                      "type": "string"
+                    },
+                    "gstin": {
+                      "type": "string"
+                    },
+                    "chng_dt": {
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "chng_typ",
+                    "gstin",
+                    "chng_dt"
+                  ]
+                }
+              
+            }
+          },
+          "required": [
+            "state_cd",
+            "gstdtls"
+          ]
+        }
+      
+    },
+	"totalCount" : {
+		"type": "integer"
+	}
+  },
+  "required": [
+    "tpgcnt",
+    "cpgnum",
+    "ismpg",
+    "cnt",
+    "gstLst",
+	"totalCount"
+  ]
+}
