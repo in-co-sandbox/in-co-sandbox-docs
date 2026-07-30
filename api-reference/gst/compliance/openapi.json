@@ -121,6 +121,299 @@
     }
   ],
   "paths": {
+    "/gst/compliance/public/gstin/changed-list": {
+      "post": {
+        "summary": "Get day-wise changed GSTINs",
+        "deprecated": false,
+        "description": "Retrieve GSTIN changes reported for a state on a specified date. Each record contains an MD5 hash of the GSTIN and its change type.",
+        "operationId": "getDayWiseChangedGstins",
+        "tags": [
+          "Public"
+        ],
+        "parameters": [
+          {
+            "name": "authorization",
+            "in": "header",
+            "description": "JWT access token used to authorize the request.",
+            "required": true,
+            "example": "{{access_token}}",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "x-accept-cache",
+            "in": "header",
+            "description": "Pass true to accept a cached response. Requests without this header, or with false, are sent to the origin.",
+            "required": false,
+            "example": "true",
+            "schema": {
+              "type": "boolean"
+            }
+          },
+          {
+            "name": "x-api-key",
+            "in": "header",
+            "description": "API key used to identify your Sandbox account.",
+            "required": true,
+            "example": "{{api_key}}",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "x-api-version",
+            "in": "header",
+            "description": "Sandbox API version to use.",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "default": "1.0.0"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "description": "Filters for retrieving the changed GSTIN list.",
+                "additionalProperties": false,
+                "required": [
+                  "date",
+                  "state_code"
+                ],
+                "properties": {
+                  "date": {
+                    "type": "string",
+                    "description": "Date for which to retrieve changed GSTIN records, in DD-MM-YYYY format.",
+                    "pattern": "^\\d{2}-\\d{2}-\\d{4}$",
+                    "example": "04-01-2017"
+                  },
+                  "state_code": {
+                    "type": "string",
+                    "description": "Two-digit GST state code for which to retrieve changed GSTIN records.",
+                    "minLength": 2,
+                    "maxLength": 2,
+                    "pattern": "^\\d{2}$",
+                    "example": "01"
+                  },
+                  "page": {
+                    "type": "integer",
+                    "format": "int32",
+                    "description": "Page number of the changed GSTIN list to retrieve. Defaults to 1.",
+                    "minimum": 1,
+                    "default": 1,
+                    "example": 1
+                  }
+                }
+              },
+              "examples": {
+                "Changed GSTIN list": {
+                  "summary": "Changed GSTINs for a state and date",
+                  "value": {
+                    "date": "04-01-2017",
+                    "state_code": "01",
+                    "page": 1
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Changed GSTIN records retrieved successfully.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "description": "Sandbox response containing the changed GSTIN list.",
+                  "required": [
+                    "code",
+                    "data",
+                    "timestamp",
+                    "transaction_id"
+                  ],
+                  "properties": {
+                    "code": {
+                      "type": "integer",
+                      "description": "HTTP status code.",
+                      "example": 200
+                    },
+                    "data": {
+                      "type": "object",
+                      "description": "Response payload containing the requested data or error details.",
+                      "required": [
+                        "data",
+                        "status_cd"
+                      ],
+                      "properties": {
+                        "data": {
+                          "type": "object",
+                          "description": "GSTN payload containing changed GSTIN records and pagination details.",
+                          "required": [
+                            "tpgcnt",
+                            "cpgnum",
+                            "ismpg",
+                            "cnt",
+                            "gstLst",
+                            "totalCount"
+                          ],
+                          "properties": {
+                            "tpgcnt": {
+                              "type": "integer",
+                              "description": "Total number of pages in the result set.",
+                              "example": 1
+                            },
+                            "cpgnum": {
+                              "type": "integer",
+                              "description": "Page number returned in this response.",
+                              "example": 1
+                            },
+                            "ismpg": {
+                              "type": "string",
+                              "description": "Whether more than one page is available: Y for yes or N for no.",
+                              "enum": [
+                                "Y",
+                                "N"
+                              ],
+                              "example": "N"
+                            },
+                            "cnt": {
+                              "type": "integer",
+                              "description": "Number of changed GSTIN records returned on this page.",
+                              "example": 6
+                            },
+                            "gstLst": {
+                              "type": "array",
+                              "description": "Changed GSTIN records grouped by GST state code.",
+                              "items": {
+                                "type": "object",
+                                "required": [
+                                  "state_cd",
+                                  "gstdtls"
+                                ],
+                                "properties": {
+                                  "state_cd": {
+                                    "type": "string",
+                                    "description": "Two-digit GST state code for the grouped records.",
+                                    "minLength": 2,
+                                    "maxLength": 2,
+                                    "pattern": "^\\d{2}$",
+                                    "example": "24"
+                                  },
+                                  "gstdtls": {
+                                    "type": "array",
+                                    "description": "Changed GSTIN records for the state.",
+                                    "items": {
+                                      "type": "object",
+                                      "required": [
+                                        "chng_typ",
+                                        "gstin",
+                                        "chng_dt"
+                                      ],
+                                      "properties": {
+                                        "chng_typ": {
+                                          "type": "string",
+                                          "description": "GSTIN change type: G for generated, C for cancelled, U for updated, I for inactive, or E for expired.",
+                                          "enum": [
+                                            "G",
+                                            "C",
+                                            "U",
+                                            "I",
+                                            "E"
+                                          ],
+                                          "example": "G"
+                                        },
+                                        "gstin": {
+                                          "type": "string",
+                                          "description": "32-character MD5 hash of the GSTIN, not the plaintext GSTIN.",
+                                          "minLength": 32,
+                                          "maxLength": 32,
+                                          "pattern": "^[a-f0-9]{32}$",
+                                          "example": "427adfe66a80ec823a53c1dd56fd0157"
+                                        },
+                                        "chng_dt": {
+                                          "type": "string",
+                                          "description": "Date on which the GSTIN changed, in DD-MM-YYYY format.",
+                                          "pattern": "^\\d{2}-\\d{2}-\\d{4}$",
+                                          "example": "24-01-2017"
+                                        }
+                                      }
+                                    }
+                                  }
+                                }
+                              }
+                            },
+                            "totalCount": {
+                              "type": "integer",
+                              "description": "Total number of changed GSTIN records across all pages.",
+                              "example": 7
+                            }
+                          }
+                        },
+                        "status_cd": {
+                          "type": "string",
+                          "description": "GSTN status code for the response.",
+                          "example": "1"
+                        }
+                      }
+                    },
+                    "timestamp": {
+                      "type": "integer",
+                      "format": "int64",
+                      "description": "Unix timestamp in milliseconds indicating when the server generated the response.",
+                      "example": 1763446641000
+                    },
+                    "transaction_id": {
+                      "type": "string",
+                      "format": "uuid",
+                      "description": "Unique identifier for tracking the request across systems.",
+                      "example": "a4bcca2e-7e82-4eaf-8046-6cd4e8c028c1"
+                    }
+                  }
+                },
+                "examples": {
+                  "Changed GSTIN list": {
+                    "summary": "Changed GSTIN records",
+                    "value": {
+                      "code": 200,
+                      "data": {
+                        "data": {
+                          "tpgcnt": 1,
+                          "cpgnum": 1,
+                          "ismpg": "N",
+                          "cnt": 6,
+                          "gstLst": [
+                            {
+                              "state_cd": "24",
+                              "gstdtls": [
+                                {
+                                  "chng_typ": "G",
+                                  "gstin": "427adfe66a80ec823a53c1dd56fd0157",
+                                  "chng_dt": "24-01-2017"
+                                }
+                              ]
+                            }
+                          ],
+                          "totalCount": 7
+                        },
+                        "status_cd": "1"
+                      },
+                      "timestamp": 1763446641000,
+                      "transaction_id": "a4bcca2e-7e82-4eaf-8046-6cd4e8c028c1"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "security": []
+      }
+    },
     "/gst/compliance/public/gstrs/preference": {
       "post": {
         "summary": "Get Return Preference",
