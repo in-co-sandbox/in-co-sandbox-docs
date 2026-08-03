@@ -1,0 +1,22 @@
+{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "additionalProperties": false,
+  "type": "object",
+  "properties": {
+    "Enrolment Number": {
+      "type": "string",
+      "description": "Enrolment ID of the unregistered applicant."
+    },
+    "Mobile Number": {
+      "type": "string",
+      "description": "Whether the supplied mobile number matches the applicant record.",
+      "enum": ["matched", "unmatched"]
+    },
+    "Email Address": {
+      "type": "string",
+      "description": "Whether the supplied email address matches the applicant record.",
+      "enum": ["matched", "unmatched"]
+    }
+  },
+  "required": ["Enrolment Number"]
+}

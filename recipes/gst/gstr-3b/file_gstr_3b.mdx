@@ -1,9 +1,9 @@
 ---
-title: "File GST Return-3B"
-description: "GSTR-3B is a self-declaration return where taxpayers summarize their sales, purchases, and liabilities. It's used to setoff liabilities and claim input tax credits (ITC) for the latest return period. This recipe shows how to automate GSTR-3B filing."
+title: "File GSTR-3B"
+description: "GSTR-3B is a self-declaration return where taxpayers summarize their sales, purchases, and liabilities. Use it to offset liabilities and claim input tax credits (ITC) for the current return period. This recipe shows how to automate GSTR-3B filing."
 ---
 
-## Workflow Overview
+## Workflow overview
 
 The GSTR-3B filing process follows this sequence:
 
@@ -17,12 +17,12 @@ The GSTR-3B filing process follows this sequence:
 8. **File Return** - Submit the return with OTP verification
 
 <Tip>
-**Status Polling:** Check the [**GST Return Status**](../../../api-reference/gst/compliance/endpoints/taxpayer/common/gstr_return_status) every 10-15 seconds after saving or offsetting liabilities. Processing typically completes within 1-2 minutes. If status shows validation errors, fix the data and save again before proceeding.
+**Status Polling:** Check the [**GST Return Status**](../../../api-reference/gst/compliance/endpoints/taxpayer/common/gst_return_status) every 10-15 seconds after saving or offsetting liabilities. Processing typically completes within 1-2 minutes. If status shows validation errors, fix the data, then save again before proceeding.
 </Tip>
 
 <Warning>
 **Prerequisites:** 
-- Ensure GSTR-1 is filed for the same return period before filing GSTR-3B. GSTR-3B must reconcile with GSTR-1.
+- File GSTR-1 for the same return period before filing GSTR-3B. Reconcile GSTR-3B with GSTR-1.
 - Ensure you have sufficient balance in your cash or ITC ledger before offsetting liabilities.
 - Ensure your Taxpayer access token is valid (6-hour validity) throughout the filing process.
 </Warning>
@@ -120,7 +120,7 @@ The GSTR-3B filing process follows this sequence:
   </Step>
 
   <Step title="Get Updated GSTR-3B Details" stepNumber={6} titleSize="h2">
-    After offsetting liabilities, retrieve the updated GSTR-3B details using the [**Get GSTR-3B Details**](../../../api-reference/gst/compliance/endpoints/taxpayer/gstr-3b/gstr_3b_details) endpoint to obtain the complete return data including tax payment details (`tx_pmt`) that are required for filing.
+    After offsetting liabilities, retrieve the updated GSTR-3B details using the [**Get GSTR-3B Details**](../../../api-reference/gst/compliance/endpoints/taxpayer/gstr-3b/gstr_3b_details) endpoint to obtain the complete return data, including the tax payment details (`tx_pmt`) you need for filing.
 
     This endpoint returns the GSTR-3B data with updated payment information reflecting the liability offset you performed in the previous step.
 
@@ -134,7 +134,7 @@ The GSTR-3B filing process follows this sequence:
       ```
     </Accordion>
 
-    The response will contain the complete GSTR-3B data including the `tx_pmt` (tax payment) section with offset details. Extract this data as it is required for the filing request in the next step.
+    The response will contain the complete GSTR-3B data including the `tx_pmt` (tax payment) section with offset details. Extract this data because you need it for the filing request in the next step.
   </Step>
 
   <Step title="Generate EVC OTP" stepNumber={7} titleSize="h2">

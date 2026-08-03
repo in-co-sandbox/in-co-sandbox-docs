@@ -4,11 +4,11 @@ description: "Sample XML structures returned by EntityLocker for GSTN Details an
 icon: "file-code"
 ---
 
-When you fetch a document using the [EntityLocker API](/api-reference/kyc/entitylocker/endpoints/fetch_document) or [EntityLocker SDK](/api-reference/kyc/entitylocker/sdk/endpoints/fetch_document), the response contains a `url` to download the document file. For XML format documents, the downloaded file is a signed XML certificate issued via EntityLocker.
+When you fetch a document using the [EntityLocker API](/api-reference/kyc/entitylocker/endpoints/fetch_document) or [EntityLocker SDK](/api-reference/kyc/entitylocker-sdk/endpoints/fetch_document), the response contains a `url` to download the document file. For XML format documents, the downloaded file is a signed XML certificate issued via EntityLocker.
 
 The XML structure varies by document type. Below are sample XML responses for commonly fetched business documents.
 
-## GSTN Details (GSTND)
+## GSTN details (GSTND)
 
 The GSTN Details XML contains GST registration information including taxpayer type, legal name, constitution of business, and jurisdiction details.
 
@@ -55,7 +55,7 @@ The GSTN Details XML contains GST registration information including taxpayer ty
 | --- | --- | --- |
 | `Certificate` | `type`, `number` | Document type (`GSTND`), GSTIN number |
 | `Certificate` | `issueDate`, `validFromDate` | Registration and validity dates |
-| `IssuedBy > Organization` | `name` | Issuing authority — Goods and Services Tax Network |
+| `IssuedBy > Organization` | `name` | Issuing authority—Goods and Services Tax Network |
 | `IssuedTo > Organization` | `name` | Registered business name |
 | `IssuedTo > Organization > Address` | `locality`, `district`, `state`, `pin` | Business address details |
 | `GSTNDetails` | `taxpayerType` | Taxpayer classification (Regular, Composition, etc.) |
@@ -66,7 +66,7 @@ The GSTN Details XML contains GST registration information including taxpayer ty
 
 ---
 
-## Udyam Certificate (UDCER)
+## Udyam certificate (UDCER)
 
 The Udyam Certificate XML contains MSME registration details including enterprise classification, NIC codes, and unit information.
 
@@ -141,7 +141,7 @@ The Udyam Certificate XML contains MSME registration details including enterpris
 | Element | Attribute | Description |
 | --- | --- | --- |
 | `Certificate` | `type`, `number`, `status` | Document type (`UDCER`), Udyam registration number, status |
-| `IssuedBy > Organization` | `name` | Issuing authority — Ministry of MSME |
+| `IssuedBy > Organization` | `name` | Issuing authority—Ministry of MSME |
 | `IssuedTo > Enterprise` | `name`, `phone`, `email` | Enterprise identity and contact details |
 | `IssuedTo > Enterprise > Address` | `flatDoorBlockNo`, `nameOfPremisesBuilding`, `city`, `state`, `pin` | Registered office address |
 | `UdyamRegistrationCertificate` | `udyamRegNo`, `dateOfReg` | Registration number and date |

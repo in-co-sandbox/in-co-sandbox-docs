@@ -961,6 +961,552 @@
         "security": []
       }
     },
+    "/gst/compliance/public/unregistered-applicants": {
+      "post": {
+        "summary": "Get unregistered applicant details",
+        "deprecated": false,
+        "description": "Retrieve GST registration details for an unregistered e-commerce applicant using its enrolment UID.",
+        "operationId": "getUnregisteredApplicants",
+        "tags": [
+          "Public"
+        ],
+        "parameters": [
+          {
+            "name": "authorization",
+            "in": "header",
+            "description": "JWT access token used to authorize the request.",
+            "required": true,
+            "example": "{{access_token}}",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "x-accept-cache",
+            "in": "header",
+            "description": "Pass true to accept a cached response. Requests without this header, or with false, are sent to the origin.",
+            "required": false,
+            "example": "true",
+            "schema": {
+              "type": "boolean"
+            }
+          },
+          {
+            "name": "x-api-key",
+            "in": "header",
+            "description": "API key used to identify your Sandbox account.",
+            "required": true,
+            "example": "{{api_key}}",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "x-api-version",
+            "in": "header",
+            "description": "Sandbox API version to use.",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "default": "1.0.0"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "description": "Identifier for the unregistered applicant.",
+                "additionalProperties": false,
+                "required": [
+                  "uid"
+                ],
+                "properties": {
+                  "uid": {
+                    "type": "string",
+                    "description": "GST enrolment UID of the unregistered applicant.",
+                    "example": "292200000001ES9"
+                  }
+                }
+              },
+              "examples": {
+                "Unregistered applicant": {
+                  "summary": "Fetch an unregistered applicant",
+                  "value": {
+                    "uid": "292200000001ES9"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Unregistered applicant details retrieved successfully.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "required": [
+                    "code",
+                    "data",
+                    "timestamp",
+                    "transaction_id"
+                  ],
+                  "properties": {
+                    "code": {
+                      "type": "integer",
+                      "description": "HTTP status code.",
+                      "example": 200
+                    },
+                    "data": {
+                      "type": "object",
+                      "required": [
+                        "data",
+                        "status_cd"
+                      ],
+                      "properties": {
+                        "data": {
+                          "type": "object",
+                          "description": "GSTN details for the unregistered applicant.",
+                          "required": [
+                            "name",
+                            "pan",
+                            "state",
+                            "authstatus",
+                            "regdt",
+                            "addtls"
+                          ],
+                          "properties": {
+                            "name": {
+                              "type": "string",
+                              "description": "Legal name of the unregistered applicant.",
+                              "maxLength": 200,
+                              "example": "Dev Prakruthi"
+                            },
+                            "pan": {
+                              "type": "string",
+                              "description": "PAN of the unregistered applicant.",
+                              "minLength": 10,
+                              "maxLength": 10,
+                              "example": "SRIFP2884S"
+                            },
+                            "state": {
+                              "type": "string",
+                              "description": "State of the unregistered applicant.",
+                              "maxLength": 200,
+                              "example": "Tamil Nadu"
+                            },
+                            "goodsdetails": {
+                              "type": "string",
+                              "description": "Goods details supplied by the applicant.",
+                              "maxLength": 250,
+                              "example": ""
+                            },
+                            "servicedetails": {
+                              "type": "string",
+                              "description": "Service details supplied by the applicant.",
+                              "maxLength": 250,
+                              "example": ""
+                            },
+                            "authstatus": {
+                              "type": "string",
+                              "description": "Applicant status: A for active or C for cancelled.",
+                              "enum": [
+                                "A",
+                                "C"
+                              ],
+                              "example": "A"
+                            },
+                            "regdt": {
+                              "type": "string",
+                              "description": "Applicant registration date in DD/MM/YYYY format.",
+                              "pattern": "^\\d{2}/\\d{2}/\\d{4}$",
+                              "example": "28/09/1989"
+                            },
+                            "candt": {
+                              "type": "string",
+                              "description": "Applicant cancellation date in DD/MM/YYYY format, when cancelled.",
+                              "pattern": "^(|\\d{2}/\\d{2}/\\d{4})$",
+                              "example": ""
+                            },
+                            "addtls": {
+                              "type": "object",
+                              "description": "Address details of the unregistered applicant.",
+                              "required": [
+                                "bnm",
+                                "st",
+                                "loc",
+                                "pncd",
+                                "stcd",
+                                "dst",
+                                "cnty",
+                                "city"
+                              ],
+                              "properties": {
+                                "bno": {
+                                  "type": "string",
+                                  "description": "Building number.",
+                                  "maxLength": 60,
+                                  "example": "3/1-10"
+                                },
+                                "bnm": {
+                                  "type": "string",
+                                  "description": "Building name.",
+                                  "maxLength": 60,
+                                  "example": ""
+                                },
+                                "st": {
+                                  "type": "string",
+                                  "description": "Street name.",
+                                  "maxLength": 50,
+                                  "example": "3rd Street"
+                                },
+                                "loc": {
+                                  "type": "string",
+                                  "description": "Locality.",
+                                  "maxLength": 50,
+                                  "example": "West Mambalam"
+                                },
+                                "pncd": {
+                                  "type": "string",
+                                  "description": "Six-digit postal code.",
+                                  "pattern": "^\\d{6}$",
+                                  "example": "600033"
+                                },
+                                "stcd": {
+                                  "type": "string",
+                                  "description": "State name.",
+                                  "maxLength": 50,
+                                  "example": "Tamil Nadu"
+                                },
+                                "lg": {
+                                  "type": "string",
+                                  "description": "Longitude.",
+                                  "maxLength": 27,
+                                  "example": "13.035805"
+                                },
+                                "lt": {
+                                  "type": "string",
+                                  "description": "Latitude.",
+                                  "maxLength": 27,
+                                  "example": "80.2204520000001"
+                                },
+                                "dst": {
+                                  "type": "string",
+                                  "description": "District name.",
+                                  "maxLength": 50,
+                                  "example": "Chennai"
+                                },
+                                "cnty": {
+                                  "type": "string",
+                                  "description": "Country code.",
+                                  "maxLength": 50,
+                                  "example": "IND"
+                                },
+                                "landMark": {
+                                  "type": "string",
+                                  "description": "Landmark.",
+                                  "maxLength": 50,
+                                  "example": "West Mambalam Sub Post Office"
+                                },
+                                "city": {
+                                  "type": "string",
+                                  "description": "City name.",
+                                  "maxLength": 50,
+                                  "example": "Chennai"
+                                }
+                              }
+                            }
+                          }
+                        },
+                        "status_cd": {
+                          "type": "string",
+                          "description": "GSTN status code for the response.",
+                          "example": "1"
+                        }
+                      }
+                    },
+                    "timestamp": {
+                      "type": "integer",
+                      "format": "int64",
+                      "description": "Unix timestamp in milliseconds indicating when the server generated the response.",
+                      "example": 1785424627417
+                    },
+                    "transaction_id": {
+                      "type": "string",
+                      "format": "uuid",
+                      "description": "Unique identifier for tracking the request across systems.",
+                      "example": "f8be2d24-ed85-4a65-9763-0a3bef00870a"
+                    }
+                  }
+                },
+                "examples": {
+                  "Unregistered applicant": {
+                    "summary": "Unregistered applicant details",
+                    "value": {
+                      "code": 200,
+                      "data": {
+                        "data": {
+                          "name": "Dev Prakruthi",
+                          "pan": "SRIFP2884S",
+                          "state": "Tamil Nadu",
+                          "authstatus": "A",
+                          "regdt": "28/09/1989",
+                          "candt": "",
+                          "addtls": {
+                            "bno": "3/1-10",
+                            "bnm": "",
+                            "st": "3rd Street",
+                            "loc": "West Mambalam",
+                            "pncd": "600033",
+                            "stcd": "Tamil Nadu",
+                            "lg": "13.035805",
+                            "lt": "80.2204520000001",
+                            "dst": "Chennai",
+                            "cnty": "IND",
+                            "landMark": "West Mambalam Sub Post Office",
+                            "city": "Chennai"
+                          },
+                          "goodsdetails": "",
+                          "servicedetails": ""
+                        },
+                        "status_cd": "1"
+                      },
+                      "timestamp": 1785424627417,
+                      "transaction_id": "f8be2d24-ed85-4a65-9763-0a3bef00870a"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "security": []
+      }
+    },
+    "/gst/compliance/public/unregistered-applicants/validation": {
+      "post": {
+        "summary": "Validate unregistered applicant contact details",
+        "deprecated": false,
+        "description": "Validate the email address and/or mobile number registered for an unregistered e-commerce applicant.",
+        "operationId": "validateUnregisteredApplicant",
+        "tags": [
+          "Public"
+        ],
+        "parameters": [
+          {
+            "name": "authorization",
+            "in": "header",
+            "description": "JWT access token used to authorize the request.",
+            "required": true,
+            "example": "{{access_token}}",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "x-accept-cache",
+            "in": "header",
+            "description": "Pass true to accept a cached response. Requests without this header, or with false, are sent to the origin.",
+            "required": false,
+            "example": "true",
+            "schema": {
+              "type": "boolean"
+            }
+          },
+          {
+            "name": "x-api-key",
+            "in": "header",
+            "description": "API key used to identify your Sandbox account.",
+            "required": true,
+            "example": "{{api_key}}",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "x-api-version",
+            "in": "header",
+            "description": "Sandbox API version to use.",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "default": "1.0.0"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "description": "Contact details to validate for an unregistered applicant.",
+                "additionalProperties": false,
+                "required": [
+                  "enrolment_number"
+                ],
+                "anyOf": [
+                  {
+                    "required": [
+                      "email"
+                    ]
+                  },
+                  {
+                    "required": [
+                      "mobile"
+                    ]
+                  }
+                ],
+                "properties": {
+                  "enrolment_number": {
+                    "type": "string",
+                    "description": "GST enrolment number of the unregistered applicant.",
+                    "maxLength": 15,
+                    "example": "372300000015ES1"
+                  },
+                  "mobile": {
+                    "type": "string",
+                    "description": "Mobile number registered for the applicant.",
+                    "maxLength": 10,
+                    "example": "9898989898"
+                  },
+                  "email": {
+                    "type": "string",
+                    "format": "email",
+                    "description": "Email address registered for the applicant.",
+                    "maxLength": 254,
+                    "example": "abcd@gmail.com"
+                  }
+                }
+              },
+              "examples": {
+                "Validate email and mobile": {
+                  "summary": "Validate both contact details",
+                  "value": {
+                    "enrolment_number": "372300000015ES1",
+                    "mobile": "9898989898",
+                    "email": "abcd@gmail.com"
+                  }
+                },
+                "Validate email only": {
+                  "summary": "Validate an email address",
+                  "value": {
+                    "enrolment_number": "372300000015ES1",
+                    "email": "abcd@gmail.com"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Unregistered applicant contact details validated successfully.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "required": [
+                    "code",
+                    "data",
+                    "timestamp",
+                    "transaction_id"
+                  ],
+                  "properties": {
+                    "code": {
+                      "type": "integer",
+                      "description": "HTTP status code.",
+                      "example": 200
+                    },
+                    "data": {
+                      "type": "object",
+                      "required": [
+                        "data",
+                        "status_cd"
+                      ],
+                      "properties": {
+                        "data": {
+                          "type": "object",
+                          "description": "GSTN contact-detail validation result.",
+                          "required": [
+                            "Enrolment Number"
+                          ],
+                          "properties": {
+                            "Enrolment Number": {
+                              "type": "string",
+                              "description": "Enrolment number of the unregistered applicant.",
+                              "example": "372300000015ES1"
+                            },
+                            "Mobile Number": {
+                              "type": "string",
+                              "description": "Whether the supplied mobile number matched the applicant record.",
+                              "enum": [
+                                "matched",
+                                "unmatched"
+                              ],
+                              "example": "matched"
+                            },
+                            "Email Address": {
+                              "type": "string",
+                              "description": "Whether the supplied email address matched the applicant record.",
+                              "enum": [
+                                "matched",
+                                "unmatched"
+                              ],
+                              "example": "unmatched"
+                            }
+                          }
+                        },
+                        "status_cd": {
+                          "type": "string",
+                          "description": "GSTN status code for the response.",
+                          "example": "1"
+                        }
+                      }
+                    },
+                    "timestamp": {
+                      "type": "integer",
+                      "format": "int64",
+                      "description": "Unix timestamp in milliseconds indicating when the server generated the response.",
+                      "example": 1785424627417
+                    },
+                    "transaction_id": {
+                      "type": "string",
+                      "format": "uuid",
+                      "description": "Unique identifier for tracking the request across systems.",
+                      "example": "eb03920d-5dae-447b-aa2a-8e4931ccbe58"
+                    }
+                  }
+                },
+                "examples": {
+                  "Validated contact details": {
+                    "summary": "Email and mobile validation result",
+                    "value": {
+                      "code": 200,
+                      "data": {
+                        "data": {
+                          "Enrolment Number": "372300000015ES1",
+                          "Mobile Number": "matched",
+                          "Email Address": "unmatched"
+                        },
+                        "status_cd": "1"
+                      },
+                      "timestamp": 1785424627417,
+                      "transaction_id": "eb03920d-5dae-447b-aa2a-8e4931ccbe58"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "security": []
+      }
+    },
     "/gst/compliance/public/gstin/search": {
       "post": {
         "summary": "Search GSTIN",

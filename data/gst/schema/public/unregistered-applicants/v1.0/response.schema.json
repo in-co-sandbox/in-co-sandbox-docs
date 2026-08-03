@@ -1,0 +1,92 @@
+{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "additionalProperties": false,
+  "type": "object",
+  "properties": {
+    "name": {
+      "type": "string",
+      "description": "Name of the unregistered applicant."
+    },
+    "pan": {
+      "type": "string",
+      "description": "PAN of the unregistered applicant."
+    },
+    "state": {
+      "type": "string",
+      "description": "State of the unregistered applicant."
+    },
+    "goodsdetails": {
+      "type": "string",
+      "description": "Goods details supplied by the applicant."
+    },
+    "servicedetails": {
+      "type": "string",
+      "description": "Service details supplied by the applicant."
+    },
+    "authstatus": {
+      "type": "string",
+      "description": "Applicant status.",
+      "enum": ["A", "C"]
+    },
+    "regdt": {
+      "type": "string",
+      "description": "Applicant registration date."
+    },
+    "candt": {
+      "type": "string",
+      "description": "Applicant cancellation date."
+    },
+    "addtls": {
+      "type": "object",
+      "description": "Address details.",
+      "properties": {
+        "bnm": {
+          "type": "string",
+          "description": "Building name."
+        },
+        "stcd": {
+          "type": "string",
+          "description": "State code."
+        },
+        "loc": {
+          "type": "string",
+          "description": "Location."
+        },
+        "bno": {
+          "type": "string",
+          "description": "Building number."
+        },
+        "flno": {
+          "type": "string",
+          "description": "Floor number."
+        },
+        "lg": {
+          "type": "string",
+          "description": "Longitude."
+        },
+        "lt": {
+          "type": "string",
+          "description": "Latitude."
+        },
+        "pncd": {
+          "type": "string",
+          "description": "Pincode."
+        },
+        "st": {
+          "type": "string",
+          "description": "Street name."
+        },
+        "dst": {
+          "type": "string",
+          "description": "District name."
+        },
+        "cnty": {
+          "type": "string",
+          "description": "Country name."
+        }
+      },
+      "required": ["pncd", "stcd", "st", "bno", "dst", "cnty"]
+    }
+  },
+  "required": ["addtls", "goodsdetails", "name", "pan", "servicedetails", "state", "authstatus", "regdt"]
+}
