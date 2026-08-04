@@ -181,7 +181,8 @@
                 "description": "Filters for retrieving the changed GSTIN list.",
                 "additionalProperties": false,
                 "required": [
-                  "date"
+                  "date",
+                  "state_code"
                 ],
                 "properties": {
                   "date": {
@@ -192,7 +193,7 @@
                   },
                   "state_code": {
                     "type": "string",
-                    "description": "Two-digit GST state code for which to retrieve changed GSTIN records.",
+                    "description": "Required two-digit GST state code for which to retrieve changed GSTIN records.",
                     "minLength": 2,
                     "maxLength": 2,
                     "pattern": "^\\d{2}$",
@@ -965,7 +966,7 @@
       "post": {
         "summary": "Get unregistered applicant details",
         "deprecated": false,
-        "description": "Retrieve GST registration details for an unregistered e-commerce applicant using its enrolment UID.",
+        "description": "Retrieve GST registration details for an unregistered e-commerce applicant using its enrolment number.",
         "operationId": "getUnregisteredApplicants",
         "tags": [
           "Public"
@@ -1021,12 +1022,12 @@
                 "description": "Identifier for the unregistered applicant.",
                 "additionalProperties": false,
                 "required": [
-                  "uid"
+                  "enrolment_number"
                 ],
                 "properties": {
-                  "uid": {
+                  "enrolment_number": {
                     "type": "string",
-                    "description": "GST enrolment UID of the unregistered applicant.",
+                    "description": "GST enrolment number of the unregistered applicant.",
                     "example": "292200000001ES9"
                   }
                 }
@@ -1035,7 +1036,7 @@
                 "Unregistered applicant": {
                   "summary": "Fetch an unregistered applicant",
                   "value": {
-                    "uid": "292200000001ES9"
+                    "enrolment_number": "292200000001ES9"
                   }
                 }
               }
@@ -1289,7 +1290,7 @@
     },
     "/gst/compliance/public/unregistered-applicants/validation": {
       "post": {
-        "summary": "Validate unregistered applicant contact details",
+        "summary": "Validate unregistered applicants",
         "deprecated": false,
         "description": "Validate the email address and/or mobile number registered for an unregistered e-commerce applicant.",
         "operationId": "validateUnregisteredApplicant",
