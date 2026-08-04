@@ -181,7 +181,8 @@
                 "description": "Filters for retrieving the changed GSTIN list.",
                 "additionalProperties": false,
                 "required": [
-                  "date"
+                  "date",
+                  "state_code"
                 ],
                 "properties": {
                   "date": {
@@ -192,7 +193,7 @@
                   },
                   "state_code": {
                     "type": "string",
-                    "description": "Two-digit GST state code for which to retrieve changed GSTIN records.",
+                    "description": "Required two-digit GST state code for which to retrieve changed GSTIN records.",
                     "minLength": 2,
                     "maxLength": 2,
                     "pattern": "^\\d{2}$",
@@ -1289,7 +1290,7 @@
     },
     "/gst/compliance/public/unregistered-applicants/validation": {
       "post": {
-        "summary": "Validate unregistered applicant contact details",
+        "summary": "Unregistered Applicants Validation API",
         "deprecated": false,
         "description": "Validate the email address and/or mobile number registered for an unregistered e-commerce applicant.",
         "operationId": "validateUnregisteredApplicant",
@@ -1347,7 +1348,7 @@
                 "description": "Contact details to validate for an unregistered applicant.",
                 "additionalProperties": false,
                 "required": [
-                  "enrolment_number"
+                  "uid"
                 ],
                 "anyOf": [
                   {
@@ -1362,9 +1363,9 @@
                   }
                 ],
                 "properties": {
-                  "enrolment_number": {
+                  "uid": {
                     "type": "string",
-                    "description": "GST enrolment number of the unregistered applicant.",
+                    "description": "GST enrolment UID of the unregistered applicant.",
                     "maxLength": 15,
                     "example": "372300000015ES1"
                   },
@@ -1387,7 +1388,7 @@
                 "Validate email and mobile": {
                   "summary": "Validate both contact details",
                   "value": {
-                    "enrolment_number": "372300000015ES1",
+                    "uid": "372300000015ES1",
                     "mobile": "9898989898",
                     "email": "abcd@gmail.com"
                   }
@@ -1395,7 +1396,7 @@
                 "Validate email only": {
                   "summary": "Validate an email address",
                   "value": {
-                    "enrolment_number": "372300000015ES1",
+                    "uid": "372300000015ES1",
                     "email": "abcd@gmail.com"
                   }
                 }
