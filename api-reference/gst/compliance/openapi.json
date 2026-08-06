@@ -150125,7 +150125,7 @@
         "properties": {
                 "errorCodes": {
                         "type": "string",
-                        "description": "NIC error code."
+                                                        "description": "NIC error code returned when the closure request is rejected. See [E-Way Bill error codes](/api-reference/gst/annexures/e-way-bill-error-codes)."
                 }
         }
 },
@@ -150152,7 +150152,7 @@
                                                         "enum": [
                                                                 "0"
                                                         ],
-                                                        "description": "NIC business-failure status."
+                                                        "description": "Value is \"0\" when NIC rejects the closure request."
                                                 },
                                                 "error": {
                                                         "$ref": "#/components/schemas/EWayBillBusinessError"
@@ -151985,7 +151985,7 @@
                       "1"
                     ],
                     "example": "1",
-                    "description": "NIC success status."
+                    "description": "Value is \"1\" when NIC closes the E-Way Bill."
                   },
                   "data": {
                     "$ref": "#/components/schemas/CloseEWayBillSuccessPayload"

@@ -8,15 +8,10 @@ keywords:
 openapi: '/api-reference/gst/compliance/openapi.json POST /gst/compliance/e-way-bill/bill/close'
 ---
 
-Close an eligible E-Way Bill after the underlying movement or transaction is complete.
-
 ## Before you begin
 
 - [Create an E-Way Bill session](/api-reference/gst/compliance/endpoints/e-way-bill/authenticate) for the taxpayer or transporter closing the bill.
-- If you select an `x-source` value during authentication, use the same value when you call this API.
 
-## Response
-
-When the E-Way Bill system closes the bill, `data.status` is `"1"`. The response contains the closed E-Way Bill number and `ewbClosureDate` in `data.data`.
-
-If the E-Way Bill system rejects the closure, `data.status` is `"0"`. Use `data.error.errorCodes` with the [E-Way Bill error codes](/api-reference/gst/annexures/e-way-bill-error-codes) to identify the reason.
+<Note>
+  Use the same `x-source` header that you used to create the E-Way Bill session for the taxpayer.
+</Note>
