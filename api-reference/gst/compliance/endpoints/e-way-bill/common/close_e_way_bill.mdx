@@ -1,0 +1,34 @@
+---
+title: 'Close E-Way Bill'
+description: "Close an eligible E-Way Bill by providing its number, closure date, and reason."
+keywords:
+  - E-Way Bill closure
+  - GST E-Way Bill
+  - close E-Way Bill
+openapi: '/api-reference/gst/compliance/openapi.json POST /gst/compliance/e-way-bill/bill/close'
+---
+
+Close an eligible E-Way Bill after the underlying movement or transaction is complete. The E-Way Bill system decides whether the authenticated consignor, consignee, or transporter may close the bill.
+
+## Before you begin
+
+- [Create an E-Way Bill session](/api-reference/gst/compliance/endpoints/e-way-bill/authenticate) for the taxpayer or transporter that will close the bill.
+- If you select an `x-source` value during authentication, use the same value when you call this API.
+
+## Request
+
+| Field | Description |
+| --- | --- |
+| `ewbNo` | The 12-digit E-Way Bill number to close. |
+| `closureDate` | The closure date in `DD/MM/YYYY` format. |
+| `remarks` | The reason for closure, up to 100 characters. |
+
+## Response
+
+When the E-Way Bill system closes the bill, `data.status` is `"1"`. The response contains the closed E-Way Bill number and `ewbClosureDate` in `data.data`.
+
+If the E-Way Bill system rejects the closure, `data.status` is `"0"`. Use `data.error.errorCodes` with the [E-Way Bill error codes](/api-reference/gst/annexures/e-way-bill-error-codes) to identify the reason.
+
+<Note>
+The E-Way Bill system applies its own closure eligibility rules. Sandbox forwards the closure request and returns the resulting NIC status.
+</Note>

@@ -4,6 +4,33 @@ description: "Changelog for Sandbox APIs"
 rss: "true"
 ---
 
+<Update label="August 6th, 2026" tags={["Feature"]}>
+  ## **GST Compliance – New Public APIs**
+
+  Three new GST Public APIs are now available for GSTIN change tracking and unregistered e-commerce applicant workflows.
+
+  - [**Get day-wise changed GSTINs**](/api-reference/gst/compliance/endpoints/public/get-day-wise-changed-gstins) — Retrieve GSTIN changes reported for a state on a selected date, with pagination support.
+  - [**Get unregistered applicant details**](/api-reference/gst/compliance/endpoints/public/get-unregistered-applicant-details) — Retrieve GST registration details using an applicant's enrolment number.
+  - [**Validate unregistered applicants**](/api-reference/gst/compliance/endpoints/public/unregistered-applicants-validation) — Validate the applicant's registered email address, mobile number, or both.
+
+  **Key behaviour**
+
+  - The changed GSTIN list requires a two-digit `state_code` and a `date` in `DD-MM-YYYY` format.
+  - Both unregistered-applicant APIs require `enrolment_number`.
+  - Validation requires at least one contact detail: `mobile` or `email`.
+  - The APIs support standard response caching through `x-accept-cache` and return a `transaction_id` for end-to-end tracing.
+</Update>
+
+<Update label="August 5th, 2026" tags={["Feature"]}>
+  ## **GST Compliance – Close E-Way Bill**
+
+  The [**Close E-Way Bill**](/api-reference/gst/compliance/endpoints/e-way-bill/common/close_e_way_bill) API is now available in the GST Compliance suite.
+
+  Use `POST /gst/compliance/e-way-bill/bill/close` to close an eligible E-Way Bill by passing its number, closure date, and remarks. Eligible consignors, consignees, and transporters can use the endpoint after creating an E-Way Bill session.
+
+  The E-Way Bill system validates closure eligibility and returns either the closure date or a NIC error code.
+</Update>
+
 <Update label="July 7th, 2026" tags={["Feature"]}>
   ## **MCA APIs – Company Master Data & Search Company**
 
@@ -25,6 +52,44 @@ rss: "true"
 
   For the full source-selection and request-behavior details, refer to the [**MCA Overview**](/api-reference/kyc/mca/overview).\
   For general caching guidance, please refer to our [**Response Caching**](https://developer.sandbox.co.in/guides/developer-resources/response_caching#x-accept-cache-header) documentation.
+</Update>
+
+<Update label="June 25th, 2026" tags={["Feature"]}>
+  ## **GST Compliance – GSTR-1A APIs**
+
+  We’ve added 25 GSTR-1A endpoints to the GST Compliance Taxpayer API suite. Use them to retrieve the GSTR-1A summary, table-level return data, and declaration details for a selected return period.
+
+  **Summary and declaration**
+
+  - [**GSTR-1A Summary**](/api-reference/gst/compliance/endpoints/taxpayer/gstr-1a/documents/gstr_1a) – Retrieve the table-wise GSTR-1A summary.
+  - [**Declaration Details**](/api-reference/gst/compliance/endpoints/taxpayer/gstr-1a/file/declaration_details) – Retrieve GSTR-1, GSTR-1A, and IFF liability details, along with available ITC and cash-ledger details.
+
+  **Invoices and advances**
+
+  - [**B2B**](/api-reference/gst/compliance/endpoints/taxpayer/gstr-1a/documents/b2b) and [**B2BA**](/api-reference/gst/compliance/endpoints/taxpayer/gstr-1a/documents/b2ba) – Retrieve B2B invoices and their amendments.
+  - [**B2CL**](/api-reference/gst/compliance/endpoints/taxpayer/gstr-1a/documents/b2cl) and [**B2CLA**](/api-reference/gst/compliance/endpoints/taxpayer/gstr-1a/documents/b2cla) – Retrieve B2C large invoices and their amendments.
+  - [**B2CS**](/api-reference/gst/compliance/endpoints/taxpayer/gstr-1a/documents/b2cs) and [**B2CSA**](/api-reference/gst/compliance/endpoints/taxpayer/gstr-1a/documents/b2csa) – Retrieve B2C small supplies and their amendments.
+  - [**EXP**](/api-reference/gst/compliance/endpoints/taxpayer/gstr-1a/documents/exp) and [**EXPA**](/api-reference/gst/compliance/endpoints/taxpayer/gstr-1a/documents/expa) – Retrieve export invoices and their amendments.
+  - [**AT**](/api-reference/gst/compliance/endpoints/taxpayer/gstr-1a/documents/at) and [**ATA**](/api-reference/gst/compliance/endpoints/taxpayer/gstr-1a/documents/ata) – Retrieve advance-tax details and their amendments.
+
+  **Credit and debit notes**
+
+  - [**CDNR**](/api-reference/gst/compliance/endpoints/taxpayer/gstr-1a/documents/cdnr) and [**CDNRA**](/api-reference/gst/compliance/endpoints/taxpayer/gstr-1a/documents/cdnra) – Retrieve credit and debit notes for registered recipients and their amendments.
+  - [**CDNUR**](/api-reference/gst/compliance/endpoints/taxpayer/gstr-1a/documents/cdnur) and [**CDNURA**](/api-reference/gst/compliance/endpoints/taxpayer/gstr-1a/documents/cdnura) – Retrieve credit and debit notes for unregistered recipients and their amendments.
+
+  **E-commerce supplies**
+
+  - [**ECOM**](/api-reference/gst/compliance/endpoints/taxpayer/gstr-1a/documents/ecom) and [**ECOMA**](/api-reference/gst/compliance/endpoints/taxpayer/gstr-1a/documents/ecoma) – Retrieve e-commerce details and their amendments.
+  - [**SUPECO**](/api-reference/gst/compliance/endpoints/taxpayer/gstr-1a/documents/supeco) and [**SUPECOA**](/api-reference/gst/compliance/endpoints/taxpayer/gstr-1a/documents/supecoa) – Retrieve supplies through e-commerce operators and their amendments.
+
+  **Other return tables**
+
+  - [**Document Issued**](/api-reference/gst/compliance/endpoints/taxpayer/gstr-1a/documents/doc_issue) – Retrieve documents issued during the tax period.
+  - [**HSN Summary**](/api-reference/gst/compliance/endpoints/taxpayer/gstr-1a/documents/get_hsn) – Retrieve HSN summary details.
+  - [**NIL Supplies**](/api-reference/gst/compliance/endpoints/taxpayer/gstr-1a/documents/nil) – Retrieve nil-rated supply details.
+  - [**TXP**](/api-reference/gst/compliance/endpoints/taxpayer/gstr-1a/documents/txp) and [**TXPA**](/api-reference/gst/compliance/endpoints/taxpayer/gstr-1a/documents/txpa) – Retrieve tax-paid details and their amendments.
+
+  All endpoints accept `year` and `month` as path parameters for the return period.
 </Update>
 
 <Update label="April 10th, 2026" tags={["Feature"]}>
