@@ -149907,6 +149907,184 @@
         },
         "security": []
       }
+    },
+    "/gst/compliance/e-way-bill/bill/close": {
+      "post": {
+        "summary": "Close E-Way Bill",
+        "deprecated": false,
+        "description": "Close an E-Way Bill.",
+        "operationId": "closeEWayBill",
+        "tags": [
+          "E-Way Bill1",
+          "Common"
+        ],
+        "externalDocs": {
+          "description": "NIC documentation for E-Way Bill closure.",
+          "url": "https://docs.ewaybillgst.gov.in/apidocs/version1.03/closure-eway-bill.html"
+        },
+        "parameters": [
+          {
+            "name": "authorization",
+            "in": "header",
+            "description": "E-Way Bill access token. To create a session, see [Generate E-Way Bill Session](/recipes/gst/authentication/generate_e_way_bill_session). Send the token in the authorization header.",
+            "required": true,
+            "example": "",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "x-api-version",
+            "in": "header",
+            "description": "API version.",
+            "required": false,
+            "example": "",
+            "schema": {
+              "type": "string",
+              "default": "1.0.0"
+            }
+          },
+          {
+            "name": "x-api-key",
+            "in": "header",
+            "description": "API key that identifies your account.",
+            "required": true,
+            "example": "",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "x-source",
+            "in": "header",
+            "description": "Source to use. Valid values are primary, secondary, and tertiary.",
+            "required": false,
+            "example": "primary",
+            "schema": {
+              "type": "string",
+              "enum": [
+                "primary",
+                "secondary",
+                "tertiary"
+              ],
+              "default": "primary"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CloseEWayBillRequest"
+              },
+              "examples": {
+                "Close E-Way Bill": {
+                  "summary": "Close an E-Way Bill",
+                  "value": {
+                    "ewbNo": 111000609282,
+                    "closureDate": "21/05/2026",
+                    "remarks": "Closed after delivery"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Closure result from NIC.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CloseEWayBillResponse"
+                },
+                "examples": {
+                  "E-Way Bill closed": {
+                    "summary": "E-Way Bill closed",
+                    "value": {
+                      "code": 200,
+                      "timestamp": 1785216126833,
+                      "transaction_id": "e23fdfa5-f2b3-4510-bd88-c06772803449",
+                      "data": {
+                        "status": "1",
+                        "data": {
+                          "ewayBillNo": 111000609282,
+                          "ewbClosureDate": "21/05/2026 11:35:00 AM"
+                        }
+                      }
+                    }
+                  },
+                  "NIC closure error": {
+                    "summary": "NIC rejected the closure request",
+                    "value": {
+                      "code": 200,
+                      "timestamp": 1785216126833,
+                      "transaction_id": "e23fdfa5-f2b3-4510-bd88-c06772803449",
+                      "data": {
+                        "status": "0",
+                        "error": {
+                          "errorCodes": "827"
+                        },
+                        "info": ""
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "503": {
+            "description": "NIC E-Way Bill service is not available.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "required": [
+                    "code",
+                    "timestamp",
+                    "message",
+                    "transaction_id"
+                  ],
+                  "properties": {
+                    "code": {
+                      "type": "integer",
+                      "example": 503,
+                      "description": "HTTP response code."
+                    },
+                    "timestamp": {
+                      "type": "integer",
+                      "format": "int64",
+                      "description": "Unix timestamp."
+                    },
+                    "message": {
+                      "type": "string",
+                      "example": "Source unavailable",
+                "description": "Message that explains why the service is not available."
+                    },
+                    "transaction_id": {
+                      "type": "string",
+                "description": "ID of this request."
+                    }
+                  }
+                },
+                "examples": {
+                  "Source unavailable": {
+              "summary": "NIC E-Way Bill service is not available",
+                    "value": {
+                      "code": 503,
+                      "timestamp": 1785216267483,
+                      "message": "Source unavailable",
+                      "transaction_id": "554e71ff-c665-43e6-a09f-2de0ae7fc5c8"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "security": []
+      }
     }
   },
   "components": {
@@ -149940,14 +150118,14 @@
 },
       "EWayBillBusinessError": {
         "type": "object",
-        "description": "NIC business-error details.",
+        "description": "Error data from NIC.",
         "required": [
                 "errorCodes"
         ],
         "properties": {
                 "errorCodes": {
                         "type": "string",
-                        "description": "NIC error code."
+                                                        "description": "NIC error code. See [E-Way Bill error codes](/api-reference/gst/annexures/e-way-bill-error-codes)."
                 }
         }
 },
@@ -149974,7 +150152,7 @@
                                                         "enum": [
                                                                 "0"
                                                         ],
-                                                        "description": "NIC business-failure status."
+                                                        "description": "NIC sends \"0\" when it rejects a request."
                                                 },
                                                 "error": {
                                                         "$ref": "#/components/schemas/EWayBillBusinessError"
@@ -151732,6 +151910,103 @@
         ],
         "description": "An E-Way Bill success or NIC business-failure response. Both variants use HTTP 200."
 },
+      "CloseEWayBillRequest": {
+        "type": "object",
+        "description": "Data to close an E-Way Bill.",
+        "required": [
+          "ewbNo",
+          "closureDate",
+          "remarks"
+        ],
+        "properties": {
+          "ewbNo": {
+            "type": "integer",
+            "format": "int64",
+            "example": 111000609282,
+            "description": "12-digit E-Way Bill number."
+          },
+          "closureDate": {
+            "type": "string",
+            "pattern": "^(0[1-9]|[12][0-9]|3[01])/(0[1-9]|1[0-2])/[0-9]{4}$",
+            "example": "21/05/2026",
+            "description": "Closure date. Use DD/MM/YYYY."
+          },
+          "remarks": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 100,
+            "example": "Closed after delivery",
+            "description": "Reason to close the E-Way Bill."
+          }
+        }
+      },
+      "CloseEWayBillSuccessPayload": {
+        "type": "object",
+        "description": "Data for the closed E-Way Bill.",
+        "required": [
+          "ewayBillNo",
+          "ewbClosureDate"
+        ],
+        "properties": {
+          "ewayBillNo": {
+            "type": "integer",
+            "format": "int64",
+            "example": 111000609282,
+            "description": "Closed E-Way Bill number."
+          },
+          "ewbClosureDate": {
+            "type": "string",
+            "example": "21/05/2026 11:35:00 AM",
+            "description": "Date and time when NIC closed the E-Way Bill."
+          }
+        }
+      },
+      "CloseEWayBillSuccessResponse": {
+        "allOf": [
+          {
+            "$ref": "#/components/schemas/EWayBillResponseMetadata"
+          },
+          {
+            "type": "object",
+            "required": [
+              "data"
+            ],
+            "properties": {
+              "data": {
+                "type": "object",
+                "required": [
+                  "status",
+                  "data"
+                ],
+                "properties": {
+                  "status": {
+                    "type": "string",
+                    "enum": [
+                      "1"
+                    ],
+                    "example": "1",
+                    "description": "NIC sends \"1\" when it closes the E-Way Bill."
+                  },
+                  "data": {
+                    "$ref": "#/components/schemas/CloseEWayBillSuccessPayload"
+                  }
+                }
+              }
+            }
+          }
+        ]
+      },
+      "CloseEWayBillResponse": {
+        "oneOf": [
+          {
+            "$ref": "#/components/schemas/CloseEWayBillSuccessResponse"
+          },
+          {
+            "$ref": "#/components/schemas/EWayBillBusinessErrorResponse"
+          }
+        ],
+        "description": "NIC response for an E-Way Bill closure request. Both response types use HTTP 200."
+      },
       "UpdateEWayBillVehicleRequest": {
         "type": "object",
         "properties": {
