@@ -4252,7 +4252,7 @@
       "post": {
         "summary": "Generate OTP",
         "deprecated": false,
-        "description": "Generate OTP to authenticate tax payer.",
+        "description": "Send an OTP to authenticate a GST taxpayer. This operation requires the Sandbox access token obtained from [`/authenticate`](/guides/get-started/quickstart); do not use a GST taxpayer access token.",
         "operationId": "generateOtp",
         "tags": [
           "Taxpayer",
@@ -4260,35 +4260,19 @@
         ],
         "parameters": [
           {
-            "name": "authorization",
-            "in": "header",
-            "description": "JWT access token",
-            "required": true,
-            "example": "{{access_token}}",
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
             "name": "x-source",
             "in": "header",
-            "description": "Source. Possible Values: primary (default) or secondary",
+            "description": "GST data source.",
             "required": false,
             "example": "primary",
             "schema": {
               "type": "string",
+              "enum": [
+                "primary",
+                "secondary"
+              ],
               "default": "primary",
               "example": "primary"
-            }
-          },
-          {
-            "name": "x-api-key",
-            "in": "header",
-            "description": "API key for identification",
-            "required": true,
-            "example": "{{api_key}}",
-            "schema": {
-              "type": "string"
             }
           },
           {
@@ -4296,7 +4280,7 @@
             "in": "header",
             "description": "API version",
             "required": false,
-            "example": "",
+            "example": "1.0.0",
             "schema": {
               "type": "string",
               "default": "1.0.0"
@@ -4304,24 +4288,11 @@
           }
         ],
         "requestBody": {
+          "required": true,
           "content": {
             "application/json": {
               "schema": {
-                "type": "object",
-                "required": [
-                  "username",
-                  "gstin"
-                ],
-                "properties": {
-                  "username": {
-                    "type": "string",
-                    "description": "Username as per GST portal"
-                  },
-                  "gstin": {
-                    "type": "string",
-                    "description": "GSTIN of the taxpayer"
-                  }
-                }
+                "$ref": "#/components/schemas/GstTaxpayerIdentity"
               },
               "examples": {
                 "200 Success": {
@@ -4334,14 +4305,42 @@
                 "TEC4001 OTP generation failed": {
                   "value": {
                     "username": "globex.edu.co",
-                    "gstin": "23ABCCQ2000E000"
+                    "gstin": "23ABCCQ2000E1Z0"
                   },
                   "summary": "TEC4001 OTP generation failed"
+                },
+                "TEC4002 Invalid data format": {
+                  "value": {
+                    "username": "invalid_user",
+                    "gstin": "27ABCDE1234F1Z5"
+                  },
+                  "summary": "TEC4002 Invalid data format"
+                },
+                "AUTH002 API access disabled": {
+                  "value": {
+                    "username": "api.disabled.user",
+                    "gstin": "27ABCDE1234F1Z5"
+                  },
+                  "summary": "AUTH002 API access disabled"
+                },
+                "AUTH003 Taxpayer status not eligible": {
+                  "value": {
+                    "username": "inactive.taxpayer",
+                    "gstin": "29ABCDE1234F1Z5"
+                  },
+                  "summary": "AUTH003 Taxpayer status not eligible"
+                },
+                "AUTH4032 Invalid user": {
+                  "value": {
+                    "username": "unknown.user",
+                    "gstin": "07ABCDE1234F1Z5"
+                  },
+                  "summary": "AUTH4032 Invalid user"
                 },
                 "AUTH403 Maximum sessions reached": {
                   "value": {
                     "username": "acme.gj.com",
-                    "gstin": "24AAACQ3770E000"
+                    "gstin": "24AAACQ3770E1Z0"
                   },
                   "summary": "AUTH403 Maximum sessions reached"
                 }
@@ -4351,44 +4350,51 @@
         },
         "responses": {
           "200": {
-            "description": "200 Success / TEC4001 OTP generation failed / AUTH403 Maximum sessions reached",
+            "description": "200 Success / TEC4001 OTP generation failed / TEC4002 Invalid data format / AUTH002 API access disabled / AUTH003 Taxpayer status not eligible / AUTH4032 Invalid user / AUTH403 Maximum sessions reached",
             "content": {
               "application/json": {
                 "schema": {
                   "type": "object",
+                  "required": [
+                    "code",
+                    "data",
+                    "timestamp",
+                    "transaction_id"
+                  ],
                   "properties": {
                     "code": {
-                      "type": "number",
+                      "type": "integer",
+                      "description": "HTTP status code returned by Sandbox.",
                       "example": 200
                     },
                     "data": {
-                      "type": "object",
-                      "properties": {
-                        "error": {
-                          "type": "object",
-                          "properties": {
-                            "error_cd": {
-                              "type": "string",
-                              "example": "TEC4001"
-                            },
-                            "message": {
-                              "type": "string",
-                              "example": "OTP generation failed as OTP server is down. Contact Support"
-                            }
-                          }
+                      "description": "Generate OTP result. A response contains either the success variant or the GST business error variant.",
+                      "oneOf": [
+                        {
+                          "$ref": "#/components/schemas/GenerateOtpSuccessData"
                         },
-                        "status_cd": {
-                          "type": "string",
-                          "example": "1"
+                        {
+                          "$ref": "#/components/schemas/GstTaxpayerBusinessErrorData"
+                        }
+                      ],
+                      "discriminator": {
+                        "propertyName": "status_cd",
+                        "mapping": {
+                          "1": "#/components/schemas/GenerateOtpSuccessData",
+                          "0": "#/components/schemas/GstTaxpayerBusinessErrorData"
                         }
                       }
                     },
                     "timestamp": {
-                      "type": "number",
+                      "type": "integer",
+                      "format": "int64",
+                      "description": "Unix timestamp in milliseconds when Sandbox processed the request.",
                       "example": 1712926086000
                     },
                     "transaction_id": {
                       "type": "string",
+                      "format": "uuid",
+                      "description": "Unique identifier for tracing the request.",
                       "example": "9a6ce7b9-de63-48a8-b45b-0c5420538b25"
                     }
                   }
@@ -4405,21 +4411,6 @@
                       "transaction_id": "9a6ce7b9-de63-48a8-b45b-0c5420538b25"
                     }
                   },
-                  "AUTH403 Maximum sessions reached": {
-                    "summary": "AUTH403 Maximum sessions reached",
-                    "value": {
-                      "code": 200,
-                      "data": {
-                        "error": {
-                          "error_cd": "AUTH403",
-                          "message": "Maximum session allowed for user with this GSP account exceeded."
-                        },
-                        "status_cd": "0"
-                      },
-                      "timestamp": 1763446641000,
-                      "transaction_id": "7047f26a-0993-4cab-8e7c-553034d3a3b4"
-                    }
-                  },
                   "TEC4001 OTP generation failed": {
                     "summary": "TEC4001 OTP generation failed",
                     "value": {
@@ -4433,6 +4424,81 @@
                       },
                       "timestamp": 1763446641000,
                       "transaction_id": "c0cba77f-4942-49f5-8a18-6c62d69f354b"
+                    }
+                  },
+                  "TEC4002 Invalid data format": {
+                    "summary": "TEC4002 Invalid data format",
+                    "value": {
+                      "code": 200,
+                      "data": {
+                        "error": {
+                          "error_cd": "TEC4002",
+                          "message": "Invalid Data Format"
+                        },
+                        "status_cd": "0"
+                      },
+                      "timestamp": 1763446641000,
+                      "transaction_id": "81f4563a-87a1-4ea1-90f8-cb131532dbf7"
+                    }
+                  },
+                  "AUTH002 API access disabled": {
+                    "summary": "AUTH002 API access disabled",
+                    "value": {
+                      "code": 200,
+                      "data": {
+                        "error": {
+                          "error_cd": "AUTH002",
+                          "message": "GSTIN: <GSTIN> has disabled API access, or your GSP/ASP name has not been allowed access. The taxpayer may login to the GST Common Portal and update the 'Manage API Access' settings"
+                        },
+                        "status_cd": "0"
+                      },
+                      "timestamp": 1763446641000,
+                      "transaction_id": "ad8cad72-0f8a-4b7a-bba7-80ef866dba92"
+                    }
+                  },
+                  "AUTH003 Taxpayer status not eligible": {
+                    "summary": "AUTH003 Taxpayer status not eligible",
+                    "value": {
+                      "code": 200,
+                      "data": {
+                        "error": {
+                          "error_cd": "AUTH003",
+                          "message": "API Access is allowed only for Active, Suspended, Cancelled or Temporary Taxpayers. Please verify and try again."
+                        },
+                        "status_cd": "0"
+                      },
+                      "timestamp": 1763446641000,
+                      "transaction_id": "8b9b27b2-286b-49fe-90c0-6d360fba54c7"
+                    }
+                  },
+                  "AUTH4032 Invalid user": {
+                    "summary": "AUTH4032 Invalid user",
+                    "value": {
+                      "code": 200,
+                      "data": {
+                        "error": {
+                          "error_cd": "AUTH4032",
+                          "message": "Invalid USER"
+                        },
+                        "status_cd": "0"
+                      },
+                      "timestamp": 1763446641000,
+                      "transaction_id": "9436eac5-fce2-47cf-9d7e-810f61d8f048"
+                    }
+                  },
+                  "AUTH403 Maximum sessions reached": {
+                    "summary": "AUTH403 Maximum sessions reached",
+                    "value": {
+                      "code": 200,
+                      "data": {
+                        "error": {
+                          "error_cd": "AUTH403",
+                          "message": "Maximum session allowed for user with this GSP account exceeded."
+                        },
+                        "status_cd": "0"
+                      },
+                      "timestamp": 1763446641000,
+                      "transaction_id": "7047f26a-0993-4cab-8e7c-553034d3a3b4"
                     }
                   }
                 }
@@ -4481,14 +4547,19 @@
             "headers": {}
           }
         },
-        "security": []
+        "security": [
+          {
+            "SandboxApiKey": [],
+            "SandboxAccessToken": []
+          }
+        ]
       }
     },
     "/gst/compliance/tax-payer/otp/verify": {
       "post": {
         "summary": "Verify OTP",
         "deprecated": false,
-        "description": "Verify OTP to authenticate tax payer. This API will start a session and provide access valid for 6 hrs. Returns date timestamp of expiry of session.",
+        "description": "Verify the OTP for the same GST Portal username and GSTIN used to generate it. This operation requires the Sandbox access token obtained from [`/authenticate`](/guides/get-started/quickstart). A successful response starts a GST taxpayer session and returns a GST taxpayer access token valid for 6 hours.",
         "operationId": "verifyOtp",
         "tags": [
           "Taxpayer",
@@ -4498,45 +4569,31 @@
           {
             "name": "otp",
             "in": "query",
-            "description": "One time password",
+            "description": "Six-digit OTP received by the GST taxpayer.",
             "required": true,
-            "example": 575757,
+            "example": "057575",
             "schema": {
-              "type": "integer",
-              "format": "int32",
-              "example": "575757"
-            }
-          },
-          {
-            "name": "authorization",
-            "in": "header",
-            "description": "JWT access token",
-            "required": true,
-            "example": "{{access_token}}",
-            "schema": {
-              "type": "string"
+              "type": "string",
+              "pattern": "^[0-9]{6}$",
+              "minLength": 6,
+              "maxLength": 6,
+              "example": "057575"
             }
           },
           {
             "name": "x-source",
             "in": "header",
-            "description": "Source. Possible Values: primary (default) or secondary",
+            "description": "GST data source.",
             "required": false,
             "example": "primary",
             "schema": {
               "type": "string",
+              "enum": [
+                "primary",
+                "secondary"
+              ],
               "default": "primary",
               "example": "primary"
-            }
-          },
-          {
-            "name": "x-api-key",
-            "in": "header",
-            "description": "API key for identification",
-            "required": true,
-            "example": "{{api_key}}",
-            "schema": {
-              "type": "string"
             }
           },
           {
@@ -4544,7 +4601,7 @@
             "in": "header",
             "description": "API version",
             "required": false,
-            "example": "",
+            "example": "1.0.0",
             "schema": {
               "type": "string",
               "default": "1.0.0"
@@ -4552,24 +4609,11 @@
           }
         ],
         "requestBody": {
+          "required": true,
           "content": {
             "application/json": {
               "schema": {
-                "type": "object",
-                "required": [
-                  "username",
-                  "gstin"
-                ],
-                "properties": {
-                  "username": {
-                    "type": "string",
-                    "description": "Username as per GST portal"
-                  },
-                  "gstin": {
-                    "type": "string",
-                    "description": "GSTIN of the taxpayer"
-                  }
-                }
+                "$ref": "#/components/schemas/GstTaxpayerIdentity"
               },
               "examples": {
                 "200 Success": {
@@ -4582,9 +4626,37 @@
                 "AUTH4033 Invalid session": {
                   "value": {
                     "username": "globex.edu.co",
-                    "gstin": "23ABCCQ2000E000"
+                    "gstin": "23ABCCQ2000E1Z0"
                   },
                   "summary": "AUTH4033 Invalid session"
+                },
+                "TEC4001 Token generation failed": {
+                  "value": {
+                    "username": "service.user",
+                    "gstin": "27ABCDE1234F1Z5"
+                  },
+                  "summary": "TEC4001 Token generation failed"
+                },
+                "AUTH403 Maximum sessions reached": {
+                  "value": {
+                    "username": "acme.gj.com",
+                    "gstin": "24AAACQ3770E1Z0"
+                  },
+                  "summary": "AUTH403 Maximum sessions reached"
+                },
+                "AUTH002 API access disabled": {
+                  "value": {
+                    "username": "api.disabled.user",
+                    "gstin": "27ABCDE1234F1Z5"
+                  },
+                  "summary": "AUTH002 API access disabled"
+                },
+                "AUTH003 Taxpayer status not eligible": {
+                  "value": {
+                    "username": "inactive.taxpayer",
+                    "gstin": "29ABCDE1234F1Z5"
+                  },
+                  "summary": "AUTH003 Taxpayer status not eligible"
                 }
               }
             }
@@ -4592,56 +4664,51 @@
         },
         "responses": {
           "200": {
-            "description": "AUTH4033 Invalid session / 200 Success",
+            "description": "200 Success / TEC4001 Token generation failed / AUTH4033 Invalid session / AUTH403 Maximum sessions reached / AUTH002 API access disabled / AUTH003 Taxpayer status not eligible",
             "content": {
               "application/json": {
                 "schema": {
                   "type": "object",
+                  "required": [
+                    "code",
+                    "data",
+                    "timestamp",
+                    "transaction_id"
+                  ],
                   "properties": {
                     "code": {
-                      "type": "number",
+                      "type": "integer",
+                      "description": "HTTP status code returned by Sandbox.",
                       "example": 200
                     },
                     "data": {
-                      "type": "object",
-                      "properties": {
-                        "access_token": {
-                          "type": "string",
-                          "example": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJ0YXhwYXllci1zZXNzaW9uIiwiZ3N0aW4iOiIyNEFCS0NTMjAzM0IxWlYiLCJpYXQiOjE3MTI5NDQxMDAsImV4cCI6MTcxMjk0NzcxMX0.sandbox-signature"
+                      "description": "Verify OTP result. A response contains either the authenticated session or the GST business error variant.",
+                      "oneOf": [
+                        {
+                          "$ref": "#/components/schemas/VerifyOtpSuccessData"
                         },
-                        "error": {
-                          "type": "object",
-                          "properties": {
-                            "error_cd": {
-                              "type": "string",
-                              "example": "AUTH4033"
-                            },
-                            "message": {
-                              "type": "string",
-                              "example": "Invalid Session"
-                            }
-                          }
-                        },
-                        "session_expiry": {
-                          "type": "number",
-                          "example": 1712947711000
-                        },
-                        "status_cd": {
-                          "type": "string",
-                          "example": "0"
-                        },
-                        "token_expiry": {
-                          "type": "number",
-                          "example": 1712947711000
+                        {
+                          "$ref": "#/components/schemas/GstTaxpayerBusinessErrorData"
+                        }
+                      ],
+                      "discriminator": {
+                        "propertyName": "status_cd",
+                        "mapping": {
+                          "1": "#/components/schemas/VerifyOtpSuccessData",
+                          "0": "#/components/schemas/GstTaxpayerBusinessErrorData"
                         }
                       }
                     },
                     "timestamp": {
-                      "type": "number",
+                      "type": "integer",
+                      "format": "int64",
+                      "description": "Unix timestamp in milliseconds when Sandbox processed the request.",
                       "example": 1763446641000
                     },
                     "transaction_id": {
                       "type": "string",
+                      "format": "uuid",
+                      "description": "Unique identifier for tracing the request.",
                       "example": "1ad1d698-499e-4b10-a44a-fecba43babbb"
                     }
                   }
@@ -4674,6 +4741,66 @@
                       },
                       "timestamp": 1763446641000,
                       "transaction_id": "1ad1d698-499e-4b10-a44a-fecba43babbb"
+                    }
+                  },
+                  "TEC4001 Token generation failed": {
+                    "summary": "TEC4001 Token generation failed",
+                    "value": {
+                      "code": 200,
+                      "data": {
+                        "error": {
+                          "error_cd": "TEC4001",
+                          "message": "Server is currently unavailable. Token generation failed."
+                        },
+                        "status_cd": "0"
+                      },
+                      "timestamp": 1763446641000,
+                      "transaction_id": "1de63ed8-41e4-4cd1-9340-7ea09886576d"
+                    }
+                  },
+                  "AUTH403 Maximum sessions reached": {
+                    "summary": "AUTH403 Maximum sessions reached",
+                    "value": {
+                      "code": 200,
+                      "data": {
+                        "error": {
+                          "error_cd": "AUTH403",
+                          "message": "Maximum session allowed for user with this GSP account exceeded."
+                        },
+                        "status_cd": "0"
+                      },
+                      "timestamp": 1763446641000,
+                      "transaction_id": "b634fda2-d00d-4aa9-a49a-f37ff58cf701"
+                    }
+                  },
+                  "AUTH002 API access disabled": {
+                    "summary": "AUTH002 API access disabled",
+                    "value": {
+                      "code": 200,
+                      "data": {
+                        "error": {
+                          "error_cd": "AUTH002",
+                          "message": "GSTIN: <GSTIN> has disabled API access, or your GSP/ASP name has not been allowed access. The taxpayer may login to the GST Common Portal and update the 'Manage API Access' settings"
+                        },
+                        "status_cd": "0"
+                      },
+                      "timestamp": 1763446641000,
+                      "transaction_id": "817de970-471e-475c-b624-cf64067f4336"
+                    }
+                  },
+                  "AUTH003 Taxpayer status not eligible": {
+                    "summary": "AUTH003 Taxpayer status not eligible",
+                    "value": {
+                      "code": 200,
+                      "data": {
+                        "error": {
+                          "error_cd": "AUTH003",
+                          "message": "API Access is allowed only for Active, Suspended, Cancelled or Temporary Taxpayers. Please verify and try again."
+                        },
+                        "status_cd": "0"
+                      },
+                      "timestamp": 1763446641000,
+                      "transaction_id": "7168079c-8477-4467-8afd-19b7eaf73243"
                     }
                   }
                 }
@@ -4722,91 +4849,101 @@
             "headers": {}
           }
         },
-        "security": []
+        "security": [
+          {
+            "SandboxApiKey": [],
+            "SandboxAccessToken": []
+          }
+        ]
       }
     },
     "/gst/compliance/tax-payer/session/refresh": {
       "post": {
         "summary": "Refresh Access Token",
         "deprecated": false,
-        "description": "Extend access to data on behalf of tax payer / tax consultant without user intervention. \r\n",
+        "description": "Extend an active GST taxpayer session without requesting another OTP. This operation requires the GST taxpayer access token returned by [Verify OTP](/api-reference/gst/compliance/endpoints/taxpayer/authentication/verify_otp); do not use the Sandbox access token.",
         "operationId": "refreshSession",
         "tags": [
           "Taxpayer",
           "Taxpayer Auth"
         ],
-        "parameters": [
+        "x-codeSamples": [
           {
-            "name": "authorization",
-            "in": "header",
-            "description": "GST taxpayer access token. For token-generation steps, refer to the [Generate Taxpayer Session](/recipes/gst/authentication/generate_tax_payer_session) recipe, then pass the token in the authorization header.",
-            "required": true,
-            "example": "{{gsp_access_token}}",
-            "schema": {
-              "type": "string"
-            }
+            "lang": "curl",
+            "label": "200 Success",
+            "source": "curl --request POST \\\n  --url https://api.sandbox.co.in/gst/compliance/tax-payer/session/refresh \\\n  --header 'authorization: <active-gst-taxpayer-access-token>' \\\n  --header 'x-api-key: <api-key>' \\\n  --header 'x-api-version: 1.0.0'"
           },
+          {
+            "lang": "curl",
+            "label": "AUTH4037 API access unavailable",
+            "source": "curl --request POST \\\n  --url https://api.sandbox.co.in/gst/compliance/tax-payer/session/refresh \\\n  --header 'authorization: <expiring-gst-taxpayer-access-token>' \\\n  --header 'x-api-key: <api-key>' \\\n  --header 'x-api-version: 1.0.0'"
+          },
+          {
+            "lang": "curl",
+            "label": "AUTH4042 Refresh token session cannot be extended",
+            "source": "curl --request POST \\\n  --url https://api.sandbox.co.in/gst/compliance/tax-payer/session/refresh \\\n  --header 'authorization: <non-extendable-gst-taxpayer-access-token>' \\\n  --header 'x-api-key: <api-key>' \\\n  --header 'x-api-version: 1.0.0'"
+          }
+        ],
+        "parameters": [
           {
             "name": "x-api-version",
             "in": "header",
             "description": "API version",
             "required": false,
-            "example": "",
+            "example": "1.0.0",
             "schema": {
               "type": "string",
               "default": "1.0.0"
-            }
-          },
-          {
-            "name": "x-api-key",
-            "in": "header",
-            "description": "API key for identification",
-            "required": true,
-            "example": "{{api_key}}",
-            "schema": {
-              "type": "string"
             }
           }
         ],
         "responses": {
           "200": {
-            "description": "200 Success",
+            "description": "200 Success / AUTH4037 API access unavailable / AUTH4042 Refresh token session cannot be extended",
             "content": {
               "application/json": {
                 "schema": {
                   "type": "object",
+                  "required": [
+                    "code",
+                    "data",
+                    "timestamp",
+                    "transaction_id"
+                  ],
                   "properties": {
                     "code": {
-                      "type": "number",
+                      "type": "integer",
+                      "description": "HTTP status code returned by Sandbox.",
                       "example": 200
                     },
                     "data": {
-                      "type": "object",
-                      "properties": {
-                        "access_token": {
-                          "type": "string",
-                          "example": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJ0YXhwYXllci1zZXNzaW9uIiwiZ3N0aW4iOiIyNEFCS0NTMjAzM0IxWlYiLCJpYXQiOjE3MTI5NDQxMDAsImV4cCI6MTcxMjk0NzcxMX0.sandbox-signature"
+                      "description": "Refresh Session result. A response contains either the refreshed session or the GST business error variant.",
+                      "oneOf": [
+                        {
+                          "$ref": "#/components/schemas/RefreshTokenSuccessData"
                         },
-                        "session_expiry": {
-                          "type": "number",
-                          "example": 1712947710000
-                        },
-                        "status_cd": {
-                          "type": "string",
-                          "example": "1"
-                        },
-                        "token_expiry": {
-                          "type": "number",
-                          "example": 1712947711000
+                        {
+                          "$ref": "#/components/schemas/GstTaxpayerBusinessErrorData"
+                        }
+                      ],
+                      "discriminator": {
+                        "propertyName": "status_cd",
+                        "mapping": {
+                          "1": "#/components/schemas/RefreshTokenSuccessData",
+                          "0": "#/components/schemas/GstTaxpayerBusinessErrorData"
                         }
                       }
                     },
                     "timestamp": {
-                      "type": "number",
+                      "type": "integer",
+                      "format": "int64",
+                      "description": "Unix timestamp in milliseconds when Sandbox processed the request.",
                       "example": 1712926110000
                     },
                     "transaction_id": {
                       "type": "string",
+                      "format": "uuid",
+                      "description": "Unique identifier for tracing the request.",
                       "example": "460019fb-f79a-4c1d-bc21-46c9f8210c1d"
                     }
                   }
@@ -4825,6 +4962,36 @@
                       "timestamp": 1712926110000,
                       "transaction_id": "460019fb-f79a-4c1d-bc21-46c9f8210c1d"
                     }
+                  },
+                  "AUTH4037 API access unavailable": {
+                    "summary": "AUTH4037 API access unavailable",
+                    "value": {
+                      "code": 200,
+                      "data": {
+                        "error": {
+                          "error_cd": "AUTH4037",
+                          "message": "API access is not available or user expiry Duration is less than or equal to auth token expiry duration"
+                        },
+                        "status_cd": "0"
+                      },
+                      "timestamp": 1763446641000,
+                      "transaction_id": "88f1cae2-6640-492d-b2ea-144253600c66"
+                    }
+                  },
+                  "AUTH4042 Refresh token session cannot be extended": {
+                    "summary": "AUTH4042 Refresh token session cannot be extended",
+                    "value": {
+                      "code": 200,
+                      "data": {
+                        "error": {
+                          "error_cd": "AUTH4042",
+                          "message": "RefreshToken Session Cannot Be Extended"
+                        },
+                        "status_cd": "0"
+                      },
+                      "timestamp": 1763446641000,
+                      "transaction_id": "21ab38cc-adfc-42f9-a40a-a04be7355f6e"
+                    }
                   }
                 }
               }
@@ -4832,14 +4999,19 @@
             "headers": {}
           }
         },
-        "security": []
+        "security": [
+          {
+            "SandboxApiKey": [],
+            "GstTaxpayerAccessToken": []
+          }
+        ]
       }
     },
     "/gst/compliance/tax-payer/logout": {
       "post": {
         "summary": "Logout",
         "deprecated": false,
-        "description": "Using this API, you can invalidate current taxpayer session.",
+        "description": "Invalidate the current GST taxpayer session. This operation requires the GST taxpayer access token returned by [Verify OTP](/api-reference/gst/compliance/endpoints/taxpayer/authentication/verify_otp); do not use the Sandbox access token.",
         "operationId": "logout",
         "tags": [
           "Taxpayer",
@@ -4847,34 +5019,14 @@
         ],
         "parameters": [
           {
-            "name": "authorization",
-            "in": "header",
-            "description": "GST taxpayer access token. For token-generation steps, refer to the [Generate Taxpayer Session](/recipes/gst/authentication/generate_tax_payer_session) recipe, then pass the token in the authorization header.",
-            "required": true,
-            "example": "{{gsp_access_token}}",
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
             "name": "x-api-version",
             "in": "header",
             "description": "API version",
             "required": false,
-            "example": "",
+            "example": "1.0.0",
             "schema": {
               "type": "string",
               "default": "1.0.0"
-            }
-          },
-          {
-            "name": "x-api-key",
-            "in": "header",
-            "description": "API key for identification",
-            "required": true,
-            "example": "{{api_key}}",
-            "schema": {
-              "type": "string"
             }
           }
         ],
@@ -4927,7 +5079,12 @@
             "headers": {}
           }
         },
-        "security": []
+        "security": [
+          {
+            "SandboxApiKey": [],
+            "GstTaxpayerAccessToken": []
+          }
+        ]
       }
     },
     "/gst/compliance/tax-payer/evc/otp": {
@@ -4949,26 +5106,6 @@
             "schema": {
               "type": "string",
               "example": "{{gst_return}}"
-            }
-          },
-          {
-            "name": "authorization",
-            "in": "header",
-            "description": "GST taxpayer access token. For token-generation steps, refer to the [Generate Taxpayer Session](/recipes/gst/authentication/generate_tax_payer_session) recipe, then pass the token in the authorization header.",
-            "required": true,
-            "example": "",
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "x-api-key",
-            "in": "header",
-            "description": "API key for identification",
-            "required": true,
-            "example": "",
-            "schema": {
-              "type": "string"
             }
           },
           {
@@ -5092,7 +5229,12 @@
             "headers": {}
           }
         },
-        "security": []
+        "security": [
+          {
+            "SandboxApiKey": [],
+            "GstTaxpayerAccessToken": []
+          }
+        ]
       }
     },
     "/gst/compliance/tax-payer/gstrs/gstr-1/txp/{year}/{month}": {
@@ -5157,26 +5299,6 @@
             }
           },
           {
-            "name": "authorization",
-            "in": "header",
-            "description": "",
-            "required": true,
-            "example": "{{gsp_access_token}}",
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "x-api-key",
-            "in": "header",
-            "description": "Public key required to authorize API access.",
-            "required": true,
-            "example": "{{api_key}}",
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
             "name": "x-api-version",
             "in": "header",
             "description": "",
@@ -5217,7 +5339,12 @@
             "headers": {}
           }
         },
-        "security": []
+        "security": [
+          {
+            "SandboxApiKey": [],
+            "GstTaxpayerAccessToken": []
+          }
+        ]
       }
     },
     "/gst/compliance/tax-payer/gstrs/gstr-1/txpa/{year}/{month}": {
@@ -5282,26 +5409,6 @@
             }
           },
           {
-            "name": "authorization",
-            "in": "header",
-            "description": "",
-            "required": true,
-            "example": "{{gsp_access_token}}",
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "x-api-key",
-            "in": "header",
-            "description": "Public key required to authorize API access.",
-            "required": true,
-            "example": "{{api_key}}",
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
             "name": "x-api-version",
             "in": "header",
             "description": "",
@@ -5325,7 +5432,12 @@
             "headers": {}
           }
         },
-        "security": []
+        "security": [
+          {
+            "SandboxApiKey": [],
+            "GstTaxpayerAccessToken": []
+          }
+        ]
       }
     },
     "/gst/compliance/tax-payer/gstrs/gstr-1/ecom/{year}/{month}": {
@@ -5390,31 +5502,11 @@
             }
           },
           {
-            "name": "x-api-key",
-            "in": "header",
-            "description": "Public key required to authorize API access.",
-            "required": true,
-            "example": "{{api_key}}",
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
             "name": "x-api-version",
             "in": "header",
             "description": "",
             "required": true,
             "example": "{{version}}",
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "authorization",
-            "in": "header",
-            "description": "",
-            "required": true,
-            "example": "{{gsp_access_token}}",
             "schema": {
               "type": "string"
             }
@@ -5450,7 +5542,12 @@
             "headers": {}
           }
         },
-        "security": []
+        "security": [
+          {
+            "SandboxApiKey": [],
+            "GstTaxpayerAccessToken": []
+          }
+        ]
       }
     },
     "/gst/compliance/tax-payer/gstrs/gstr-1/supeco/{year}/{month}": {
@@ -5505,31 +5602,11 @@
             }
           },
           {
-            "name": "x-api-key",
-            "in": "header",
-            "description": "Public key required to authorize API access.",
-            "required": true,
-            "example": "{{api_key}}",
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
             "name": "x-api-version",
             "in": "header",
             "description": "",
             "required": true,
             "example": "{{version}}",
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "authorization",
-            "in": "header",
-            "description": "",
-            "required": true,
-            "example": "{{gsp_access_token}}",
             "schema": {
               "type": "string"
             }
@@ -5565,7 +5642,12 @@
             "headers": {}
           }
         },
-        "security": []
+        "security": [
+          {
+            "SandboxApiKey": [],
+            "GstTaxpayerAccessToken": []
+          }
+        ]
       }
     },
     "/gst/compliance/tax-payer/gstrs/gstr-1/ecoma/{year}/{month}": {
@@ -5601,31 +5683,11 @@
             }
           },
           {
-            "name": "x-api-key",
-            "in": "header",
-            "description": "Public key required to authorize API access.",
-            "required": true,
-            "example": "{{api_key}}",
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
             "name": "x-api-version",
             "in": "header",
             "description": "",
             "required": true,
             "example": "{{version}}",
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "authorization",
-            "in": "header",
-            "description": "",
-            "required": true,
-            "example": "{{gsp_access_token}}",
             "schema": {
               "type": "string"
             }
@@ -5661,7 +5723,12 @@
             "headers": {}
           }
         },
-        "security": []
+        "security": [
+          {
+            "SandboxApiKey": [],
+            "GstTaxpayerAccessToken": []
+          }
+        ]
       }
     },
     "/gst/compliance/tax-payer/gstrs/gstr-1/at/{year}/{month}": {
@@ -5697,16 +5764,6 @@
             }
           },
           {
-            "name": "authorization",
-            "in": "header",
-            "description": "GST taxpayer access token. For token-generation steps, refer to the [Generate Taxpayer Session](/recipes/gst/authentication/generate_tax_payer_session) recipe, then pass the token in the authorization header.",
-            "required": true,
-            "example": "",
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
             "name": "x-api-version",
             "in": "header",
             "description": "API version",
@@ -5715,16 +5772,6 @@
             "schema": {
               "type": "string",
               "default": "1.0.0"
-            }
-          },
-          {
-            "name": "x-api-key",
-            "in": "header",
-            "description": "API key for identification",
-            "required": true,
-            "example": "",
-            "schema": {
-              "type": "string"
             }
           }
         ],
@@ -5758,7 +5805,12 @@
             "headers": {}
           }
         },
-        "security": []
+        "security": [
+          {
+            "SandboxApiKey": [],
+            "GstTaxpayerAccessToken": []
+          }
+        ]
       }
     },
     "/gst/compliance/tax-payer/gstrs/gstr-1/supecoa/{year}/{month}": {
@@ -5789,31 +5841,11 @@
             }
           },
           {
-            "name": "x-api-key",
-            "in": "header",
-            "description": "Public key required to authorize API access.",
-            "required": true,
-            "example": "{{api_key}}",
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
             "name": "x-api-version",
             "in": "header",
             "description": "",
             "required": true,
             "example": "{{version}}",
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "authorization",
-            "in": "header",
-            "description": "",
-            "required": true,
-            "example": "{{gsp_access_token}}",
             "schema": {
               "type": "string"
             }
@@ -5849,7 +5881,12 @@
             "headers": {}
           }
         },
-        "security": []
+        "security": [
+          {
+            "SandboxApiKey": [],
+            "GstTaxpayerAccessToken": []
+          }
+        ]
       }
     },
     "/gst/compliance/tax-payer/gstrs/gstr-1/ata/{year}/{month}": {
@@ -5885,16 +5922,6 @@
             }
           },
           {
-            "name": "authorization",
-            "in": "header",
-            "description": "GST taxpayer access token. For token-generation steps, refer to the [Generate Taxpayer Session](/recipes/gst/authentication/generate_tax_payer_session) recipe, then pass the token in the authorization header.",
-            "required": true,
-            "example": "",
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
             "name": "x-api-version",
             "in": "header",
             "description": "API version",
@@ -5903,16 +5930,6 @@
             "schema": {
               "type": "string",
               "default": "1.0.0"
-            }
-          },
-          {
-            "name": "x-api-key",
-            "in": "header",
-            "description": "API key for identification",
-            "required": true,
-            "example": "",
-            "schema": {
-              "type": "string"
             }
           }
         ],
@@ -5946,7 +5963,12 @@
             "headers": {}
           }
         },
-        "security": []
+        "security": [
+          {
+            "SandboxApiKey": [],
+            "GstTaxpayerAccessToken": []
+          }
+        ]
       }
     },
     "/gst/compliance/tax-payer/gstrs/gstr-1/b2b/{year}/{month}": {
@@ -6011,26 +6033,6 @@
             "schema": {
               "type": "string",
               "example": "{{gstin}}"
-            }
-          },
-          {
-            "name": "authorization",
-            "in": "header",
-            "description": "GST taxpayer access token. For token-generation steps, refer to the [Generate Taxpayer Session](/recipes/gst/authentication/generate_tax_payer_session) recipe, then pass the token in the authorization header.",
-            "required": true,
-            "example": "{{gsp_access_token}}",
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "x-api-key",
-            "in": "header",
-            "description": "API key for identification",
-            "required": true,
-            "example": "{{api_key}}",
-            "schema": {
-              "type": "string"
             }
           },
           {
@@ -6475,7 +6477,12 @@
             "headers": {}
           }
         },
-        "security": []
+        "security": [
+          {
+            "SandboxApiKey": [],
+            "GstTaxpayerAccessToken": []
+          }
+        ]
       }
     },
     "/gst/compliance/tax-payer/gstrs/gstr-1/b2ba/{year}/{month}": {
@@ -6541,26 +6548,6 @@
             }
           },
           {
-            "name": "authorization",
-            "in": "header",
-            "description": "GST taxpayer access token. For token-generation steps, refer to the [Generate Taxpayer Session](/recipes/gst/authentication/generate_tax_payer_session) recipe, then pass the token in the authorization header.",
-            "required": true,
-            "example": "",
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "x-api-key",
-            "in": "header",
-            "description": "API key for identification",
-            "required": true,
-            "example": "",
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
             "name": "x-api-version",
             "in": "header",
             "description": "API version",
@@ -6602,7 +6589,12 @@
             "headers": {}
           }
         },
-        "security": []
+        "security": [
+          {
+            "SandboxApiKey": [],
+            "GstTaxpayerAccessToken": []
+          }
+        ]
       }
     },
     "/gst/compliance/tax-payer/gstrs/gstr-1/b2cl/{year}/{month}": {
@@ -6648,16 +6640,6 @@
             }
           },
           {
-            "name": "authorization",
-            "in": "header",
-            "description": "GST taxpayer access token. For token-generation steps, refer to the [Generate Taxpayer Session](/recipes/gst/authentication/generate_tax_payer_session) recipe, then pass the token in the authorization header.",
-            "required": true,
-            "example": "",
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
             "name": "x-api-version",
             "in": "header",
             "description": "API version",
@@ -6666,16 +6648,6 @@
             "schema": {
               "type": "string",
               "default": "1.0.0"
-            }
-          },
-          {
-            "name": "x-api-key",
-            "in": "header",
-            "description": "API key for identification",
-            "required": true,
-            "example": "",
-            "schema": {
-              "type": "string"
             }
           }
         ],
@@ -6709,7 +6681,12 @@
             "headers": {}
           }
         },
-        "security": []
+        "security": [
+          {
+            "SandboxApiKey": [],
+            "GstTaxpayerAccessToken": []
+          }
+        ]
       }
     },
     "/gst/compliance/tax-payer/gstrs/gstr-1/b2cla/{year}/{month}": {
@@ -6755,16 +6732,6 @@
             }
           },
           {
-            "name": "authorization",
-            "in": "header",
-            "description": "GST taxpayer access token. For token-generation steps, refer to the [Generate Taxpayer Session](/recipes/gst/authentication/generate_tax_payer_session) recipe, then pass the token in the authorization header.",
-            "required": true,
-            "example": "",
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
             "name": "x-api-version",
             "in": "header",
             "description": "API version",
@@ -6773,16 +6740,6 @@
             "schema": {
               "type": "string",
               "default": "1.0.0"
-            }
-          },
-          {
-            "name": "x-api-key",
-            "in": "header",
-            "description": "API key for identification",
-            "required": true,
-            "example": "",
-            "schema": {
-              "type": "string"
             }
           }
         ],
@@ -6816,7 +6773,12 @@
             "headers": {}
           }
         },
-        "security": []
+        "security": [
+          {
+            "SandboxApiKey": [],
+            "GstTaxpayerAccessToken": []
+          }
+        ]
       }
     },
     "/gst/compliance/tax-payer/gstrs/gstr-1/b2cs/{year}/{month}": {
@@ -6852,16 +6814,6 @@
             }
           },
           {
-            "name": "authorization",
-            "in": "header",
-            "description": "GST taxpayer access token. For token-generation steps, refer to the [Generate Taxpayer Session](/recipes/gst/authentication/generate_tax_payer_session) recipe, then pass the token in the authorization header.",
-            "required": true,
-            "example": "",
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
             "name": "x-api-version",
             "in": "header",
             "description": "API version",
@@ -6870,16 +6822,6 @@
             "schema": {
               "type": "string",
               "default": "1.0.0"
-            }
-          },
-          {
-            "name": "x-api-key",
-            "in": "header",
-            "description": "API key for identification",
-            "required": true,
-            "example": "",
-            "schema": {
-              "type": "string"
             }
           }
         ],
@@ -7252,7 +7194,12 @@
             "headers": {}
           }
         },
-        "security": []
+        "security": [
+          {
+            "SandboxApiKey": [],
+            "GstTaxpayerAccessToken": []
+          }
+        ]
       }
     },
     "/gst/compliance/tax-payer/gstrs/gstr-1/b2csa/{year}/{month}": {
@@ -7288,16 +7235,6 @@
             }
           },
           {
-            "name": "authorization",
-            "in": "header",
-            "description": "GST taxpayer access token. For token-generation steps, refer to the [Generate Taxpayer Session](/recipes/gst/authentication/generate_tax_payer_session) recipe, then pass the token in the authorization header.",
-            "required": true,
-            "example": "",
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
             "name": "x-api-version",
             "in": "header",
             "description": "API version",
@@ -7306,16 +7243,6 @@
             "schema": {
               "type": "string",
               "default": "1.0.0"
-            }
-          },
-          {
-            "name": "x-api-key",
-            "in": "header",
-            "description": "API key for identification",
-            "required": true,
-            "example": "",
-            "schema": {
-              "type": "string"
             }
           }
         ],
@@ -7719,7 +7646,12 @@
             "headers": {}
           }
         },
-        "security": []
+        "security": [
+          {
+            "SandboxApiKey": [],
+            "GstTaxpayerAccessToken": []
+          }
+        ]
       }
     },
     "/gst/compliance/tax-payer/gstrs/gstr-1/cdnr/{year}/{month}": {
@@ -7772,26 +7704,6 @@
             "schema": {
               "type": "string",
               "example": "{{from}}"
-            }
-          },
-          {
-            "name": "authorization",
-            "in": "header",
-            "description": "GST taxpayer access token. For token-generation steps, refer to the [Generate Taxpayer Session](/recipes/gst/authentication/generate_tax_payer_session) recipe, then pass the token in the authorization header.",
-            "required": true,
-            "example": "",
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "x-api-key",
-            "in": "header",
-            "description": "API key for identification",
-            "required": true,
-            "example": "",
-            "schema": {
-              "type": "string"
             }
           },
           {
@@ -8069,7 +7981,12 @@
             "headers": {}
           }
         },
-        "security": []
+        "security": [
+          {
+            "SandboxApiKey": [],
+            "GstTaxpayerAccessToken": []
+          }
+        ]
       }
     },
     "/gst/compliance/tax-payer/gstrs/gstr-1/cdnra/{year}/{month}": {
@@ -8125,26 +8042,6 @@
             }
           },
           {
-            "name": "authorization",
-            "in": "header",
-            "description": "GST taxpayer access token. For token-generation steps, refer to the [Generate Taxpayer Session](/recipes/gst/authentication/generate_tax_payer_session) recipe, then pass the token in the authorization header.",
-            "required": true,
-            "example": "",
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "x-api-key",
-            "in": "header",
-            "description": "API key for identification",
-            "required": true,
-            "example": "",
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
             "name": "x-api-version",
             "in": "header",
             "description": "API version",
@@ -8197,7 +8094,12 @@
             "headers": {}
           }
         },
-        "security": []
+        "security": [
+          {
+            "SandboxApiKey": [],
+            "GstTaxpayerAccessToken": []
+          }
+        ]
       }
     },
     "/gst/compliance/tax-payer/gstrs/gstr-1/cdnur/{year}/{month}": {
@@ -8233,16 +8135,6 @@
             }
           },
           {
-            "name": "authorization",
-            "in": "header",
-            "description": "GST taxpayer access token. For token-generation steps, refer to the [Generate Taxpayer Session](/recipes/gst/authentication/generate_tax_payer_session) recipe, then pass the token in the authorization header.",
-            "required": true,
-            "example": "",
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
             "name": "x-api-version",
             "in": "header",
             "description": "API version",
@@ -8251,16 +8143,6 @@
             "schema": {
               "type": "string",
               "default": "1.0.0"
-            }
-          },
-          {
-            "name": "x-api-key",
-            "in": "header",
-            "description": "API key for identification",
-            "required": true,
-            "example": "",
-            "schema": {
-              "type": "string"
             }
           }
         ],
@@ -8294,7 +8176,12 @@
             "headers": {}
           }
         },
-        "security": []
+        "security": [
+          {
+            "SandboxApiKey": [],
+            "GstTaxpayerAccessToken": []
+          }
+        ]
       }
     },
     "/gst/compliance/tax-payer/gstrs/gstr-1/cdnura/{year}/{month}": {
@@ -8330,16 +8217,6 @@
             }
           },
           {
-            "name": "authorization",
-            "in": "header",
-            "description": "GST taxpayer access token. For token-generation steps, refer to the [Generate Taxpayer Session](/recipes/gst/authentication/generate_tax_payer_session) recipe, then pass the token in the authorization header.",
-            "required": true,
-            "example": "",
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
             "name": "x-api-version",
             "in": "header",
             "description": "API version",
@@ -8348,16 +8225,6 @@
             "schema": {
               "type": "string",
               "default": "1.0.0"
-            }
-          },
-          {
-            "name": "x-api-key",
-            "in": "header",
-            "description": "API key for identification",
-            "required": true,
-            "example": "",
-            "schema": {
-              "type": "string"
             }
           }
         ],
@@ -8391,7 +8258,12 @@
             "headers": {}
           }
         },
-        "security": []
+        "security": [
+          {
+            "SandboxApiKey": [],
+            "GstTaxpayerAccessToken": []
+          }
+        ]
       }
     },
     "/gst/compliance/tax-payer/gstrs/gstr-1/doc-issue/{year}/{month}": {
@@ -8427,16 +8299,6 @@
             }
           },
           {
-            "name": "authorization",
-            "in": "header",
-            "description": "GST taxpayer access token. For token-generation steps, refer to the [Generate Taxpayer Session](/recipes/gst/authentication/generate_tax_payer_session) recipe, then pass the token in the authorization header.",
-            "required": true,
-            "example": "",
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
             "name": "x-api-version",
             "in": "header",
             "description": "API version",
@@ -8445,16 +8307,6 @@
             "schema": {
               "type": "string",
               "default": "1.0.0"
-            }
-          },
-          {
-            "name": "x-api-key",
-            "in": "header",
-            "description": "API key for identification",
-            "required": true,
-            "example": "",
-            "schema": {
-              "type": "string"
             }
           }
         ],
@@ -8573,7 +8425,12 @@
             "headers": {}
           }
         },
-        "security": []
+        "security": [
+          {
+            "SandboxApiKey": [],
+            "GstTaxpayerAccessToken": []
+          }
+        ]
       }
     },
     "/gst/compliance/tax-payer/gstrs/gstr-1/exp/{year}/{month}": {
@@ -8609,16 +8466,6 @@
             }
           },
           {
-            "name": "authorization",
-            "in": "header",
-            "description": "GST taxpayer access token. For token-generation steps, refer to the [Generate Taxpayer Session](/recipes/gst/authentication/generate_tax_payer_session) recipe, then pass the token in the authorization header.",
-            "required": true,
-            "example": "",
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
             "name": "x-api-version",
             "in": "header",
             "description": "API version",
@@ -8627,16 +8474,6 @@
             "schema": {
               "type": "string",
               "default": "1.0.0"
-            }
-          },
-          {
-            "name": "x-api-key",
-            "in": "header",
-            "description": "API key for identification",
-            "required": true,
-            "example": "",
-            "schema": {
-              "type": "string"
             }
           }
         ],
@@ -8670,7 +8507,12 @@
             "headers": {}
           }
         },
-        "security": []
+        "security": [
+          {
+            "SandboxApiKey": [],
+            "GstTaxpayerAccessToken": []
+          }
+        ]
       }
     },
     "/gst/compliance/tax-payer/gstrs/gstr-1/expa/{year}/{month}": {
@@ -8706,16 +8548,6 @@
             }
           },
           {
-            "name": "authorization",
-            "in": "header",
-            "description": "GST taxpayer access token. For token-generation steps, refer to the [Generate Taxpayer Session](/recipes/gst/authentication/generate_tax_payer_session) recipe, then pass the token in the authorization header.",
-            "required": true,
-            "example": "",
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
             "name": "x-api-version",
             "in": "header",
             "description": "API version",
@@ -8724,16 +8556,6 @@
             "schema": {
               "type": "string",
               "default": "1.0.0"
-            }
-          },
-          {
-            "name": "x-api-key",
-            "in": "header",
-            "description": "API key for identification",
-            "required": true,
-            "example": "",
-            "schema": {
-              "type": "string"
             }
           }
         ],
@@ -8767,7 +8589,12 @@
             "headers": {}
           }
         },
-        "security": []
+        "security": [
+          {
+            "SandboxApiKey": [],
+            "GstTaxpayerAccessToken": []
+          }
+        ]
       }
     },
     "/gst/compliance/tax-payer/gstrs/gstr-1/nil/{year}/{month}": {
@@ -8796,26 +8623,6 @@
             "name": "month",
             "in": "path",
             "description": "",
-            "required": true,
-            "example": "",
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "authorization",
-            "in": "header",
-            "description": "GST taxpayer access token. For token-generation steps, refer to the [Generate Taxpayer Session](/recipes/gst/authentication/generate_tax_payer_session) recipe, then pass the token in the authorization header.",
-            "required": true,
-            "example": "",
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "x-api-key",
-            "in": "header",
-            "description": "API key for identification",
             "required": true,
             "example": "",
             "schema": {
@@ -8907,7 +8714,12 @@
             "headers": {}
           }
         },
-        "security": []
+        "security": [
+          {
+            "SandboxApiKey": [],
+            "GstTaxpayerAccessToken": []
+          }
+        ]
       }
     },
     "/gst/compliance/tax-payer/gstrs/gstr-1/hsn/{year}/{month}": {
@@ -8943,16 +8755,6 @@
             }
           },
           {
-            "name": "authorization",
-            "in": "header",
-            "description": "GST taxpayer access token. For token-generation steps, refer to the [Generate Taxpayer Session](/recipes/gst/authentication/generate_tax_payer_session) recipe, then pass the token in the authorization header.",
-            "required": true,
-            "example": "",
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
             "name": "x-api-version",
             "in": "header",
             "description": "API version",
@@ -8961,16 +8763,6 @@
             "schema": {
               "type": "string",
               "default": "1.0.0"
-            }
-          },
-          {
-            "name": "x-api-key",
-            "in": "header",
-            "description": "API key for identification",
-            "required": true,
-            "example": "",
-            "schema": {
-              "type": "string"
             }
           }
         ],
@@ -9035,7 +8827,12 @@
             "headers": {}
           }
         },
-        "security": []
+        "security": [
+          {
+            "SandboxApiKey": [],
+            "GstTaxpayerAccessToken": []
+          }
+        ]
       }
     },
     "/gst/compliance/tax-payer/gstrs/gstr-1/{year}/{month}": {
@@ -9078,26 +8875,6 @@
             "schema": {
               "type": "string",
               "example": "long"
-            }
-          },
-          {
-            "name": "authorization",
-            "in": "header",
-            "description": "GST taxpayer access token. For token-generation steps, refer to the [Generate Taxpayer Session](/recipes/gst/authentication/generate_tax_payer_session) recipe, then pass the token in the authorization header.",
-            "required": true,
-            "example": "",
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "x-api-key",
-            "in": "header",
-            "description": "API key for identification",
-            "required": true,
-            "example": "",
-            "schema": {
-              "type": "string"
             }
           },
           {
@@ -10887,7 +10664,12 @@
             "headers": {}
           }
         },
-        "security": []
+        "security": [
+          {
+            "SandboxApiKey": [],
+            "GstTaxpayerAccessToken": []
+          }
+        ]
       },
       "post": {
         "summary": "Save GSTR-1",
@@ -10921,16 +10703,6 @@
             }
           },
           {
-            "name": "authorization",
-            "in": "header",
-            "description": "GST taxpayer access token. For token-generation steps, refer to the [Generate Taxpayer Session](/recipes/gst/authentication/generate_tax_payer_session) recipe, then pass the token in the authorization header.",
-            "required": true,
-            "example": "{{gsp_access_token}}",
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
             "name": "x-api-version",
             "in": "header",
             "description": "API version",
@@ -10939,16 +10711,6 @@
             "schema": {
               "type": "string",
               "default": "1.0.0"
-            }
-          },
-          {
-            "name": "x-api-key",
-            "in": "header",
-            "description": "API key for identification",
-            "required": true,
-            "example": "{{api_key}}",
-            "schema": {
-              "type": "string"
             }
           }
         ],
@@ -11603,7 +11365,12 @@
             "headers": {}
           }
         },
-        "security": []
+        "security": [
+          {
+            "SandboxApiKey": [],
+            "GstTaxpayerAccessToken": []
+          }
+        ]
       }
     },
     "/gst/compliance/tax-payer/gstrs/gstr-1/{year}/{month}/reset": {
@@ -11639,16 +11406,6 @@
             }
           },
           {
-            "name": "authorization",
-            "in": "header",
-            "description": "GST taxpayer access token. For token-generation steps, refer to the [Generate Taxpayer Session](/recipes/gst/authentication/generate_tax_payer_session) recipe, then pass the token in the authorization header.",
-            "required": true,
-            "example": "",
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
             "name": "x-api-version",
             "in": "header",
             "description": "API version",
@@ -11657,16 +11414,6 @@
             "schema": {
               "type": "string",
               "default": "1.0.0"
-            }
-          },
-          {
-            "name": "x-api-key",
-            "in": "header",
-            "description": "API key for identification",
-            "required": true,
-            "example": "",
-            "schema": {
-              "type": "string"
             }
           }
         ],
@@ -11714,7 +11461,12 @@
             "headers": {}
           }
         },
-        "security": []
+        "security": [
+          {
+            "SandboxApiKey": [],
+            "GstTaxpayerAccessToken": []
+          }
+        ]
       }
     },
     "/gst/compliance/tax-payer/gstrs/gstr-1/{year}/{month}/file": {
@@ -11767,26 +11519,6 @@
             "schema": {
               "type": "string",
               "example": "575757"
-            }
-          },
-          {
-            "name": "authorization",
-            "in": "header",
-            "description": "GST taxpayer access token. For token-generation steps, refer to the [Generate Taxpayer Session](/recipes/gst/authentication/generate_tax_payer_session) recipe, then pass the token in the authorization header.",
-            "required": true,
-            "example": "",
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "x-api-key",
-            "in": "header",
-            "description": "API key for identification",
-            "required": true,
-            "example": "",
-            "schema": {
-              "type": "string"
             }
           },
           {
@@ -14678,7 +14410,12 @@
             "headers": {}
           }
         },
-        "security": []
+        "security": [
+          {
+            "SandboxApiKey": [],
+            "GstTaxpayerAccessToken": []
+          }
+        ]
       }
     },
     "/gst/compliance/tax-payer/gstrs/gstr-2a/amdhist/{year}/{month}": {
@@ -14744,26 +14481,6 @@
             }
           },
           {
-            "name": "authorization",
-            "in": "header",
-            "description": "GST taxpayer access token. For token-generation steps, refer to the [Generate Taxpayer Session](/recipes/gst/authentication/generate_tax_payer_session) recipe, then pass the token in the authorization header.",
-            "required": true,
-            "example": "{{gsp_access_token}}",
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "x-api-key",
-            "in": "header",
-            "description": "API key for identification",
-            "required": true,
-            "example": "{{api_key}}",
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
             "name": "x-api-version",
             "in": "header",
             "description": "API version",
@@ -14805,7 +14522,12 @@
             "headers": {}
           }
         },
-        "security": []
+        "security": [
+          {
+            "SandboxApiKey": [],
+            "GstTaxpayerAccessToken": []
+          }
+        ]
       }
     },
     "/gst/compliance/tax-payer/gstrs/gstr-2a/b2b/{year}/{month}": {
@@ -14858,26 +14580,6 @@
             "schema": {
               "type": "string",
               "example": "{{gstin}}"
-            }
-          },
-          {
-            "name": "authorization",
-            "in": "header",
-            "description": "GST taxpayer access token. For token-generation steps, refer to the [Generate Taxpayer Session](/recipes/gst/authentication/generate_tax_payer_session) recipe, then pass the token in the authorization header.",
-            "required": true,
-            "example": "{{gsp_access_token}}",
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "x-api-key",
-            "in": "header",
-            "description": "API key for identification",
-            "required": true,
-            "example": "{{api_key}}",
-            "schema": {
-              "type": "string"
             }
           },
           {
@@ -16270,7 +15972,12 @@
             "headers": {}
           }
         },
-        "security": []
+        "security": [
+          {
+            "SandboxApiKey": [],
+            "GstTaxpayerAccessToken": []
+          }
+        ]
       }
     },
     "/gst/compliance/tax-payer/gstrs/gstr-2a/b2ba/{year}/{month}": {
@@ -16313,26 +16020,6 @@
             "schema": {
               "type": "string",
               "example": "{{ctin}}"
-            }
-          },
-          {
-            "name": "authorization",
-            "in": "header",
-            "description": "GST taxpayer access token. For token-generation steps, refer to the [Generate Taxpayer Session](/recipes/gst/authentication/generate_tax_payer_session) recipe, then pass the token in the authorization header.",
-            "required": true,
-            "example": "",
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "x-api-key",
-            "in": "header",
-            "description": "API key for identification",
-            "required": true,
-            "example": "",
-            "schema": {
-              "type": "string"
             }
           },
           {
@@ -16426,7 +16113,12 @@
             "headers": {}
           }
         },
-        "security": []
+        "security": [
+          {
+            "SandboxApiKey": [],
+            "GstTaxpayerAccessToken": []
+          }
+        ]
       }
     },
     "/gst/compliance/tax-payer/gstrs/gstr-2a/cdn/{year}/{month}": {
@@ -16479,26 +16171,6 @@
             "schema": {
               "type": "string",
               "example": "{{ctin}}"
-            }
-          },
-          {
-            "name": "authorization",
-            "in": "header",
-            "description": "GST taxpayer access token. For token-generation steps, refer to the [Generate Taxpayer Session](/recipes/gst/authentication/generate_tax_payer_session) recipe, then pass the token in the authorization header.",
-            "required": true,
-            "example": "",
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "x-api-key",
-            "in": "header",
-            "description": "API key for identification",
-            "required": true,
-            "example": "",
-            "schema": {
-              "type": "string"
             }
           },
           {
@@ -16851,7 +16523,12 @@
             "headers": {}
           }
         },
-        "security": []
+        "security": [
+          {
+            "SandboxApiKey": [],
+            "GstTaxpayerAccessToken": []
+          }
+        ]
       }
     },
     "/gst/compliance/tax-payer/gstrs/gstr-2a/cdna/{year}/{month}": {
@@ -16897,16 +16574,6 @@
             }
           },
           {
-            "name": "authorization",
-            "in": "header",
-            "description": "GST taxpayer access token. For token-generation steps, refer to the [Generate Taxpayer Session](/recipes/gst/authentication/generate_tax_payer_session) recipe, then pass the token in the authorization header.",
-            "required": true,
-            "example": "",
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
             "name": "x-api-version",
             "in": "header",
             "description": "API version",
@@ -16915,16 +16582,6 @@
             "schema": {
               "type": "string",
               "default": "1.0.0"
-            }
-          },
-          {
-            "name": "x-api-key",
-            "in": "header",
-            "description": "API key for identification",
-            "required": true,
-            "example": "",
-            "schema": {
-              "type": "string"
             }
           }
         ],
@@ -17009,7 +16666,12 @@
             "headers": {}
           }
         },
-        "security": []
+        "security": [
+          {
+            "SandboxApiKey": [],
+            "GstTaxpayerAccessToken": []
+          }
+        ]
       }
     },
     "/gst/compliance/tax-payer/gstrs/gstr-2a/impg/{year}/{month}": {
@@ -17055,16 +16717,6 @@
             }
           },
           {
-            "name": "authorization",
-            "in": "header",
-            "description": "GST taxpayer access token. For token-generation steps, refer to the [Generate Taxpayer Session](/recipes/gst/authentication/generate_tax_payer_session) recipe, then pass the token in the authorization header.",
-            "required": true,
-            "example": "",
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
             "name": "x-api-version",
             "in": "header",
             "description": "API version",
@@ -17073,16 +16725,6 @@
             "schema": {
               "type": "string",
               "default": "1.0.0"
-            }
-          },
-          {
-            "name": "x-api-key",
-            "in": "header",
-            "description": "API key for identification",
-            "required": true,
-            "example": "",
-            "schema": {
-              "type": "string"
             }
           }
         ],
@@ -17116,7 +16758,12 @@
             "headers": {}
           }
         },
-        "security": []
+        "security": [
+          {
+            "SandboxApiKey": [],
+            "GstTaxpayerAccessToken": []
+          }
+        ]
       }
     },
     "/gst/compliance/tax-payer/gstrs/gstr-2a/impgsez/{year}/{month}": {
@@ -17162,16 +16809,6 @@
             }
           },
           {
-            "name": "authorization",
-            "in": "header",
-            "description": "GST taxpayer access token. For token-generation steps, refer to the [Generate Taxpayer Session](/recipes/gst/authentication/generate_tax_payer_session) recipe, then pass the token in the authorization header.",
-            "required": true,
-            "example": "",
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
             "name": "x-api-version",
             "in": "header",
             "description": "API version",
@@ -17180,16 +16817,6 @@
             "schema": {
               "type": "string",
               "default": "1.0.0"
-            }
-          },
-          {
-            "name": "x-api-key",
-            "in": "header",
-            "description": "API key for identification",
-            "required": true,
-            "example": "",
-            "schema": {
-              "type": "string"
             }
           }
         ],
@@ -17223,7 +16850,12 @@
             "headers": {}
           }
         },
-        "security": []
+        "security": [
+          {
+            "SandboxApiKey": [],
+            "GstTaxpayerAccessToken": []
+          }
+        ]
       }
     },
     "/gst/compliance/tax-payer/gstrs/gstr-2a/isd/{year}/{month}": {
@@ -17269,16 +16901,6 @@
             }
           },
           {
-            "name": "authorization",
-            "in": "header",
-            "description": "GST taxpayer access token. For token-generation steps, refer to the [Generate Taxpayer Session](/recipes/gst/authentication/generate_tax_payer_session) recipe, then pass the token in the authorization header.",
-            "required": true,
-            "example": "",
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
             "name": "x-api-version",
             "in": "header",
             "description": "API version",
@@ -17287,16 +16909,6 @@
             "schema": {
               "type": "string",
               "default": "1.0.0"
-            }
-          },
-          {
-            "name": "x-api-key",
-            "in": "header",
-            "description": "API key for identification",
-            "required": true,
-            "example": "",
-            "schema": {
-              "type": "string"
             }
           }
         ],
@@ -17362,7 +16974,12 @@
             "headers": {}
           }
         },
-        "security": []
+        "security": [
+          {
+            "SandboxApiKey": [],
+            "GstTaxpayerAccessToken": []
+          }
+        ]
       }
     },
     "/gst/compliance/tax-payer/gstrs/gstr-2a/tcs/{year}/{month}": {
@@ -17398,16 +17015,6 @@
             }
           },
           {
-            "name": "authorization",
-            "in": "header",
-            "description": "GST taxpayer access token. For token-generation steps, refer to the [Generate Taxpayer Session](/recipes/gst/authentication/generate_tax_payer_session) recipe, then pass the token in the authorization header.",
-            "required": true,
-            "example": "",
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
             "name": "x-api-version",
             "in": "header",
             "description": "API version",
@@ -17416,16 +17023,6 @@
             "schema": {
               "type": "string",
               "default": "1.0.0"
-            }
-          },
-          {
-            "name": "x-api-key",
-            "in": "header",
-            "description": "API key for identification",
-            "required": true,
-            "example": "",
-            "schema": {
-              "type": "string"
             }
           }
         ],
@@ -17459,7 +17056,12 @@
             "headers": {}
           }
         },
-        "security": []
+        "security": [
+          {
+            "SandboxApiKey": [],
+            "GstTaxpayerAccessToken": []
+          }
+        ]
       }
     },
     "/gst/compliance/tax-payer/gstrs/gstr-2a/tds/{year}/{month}": {
@@ -17495,16 +17097,6 @@
             }
           },
           {
-            "name": "authorization",
-            "in": "header",
-            "description": "GST taxpayer access token. For token-generation steps, refer to the [Generate Taxpayer Session](/recipes/gst/authentication/generate_tax_payer_session) recipe, then pass the token in the authorization header.",
-            "required": true,
-            "example": "",
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
             "name": "x-api-version",
             "in": "header",
             "description": "API version",
@@ -17513,16 +17105,6 @@
             "schema": {
               "type": "string",
               "default": "1.0.0"
-            }
-          },
-          {
-            "name": "x-api-key",
-            "in": "header",
-            "description": "API key for identification",
-            "required": true,
-            "example": "",
-            "schema": {
-              "type": "string"
             }
           }
         ],
@@ -17556,7 +17138,12 @@
             "headers": {}
           }
         },
-        "security": []
+        "security": [
+          {
+            "SandboxApiKey": [],
+            "GstTaxpayerAccessToken": []
+          }
+        ]
       }
     },
     "/gst/compliance/tax-payer/gstrs/gstr-2a/{year}/{month}": {
@@ -17592,16 +17179,6 @@
             }
           },
           {
-            "name": "authorization",
-            "in": "header",
-            "description": "GST taxpayer access token. For token-generation steps, refer to the [Generate Taxpayer Session](/recipes/gst/authentication/generate_tax_payer_session) recipe, then pass the token in the authorization header.",
-            "required": true,
-            "example": "",
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
             "name": "x-api-version",
             "in": "header",
             "description": "API version",
@@ -17610,16 +17187,6 @@
             "schema": {
               "type": "string",
               "default": "1.0.0"
-            }
-          },
-          {
-            "name": "x-api-key",
-            "in": "header",
-            "description": "API key for identification",
-            "required": true,
-            "example": "",
-            "schema": {
-              "type": "string"
             }
           }
         ],
@@ -20789,7 +20356,12 @@
             "headers": {}
           }
         },
-        "security": []
+        "security": [
+          {
+            "SandboxApiKey": [],
+            "GstTaxpayerAccessToken": []
+          }
+        ]
       }
     },
     "/gst/compliance/tax-payer/gstrs/gstr-2a/ecom/{year}/{month}": {
@@ -20844,31 +20416,11 @@
             }
           },
           {
-            "name": "x-api-key",
-            "in": "header",
-            "description": "",
-            "required": true,
-            "example": "{{api_key}}",
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
             "name": "x-api-version",
             "in": "header",
             "description": "",
             "required": true,
             "example": "{{version}}",
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "authorization",
-            "in": "header",
-            "description": "",
-            "required": true,
-            "example": "{{gsp_access_token}}",
             "schema": {
               "type": "string"
             }
@@ -20904,7 +20456,12 @@
             "headers": {}
           }
         },
-        "security": []
+        "security": [
+          {
+            "SandboxApiKey": [],
+            "GstTaxpayerAccessToken": []
+          }
+        ]
       }
     },
     "/gst/compliance/tax-payer/gstrs/gstr-2a/ecoma/{year}/{month}": {
@@ -20959,31 +20516,11 @@
             }
           },
           {
-            "name": "x-api-key",
-            "in": "header",
-            "description": "",
-            "required": true,
-            "example": "{{api_key}}",
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
             "name": "x-api-version",
             "in": "header",
             "description": "",
             "required": true,
             "example": "{{version}}",
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "authorization",
-            "in": "header",
-            "description": "",
-            "required": true,
-            "example": "{{gsp_access_token}}",
             "schema": {
               "type": "string"
             }
@@ -21019,7 +20556,12 @@
             "headers": {}
           }
         },
-        "security": []
+        "security": [
+          {
+            "SandboxApiKey": [],
+            "GstTaxpayerAccessToken": []
+          }
+        ]
       }
     },
     "/gst/compliance/tax-payer/gstrs/gstr-2b/{year}/{month}": {
@@ -21066,16 +20608,6 @@
             }
           },
           {
-            "name": "authorization",
-            "in": "header",
-            "description": "GST taxpayer access token. For token-generation steps, refer to the [Generate Taxpayer Session](/recipes/gst/authentication/generate_tax_payer_session) recipe, then pass the token in the authorization header.",
-            "required": true,
-            "example": "{{gsp_access_token}}",
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
             "name": "x-api-version",
             "in": "header",
             "description": "API version",
@@ -21084,16 +20616,6 @@
             "schema": {
               "type": "string",
               "default": "1.0.0"
-            }
-          },
-          {
-            "name": "x-api-key",
-            "in": "header",
-            "description": "API key for identification",
-            "required": true,
-            "example": "{{api_key}}",
-            "schema": {
-              "type": "string"
             }
           }
         ],
@@ -94100,7 +93622,12 @@
             "headers": {}
           }
         },
-        "security": []
+        "security": [
+          {
+            "SandboxApiKey": [],
+            "GstTaxpayerAccessToken": []
+          }
+        ]
       }
     },
     "/gst/compliance/tax-payer/gstrs/gstr-2b/{year}/{month}/regenerate": {
@@ -94136,16 +93663,6 @@
             }
           },
           {
-            "name": "authorization",
-            "in": "header",
-            "description": "GST taxpayer access token. For token-generation steps, refer to the [Generate Taxpayer Session](/recipes/gst/authentication/generate_tax_payer_session) recipe, then pass the token in the authorization header.",
-            "required": true,
-            "example": "{{gsp_access_token}}",
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
             "name": "x-api-version",
             "in": "header",
             "description": "API version",
@@ -94154,16 +93671,6 @@
             "schema": {
               "type": "string",
               "default": "1.0.0"
-            }
-          },
-          {
-            "name": "x-api-key",
-            "in": "header",
-            "description": "API key for identification",
-            "required": true,
-            "example": "{{api_key}}",
-            "schema": {
-              "type": "string"
             }
           }
         ],
@@ -94226,7 +93733,12 @@
             "headers": {}
           }
         },
-        "security": []
+        "security": [
+          {
+            "SandboxApiKey": [],
+            "GstTaxpayerAccessToken": []
+          }
+        ]
       }
     },
     "/gst/compliance/tax-payer/gstrs/gstr-2b/regenerate": {
@@ -94249,26 +93761,6 @@
             "schema": {
               "type": "string",
               "example": "{{reference_id}}"
-            }
-          },
-          {
-            "name": "authorization",
-            "in": "header",
-            "description": "GST taxpayer access token. For token-generation steps, refer to the [Generate Taxpayer Session](/recipes/gst/authentication/generate_tax_payer_session) recipe, then pass the token in the authorization header.",
-            "required": true,
-            "example": "",
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "x-api-key",
-            "in": "header",
-            "description": "API key for identification",
-            "required": true,
-            "example": "",
-            "schema": {
-              "type": "string"
             }
           },
           {
@@ -94329,7 +93821,12 @@
             "headers": {}
           }
         },
-        "security": []
+        "security": [
+          {
+            "SandboxApiKey": [],
+            "GstTaxpayerAccessToken": []
+          }
+        ]
       }
     },
     "/gst/compliance/tax-payer/gstrs/gstr-3b/{year}/{month}": {
@@ -94365,16 +93862,6 @@
             }
           },
           {
-            "name": "authorization",
-            "in": "header",
-            "description": "GST taxpayer access token. For token-generation steps, refer to the [Generate Taxpayer Session](/recipes/gst/authentication/generate_tax_payer_session) recipe, then pass the token in the authorization header.",
-            "required": true,
-            "example": "",
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
             "name": "x-api-version",
             "in": "header",
             "description": "API version",
@@ -94383,16 +93870,6 @@
             "schema": {
               "type": "string",
               "default": "1.0.0"
-            }
-          },
-          {
-            "name": "x-api-key",
-            "in": "header",
-            "description": "API key for identification",
-            "required": true,
-            "example": "",
-            "schema": {
-              "type": "string"
             }
           }
         ],
@@ -95122,7 +94599,12 @@
             "headers": {}
           }
         },
-        "security": []
+        "security": [
+          {
+            "SandboxApiKey": [],
+            "GstTaxpayerAccessToken": []
+          }
+        ]
       },
       "post": {
         "summary": "Save GSTR-3B",
@@ -95156,16 +94638,6 @@
             }
           },
           {
-            "name": "authorization",
-            "in": "header",
-            "description": "GST taxpayer access token. For token-generation steps, refer to the [Generate Taxpayer Session](/recipes/gst/authentication/generate_tax_payer_session) recipe, then pass the token in the authorization header.",
-            "required": true,
-            "example": "",
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
             "name": "x-api-version",
             "in": "header",
             "description": "API version",
@@ -95174,16 +94646,6 @@
             "schema": {
               "type": "string",
               "default": "1.0.0"
-            }
-          },
-          {
-            "name": "x-api-key",
-            "in": "header",
-            "description": "API key for identification",
-            "required": true,
-            "example": "",
-            "schema": {
-              "type": "string"
             }
           }
         ],
@@ -95515,7 +94977,12 @@
             "headers": {}
           }
         },
-        "security": []
+        "security": [
+          {
+            "SandboxApiKey": [],
+            "GstTaxpayerAccessToken": []
+          }
+        ]
       }
     },
     "/gst/compliance/tax-payer/gstrs/gstr-3b/{year}/{month}/auto-liability-calc": {
@@ -95544,26 +95011,6 @@
             "name": "month",
             "in": "path",
             "description": "",
-            "required": true,
-            "example": "",
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "authorization",
-            "in": "header",
-            "description": "GST taxpayer access token. For token-generation steps, refer to the [Generate Taxpayer Session](/recipes/gst/authentication/generate_tax_payer_session) recipe, then pass the token in the authorization header.",
-            "required": true,
-            "example": "",
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "x-api-key",
-            "in": "header",
-            "description": "API key for identification",
             "required": true,
             "example": "",
             "schema": {
@@ -96686,7 +96133,12 @@
             "headers": {}
           }
         },
-        "security": []
+        "security": [
+          {
+            "SandboxApiKey": [],
+            "GstTaxpayerAccessToken": []
+          }
+        ]
       }
     },
     "/gst/compliance/tax-payer/gstrs/gstr-3b/{year}/{month}/validate": {
@@ -96715,26 +96167,6 @@
             "name": "month",
             "in": "path",
             "description": "",
-            "required": true,
-            "example": "",
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "authorization",
-            "in": "header",
-            "description": "GST taxpayer access token. For token-generation steps, refer to the [Generate Taxpayer Session](/recipes/gst/authentication/generate_tax_payer_session) recipe, then pass the token in the authorization header.",
-            "required": true,
-            "example": "",
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "x-api-key",
-            "in": "header",
-            "description": "API key for identification",
             "required": true,
             "example": "",
             "schema": {
@@ -97773,7 +97205,12 @@
             "headers": {}
           }
         },
-        "security": []
+        "security": [
+          {
+            "SandboxApiKey": [],
+            "GstTaxpayerAccessToken": []
+          }
+        ]
       }
     },
     "/gst/compliance/tax-payer/gstrs/gstr-3b/{year}/{month}/offset-liability": {
@@ -97809,16 +97246,6 @@
             }
           },
           {
-            "name": "authorization",
-            "in": "header",
-            "description": "GST taxpayer access token. For token-generation steps, refer to the [Generate Taxpayer Session](/recipes/gst/authentication/generate_tax_payer_session) recipe, then pass the token in the authorization header.",
-            "required": true,
-            "example": "",
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
             "name": "x-api-version",
             "in": "header",
             "description": "API version",
@@ -97827,16 +97254,6 @@
             "schema": {
               "type": "string",
               "default": "1.0.0"
-            }
-          },
-          {
-            "name": "x-api-key",
-            "in": "header",
-            "description": "API key for identification",
-            "required": true,
-            "example": "",
-            "schema": {
-              "type": "string"
             }
           }
         ],
@@ -98203,7 +97620,12 @@
             "headers": {}
           }
         },
-        "security": []
+        "security": [
+          {
+            "SandboxApiKey": [],
+            "GstTaxpayerAccessToken": []
+          }
+        ]
       }
     },
     "/gst/compliance/tax-payer/gstrs/gstr-3b/{year}/{month}/file": {
@@ -98256,26 +97678,6 @@
             "schema": {
               "type": "string",
               "example": "575757"
-            }
-          },
-          {
-            "name": "authorization",
-            "in": "header",
-            "description": "GST taxpayer access token. For token-generation steps, refer to the [Generate Taxpayer Session](/recipes/gst/authentication/generate_tax_payer_session) recipe, then pass the token in the authorization header.",
-            "required": true,
-            "example": "",
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "x-api-key",
-            "in": "header",
-            "description": "API key for identification",
-            "required": true,
-            "example": "",
-            "schema": {
-              "type": "string"
             }
           },
           {
@@ -99010,7 +98412,12 @@
             "headers": {}
           }
         },
-        "security": []
+        "security": [
+          {
+            "SandboxApiKey": [],
+            "GstTaxpayerAccessToken": []
+          }
+        ]
       }
     },
     "/gst/compliance/tax-payer/gstrs/gstr-4-annual/{year}/{month}/proceed": {
@@ -99065,31 +98472,11 @@
             }
           },
           {
-            "name": "x-api-key",
-            "in": "header",
-            "description": "",
-            "required": true,
-            "example": "{{api_key}}",
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
             "name": "x-api-version",
             "in": "header",
             "description": "",
             "required": true,
             "example": "{{version}}",
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "authorization",
-            "in": "header",
-            "description": "",
-            "required": true,
-            "example": "{{gsp_access_token}}",
             "schema": {
               "type": "string"
             }
@@ -99888,7 +99275,12 @@
             "headers": {}
           }
         },
-        "security": []
+        "security": [
+          {
+            "SandboxApiKey": [],
+            "GstTaxpayerAccessToken": []
+          }
+        ]
       }
     },
     "/gst/compliance/tax-payer/gstrs/gstr-4-annual/summary": {
@@ -99909,31 +99301,11 @@
             }
           },
           {
-            "name": "x-api-key",
-            "in": "header",
-            "description": "",
-            "required": true,
-            "example": "{{api_key}}",
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
             "name": "x-api-version",
             "in": "header",
             "description": "",
             "required": true,
             "example": "{{version}}",
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "authorization",
-            "in": "header",
-            "description": "",
-            "required": true,
-            "example": "{{gsp_access_token}}",
             "schema": {
               "type": "string"
             }
@@ -99953,7 +99325,12 @@
             "headers": {}
           }
         },
-        "security": []
+        "security": [
+          {
+            "SandboxApiKey": [],
+            "GstTaxpayerAccessToken": []
+          }
+        ]
       }
     },
     "/gst/compliance/tax-payer/gstrs/gstr-4-annual/in-out-supply": {
@@ -99978,31 +99355,11 @@
             }
           },
           {
-            "name": "x-api-key",
-            "in": "header",
-            "description": "",
-            "required": true,
-            "example": "{{api_key}}",
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
             "name": "x-api-version",
             "in": "header",
             "description": "",
             "required": true,
             "example": "{{version}}",
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "authorization",
-            "in": "header",
-            "description": "",
-            "required": true,
-            "example": "{{gsp_access_token}}",
             "schema": {
               "type": "string"
             }
@@ -100022,7 +99379,12 @@
             "headers": {}
           }
         },
-        "security": []
+        "security": [
+          {
+            "SandboxApiKey": [],
+            "GstTaxpayerAccessToken": []
+          }
+        ]
       }
     },
     "/gst/compliance/tax-payer/gstrs/gstr-4-annual/tdscmp-summary": {
@@ -100047,31 +99409,11 @@
             }
           },
           {
-            "name": "x-api-key",
-            "in": "header",
-            "description": "",
-            "required": true,
-            "example": "{{api_key}}",
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
             "name": "x-api-version",
             "in": "header",
             "description": "",
             "required": true,
             "example": "{{version}}",
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "authorization",
-            "in": "header",
-            "description": "",
-            "required": true,
-            "example": "{{gsp_access_token}}",
             "schema": {
               "type": "string"
             }
@@ -100091,7 +99433,12 @@
             "headers": {}
           }
         },
-        "security": []
+        "security": [
+          {
+            "SandboxApiKey": [],
+            "GstTaxpayerAccessToken": []
+          }
+        ]
       }
     },
     "/gst/compliance/tax-payer/gstrs/gstr-4-annual/{year}/{month}": {
@@ -100126,31 +99473,11 @@
             }
           },
           {
-            "name": "x-api-key",
-            "in": "header",
-            "description": "",
-            "required": true,
-            "example": "{{api_key}}",
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
             "name": "x-api-version",
             "in": "header",
             "description": "",
             "required": true,
             "example": "{{version}}",
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "authorization",
-            "in": "header",
-            "description": "",
-            "required": true,
-            "example": "{{gsp_access_token}}",
             "schema": {
               "type": "string"
             }
@@ -100484,7 +99811,12 @@
             "headers": {}
           }
         },
-        "security": []
+        "security": [
+          {
+            "SandboxApiKey": [],
+            "GstTaxpayerAccessToken": []
+          }
+        ]
       }
     },
     "/gst/compliance/tax-payer/gstrs/gstr-9/auto-calculated": {
@@ -100508,26 +99840,6 @@
             "schema": {
               "type": "string",
               "example": "{{financial_year}}"
-            }
-          },
-          {
-            "name": "authorization",
-            "in": "header",
-            "description": "GST taxpayer access token. For token-generation steps, refer to the [Generate Taxpayer Session](/recipes/gst/authentication/generate_tax_payer_session) recipe, then pass the token in the authorization header.",
-            "required": true,
-            "example": "{{gsp_access_token}}",
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "x-api-key",
-            "in": "header",
-            "description": "API key for identification",
-            "required": true,
-            "example": "{{api_key}}",
-            "schema": {
-              "type": "string"
             }
           },
           {
@@ -100805,7 +100117,12 @@
             "headers": {}
           }
         },
-        "security": []
+        "security": [
+          {
+            "SandboxApiKey": [],
+            "GstTaxpayerAccessToken": []
+          }
+        ]
       }
     },
     "/gst/compliance/tax-payer/gstrs/gstr-9/table-8a": {
@@ -100838,26 +100155,6 @@
             "schema": {
               "type": "string",
               "example": "{{file_number}}"
-            }
-          },
-          {
-            "name": "authorization",
-            "in": "header",
-            "description": "GST taxpayer access token. For token-generation steps, refer to the [Generate Taxpayer Session](/recipes/gst/authentication/generate_tax_payer_session) recipe, then pass the token in the authorization header.",
-            "required": true,
-            "example": "",
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "x-api-key",
-            "in": "header",
-            "description": "API key for identification",
-            "required": true,
-            "example": "",
-            "schema": {
-              "type": "string"
             }
           },
           {
@@ -110789,7 +110086,12 @@
             "headers": {}
           }
         },
-        "security": []
+        "security": [
+          {
+            "SandboxApiKey": [],
+            "GstTaxpayerAccessToken": []
+          }
+        ]
       }
     },
     "/gst/compliance/tax-payer/gstrs/gstr-9/save": {
@@ -110812,26 +110114,6 @@
             "schema": {
               "type": "string",
               "example": "{{financial_year}}"
-            }
-          },
-          {
-            "name": "authorization",
-            "in": "header",
-            "description": "GST taxpayer access token. For token-generation steps, refer to the [Generate Taxpayer Session](/recipes/gst/authentication/generate_tax_payer_session) recipe, then pass the token in the authorization header.",
-            "required": true,
-            "example": "",
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "x-api-key",
-            "in": "header",
-            "description": "API key for identification",
-            "required": true,
-            "example": "",
-            "schema": {
-              "type": "string"
             }
           },
           {
@@ -111441,7 +110723,12 @@
             "headers": {}
           }
         },
-        "security": []
+        "security": [
+          {
+            "SandboxApiKey": [],
+            "GstTaxpayerAccessToken": []
+          }
+        ]
       }
     },
     "/gst/compliance/tax-payer/gstrs/gstr-9": {
@@ -111464,26 +110751,6 @@
             "schema": {
               "type": "string",
               "example": "{{financial_year}}"
-            }
-          },
-          {
-            "name": "authorization",
-            "in": "header",
-            "description": "GST taxpayer access token. For token-generation steps, refer to the [Generate Taxpayer Session](/recipes/gst/authentication/generate_tax_payer_session) recipe, then pass the token in the authorization header.",
-            "required": true,
-            "example": "",
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "x-api-key",
-            "in": "header",
-            "description": "API key for identification",
-            "required": true,
-            "example": "",
-            "schema": {
-              "type": "string"
             }
           },
           {
@@ -111878,7 +111145,12 @@
             "headers": {}
           }
         },
-        "security": []
+        "security": [
+          {
+            "SandboxApiKey": [],
+            "GstTaxpayerAccessToken": []
+          }
+        ]
       }
     },
     "/gst/compliance/tax-payer/gstrs/gstr-9/file": {
@@ -111921,26 +111193,6 @@
             "schema": {
               "type": "string",
               "example": "575757"
-            }
-          },
-          {
-            "name": "authorization",
-            "in": "header",
-            "description": "GST taxpayer access token. For token-generation steps, refer to the [Generate Taxpayer Session](/recipes/gst/authentication/generate_tax_payer_session) recipe, then pass the token in the authorization header.",
-            "required": true,
-            "example": "",
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "x-api-key",
-            "in": "header",
-            "description": "API key for identification",
-            "required": true,
-            "example": "",
-            "schema": {
-              "type": "string"
             }
           },
           {
@@ -113384,7 +112636,12 @@
             "headers": {}
           }
         },
-        "security": []
+        "security": [
+          {
+            "SandboxApiKey": [],
+            "GstTaxpayerAccessToken": []
+          }
+        ]
       }
     },
     "/gst/compliance/tax-payer/invoices/added-back-liabilities/{year}/{month}": {
@@ -113425,31 +112682,11 @@
             }
           },
           {
-            "name": "x-api-key",
-            "in": "header",
-            "description": "Public key required to authorize API access.",
-            "required": true,
-            "example": "{{api_key}}",
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
             "name": "x-api-version",
             "in": "header",
             "description": "",
             "required": true,
             "example": "{{version}}",
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "authorization",
-            "in": "header",
-            "description": "",
-            "required": true,
-            "example": "{{gsp_access_token}}",
             "schema": {
               "type": "string"
             }
@@ -113485,7 +112722,12 @@
             "headers": {}
           }
         },
-        "security": []
+        "security": [
+          {
+            "SandboxApiKey": [],
+            "GstTaxpayerAccessToken": []
+          }
+        ]
       }
     },
     "/gst/compliance/tax-payer/invoices/{year}/{month}/sales": {
@@ -113540,31 +112782,11 @@
             }
           },
           {
-            "name": "x-api-key",
-            "in": "header",
-            "description": "Public key required to authorize API access.",
-            "required": true,
-            "example": "{{api_key}}",
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
             "name": "x-api-version",
             "in": "header",
             "description": "",
             "required": true,
             "example": "{{version}}",
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "authorization",
-            "in": "header",
-            "description": "",
-            "required": true,
-            "example": "{{gsp_access_token}}",
             "schema": {
               "type": "string"
             }
@@ -128177,7 +127399,12 @@
             "headers": {}
           }
         },
-        "security": []
+        "security": [
+          {
+            "SandboxApiKey": [],
+            "GstTaxpayerAccessToken": []
+          }
+        ]
       }
     },
     "/gst/compliance/tax-payer/invoices/count": {
@@ -128204,16 +127431,6 @@
             }
           },
           {
-            "name": "authorization",
-            "in": "header",
-            "description": "GST taxpayer access token. For token-generation steps, refer to the [Generate Taxpayer Session](/recipes/gst/authentication/generate_tax_payer_session) recipe, then pass the token in the authorization header.",
-            "required": true,
-            "example": "",
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
             "name": "x-api-version",
             "in": "header",
             "description": "API version",
@@ -128222,16 +127439,6 @@
             "schema": {
               "type": "string",
               "default": "1.0.0"
-            }
-          },
-          {
-            "name": "x-api-key",
-            "in": "header",
-            "description": "API key for identification",
-            "required": true,
-            "example": "",
-            "schema": {
-              "type": "string"
             }
           }
         ],
@@ -128314,7 +127521,12 @@
             "headers": {}
           }
         },
-        "security": []
+        "security": [
+          {
+            "SandboxApiKey": [],
+            "GstTaxpayerAccessToken": []
+          }
+        ]
       }
     },
     "/gst/compliance/tax-payer/invoices": {
@@ -128348,26 +127560,6 @@
             "schema": {
               "type": "string",
               "example": "no_action_taken"
-            }
-          },
-          {
-            "name": "authorization",
-            "in": "header",
-            "description": "GST taxpayer access token. For token-generation steps, refer to the [Generate Taxpayer Session](/recipes/gst/authentication/generate_tax_payer_session) recipe, then pass the token in the authorization header.",
-            "required": true,
-            "example": "",
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "x-api-key",
-            "in": "header",
-            "description": "API key for identification",
-            "required": true,
-            "example": "",
-            "schema": {
-              "type": "string"
             }
           },
           {
@@ -128674,7 +127866,12 @@
             "headers": {}
           }
         },
-        "security": []
+        "security": [
+          {
+            "SandboxApiKey": [],
+            "GstTaxpayerAccessToken": []
+          }
+        ]
       }
     },
     "/gst/compliance/tax-payer/invoices/status/save": {
@@ -128690,16 +127887,6 @@
         ],
         "parameters": [
           {
-            "name": "authorization",
-            "in": "header",
-            "description": "GST taxpayer access token. For token-generation steps, refer to the [Generate Taxpayer Session](/recipes/gst/authentication/generate_tax_payer_session) recipe, then pass the token in the authorization header.",
-            "required": true,
-            "example": "",
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
             "name": "x-api-version",
             "in": "header",
             "description": "API version",
@@ -128708,16 +127895,6 @@
             "schema": {
               "type": "string",
               "default": "1.0.0"
-            }
-          },
-          {
-            "name": "x-api-key",
-            "in": "header",
-            "description": "API key for identification",
-            "required": true,
-            "example": "",
-            "schema": {
-              "type": "string"
             }
           }
         ],
@@ -129083,7 +128260,12 @@
             }
           }
         },
-        "security": []
+        "security": [
+          {
+            "SandboxApiKey": [],
+            "GstTaxpayerAccessToken": []
+          }
+        ]
       }
     },
     "/gst/compliance/tax-payer/invoices/status/reset": {
@@ -129099,16 +128281,6 @@
         ],
         "parameters": [
           {
-            "name": "authorization",
-            "in": "header",
-            "description": "GST taxpayer access token. For token-generation steps, refer to the [Generate Taxpayer Session](/recipes/gst/authentication/generate_tax_payer_session) recipe, then pass the token in the authorization header.",
-            "required": true,
-            "example": "",
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
             "name": "x-api-version",
             "in": "header",
             "description": "API version",
@@ -129117,16 +128289,6 @@
             "schema": {
               "type": "string",
               "default": "1.0.0"
-            }
-          },
-          {
-            "name": "x-api-key",
-            "in": "header",
-            "description": "API key for identification",
-            "required": true,
-            "example": "",
-            "schema": {
-              "type": "string"
             }
           }
         ],
@@ -129451,7 +128613,12 @@
             }
           }
         },
-        "security": []
+        "security": [
+          {
+            "SandboxApiKey": [],
+            "GstTaxpayerAccessToken": []
+          }
+        ]
       }
     },
     "/gst/compliance/tax-payer/invoices/status": {
@@ -129474,26 +128641,6 @@
             "schema": {
               "type": "string",
               "example": "{{reference_id}}"
-            }
-          },
-          {
-            "name": "authorization",
-            "in": "header",
-            "description": "GST taxpayer access token. For token-generation steps, refer to the [Generate Taxpayer Session](/recipes/gst/authentication/generate_tax_payer_session) recipe, then pass the token in the authorization header.",
-            "required": true,
-            "example": "",
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "x-api-key",
-            "in": "header",
-            "description": "API key for identification",
-            "required": true,
-            "example": "",
-            "schema": {
-              "type": "string"
             }
           },
           {
@@ -129607,7 +128754,12 @@
             "headers": {}
           }
         },
-        "security": []
+        "security": [
+          {
+            "SandboxApiKey": [],
+            "GstTaxpayerAccessToken": []
+          }
+        ]
       }
     },
     "/gst/compliance/tax-payer/gstrs/gstr-1a/at/{year}/{month}": {
@@ -129643,16 +128795,6 @@
             }
           },
           {
-            "name": "authorization",
-            "in": "header",
-            "description": "GST taxpayer access token. For token-generation steps, refer to the Generate Taxpayer Session flow and pass the token in the authorization header.",
-            "required": true,
-            "example": "{{gsp_access_token}}",
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
             "name": "x-api-version",
             "in": "header",
             "description": "Compliance API version.",
@@ -129661,16 +128803,6 @@
             "schema": {
               "type": "string",
               "default": "1.0.0"
-            }
-          },
-          {
-            "name": "x-api-key",
-            "in": "header",
-            "description": "API key for identification.",
-            "required": true,
-            "example": "{{api_key}}",
-            "schema": {
-              "type": "string"
             }
           }
         ],
@@ -129734,7 +128866,12 @@
             "headers": {}
           }
         },
-        "security": []
+        "security": [
+          {
+            "SandboxApiKey": [],
+            "GstTaxpayerAccessToken": []
+          }
+        ]
       }
     },
     "/gst/compliance/tax-payer/gstrs/gstr-1a/ata/{year}/{month}": {
@@ -129770,16 +128907,6 @@
             }
           },
           {
-            "name": "authorization",
-            "in": "header",
-            "description": "GST taxpayer access token. For token-generation steps, refer to the Generate Taxpayer Session flow and pass the token in the authorization header.",
-            "required": true,
-            "example": "{{gsp_access_token}}",
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
             "name": "x-api-version",
             "in": "header",
             "description": "Compliance API version.",
@@ -129788,16 +128915,6 @@
             "schema": {
               "type": "string",
               "default": "1.0.0"
-            }
-          },
-          {
-            "name": "x-api-key",
-            "in": "header",
-            "description": "API key for identification.",
-            "required": true,
-            "example": "{{api_key}}",
-            "schema": {
-              "type": "string"
             }
           }
         ],
@@ -129862,7 +128979,12 @@
             "headers": {}
           }
         },
-        "security": []
+        "security": [
+          {
+            "SandboxApiKey": [],
+            "GstTaxpayerAccessToken": []
+          }
+        ]
       }
     },
     "/gst/compliance/tax-payer/gstrs/gstr-1a/b2b/{year}/{month}": {
@@ -129908,16 +129030,6 @@
             }
           },
           {
-            "name": "authorization",
-            "in": "header",
-            "description": "GST taxpayer access token. For token-generation steps, refer to the Generate Taxpayer Session flow and pass the token in the authorization header.",
-            "required": true,
-            "example": "{{gsp_access_token}}",
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
             "name": "x-api-version",
             "in": "header",
             "description": "Compliance API version.",
@@ -129926,16 +129038,6 @@
             "schema": {
               "type": "string",
               "default": "1.0.0"
-            }
-          },
-          {
-            "name": "x-api-key",
-            "in": "header",
-            "description": "API key for identification.",
-            "required": true,
-            "example": "{{api_key}}",
-            "schema": {
-              "type": "string"
             }
           }
         ],
@@ -130020,7 +129122,12 @@
             "headers": {}
           }
         },
-        "security": []
+        "security": [
+          {
+            "SandboxApiKey": [],
+            "GstTaxpayerAccessToken": []
+          }
+        ]
       }
     },
     "/gst/compliance/tax-payer/gstrs/gstr-1a/b2ba/{year}/{month}": {
@@ -130066,16 +129173,6 @@
             }
           },
           {
-            "name": "authorization",
-            "in": "header",
-            "description": "GST taxpayer access token. For token-generation steps, refer to the Generate Taxpayer Session flow and pass the token in the authorization header.",
-            "required": true,
-            "example": "{{gsp_access_token}}",
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
             "name": "x-api-version",
             "in": "header",
             "description": "Compliance API version.",
@@ -130084,16 +129181,6 @@
             "schema": {
               "type": "string",
               "default": "1.0.0"
-            }
-          },
-          {
-            "name": "x-api-key",
-            "in": "header",
-            "description": "API key for identification.",
-            "required": true,
-            "example": "{{api_key}}",
-            "schema": {
-              "type": "string"
             }
           }
         ],
@@ -130176,7 +129263,12 @@
             "headers": {}
           }
         },
-        "security": []
+        "security": [
+          {
+            "SandboxApiKey": [],
+            "GstTaxpayerAccessToken": []
+          }
+        ]
       }
     },
     "/gst/compliance/tax-payer/gstrs/gstr-1a/b2cl/{year}/{month}": {
@@ -130212,16 +129304,6 @@
             }
           },
           {
-            "name": "authorization",
-            "in": "header",
-            "description": "GST taxpayer access token. For token-generation steps, refer to the Generate Taxpayer Session flow and pass the token in the authorization header.",
-            "required": true,
-            "example": "{{gsp_access_token}}",
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
             "name": "x-api-version",
             "in": "header",
             "description": "Compliance API version.",
@@ -130230,16 +129312,6 @@
             "schema": {
               "type": "string",
               "default": "1.0.0"
-            }
-          },
-          {
-            "name": "x-api-key",
-            "in": "header",
-            "description": "API key for identification.",
-            "required": true,
-            "example": "{{api_key}}",
-            "schema": {
-              "type": "string"
             }
           }
         ],
@@ -130312,7 +129384,12 @@
             "headers": {}
           }
         },
-        "security": []
+        "security": [
+          {
+            "SandboxApiKey": [],
+            "GstTaxpayerAccessToken": []
+          }
+        ]
       }
     },
     "/gst/compliance/tax-payer/gstrs/gstr-1a/b2cla/{year}/{month}": {
@@ -130348,16 +129425,6 @@
             }
           },
           {
-            "name": "authorization",
-            "in": "header",
-            "description": "GST taxpayer access token. For token-generation steps, refer to the Generate Taxpayer Session flow and pass the token in the authorization header.",
-            "required": true,
-            "example": "{{gsp_access_token}}",
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
             "name": "x-api-version",
             "in": "header",
             "description": "Compliance API version.",
@@ -130366,16 +129433,6 @@
             "schema": {
               "type": "string",
               "default": "1.0.0"
-            }
-          },
-          {
-            "name": "x-api-key",
-            "in": "header",
-            "description": "API key for identification.",
-            "required": true,
-            "example": "{{api_key}}",
-            "schema": {
-              "type": "string"
             }
           }
         ],
@@ -130451,7 +129508,12 @@
             "headers": {}
           }
         },
-        "security": []
+        "security": [
+          {
+            "SandboxApiKey": [],
+            "GstTaxpayerAccessToken": []
+          }
+        ]
       }
     },
     "/gst/compliance/tax-payer/gstrs/gstr-1a/b2cs/{year}/{month}": {
@@ -130487,16 +129549,6 @@
             }
           },
           {
-            "name": "authorization",
-            "in": "header",
-            "description": "GST taxpayer access token. For token-generation steps, refer to the Generate Taxpayer Session flow and pass the token in the authorization header.",
-            "required": true,
-            "example": "{{gsp_access_token}}",
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
             "name": "x-api-version",
             "in": "header",
             "description": "Compliance API version.",
@@ -130505,16 +129557,6 @@
             "schema": {
               "type": "string",
               "default": "1.0.0"
-            }
-          },
-          {
-            "name": "x-api-key",
-            "in": "header",
-            "description": "API key for identification.",
-            "required": true,
-            "example": "{{api_key}}",
-            "schema": {
-              "type": "string"
             }
           }
         ],
@@ -130613,7 +129655,12 @@
             "headers": {}
           }
         },
-        "security": []
+        "security": [
+          {
+            "SandboxApiKey": [],
+            "GstTaxpayerAccessToken": []
+          }
+        ]
       }
     },
     "/gst/compliance/tax-payer/gstrs/gstr-1a/b2csa/{year}/{month}": {
@@ -130649,16 +129696,6 @@
             }
           },
           {
-            "name": "authorization",
-            "in": "header",
-            "description": "GST taxpayer access token. For token-generation steps, refer to the Generate Taxpayer Session flow and pass the token in the authorization header.",
-            "required": true,
-            "example": "{{gsp_access_token}}",
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
             "name": "x-api-version",
             "in": "header",
             "description": "Compliance API version.",
@@ -130667,16 +129704,6 @@
             "schema": {
               "type": "string",
               "default": "1.0.0"
-            }
-          },
-          {
-            "name": "x-api-key",
-            "in": "header",
-            "description": "API key for identification.",
-            "required": true,
-            "example": "{{api_key}}",
-            "schema": {
-              "type": "string"
             }
           }
         ],
@@ -130741,7 +129768,12 @@
             "headers": {}
           }
         },
-        "security": []
+        "security": [
+          {
+            "SandboxApiKey": [],
+            "GstTaxpayerAccessToken": []
+          }
+        ]
       }
     },
     "/gst/compliance/tax-payer/gstrs/gstr-1a/cdnra/{year}/{month}": {
@@ -130777,16 +129809,6 @@
             }
           },
           {
-            "name": "authorization",
-            "in": "header",
-            "description": "GST taxpayer access token. For token-generation steps, refer to the Generate Taxpayer Session flow and pass the token in the authorization header.",
-            "required": true,
-            "example": "{{gsp_access_token}}",
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
             "name": "x-api-version",
             "in": "header",
             "description": "Compliance API version.",
@@ -130795,16 +129817,6 @@
             "schema": {
               "type": "string",
               "default": "1.0.0"
-            }
-          },
-          {
-            "name": "x-api-key",
-            "in": "header",
-            "description": "API key for identification.",
-            "required": true,
-            "example": "{{api_key}}",
-            "schema": {
-              "type": "string"
             }
           }
         ],
@@ -130891,7 +129903,12 @@
             "headers": {}
           }
         },
-        "security": []
+        "security": [
+          {
+            "SandboxApiKey": [],
+            "GstTaxpayerAccessToken": []
+          }
+        ]
       }
     },
     "/gst/compliance/tax-payer/gstrs/gstr-1a/txp/{year}/{month}": {
@@ -130927,16 +129944,6 @@
             }
           },
           {
-            "name": "authorization",
-            "in": "header",
-            "description": "GST taxpayer access token. For token-generation steps, refer to the Generate Taxpayer Session flow and pass the token in the authorization header.",
-            "required": true,
-            "example": "{{gsp_access_token}}",
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
             "name": "x-api-version",
             "in": "header",
             "description": "Compliance API version.",
@@ -130945,16 +129952,6 @@
             "schema": {
               "type": "string",
               "default": "1.0.0"
-            }
-          },
-          {
-            "name": "x-api-key",
-            "in": "header",
-            "description": "API key for identification.",
-            "required": true,
-            "example": "{{api_key}}",
-            "schema": {
-              "type": "string"
             }
           }
         ],
@@ -131017,7 +130014,12 @@
             "headers": {}
           }
         },
-        "security": []
+        "security": [
+          {
+            "SandboxApiKey": [],
+            "GstTaxpayerAccessToken": []
+          }
+        ]
       }
     },
     "/gst/compliance/tax-payer/gstrs/gstr-1a/cdnur/{year}/{month}": {
@@ -131053,16 +130055,6 @@
             }
           },
           {
-            "name": "authorization",
-            "in": "header",
-            "description": "GST taxpayer access token. For token-generation steps, refer to the Generate Taxpayer Session flow and pass the token in the authorization header.",
-            "required": true,
-            "example": "{{gsp_access_token}}",
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
             "name": "x-api-version",
             "in": "header",
             "description": "Compliance API version.",
@@ -131071,16 +130063,6 @@
             "schema": {
               "type": "string",
               "default": "1.0.0"
-            }
-          },
-          {
-            "name": "x-api-key",
-            "in": "header",
-            "description": "API key for identification.",
-            "required": true,
-            "example": "{{api_key}}",
-            "schema": {
-              "type": "string"
             }
           }
         ],
@@ -131158,7 +130140,12 @@
             "headers": {}
           }
         },
-        "security": []
+        "security": [
+          {
+            "SandboxApiKey": [],
+            "GstTaxpayerAccessToken": []
+          }
+        ]
       }
     },
     "/gst/compliance/tax-payer/gstrs/gstr-1a/cdnura/{year}/{month}": {
@@ -131194,16 +130181,6 @@
             }
           },
           {
-            "name": "authorization",
-            "in": "header",
-            "description": "GST taxpayer access token. For token-generation steps, refer to the Generate Taxpayer Session flow and pass the token in the authorization header.",
-            "required": true,
-            "example": "{{gsp_access_token}}",
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
             "name": "x-api-version",
             "in": "header",
             "description": "Compliance API version.",
@@ -131212,16 +130189,6 @@
             "schema": {
               "type": "string",
               "default": "1.0.0"
-            }
-          },
-          {
-            "name": "x-api-key",
-            "in": "header",
-            "description": "API key for identification.",
-            "required": true,
-            "example": "{{api_key}}",
-            "schema": {
-              "type": "string"
             }
           }
         ],
@@ -131298,7 +130265,12 @@
             "headers": {}
           }
         },
-        "security": []
+        "security": [
+          {
+            "SandboxApiKey": [],
+            "GstTaxpayerAccessToken": []
+          }
+        ]
       }
     },
     "/gst/compliance/tax-payer/gstrs/gstr-1a/declaration-details/{year}/{month}": {
@@ -131334,16 +130306,6 @@
             }
           },
           {
-            "name": "authorization",
-            "in": "header",
-            "description": "GST taxpayer access token. For token-generation steps, refer to the Generate Taxpayer Session flow and pass the token in the authorization header.",
-            "required": true,
-            "example": "{{gsp_access_token}}",
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
             "name": "x-api-version",
             "in": "header",
             "description": "Compliance API version.",
@@ -131352,16 +130314,6 @@
             "schema": {
               "type": "string",
               "default": "1.0.0"
-            }
-          },
-          {
-            "name": "x-api-key",
-            "in": "header",
-            "description": "API key for identification.",
-            "required": true,
-            "example": "{{api_key}}",
-            "schema": {
-              "type": "string"
             }
           }
         ],
@@ -131485,7 +130437,12 @@
             "headers": {}
           }
         },
-        "security": []
+        "security": [
+          {
+            "SandboxApiKey": [],
+            "GstTaxpayerAccessToken": []
+          }
+        ]
       }
     },
     "/gst/compliance/tax-payer/gstrs/gstr-1a/doc-issue/{year}/{month}": {
@@ -131521,16 +130478,6 @@
             }
           },
           {
-            "name": "authorization",
-            "in": "header",
-            "description": "GST taxpayer access token. For token-generation steps, refer to the Generate Taxpayer Session flow and pass the token in the authorization header.",
-            "required": true,
-            "example": "{{gsp_access_token}}",
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
             "name": "x-api-version",
             "in": "header",
             "description": "Compliance API version.",
@@ -131539,16 +130486,6 @@
             "schema": {
               "type": "string",
               "default": "1.0.0"
-            }
-          },
-          {
-            "name": "x-api-key",
-            "in": "header",
-            "description": "API key for identification.",
-            "required": true,
-            "example": "{{api_key}}",
-            "schema": {
-              "type": "string"
             }
           }
         ],
@@ -131614,7 +130551,12 @@
             "headers": {}
           }
         },
-        "security": []
+        "security": [
+          {
+            "SandboxApiKey": [],
+            "GstTaxpayerAccessToken": []
+          }
+        ]
       }
     },
     "/gst/compliance/tax-payer/gstrs/gstr-1a/ecoma/{year}/{month}": {
@@ -131670,16 +130612,6 @@
             }
           },
           {
-            "name": "authorization",
-            "in": "header",
-            "description": "GST taxpayer access token. For token-generation steps, refer to the Generate Taxpayer Session flow and pass the token in the authorization header.",
-            "required": true,
-            "example": "{{gsp_access_token}}",
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
             "name": "x-api-version",
             "in": "header",
             "description": "Compliance API version.",
@@ -131688,16 +130620,6 @@
             "schema": {
               "type": "string",
               "default": "1.0.0"
-            }
-          },
-          {
-            "name": "x-api-key",
-            "in": "header",
-            "description": "API key for identification.",
-            "required": true,
-            "example": "{{api_key}}",
-            "schema": {
-              "type": "string"
             }
           }
         ],
@@ -131937,7 +130859,12 @@
             "headers": {}
           }
         },
-        "security": []
+        "security": [
+          {
+            "SandboxApiKey": [],
+            "GstTaxpayerAccessToken": []
+          }
+        ]
       }
     },
     "/gst/compliance/tax-payer/gstrs/gstr-1a/ecom/{year}/{month}": {
@@ -132003,16 +130930,6 @@
             }
           },
           {
-            "name": "authorization",
-            "in": "header",
-            "description": "GST taxpayer access token. For token-generation steps, refer to the Generate Taxpayer Session flow and pass the token in the authorization header.",
-            "required": true,
-            "example": "{{gsp_access_token}}",
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
             "name": "x-api-version",
             "in": "header",
             "description": "Compliance API version.",
@@ -132021,16 +130938,6 @@
             "schema": {
               "type": "string",
               "default": "1.0.0"
-            }
-          },
-          {
-            "name": "x-api-key",
-            "in": "header",
-            "description": "API key for identification.",
-            "required": true,
-            "example": "{{api_key}}",
-            "schema": {
-              "type": "string"
             }
           }
         ],
@@ -132243,7 +131150,12 @@
             "headers": {}
           }
         },
-        "security": []
+        "security": [
+          {
+            "SandboxApiKey": [],
+            "GstTaxpayerAccessToken": []
+          }
+        ]
       }
     },
     "/gst/compliance/tax-payer/gstrs/gstr-1a/exp/{year}/{month}": {
@@ -132279,16 +131191,6 @@
             }
           },
           {
-            "name": "authorization",
-            "in": "header",
-            "description": "GST taxpayer access token. For token-generation steps, refer to the Generate Taxpayer Session flow and pass the token in the authorization header.",
-            "required": true,
-            "example": "{{gsp_access_token}}",
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
             "name": "x-api-version",
             "in": "header",
             "description": "Compliance API version.",
@@ -132297,16 +131199,6 @@
             "schema": {
               "type": "string",
               "default": "1.0.0"
-            }
-          },
-          {
-            "name": "x-api-key",
-            "in": "header",
-            "description": "API key for identification.",
-            "required": true,
-            "example": "{{api_key}}",
-            "schema": {
-              "type": "string"
             }
           }
         ],
@@ -132409,7 +131301,12 @@
             "headers": {}
           }
         },
-        "security": []
+        "security": [
+          {
+            "SandboxApiKey": [],
+            "GstTaxpayerAccessToken": []
+          }
+        ]
       }
     },
     "/gst/compliance/tax-payer/gstrs/gstr-1a/cdnr/{year}/{month}": {
@@ -132455,16 +131352,6 @@
             }
           },
           {
-            "name": "authorization",
-            "in": "header",
-            "description": "GST taxpayer access token. For token-generation steps, refer to the Generate Taxpayer Session flow and pass the token in the authorization header.",
-            "required": true,
-            "example": "{{gsp_access_token}}",
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
             "name": "x-api-version",
             "in": "header",
             "description": "Compliance API version.",
@@ -132473,16 +131360,6 @@
             "schema": {
               "type": "string",
               "default": "1.0.0"
-            }
-          },
-          {
-            "name": "x-api-key",
-            "in": "header",
-            "description": "API key for identification.",
-            "required": true,
-            "example": "{{api_key}}",
-            "schema": {
-              "type": "string"
             }
           }
         ],
@@ -132569,7 +131446,12 @@
             "headers": {}
           }
         },
-        "security": []
+        "security": [
+          {
+            "SandboxApiKey": [],
+            "GstTaxpayerAccessToken": []
+          }
+        ]
       }
     },
     "/gst/compliance/tax-payer/gstrs/gstr-1a/expa/{year}/{month}": {
@@ -132605,16 +131487,6 @@
             }
           },
           {
-            "name": "authorization",
-            "in": "header",
-            "description": "GST taxpayer access token. For token-generation steps, refer to the Generate Taxpayer Session flow and pass the token in the authorization header.",
-            "required": true,
-            "example": "{{gsp_access_token}}",
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
             "name": "x-api-version",
             "in": "header",
             "description": "Compliance API version.",
@@ -132623,16 +131495,6 @@
             "schema": {
               "type": "string",
               "default": "1.0.0"
-            }
-          },
-          {
-            "name": "x-api-key",
-            "in": "header",
-            "description": "API key for identification.",
-            "required": true,
-            "example": "{{api_key}}",
-            "schema": {
-              "type": "string"
             }
           }
         ],
@@ -132733,7 +131595,12 @@
             "headers": {}
           }
         },
-        "security": []
+        "security": [
+          {
+            "SandboxApiKey": [],
+            "GstTaxpayerAccessToken": []
+          }
+        ]
       }
     },
     "/gst/compliance/tax-payer/gstrs/gstr-1a/hsn/{year}/{month}": {
@@ -132769,16 +131636,6 @@
             }
           },
           {
-            "name": "authorization",
-            "in": "header",
-            "description": "GST taxpayer access token. For token-generation steps, refer to the Generate Taxpayer Session flow and pass the token in the authorization header.",
-            "required": true,
-            "example": "{{gsp_access_token}}",
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
             "name": "x-api-version",
             "in": "header",
             "description": "Compliance API version.",
@@ -132787,16 +131644,6 @@
             "schema": {
               "type": "string",
               "default": "1.0.0"
-            }
-          },
-          {
-            "name": "x-api-key",
-            "in": "header",
-            "description": "API key for identification.",
-            "required": true,
-            "example": "{{api_key}}",
-            "schema": {
-              "type": "string"
             }
           }
         ],
@@ -132875,7 +131722,12 @@
             "headers": {}
           }
         },
-        "security": []
+        "security": [
+          {
+            "SandboxApiKey": [],
+            "GstTaxpayerAccessToken": []
+          }
+        ]
       }
     },
     "/gst/compliance/tax-payer/gstrs/gstr-1a/nil/{year}/{month}": {
@@ -132911,16 +131763,6 @@
             }
           },
           {
-            "name": "authorization",
-            "in": "header",
-            "description": "GST taxpayer access token. For token-generation steps, refer to the Generate Taxpayer Session flow and pass the token in the authorization header.",
-            "required": true,
-            "example": "{{gsp_access_token}}",
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
             "name": "x-api-version",
             "in": "header",
             "description": "Compliance API version.",
@@ -132929,16 +131771,6 @@
             "schema": {
               "type": "string",
               "default": "1.0.0"
-            }
-          },
-          {
-            "name": "x-api-key",
-            "in": "header",
-            "description": "API key for identification.",
-            "required": true,
-            "example": "{{api_key}}",
-            "schema": {
-              "type": "string"
             }
           }
         ],
@@ -133015,7 +131847,12 @@
             "headers": {}
           }
         },
-        "security": []
+        "security": [
+          {
+            "SandboxApiKey": [],
+            "GstTaxpayerAccessToken": []
+          }
+        ]
       }
     },
     "/gst/compliance/tax-payer/gstrs/gstr-1a/{year}/{month}": {
@@ -133051,16 +131888,6 @@
             }
           },
           {
-            "name": "authorization",
-            "in": "header",
-            "description": "GST taxpayer access token. For token-generation steps, refer to the Generate Taxpayer Session flow and pass the token in the authorization header.",
-            "required": true,
-            "example": "{{gsp_access_token}}",
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
             "name": "x-api-version",
             "in": "header",
             "description": "Compliance API version.",
@@ -133069,16 +131896,6 @@
             "schema": {
               "type": "string",
               "default": "1.0.0"
-            }
-          },
-          {
-            "name": "x-api-key",
-            "in": "header",
-            "description": "API key for identification.",
-            "required": true,
-            "example": "{{api_key}}",
-            "schema": {
-              "type": "string"
             }
           }
         ],
@@ -134287,7 +133104,12 @@
             "headers": {}
           }
         },
-        "security": []
+        "security": [
+          {
+            "SandboxApiKey": [],
+            "GstTaxpayerAccessToken": []
+          }
+        ]
       }
     },
     "/gst/compliance/tax-payer/gstrs/gstr-1a/supecoa/{year}/{month}": {
@@ -134333,16 +133155,6 @@
             }
           },
           {
-            "name": "authorization",
-            "in": "header",
-            "description": "GST taxpayer access token. For token-generation steps, refer to the Generate Taxpayer Session flow and pass the token in the authorization header.",
-            "required": true,
-            "example": "{{gsp_access_token}}",
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
             "name": "x-api-version",
             "in": "header",
             "description": "Compliance API version.",
@@ -134351,16 +133163,6 @@
             "schema": {
               "type": "string",
               "default": "1.0.0"
-            }
-          },
-          {
-            "name": "x-api-key",
-            "in": "header",
-            "description": "API key for identification.",
-            "required": true,
-            "example": "{{api_key}}",
-            "schema": {
-              "type": "string"
             }
           }
         ],
@@ -134435,7 +133237,12 @@
             "headers": {}
           }
         },
-        "security": []
+        "security": [
+          {
+            "SandboxApiKey": [],
+            "GstTaxpayerAccessToken": []
+          }
+        ]
       }
     },
     "/gst/compliance/tax-payer/gstrs/gstr-1a/txpa/{year}/{month}": {
@@ -134471,16 +133278,6 @@
             }
           },
           {
-            "name": "authorization",
-            "in": "header",
-            "description": "GST taxpayer access token. For token-generation steps, refer to the Generate Taxpayer Session flow and pass the token in the authorization header.",
-            "required": true,
-            "example": "{{gsp_access_token}}",
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
             "name": "x-api-version",
             "in": "header",
             "description": "Compliance API version.",
@@ -134489,16 +133286,6 @@
             "schema": {
               "type": "string",
               "default": "1.0.0"
-            }
-          },
-          {
-            "name": "x-api-key",
-            "in": "header",
-            "description": "API key for identification.",
-            "required": true,
-            "example": "{{api_key}}",
-            "schema": {
-              "type": "string"
             }
           }
         ],
@@ -134562,7 +133349,12 @@
             "headers": {}
           }
         },
-        "security": []
+        "security": [
+          {
+            "SandboxApiKey": [],
+            "GstTaxpayerAccessToken": []
+          }
+        ]
       }
     },
     "/gst/compliance/tax-payer/gstrs/gstr-1a/supeco/{year}/{month}": {
@@ -134618,16 +133410,6 @@
             }
           },
           {
-            "name": "authorization",
-            "in": "header",
-            "description": "GST taxpayer access token. For token-generation steps, refer to the Generate Taxpayer Session flow and pass the token in the authorization header.",
-            "required": true,
-            "example": "{{gsp_access_token}}",
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
             "name": "x-api-version",
             "in": "header",
             "description": "Compliance API version.",
@@ -134636,16 +133418,6 @@
             "schema": {
               "type": "string",
               "default": "1.0.0"
-            }
-          },
-          {
-            "name": "x-api-key",
-            "in": "header",
-            "description": "API key for identification.",
-            "required": true,
-            "example": "{{api_key}}",
-            "schema": {
-              "type": "string"
             }
           }
         ],
@@ -134731,7 +133503,12 @@
             "headers": {}
           }
         },
-        "security": []
+        "security": [
+          {
+            "SandboxApiKey": [],
+            "GstTaxpayerAccessToken": []
+          }
+        ]
       }
     },
     "/gst/compliance/tax-payer/gstrs/{year}/{month}/track": {
@@ -134779,16 +133556,6 @@
             }
           },
           {
-            "name": "authorization",
-            "in": "header",
-            "description": "GST taxpayer access token.",
-            "required": true,
-            "example": "{{gsp_access_token}}",
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
             "name": "x-api-version",
             "in": "header",
             "description": "API version.",
@@ -134797,16 +133564,6 @@
             "schema": {
               "type": "string",
               "default": "1.0.0"
-            }
-          },
-          {
-            "name": "x-api-key",
-            "in": "header",
-            "description": "API key for identification.",
-            "required": true,
-            "example": "{{api_key}}",
-            "schema": {
-              "type": "string"
             }
           }
         ],
@@ -134879,7 +133636,12 @@
             "headers": {}
           }
         },
-        "security": []
+        "security": [
+          {
+            "SandboxApiKey": [],
+            "GstTaxpayerAccessToken": []
+          }
+        ]
       }
     },
     "/gst/compliance/tax-payer/gstrs/{year}/{month}/status": {
@@ -134924,16 +133686,6 @@
             }
           },
           {
-            "name": "authorization",
-            "in": "header",
-            "description": "GST taxpayer access token. For token-generation steps, refer to the [Generate Taxpayer Session](/recipes/gst/authentication/generate_tax_payer_session) recipe, then pass the token in the authorization header.",
-            "required": true,
-            "example": "",
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
             "name": "x-api-version",
             "in": "header",
             "description": "API version",
@@ -134942,16 +133694,6 @@
             "schema": {
               "type": "string",
               "default": "1.0.0"
-            }
-          },
-          {
-            "name": "x-api-key",
-            "in": "header",
-            "description": "API key for identification",
-            "required": true,
-            "example": "",
-            "schema": {
-              "type": "string"
             }
           }
         ],
@@ -135555,7 +134297,12 @@
             "headers": {}
           }
         },
-        "security": []
+        "security": [
+          {
+            "SandboxApiKey": [],
+            "GstTaxpayerAccessToken": []
+          }
+        ]
       }
     },
     "/gst/compliance/tax-payer/gstrs/preference": {
@@ -135577,26 +134324,6 @@
             "schema": {
               "type": "string",
               "example": "FY 2024-25"
-            }
-          },
-          {
-            "name": "authorization",
-            "in": "header",
-            "description": "GST taxpayer access token. For token-generation steps, refer to the [Generate Taxpayer Session](/recipes/gst/authentication/generate_tax_payer_session) recipe, then pass the token in the authorization header.",
-            "required": true,
-            "example": "",
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "x-api-key",
-            "in": "header",
-            "description": "API key for identification",
-            "required": true,
-            "example": "",
-            "schema": {
-              "type": "string"
             }
           },
           {
@@ -135657,7 +134384,12 @@
             "headers": {}
           }
         },
-        "security": []
+        "security": [
+          {
+            "SandboxApiKey": [],
+            "GstTaxpayerAccessToken": []
+          }
+        ]
       },
       "post": {
         "summary": "Save Preference",
@@ -135669,26 +134401,6 @@
           "Returns"
         ],
         "parameters": [
-          {
-            "name": "authorization",
-            "in": "header",
-            "description": "GST taxpayer access token. For token-generation steps, refer to the [Generate Taxpayer Session](/recipes/gst/authentication/generate_tax_payer_session) recipe, then pass the token in the authorization header.",
-            "required": true,
-            "example": "",
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "x-api-key",
-            "in": "header",
-            "description": "API key for identification",
-            "required": true,
-            "example": "",
-            "schema": {
-              "type": "string"
-            }
-          },
           {
             "name": "x-api-version",
             "in": "header",
@@ -135767,7 +134479,12 @@
             "headers": {}
           }
         },
-        "security": []
+        "security": [
+          {
+            "SandboxApiKey": [],
+            "GstTaxpayerAccessToken": []
+          }
+        ]
       }
     },
     "/gst/compliance/tax-payer/gstrs/{gstr}/{year}/{month}/new-proceed": {
@@ -135819,26 +134536,6 @@
             "schema": {
               "type": "string",
               "example": "Y"
-            }
-          },
-          {
-            "name": "authorization",
-            "in": "header",
-            "description": "GST taxpayer access token. For token-generation steps, refer to the [Generate Taxpayer Session](/recipes/gst/authentication/generate_tax_payer_session) recipe, then pass the token in the authorization header.",
-            "required": true,
-            "example": "",
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "x-api-key",
-            "in": "header",
-            "description": "API key for identification",
-            "required": true,
-            "example": "",
-            "schema": {
-              "type": "string"
             }
           },
           {
@@ -135927,7 +134624,12 @@
             "headers": {}
           }
         },
-        "security": []
+        "security": [
+          {
+            "SandboxApiKey": [],
+            "GstTaxpayerAccessToken": []
+          }
+        ]
       }
     },
     "/gst/compliance/tax-payer/gstrs/{gstr}/{year}/{month}/proceed": {
@@ -135972,16 +134674,6 @@
             }
           },
           {
-            "name": "authorization",
-            "in": "header",
-            "description": "GST taxpayer access token. For token-generation steps, refer to the [Generate Taxpayer Session](/recipes/gst/authentication/generate_tax_payer_session) recipe, then pass the token in the authorization header.",
-            "required": true,
-            "example": "",
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
             "name": "x-api-version",
             "in": "header",
             "description": "API version",
@@ -135990,16 +134682,6 @@
             "schema": {
               "type": "string",
               "default": "1.0.0"
-            }
-          },
-          {
-            "name": "x-api-key",
-            "in": "header",
-            "description": "API key for identification",
-            "required": true,
-            "example": "",
-            "schema": {
-              "type": "string"
             }
           }
         ],
@@ -136062,7 +134744,12 @@
             "headers": {}
           }
         },
-        "security": []
+        "security": [
+          {
+            "SandboxApiKey": [],
+            "GstTaxpayerAccessToken": []
+          }
+        ]
       }
     },
     "/gst/compliance/tax-payer/gstrs/{year}/{month}/file-details/download": {
@@ -136090,26 +134777,6 @@
             "name": "month",
             "in": "path",
             "description": "",
-            "required": true,
-            "example": "",
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "authorization",
-            "in": "header",
-            "description": "GST taxpayer access token. For token-generation steps, refer to the [Generate Taxpayer Session](/recipes/gst/authentication/generate_tax_payer_session) recipe, then pass the token in the authorization header.",
-            "required": true,
-            "example": "",
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "x-api-key",
-            "in": "header",
-            "description": "API key for identification",
             "required": true,
             "example": "",
             "schema": {
@@ -136276,7 +134943,12 @@
             "headers": {}
           }
         },
-        "security": []
+        "security": [
+          {
+            "SandboxApiKey": [],
+            "GstTaxpayerAccessToken": []
+          }
+        ]
       }
     },
     "/gst/compliance/tax-payer/gstrs/file-details/download": {
@@ -136298,26 +134970,6 @@
             "schema": {
               "type": "string",
               "example": "{{job_id}}"
-            }
-          },
-          {
-            "name": "authorization",
-            "in": "header",
-            "description": "GST taxpayer access token. For token-generation steps, refer to the [Generate Taxpayer Session](/recipes/gst/authentication/generate_tax_payer_session) recipe, then pass the token in the authorization header.",
-            "required": true,
-            "example": "",
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "x-api-key",
-            "in": "header",
-            "description": "API key for identification",
-            "required": true,
-            "example": "",
-            "schema": {
-              "type": "string"
             }
           },
           {
@@ -136398,7 +135050,12 @@
             "headers": {}
           }
         },
-        "security": []
+        "security": [
+          {
+            "SandboxApiKey": [],
+            "GstTaxpayerAccessToken": []
+          }
+        ]
       }
     },
     "/gst/compliance/tax-payer/ledgers/bal/{year}/{month}": {
@@ -136433,16 +135090,6 @@
             }
           },
           {
-            "name": "authorization",
-            "in": "header",
-            "description": "GST taxpayer access token. For token-generation steps, refer to the [Generate Taxpayer Session](/recipes/gst/authentication/generate_tax_payer_session) recipe, then pass the token in the authorization header.",
-            "required": true,
-            "example": "",
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
             "name": "x-api-version",
             "in": "header",
             "description": "API version",
@@ -136451,16 +135098,6 @@
             "schema": {
               "type": "string",
               "default": "1.0.0"
-            }
-          },
-          {
-            "name": "x-api-key",
-            "in": "header",
-            "description": "API key for identification",
-            "required": true,
-            "example": "",
-            "schema": {
-              "type": "string"
             }
           }
         ],
@@ -136539,7 +135176,12 @@
             "headers": {}
           }
         },
-        "security": []
+        "security": [
+          {
+            "SandboxApiKey": [],
+            "GstTaxpayerAccessToken": []
+          }
+        ]
       }
     },
     "/gst/compliance/tax-payer/ledgers/cash": {
@@ -136571,26 +135213,6 @@
             "schema": {
               "type": "string",
               "example": "{{from_date}}"
-            }
-          },
-          {
-            "name": "authorization",
-            "in": "header",
-            "description": "GST taxpayer access token. For token-generation steps, refer to the [Generate Taxpayer Session](/recipes/gst/authentication/generate_tax_payer_session) recipe, then pass the token in the authorization header.",
-            "required": true,
-            "example": "",
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "x-api-key",
-            "in": "header",
-            "description": "API key for identification",
-            "required": true,
-            "example": "",
-            "schema": {
-              "type": "string"
             }
           },
           {
@@ -136724,7 +135346,12 @@
             "headers": {}
           }
         },
-        "security": []
+        "security": [
+          {
+            "SandboxApiKey": [],
+            "GstTaxpayerAccessToken": []
+          }
+        ]
       }
     },
     "/gst/compliance/tax-payer/ledgers/itc": {
@@ -136756,26 +135383,6 @@
             "schema": {
               "type": "string",
               "example": "01/01/2023"
-            }
-          },
-          {
-            "name": "authorization",
-            "in": "header",
-            "description": "GST taxpayer access token. For token-generation steps, refer to the [Generate Taxpayer Session](/recipes/gst/authentication/generate_tax_payer_session) recipe, then pass the token in the authorization header.",
-            "required": true,
-            "example": "",
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "x-api-key",
-            "in": "header",
-            "description": "API key for identification",
-            "required": true,
-            "example": "",
-            "schema": {
-              "type": "string"
             }
           },
           {
@@ -137252,7 +135859,12 @@
             "headers": {}
           }
         },
-        "security": []
+        "security": [
+          {
+            "SandboxApiKey": [],
+            "GstTaxpayerAccessToken": []
+          }
+        ]
       }
     },
     "/gst/compliance/tax-payer/ledgers/tax/{year}/{month}": {
@@ -137300,26 +135912,6 @@
             "in": "query",
             "description": "From Date (DD/MM/YYYY)",
             "required": true,
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "authorization",
-            "in": "header",
-            "description": "GST taxpayer access token. For token-generation steps, refer to the [Generate Taxpayer Session](/recipes/gst/authentication/generate_tax_payer_session) recipe, then pass the token in the authorization header.",
-            "required": true,
-            "example": "",
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "x-api-key",
-            "in": "header",
-            "description": "API key for identification",
-            "required": true,
-            "example": "",
             "schema": {
               "type": "string"
             }
@@ -137697,7 +136289,12 @@
             "headers": {}
           }
         },
-        "security": []
+        "security": [
+          {
+            "SandboxApiKey": [],
+            "GstTaxpayerAccessToken": []
+          }
+        ]
       }
     },
     "/gst/compliance/tax-payer/e-invoices/{year}/{month}/sales": {
@@ -137744,16 +136341,6 @@
             }
           },
           {
-            "name": "authorization",
-            "in": "header",
-            "description": "GST taxpayer access token. For token-generation steps, refer to the [Generate Taxpayer Session](/recipes/gst/authentication/generate_tax_payer_session) recipe, then pass the token in the authorization header.",
-            "required": true,
-            "example": "{{gsp_access_token}}",
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
             "name": "x-api-version",
             "in": "header",
             "description": "API version",
@@ -137762,16 +136349,6 @@
             "schema": {
               "type": "string",
               "default": "1.0.0"
-            }
-          },
-          {
-            "name": "x-api-key",
-            "in": "header",
-            "description": "API key for identification",
-            "required": true,
-            "example": "{{api_key}}",
-            "schema": {
-              "type": "string"
             }
           }
         ],
@@ -137937,7 +136514,12 @@
             "headers": {}
           }
         },
-        "security": []
+        "security": [
+          {
+            "SandboxApiKey": [],
+            "GstTaxpayerAccessToken": []
+          }
+        ]
       },
       "post": {
         "summary": "Submit Job",
@@ -137981,16 +136563,6 @@
             }
           },
           {
-            "name": "authorization",
-            "in": "header",
-            "description": "GST taxpayer access token. For token-generation steps, refer to the [Generate Taxpayer Session](/recipes/gst/authentication/generate_tax_payer_session) recipe, then pass the token in the authorization header.",
-            "required": true,
-            "example": "",
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
             "name": "x-api-version",
             "in": "header",
             "description": "API version",
@@ -137999,16 +136571,6 @@
             "schema": {
               "type": "string",
               "default": "1.0.0"
-            }
-          },
-          {
-            "name": "x-api-key",
-            "in": "header",
-            "description": "API key for identification",
-            "required": true,
-            "example": "",
-            "schema": {
-              "type": "string"
             }
           }
         ],
@@ -138091,7 +136653,12 @@
             "headers": {}
           }
         },
-        "security": []
+        "security": [
+          {
+            "SandboxApiKey": [],
+            "GstTaxpayerAccessToken": []
+          }
+        ]
       }
     },
     "/gst/compliance/tax-payer/e-invoices/{year}/{month}/purchases": {
@@ -138138,16 +136705,6 @@
             }
           },
           {
-            "name": "authorization",
-            "in": "header",
-            "description": "GST taxpayer access token. For token-generation steps, refer to the [Generate Taxpayer Session](/recipes/gst/authentication/generate_tax_payer_session) recipe, then pass the token in the authorization header.",
-            "required": true,
-            "example": "{{gsp_access_token}}",
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
             "name": "x-api-version",
             "in": "header",
             "description": "API version",
@@ -138156,16 +136713,6 @@
             "schema": {
               "type": "string",
               "default": "1.0.0"
-            }
-          },
-          {
-            "name": "x-api-key",
-            "in": "header",
-            "description": "API key for identification",
-            "required": true,
-            "example": "{{api_key}}",
-            "schema": {
-              "type": "string"
             }
           }
         ],
@@ -138331,7 +136878,12 @@
             "headers": {}
           }
         },
-        "security": []
+        "security": [
+          {
+            "SandboxApiKey": [],
+            "GstTaxpayerAccessToken": []
+          }
+        ]
       },
       "post": {
         "summary": "Submit Job",
@@ -138375,16 +136927,6 @@
             }
           },
           {
-            "name": "authorization",
-            "in": "header",
-            "description": "GST taxpayer access token. For token-generation steps, refer to the [Generate Taxpayer Session](/recipes/gst/authentication/generate_tax_payer_session) recipe, then pass the token in the authorization header.",
-            "required": true,
-            "example": "",
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
             "name": "x-api-version",
             "in": "header",
             "description": "API version",
@@ -138393,16 +136935,6 @@
             "schema": {
               "type": "string",
               "default": "1.0.0"
-            }
-          },
-          {
-            "name": "x-api-key",
-            "in": "header",
-            "description": "API key for identification",
-            "required": true,
-            "example": "",
-            "schema": {
-              "type": "string"
             }
           }
         ],
@@ -138485,7 +137017,12 @@
             "headers": {}
           }
         },
-        "security": []
+        "security": [
+          {
+            "SandboxApiKey": [],
+            "GstTaxpayerAccessToken": []
+          }
+        ]
       }
     },
     "/gst/compliance/tax-payer/e-invoice/{irn}": {
@@ -138510,16 +137047,6 @@
             }
           },
           {
-            "name": "authorization",
-            "in": "header",
-            "description": "GST taxpayer access token. For token-generation steps, refer to the [Generate Taxpayer Session](/recipes/gst/authentication/generate_tax_payer_session) recipe, then pass the token in the authorization header.",
-            "required": true,
-            "example": "",
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
             "name": "x-api-version",
             "in": "header",
             "description": "API version",
@@ -138528,16 +137055,6 @@
             "schema": {
               "type": "string",
               "default": "1.0.0"
-            }
-          },
-          {
-            "name": "x-api-key",
-            "in": "header",
-            "description": "API key for identification",
-            "required": true,
-            "example": "",
-            "schema": {
-              "type": "string"
             }
           }
         ],
@@ -138608,7 +137125,12 @@
             "headers": {}
           }
         },
-        "security": []
+        "security": [
+          {
+            "SandboxApiKey": [],
+            "GstTaxpayerAccessToken": []
+          }
+        ]
       }
     },
     "/gst/compliance/tax-payer/e-invoices/hsn/{year}/{month}": {
@@ -138645,16 +137167,6 @@
             }
           },
           {
-            "name": "authorization",
-            "in": "header",
-            "description": "GST taxpayer access token.",
-            "required": true,
-            "example": "{{gsp_access_token}}",
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
             "name": "x-api-version",
             "in": "header",
             "description": "API version.",
@@ -138663,16 +137175,6 @@
             "schema": {
               "type": "string",
               "default": "1.0.0"
-            }
-          },
-          {
-            "name": "x-api-key",
-            "in": "header",
-            "description": "API key for identification.",
-            "required": true,
-            "example": "{{api_key}}",
-            "schema": {
-              "type": "string"
             }
           }
         ],
@@ -138757,7 +137259,12 @@
             "headers": {}
           }
         },
-        "security": []
+        "security": [
+          {
+            "SandboxApiKey": [],
+            "GstTaxpayerAccessToken": []
+          }
+        ]
       }
     },
     "/gst/compliance/tax-payer/notices/{referenceId}": {
@@ -138777,26 +137284,6 @@
             "description": "Notice reference ID returned by the list notices API. This maps to GST `refId`.",
             "required": true,
             "example": "ZA2005190002553",
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "authorization",
-            "in": "header",
-            "description": "GST taxpayer access token.",
-            "required": true,
-            "example": "{{gsp_access_token}}",
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "x-api-key",
-            "in": "header",
-            "description": "API key for identification.",
-            "required": true,
-            "example": "{{api_key}}",
             "schema": {
               "type": "string"
             }
@@ -138863,7 +137350,12 @@
             "headers": {}
           }
         },
-        "security": []
+        "security": [
+          {
+            "SandboxApiKey": [],
+            "GstTaxpayerAccessToken": []
+          }
+        ]
       }
     },
     "/gst/compliance/tax-payer/notices": {
@@ -138883,26 +137375,6 @@
             "description": "Optional notice date filter in `DD/MM/YYYY` format.",
             "required": false,
             "example": "19/01/2024",
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "authorization",
-            "in": "header",
-            "description": "GST taxpayer access token.",
-            "required": true,
-            "example": "{{gsp_access_token}}",
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "x-api-key",
-            "in": "header",
-            "description": "API key for identification.",
-            "required": true,
-            "example": "{{api_key}}",
             "schema": {
               "type": "string"
             }
@@ -138957,7 +137429,12 @@
             "headers": {}
           }
         },
-        "security": []
+        "security": [
+          {
+            "SandboxApiKey": [],
+            "GstTaxpayerAccessToken": []
+          }
+        ]
       }
     },
     "/gst/compliance/tax-payer/aato": {
@@ -138983,16 +137460,6 @@
             }
           },
           {
-            "name": "authorization",
-            "in": "header",
-            "description": "GST taxpayer access token. For token-generation steps, refer to the Generate Taxpayer Session flow and pass the token in the authorization header.",
-            "required": true,
-            "example": "{{gsp_access_token}}",
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
             "name": "x-api-version",
             "in": "header",
             "description": "Compliance API version.",
@@ -139001,16 +137468,6 @@
             "schema": {
               "type": "string",
               "default": "1.0.0"
-            }
-          },
-          {
-            "name": "x-api-key",
-            "in": "header",
-            "description": "API key for identification.",
-            "required": true,
-            "example": "{{api_key}}",
-            "schema": {
-              "type": "string"
             }
           }
         ],
@@ -139071,7 +137528,12 @@
             "headers": {}
           }
         },
-        "security": []
+        "security": [
+          {
+            "SandboxApiKey": [],
+            "GstTaxpayerAccessToken": []
+          }
+        ]
       }
     },
     "/gst/compliance/e-invoice/tax-payer/authenticate": {
@@ -229175,9 +227637,194 @@
        "description": "GSTIN or UIN of the counterparty.",
        "minLength": 15,
        "maxLength": 15
+      },
+      "GstTaxpayerIdentity": {
+        "type": "object",
+        "description": "GST Portal identity used to generate and verify a taxpayer OTP.",
+        "required": [
+          "username",
+          "gstin"
+        ],
+        "properties": {
+          "username": {
+            "type": "string",
+            "minLength": 1,
+            "description": "Username used to sign in to the GST Common Portal. Do not substitute the registered email address unless it is also the GST Portal username.",
+            "example": "TN_NT2.2477"
+          },
+          "gstin": {
+            "type": "string",
+            "pattern": "^[0-9]{2}[A-Z]{5}[0-9]{4}[A-Z][1-9A-Z]Z[0-9A-Z]$",
+            "minLength": 15,
+            "maxLength": 15,
+            "description": "GSTIN associated with the GST Portal username.",
+            "example": "33ABKCS2033B1ZW"
+          }
+        }
+      },
+      "GstTaxpayerBusinessError": {
+        "title": "GST business error",
+        "type": "object",
+        "description": "Error returned by the GST system when it cannot complete the requested operation.",
+        "required": [
+          "error_cd",
+          "message"
+        ],
+        "properties": {
+          "error_cd": {
+            "type": "string",
+            "description": "GST error code.",
+            "example": "AUTH4033"
+          },
+          "message": {
+            "type": "string",
+            "description": "Human-readable explanation of the GST error.",
+            "example": "Invalid Session"
+          }
+        }
+      },
+      "GstTaxpayerBusinessErrorData": {
+        "title": "GST business error response",
+        "type": "object",
+        "description": "Unsuccessful GST operation returned within an HTTP 200 response.",
+        "required": [
+          "status_cd",
+          "error"
+        ],
+        "properties": {
+          "status_cd": {
+            "type": "string",
+            "description": "GST operation status. `0` indicates a business error.",
+            "enum": [
+              "0"
+            ],
+            "example": "0"
+          },
+          "error": {
+            "description": "GST error code and message returned for the unsuccessful operation.",
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/GstTaxpayerBusinessError"
+              }
+            ]
+          }
+        }
+      },
+      "GenerateOtpSuccessData": {
+        "title": "Generate OTP success",
+        "type": "object",
+        "description": "Confirmation that the GST system generated the taxpayer OTP.",
+        "required": [
+          "status_cd"
+        ],
+        "properties": {
+          "status_cd": {
+            "type": "string",
+            "description": "GST operation status. `1` indicates success.",
+            "enum": [
+              "1"
+            ],
+            "example": "1"
+          }
+        }
+      },
+      "VerifyOtpSuccessData": {
+        "title": "Verify OTP success",
+        "type": "object",
+        "description": "Authenticated GST taxpayer session created after successful OTP verification.",
+        "required": [
+          "status_cd",
+          "access_token",
+          "session_expiry",
+          "token_expiry"
+        ],
+        "properties": {
+          "status_cd": {
+            "type": "string",
+            "description": "GST operation status. `1` indicates success.",
+            "enum": [
+              "1"
+            ],
+            "example": "1"
+          },
+          "access_token": {
+            "type": "string",
+            "description": "GST taxpayer access token used for authenticated taxpayer API requests.",
+            "example": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.sandbox-signature"
+          },
+          "session_expiry": {
+            "type": "integer",
+            "format": "int64",
+            "description": "Unix timestamp in milliseconds when the GST taxpayer session expires.",
+            "example": 1712947711000
+          },
+          "token_expiry": {
+            "type": "integer",
+            "format": "int64",
+            "description": "Unix timestamp in milliseconds when the GST taxpayer access token expires.",
+            "example": 1712947711000
+          }
+        }
+      },
+      "RefreshTokenSuccessData": {
+        "title": "Refresh Session success",
+        "type": "object",
+        "description": "Refreshed GST taxpayer session and access token.",
+        "required": [
+          "status_cd",
+          "access_token",
+          "session_expiry",
+          "token_expiry"
+        ],
+        "properties": {
+          "status_cd": {
+            "type": "string",
+            "description": "GST operation status. `1` indicates success.",
+            "enum": [
+              "1"
+            ],
+            "example": "1"
+          },
+          "access_token": {
+            "type": "string",
+            "description": "Refreshed GST taxpayer access token used for authenticated taxpayer API requests.",
+            "example": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.sandbox-signature"
+          },
+          "session_expiry": {
+            "type": "integer",
+            "format": "int64",
+            "description": "Unix timestamp in milliseconds when the refreshed GST taxpayer session expires.",
+            "example": 1712947710000
+          },
+          "token_expiry": {
+            "type": "integer",
+            "format": "int64",
+            "description": "Unix timestamp in milliseconds when the refreshed GST taxpayer access token expires.",
+            "example": 1712947711000
+          }
+        }
       }
     },
-    "securitySchemes": {}
+    "securitySchemes": {
+      "SandboxApiKey": {
+        "type": "apiKey",
+        "in": "header",
+        "name": "x-api-key",
+        "description": "Sandbox API key for the selected environment."
+      },
+      "SandboxAccessToken": {
+        "type": "apiKey",
+        "in": "header",
+        "name": "authorization",
+        "description": "Sandbox access token obtained from [`/authenticate`](/guides/get-started/quickstart)."
+      },
+      "GstTaxpayerAccessToken": {
+        "type": "apiKey",
+        "in": "header",
+        "name": "authorization",
+        "description": "GST taxpayer access token returned by [Verify OTP](/api-reference/gst/compliance/endpoints/taxpayer/authentication/verify_otp)."
+      }
+    }
   },
   "security": []
 }
