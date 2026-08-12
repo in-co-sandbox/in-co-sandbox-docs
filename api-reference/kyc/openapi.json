@@ -1366,11 +1366,16 @@
                     "transaction_id"
                   ]
                 },
-                "example": {
-                  "code": 429,
-                  "timestamp": 1782806266274,
-                  "message": "Too Many Requests",
-                  "transaction_id": "b1e2c3d4-3333-4a5b-8c6d-7e8f9a0b1c2d"
+                "examples": {
+                  "Too Many Requests": {
+                    "summary": "Too Many Requests",
+                    "value": {
+                      "code": 429,
+                      "timestamp": 1782806266274,
+                      "message": "Too Many Requests",
+                      "transaction_id": "b1e2c3d4-3333-4a5b-8c6d-7e8f9a0b1c2d"
+                    }
+                  }
                 }
               }
             },
@@ -1473,11 +1478,16 @@
                     "transaction_id"
                   ]
                 },
-                "example": {
-                  "code": 503,
-                  "timestamp": 1782806266274,
-                  "message": "Source Unavailable",
-                  "transaction_id": "b1e2c3d4-5555-4a5b-8c6d-7e8f9a0b1c2d"
+                "examples": {
+                  "Source Unavailable": {
+                    "summary": "Source Unavailable",
+                    "value": {
+                      "code": 503,
+                      "timestamp": 1782806266274,
+                      "message": "Source Unavailable",
+                      "transaction_id": "b1e2c3d4-5555-4a5b-8c6d-7e8f9a0b1c2d"
+                    }
+                  }
                 }
               }
             },
@@ -2065,11 +2075,16 @@
                     "transaction_id"
                   ]
                 },
-                "example": {
-                  "code": 429,
-                  "timestamp": 1782806266274,
-                  "message": "Too Many Requests",
-                  "transaction_id": "d3e4f5a6-1111-4a5b-8c6d-7e8f9a0b1c2d"
+                "examples": {
+                  "Too Many Requests": {
+                    "summary": "Too Many Requests",
+                    "value": {
+                      "code": 429,
+                      "timestamp": 1782806266274,
+                      "message": "Too Many Requests",
+                      "transaction_id": "d3e4f5a6-1111-4a5b-8c6d-7e8f9a0b1c2d"
+                    }
+                  }
                 }
               }
             },
@@ -2181,11 +2196,16 @@
                     "transaction_id"
                   ]
                 },
-                "example": {
-                  "code": 503,
-                  "timestamp": 1000000000000,
-                  "message": "Source Unavailable",
-                  "transaction_id": "6c05f692-c32f-4de0-92b4-56684bdf16f0"
+                "examples": {
+                  "Source Unavailable": {
+                    "summary": "Source Unavailable",
+                    "value": {
+                      "code": 503,
+                      "timestamp": 1000000000000,
+                      "message": "Source Unavailable",
+                      "transaction_id": "6c05f692-c32f-4de0-92b4-56684bdf16f0"
+                    }
+                  }
                 }
               }
             },
@@ -2223,11 +2243,16 @@
                     "transaction_id"
                   ]
                 },
-                "example": {
-                  "code": 521,
-                  "timestamp": 1782806266274,
-                  "message": "Data not found for: 196c64a5-8cfb-45dd-a51c-0c8534774d07",
-                  "transaction_id": "a599615c-c732-4538-9840-4bb5cd3c19d2"
+                "examples": {
+                  "Data not found": {
+                    "summary": "Data not found",
+                    "value": {
+                      "code": 521,
+                      "timestamp": 1782806266274,
+                      "message": "Data not found for: 196c64a5-8cfb-45dd-a51c-0c8534774d07",
+                      "transaction_id": "a599615c-c732-4538-9840-4bb5cd3c19d2"
+                    }
+                  }
                 }
               }
             },
@@ -2370,19 +2395,24 @@
                     "transaction_id"
                   ]
                 },
-                "example": {
-                  "code": 200,
-                  "timestamp": 1744874068219,
-                  "data": {
-                    "id": "b5522c8f-2321-577b-8e73-ae1366d9c591",
-                    "@entity": "in.co.sandbox.kyc.digilocker.user.profile",
-                    "date_of_birth": 1071145000000,
-                    "mobile": "9825013730",
-                    "name": "Kaival Mehta",
-                    "gender": "male",
-                    "eaadhaar": true
-                  },
-                  "transaction_id": "0793c784-fcaa-44d9-b8fc-f6a382a67f70"
+                "examples": {
+                  "200 - OK": {
+                    "summary": "200 - OK",
+                    "value": {
+                      "code": 200,
+                      "timestamp": 1744874068219,
+                      "data": {
+                        "id": "b5522c8f-2321-577b-8e73-ae1366d9c591",
+                        "@entity": "in.co.sandbox.kyc.digilocker.user.profile",
+                        "date_of_birth": 1071145000000,
+                        "mobile": "9825013730",
+                        "name": "Kaival Mehta",
+                        "gender": "male",
+                        "eaadhaar": true
+                      },
+                      "transaction_id": "0793c784-fcaa-44d9-b8fc-f6a382a67f70"
+                    }
+                  }
                 }
               }
             },
@@ -2420,11 +2450,16 @@
                     "transaction_id"
                   ]
                 },
-                "example": {
-                  "code": 429,
-                  "timestamp": 1782806266274,
-                  "message": "Too Many Requests",
-                  "transaction_id": "e4f5a6b7-3333-4a5b-8c6d-7e8f9a0b1c2d"
+                "examples": {
+                  "Too Many Requests": {
+                    "summary": "Too Many Requests",
+                    "value": {
+                      "code": 429,
+                      "timestamp": 1782806266274,
+                      "message": "Too Many Requests",
+                      "transaction_id": "e4f5a6b7-3333-4a5b-8c6d-7e8f9a0b1c2d"
+                    }
+                  }
                 }
               }
             },
@@ -2527,11 +2562,16 @@
                     "transaction_id"
                   ]
                 },
-                "example": {
-                  "code": 503,
-                  "timestamp": 1000000000000,
-                  "message": "Source Unavailable",
-                  "transaction_id": "6c05f692-c32f-4de0-92b4-56684bdf16f0"
+                "examples": {
+                  "Source Unavailable": {
+                    "summary": "Source Unavailable",
+                    "value": {
+                      "code": 503,
+                      "timestamp": 1000000000000,
+                      "message": "Source Unavailable",
+                      "transaction_id": "6c05f692-c32f-4de0-92b4-56684bdf16f0"
+                    }
+                  }
                 }
               }
             },
@@ -2569,11 +2609,16 @@
                     "transaction_id"
                   ]
                 },
-                "example": {
-                  "code": 521,
-                  "timestamp": 1782806266274,
-                  "message": "Data not found for: 196c64a5-8cfb-45dd-a51c-0c8534774d07",
-                  "transaction_id": "a599615c-c732-4538-9840-4bb5cd3c19d2"
+                "examples": {
+                  "Data not found": {
+                    "summary": "Data not found",
+                    "value": {
+                      "code": 521,
+                      "timestamp": 1782806266274,
+                      "message": "Data not found for: 196c64a5-8cfb-45dd-a51c-0c8534774d07",
+                      "transaction_id": "a599615c-c732-4538-9840-4bb5cd3c19d2"
+                    }
+                  }
                 }
               }
             },
@@ -2902,11 +2947,16 @@
                     "transaction_id"
                   ]
                 },
-                "example": {
-                  "code": 404,
-                  "timestamp": 1782806266274,
-                  "message": "Doctype not found",
-                  "transaction_id": "f5a6b7c8-5555-4a5b-8c6d-7e8f9a0b1c2d"
+                "examples": {
+                  "Doctype not found": {
+                    "summary": "Doctype not found",
+                    "value": {
+                      "code": 404,
+                      "timestamp": 1782806266274,
+                      "message": "Doctype not found",
+                      "transaction_id": "f5a6b7c8-5555-4a5b-8c6d-7e8f9a0b1c2d"
+                    }
+                  }
                 }
               }
             },
@@ -2944,11 +2994,16 @@
                     "transaction_id"
                   ]
                 },
-                "example": {
-                  "code": 429,
-                  "timestamp": 1782806266274,
-                  "message": "Too Many Requests",
-                  "transaction_id": "f5a6b7c8-6666-4a5b-8c6d-7e8f9a0b1c2d"
+                "examples": {
+                  "Too Many Requests": {
+                    "summary": "Too Many Requests",
+                    "value": {
+                      "code": 429,
+                      "timestamp": 1782806266274,
+                      "message": "Too Many Requests",
+                      "transaction_id": "f5a6b7c8-6666-4a5b-8c6d-7e8f9a0b1c2d"
+                    }
+                  }
                 }
               }
             },
@@ -3051,11 +3106,16 @@
                     "transaction_id"
                   ]
                 },
-                "example": {
-                  "code": 503,
-                  "timestamp": 1000000000000,
-                  "message": "Source Unavailable",
-                  "transaction_id": "6c05f692-c32f-4de0-92b4-56684bdf16f0"
+                "examples": {
+                  "Source Unavailable": {
+                    "summary": "Source Unavailable",
+                    "value": {
+                      "code": 503,
+                      "timestamp": 1000000000000,
+                      "message": "Source Unavailable",
+                      "transaction_id": "6c05f692-c32f-4de0-92b4-56684bdf16f0"
+                    }
+                  }
                 }
               }
             },
@@ -3093,11 +3153,16 @@
                     "transaction_id"
                   ]
                 },
-                "example": {
-                  "code": 521,
-                  "timestamp": 1782806266274,
-                  "message": "Data not found for: 196c64a5-8cfb-45dd-a51c-0c8534774d07",
-                  "transaction_id": "a599615c-c732-4538-9840-4bb5cd3c19d2"
+                "examples": {
+                  "Data not found": {
+                    "summary": "Data not found",
+                    "value": {
+                      "code": 521,
+                      "timestamp": 1782806266274,
+                      "message": "Data not found for: 196c64a5-8cfb-45dd-a51c-0c8534774d07",
+                      "transaction_id": "a599615c-c732-4538-9840-4bb5cd3c19d2"
+                    }
+                  }
                 }
               }
             },
@@ -5763,11 +5828,16 @@
                     }
                   }
                 },
-                "example": {
-                  "code": 503,
-                  "timestamp": 1000000000000,
-                  "transaction_id": "6c05f692-c32f-4de0-92b4-56684bdf16f0",
-                  "message": "Source Unavailable"
+                "examples": {
+                  "503 - Source Unavailable": {
+                    "summary": "503 - Source Unavailable",
+                    "value": {
+                      "code": 503,
+                      "timestamp": 1000000000000,
+                      "transaction_id": "6c05f692-c32f-4de0-92b4-56684bdf16f0",
+                      "message": "Source Unavailable"
+                    }
+                  }
                 }
               }
             }
@@ -5988,32 +6058,37 @@
                   ],
                   "additionalProperties": false
                 },
-                "example": {
-                  "code": 200,
-                  "timestamp": 1782021074236,
-                  "data": [
-                    {
-                      "updated_at": 1783351002317,
-                      "@entity": "in.co.sandbox.kyc.mca.company_master_data",
-                      "cin": "U72900GJ2015PTC082637",
-                      "company_name": "QUICKO INFOSOFT PRIVATE LIMITED",
-                      "company_roc_code": "ROC Ahmedabad",
-                      "company_category": "Company limited by shares",
-                      "company_sub_category": "Non-government company",
-                      "company_class": "Private",
-                      "authorized_capital": 15200000,
-                      "paidup_capital": 14566670,
-                      "company_registration_date": "2015-03-19",
-                      "registered_office_address": "B/701 ,Amrapali Lakeview Tower   Opp.Vastrapur Lake, Vastrapur,Ahmedabad,Ahmedabad,Gujarat,380015-India",
-                      "listing_status": "Unlisted",
-                      "company_status": "Active",
-                      "company_state_code": "gujarat",
-                      "company_origin": "India",
-                      "nic_code": "72900",
-                      "company_industrial_classification": "Business Services"
+                "examples": {
+                  "Success": {
+                    "summary": "Success",
+                    "value": {
+                      "code": 200,
+                      "timestamp": 1782021074236,
+                      "data": [
+                        {
+                          "updated_at": 1783351002317,
+                          "@entity": "in.co.sandbox.kyc.mca.company_master_data",
+                          "cin": "U72900GJ2015PTC082637",
+                          "company_name": "QUICKO INFOSOFT PRIVATE LIMITED",
+                          "company_roc_code": "ROC Ahmedabad",
+                          "company_category": "Company limited by shares",
+                          "company_sub_category": "Non-government company",
+                          "company_class": "Private",
+                          "authorized_capital": 15200000,
+                          "paidup_capital": 14566670,
+                          "company_registration_date": "2015-03-19",
+                          "registered_office_address": "B/701 ,Amrapali Lakeview Tower   Opp.Vastrapur Lake, Vastrapur,Ahmedabad,Ahmedabad,Gujarat,380015-India",
+                          "listing_status": "Unlisted",
+                          "company_status": "Active",
+                          "company_state_code": "gujarat",
+                          "company_origin": "India",
+                          "nic_code": "72900",
+                          "company_industrial_classification": "Business Services"
+                        }
+                      ],
+                      "transaction_id": "321e98ad-b002-4c4e-ad6b-34121e06c127"
                     }
-                  ],
-                  "transaction_id": "321e98ad-b002-4c4e-ad6b-34121e06c127"
+                  }
                 }
               }
             },
@@ -6047,11 +6122,16 @@
                     "transaction_id"
                   ]
                 },
-                "example": {
-                  "code": 400,
-                  "timestamp": 1783331537495,
-                  "message": "Invalid request body",
-                  "transaction_id": "242c5503-7ae0-4b01-b5ac-6f14177c0096"
+                "examples": {
+                  "Invalid request body": {
+                    "summary": "Invalid request body",
+                    "value": {
+                      "code": 400,
+                      "timestamp": 1783331537495,
+                      "message": "Invalid request body",
+                      "transaction_id": "242c5503-7ae0-4b01-b5ac-6f14177c0096"
+                    }
+                  }
                 }
               }
             },
@@ -6085,11 +6165,16 @@
                     "transaction_id"
                   ]
                 },
-                "example": {
-                  "code": 521,
-                  "timestamp": 1783331595884,
-                  "message": "Company master data not found for CIN: U34300GJ2017PLC097818",
-                  "transaction_id": "66e9235e-a9b2-4646-a39c-79fc3df114b0"
+                "examples": {
+                  "Company master data not found": {
+                    "summary": "Company master data not found",
+                    "value": {
+                      "code": 521,
+                      "timestamp": 1783331595884,
+                      "message": "Company master data not found for CIN: U34300GJ2017PLC097818",
+                      "transaction_id": "66e9235e-a9b2-4646-a39c-79fc3df114b0"
+                    }
+                  }
                 }
               }
             },
