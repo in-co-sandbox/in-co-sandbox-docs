@@ -1333,6 +1333,165 @@
               }
             },
             "headers": {}
+          },
+          "429": {
+            "description": "There were too many requests to DigiLocker. Wait, then send the request again.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "code": {
+                      "type": "integer",
+                      "const": 429,
+                      "description": "The HTTP status code."
+                    },
+                    "timestamp": {
+                      "type": "integer",
+                      "description": "The time of the response. The unit is milliseconds from the Unix epoch."
+                    },
+                    "message": {
+                      "type": "string",
+                      "description": "The error message."
+                    },
+                    "transaction_id": {
+                      "type": "string",
+                      "description": "The unique identifier of the request."
+                    }
+                  },
+                  "required": [
+                    "code",
+                    "timestamp",
+                    "message",
+                    "transaction_id"
+                  ]
+                },
+                "examples": {
+                  "Too Many Requests": {
+                    "summary": "Too Many Requests",
+                    "value": {
+                      "code": 429,
+                      "timestamp": 1782806266274,
+                      "message": "Too Many Requests",
+                      "transaction_id": "b1e2c3d4-3333-4a5b-8c6d-7e8f9a0b1c2d"
+                    }
+                  }
+                }
+              }
+            },
+            "headers": {}
+          },
+          "500": {
+            "description": "The request failed.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "code": {
+                      "type": "integer",
+                      "const": 500,
+                      "description": "The HTTP status code."
+                    },
+                    "timestamp": {
+                      "type": "integer",
+                      "description": "The time of the response. The unit is milliseconds from the Unix epoch."
+                    },
+                    "message": {
+                      "type": "string",
+                      "description": "The error message."
+                    },
+                    "transaction_id": {
+                      "type": "string",
+                      "description": "The unique identifier of the request."
+                    }
+                  },
+                  "required": [
+                    "code",
+                    "timestamp",
+                    "message",
+                    "transaction_id"
+                  ]
+                },
+                "examples": {
+                  "Failed to verify user": {
+                    "summary": "Failed to verify user",
+                    "value": {
+                      "code": 500,
+                      "timestamp": 1782806266274,
+                      "message": "Failed to verify user",
+                      "transaction_id": "b1e2c3d4-4444-4a5b-8c6d-7e8f9a0b1c2d"
+                    }
+                  },
+                  "Failed to verify user in VerifyUserManager Source Unavailable": {
+                    "summary": "Failed to verify user in VerifyUserManager: Source Unavailable",
+                    "value": {
+                      "code": 500,
+                      "timestamp": 1782806266274,
+                      "message": "Failed to verify user in VerifyUserManager: Source Unavailable",
+                      "transaction_id": "b1e2c3d4-4444-4a5b-8c6d-7e8f9a0b1c2d"
+                    }
+                  },
+                  "Internal Server Error": {
+                    "summary": "Internal Server Error",
+                    "value": {
+                      "code": 500,
+                      "timestamp": 1782806266274,
+                      "message": "Internal Server Error",
+                      "transaction_id": "b1e2c3d4-4444-4a5b-8c6d-7e8f9a0b1c2d"
+                    }
+                  }
+                }
+              }
+            },
+            "headers": {}
+          },
+          "503": {
+            "description": "DigiLocker is not available. Send the request again later.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "code": {
+                      "type": "integer",
+                      "const": 503,
+                      "description": "The HTTP status code."
+                    },
+                    "timestamp": {
+                      "type": "integer",
+                      "description": "The time of the response. The unit is milliseconds from the Unix epoch."
+                    },
+                    "message": {
+                      "type": "string",
+                      "description": "The error message."
+                    },
+                    "transaction_id": {
+                      "type": "string",
+                      "description": "The unique identifier of the request."
+                    }
+                  },
+                  "required": [
+                    "code",
+                    "timestamp",
+                    "message",
+                    "transaction_id"
+                  ]
+                },
+                "examples": {
+                  "Source Unavailable": {
+                    "summary": "Source Unavailable",
+                    "value": {
+                      "code": 503,
+                      "timestamp": 1782806266274,
+                      "message": "Source Unavailable",
+                      "transaction_id": "b1e2c3d4-5555-4a5b-8c6d-7e8f9a0b1c2d"
+                    }
+                  }
+                }
+              }
+            },
+            "headers": {}
           }
         },
         "security": []
@@ -1567,6 +1726,127 @@
               }
             },
             "headers": {}
+          },
+          "400": {
+            "description": "The request data is not correct. The `redirect_url` must be a full URL. The `consent_expiry` must be more than one hour in the future.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "code": {
+                      "type": "integer",
+                      "const": 400,
+                      "description": "The HTTP status code."
+                    },
+                    "timestamp": {
+                      "type": "integer",
+                      "description": "The time of the response. The unit is milliseconds from the Unix epoch."
+                    },
+                    "message": {
+                      "type": "string",
+                      "description": "The error message."
+                    },
+                    "transaction_id": {
+                      "type": "string",
+                      "description": "The unique identifier of the request."
+                    }
+                  },
+                  "required": [
+                    "code",
+                    "timestamp",
+                    "message",
+                    "transaction_id"
+                  ]
+                },
+                "examples": {
+                  "Invalid redirect url": {
+                    "summary": "Invalid redirect_url",
+                    "value": {
+                      "code": 400,
+                      "timestamp": 1782806266274,
+                      "message": "Invalid redirect_url",
+                      "transaction_id": "c2d3e4f5-1111-4a5b-8c6d-7e8f9a0b1c2d"
+                    }
+                  },
+                  "Invalid consent expiry": {
+                    "summary": "Invalid consent_expiry",
+                    "value": {
+                      "code": 400,
+                      "timestamp": 1782806266274,
+                      "message": "Invalid consent_expiry",
+                      "transaction_id": "c2d3e4f5-1111-4a5b-8c6d-7e8f9a0b1c2d"
+                    }
+                  }
+                }
+              }
+            },
+            "headers": {}
+          },
+          "500": {
+            "description": "The request failed.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "code": {
+                      "type": "integer",
+                      "const": 500,
+                      "description": "The HTTP status code."
+                    },
+                    "timestamp": {
+                      "type": "integer",
+                      "description": "The time of the response. The unit is milliseconds from the Unix epoch."
+                    },
+                    "message": {
+                      "type": "string",
+                      "description": "The error message."
+                    },
+                    "transaction_id": {
+                      "type": "string",
+                      "description": "The unique identifier of the request."
+                    }
+                  },
+                  "required": [
+                    "code",
+                    "timestamp",
+                    "message",
+                    "transaction_id"
+                  ]
+                },
+                "examples": {
+                  "Failed to initialize session": {
+                    "summary": "Failed to initialize session",
+                    "value": {
+                      "code": 500,
+                      "timestamp": 1782806266274,
+                      "message": "Failed to initialize session",
+                      "transaction_id": "c2d3e4f5-3333-4a5b-8c6d-7e8f9a0b1c2d"
+                    }
+                  },
+                  "Failed to create session": {
+                    "summary": "Failed to create session",
+                    "value": {
+                      "code": 500,
+                      "timestamp": 1782806266274,
+                      "message": "Failed to create session",
+                      "transaction_id": "c2d3e4f5-3333-4a5b-8c6d-7e8f9a0b1c2d"
+                    }
+                  },
+                  "Internal Server Error": {
+                    "summary": "Internal Server Error",
+                    "value": {
+                      "code": 500,
+                      "timestamp": 1782806266274,
+                      "message": "Internal Server Error",
+                      "transaction_id": "c2d3e4f5-3333-4a5b-8c6d-7e8f9a0b1c2d"
+                    }
+                  }
+                }
+              }
+            },
+            "headers": {}
           }
         },
         "security": []
@@ -1647,11 +1927,33 @@
                         "created_at": {
                           "type": "integer"
                         },
+                        "updated_at": {
+                          "type": "integer"
+                        },
                         "@entity": {
                           "type": "string"
                         },
                         "status": {
-                          "type": "string"
+                          "type": "string",
+                          "enum": [
+                            "created",
+                            "succeeded",
+                            "failed",
+                            "expired"
+                          ],
+                          "description": "Lifecycle state of the DigiLocker session. `created`: session initiated, consent not yet completed. `succeeded`: user completed DigiLocker consent and documents can be fetched. `expired`: the DigiLocker access token backing this session is no longer valid (for example, after the token's natural expiry), so the session can no longer be used to fetch documents or the profile. `failed`: authorization did not complete and the session is unusable, including when the cause was transient; start a new session."
+                        },
+                        "documents_consented": {
+                          "type": "array",
+                          "items": {
+                            "type": "string",
+                            "enum": [
+                              "aadhaar",
+                              "pan",
+                              "driving_license"
+                            ]
+                          },
+                          "description": "Document types the user has consented to on DigiLocker. Only present when `status` is `succeeded`."
                         }
                       },
                       "required": [
@@ -1686,28 +1988,54 @@
                       },
                       "transaction_id": "800ff751-2191-4b7d-b20a-8301790a3e19"
                     }
-                  }
-                }
-              }
-            },
-            "headers": {}
-          },
-          "503": {
-            "description": "",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "object",
-                  "properties": {}
-                },
-                "examples": {
-                  "503 - Source unavailable": {
-                    "summary": "503 - Source unavailable",
+                  },
+                  "200 - Session Succeeded": {
+                    "summary": "200 - Session Succeeded",
                     "value": {
-                      "code": 503,
-                      "timestamp": 1000000000000,
-                      "transaction_id": "6c05f692-c32f-4de0-92b4-56684bdf16f0",
-                      "message": "Source Unavailable"
+                      "code": 200,
+                      "timestamp": 1752580258171,
+                      "data": {
+                        "id": "839fd8a0-d645-42e1-a904-bb43353b0139",
+                        "created_at": 1752579445983,
+                        "updated_at": 1752579512340,
+                        "@entity": "in.co.sandbox.kyc.digilocker.session",
+                        "status": "succeeded",
+                        "documents_consented": [
+                          "aadhaar",
+                          "pan"
+                        ]
+                      },
+                      "transaction_id": "800ff751-2191-4b7d-b20a-8301790a3e19"
+                    }
+                  },
+                  "200 - Session Failed": {
+                    "summary": "200 - Session Failed",
+                    "value": {
+                      "code": 200,
+                      "timestamp": 1752580258171,
+                      "data": {
+                        "id": "839fd8a0-d645-42e1-a904-bb43353b0139",
+                        "created_at": 1752579445983,
+                        "updated_at": 1752579498221,
+                        "@entity": "in.co.sandbox.kyc.digilocker.session",
+                        "status": "failed"
+                      },
+                      "transaction_id": "800ff751-2191-4b7d-b20a-8301790a3e19"
+                    }
+                  },
+                  "200 - Session Expired": {
+                    "summary": "200 - Session Expired",
+                    "value": {
+                      "code": 200,
+                      "timestamp": 1752580258171,
+                      "data": {
+                        "id": "839fd8a0-d645-42e1-a904-bb43353b0139",
+                        "created_at": 1752579445983,
+                        "updated_at": 1752580200110,
+                        "@entity": "in.co.sandbox.kyc.digilocker.session",
+                        "status": "expired"
+                      },
+                      "transaction_id": "800ff751-2191-4b7d-b20a-8301790a3e19"
                     }
                   }
                 }
@@ -1715,24 +2043,29 @@
             },
             "headers": {}
           },
-          "521": {
-            "description": "",
+          "429": {
+            "description": "There were too many requests to DigiLocker. Wait, then send the request again.",
             "content": {
               "application/json": {
                 "schema": {
                   "type": "object",
                   "properties": {
                     "code": {
-                      "type": "integer"
+                      "type": "integer",
+                      "const": 429,
+                      "description": "The HTTP status code."
                     },
                     "timestamp": {
-                      "type": "integer"
+                      "type": "integer",
+                      "description": "The time of the response. The unit is milliseconds from the Unix epoch."
                     },
                     "message": {
-                      "type": "string"
+                      "type": "string",
+                      "description": "The error message."
                     },
                     "transaction_id": {
-                      "type": "string"
+                      "type": "string",
+                      "description": "The unique identifier of the request."
                     }
                   },
                   "required": [
@@ -1743,12 +2076,180 @@
                   ]
                 },
                 "examples": {
-                  "521 - Data Not Found": {
-                    "summary": "521 - Data Not Found",
+                  "Too Many Requests": {
+                    "summary": "Too Many Requests",
+                    "value": {
+                      "code": 429,
+                      "timestamp": 1782806266274,
+                      "message": "Too Many Requests",
+                      "transaction_id": "d3e4f5a6-1111-4a5b-8c6d-7e8f9a0b1c2d"
+                    }
+                  }
+                }
+              }
+            },
+            "headers": {}
+          },
+          "500": {
+            "description": "The request failed.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "code": {
+                      "type": "integer",
+                      "const": 500,
+                      "description": "The HTTP status code."
+                    },
+                    "timestamp": {
+                      "type": "integer",
+                      "description": "The time of the response. The unit is milliseconds from the Unix epoch."
+                    },
+                    "message": {
+                      "type": "string",
+                      "description": "The error message."
+                    },
+                    "transaction_id": {
+                      "type": "string",
+                      "description": "The unique identifier of the request."
+                    }
+                  },
+                  "required": [
+                    "code",
+                    "timestamp",
+                    "message",
+                    "transaction_id"
+                  ]
+                },
+                "examples": {
+                  "Failed to get session status": {
+                    "summary": "Failed to get session status",
+                    "value": {
+                      "code": 500,
+                      "timestamp": 1782806266274,
+                      "message": "Failed to get session status",
+                      "transaction_id": "d3e4f5a6-2222-4a5b-8c6d-7e8f9a0b1c2d"
+                    }
+                  },
+                  "Failed to get session": {
+                    "summary": "Failed to get session",
+                    "value": {
+                      "code": 500,
+                      "timestamp": 1782806266274,
+                      "message": "Failed to get session",
+                      "transaction_id": "d3e4f5a6-2222-4a5b-8c6d-7e8f9a0b1c2d"
+                    }
+                  },
+                  "Failed to update session": {
+                    "summary": "Failed to update session",
+                    "value": {
+                      "code": 500,
+                      "timestamp": 1782806266274,
+                      "message": "Failed to update session",
+                      "transaction_id": "d3e4f5a6-2222-4a5b-8c6d-7e8f9a0b1c2d"
+                    }
+                  },
+                  "Internal Server Error": {
+                    "summary": "Internal Server Error",
+                    "value": {
+                      "code": 500,
+                      "timestamp": 1782806266274,
+                      "message": "Internal Server Error",
+                      "transaction_id": "d3e4f5a6-2222-4a5b-8c6d-7e8f9a0b1c2d"
+                    }
+                  }
+                }
+              }
+            },
+            "headers": {}
+          },
+          "503": {
+            "description": "DigiLocker is not available. Send the request again later.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "code": {
+                      "type": "integer",
+                      "const": 503,
+                      "description": "The HTTP status code."
+                    },
+                    "timestamp": {
+                      "type": "integer",
+                      "description": "The time of the response. The unit is milliseconds from the Unix epoch."
+                    },
+                    "message": {
+                      "type": "string",
+                      "description": "The error message."
+                    },
+                    "transaction_id": {
+                      "type": "string",
+                      "description": "The unique identifier of the request."
+                    }
+                  },
+                  "required": [
+                    "code",
+                    "timestamp",
+                    "message",
+                    "transaction_id"
+                  ]
+                },
+                "examples": {
+                  "Source Unavailable": {
+                    "summary": "Source Unavailable",
+                    "value": {
+                      "code": 503,
+                      "timestamp": 1000000000000,
+                      "message": "Source Unavailable",
+                      "transaction_id": "6c05f692-c32f-4de0-92b4-56684bdf16f0"
+                    }
+                  }
+                }
+              }
+            },
+            "headers": {}
+          },
+          "521": {
+            "description": "The server cannot find a session with this `session_id`.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "code": {
+                      "type": "integer",
+                      "const": 521,
+                      "description": "The HTTP status code."
+                    },
+                    "timestamp": {
+                      "type": "integer",
+                      "description": "The time of the response. The unit is milliseconds from the Unix epoch."
+                    },
+                    "message": {
+                      "type": "string",
+                      "description": "The error message."
+                    },
+                    "transaction_id": {
+                      "type": "string",
+                      "description": "The unique identifier of the request."
+                    }
+                  },
+                  "required": [
+                    "code",
+                    "timestamp",
+                    "message",
+                    "transaction_id"
+                  ]
+                },
+                "examples": {
+                  "Data not found": {
+                    "summary": "Data not found",
                     "value": {
                       "code": 521,
                       "timestamp": 1782806266274,
-                      "message": "Data not found for: 55470e27-3d8a-451f-ac1e-9c0f3d1454821",
+                      "message": "Data not found for: 196c64a5-8cfb-45dd-a51c-0c8534774d07",
                       "transaction_id": "a599615c-c732-4538-9840-4bb5cd3c19d2"
                     }
                   }
@@ -1777,7 +2278,7 @@
             "in": "path",
             "description": "Session identifier generated during DigiLocker [Initiate Session API](https://developer.sandbox.co.in/api-reference/kyc/digilocker/endpoints/initiate_session) .",
             "required": true,
-            "example": "b5522c8f-2321-577b-8e73-ae1366d9c591",
+            "example": "{{session_id}}",
             "schema": {
               "type": "string"
             }
@@ -1854,7 +2355,12 @@
                         },
                         "gender": {
                           "type": "string",
-                          "description": "Gender of User"
+                          "description": "Gender of User",
+                          "enum": [
+                            "male",
+                            "female",
+                            "transgender"
+                          ]
                         },
                         "eaadhaar": {
                           "type": "boolean",
@@ -1889,40 +2395,22 @@
                     "transaction_id"
                   ]
                 },
-                "example": {
-                  "code": 200,
-                  "timestamp": 1744874068219,
-                  "data": {
-                    "id": "b5522c8f-2321-577b-8e73-ae1366d9c591",
-                    "@entity": "in.co.sandbox.kyc.digilocker.user.profile",
-                    "date_of_birth": 1071145000000,
-                    "mobile": "9825013730",
-                    "name": "Kaival Mehta",
-                    "gender": "male",
-                    "eaadhaar": true
-                  },
-                  "transaction_id": "0793c784-fcaa-44d9-b8fc-f6a382a67f70"
-                }
-              }
-            },
-            "headers": {}
-          },
-          "503": {
-            "description": "",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "object",
-                  "properties": {}
-                },
                 "examples": {
-                  "503 - Source unavailable": {
-                    "summary": "503 - Source unavailable",
+                  "200 - OK": {
+                    "summary": "200 - OK",
                     "value": {
-                      "code": 503,
-                      "timestamp": 1000000000000,
-                      "transaction_id": "6c05f692-c32f-4de0-92b4-56684bdf16f0",
-                      "message": "Source Unavailable"
+                      "code": 200,
+                      "timestamp": 1744874068219,
+                      "data": {
+                        "id": "b5522c8f-2321-577b-8e73-ae1366d9c591",
+                        "@entity": "in.co.sandbox.kyc.digilocker.user.profile",
+                        "date_of_birth": 1071145000000,
+                        "mobile": "9825013730",
+                        "name": "Kaival Mehta",
+                        "gender": "male",
+                        "eaadhaar": true
+                      },
+                      "transaction_id": "0793c784-fcaa-44d9-b8fc-f6a382a67f70"
                     }
                   }
                 }
@@ -1930,24 +2418,29 @@
             },
             "headers": {}
           },
-          "521": {
-            "description": "",
+          "429": {
+            "description": "There were too many requests to DigiLocker. Wait, then send the request again.",
             "content": {
               "application/json": {
                 "schema": {
                   "type": "object",
                   "properties": {
                     "code": {
-                      "type": "integer"
+                      "type": "integer",
+                      "const": 429,
+                      "description": "The HTTP status code."
                     },
                     "timestamp": {
-                      "type": "integer"
+                      "type": "integer",
+                      "description": "The time of the response. The unit is milliseconds from the Unix epoch."
                     },
                     "message": {
-                      "type": "string"
+                      "type": "string",
+                      "description": "The error message."
                     },
                     "transaction_id": {
-                      "type": "string"
+                      "type": "string",
+                      "description": "The unique identifier of the request."
                     }
                   },
                   "required": [
@@ -1958,12 +2451,171 @@
                   ]
                 },
                 "examples": {
-                  "521 - Data Not Found": {
-                    "summary": "521 - Data Not Found",
+                  "Too Many Requests": {
+                    "summary": "Too Many Requests",
+                    "value": {
+                      "code": 429,
+                      "timestamp": 1782806266274,
+                      "message": "Too Many Requests",
+                      "transaction_id": "e4f5a6b7-3333-4a5b-8c6d-7e8f9a0b1c2d"
+                    }
+                  }
+                }
+              }
+            },
+            "headers": {}
+          },
+          "500": {
+            "description": "The request failed.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "code": {
+                      "type": "integer",
+                      "const": 500,
+                      "description": "The HTTP status code."
+                    },
+                    "timestamp": {
+                      "type": "integer",
+                      "description": "The time of the response. The unit is milliseconds from the Unix epoch."
+                    },
+                    "message": {
+                      "type": "string",
+                      "description": "The error message."
+                    },
+                    "transaction_id": {
+                      "type": "string",
+                      "description": "The unique identifier of the request."
+                    }
+                  },
+                  "required": [
+                    "code",
+                    "timestamp",
+                    "message",
+                    "transaction_id"
+                  ]
+                },
+                "examples": {
+                  "Failed to get user details": {
+                    "summary": "Failed to get user details",
+                    "value": {
+                      "code": 500,
+                      "timestamp": 1782806266274,
+                      "message": "Failed to get user details",
+                      "transaction_id": "e4f5a6b7-4444-4a5b-8c6d-7e8f9a0b1c2d"
+                    }
+                  },
+                  "Failed to expire session": {
+                    "summary": "Failed to expire session",
+                    "value": {
+                      "code": 500,
+                      "timestamp": 1782806266274,
+                      "message": "Failed to expire session",
+                      "transaction_id": "e4f5a6b7-4444-4a5b-8c6d-7e8f9a0b1c2d"
+                    }
+                  },
+                  "Internal Server Error": {
+                    "summary": "Internal Server Error",
+                    "value": {
+                      "code": 500,
+                      "timestamp": 1782806266274,
+                      "message": "Internal Server Error",
+                      "transaction_id": "e4f5a6b7-4444-4a5b-8c6d-7e8f9a0b1c2d"
+                    }
+                  }
+                }
+              }
+            },
+            "headers": {}
+          },
+          "503": {
+            "description": "DigiLocker is not available. Send the request again later.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "code": {
+                      "type": "integer",
+                      "const": 503,
+                      "description": "The HTTP status code."
+                    },
+                    "timestamp": {
+                      "type": "integer",
+                      "description": "The time of the response. The unit is milliseconds from the Unix epoch."
+                    },
+                    "message": {
+                      "type": "string",
+                      "description": "The error message."
+                    },
+                    "transaction_id": {
+                      "type": "string",
+                      "description": "The unique identifier of the request."
+                    }
+                  },
+                  "required": [
+                    "code",
+                    "timestamp",
+                    "message",
+                    "transaction_id"
+                  ]
+                },
+                "examples": {
+                  "Source Unavailable": {
+                    "summary": "Source Unavailable",
+                    "value": {
+                      "code": 503,
+                      "timestamp": 1000000000000,
+                      "message": "Source Unavailable",
+                      "transaction_id": "6c05f692-c32f-4de0-92b4-56684bdf16f0"
+                    }
+                  }
+                }
+              }
+            },
+            "headers": {}
+          },
+          "521": {
+            "description": "The server cannot find a session with this `session_id`.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "code": {
+                      "type": "integer",
+                      "const": 521,
+                      "description": "The HTTP status code."
+                    },
+                    "timestamp": {
+                      "type": "integer",
+                      "description": "The time of the response. The unit is milliseconds from the Unix epoch."
+                    },
+                    "message": {
+                      "type": "string",
+                      "description": "The error message."
+                    },
+                    "transaction_id": {
+                      "type": "string",
+                      "description": "The unique identifier of the request."
+                    }
+                  },
+                  "required": [
+                    "code",
+                    "timestamp",
+                    "message",
+                    "transaction_id"
+                  ]
+                },
+                "examples": {
+                  "Data not found": {
+                    "summary": "Data not found",
                     "value": {
                       "code": 521,
                       "timestamp": 1782806266274,
-                      "message": "Data not found for: 55470e27-3d8a-451f-ac1e-9c0f3d1454821",
+                      "message": "Data not found for: 196c64a5-8cfb-45dd-a51c-0c8534774d07",
                       "transaction_id": "a599615c-c732-4538-9840-4bb5cd3c19d2"
                     }
                   }
@@ -1973,23 +2625,28 @@
             "headers": {}
           },
           "523": {
-            "description": "",
+            "description": "The session cannot be used. Either the session did not complete the DigiLocker consent flow, or the DigiLocker access token is no longer valid.",
             "content": {
               "application/json": {
                 "schema": {
                   "type": "object",
                   "properties": {
                     "code": {
-                      "type": "integer"
+                      "type": "integer",
+                      "const": 523,
+                      "description": "The HTTP status code."
                     },
                     "timestamp": {
-                      "type": "integer"
+                      "type": "integer",
+                      "description": "The time of the response. The unit is milliseconds from the Unix epoch."
                     },
                     "message": {
-                      "type": "string"
+                      "type": "string",
+                      "description": "The error message."
                     },
                     "transaction_id": {
-                      "type": "string"
+                      "type": "string",
+                      "description": "The unique identifier of the request."
                     }
                   },
                   "required": [
@@ -2000,13 +2657,22 @@
                   ]
                 },
                 "examples": {
-                  "523 - Invalid Session Status": {
-                    "summary": "523 - Invalid Session Status",
+                  "Invalid session status: created": {
+                    "summary": "Invalid session status: created",
                     "value": {
                       "code": 523,
-                      "timestamp": 1782806184804,
+                      "timestamp": 1782806266274,
                       "message": "Invalid session status: created",
-                      "transaction_id": "de90173f-8255-4ac0-b26b-a41b8a872fee"
+                      "transaction_id": "e4f5a6b7-5555-4a5b-8c6d-7e8f9a0b1c2d"
+                    }
+                  },
+                  "Session expired": {
+                    "summary": "Session expired",
+                    "value": {
+                      "code": 523,
+                      "timestamp": 1782806266274,
+                      "message": "Session expired",
+                      "transaction_id": "e4f5a6b7-5555-4a5b-8c6d-7e8f9a0b1c2d"
                     }
                   }
                 }
@@ -2034,7 +2700,7 @@
             "in": "path",
             "description": "Session identifier generated during DigiLocker [Initiate Session API](https://developer.sandbox.co.in/api-reference/kyc/digilocker/endpoints/initiate_session) .",
             "required": true,
-            "example": "4b4bf7aa-f4da-47a8-9b32-895edfc03630",
+            "example": "{{session_id}}",
             "schema": {
               "type": "string"
             }
@@ -2193,47 +2859,29 @@
             },
             "headers": {}
           },
-          "503": {
-            "description": "",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "object",
-                  "properties": {}
-                },
-                "examples": {
-                  "503 - Source unavailable": {
-                    "summary": "503 - Source unavailable",
-                    "value": {
-                      "code": 503,
-                      "timestamp": 1000000000000,
-                      "transaction_id": "6c05f692-c32f-4de0-92b4-56684bdf16f0",
-                      "message": "Source Unavailable"
-                    }
-                  }
-                }
-              }
-            },
-            "headers": {}
-          },
-          "521": {
-            "description": "",
+          "400": {
+            "description": "The `doc_type` is not valid, or the user did not give consent for this document.",
             "content": {
               "application/json": {
                 "schema": {
                   "type": "object",
                   "properties": {
                     "code": {
-                      "type": "integer"
+                      "type": "integer",
+                      "const": 400,
+                      "description": "The HTTP status code."
                     },
                     "timestamp": {
-                      "type": "integer"
+                      "type": "integer",
+                      "description": "The time of the response. The unit is milliseconds from the Unix epoch."
                     },
                     "message": {
-                      "type": "string"
+                      "type": "string",
+                      "description": "The error message."
                     },
                     "transaction_id": {
-                      "type": "string"
+                      "type": "string",
+                      "description": "The unique identifier of the request."
                     }
                   },
                   "required": [
@@ -2244,12 +2892,274 @@
                   ]
                 },
                 "examples": {
-                  "521 - Data Not Found": {
-                    "summary": "521 - Data Not Found",
+                  "Invalid document type": {
+                    "summary": "Invalid document type",
+                    "value": {
+                      "code": 400,
+                      "timestamp": 1782806266274,
+                      "message": "Invalid document type",
+                      "transaction_id": "f5a6b7c8-1111-4a5b-8c6d-7e8f9a0b1c2d"
+                    }
+                  },
+                  "Consent for aadhaar not provided": {
+                    "summary": "Consent for aadhaar not provided",
+                    "value": {
+                      "code": 400,
+                      "timestamp": 1782806266274,
+                      "message": "Consent for aadhaar not provided",
+                      "transaction_id": "f5a6b7c8-1111-4a5b-8c6d-7e8f9a0b1c2d"
+                    }
+                  }
+                }
+              }
+            },
+            "headers": {}
+          },
+          "404": {
+            "description": "DigiLocker cannot provide the document. DigiLocker has no record of the document, or the issuer did not provide it.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "code": {
+                      "type": "integer",
+                      "const": 404,
+                      "description": "The HTTP status code."
+                    },
+                    "timestamp": {
+                      "type": "integer",
+                      "description": "The time of the response. The unit is milliseconds from the Unix epoch."
+                    },
+                    "message": {
+                      "type": "string",
+                      "description": "The error message."
+                    },
+                    "transaction_id": {
+                      "type": "string",
+                      "description": "The unique identifier of the request."
+                    }
+                  },
+                  "required": [
+                    "code",
+                    "timestamp",
+                    "message",
+                    "transaction_id"
+                  ]
+                },
+                "examples": {
+                  "Doctype not found": {
+                    "summary": "Doctype not found",
+                    "value": {
+                      "code": 404,
+                      "timestamp": 1782806266274,
+                      "message": "Doctype not found",
+                      "transaction_id": "f5a6b7c8-5555-4a5b-8c6d-7e8f9a0b1c2d"
+                    }
+                  }
+                }
+              }
+            },
+            "headers": {}
+          },
+          "429": {
+            "description": "There were too many requests to DigiLocker. Wait, then send the request again.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "code": {
+                      "type": "integer",
+                      "const": 429,
+                      "description": "The HTTP status code."
+                    },
+                    "timestamp": {
+                      "type": "integer",
+                      "description": "The time of the response. The unit is milliseconds from the Unix epoch."
+                    },
+                    "message": {
+                      "type": "string",
+                      "description": "The error message."
+                    },
+                    "transaction_id": {
+                      "type": "string",
+                      "description": "The unique identifier of the request."
+                    }
+                  },
+                  "required": [
+                    "code",
+                    "timestamp",
+                    "message",
+                    "transaction_id"
+                  ]
+                },
+                "examples": {
+                  "Too Many Requests": {
+                    "summary": "Too Many Requests",
+                    "value": {
+                      "code": 429,
+                      "timestamp": 1782806266274,
+                      "message": "Too Many Requests",
+                      "transaction_id": "f5a6b7c8-6666-4a5b-8c6d-7e8f9a0b1c2d"
+                    }
+                  }
+                }
+              }
+            },
+            "headers": {}
+          },
+          "500": {
+            "description": "The request failed.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "code": {
+                      "type": "integer",
+                      "const": 500,
+                      "description": "The HTTP status code."
+                    },
+                    "timestamp": {
+                      "type": "integer",
+                      "description": "The time of the response. The unit is milliseconds from the Unix epoch."
+                    },
+                    "message": {
+                      "type": "string",
+                      "description": "The error message."
+                    },
+                    "transaction_id": {
+                      "type": "string",
+                      "description": "The unique identifier of the request."
+                    }
+                  },
+                  "required": [
+                    "code",
+                    "timestamp",
+                    "message",
+                    "transaction_id"
+                  ]
+                },
+                "examples": {
+                  "Failed to get document": {
+                    "summary": "Failed to get document",
+                    "value": {
+                      "code": 500,
+                      "timestamp": 1782806266274,
+                      "message": "Failed to get document",
+                      "transaction_id": "f5a6b7c8-7777-4a5b-8c6d-7e8f9a0b1c2d"
+                    }
+                  },
+                  "Failed to expire session": {
+                    "summary": "Failed to expire session",
+                    "value": {
+                      "code": 500,
+                      "timestamp": 1782806266274,
+                      "message": "Failed to expire session",
+                      "transaction_id": "f5a6b7c8-7777-4a5b-8c6d-7e8f9a0b1c2d"
+                    }
+                  },
+                  "Internal Server Error": {
+                    "summary": "Internal Server Error",
+                    "value": {
+                      "code": 500,
+                      "timestamp": 1782806266274,
+                      "message": "Internal Server Error",
+                      "transaction_id": "f5a6b7c8-7777-4a5b-8c6d-7e8f9a0b1c2d"
+                    }
+                  }
+                }
+              }
+            },
+            "headers": {}
+          },
+          "503": {
+            "description": "DigiLocker is not available. Send the request again later.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "code": {
+                      "type": "integer",
+                      "const": 503,
+                      "description": "The HTTP status code."
+                    },
+                    "timestamp": {
+                      "type": "integer",
+                      "description": "The time of the response. The unit is milliseconds from the Unix epoch."
+                    },
+                    "message": {
+                      "type": "string",
+                      "description": "The error message."
+                    },
+                    "transaction_id": {
+                      "type": "string",
+                      "description": "The unique identifier of the request."
+                    }
+                  },
+                  "required": [
+                    "code",
+                    "timestamp",
+                    "message",
+                    "transaction_id"
+                  ]
+                },
+                "examples": {
+                  "Source Unavailable": {
+                    "summary": "Source Unavailable",
+                    "value": {
+                      "code": 503,
+                      "timestamp": 1000000000000,
+                      "message": "Source Unavailable",
+                      "transaction_id": "6c05f692-c32f-4de0-92b4-56684bdf16f0"
+                    }
+                  }
+                }
+              }
+            },
+            "headers": {}
+          },
+          "521": {
+            "description": "The server cannot find a session with this `session_id`.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "code": {
+                      "type": "integer",
+                      "const": 521,
+                      "description": "The HTTP status code."
+                    },
+                    "timestamp": {
+                      "type": "integer",
+                      "description": "The time of the response. The unit is milliseconds from the Unix epoch."
+                    },
+                    "message": {
+                      "type": "string",
+                      "description": "The error message."
+                    },
+                    "transaction_id": {
+                      "type": "string",
+                      "description": "The unique identifier of the request."
+                    }
+                  },
+                  "required": [
+                    "code",
+                    "timestamp",
+                    "message",
+                    "transaction_id"
+                  ]
+                },
+                "examples": {
+                  "Data not found": {
+                    "summary": "Data not found",
                     "value": {
                       "code": 521,
                       "timestamp": 1782806266274,
-                      "message": "Data not found for: 55470e27-3d8a-451f-ac1e-9c0f3d1454821",
+                      "message": "Data not found for: 196c64a5-8cfb-45dd-a51c-0c8534774d07",
                       "transaction_id": "a599615c-c732-4538-9840-4bb5cd3c19d2"
                     }
                   }
@@ -2259,23 +3169,28 @@
             "headers": {}
           },
           "523": {
-            "description": "",
+            "description": "The session cannot be used. Either the session did not complete the DigiLocker consent flow, or the DigiLocker access token is no longer valid.",
             "content": {
               "application/json": {
                 "schema": {
                   "type": "object",
                   "properties": {
                     "code": {
-                      "type": "integer"
+                      "type": "integer",
+                      "const": 523,
+                      "description": "The HTTP status code."
                     },
                     "timestamp": {
-                      "type": "integer"
+                      "type": "integer",
+                      "description": "The time of the response. The unit is milliseconds from the Unix epoch."
                     },
                     "message": {
-                      "type": "string"
+                      "type": "string",
+                      "description": "The error message."
                     },
                     "transaction_id": {
-                      "type": "string"
+                      "type": "string",
+                      "description": "The unique identifier of the request."
                     }
                   },
                   "required": [
@@ -2286,13 +3201,22 @@
                   ]
                 },
                 "examples": {
-                  "523 - Invalid Session Status": {
-                    "summary": "523 - Invalid Session Status",
+                  "Invalid session status: created": {
+                    "summary": "Invalid session status: created",
                     "value": {
                       "code": 523,
-                      "timestamp": 1782806184804,
+                      "timestamp": 1782806266274,
                       "message": "Invalid session status: created",
-                      "transaction_id": "de90173f-8255-4ac0-b26b-a41b8a872fee"
+                      "transaction_id": "f5a6b7c8-8888-4a5b-8c6d-7e8f9a0b1c2d"
+                    }
+                  },
+                  "Session expired": {
+                    "summary": "Session expired",
+                    "value": {
+                      "code": 523,
+                      "timestamp": 1782806266274,
+                      "message": "Session expired",
+                      "transaction_id": "f5a6b7c8-8888-4a5b-8c6d-7e8f9a0b1c2d"
                     }
                   }
                 }
@@ -3776,7 +4700,7 @@
             "in": "path",
             "description": "11-digit alpha-numeric code used to identify the bank branches",
             "required": true,
-            "example": "SBIN0021745",
+            "example": "UTIB0002006",
             "schema": {
               "type": "string",
               "pattern": "^[A-Za-z]{4}[a-zA-Z0-9]{7}$"
@@ -3787,7 +4711,7 @@
             "in": "path",
             "description": "Bank account number. Max length: 40 characters",
             "required": true,
-            "example": "60100123456781",
+            "example": "919010019387396",
             "schema": {
               "type": "string"
             }
@@ -4755,7 +5679,8 @@
                       "type": "object",
                       "properties": {
                         "@entity": {
-                          "type": "string"
+                          "type": "string",
+                          "const": "in.co.sandbox.kyc.pan_aadhaar.status.response"
                         },
                         "aadhaar_seeding_status": {
                           "type": "string",
@@ -4888,11 +5813,24 @@
               "application/json": {
                 "schema": {
                   "type": "object",
-                  "properties": {}
+                  "properties": {
+                    "code": {
+                      "type": "integer"
+                    },
+                    "timestamp": {
+                      "type": "integer"
+                    },
+                    "transaction_id": {
+                      "type": "string"
+                    },
+                    "message": {
+                      "type": "string"
+                    }
+                  }
                 },
                 "examples": {
-                  "503 - Source unavailable": {
-                    "summary": "503 - Source unavailable",
+                  "503 - Source Unavailable": {
+                    "summary": "503 - Source Unavailable",
                     "value": {
                       "code": 503,
                       "timestamp": 1000000000000,
@@ -4902,8 +5840,7 @@
                   }
                 }
               }
-            },
-            "headers": {}
+            }
           }
         },
         "security": []
@@ -5121,32 +6058,37 @@
                   ],
                   "additionalProperties": false
                 },
-                "example": {
-                  "code": 200,
-                  "timestamp": 1782021074236,
-                  "data": [
-                    {
-                      "updated_at": 1783351002317,
-                      "@entity": "in.co.sandbox.kyc.mca.company_master_data",
-                      "cin": "U72900GJ2015PTC082637",
-                      "company_name": "QUICKO INFOSOFT PRIVATE LIMITED",
-                      "company_roc_code": "ROC Ahmedabad",
-                      "company_category": "Company limited by shares",
-                      "company_sub_category": "Non-government company",
-                      "company_class": "Private",
-                      "authorized_capital": 15200000,
-                      "paidup_capital": 14566670,
-                      "company_registration_date": "2015-03-19",
-                      "registered_office_address": "B/701 ,Amrapali Lakeview Tower   Opp.Vastrapur Lake, Vastrapur,Ahmedabad,Ahmedabad,Gujarat,380015-India",
-                      "listing_status": "Unlisted",
-                      "company_status": "Active",
-                      "company_state_code": "gujarat",
-                      "company_origin": "India",
-                      "nic_code": "72900",
-                      "company_industrial_classification": "Business Services"
+                "examples": {
+                  "Success": {
+                    "summary": "Success",
+                    "value": {
+                      "code": 200,
+                      "timestamp": 1782021074236,
+                      "data": [
+                        {
+                          "updated_at": 1783351002317,
+                          "@entity": "in.co.sandbox.kyc.mca.company_master_data",
+                          "cin": "U72900GJ2015PTC082637",
+                          "company_name": "QUICKO INFOSOFT PRIVATE LIMITED",
+                          "company_roc_code": "ROC Ahmedabad",
+                          "company_category": "Company limited by shares",
+                          "company_sub_category": "Non-government company",
+                          "company_class": "Private",
+                          "authorized_capital": 15200000,
+                          "paidup_capital": 14566670,
+                          "company_registration_date": "2015-03-19",
+                          "registered_office_address": "B/701 ,Amrapali Lakeview Tower   Opp.Vastrapur Lake, Vastrapur,Ahmedabad,Ahmedabad,Gujarat,380015-India",
+                          "listing_status": "Unlisted",
+                          "company_status": "Active",
+                          "company_state_code": "gujarat",
+                          "company_origin": "India",
+                          "nic_code": "72900",
+                          "company_industrial_classification": "Business Services"
+                        }
+                      ],
+                      "transaction_id": "321e98ad-b002-4c4e-ad6b-34121e06c127"
                     }
-                  ],
-                  "transaction_id": "321e98ad-b002-4c4e-ad6b-34121e06c127"
+                  }
                 }
               }
             },
@@ -5180,11 +6122,16 @@
                     "transaction_id"
                   ]
                 },
-                "example": {
-                  "code": 400,
-                  "timestamp": 1783331537495,
-                  "message": "Invalid request body",
-                  "transaction_id": "242c5503-7ae0-4b01-b5ac-6f14177c0096"
+                "examples": {
+                  "Invalid request body": {
+                    "summary": "Invalid request body",
+                    "value": {
+                      "code": 400,
+                      "timestamp": 1783331537495,
+                      "message": "Invalid request body",
+                      "transaction_id": "242c5503-7ae0-4b01-b5ac-6f14177c0096"
+                    }
+                  }
                 }
               }
             },
@@ -5218,11 +6165,16 @@
                     "transaction_id"
                   ]
                 },
-                "example": {
-                  "code": 521,
-                  "timestamp": 1783331595884,
-                  "message": "Company master data not found for CIN: U34300GJ2017PLC097818",
-                  "transaction_id": "66e9235e-a9b2-4646-a39c-79fc3df114b0"
+                "examples": {
+                  "Company master data not found": {
+                    "summary": "Company master data not found",
+                    "value": {
+                      "code": 521,
+                      "timestamp": 1783331595884,
+                      "message": "Company master data not found for CIN: U34300GJ2017PLC097818",
+                      "transaction_id": "66e9235e-a9b2-4646-a39c-79fc3df114b0"
+                    }
+                  }
                 }
               }
             },
