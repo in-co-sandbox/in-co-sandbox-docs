@@ -5,7 +5,19 @@
  * Visual Result: [Guides] [API Reference] [Changelog] [Knowledge Base] ............... [Help Centre]
  */
 
-/* 
+/*
+ * Reserve scrollbar space permanently so opening a nav dropdown (which
+ * locks body scroll and hides the scrollbar) doesn't change the page's
+ * usable width. Without this, the Resources tab - positioned via
+ * margin-left: auto below - shifts right when its own dropdown opens,
+ * losing hover and closing the menu, then shifting back and reopening
+ * it in a loop.
+ */
+html {
+  scrollbar-gutter: stable;
+}
+
+/*
  * Setup flexbox container for navigation tabs
  * - Enables horizontal layout with flex
  * - Centers items vertically
