@@ -2,10 +2,13 @@
 
 This repository contains the documentation for Sandbox APIs, organized into the following sections:
 
+
 ## Documentation Structure
 
 ### 📚 Guides
+
 Comprehensive guides covering:
+
 - **Introduction**: About Sandbox and authentication
 - **Get Started**: Basics, versioning, response caching, errors, rate limits, webhooks, and more
 - **Products**: KYC, GST, TDS, and Income Tax product guides
@@ -13,7 +16,9 @@ Comprehensive guides covering:
 - **Resources**: Postman collections, SDKs, and help center
 
 ### 🔌 API Reference
+
 Complete API documentation organized by product:
+
 - **Authentication**: API authentication endpoints
 - **KYC**: Aadhaar, Bank, DigiLocker, EntityLocker SDK, PAN verification APIs
 - **GST**: Analytics and Compliance APIs (Public, Taxpayer, E-Invoice, E-Way Bill)
@@ -22,16 +27,20 @@ Complete API documentation organized by product:
 - **Bank**: Virtual Account APIs
 
 ### 🍳 Recipes
+
 Step-by-step recipes and examples for:
+
 - **KYC**: DigiLocker API integration examples
 - **GST**: GST workflow recipes
 - **TDS**: TDS compliance recipes
 - **IT**: Income Tax calculation recipes
 
 ### 📝 Changelog
+
 Track all API updates, new features, improvements, and deprecations in the changelog.
 
 ### 📖 Knowledge Base
+
 Access the knowledge base for additional resources and ecosystem information.
 
 ## Development
@@ -62,4 +71,5 @@ Install our GitHub app from your [dashboard](https://dashboard.mintlify.com/sett
 - If a page loads as a 404: Make sure you are running in a folder with a valid `docs.json`.
 
 ### Resources
+
 - [Mintlify documentation](https://mintlify.com/docs)
