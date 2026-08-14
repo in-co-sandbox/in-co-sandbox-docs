@@ -1,0 +1,25 @@
+---
+title: "Overview"
+description: "Create and manage virtual bank accounts, generate payment QR codes, and track transactions and statements through the Bank API."
+keywords: ["Bank API", "virtual account", "virtual bank account API", "UPI QR code", "payment collection", "account statement API", "transaction API"]
+---
+
+Use the Bank API to create virtual accounts for collecting and tracking payments, generate static and dynamic UPI QR codes, request payouts, and fetch transactions and account statements.
+
+<CardGroup cols={2}>
+  <Card title="Accounts" icon="building-columns" href="/api-reference/bank/virtual-account/accounts/endpoints/create_virtual_account">
+    Create, fetch, update, and delete virtual accounts
+  </Card>
+
+  <Card title="Statements" icon="file-lines" href="/api-reference/bank/virtual-account/statements/endpoints/submit_virtual_account_statement_job">
+    Generate and poll virtual account statement jobs
+  </Card>
+
+  <Card title="Payments" icon="qrcode" href="/api-reference/bank/virtual-account/payments/endpoints/generate_static_qr_string">
+    Generate UPI QR codes and request payouts
+  </Card>
+
+  <Card title="Transactions" icon="receipt" href="/api-reference/bank/virtual-account/transactions/endpoints/fetch_transaction">
+    Fetch and cancel virtual account transactions
+  </Card>
+</CardGroup>
