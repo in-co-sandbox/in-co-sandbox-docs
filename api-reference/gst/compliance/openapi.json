@@ -141268,11 +141268,11 @@
         ],
         "parameters": [
           {
-            "name": "authorization",
+            "name": "Authorization",
             "in": "header",
-            "description": "E-Invoice access token. For token-generation steps, refer to the [Generate E-Invoice Session](/recipes/gst/authentication/generate_e_invoice_session) recipe, then pass the token in the authorization header.",
+            "description": "JWT access token. For token-generation steps, refer to the [Quickstart Guide](https://developer.sandbox.co.in/guides/get-started/quickstart).",
             "required": true,
-            "example": "",
+            "example": "{{access_token}}",
             "schema": {
               "type": "string"
             }
