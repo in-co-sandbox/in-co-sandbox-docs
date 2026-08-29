@@ -5,7 +5,7 @@
  * Visual Result: [Guides] [API Reference] [Changelog] [Knowledge Base] ............... [Help Centre]
  */
 
-/* 
+/*
  * Setup flexbox container for navigation tabs
  * - Enables horizontal layout with flex
  * - Centers items vertically
@@ -19,13 +19,24 @@
   width: 100%;
 }
 
-/* 
- * Position the last tab (Help Centre) at the far right
+/*
+ * Position the last real tab (Resources) at the far right.
  * - margin-left: auto pushes the element to the right edge in flexbox
- * - This creates visual separation between main navigation and help link
+ * - This creates visual separation between main navigation and the dropdown tab
  * - !important ensures this rule takes precedence over default margin styles
+ *
+ * Uses :not(:has(~ .nav-tabs-item)) instead of :last-child because the
+ * Resources tab opens a dropdown menu (Base UI), and while the menu is
+ * open, Base UI inserts empty focus-guard <span> elements directly into
+ * .nav-tabs as siblings of the trigger button - both before and after it.
+ * That makes an empty span the literal DOM :last-child while the menu is
+ * open, so a :last-child rule stops matching Resources and its
+ * margin-left resets to 0, snapping the tab back next to Changelog. It
+ * then snaps back right when the menu closes. :not(:has(~ .nav-tabs-item))
+ * instead matches "the last element with the .nav-tabs-item class",
+ * ignoring any non-.nav-tabs-item siblings Base UI injects around it.
  */
-.nav-tabs>.nav-tabs-item:last-child {
+.nav-tabs>.nav-tabs-item:not(:has(~ .nav-tabs-item)) {
   margin-left: auto !important;
 }
 
