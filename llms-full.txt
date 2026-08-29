@@ -305,6 +305,8 @@ Simple and Secure GST Compliance.
 
 ## API Reference - GST - Compliance - E-Way Bill - Common
 - [Get E-Way Bill](/api-reference/gst/compliance/endpoints/e-way-bill/common/get_e_way_bill): Pass E-Way Bill Number to fetch E-Way Bill details.
+- [Generate E-Way Bill PDF](/api-reference/gst/compliance/endpoints/e-way-bill/common/generate_e_way_bill_pdf): Generate a PDF for an E-Way Bill number and return a temporary download URL.
+- [Generate E-Way Bill PDF by IRN](/api-reference/gst/compliance/endpoints/e-way-bill/common/generate_e_way_bill_pdf_by_irn): Generate an E-Way Bill PDF for an Invoice Reference Number and return a temporary download URL.
 - [Close E-Way Bill](/api-reference/gst/compliance/endpoints/e-way-bill/common/close_e_way_bill): Close an eligible E-Way Bill by providing its number, closure date, and reason.
 - [Get Error List](/api-reference/gst/compliance/endpoints/e-way-bill/common/get_error_list): This method provides the list of errors thrown by E-Way Bill APIs.
 - [Get HSN Details](/api-reference/gst/compliance/endpoints/e-way-bill/common/get_hsn_details): With this API, you can pass the HSN/SAC code and get information for goods and services.

@@ -60,7 +60,6 @@ The doc-review agent mandatorily applies SEO/GEO improvements to all pages:
 - Use root-relative links for internal docs.
 - Add language tags to all code blocks.
 - Provide descriptive alt text for images.
-- Use kebab-case for new file names.
 
 ## Path-specific instructions
 - If editing `**/overview.mdx` or `**/introduction.mdx`, follow `.github/instructions/product-overview.instructions.md`.
