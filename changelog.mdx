@@ -4,6 +4,17 @@ description: "Changelog for Sandbox APIs"
 rss: "true"
 ---
 
+<Update label="August 30th, 2026" tags={["Feature"]}>
+  ## **GST Compliance – E-Way Bill PDF APIs**
+
+  Two new APIs are now available to create E-Way Bill PDFs and return temporary download URLs.
+
+  - [**Generate E-Way Bill PDF**](/api-reference/gst/compliance/endpoints/e-way-bill/common/generate_e_way_bill_pdf) — Generate a PDF using an E-Way Bill number.
+  - [**Generate E-Way Bill PDF by IRN**](/api-reference/gst/compliance/endpoints/e-way-bill/common/generate_e_way_bill_pdf_by_irn) — Generate a PDF by IRN when the related E-Way Bill exists.
+
+  The IRN-based API returns `404` when the E-Invoice has no related E-Way Bill number. Both APIs require the IRP access token and API key.
+</Update>
+
 <Update label="August 6th, 2026" tags={["Feature"]}>
   ## **GST Compliance – New Public APIs**
 

@@ -148383,6 +148383,309 @@
         "security": []
       }
     },
+    "/gst/compliance/e-way-bill/tax-payer/bill/{ewb_no}/pdf/generate": {
+      "get": {
+        "summary": "Generate E-Way Bill PDF",
+        "description": "Generate the PDF for an E-Way Bill. Sandbox fetches the E-Way Bill from NIC using the supplied `ewb_no` and returns a temporary URL to the generated PDF. Download and persist the file if you need to retain it.",
+        "operationId": "generateEWayBillPdf",
+        "tags": [
+          "E-Way Bill"
+        ],
+        "parameters": [
+          {
+            "name": "ewb_no",
+            "in": "path",
+            "description": "12-digit E-Way Bill Number (EWB No.)",
+            "required": true,
+            "example": "131000026768",
+            "schema": {
+              "type": "string",
+              "description": "12-digit E-Way Bill Number (EWB No.)",
+              "pattern": "^[0-9]{12}$",
+              "minLength": 12,
+              "maxLength": 12,
+              "example": "131000026768"
+            }
+          },
+          {
+            "name": "authorization",
+            "in": "header",
+            "description": "IRP access token shared by E-Invoice and E-Way Bill APIs. To create a session, see the [Generate E-Way Bill Session](/recipes/gst/authentication/generate_e_way_bill_session) recipe. Send the token in the authorization header.",
+            "required": true,
+            "example": "{{access_token}}",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "x-api-key",
+            "in": "header",
+            "description": "API key that identifies your Sandbox account.",
+            "required": true,
+            "example": "{{api_key}}",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "x-source",
+            "in": "header",
+            "description": "Select the GST portal source: primary (default) or secondary.",
+            "required": false,
+            "example": "",
+            "schema": {
+              "type": "string",
+              "example": "primary"
+            }
+          },
+          {
+            "name": "x-proxy",
+            "in": "header",
+            "description": "Enables criss-cross operations by routing requests through the specified source (e.g., access primary via secondary if primary is unavailable)",
+            "required": false,
+            "example": "",
+            "schema": {
+              "type": "string",
+              "example": "secondary"
+            }
+          },
+          {
+            "name": "x-api-version",
+            "in": "header",
+            "description": "API version",
+            "required": false,
+            "example": "",
+            "schema": {
+              "type": "string",
+              "default": "1.0.0"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "PDF generated or E-Way Bill data not available from NIC.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GenerateEWayBillPdfResponse"
+                },
+                "examples": {
+                  "pdfGenerated": {
+                    "summary": "PDF generated",
+                    "value": {
+                      "code": 200,
+                      "data": {
+                        "@entity": "in.co.sandbox.gst.compliance.e-way-bill.pdf",
+                        "e-way-bill_pdf_url": "https://in-co-sandbox-gst-test-storage.s3.ap-south-1.amazonaws.com/e-way-bill-pdf/57edecdc-7847-4816-891b-f77ae77eb767.pdf"
+                      },
+                      "timestamp": 1776921876217,
+                      "transaction_id": "41bb8041-fb83-4654-8d75-85a19f329158"
+                    }
+                  },
+                  "eWayBillDataNotAvailable": {
+                    "summary": "E-Way Bill data not available",
+                    "value": {
+                      "code": 200,
+                      "data": {
+                        "error": {
+                          "errorCodes": "357"
+                        },
+                        "info": "",
+                        "status": "0"
+                      },
+                      "timestamp": 1776921876217,
+                      "transaction_id": "5a742c1b-de26-41fe-bf27-9becb16ed6f4"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Invalid E-Way Bill Number.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/EWayBillValidationErrorResponse"
+                },
+                "examples": {
+                  "invalidEWayBillNumber": {
+                    "summary": "Invalid E-Way Bill Number",
+                    "value": {
+                      "code": 422,
+                      "message": "Invalid E-Way Bill Number",
+                      "timestamp": 1776921876217,
+                      "transaction_id": "c9aa55c6-a110-4460-9f38-1cb62e452c9f"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/gst/compliance/e-way-bill/tax-payer/invoice/{irn}/pdf/generate": {
+      "get": {
+        "summary": "Generate E-Way Bill PDF by IRN",
+        "description": "Generate an E-Way Bill PDF from an Invoice Reference Number (IRN). Sandbox gets the E-Invoice, reads its E-Way Bill number, gets that E-Way Bill, and returns a temporary URL to the PDF. If the E-Invoice has no E-Way Bill number, this API returns 404.",
+        "operationId": "generateEWayBillPdfByIrn",
+        "tags": [
+          "E-Way Bill"
+        ],
+        "parameters": [
+          {
+            "name": "irn",
+            "in": "path",
+            "description": "64-character Invoice Reference Number (IRN).",
+            "required": true,
+            "example": "7d9f2b41c8a6e35019f4ab77c2d8e6135b90aa4417f2c6d8e0b93571ac2ef846",
+            "schema": {
+              "type": "string",
+              "pattern": "^[A-Fa-f0-9]{64}$",
+              "minLength": 64,
+              "maxLength": 64
+            }
+          },
+          {
+            "name": "authorization",
+            "in": "header",
+            "description": "IRP access token shared by E-Invoice and E-Way Bill APIs. To create a session, see the [Generate E-Way Bill Session](/recipes/gst/authentication/generate_e_way_bill_session) recipe. Send the token in the authorization header.",
+            "required": true,
+            "example": "{{access_token}}",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "x-api-key",
+            "in": "header",
+            "description": "API key that identifies your Sandbox account.",
+            "required": true,
+            "example": "{{api_key}}",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "x-source",
+            "in": "header",
+            "description": "Select the GST portal source: primary (default) or secondary.",
+            "required": false,
+            "example": "",
+            "schema": {
+              "type": "string",
+              "example": "primary"
+            }
+          },
+          {
+            "name": "x-proxy",
+            "in": "header",
+            "description": "Enables criss-cross operations by routing requests through the specified source (e.g., access primary via secondary if primary is unavailable)",
+            "required": false,
+            "example": "",
+            "schema": {
+              "type": "string",
+              "example": "secondary"
+            }
+          },
+          {
+            "name": "x-api-version",
+            "in": "header",
+            "description": "API version",
+            "required": false,
+            "example": "",
+            "schema": {
+              "type": "string",
+              "default": "1.0.0"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "PDF generated, or E-Invoice or E-Way Bill data not available from NIC.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GenerateEWayBillPdfResponse"
+                },
+                "examples": {
+                  "pdfGenerated": {
+                    "summary": "PDF generated",
+                    "value": {
+                      "code": 200,
+                      "data": {
+                        "@entity": "in.co.sandbox.gst.compliance.e-way-bill.pdf",
+                        "e-way-bill_pdf_url": "https://in-co-sandbox-gst-test-storage.s3.ap-south-1.amazonaws.com/e-way-bill-pdf/57edecdc-7847-4816-891b-f77ae77eb767.pdf"
+                      },
+                      "timestamp": 1776921876217,
+                      "transaction_id": "41bb8041-fb83-4654-8d75-85a19f329158"
+                    }
+                  },
+                  "irnNotFound": {
+                    "summary": "IRN not found",
+                    "value": {
+                      "code": 200,
+                      "data": {
+                        "error": {
+                          "errorCodes": "2154"
+                        },
+                        "info": "",
+                        "status": "0"
+                      },
+                      "timestamp": 1776921876217,
+                      "transaction_id": "5a742c1b-de26-41fe-bf27-9becb16ed6f4"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "No E-Way Bill exists for the supplied IRN.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/EWayBillNotFoundResponse"
+                },
+                "examples": {
+                  "eWayBillNotFound": {
+                    "summary": "No E-Way Bill exists",
+                    "value": {
+                      "code": 404,
+                      "message": "No E-Way Bill exists for IRN: 7d9f2b41c8a6e35019f4ab77c2d8e6135b90aa4417f2c6d8e0b93571ac2ef846",
+                      "timestamp": 1776921876217,
+                      "transaction_id": "c9aa55c6-a110-4460-9f38-1cb62e452c9f"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Invalid E-Invoice or E-Way Bill data.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/EWayBillValidationErrorResponse"
+                },
+                "examples": {
+                  "invalidSourceData": {
+                    "summary": "Invalid E-Invoice or E-Way Bill data",
+                    "value": {
+                      "code": 422,
+                      "message": "Invalid E-Invoice or E-Way Bill JSON",
+                      "timestamp": 1776921876217,
+                      "transaction_id": "c9aa55c6-a110-4460-9f38-1cb62e452c9f"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/gst/compliance/e-way-bill/tax-payer/gstin/search": {
       "post": {
         "summary": "Search GSTIN",
@@ -153264,6 +153567,124 @@
         ],
         "description": "An E-Way Bill success or NIC business-failure response. Both variants use HTTP 200."
 },
+      "GenerateEWayBillPdfSuccessPayload": {
+        "type": "object",
+        "description": "Details of the generated E-Way Bill PDF.",
+        "required": [
+          "@entity",
+          "e-way-bill_pdf_url"
+        ],
+        "properties": {
+          "@entity": {
+            "type": "string",
+            "enum": [
+              "in.co.sandbox.gst.compliance.e-way-bill.pdf"
+            ],
+            "description": "Entity name for the generated PDF."
+          },
+          "e-way-bill_pdf_url": {
+            "type": "string",
+            "format": "uri",
+            "description": "Temporary URL of the generated E-Way Bill PDF."
+          }
+        }
+      },
+      "GenerateEWayBillPdfSuccessResponse": {
+        "allOf": [
+          {
+            "$ref": "#/components/schemas/EWayBillResponseMetadata"
+          },
+          {
+            "type": "object",
+            "required": [
+              "data"
+            ],
+            "properties": {
+              "data": {
+                "$ref": "#/components/schemas/GenerateEWayBillPdfSuccessPayload"
+              }
+            }
+          }
+        ],
+        "description": "PDF generated by Sandbox. The PDF is rendered by Sandbox rather than returned by NIC, so `data` is not wrapped in a NIC `status`/`data` envelope."
+      },
+      "GenerateEWayBillPdfResponse": {
+        "oneOf": [
+          {
+            "$ref": "#/components/schemas/GenerateEWayBillPdfSuccessResponse"
+          },
+          {
+            "$ref": "#/components/schemas/EWayBillBusinessErrorResponse"
+          }
+        ],
+        "description": "A generated-PDF success or NIC business-failure response. Both variants use HTTP 200."
+      },
+      "EWayBillValidationErrorResponse": {
+        "type": "object",
+        "description": "Request validation failure for an E-Way Bill request.",
+        "required": [
+          "code",
+          "message",
+          "timestamp",
+          "transaction_id"
+        ],
+        "properties": {
+          "code": {
+            "type": "integer",
+            "description": "HTTP status code returned for the validation error.",
+            "enum": [
+              422
+            ]
+          },
+          "message": {
+            "type": "string",
+            "description": "Request validation error message."
+          },
+          "timestamp": {
+            "type": "integer",
+            "format": "int64",
+            "description": "Unix timestamp in milliseconds when the response was created."
+          },
+          "transaction_id": {
+            "type": "string",
+            "format": "uuid",
+            "description": "Unique identifier used to trace the request."
+          }
+        }
+      },
+      "EWayBillNotFoundResponse": {
+        "type": "object",
+        "description": "The E-Invoice does not have an E-Way Bill number.",
+        "required": [
+          "code",
+          "message",
+          "timestamp",
+          "transaction_id"
+        ],
+        "properties": {
+          "code": {
+            "type": "integer",
+            "description": "HTTP status code returned when no E-Way Bill exists for the IRN.",
+            "enum": [
+              404
+            ]
+          },
+          "message": {
+            "type": "string",
+            "description": "States that no E-Way Bill exists for the supplied IRN."
+          },
+          "timestamp": {
+            "type": "integer",
+            "format": "int64",
+            "description": "Unix timestamp in milliseconds when the response was created."
+          },
+          "transaction_id": {
+            "type": "string",
+            "format": "uuid",
+            "description": "Unique identifier used to trace the request."
+          }
+        }
+      },
       "SearchEWayBillGstinRequest": {
         "type": "object",
         "required": [
@@ -229453,7 +229874,32 @@
        "maxLength": 15
       }
     },
-    "securitySchemes": {}
+    "securitySchemes": {
+      "SandboxApiKey": {
+        "type": "apiKey",
+        "in": "header",
+        "name": "x-api-key",
+        "description": "Sandbox API key."
+      },
+      "SandboxAccessToken": {
+        "type": "apiKey",
+        "in": "header",
+        "name": "authorization",
+        "description": "Sandbox access token from `/authenticate`."
+      },
+      "IRPAccessToken": {
+        "type": "apiKey",
+        "in": "header",
+        "name": "authorization",
+        "description": "IRP access token returned by E-Invoice or E-Way Bill authentication."
+      },
+      "GstTaxpayerAccessToken": {
+        "type": "apiKey",
+        "in": "header",
+        "name": "authorization",
+        "description": "GST taxpayer access token returned by Verify OTP."
+      }
+    }
   },
   "security": []
 }
