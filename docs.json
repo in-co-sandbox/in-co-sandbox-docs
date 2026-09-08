@@ -757,18 +757,17 @@
                   "api-reference/tds/compliance/overview",
                   "api-reference/tds/compliance/openapi-specification",
                   {
-                    "group": "Download Form16",
+                    "group": "TDS certificate APIs",
                     "pages": [
                       {
                         "group": "Create Job",
                         "pages": [
-                          "api-reference/tds/compliance/certificate-form16(a)/endpoints/submit_job",
-                          "api-reference/tds/compliance/certificate-form16(a)/credentials"
+                          "api-reference/tds/compliance/certificates/endpoints/submit_job"
                         ]
                       },
-                      "api-reference/tds/compliance/certificate-form16(a)/endpoints/poll_job",
-                      "api-reference/tds/compliance/certificate-form16(a)/endpoints/webhook",
-                      "api-reference/tds/compliance/certificate-form16(a)/endpoints/fetch_job"
+                      "api-reference/tds/compliance/certificates/endpoints/poll_job",
+                      "api-reference/tds/compliance/certificates/endpoints/webhook",
+                      "api-reference/tds/compliance/certificates/endpoints/fetch_job"
                     ]
                   },
                   {
@@ -1290,7 +1289,7 @@
                 ]
               },
               {
-                "group": "Form 16",
+                "group": "TDS certificates",
                 "pages": [
                   "recipes/tds/form-16/generate_form_16_certificates",
                   "recipes/tds/form-16a/generate-form-16a-certificates"
@@ -1380,6 +1379,22 @@
     }
   },
   "redirects": [
+    {
+      "source": "api-reference/tds/compliance/certificate-form16(a)/endpoints/submit_job",
+      "destination": "api-reference/tds/compliance/certificates/endpoints/submit_job"
+    },
+    {
+      "source": "api-reference/tds/compliance/certificate-form16(a)/endpoints/poll_job",
+      "destination": "api-reference/tds/compliance/certificates/endpoints/poll_job"
+    },
+    {
+      "source": "api-reference/tds/compliance/certificate-form16(a)/endpoints/fetch_job",
+      "destination": "api-reference/tds/compliance/certificates/endpoints/fetch_job"
+    },
+    {
+      "source": "api-reference/tds/compliance/certificate-form16(a)/endpoints/webhook",
+      "destination": "api-reference/tds/compliance/certificates/endpoints/webhook"
+    },
     {
       "source": "api-reference/gst/annexures/e_invoice_master_data",
       "destination": "api-reference/gst/annexures/e-invoice-master-data"
@@ -2042,7 +2057,7 @@
     },
     {
       "source": "reference/download-form-16-api",
-      "destination": "api-reference/tds/compliance/certificate-form16(a)/endpoints/submit_job"
+      "destination": "api-reference/tds/compliance/certificates/endpoints/submit_job"
     },
     {
       "source": "reference/download-form-27d",
@@ -2126,7 +2141,7 @@
     },
     {
       "source": "reference/fetch-tds-certificate-jobs",
-      "destination": "api-reference/tds/compliance/certificate-form16(a)/endpoints/fetch_job"
+      "destination": "api-reference/tds/compliance/certificates/endpoints/fetch_job"
     },
     {
       "source": "reference/fetch-tds-potential-notice-jobs",
@@ -2554,7 +2569,7 @@
     },
     {
       "source": "reference/poll-job-form16-api",
-      "destination": "api-reference/tds/compliance/certificate-form16(a)/endpoints/poll_job"
+      "destination": "api-reference/tds/compliance/certificates/endpoints/poll_job"
     },
     {
       "source": "reference/poll-job-form27d",

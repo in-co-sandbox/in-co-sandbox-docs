@@ -54,7 +54,7 @@ Before you begin:
   </Step>
 
   <Step title="Submit a Form 16A job" stepNumber={2} titleSize="h2">
-    Submit a Form 16A generation job using the [**Submit Job**](/api-reference/tds/compliance/certificate-form16(a)/endpoints/submit_job) endpoint. Set the path to `form16a` and the `form` field to `26Q` (or `27Q` for non-resident payments).
+    Submit a Form 16A generation job using the [**Submit TDS certificate job**](/api-reference/tds/compliance/certificates/endpoints/submit_job) endpoint. Set the path to `form16a` and the `form` field to `26Q` (or `27Q` for non-resident payments).
 
     <Accordion title="cURL Request - Submit Form 16A Job" defaultOpen>
       ```bash
@@ -110,7 +110,7 @@ Before you begin:
 
     ### 3.1 Poll a specific Form 16A job
 
-    Use the [**Poll Job**](/api-reference/tds/compliance/certificate-form16(a)/endpoints/poll_job) endpoint with the `job_id` from Step 2:
+    Use the [**Get TDS certificate job status**](/api-reference/tds/compliance/certificates/endpoints/poll_job) endpoint with the `job_id` from Step 2:
 
     <Accordion title="cURL Request - Poll Form 16A Job Status" defaultOpen>
       ```bash
@@ -133,7 +133,7 @@ Before you begin:
 
     ### 3.2 Fetch all Form 16A jobs and download certificates
 
-    To list jobs for a TAN and period, use the [**Fetch Jobs**](/api-reference/tds/compliance/certificate-form16(a)/endpoints/fetch_job) endpoint:
+    To list jobs for a TAN and period, use the [**Search TDS certificate jobs**](/api-reference/tds/compliance/certificates/endpoints/fetch_job) endpoint:
 
     <Accordion title="cURL Request - Fetch Form 16A Jobs">
       ```bash
