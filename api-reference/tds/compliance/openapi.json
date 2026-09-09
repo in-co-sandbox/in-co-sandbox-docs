@@ -3250,19 +3250,28 @@
     },
     "/tds/compliance/traces/deductors/forms/{certificate_type}": {
       "post": {
-        "summary": "Submit a certificate download job",
+        "summary": "Submit TDS certificate job",
+        "operationId": "SubmitCertificateJob",
         "deprecated": false,
-        "description": "",
-        "tags": [],
+        "description": "Create an asynchronous certificate generation job for the selected certificate type, tax year, quarter, and TAN. Use the returned job ID with the status endpoint to track the job.",
+        "tags": [
+          "TDS",
+          "TDS Certificate"
+        ],
         "parameters": [
           {
             "name": "certificate_type",
             "in": "path",
-            "description": "Certificate type for the download job.",
+            "description": "Certificate type. Use 130 for salary TDS, 131 for other TDS, or 133 for TCS.",
             "required": true,
             "example": "131",
             "schema": {
-              "type": "string"
+              "type": "string",
+              "enum": [
+                "130",
+                "131",
+                "133"
+              ]
             }
           },
           {
@@ -3287,25 +3296,45 @@
           }
         ],
         "requestBody": {
+          "required": true,
           "content": {
             "application/json": {
               "schema": {
                 "type": "object",
                 "properties": {
                   "@entity": {
-                    "type": "string"
+                    "type": "string",
+                    "description": "Request entity type.",
+                    "example": "in.co.sandbox.tds.compliance.certificate.job.request"
                   },
                   "quarter": {
-                    "type": "string"
+                    "type": "string",
+                    "description": "Quarter of the tax year.",
+                    "enum": [
+                      "Q1",
+                      "Q2",
+                      "Q3",
+                      "Q4"
+                    ]
                   },
                   "tax_year": {
-                    "type": "string"
+                    "type": "string",
+                    "description": "Tax year for the certificate request. Use the TY YYYY-YY format.",
+                    "example": "TY 2026-27"
                   },
                   "form": {
-                    "type": "string"
+                    "type": "string",
+                    "description": "Certificate form. Use 130 for salary TDS, 131 for other TDS, or 133 for TCS.",
+                    "enum": [
+                      "130",
+                      "131",
+                      "133"
+                    ]
                   },
                   "tan": {
-                    "type": "string"
+                    "type": "string",
+                    "description": "Tax Deduction and Collection Account Number (TAN).",
+                    "example": "AHMS45586C"
                   }
                 },
                 "required": [
@@ -3351,11 +3380,11 @@
                   "value": {
                     "@entity": "in.co.sandbox.tds.compliance.certificate.job.request",
                     "quarter": "Q1",
-                    "tax_year": "FY 2026-27",
+                    "tax_year": "TY 2026-27",
                     "form": "131",
                     "tan": "AHMS45586C"
                   },
-                  "summary": "Invalid Request Body"
+                  "summary": "Invalid certificate form"
                 }
               }
             }
@@ -3363,7 +3392,7 @@
         },
         "responses": {
           "200": {
-            "description": "",
+            "description": "Certificate generation job created.",
             "content": {
               "application/json": {
                 "schema": {
@@ -3379,28 +3408,48 @@
                       "type": "object",
                       "properties": {
                         "created_at": {
-                          "type": "integer"
+                          "type": "integer",
+                          "description": "Unix timestamp when the job was created."
                         },
                         "@entity": {
-                          "type": "string"
+                          "type": "string",
+                          "description": "Response entity type."
                         },
                         "job_id": {
-                          "type": "string"
+                          "type": "string",
+                          "description": "Unique identifier for the certificate generation job."
                         },
                         "tan": {
-                          "type": "string"
+                          "type": "string",
+                          "description": "Tax Deduction and Collection Account Number (TAN)."
                         },
                         "tax_year": {
-                          "type": "string"
+                          "type": "string",
+                          "description": "Tax year for the certificate request."
                         },
                         "quarter": {
-                          "type": "string"
+                          "type": "string",
+                          "description": "Quarter of the tax year."
                         },
                         "form": {
-                          "type": "string"
+                          "type": "string",
+                          "description": "Certificate form used for the job.",
+                          "enum": [
+                            "130",
+                            "131",
+                            "133"
+                          ]
                         },
                         "status": {
-                          "type": "string"
+                          "type": "string",
+                          "description": "Current status of the certificate generation job.",
+                          "enum": [
+                            "created",
+                            "queued",
+                            "in_progress",
+                            "succeeded",
+                            "failed"
+                          ]
                         }
                       },
                       "required": [
@@ -3415,7 +3464,8 @@
                       ]
                     },
                     "transaction_id": {
-                      "type": "string"
+                      "type": "string",
+                      "description": "Unique identifier for the API transaction."
                     }
                   },
                   "required": [
@@ -3486,7 +3536,7 @@
             "headers": {}
           },
           "400": {
-            "description": "",
+            "description": "The request body or certificate parameters are invalid.",
             "content": {
               "application/json": {
                 "schema": {
@@ -3543,18 +3593,27 @@
     "/tds/compliance/traces/deductors/forms/{certificate_type}/search": {
       "post": {
         "summary": "Search certificate jobs",
+        "operationId": "SearchCertificateJobs",
         "deprecated": false,
-        "description": "",
-        "tags": [],
+        "description": "Search certificate generation jobs by certificate type, TAN, tax year, quarter, form, and status. Use the returned pagination key to request the next page.",
+        "tags": [
+          "TDS",
+          "TDS Certificate"
+        ],
         "parameters": [
           {
             "name": "certificate_type",
             "in": "path",
-            "description": "Certificate type for the download job.",
+            "description": "Certificate type. Use 130 for salary TDS, 131 for other TDS, or 133 for TCS.",
             "required": true,
-            "example": "",
+            "example": "131",
             "schema": {
-              "type": "string"
+              "type": "string",
+              "enum": [
+                "130",
+                "131",
+                "133"
+              ]
             }
           },
           {
@@ -3562,7 +3621,7 @@
             "in": "header",
             "description": "API version for the request.",
             "required": false,
-            "example": "",
+            "example": "{{api_version}}",
             "schema": {
               "type": "string"
             }
@@ -3589,44 +3648,11 @@
           }
         ],
         "requestBody": {
+          "required": true,
           "content": {
             "application/json": {
               "schema": {
-                "type": "object",
-                "properties": {
-                  "@entity": {
-                    "type": "string"
-                  },
-                  "tan": {
-                    "type": "string"
-                  },
-                  "tax_year": {
-                    "type": "string"
-                  },
-                  "quarter": {
-                    "type": "string"
-                  },
-                  "form": {
-                    "type": "string"
-                  },
-                  "status": {
-                    "type": "string"
-                  },
-                  "page_size": {
-                    "type": "integer"
-                  },
-                  "last_evaluated_key": {
-                    "type": "string"
-                  }
-                },
-                "required": [
-                  "@entity",
-                  "tan",
-                  "tax_year",
-                  "quarter",
-                  "form",
-                  "page_size"
-                ]
+                "$ref": "#/components/schemas/CertificateJobSearchRequest"
               },
               "examples": {
                 "default": {
@@ -3635,7 +3661,7 @@
                     "tan": "AHMS12345C",
                     "tax_year": "TY 2025-26",
                     "quarter": "Q4",
-                    "form": "24Q",
+                    "form": "131",
                     "status": "succeeded",
                     "page_size": 20
                   },
@@ -3679,7 +3705,7 @@
                   "value": {
                     "@entity": "in.co.sandbox.tds.compliance.certificate.job.search",
                     "tan": "AHMS45586C",
-                    "tax_year": "FY 2026-27",
+                    "tax_year": "TY 2026-27",
                     "quarter": "Q1",
                     "form": "130",
                     "page_size": 5
@@ -3692,7 +3718,7 @@
         },
         "responses": {
           "200": {
-            "description": "",
+            "description": "Certificate generation jobs returned.",
             "content": {
               "application/json": {
                 "schema": {
@@ -3728,42 +3754,56 @@
                                 "type": "string"
                               },
                               "tax_year": {
-                                "type": "string"
-                              },
-                              "financial_year": {
-                                "type": "string"
+                                "type": "string",
+                                "description": "Tax year for the certificate job."
                               },
                               "quarter": {
-                                "type": "string"
+                                "type": "string",
+                                "description": "Quarter of the tax year."
                               },
                               "form": {
-                                "type": "string"
+                                "type": "string",
+                                "description": "Certificate form used for the job.",
+                                "enum": [
+                                  "130",
+                                  "131",
+                                  "133"
+                                ]
                               },
                               "created_at": {
-                                "type": "integer"
+                                "type": "integer",
+                                "description": "Unix timestamp when the job was created."
                               },
                               "updated_at": {
-                                "type": "integer"
+                                "type": "integer",
+                                "description": "Unix timestamp when the job was last updated."
                               },
                               "status": {
-                                "type": "string"
-                              },
-                              "remember_me": {
-                                "type": "boolean"
+                                "type": "string",
+                                "description": "Current status of the certificate generation job.",
+                                "enum": [
+                                  "created",
+                                  "queued",
+                                  "in_progress",
+                                  "succeeded",
+                                  "failed"
+                                ]
                               },
                               "message": {
-                                "type": "string"
+                                "type": "string",
+                                "description": "Reason the certificate job failed, when applicable."
                               }
                             },
                             "required": [
-                              "@entity",
-                              "job_id",
-                              "tan",
-                              "quarter",
-                              "form",
-                              "created_at",
-                              "updated_at",
-                              "status"
+                                "@entity",
+                                "job_id",
+                                "tan",
+                                "tax_year",
+                               "quarter",
+                               "form",
+                               "created_at",
+                               "updated_at",
+                               "status"
                             ]
                           }
                         },
@@ -3798,39 +3838,36 @@
                             "@entity": "in.co.sandbox.tds.compliance.certificate.job",
                             "job_id": "096c4812-1829-4ee1-a3c6-3bd291654b72",
                             "tan": "AHMS12345C",
-                            "financial_year": "FY 2023-24",
+                            "tax_year": "TY 2025-26",
                             "quarter": "Q2",
-                            "form": "26Q",
+                            "form": "131",
                             "created_at": 1714529043000,
                             "updated_at": 1714529044000,
-                            "status": "succeeded",
-                            "remember_me": true
+                            "status": "succeeded"
                           },
                           {
                             "@entity": "in.co.sandbox.tds.compliance.certificate.job",
                             "job_id": "096c4812-1829-4ee1-a3c6-3bd291654b72",
                             "tan": "AHMS12345C",
-                            "financial_year": "FY 2023-24",
+                            "tax_year": "TY 2025-26",
                             "quarter": "Q2",
-                            "form": "26Q",
+                            "form": "131",
                             "created_at": 1714527043000,
                             "updated_at": 1714527044000,
                             "status": "failed",
-                            "message": "Invalid credentials",
-                            "remember_me": false
+                            "message": "Invalid credentials"
                           },
                           {
                             "@entity": "in.co.sandbox.tds.compliance.certificate.job",
                             "job_id": "096c4812-1829-4ee1-a3c6-3bd291654b72",
                             "tan": "AHMS12345C",
-                            "financial_year": "FY 2023-24",
+                            "tax_year": "TY 2025-26",
                             "quarter": "Q2",
-                            "form": "26Q",
+                            "form": "131",
                             "created_at": 1714530043000,
                             "updated_at": 1714530044000,
                             "status": "failed",
-                            "message": "Form not available for the given quarter and financial year",
-                            "remember_me": false
+                            "message": "Form not available for the given quarter and tax year"
                           }
                         ],
                         "last_evaluated_key": "eydadadadada...=="
@@ -4047,7 +4084,7 @@
       "get": {
         "summary": "Get certificate job status",
         "deprecated": false,
-        "description": "",
+        "description": "Return the current status of a certificate generation job. When the job succeeds, the response includes URLs for the generated certificate ZIP files.",
         "operationId": "CertificateJobStatus",
         "tags": [
           "TDS",
@@ -4057,11 +4094,16 @@
           {
             "name": "certificate_type",
             "in": "path",
-            "description": "Certificate type for the download job.",
+            "description": "Certificate type. Use 130 for salary TDS, 131 for other TDS, or 133 for TCS.",
             "required": true,
             "example": "131",
             "schema": {
-              "type": "string"
+              "type": "string",
+              "enum": [
+                "130",
+                "131",
+                "133"
+              ]
             }
           },
           {
@@ -4079,7 +4121,7 @@
             "in": "header",
             "description": "API version for the request.",
             "required": true,
-            "example": "",
+            "example": "{{api_version}}",
             "schema": {
               "type": "string"
             }
@@ -4107,7 +4149,7 @@
         ],
         "responses": {
           "200": {
-            "description": "",
+            "description": "Certificate job status returned.",
             "content": {
               "application/json": {
                 "schema": {
@@ -4123,40 +4165,63 @@
                       "type": "object",
                       "properties": {
                         "created_at": {
-                          "type": "integer"
+                          "type": "integer",
+                          "description": "Unix timestamp when the job was created."
                         },
                         "updated_at": {
-                          "type": "integer"
+                          "type": "integer",
+                          "description": "Unix timestamp when the job was last updated."
                         },
                         "@entity": {
-                          "type": "string"
+                          "type": "string",
+                          "description": "Response entity type."
                         },
                         "job_id": {
-                          "type": "string"
+                          "type": "string",
+                          "description": "Unique identifier for the certificate generation job."
                         },
                         "tan": {
-                          "type": "string"
+                          "type": "string",
+                          "description": "Tax Deduction and Collection Account Number (TAN)."
                         },
                         "tax_year": {
-                          "type": "string"
+                          "type": "string",
+                          "description": "Tax year for the certificate job."
                         },
                         "quarter": {
-                          "type": "string"
+                          "type": "string",
+                          "description": "Quarter of the tax year."
                         },
                         "form": {
-                          "type": "string"
+                          "type": "string",
+                          "description": "Certificate form used for the job.",
+                          "enum": [
+                            "130",
+                            "131",
+                            "133"
+                          ]
                         },
                         "certificate_pdf_zip_urls": {
                           "type": "array",
+                          "description": "URLs for the generated certificate ZIP files. Present when the job succeeds.",
                           "items": {
                             "type": "string"
                           }
                         },
                         "message": {
-                          "type": "string"
+                          "type": "string",
+                          "description": "Reason the certificate job failed, when applicable."
                         },
                         "status": {
-                          "type": "string"
+                          "type": "string",
+                          "description": "Current status of the certificate generation job.",
+                          "enum": [
+                            "created",
+                            "queued",
+                            "in_progress",
+                            "succeeded",
+                            "failed"
+                          ]
                         }
                       },
                       "required": [
@@ -4172,7 +4237,8 @@
                       ]
                     },
                     "transaction_id": {
-                      "type": "string"
+                      "type": "string",
+                      "description": "Unique identifier for the API transaction."
                     }
                   },
                   "required": [
@@ -4349,7 +4415,7 @@
             "headers": {}
           },
           "521": {
-            "description": "",
+            "description": "No certificate job data was found for the requested job ID.",
             "content": {
               "application/json": {
                 "schema": {
@@ -4405,7 +4471,7 @@
     },
     "/tds/traces/deductors/credential": {
       "post": {
-        "summary": "Save a TRACES credential",
+        "summary": "Save TRACES credential",
         "deprecated": false,
         "description": "",
         "tags": [],
@@ -4641,7 +4707,7 @@
         "security": []
       },
       "delete": {
-        "summary": "Delete a TRACES credential",
+        "summary": "Delete TRACES credential",
         "deprecated": false,
         "description": "",
         "tags": [],
@@ -4756,7 +4822,76 @@
     }
   },
   "components": {
-    "schemas": {},
+    "schemas": {
+      "CertificateJobSearchRequest": {
+        "type": "object",
+        "description": "Filters used to search certificate generation jobs.",
+        "properties": {
+          "@entity": {
+            "type": "string",
+            "description": "Search request entity type.",
+            "example": "in.co.sandbox.tds.compliance.certificate.job.search"
+          },
+          "tan": {
+            "type": "string",
+            "description": "Tax Deduction and Collection Account Number (TAN).",
+            "example": "AHMS45586C"
+          },
+          "tax_year": {
+            "type": "string",
+            "description": "Tax year used to filter certificate jobs. Use the TY YYYY-YY format.",
+            "example": "TY 2026-27"
+          },
+          "quarter": {
+            "type": "string",
+            "description": "Quarter used to filter certificate jobs.",
+            "enum": [
+              "Q1",
+              "Q2",
+              "Q3",
+              "Q4"
+            ]
+          },
+          "form": {
+            "type": "string",
+            "description": "Certificate form used to filter jobs. Use 130 for salary TDS, 131 for other TDS, or 133 for TCS.",
+            "enum": [
+              "130",
+              "131",
+              "133"
+            ]
+          },
+          "status": {
+            "type": "string",
+            "description": "Job status used to filter results.",
+            "enum": [
+              "created",
+              "queued",
+              "in_progress",
+              "succeeded",
+              "failed"
+            ]
+          },
+          "page_size": {
+            "type": "integer",
+            "description": "Maximum number of jobs to return.",
+            "minimum": 1
+          },
+          "last_evaluated_key": {
+            "type": "string",
+            "description": "Pagination key returned by the previous search response."
+          }
+        },
+        "required": [
+          "@entity",
+          "tan",
+          "tax_year",
+          "quarter",
+          "form",
+          "page_size"
+        ]
+      }
+    },
     "responses": {},
     "securitySchemes": {}
   },

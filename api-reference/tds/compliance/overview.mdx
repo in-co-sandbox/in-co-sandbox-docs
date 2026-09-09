@@ -1,6 +1,6 @@
 ---
 title: "Overview"
-description: "Prepare and file quarterly TDS returns and Certificate (Form 130 and form 131) with job-based APIs and webhooks."
+description: "Generate FVU files, e-file returns, and create certificates with asynchronous compliance APIs."
 keywords:
   - TDS compliance
   - FVU generation
@@ -10,6 +10,7 @@ keywords:
   - Form 130
   - Form 131
   - Form 133
+  - Form 27D
   - Form 16
   - Form 16A
   - TRACES
@@ -23,7 +24,7 @@ keywords:
 
 # TDS Compliance API
 
-TDS (Tax Deducted at Source) compliance is the set of processes used by a deductor to prepare, validate, and submit quarterly e-TDS returns and generate tax certificates in India. Use these APIs to download CSI (Challan Status Inquiry) files, generate FVU (File Validation Utility) packages, e-file quarterly TDS returns, and create Form 130, Form 131, and Form 133 certificates using a job-based async workflow with optional webhooks. Users migrating from the Income-tax Act, 1961 may know the salary and other-TDS certificates as Form 16 and Form 16A.
+TDS (Tax Deducted at Source) compliance is the set of processes used by a deductor to prepare, validate, and submit quarterly e-TDS returns and generate tax certificates in India. Use these APIs to download CSI (Challan Status Inquiry) files, generate FVU (File Validation Utility) packages, e-file quarterly TDS returns, and run certificate jobs with optional webhooks. For certificate form values and endpoint details, see the [TDS certificate API overview](/api-reference/tds/compliance/certificates/overview).
 
 ## Key features
 
@@ -37,8 +38,8 @@ TDS (Tax Deducted at Source) compliance is the set of processes used by a deduct
   <Card title="E-file returns" icon="paper-plane" href="/api-reference/tds/compliance/e-file/endpoints/submit_job">
     Submit quarterly TDS returns electronically and download acknowledgement receipts and Form 27A artifacts.
   </Card>
-  <Card title="TDS and TCS certificates" icon="badge-check" href="/api-reference/tds/compliance/certificates/endpoints/submit_job">
-    Generate Form 130 salary TDS certificates, Form 131 other-TDS certificates, and Form 133 TCS certificates from TRACES.
+  <Card title="TDS certificate API" icon="badge-check" href="/api-reference/tds/compliance/certificates/overview">
+    Generate Form 130, Form 131, and Form 133 certificates through one asynchronous workflow.
   </Card>
   <Card title="Job-based async workflow" icon="server" href="/guides/developer-resources/job_based_apis">
     Submit long-running compliance tasks as jobs and poll for status or receive webhook callbacks when complete.
@@ -97,7 +98,7 @@ TDS (Tax Deducted at Source) compliance is the set of processes used by a deduct
   <Card title="E-file returns" icon="paper-plane" href="/api-reference/tds/compliance/e-file/endpoints/submit_job">
     Submit, poll, and search e-filing jobs for quarterly returns, with webhook status notifications.
   </Card>
-  <Card title="TDS and TCS certificates" icon="badge-check" href="/api-reference/tds/compliance/certificates/endpoints/submit_job">
+  <Card title="TDS certificate API" icon="badge-check" href="/api-reference/tds/compliance/certificates/overview">
     Submit, poll, and fetch certificate generation jobs, with webhook status notifications.
   </Card>
 </CardGroup>
@@ -127,22 +128,9 @@ TDS (Tax Deducted at Source) compliance is the set of processes used by a deduct
 | [Job status webhook](/api-reference/tds/compliance/e-file/endpoints/webhook) | Receive notification when an e-file job succeeds or fails |
 | [Search job](/api-reference/tds/compliance/e-file/endpoints/search_job) | List and filter previously submitted e-filing jobs |
 
-## TDS and TCS certificate APIs
+## TDS certificate API
 
-Use these form values in certificate requests:
-
-| Form value | Certificate type | Common legacy term |
-|:-----------|:-----------------|:-------------------|
-| `130` | Salary TDS, pension, or specified senior citizen interest | Form 16 for salary users |
-| `131` | Other TDS | Form 16A |
-| `133` | TCS | No Form 16 or Form 16A equivalent |
-
-| API | Purpose |
-|:----|:--------|
-| [Submit TDS certificate job](/api-reference/tds/compliance/certificates/endpoints/submit_job) | Create a certificate generation job for Form 130, 131, or 133 |
-| [Get TDS certificate job status](/api-reference/tds/compliance/certificates/endpoints/poll_job) | Check job status and retrieve certificate outputs |
-| [TDS certificate webhook](/api-reference/tds/compliance/certificates/endpoints/webhook) | Receive notification when a certificate job succeeds or fails |
-| [Search TDS certificate jobs](/api-reference/tds/compliance/certificates/endpoints/fetch_job) | Search certificate jobs by tax year, quarter, form, and status |
+The TDS certificate API generates Form 130, Form 131, and Form 133 certificates through one asynchronous workflow. Form 27D was the earlier name for the Form 133 TCS certificate. Read the [TDS certificate API overview](/api-reference/tds/compliance/certificates/overview) for form selection, request fields, job statuses, and endpoint details.
 
 ## Common use cases
 
@@ -150,7 +138,7 @@ Use the TDS Compliance API when you need to:
 
 - Build a payroll platform that validates quarterly TDS return files by generating FVU packages automatically
 - Help finance teams e-file quarterly TDS returns programmatically and store acknowledgements and receipts
-- Generate and distribute Form 130, Form 131, and Form 133 certificates after returns are processed
+- Generate and distribute [Form 130, Form 131, and Form 133 certificates](/api-reference/tds/compliance/certificates/overview) after returns are processed
 - Automate CSI retrieval for challan reconciliation before preparing the quarterly return
 - Run asynchronous compliance workflows at scale using webhooks instead of polling
 
@@ -173,7 +161,7 @@ Use the TDS Compliance API when you need to:
     The TDS Compliance API supports webhooks for all job-based endpoints. Configure a webhook URL to receive notifications when jobs complete instead of polling. See the [webhooks guide](/guides/developer-resources/webhooks).
   </Accordion>
   <Accordion title="What forms does the TDS Compliance API support?">
-    The TDS Compliance API supports quarterly TDS returns filed by deductors, including Form 138 (salary payments), Form 140 (non-salary payments), and Form 144 (payments to non-residents). Certificate jobs use `130` for salary TDS, `131` for other TDS, and `133` for TCS. Users familiar with the Income-tax Act, 1961 may know the first two certificate workflows as Form 16 and Form 16A.
+    The TDS Compliance API supports quarterly TDS returns filed by deductors, including Form 138 (salary payments), Form 140 (non-salary payments), and Form 144 (payments to non-residents). Certificate jobs use `130` for salary TDS, `131` for other TDS, and `133` for TCS, which was previously known as Form 27D. The [TDS certificate API overview](/api-reference/tds/compliance/certificates/overview) explains the form mapping and certificate workflow.
   </Accordion>
   <Accordion title="How do I handle errors during compliance workflows?">
     The TDS Compliance API returns structured error responses with codes and messages. Common errors include invalid credentials, validation failures, and job timeouts. Check the [errors guide](/guides/developer-resources/errors) for error code reference and troubleshooting steps.

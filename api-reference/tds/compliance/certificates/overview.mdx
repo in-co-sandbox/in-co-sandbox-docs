@@ -1,0 +1,82 @@
+---
+title: "TDS certificate API"
+description: "Generate Form 130, Form 131, and Form 133 certificates with asynchronous TDS certificate APIs."
+keywords:
+  - TDS certificate API
+  - TDS certificate
+  - TCS certificate API
+  - Form 130 certificate
+  - Form 131 certificate
+  - Form 133 certificate
+  - Form 27D
+  - Form 27D API
+  - Form 16 API
+  - Form 16A API
+  - certificate job API
+---
+
+# TDS certificate API
+
+The TDS certificate API generates certificates for Form 130, Form 131, and Form 133. Use the asynchronous workflow to submit a certificate job, check its status, search previous jobs, and receive webhook notifications when a job completes.
+
+## Choose a form
+
+The certificate API uses one workflow for all supported form values. For submit and search requests, send the same numeric value in the `certificate_type` path parameter and the `form` request field. The status request uses the value in the path and does not have a `form` field.
+
+| Form value | Use it for | Common legacy term |
+|:-----------|:-----------|:-------------------|
+| `130` | Salary TDS, pension, or specified senior citizen interest | Form 16 |
+| `131` | Other TDS | Form 16A |
+| `133` | TCS | Form 27D |
+
+## How it works
+
+<Steps>
+  <Step title="Authenticate your request">
+    Provide your API key and access token in the headers required by the endpoint.
+  </Step>
+  <Step title="Configure a webhook (optional)">
+    If you want completion callbacks, configure the [certificate webhook](/api-reference/tds/compliance/certificates/endpoints/webhook) before submitting the job. Webhooks fire when a job reaches `succeeded` or `failed`.
+  </Step>
+  <Step title="Submit a certificate job">
+    Call the [submit certificate job endpoint](/api-reference/tds/compliance/certificates/endpoints/submit_job) with the TAN, quarter, tax year, and form value. The response includes a `job_id`.
+  </Step>
+  <Step title="Wait for completion">
+    Either poll the [get certificate job status endpoint](/api-reference/tds/compliance/certificates/endpoints/poll_job) with the `job_id`, or wait for the certificate webhook.
+  </Step>
+  <Step title="Retrieve the certificate output">
+    When the job status is `succeeded`, download the certificate ZIP files from the URLs in `certificate_pdf_zip_urls`.
+  </Step>
+</Steps>
+
+## Certificate endpoints
+
+| API | Purpose |
+|:----|:--------|
+| [Submit certificate job](/api-reference/tds/compliance/certificates/endpoints/submit_job) | Create a certificate generation job. |
+| [Get certificate job status](/api-reference/tds/compliance/certificates/endpoints/poll_job) | Check a job status and retrieve its certificate output. |
+| [Search certificate jobs](/api-reference/tds/compliance/certificates/endpoints/fetch_job) | Find certificate jobs by TAN, tax year, quarter, form, and status. |
+| [Certificate webhook](/api-reference/tds/compliance/certificates/endpoints/webhook) | Receive a notification when a certificate job succeeds or fails. |
+
+## Frequently asked questions
+
+<AccordionGroup>
+  <Accordion title="Which form value should I use for salary TDS?">
+    Use `130` for salary TDS, pension, or specified senior citizen interest certificates. The common legacy term for this certificate is Form 16.
+  </Accordion>
+  <Accordion title="Which form value should I use for other TDS?">
+    Use `131` for other TDS certificates. The common legacy term for this certificate is Form 16A.
+  </Accordion>
+  <Accordion title="Which form value should I use for TCS?">
+    Use `133` for TCS certificates. Form 27D was the earlier name for this certificate. Form 133 uses the same certificate API workflow as Forms 130 and 131. See the [Income Tax Department's Form 133 FAQs](https://www.incometaxindia.gov.in/documents/d/guest/form-133-faqs).
+  </Accordion>
+  <Accordion title="Can I send a legacy form name in the request?">
+    No. The certificate API expects the numeric form values `130`, `131`, or `133`. For submit and search requests, use the same value in the `certificate_type` path parameter and the `form` request field. Use `133` for the certificate previously known as Form 27D.
+  </Accordion>
+  <Accordion title="What does the submit endpoint return?">
+    The submit certificate job endpoint returns a `job_id`. Use that identifier with the status endpoint or use the certificate webhook to receive completion updates.
+  </Accordion>
+  <Accordion title="When can I download a certificate?">
+    Download certificates after the job status changes to `succeeded`. The status response contains the download URLs in the `certificate_pdf_zip_urls` array.
+  </Accordion>
+</AccordionGroup>
