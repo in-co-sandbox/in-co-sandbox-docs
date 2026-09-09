@@ -1,5 +1,5 @@
 {
-  "openapi": "3.0.1",
+  "openapi": "3.1.0",
   "info": {
     "title": "compliance",
     "description": "Tax Deducted at Source (TDS) is an indirect method of collecting Income Tax. TDS is based on the principle of “Pay as you earn” which is beneficial for both the Government and the taxpayer. It is where a person making a payment of specified nature is liable to deduct tax at a prescribed rate. This ensures continuous revenue for the Government by way of Tax Deducted at the Source.\n\nThe Payer making a payment is also responsible to deposit TDS with the Income Tax Department within a specified date and file a TDS Return. Once filed, the deposited amount will be shown in the Payee's Form 26AS which they can then use to claim tax credits when filing ITR.\n\nHowever, staying TDS compliant can be a hassle for businesses, as they are required to :\n\n1. Deduct TDS from payments that are liable for TDS Deduction at an appropriate rate.\n    \n2. Deposit TDS to Government before the due date.\n    \n3. File TDS Returns on a Quarterly basis.\n    \n4. Issue a TDS Certificate by the deductor to the deductee.\n    \n\nOrganizations deducting TDS have to remain compliant with each of the steps. Failure to do so results in TDS Penalties by Authorities. Sandbox provides TDS Compliance APIs to help you automate end-to-end TDS compliance.",
@@ -19,10 +19,10 @@
       "name": "E-File TDS Return"
     },
     {
-      "name": "TDS Certificate"
+      "name": "TDS"
     },
     {
-      "name": "TDS"
+      "name": "TDS Certificate"
     }
   ],
   "paths": {
@@ -975,8 +975,10 @@
                   "tax_year": {
                     "description": "Tax Year (e.g. TY 2026-27)",
                     "type": "string",
-                    "pattern": "^TY [0-9]{4}-[0-9]{2}$",
-                    "example": "TY 2026-27"
+                    "examples": [
+                      "TY 2026-27"
+                    ],
+                    "pattern": "^TY [0-9]{4}-[0-9]{2}$"
                   },
                   "quarter": {
                     "enum": [
@@ -986,7 +988,9 @@
                       "Q4"
                     ],
                     "type": "string",
-                    "example": "Q1"
+                    "examples": [
+                      "Q1"
+                    ]
                   },
                   "form": {
                     "enum": [
@@ -996,8 +1000,10 @@
                       "143"
                     ],
                     "type": "string",
-                    "description": "TDS/TCS return form. Use 138 for erstwhile 24Q, 140 for erstwhile 26Q, 144 for erstwhile 27Q, and 143 for erstwhile 27EQ.",
-                    "example": "140"
+                    "examples": [
+                      "140"
+                    ],
+                    "description": "TDS/TCS return form. Use 138 for erstwhile 24Q, 140 for erstwhile 26Q, 144 for erstwhile 27Q, and 143 for erstwhile 27EQ."
                   },
                   "tan": {
                     "description": "TAN of deductor/collector. Regular Expression: [A-Z]{4}[0-9]{5}[A-Z]{1}",
@@ -1011,7 +1017,9 @@
                       "correction"
                     ],
                     "type": "string",
-                    "example": "regular"
+                    "examples": [
+                      "regular"
+                    ]
                   }
                 },
                 "required": [
@@ -1082,8 +1090,10 @@
                         "tax_year": {
                           "type": "string",
                           "description": "Tax Year (e.g. TY 2026-27)",
-                          "pattern": "^TY [0-9]{4}-[0-9]{2}$",
-                          "example": "TY 2026-27"
+                          "examples": [
+                            "TY 2026-27"
+                          ],
+                          "pattern": "^TY [0-9]{4}-[0-9]{2}$"
                         },
                         "quarter": {
                           "type": "string"
@@ -1246,8 +1256,10 @@
                             "tax_year": {
                               "type": "string",
                               "description": "Tax Year (e.g. TY 2026-27)",
-                              "pattern": "^TY [0-9]{4}-[0-9]{2}$",
-                              "example": "TY 2026-27"
+                              "examples": [
+                                "TY 2026-27"
+                              ],
+                              "pattern": "^TY [0-9]{4}-[0-9]{2}$"
                             },
                             "quarter": {
                               "type": "string"
@@ -1299,8 +1311,10 @@
                             "tax_year": {
                               "type": "string",
                               "description": "Tax Year (e.g. TY 2026-27)",
-                              "pattern": "^TY [0-9]{4}-[0-9]{2}$",
-                              "example": "TY 2026-27"
+                              "examples": [
+                                "TY 2026-27"
+                              ],
+                              "pattern": "^TY [0-9]{4}-[0-9]{2}$"
                             },
                             "quarter": {
                               "type": "string"
@@ -1356,8 +1370,10 @@
                             "tax_year": {
                               "type": "string",
                               "description": "Tax Year (e.g. TY 2026-27)",
-                              "pattern": "^TY [0-9]{4}-[0-9]{2}$",
-                              "example": "TY 2026-27"
+                              "examples": [
+                                "TY 2026-27"
+                              ],
+                              "pattern": "^TY [0-9]{4}-[0-9]{2}$"
                             },
                             "quarter": {
                               "type": "string"
@@ -1591,7 +1607,9 @@
                     "description": "Tax Year (e.g. TY 2026-27)",
                     "type": "string",
                     "pattern": "^TY [0-9]{4}-[0-9]{2}$",
-                    "example": "TY 2026-27"
+                    "examples": [
+                      "TY 2026-27"
+                    ]
                   },
                   "form": {
                     "description": "TDS return form",
@@ -1685,8 +1703,10 @@
                               "tax_year": {
                                 "type": "string",
                                 "description": "Tax Year (e.g. TY 2026-27)",
-                                "pattern": "^TY [0-9]{4}-[0-9]{2}$",
-                                "example": "TY 2026-27"
+                                "examples": [
+                                  "TY 2026-27"
+                                ],
+                                "pattern": "^TY [0-9]{4}-[0-9]{2}$"
                               },
                               "quarter": {
                                 "type": "string"
@@ -1989,8 +2009,10 @@
                   "tax_year": {
                     "description": "Tax Year (e.g. TY 2026-27)",
                     "type": "string",
-                    "pattern": "^TY [0-9]{4}-[0-9]{2}$",
-                    "example": "TY 2026-27"
+                    "examples": [
+                      "TY 2026-27"
+                    ],
+                    "pattern": "^TY [0-9]{4}-[0-9]{2}$"
                   },
                   "form": {
                     "description": "TDS/TCS return form. Use 138 for erstwhile 24Q, 140 for erstwhile 26Q, 144 for erstwhile 27Q, and 143 for erstwhile 27EQ.",
@@ -2014,7 +2036,9 @@
                   "tan": {
                     "description": "TAN of deductor/collector. Regular Expression: [A-Z]{4}[0-9]{5}[A-Z]{1}",
                     "type": "string",
-                    "example": "AHMA09719B"
+                    "examples": [
+                      "AHMA09719B"
+                    ]
                   }
                 },
                 "required": [
@@ -2192,8 +2216,10 @@
                         "tax_year": {
                           "type": "string",
                           "description": "Tax Year (e.g. TY 2026-27)",
-                          "pattern": "^TY [0-9]{4}-[0-9]{2}$",
-                          "example": "TY 2026-27"
+                          "examples": [
+                            "TY 2026-27"
+                          ],
+                          "pattern": "^TY [0-9]{4}-[0-9]{2}$"
                         },
                         "quarter": {
                           "type": "string"
@@ -2540,8 +2566,10 @@
                             "tax_year": {
                               "type": "string",
                               "description": "Tax Year (e.g. TY 2026-27)",
-                              "pattern": "^TY [0-9]{4}-[0-9]{2}$",
-                              "example": "TY 2026-27"
+                              "examples": [
+                                "TY 2026-27"
+                              ],
+                              "pattern": "^TY [0-9]{4}-[0-9]{2}$"
                             },
                             "quarter": {
                               "type": "string"
@@ -2593,8 +2621,10 @@
                             "tax_year": {
                               "type": "string",
                               "description": "Tax Year (e.g. TY 2026-27)",
-                              "pattern": "^TY [0-9]{4}-[0-9]{2}$",
-                              "example": "TY 2026-27"
+                              "examples": [
+                                "TY 2026-27"
+                              ],
+                              "pattern": "^TY [0-9]{4}-[0-9]{2}$"
                             },
                             "quarter": {
                               "type": "string"
@@ -2661,8 +2691,10 @@
                             "tax_year": {
                               "type": "string",
                               "description": "Tax Year (e.g. TY 2026-27)",
-                              "pattern": "^TY [0-9]{4}-[0-9]{2}$",
-                              "example": "TY 2026-27"
+                              "examples": [
+                                "TY 2026-27"
+                              ],
+                              "pattern": "^TY [0-9]{4}-[0-9]{2}$"
                             },
                             "quarter": {
                               "type": "string"
@@ -3092,7 +3124,9 @@
                     "description": "Tax Year (e.g. TY 2026-27)",
                     "type": "string",
                     "pattern": "^TY [0-9]{4}-[0-9]{2}$",
-                    "example": "TY 2026-27"
+                    "examples": [
+                      "TY 2026-27"
+                    ]
                   },
                   "from_date": {
                     "description": "Date from which jobs are to be fetched. Value in EPOCH timestamP",
@@ -3166,8 +3200,10 @@
                               "tax_year": {
                                 "type": "string",
                                 "description": "Tax Year (e.g. TY 2026-27)",
-                                "pattern": "^TY [0-9]{4}-[0-9]{2}$",
-                                "example": "TY 2026-27"
+                                "examples": [
+                                  "TY 2026-27"
+                                ],
+                                "pattern": "^TY [0-9]{4}-[0-9]{2}$"
                               },
                               "quarter": {
                                 "type": "string"
@@ -3251,9 +3287,9 @@
     "/tds/compliance/traces/deductors/forms/{certificate_type}": {
       "post": {
         "summary": "Submit TDS certificate job",
-        "operationId": "SubmitCertificateJob",
         "deprecated": false,
         "description": "Create an asynchronous certificate generation job for the selected certificate type, tax year, quarter, and TAN. Use the returned job ID with the status endpoint to track the job.",
+        "operationId": "SubmitCertificateJob",
         "tags": [
           "TDS",
           "TDS Certificate"
@@ -3296,7 +3332,6 @@
           }
         ],
         "requestBody": {
-          "required": true,
           "content": {
             "application/json": {
               "schema": {
@@ -3305,7 +3340,9 @@
                   "@entity": {
                     "type": "string",
                     "description": "Request entity type.",
-                    "example": "in.co.sandbox.tds.compliance.certificate.job.request"
+                    "examples": [
+                      "in.co.sandbox.tds.compliance.certificate.job.request"
+                    ]
                   },
                   "quarter": {
                     "type": "string",
@@ -3320,7 +3357,9 @@
                   "tax_year": {
                     "type": "string",
                     "description": "Tax year for the certificate request. Use the TY YYYY-YY format.",
-                    "example": "TY 2026-27"
+                    "examples": [
+                      "TY 2026-27"
+                    ]
                   },
                   "form": {
                     "type": "string",
@@ -3334,7 +3373,9 @@
                   "tan": {
                     "type": "string",
                     "description": "Tax Deduction and Collection Account Number (TAN).",
-                    "example": "AHMS45586C"
+                    "examples": [
+                      "AHMS45586C"
+                    ]
                   }
                 },
                 "required": [
@@ -3361,10 +3402,10 @@
                     "@entity": "in.co.sandbox.tds.compliance.certificate.job.request",
                     "quarter": "Q1",
                     "tax_year": "TY 2026-27",
-                    "form": "133",
+                    "form": "131",
                     "tan": "AHMS45586C"
                   },
-                  "summary": "Submit form 133 job"
+                  "summary": "Submit form 131 job"
                 },
                 "case-57834903": {
                   "value": {
@@ -3381,14 +3422,14 @@
                     "@entity": "in.co.sandbox.tds.compliance.certificate.job.request",
                     "quarter": "Q1",
                     "tax_year": "TY 2026-27",
-                    "form": "131",
                     "tan": "AHMS45586C"
                   },
-                  "summary": "Invalid certificate form"
+                  "summary": "Missing required form"
                 }
               }
             }
-          }
+          },
+          "required": true
         },
         "responses": {
           "200": {
@@ -3488,14 +3529,14 @@
                         "tan": "AHMS45586C",
                         "tax_year": "TY 2026-27",
                         "quarter": "Q1",
-                        "form": "133",
+                        "form": "131",
                         "status": "created"
                       },
                       "transaction_id": "e75e7d3d-0a44-4454-bfa5-3a2ce3caa2a0"
                     }
                   },
                   "case-57834902": {
-                    "summary": "Submit form 133 job",
+                    "summary": "Submit form 131 job",
                     "value": {
                       "code": 200,
                       "timestamp": 1788770941235,
@@ -3506,7 +3547,7 @@
                         "tan": "AHMS45586C",
                         "tax_year": "TY 2026-27",
                         "quarter": "Q1",
-                        "form": "133",
+                        "form": "131",
                         "status": "created"
                       },
                       "transaction_id": "e75e7d3d-0a44-4454-bfa5-3a2ce3caa2a0"
@@ -3573,7 +3614,7 @@
                     }
                   },
                   "case-57834904": {
-                    "summary": "Invalid Request Body",
+                    "summary": "Missing required form",
                     "value": {
                       "code": 400,
                       "timestamp": 1788771428630,
@@ -3593,9 +3634,9 @@
     "/tds/compliance/traces/deductors/forms/{certificate_type}/search": {
       "post": {
         "summary": "Search certificate jobs",
-        "operationId": "SearchCertificateJobs",
         "deprecated": false,
         "description": "Search certificate generation jobs by certificate type, TAN, tax year, quarter, form, and status. Use the returned pagination key to request the next page.",
+        "operationId": "SearchCertificateJobs",
         "tags": [
           "TDS",
           "TDS Certificate"
@@ -3648,25 +3689,12 @@
           }
         ],
         "requestBody": {
-          "required": true,
           "content": {
             "application/json": {
               "schema": {
                 "$ref": "#/components/schemas/CertificateJobSearchRequest"
               },
               "examples": {
-                "default": {
-                  "value": {
-                    "@entity": "in.co.sandbox.tds.compliance.certificate.job.search",
-                    "tan": "AHMS12345C",
-                    "tax_year": "TY 2025-26",
-                    "quarter": "Q4",
-                    "form": "131",
-                    "status": "succeeded",
-                    "page_size": 20
-                  },
-                  "summary": "Default example"
-                },
                 "case-57836309": {
                   "value": {
                     "@entity": "in.co.sandbox.tds.compliance.certificate.job.search",
@@ -3696,7 +3724,7 @@
                     "tan": "AHMS45586C",
                     "tax_year": "TY 2026-27",
                     "quarter": "Q1",
-                    "form": "130",
+                    "form": "131",
                     "page_size": 5
                   },
                   "summary": "Success without jobs"
@@ -3707,14 +3735,14 @@
                     "tan": "AHMS45586C",
                     "tax_year": "TY 2026-27",
                     "quarter": "Q1",
-                    "form": "130",
-                    "page_size": 5
+                    "form": "131"
                   },
-                  "summary": "Failure Invalid Request Body"
+                  "summary": "Failure: missing page_size"
                 }
               }
             }
-          }
+          },
+          "required": true
         },
         "responses": {
           "200": {
@@ -3737,21 +3765,26 @@
                       "type": "object",
                       "properties": {
                         "@entity": {
-                          "type": "string"
+                          "type": "string",
+                          "description": "Response entity type."
                         },
                         "items": {
                           "type": "array",
+                          "description": "Certificate jobs that match the search criteria.",
                           "items": {
                             "type": "object",
                             "properties": {
                               "@entity": {
-                                "type": "string"
+                                "type": "string",
+                                "description": "Certificate job entity type."
                               },
                               "job_id": {
-                                "type": "string"
+                                "type": "string",
+                                "description": "Unique identifier for the certificate job."
                               },
                               "tan": {
-                                "type": "string"
+                                "type": "string",
+                                "description": "Tax Deduction and Collection Account Number (TAN) associated with the certificate job."
                               },
                               "tax_year": {
                                 "type": "string",
@@ -3795,20 +3828,21 @@
                               }
                             },
                             "required": [
-                                "@entity",
-                                "job_id",
-                                "tan",
-                                "tax_year",
-                               "quarter",
-                               "form",
-                               "created_at",
-                               "updated_at",
-                               "status"
+                              "@entity",
+                              "job_id",
+                              "tan",
+                              "tax_year",
+                              "quarter",
+                              "form",
+                              "created_at",
+                              "updated_at",
+                              "status"
                             ]
                           }
                         },
                         "last_evaluated_key": {
-                          "type": "string"
+                          "type": "string",
+                          "description": "Opaque pagination cursor. Send this value in the next search request to retrieve the next page."
                         }
                       },
                       "required": [
@@ -3825,55 +3859,6 @@
                   ]
                 },
                 "examples": {
-                  "default": {
-                    "summary": "Default example",
-                    "value": {
-                      "code": 200,
-                      "timestamp": 1616223746147,
-                      "transaction_id": "f24cd229-42c8-43de-af79-8ce2d3c4c3db",
-                      "data": {
-                        "@entity": "in.co.sandbox.tds.compliance.certificate.paginated_list",
-                        "items": [
-                          {
-                            "@entity": "in.co.sandbox.tds.compliance.certificate.job",
-                            "job_id": "096c4812-1829-4ee1-a3c6-3bd291654b72",
-                            "tan": "AHMS12345C",
-                            "tax_year": "TY 2025-26",
-                            "quarter": "Q2",
-                            "form": "131",
-                            "created_at": 1714529043000,
-                            "updated_at": 1714529044000,
-                            "status": "succeeded"
-                          },
-                          {
-                            "@entity": "in.co.sandbox.tds.compliance.certificate.job",
-                            "job_id": "096c4812-1829-4ee1-a3c6-3bd291654b72",
-                            "tan": "AHMS12345C",
-                            "tax_year": "TY 2025-26",
-                            "quarter": "Q2",
-                            "form": "131",
-                            "created_at": 1714527043000,
-                            "updated_at": 1714527044000,
-                            "status": "failed",
-                            "message": "Invalid credentials"
-                          },
-                          {
-                            "@entity": "in.co.sandbox.tds.compliance.certificate.job",
-                            "job_id": "096c4812-1829-4ee1-a3c6-3bd291654b72",
-                            "tan": "AHMS12345C",
-                            "tax_year": "TY 2025-26",
-                            "quarter": "Q2",
-                            "form": "131",
-                            "created_at": 1714530043000,
-                            "updated_at": 1714530044000,
-                            "status": "failed",
-                            "message": "Form not available for the given quarter and tax year"
-                          }
-                        ],
-                        "last_evaluated_key": "eydadadadada...=="
-                      }
-                    }
-                  },
                   "case-57836309": {
                     "summary": "Success",
                     "value": {
@@ -4063,7 +4048,7 @@
                 },
                 "examples": {
                   "case-57838962": {
-                    "summary": "Failure Invalid Request Body",
+                    "summary": "Failure: missing page_size",
                     "value": {
                       "code": 400,
                       "timestamp": 1788774038411,
@@ -4205,7 +4190,8 @@
                           "type": "array",
                           "description": "URLs for the generated certificate ZIP files. Present when the job succeeds.",
                           "items": {
-                            "type": "string"
+                            "type": "string",
+                            "format": "uri"
                           }
                         },
                         "message": {
@@ -4382,7 +4368,7 @@
                         "tan": "AHMS45586C",
                         "tax_year": "TY 2026-27",
                         "quarter": "Q1",
-                        "form": "133",
+                        "form": "131",
                         "message": "No statement is available for the selected period. Please choose a valid period to generate the certificate.",
                         "status": "failed"
                       },
@@ -4402,7 +4388,7 @@
                         "tan": "AHMS45586C",
                         "tax_year": "TY 2026-27",
                         "quarter": "Q1",
-                        "form": "133",
+                        "form": "131",
                         "message": "Invalid credentials",
                         "status": "failed"
                       },
@@ -4821,6 +4807,655 @@
       }
     }
   },
+  "webhooks": {
+    "FVUGenerateJobStatus": {
+      "post": {
+        "summary": "FVU generation job status",
+        "deprecated": false,
+        "description": "Sandbox sends this webhook when an FVU generation job transitions to `succeeded` or `failed`, not for `created` or `queued` states. Configure your webhook URL in the Sandbox Console. See the [webhooks guide](https://docs.sandbox.co.in/guides/developer-resources/webhooks) for signature validation.",
+        "operationId": "FVUGenerateJobStatus",
+        "tags": [
+          "FVU Generation"
+        ],
+        "parameters": [],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "data": {
+                    "description": "Job details at the time of the status change.",
+                    "oneOf": [
+                      {
+                        "title": "Job Succeeded",
+                        "type": "object",
+                        "required": [
+                          "@entity",
+                          "job_id",
+                          "tan",
+                          "tax_year",
+                          "quarter",
+                          "form",
+                          "status",
+                          "created_at",
+                          "updated_at",
+                          "fvu_zip_file_url"
+                        ],
+                        "properties": {
+                          "@entity": {
+                            "type": "string",
+                            "description": "Entity type identifier"
+                          },
+                          "job_id": {
+                            "type": "string",
+                            "description": "Unique identifier of the job"
+                          },
+                          "tan": {
+                            "type": "string",
+                            "description": "Tax Deduction Account Number"
+                          },
+                          "tax_year": {
+                            "type": "string",
+                            "description": "Tax year of the return (e.g. TY 2026-27)",
+                            "examples": [
+                              "TY 2026-27"
+                            ],
+                            "pattern": "^TY [0-9]{4}-[0-9]{2}$"
+                          },
+                          "quarter": {
+                            "type": "string",
+                            "description": "Quarter for which the return is filed (Q1–Q4)"
+                          },
+                          "form": {
+                            "type": "string",
+                            "description": "TDS form type (138, 140, or 144)"
+                          },
+                          "filing_type": {
+                            "type": "string",
+                            "description": "Filing type (regular or correction)"
+                          },
+                          "status": {
+                            "type": "string",
+                            "description": "Job status",
+                            "enum": [
+                              "succeeded"
+                            ]
+                          },
+                          "created_at": {
+                            "type": "integer",
+                            "description": "Job creation time as a Unix timestamp in milliseconds"
+                          },
+                          "updated_at": {
+                            "type": "integer",
+                            "description": "Last status update time as a Unix timestamp in milliseconds"
+                          },
+                          "fvu_zip_file_url": {
+                            "type": "string",
+                            "format": "uri",
+                            "description": "Pre-signed URL to download the generated FVU ZIP file"
+                          }
+                        }
+                      },
+                      {
+                        "title": "Job Failed",
+                        "type": "object",
+                        "required": [
+                          "@entity",
+                          "job_id",
+                          "tan",
+                          "tax_year",
+                          "quarter",
+                          "form",
+                          "status",
+                          "created_at",
+                          "updated_at",
+                          "validation_report_file_url"
+                        ],
+                        "properties": {
+                          "@entity": {
+                            "type": "string",
+                            "description": "Entity type identifier"
+                          },
+                          "job_id": {
+                            "type": "string",
+                            "description": "Unique identifier of the job"
+                          },
+                          "tan": {
+                            "type": "string",
+                            "description": "Tax Deduction Account Number"
+                          },
+                          "tax_year": {
+                            "type": "string",
+                            "description": "Tax year of the return (e.g. TY 2026-27)",
+                            "examples": [
+                              "TY 2026-27"
+                            ],
+                            "pattern": "^TY [0-9]{4}-[0-9]{2}$"
+                          },
+                          "quarter": {
+                            "type": "string",
+                            "description": "Quarter for which the return is filed (Q1–Q4)"
+                          },
+                          "form": {
+                            "type": "string",
+                            "description": "TDS form type (138, 140, or 144)"
+                          },
+                          "filing_type": {
+                            "type": "string",
+                            "description": "Filing type (regular or correction)"
+                          },
+                          "status": {
+                            "type": "string",
+                            "description": "Job status",
+                            "enum": [
+                              "failed"
+                            ]
+                          },
+                          "created_at": {
+                            "type": "integer",
+                            "description": "Job creation time as a Unix timestamp in milliseconds"
+                          },
+                          "updated_at": {
+                            "type": "integer",
+                            "description": "Last status update time as a Unix timestamp in milliseconds"
+                          },
+                          "validation_report_file_url": {
+                            "type": "string",
+                            "format": "uri",
+                            "description": "Pre-signed URL to download the validation error report (JSON)"
+                          }
+                        }
+                      }
+                    ]
+                  }
+                }
+              },
+              "examples": {
+                "Job Succeeded": {
+                  "value": {
+                    "data": {
+                      "@entity": "in.co.sandbox.tds.compliance.fvu.generate.job",
+                      "job_id": "4ef92975-aea8-4628-9eaa-18eb439c13d9",
+                      "tan": "AHMA09719B",
+                      "tax_year": "TY 2026-27",
+                      "quarter": "Q3",
+                      "form": "138",
+                      "filing_type": "regular",
+                      "status": "succeeded",
+                      "created_at": 1763362637000,
+                      "updated_at": 1763362650000,
+                      "fvu_zip_file_url": "https://in-co-sandbox-tds-compliance-fvu-test.s3.ap-south-1.amazonaws.com/tan/tax_year/quarter/form/4ef92975-aea8-4628-9eaa-18eb439c13d9.zip"
+                    }
+                  },
+                  "summary": "Job Succeeded"
+                },
+                "Job Failed": {
+                  "value": {
+                    "data": {
+                      "@entity": "in.co.sandbox.tds.compliance.fvu.generate.job",
+                      "job_id": "7a9176ef-1e59-4b8e-a1de-ee15b09963f8",
+                      "tan": "AHMA09719B",
+                      "tax_year": "TY 2026-27",
+                      "quarter": "Q3",
+                      "form": "138",
+                      "filing_type": "regular",
+                      "status": "failed",
+                      "created_at": 1763362637000,
+                      "updated_at": 1763362650000,
+                      "validation_report_file_url": "https://in-co-sandbox-tds-compliance-fvu-test.s3.ap-south-1.amazonaws.com/tan/tax_year/quarter/form/9693f3f9-e7dd-4a70-9390-0501ab7f4d27_error.json"
+                    }
+                  },
+                  "summary": "Job Failed"
+                }
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Return any 2xx status to acknowledge receipt. Sandbox retries delivery on non-2xx responses.",
+            "headers": {}
+          }
+        },
+        "security": []
+      }
+    },
+    "EFileJobStatus": {
+      "post": {
+        "summary": "E-file job status",
+        "deprecated": false,
+        "description": "Sandbox sends this webhook when an e-file job transitions to `succeeded` or `failed`, not for `created` or `queued` states. Configure your webhook URL in the Sandbox Console. See the [webhooks guide](https://docs.sandbox.co.in/guides/developer-resources/webhooks) for signature validation.",
+        "operationId": "EFileJobStatus",
+        "tags": [
+          "E-File TDS Return"
+        ],
+        "parameters": [],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "data": {
+                    "description": "Job details at the time of the status change.",
+                    "oneOf": [
+                      {
+                        "title": "Job Succeeded",
+                        "type": "object",
+                        "required": [
+                          "@entity",
+                          "job_id",
+                          "tan",
+                          "tax_year",
+                          "quarter",
+                          "form",
+                          "filing_type",
+                          "status",
+                          "receipt_number",
+                          "created_at",
+                          "updated_at",
+                          "receipt_file_url",
+                          "fvu_file_url",
+                          "form27a_file_url"
+                        ],
+                        "properties": {
+                          "@entity": {
+                            "type": "string",
+                            "description": "Entity type identifier"
+                          },
+                          "job_id": {
+                            "type": "string",
+                            "description": "Unique identifier of the job"
+                          },
+                          "tan": {
+                            "type": "string",
+                            "description": "Tax Deduction Account Number"
+                          },
+                          "tax_year": {
+                            "type": "string",
+                            "description": "Tax year of the return (e.g. TY 2026-27)",
+                            "examples": [
+                              "TY 2026-27"
+                            ],
+                            "pattern": "^TY [0-9]{4}-[0-9]{2}$"
+                          },
+                          "quarter": {
+                            "type": "string",
+                            "description": "Quarter for which the return is filed (Q1–Q4)"
+                          },
+                          "form": {
+                            "type": "string",
+                            "description": "TDS form type (138, 140, 144, or 143)"
+                          },
+                          "filing_type": {
+                            "type": "string",
+                            "description": "Filing type (regular, original, or correction)"
+                          },
+                          "status": {
+                            "type": "string",
+                            "description": "Job status",
+                            "enum": [
+                              "succeeded"
+                            ]
+                          },
+                          "receipt_number": {
+                            "type": "integer",
+                            "description": "Receipt number from the Income Tax Department confirming successful e-filing"
+                          },
+                          "created_at": {
+                            "type": "integer",
+                            "description": "Job creation time as a Unix timestamp in milliseconds"
+                          },
+                          "updated_at": {
+                            "type": "integer",
+                            "description": "Last status update time as a Unix timestamp in milliseconds"
+                          },
+                          "receipt_file_url": {
+                            "type": "string",
+                            "format": "uri",
+                            "description": "Pre-signed URL to download the acknowledgement receipt PDF"
+                          },
+                          "fvu_file_url": {
+                            "type": "string",
+                            "format": "uri",
+                            "description": "Pre-signed URL to download the FVU file"
+                          },
+                          "form27a_file_url": {
+                            "type": "string",
+                            "format": "uri",
+                            "description": "Pre-signed URL to download the Form 27A PDF"
+                          }
+                        }
+                      },
+                      {
+                        "title": "Job Failed",
+                        "type": "object",
+                        "required": [
+                          "@entity",
+                          "job_id",
+                          "tan",
+                          "tax_year",
+                          "quarter",
+                          "form",
+                          "filing_type",
+                          "status",
+                          "message",
+                          "created_at",
+                          "updated_at"
+                        ],
+                        "properties": {
+                          "@entity": {
+                            "type": "string",
+                            "description": "Entity type identifier"
+                          },
+                          "job_id": {
+                            "type": "string",
+                            "description": "Unique identifier of the job"
+                          },
+                          "tan": {
+                            "type": "string",
+                            "description": "Tax Deduction Account Number"
+                          },
+                          "tax_year": {
+                            "type": "string",
+                            "description": "Tax year of the return (e.g. TY 2026-27)",
+                            "examples": [
+                              "TY 2026-27"
+                            ],
+                            "pattern": "^TY [0-9]{4}-[0-9]{2}$"
+                          },
+                          "quarter": {
+                            "type": "string",
+                            "description": "Quarter for which the return is filed (Q1–Q4)"
+                          },
+                          "form": {
+                            "type": "string",
+                            "description": "TDS form type (138, 140, 144, or 143)"
+                          },
+                          "filing_type": {
+                            "type": "string",
+                            "description": "Filing type (regular, original, or correction)"
+                          },
+                          "status": {
+                            "type": "string",
+                            "description": "Job status",
+                            "enum": [
+                              "failed"
+                            ]
+                          },
+                          "message": {
+                            "type": "string",
+                            "description": "Error message describing why the e-filing failed"
+                          },
+                          "created_at": {
+                            "type": "integer",
+                            "description": "Job creation time as a Unix timestamp in milliseconds"
+                          },
+                          "updated_at": {
+                            "type": "integer",
+                            "description": "Last status update time as a Unix timestamp in milliseconds"
+                          }
+                        }
+                      }
+                    ]
+                  }
+                }
+              },
+              "examples": {
+                "Job Succeeded": {
+                  "value": {
+                    "data": {
+                      "@entity": "in.co.sandbox.tds.compliance.e-file.job",
+                      "job_id": "f845f37e-7f05-4de9-a282-a3b23b9d370a",
+                      "tan": "AHMA09719B",
+                      "tax_year": "TY 2026-27",
+                      "quarter": "Q2",
+                      "form": "140",
+                      "filing_type": "regular",
+                      "status": "succeeded",
+                      "receipt_number": 123456789012345,
+                      "created_at": 1763362637000,
+                      "updated_at": 1763362650000,
+                      "receipt_file_url": "https://in-co-sandbox-tds-test-storage.s3.ap-south-1.amazonaws.com/AHMS45586C/FY+2025-26/Q3/140/4049c226-4988-4978-b5ad-d25705453da8/receipt.pdf",
+                      "fvu_file_url": "https://in-co-sandbox-tds-test-storage.s3.ap-south-1.amazonaws.com/AHMS45586C/FY+2025-26/Q3/140/4049c226-4988-4978-b5ad-d25705453da8/140.fvu",
+                      "form27a_file_url": "https://in-co-sandbox-tds-test-storage.s3.ap-south-1.amazonaws.com/AHMS45586C/FY+2025-26/Q3/140/4049c226-4988-4978-b5ad-d25705453da8/form27A_140.pdf"
+                    }
+                  },
+                  "summary": "Job Succeeded"
+                },
+                "Job Failed": {
+                  "value": {
+                    "data": {
+                      "@entity": "in.co.sandbox.tds.compliance.e-file.job",
+                      "job_id": "6e8d1908-c062-4846-a811-8f73054acd65",
+                      "tan": "MUMR09719B",
+                      "tax_year": "TY 2026-27",
+                      "quarter": "Q2",
+                      "form": "140",
+                      "filing_type": "original",
+                      "status": "failed",
+                      "message": "Regular Statement with the same TAN, Tax Year, FORM and Quarter is already furnished",
+                      "created_at": 1763362637000,
+                      "updated_at": 1763362650000
+                    }
+                  },
+                  "summary": "Job Failed"
+                }
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Return any 2xx status to acknowledge receipt. Sandbox retries delivery on non-2xx responses.",
+            "headers": {}
+          }
+        },
+        "security": []
+      }
+    },
+    "CertificateJobStatus": {
+      "post": {
+        "summary": "Certificate job status",
+        "deprecated": false,
+        "description": "Sandbox sends this webhook when a  Certificates job transitions to `succeeded` or `failed`, not for `created`, `queued`, or `in_progress` states. Configure your webhook URL in the Sandbox Console. See the [webhooks guide](https://docs.sandbox.co.in/guides/developer-resources/webhooks) for signature validation.",
+        "operationId": "CertificateJobStatus",
+        "tags": [
+          "TDS Certificate"
+        ],
+        "parameters": [],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "data": {
+                    "description": "Job details at the time of the status change.",
+                    "oneOf": [
+                      {
+                        "title": "Job Succeeded",
+                        "type": "object",
+                        "required": [
+                          "@entity",
+                          "job_id",
+                          "tan",
+                          "quarter",
+                          "form",
+                          "tax_year",
+                          "status",
+                          "created_at",
+                          "updated_at",
+                          "certificate_pdf_zip_urls"
+                        ],
+                        "properties": {
+                          "@entity": {
+                            "type": "string",
+                            "description": "Entity type identifier"
+                          },
+                          "job_id": {
+                            "type": "string",
+                            "description": "Unique identifier of the job"
+                          },
+                          "tan": {
+                            "type": "string",
+                            "description": "Tax Deduction Account Number"
+                          },
+                          "quarter": {
+                            "type": "string",
+                            "description": "Quarter for which certificates are generated (Q1–Q4)"
+                          },
+                          "form": {
+                            "type": "string",
+                            "description": "TDS form type (24Q or 26Q)"
+                          },
+                          "tax_year": {
+                            "type": "string",
+                            "description": "Financial year of the return (e.g. FY 2023-24)"
+                          },
+                          "status": {
+                            "type": "string",
+                            "description": "Job status",
+                            "enum": [
+                              "succeeded"
+                            ]
+                          },
+                          "created_at": {
+                            "type": "integer",
+                            "description": "Job creation time as a Unix timestamp in milliseconds"
+                          },
+                          "updated_at": {
+                            "type": "integer",
+                            "description": "Last status update time as a Unix timestamp in milliseconds"
+                          },
+                          "certificate_pdf_zip_urls": {
+                            "type": "array",
+                            "description": "Pre-signed URLs to download the certificate ZIP files",
+                            "items": {
+                              "type": "string",
+                              "format": "uri"
+                            }
+                          }
+                        }
+                      },
+                      {
+                        "title": "Job Failed",
+                        "type": "object",
+                        "required": [
+                          "@entity",
+                          "job_id",
+                          "tan",
+                          "quarter",
+                          "form",
+                          "tax_year",
+                          "status",
+                          "created_at",
+                          "updated_at",
+                          "message"
+                        ],
+                        "properties": {
+                          "@entity": {
+                            "type": "string",
+                            "description": "Entity type identifier"
+                          },
+                          "job_id": {
+                            "type": "string",
+                            "description": "Unique identifier of the job"
+                          },
+                          "tan": {
+                            "type": "string",
+                            "description": "Tax Deduction Account Number"
+                          },
+                          "quarter": {
+                            "type": "string",
+                            "description": "Quarter for which certificates are generated (Q1–Q4)"
+                          },
+                          "form": {
+                            "type": "string",
+                            "description": "TDS form type (24Q or 26Q)"
+                          },
+                          "tax_year": {
+                            "type": "string",
+                            "description": "Financial year of the return (e.g. FY 2023-24)"
+                          },
+                          "status": {
+                            "type": "string",
+                            "description": "Job status",
+                            "enum": [
+                              "failed"
+                            ]
+                          },
+                          "created_at": {
+                            "type": "integer",
+                            "description": "Job creation time as a Unix timestamp in milliseconds"
+                          },
+                          "updated_at": {
+                            "type": "integer",
+                            "description": "Last status update time as a Unix timestamp in milliseconds"
+                          },
+                          "message": {
+                            "type": "string",
+                            "description": "Error message describing why the certificate job failed"
+                          }
+                        }
+                      }
+                    ]
+                  }
+                }
+              },
+              "examples": {
+                "Form 131 Job Succeeded": {
+                  "value": {
+                    "created_at": 1788782460848,
+                    "updated_at": 1788782462209,
+                    "@entity": "in.co.sandbox.tds.compliance.certificate.job",
+                    "job_id": "2b61a200-d225-48b5-a6a8-d29d9351c014",
+                    "tan": "AHMS45586C",
+                    "tax_year": "TY 2026-27",
+                    "quarter": "Q1",
+                    "form": "131",
+                    "certificate_pdf_zip_urls": [
+                      "https://in-co-sandbox-tds-compliance-certificate-dev.s3.ap-south-1.amazonaws.com/b0ae5ad8-6d75-413d-9516-5773e62055f3/AHMS45586C/TY%202026-27/Q1/131/2b61a200-d225-48b5-a6a8-d29d9351c014/pdf/1_AHMxxxxx6C_FORM131_2026_Q1_251155230_1.zip?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Credential=AKIAZG5IA3J4IHC65GYQ%2F20260907%2Fap-south-1%2Fs3%2Faws4_request&X-Amz-Date=20260907T120448Z&X-Amz-Expires=86400&X-Amz-Signature=5ae3fdc51be4da7786f3e118dea41c0ad2679197140931616c60271b5c3cc0d2&X-Amz-SignedHeaders=host&x-amz-checksum-mode=ENABLED&x-id=GetObject"
+                    ],
+                    "status": "succeeded"
+                  },
+                  "summary": "Form 131 Job Succeeded"
+                },
+                "Job Failed": {
+                  "value": {
+                    "data": {
+                      "created_at": 1788782950446,
+                      "updated_at": 1788782951671,
+                      "@entity": "in.co.sandbox.tds.compliance.certificate.job",
+                      "job_id": "a31097a4-6697-44ee-bbba-75d392f123db",
+                      "tan": "AHMS45586C",
+                      "tax_year": "TY 2026-27",
+                      "quarter": "Q1",
+                      "form": "131",
+                      "message": "Credentials not found",
+                      "status": "failed"
+                    }
+                  },
+                  "summary": "Job Failed"
+                }
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Return any 2xx status to acknowledge receipt. Sandbox retries delivery on non-2xx responses.",
+            "headers": {}
+          }
+        },
+        "security": []
+      }
+    }
+  },
   "components": {
     "schemas": {
       "CertificateJobSearchRequest": {
@@ -4830,17 +5465,23 @@
           "@entity": {
             "type": "string",
             "description": "Search request entity type.",
-            "example": "in.co.sandbox.tds.compliance.certificate.job.search"
+            "examples": [
+              "in.co.sandbox.tds.compliance.certificate.job.search"
+            ]
           },
           "tan": {
             "type": "string",
             "description": "Tax Deduction and Collection Account Number (TAN).",
-            "example": "AHMS45586C"
+            "examples": [
+              "AHMS45586C"
+            ]
           },
           "tax_year": {
             "type": "string",
             "description": "Tax year used to filter certificate jobs. Use the TY YYYY-YY format.",
-            "example": "TY 2026-27"
+            "examples": [
+              "TY 2026-27"
+            ]
           },
           "quarter": {
             "type": "string",
