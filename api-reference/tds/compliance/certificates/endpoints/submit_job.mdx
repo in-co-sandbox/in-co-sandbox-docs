@@ -13,6 +13,10 @@ openapi: '/api-reference/tds/compliance/openapi.json POST /tds/compliance/traces
 ---
 
 <Note>
+Before you submit a certificate job, [add the TRACES credentials](/api-reference/tds/compliance/traces-credentials/endpoints/save_credential) for the TAN. If the credentials already exist, you do not need to add them again.
+</Note>
+
+<Note>
 This endpoint is part of a job-based async workflow. See the [job-based API workflow guide](/guides/developer-resources/job_based_apis#how-it-works) for job creation and status polling.
 
 Use `130` for salary TDS, `131` for other TDS, and `133` for TCS in the `certificate_type` path value and `form` request field.
