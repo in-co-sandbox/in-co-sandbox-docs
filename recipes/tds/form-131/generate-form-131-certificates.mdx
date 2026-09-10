@@ -1,0 +1,180 @@
+---
+title: "Generate Form 131 TDS certificates"
+description: "Generate Form 131 TDS certificates for non-salary deductions, track each job, and download the completed certificate ZIP files."
+keywords:
+  - Form 131
+  - Form 131 certificate
+  - Form 131 API
+  - Form 16A replacement
+  - non-salary TDS certificate
+  - TDS certificate API
+  - TRACES certificate download
+---
+
+Form 131 is the TDS certificate for income other than salary under the Income-tax Act, 2025. It corresponds to Form 16A under the earlier rules. This recipe shows you how to add TRACES credentials, submit a Form 131 certificate job, check its status, and download the certificate ZIP files. See the [Income Tax Department's Form 131 FAQs](https://www.incometaxindia.gov.in/documents/d/guest/form-131-faqs) for the statutory context.
+
+<Info>
+Before you begin:
+- Generate a Sandbox `Authorization` token with the [Quickstart guide](https://developer.sandbox.co.in/guides/get-started/quickstart).
+- File and process the relevant Form 140 or Form 144 statement for the TAN, tax year, and quarter.
+- Keep the TAN and its TRACES password ready.
+</Info>
+
+<Steps>
+  <Step title="Confirm that the statement is processed" stepNumber={1} titleSize="h2">
+    If you filed the statement outside Sandbox, confirm that TRACES has processed it. Then continue to Step 2.
+
+    If you filed the statement through Sandbox, use the [**Search E-File TDS return jobs**](/api-reference/tds/compliance/e-file/endpoints/search_job) endpoint to find the statement for the TAN, tax year, quarter, and form.
+
+    Use `140` for non-salary payments to residents. Use `144` for payments to non-residents.
+
+    <Accordion title="cURL request: Search E-File TDS return jobs" defaultOpen>
+      ```bash
+      curl --request POST \
+        --url https://api.sandbox.co.in/tds/compliance/e-file/search \
+        --header 'Authorization: {sandbox-access-token}' \
+        --header 'Content-Type: application/json' \
+        --header 'x-api-key: xxxxxxxxxxxxxxxxxx' \
+        --header 'x-api-version: 1.0.0' \
+        --data '{
+          "@entity": "in.co.sandbox.tds.compliance.e-file.search",
+          "tan": "AHMS45586C",
+          "quarter": "Q1",
+          "form": "140",
+          "tax_year": "TY 2026-27",
+          "page_size": 20
+        }'
+      ```
+    </Accordion>
+
+    Continue when the matching job has a `succeeded` status. TRACES generates Form 131 only after it processes the corresponding Form 140 or Form 144 statement.
+  </Step>
+
+  <Step title="Add the TRACES credentials" stepNumber={2} titleSize="h2">
+    Add the TAN and its password with the [**Add TRACES credentials**](/api-reference/tds/compliance/traces-credentials/endpoints/save_credential) endpoint.
+
+    <Accordion title="cURL request: Add TRACES credentials" defaultOpen>
+      ```bash
+      curl --request POST \
+        --url https://api.sandbox.co.in/tds/traces/deductors/credential \
+        --header 'Authorization: {sandbox-access-token}' \
+        --header 'Content-Type: application/json' \
+        --header 'x-api-key: xxxxxxxxxxxxxxxxxx' \
+        --data '{
+          "@entity": "in.co.sandbox.tds.traces.deductor.credential.request",
+          "tan": "AHMS45586C",
+          "password": "{traces-password}"
+        }'
+      ```
+    </Accordion>
+
+    A `200` response confirms that the credentials were added. If the API returns `409`, [delete the existing credentials](/api-reference/tds/compliance/traces-credentials/endpoints/delete_credential) before you add the new password.
+  </Step>
+
+  <Step title="Submit a Form 131 certificate job" stepNumber={3} titleSize="h2">
+    Use the [**Submit TDS certificate job**](/api-reference/tds/compliance/certificates/endpoints/submit_job) endpoint. Send `131` in both the path and the `form` field.
+
+    <Accordion title="cURL request: Submit a Form 131 certificate job" defaultOpen>
+      ```bash
+      curl --request POST \
+        --url https://api.sandbox.co.in/tds/compliance/traces/deductors/forms/131 \
+        --header 'Authorization: {sandbox-access-token}' \
+        --header 'Content-Type: application/json' \
+        --header 'x-api-key: xxxxxxxxxxxxxxxxxx' \
+        --data '{
+          "@entity": "in.co.sandbox.tds.compliance.certificate.job.request",
+          "quarter": "Q1",
+          "tax_year": "TY 2026-27",
+          "form": "131",
+          "tan": "AHMS45586C"
+        }'
+      ```
+    </Accordion>
+
+    Save `data.job_id` from the response. You need this value to check the job status.
+
+    ```json
+    {
+      "code": 200,
+      "timestamp": 1788771381210,
+      "data": {
+        "created_at": 1788771384109,
+        "@entity": "in.co.sandbox.tds.compliance.certificate.job",
+        "job_id": "518bf6d5-be9d-4723-8fee-2382919fb605",
+        "tan": "AHMS45586C",
+        "tax_year": "TY 2026-27",
+        "quarter": "Q1",
+        "form": "131",
+        "status": "created"
+      },
+      "transaction_id": "518bf6d5-be9d-4723-8fee-2382919fb605"
+    }
+    ```
+  </Step>
+
+  <Step title="Check the certificate job status" stepNumber={4} titleSize="h2">
+    Use the [**Get TDS certificate job status**](/api-reference/tds/compliance/certificates/endpoints/poll_job) endpoint with the `job_id` from the submit response.
+
+    <Accordion title="cURL request: Get Form 131 certificate job status" defaultOpen>
+      ```bash
+      curl --request GET \
+        --url 'https://api.sandbox.co.in/tds/compliance/traces/deductors/forms/131/status?job_id={job_id}' \
+        --header 'Authorization: {sandbox-access-token}' \
+        --header 'x-api-key: xxxxxxxxxxxxxxxxxx' \
+        --header 'x-api-version: 1.0.0'
+      ```
+    </Accordion>
+
+    Continue polling while the status is `created`, `queued`, or `in_progress`. When the status is `failed`, read `message` for the reason.
+  </Step>
+
+  <Step title="Download the certificate ZIP files" stepNumber={5} titleSize="h2">
+    When the status is `succeeded`, the response contains one or more download URLs in `data.certificate_pdf_zip_urls`.
+
+    ```json
+    {
+      "data": {
+        "job_id": "518bf6d5-be9d-4723-8fee-2382919fb605",
+        "form": "131",
+        "status": "succeeded",
+        "certificate_pdf_zip_urls": [
+          "{certificate-pdf-zip-url}"
+        ]
+      }
+    }
+    ```
+
+    Download each ZIP file and store it in your system.
+
+    <Accordion title="cURL request: Download a certificate ZIP file" defaultOpen>
+      ```bash
+      curl --request GET \
+        --url '{certificate-pdf-zip-url}' \
+        --output form-131-certificates.zip
+      ```
+    </Accordion>
+  </Step>
+</Steps>
+
+## Find previous Form 131 jobs
+
+Use the [**Search TDS certificate jobs**](/api-reference/tds/compliance/certificates/endpoints/fetch_job) endpoint to find earlier Form 131 jobs for a TAN and period.
+
+<Accordion title="cURL request: Search Form 131 certificate jobs">
+  ```bash
+  curl --request POST \
+    --url https://api.sandbox.co.in/tds/compliance/traces/deductors/forms/131/search \
+    --header 'Authorization: {sandbox-access-token}' \
+    --header 'Content-Type: application/json' \
+    --header 'x-api-key: xxxxxxxxxxxxxxxxxx' \
+    --header 'x-api-version: 1.0.0' \
+    --data '{
+      "@entity": "in.co.sandbox.tds.compliance.certificate.job.search",
+      "tan": "AHMS45586C",
+      "tax_year": "TY 2026-27",
+      "quarter": "Q1",
+      "form": "131",
+      "page_size": 5
+    }'
+  ```
+</Accordion>

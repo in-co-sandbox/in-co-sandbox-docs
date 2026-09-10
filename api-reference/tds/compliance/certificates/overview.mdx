@@ -1,6 +1,6 @@
 ---
 title: "TDS certificate API"
-description: "Generate Form 130, Form 131, and Form 133 certificates with asynchronous TDS certificate APIs."
+description: "Submit and track Form 130, Form 131, and Form 133 certificates with asynchronous TDS certificate APIs."
 keywords:
   - TDS certificate API
   - TDS certificate
@@ -17,7 +17,7 @@ keywords:
 
 # TDS certificate API
 
-The TDS certificate API generates certificates for Form 130, Form 131, and Form 133. Use the asynchronous workflow to submit a certificate job, check its status, search previous jobs, and receive webhook notifications when a job completes.
+The TDS certificate API supports Form 130, Form 131, and Form 133 certificate jobs. Use the asynchronous workflow to submit a certificate job, check its status, search previous jobs, and receive webhook notifications when a job completes.
 
 ## Choose a form
 
@@ -28,6 +28,10 @@ The certificate API uses one workflow for all supported form values. For submit 
 | `130` | Salary TDS, pension, or specified senior citizen interest | Form 16 |
 | `131` | Other TDS | Form 16A |
 | `133` | TCS | Form 27D |
+
+<Note>
+Form 130 certificate generation is available after the tax year ends and TRACES processes the corresponding Form 138 statement.
+</Note>
 
 ## How it works
 

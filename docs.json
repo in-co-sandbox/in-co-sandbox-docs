@@ -1294,8 +1294,8 @@
               {
                 "group": "TDS certificates",
                 "pages": [
-                  "recipes/tds/form-16/generate_form_16_certificates",
-                  "recipes/tds/form-16a/generate-form-16a-certificates"
+                  "recipes/tds/form-130/generate-form-130-certificates",
+                  "recipes/tds/form-131/generate-form-131-certificates"
                 ]
               }
             ]
@@ -1382,6 +1382,14 @@
     }
   },
   "redirects": [
+    {
+      "source": "recipes/tds/form-16/generate_form_16_certificates",
+      "destination": "recipes/tds/form-130/generate-form-130-certificates"
+    },
+    {
+      "source": "recipes/tds/form-16a/generate-form-16a-certificates",
+      "destination": "recipes/tds/form-131/generate-form-131-certificates"
+    },
     {
       "source": "api-reference/tds/compliance/certificate-form16(a)/endpoints/submit_job",
       "destination": "api-reference/tds/compliance/certificates/endpoints/submit_job"
