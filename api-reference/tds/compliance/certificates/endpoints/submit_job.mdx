@@ -1,14 +1,13 @@
 ---
 title: 'Submit TDS certificate job'
-description: "Create a Form 130, 131, or 133 certificate job for a tax year and quarter."
+description: "Submit a certificate generation job for Form 130, 131, or 133 with a TAN and tax period. Retrieve the job ID to check its status."
 keywords:
   - TDS certificate API
   - TCS certificate API
   - Form 130
   - Form 131
   - Form 133
-  - Form 16 API
-  - Form 16A API
+  - submit TDS certificate job
 openapi: '/api-reference/tds/compliance/openapi.json POST /tds/compliance/traces/deductors/forms/{certificate_type}'
 ---
 
@@ -19,5 +18,5 @@ Before you submit a certificate job, [add the TRACES credentials](/api-reference
 <Note>
 This endpoint is part of a job-based async workflow. See the [job-based API workflow guide](/guides/developer-resources/job_based_apis#how-it-works) for job creation and status polling.
 
-Use `130` for salary TDS, `131` for other TDS, and `133` for TCS in the `certificate_type` path value and `form` request field.
+Use `130` for salary TDS, `131` for other TDS, and `133` for TCS in the `certificate_type` path parameter. Set the `form` request field to the matching JSON string, such as `"131"`.
 </Note>

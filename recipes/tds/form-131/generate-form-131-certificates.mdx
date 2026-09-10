@@ -1,22 +1,26 @@
 ---
-title: "Generate Form 131 TDS certificates"
-description: "Generate Form 131 TDS certificates for non-salary deductions, track each job, and download the completed certificate ZIP files."
+title: "Form 131 API: generate certificates, formerly Form 16A"
+sidebarTitle: "Generate Form 131 certificates"
+description: "Generate Form 131 certificates, formerly Form 16A, with Sandbox's API. Follow cURL examples to submit a TRACES job and download certificate PDFs in ZIP files."
 keywords:
   - Form 131
   - Form 131 certificate
   - Form 131 API
   - Form 16A replacement
+  - Form 16A API
+  - Form 16A download API
   - non-salary TDS certificate
   - TDS certificate API
   - TRACES certificate download
 ---
 
-Form 131 is the TDS certificate for income other than salary under the Income-tax Act, 2025. It corresponds to Form 16A under the earlier rules. This recipe shows you how to add TRACES credentials, submit a Form 131 certificate job, check its status, and download the certificate ZIP files. See the [Income Tax Department's Form 131 FAQs](https://www.incometaxindia.gov.in/documents/d/guest/form-131-faqs) for the statutory context.
+Use Sandbox's API to generate Form 131 certificates from TRACES and download ZIP files containing certificate PDFs. Form 131 is the non-salary TDS certificate that replaces Form 16A under the Income-tax Act, 2025. See the [Income Tax Department's Form 131 FAQs](https://www.incometaxindia.gov.in/documents/d/guest/form-131-faqs) for the statutory requirements.
 
 <Info>
-Before you begin:
-- Generate a Sandbox `Authorization` token with the [Quickstart guide](https://developer.sandbox.co.in/guides/get-started/quickstart).
-- File and process the relevant Form 140 or Form 144 statement for the TAN, tax year, and quarter.
+Before you begin, complete these prerequisites:
+
+- Obtain a Sandbox access token using the [Quickstart guide](/guides/get-started/quickstart).
+- File the relevant Form 140 or Form 144 statement for the TAN, tax year, and quarter. Wait until TRACES processes the statement before requesting certificates.
 - Keep the TAN and its TRACES password ready.
 </Info>
 
@@ -24,7 +28,7 @@ Before you begin:
   <Step title="Confirm that the statement is processed" stepNumber={1} titleSize="h2">
     If you filed the statement outside Sandbox, confirm that TRACES has processed it. Then continue to Step 2.
 
-    If you filed the statement through Sandbox, use the [**Search E-File TDS return jobs**](/api-reference/tds/compliance/e-file/endpoints/search_job) endpoint to find the statement for the TAN, tax year, quarter, and form.
+    If you filed through Sandbox, use the [Search E-File TDS return jobs](/api-reference/tds/compliance/e-file/endpoints/search_job) endpoint. Find the statement for the TAN, tax year, quarter, and form.
 
     Use `140` for non-salary payments to residents. Use `144` for payments to non-residents.
 
@@ -47,11 +51,11 @@ Before you begin:
       ```
     </Accordion>
 
-    Continue when the matching job has a `succeeded` status. TRACES generates Form 131 only after it processes the corresponding Form 140 or Form 144 statement.
+    After the filing job succeeds, confirm that TRACES has processed the corresponding Form 140 or Form 144 statement. Request certificates only after TRACES makes them available.
   </Step>
 
   <Step title="Add the TRACES credentials" stepNumber={2} titleSize="h2">
-    Add the TAN and its password with the [**Add TRACES credentials**](/api-reference/tds/compliance/traces-credentials/endpoints/save_credential) endpoint.
+    Add the TAN and its password with the [Add TRACES credentials](/api-reference/tds/compliance/traces-credentials/endpoints/save_credential) endpoint.
 
     <Accordion title="cURL request: Add TRACES credentials" defaultOpen>
       ```bash
@@ -72,7 +76,7 @@ Before you begin:
   </Step>
 
   <Step title="Submit a Form 131 certificate job" stepNumber={3} titleSize="h2">
-    Use the [**Submit TDS certificate job**](/api-reference/tds/compliance/certificates/endpoints/submit_job) endpoint. Send `131` in both the path and the `form` field.
+    Call the [Submit TDS certificate job](/api-reference/tds/compliance/certificates/endpoints/submit_job) endpoint with `131` in the path. Set the JSON `form` field to `"131"`.
 
     <Accordion title="cURL request: Submit a Form 131 certificate job" defaultOpen>
       ```bash
@@ -113,7 +117,7 @@ Before you begin:
   </Step>
 
   <Step title="Check the certificate job status" stepNumber={4} titleSize="h2">
-    Use the [**Get TDS certificate job status**](/api-reference/tds/compliance/certificates/endpoints/poll_job) endpoint with the `job_id` from the submit response.
+    Call the [Get TDS certificate job status](/api-reference/tds/compliance/certificates/endpoints/poll_job) endpoint with the `job_id` from the submit response.
 
     <Accordion title="cURL request: Get Form 131 certificate job status" defaultOpen>
       ```bash
@@ -158,7 +162,7 @@ Before you begin:
 
 ## Find previous Form 131 jobs
 
-Use the [**Search TDS certificate jobs**](/api-reference/tds/compliance/certificates/endpoints/fetch_job) endpoint to find earlier Form 131 jobs for a TAN and period.
+Call the [Search TDS certificate jobs](/api-reference/tds/compliance/certificates/endpoints/fetch_job) endpoint to find earlier Form 131 jobs for a TAN and period.
 
 <Accordion title="cURL request: Search Form 131 certificate jobs">
   ```bash
@@ -178,3 +182,11 @@ Use the [**Search TDS certificate jobs**](/api-reference/tds/compliance/certific
     }'
   ```
 </Accordion>
+
+## Frequently asked questions
+
+<AccordionGroup>
+  <Accordion title="Can I generate Form 131 if I filed the return outside Sandbox?">
+    Form 131 certificate generation supports statements filed outside Sandbox. After TRACES processes the statement, add the TAN's TRACES credentials. Then submit a certificate job for the TAN, quarter, and tax year.
+  </Accordion>
+</AccordionGroup>
