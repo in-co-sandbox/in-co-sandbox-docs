@@ -20,7 +20,9 @@ Sandbox's TDS certificate API automates certificate generation and download from
 
 The API supports Form 130 and Form 131 TDS certificates and Form 133 TCS certificates under the Income-tax Act, 2025.
 
-## Choose a certificate
+<div id="choose-a-certificate" />
+
+## Supported certificates
 
 | Certificate | Earlier name | Use it for |
 |:------------|:-------------|:-----------|
@@ -30,7 +32,9 @@ The API supports Form 130 and Form 131 TDS certificates and Form 133 TCS certifi
 
 The Income Tax Department documents these mappings in its [Form 130 FAQs](https://www.incometaxindia.gov.in/documents/d/guest/form-130-faqs), [Form 131 FAQs](https://www.incometaxindia.gov.in/documents/d/guest/form-131-faqs), and [Form 133 FAQs](https://www.incometaxindia.gov.in/documents/d/guest/form-133-faqs).
 
-## What you need
+<div id="what-you-need" />
+
+## Requirements
 
 - A Sandbox access token. See the [Quickstart guide](/guides/get-started/quickstart).
 - The TAN and its [TRACES credentials](/api-reference/tds/compliance/traces-credentials/endpoints/save_credential).
@@ -41,7 +45,9 @@ The Income Tax Department documents these mappings in its [Form 130 FAQs](https:
 Form 130 certificate generation is available after the tax year ends and TRACES processes the corresponding Form 138 statement.
 </Note>
 
-## What you receive
+<div id="what-you-receive" />
+
+## Certificate downloads
 
 Certificate generation runs asynchronously. The initial response identifies the job. Once the job succeeds, you can download ZIP files containing the certificate PDFs.
 
@@ -83,7 +89,7 @@ Certificate generation runs asynchronously. The initial response identifies the 
 
 <AccordionGroup>
   <Accordion title="How long does TDS certificate generation take?">
-    The TDS certificate API does not specify a fixed completion time. Timing depends on TRACES processing and certificate availability.
+    The API does not specify a completion time. Generation depends on TRACES processing and certificate availability.
   </Accordion>
 </AccordionGroup>
 

@@ -20,3 +20,5 @@ This endpoint is part of a job-based async workflow. See the [job-based API work
 
 Use `130` for salary TDS, `131` for other TDS, and `133` for TCS in the `certificate_type` path parameter. Set the `form` request field to the matching JSON string, such as `"131"`.
 </Note>
+
+Use the returned `job_id` to [check the certificate job status](/api-reference/tds/compliance/certificates/endpoints/poll_job).
