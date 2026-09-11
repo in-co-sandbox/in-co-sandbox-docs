@@ -925,9 +925,9 @@
     },
     "/tds/compliance/fvu/generate": {
       "post": {
-        "summary": "Create FVU Generation Job",
+        "summary": "Create FVU generation job",
         "deprecated": false,
-        "description": "",
+        "description": "Creates an FVU generation job for a TDS or TCS return. Upload the return text and CSI files to the returned URLs using HTTP PUT. For correction returns, the response also includes a consolidated file upload URL. Use `job_id` to check the validation result.",
         "tags": [
           "FVU Generation"
         ],
@@ -1085,7 +1085,8 @@
                           "type": "string"
                         },
                         "job_id": {
-                          "type": "string"
+                          "type": "string",
+                          "description": "Job ID used to check status."
                         },
                         "tan": {
                           "type": "string"
@@ -1115,11 +1116,13 @@
                         },
                         "txt_file_upload_url": {
                           "type": "string",
-                          "format": "uri"
+                          "format": "uri",
+                          "description": "Pre-signed URL for uploading the return text file with HTTP PUT."
                         },
                         "csi_file_upload_url": {
                           "type": "string",
-                          "format": "uri"
+                          "format": "uri",
+                          "description": "Pre-signed URL for uploading the CSI file with HTTP PUT."
                         }
                       }
                     }
@@ -1178,9 +1181,9 @@
         "security": []
       },
       "get": {
-        "summary": "Fetch FVU Generation Status",
+        "summary": "Get FVU generation job status",
         "deprecated": false,
-        "description": "",
+        "description": "Returns the FVU generation status for `job_id`. On success, download the ZIP from `data.fvu_zip_file_url`. On validation failure, check `data.validation_report_file_url`. HTTP 200 does not mean the job succeeded.",
         "tags": [
           "FVU Generation"
         ],
@@ -1188,7 +1191,7 @@
           {
             "name": "job_id",
             "in": "query",
-            "description": "Unique identifier of a job",
+            "description": "Job ID returned when the job was created.",
             "required": false,
             "example": "{{job_id}}",
             "schema": {}
@@ -1251,7 +1254,8 @@
                               "type": "string"
                             },
                             "job_id": {
-                              "type": "string"
+                              "type": "string",
+                              "description": "Job ID used to check status."
                             },
                             "tan": {
                               "type": "string"
@@ -1306,7 +1310,8 @@
                               "type": "string"
                             },
                             "job_id": {
-                              "type": "string"
+                              "type": "string",
+                              "description": "Job ID used to check status."
                             },
                             "tan": {
                               "type": "string"
@@ -1339,7 +1344,8 @@
                             },
                             "fvu_zip_file_url": {
                               "type": "string",
-                              "format": "uri"
+                              "format": "uri",
+                              "description": "Download URL for the FVU ZIP produced by a successful validation job."
                             }
                           }
                         }
@@ -1365,7 +1371,8 @@
                               "type": "string"
                             },
                             "job_id": {
-                              "type": "string"
+                              "type": "string",
+                              "description": "Job ID used to check status."
                             },
                             "tan": {
                               "type": "string"
@@ -1398,7 +1405,8 @@
                             },
                             "validation_report_file_url": {
                               "type": "string",
-                              "format": "uri"
+                              "format": "uri",
+                              "description": "Download URL for the report describing input validation failures."
                             }
                           }
                         }
@@ -1531,7 +1539,8 @@
                       "type": "string"
                     },
                     "message": {
-                      "type": "string"
+                      "type": "string",
+                      "description": "Reason for the job failure."
                     }
                   }
                 },
@@ -1556,9 +1565,9 @@
     },
     "/tds/compliance/fvu/generate/search": {
       "post": {
-        "summary": "Search FVU Generation Job",
+        "summary": "Search FVU generation jobs",
         "deprecated": false,
-        "description": "",
+        "description": "Finds FVU generation jobs by TAN, form, tax year, quarter, filing type, or creation date. Results appear in `data.items`. Set `page_size` to request up to 50 records. Use `last_evaluated_key` for pagination.",
         "tags": [
           "FVU Generation"
         ],
@@ -1631,11 +1640,11 @@
                     "type": "string"
                   },
                   "from_date": {
-                    "description": "Date from which jobs are to be fetched. Value in EPOCH timestamp",
+                    "description": "Start of the job creation-date range, expressed as an epoch timestamp.",
                     "type": "integer"
                   },
                   "to_date": {
-                    "description": "Date till which jobs are to be fetched. Value in EPOCH timestamp",
+                    "description": "End of the job creation-date range, expressed as an epoch timestamp.",
                     "type": "integer"
                   },
                   "page_size": {
@@ -1652,12 +1661,16 @@
                 ]
               },
               "examples": {
-                "200 job success": {
+                "Search by TAN and tax period": {
+                  "summary": "Search by TAN and tax period",
                   "value": {
                     "@entity": "in.co.sandbox.tds.compliance.fvu.generate.search",
-                    "tan": "AHMS45586C"
-                  },
-                  "summary": "200 job success"
+                    "tan": "AHMA09719B",
+                    "tax_year": "TY 2026-27",
+                    "quarter": "Q1",
+                    "form": "140",
+                    "page_size": 10
+                  }
                 }
               }
             }
@@ -1698,7 +1711,8 @@
                                 "type": "string"
                               },
                               "job_id": {
-                                "type": "string"
+                                "type": "string",
+                                "description": "Job ID used to check status."
                               },
                               "tan": {
                                 "type": "string"
@@ -1959,9 +1973,9 @@
     },
     "/tds/compliance/e-file": {
       "post": {
-        "summary": "Create TDS Return Filing Job",
+        "summary": "Create TDS return e-filing job",
         "deprecated": false,
-        "description": "",
+        "description": "Creates a TDS or TCS e-filing job. Upload a ZIP containing the FVU file and Form 27A to `data.fvu_upload_file_url` using HTTP PUT. Use `data.job_id` to check the filing result. Creating the job does not file the return.",
         "tags": [
           "E-File TDS Return"
         ],
@@ -2211,7 +2225,8 @@
                           "type": "string"
                         },
                         "job_id": {
-                          "type": "string"
+                          "type": "string",
+                          "description": "Job ID used to check status."
                         },
                         "tan": {
                           "type": "string"
@@ -2238,7 +2253,8 @@
                         },
                         "fvu_upload_file_url": {
                           "type": "string",
-                          "format": "uri"
+                          "format": "uri",
+                          "description": "Pre-signed URL for uploading a ZIP containing the FVU file and Form 27A with HTTP PUT."
                         }
                       }
                     }
@@ -2486,9 +2502,9 @@
         "security": []
       },
       "get": {
-        "summary": "Fetch TDS Return Job Status",
+        "summary": "Get TDS return e-filing status",
         "deprecated": false,
-        "description": "",
+        "description": "Returns the e-filing status for `job_id`. On success, `data` contains the receipt, FVU, and Form 27A download URLs. On failure, read `data.message`. HTTP 200 does not mean the job succeeded.",
         "tags": [
           "E-File TDS Return"
         ],
@@ -2496,7 +2512,7 @@
           {
             "name": "job_id",
             "in": "query",
-            "description": "Unique identifier of the job",
+            "description": "Job ID returned when the job was created.",
             "required": true,
             "example": "{{job_id}}",
             "schema": {
@@ -2561,7 +2577,8 @@
                               "type": "string"
                             },
                             "job_id": {
-                              "type": "string"
+                              "type": "string",
+                              "description": "Job ID used to check status."
                             },
                             "tan": {
                               "type": "string"
@@ -2616,7 +2633,8 @@
                               "type": "string"
                             },
                             "job_id": {
-                              "type": "string"
+                              "type": "string",
+                              "description": "Job ID used to check status."
                             },
                             "tan": {
                               "type": "string"
@@ -2652,15 +2670,18 @@
                             },
                             "receipt_file_url": {
                               "type": "string",
-                              "format": "uri"
+                              "format": "uri",
+                              "description": "Download URL for the filing receipt after the e-filing job succeeds."
                             },
                             "fvu_file_url": {
                               "type": "string",
-                              "format": "uri"
+                              "format": "uri",
+                              "description": "Download URL for the FVU file associated with the filing."
                             },
                             "form27a_file_url": {
                               "type": "string",
-                              "format": "uri"
+                              "format": "uri",
+                              "description": "Download URL for Form 27A associated with the filing."
                             }
                           }
                         }
@@ -2686,7 +2707,8 @@
                               "type": "string"
                             },
                             "job_id": {
-                              "type": "string"
+                              "type": "string",
+                              "description": "Job ID used to check status."
                             },
                             "tan": {
                               "type": "string"
@@ -2712,7 +2734,8 @@
                               "type": "string"
                             },
                             "message": {
-                              "type": "string"
+                              "type": "string",
+                              "description": "Reason for the job failure."
                             },
                             "created_at": {
                               "type": "integer"
@@ -3024,7 +3047,8 @@
                       "type": "string"
                     },
                     "message": {
-                      "type": "string"
+                      "type": "string",
+                      "description": "Reason for the job failure."
                     }
                   }
                 },
@@ -3049,9 +3073,9 @@
     },
     "/tds/compliance/e-file/search": {
       "post": {
-        "summary": "Fetch Jobs",
+        "summary": "Search TDS return e-filing jobs",
         "deprecated": false,
-        "description": "",
+        "description": "Finds TDS and TCS e-filing jobs by TAN, form, tax year, quarter, or creation date. Results appear in `data.items`. Set `page_size` to request up to 50 records. Use `last_evaluated_key` for pagination.",
         "tags": [
           "E-File TDS Return"
         ],
@@ -3132,11 +3156,11 @@
                     ]
                   },
                   "from_date": {
-                    "description": "Date from which jobs are to be fetched. Value in EPOCH timestamP",
+                    "description": "Start of the job creation-date range, expressed as an epoch timestamp.",
                     "type": "integer"
                   },
                   "to_date": {
-                    "description": "Date till which jobs are to be fetched. Value in EPOCH timestamp",
+                    "description": "End of the job creation-date range, expressed as an epoch timestamp.",
                     "type": "integer"
                   },
                   "page_size": {
@@ -3153,11 +3177,16 @@
                 ]
               },
               "examples": {
-                "200 Job succeeded": {
+                "Search by TAN and tax period": {
+                  "summary": "Search by TAN and tax period",
                   "value": {
-                    "@entity": "in.co.sandbox.tds.compliance.e-file.search"
-                  },
-                  "summary": "200 Job succeeded"
+                    "@entity": "in.co.sandbox.tds.compliance.e-file.search",
+                    "tan": "AHMA09719B",
+                    "tax_year": "TY 2026-27",
+                    "quarter": "Q1",
+                    "form": "140",
+                    "page_size": 10
+                  }
                 }
               }
             }
@@ -3195,7 +3224,8 @@
                                 "type": "string"
                               },
                               "job_id": {
-                                "type": "string"
+                                "type": "string",
+                                "description": "Job ID used to check status."
                               },
                               "tan": {
                                 "type": "string"
@@ -4715,9 +4745,9 @@
   "webhooks": {
     "FVUGenerateJobStatus": {
       "post": {
-        "summary": "FVU generation job status",
+        "summary": "FVU generation status webhook",
         "deprecated": false,
-        "description": "Sandbox sends this webhook when an FVU generation job transitions to `succeeded` or `failed`, not for `created` or `queued` states. Configure your webhook URL in the Sandbox Console. See the [webhooks guide](https://docs.sandbox.co.in/guides/developer-resources/webhooks) for signature validation.",
+        "description": "Sandbox sends this webhook when an FVU generation job transitions to `succeeded` or `failed`, not for `created` or `queued` states. Configure your webhook URL in the Sandbox Console. See the [webhooks guide](https://developer.sandbox.co.in/guides/developer-resources/webhooks) for signature validation.",
         "operationId": "FVUGenerateJobStatus",
         "tags": [
           "FVU Generation"
@@ -4929,9 +4959,9 @@
     },
     "EFileJobStatus": {
       "post": {
-        "summary": "E-file job status",
+        "summary": "TDS return e-filing status webhook",
         "deprecated": false,
-        "description": "Sandbox sends this webhook when an e-file job transitions to `succeeded` or `failed`, not for `created` or `queued` states. Configure your webhook URL in the Sandbox Console. See the [webhooks guide](https://docs.sandbox.co.in/guides/developer-resources/webhooks) for signature validation.",
+        "description": "Sandbox sends this webhook when an e-file job transitions to `succeeded` or `failed`, not for `created` or `queued` states. Configure your webhook URL in the Sandbox Console. See the [webhooks guide](https://developer.sandbox.co.in/guides/developer-resources/webhooks) for signature validation.",
         "operationId": "EFileJobStatus",
         "tags": [
           "E-File TDS Return"

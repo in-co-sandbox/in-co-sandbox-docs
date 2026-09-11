@@ -1,5 +1,10 @@
 ---
-title: 'Poll Job'
-description: "Fetch the FVU file generated for your TDS return"
+title: "Get FVU generation job status"
+description: "Check FVU generation status and download the result."
+keywords:
+  - get fvu generation job status
+  - FVU generation API
 openapi: '/api-reference/tds/compliance/openapi.json GET /tds/compliance/fvu/generate'
 ---
+
+Use the `job_id` from the create response. When `data.status` is `succeeded`, download the ZIP from `data.fvu_zip_file_url`. A validation failure can return `data.validation_report_file_url`. HTTP 200 means the status request succeeded, even when the job has failed.

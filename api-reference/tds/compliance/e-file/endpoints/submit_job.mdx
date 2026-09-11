@@ -1,9 +1,15 @@
 ---
-title: 'Submit Job'
-description: "API to E-File your TDS return by uploading the zip of FVU and Form27A on a pre-signed URL"
+title: "Create TDS return e-filing job"
+description: "E-file a TDS or TCS return using your FVU file and Form 27A."
+keywords:
+  - create tds return e-filing job
+  - TDS e-filing API
 openapi: '/api-reference/tds/compliance/openapi.json POST /tds/compliance/e-file'
 ---
 
+After creating the job, upload a ZIP containing the FVU file and Form 27A to `data.fvu_upload_file_url` using HTTP PUT. Save `data.job_id` to check the filing result. Creating the job does not file the return.
+
+
 <Note>
-This endpoint is part of a job-based async workflow. See the [job-based API workflow guide](/guides/developer-resources/job_based_apis#job-based-api-workflow) for job creation, payload upload, and status polling.
+  For HTTP PUT upload instructions, see the [job-based API workflow](/guides/developer-resources/job_based_apis#how-it-works).
 </Note>

@@ -1,5 +1,10 @@
 ---
-title: 'Search Generate FVU Jobs'
-description: "Search to get all matching Generate FVU Jobs through this API"
+title: "Search FVU generation jobs"
+description: "Find FVU generation jobs by TAN, return details, or date."
+keywords:
+  - search fvu generation jobs
+  - FVU generation API
 openapi: '/api-reference/tds/compliance/openapi.json POST /tds/compliance/fvu/generate/search'
 ---
+
+Filter jobs by TAN, form, tax year, quarter, filing type, or creation date. The response lists matching jobs in `data.items`. Use `page_size` to request up to 50 records per page.

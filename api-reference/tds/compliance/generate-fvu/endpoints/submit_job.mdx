@@ -1,9 +1,15 @@
 ---
-title: 'Submit Job'
-description: "Create a job to generate the FVU file required for your TDS return"
+title: "Create FVU generation job"
+description: "Generate an FVU file for your TDS or TCS return."
+keywords:
+  - create fvu generation job
+  - FVU generation API
 openapi: '/api-reference/tds/compliance/openapi.json POST /tds/compliance/fvu/generate'
 ---
 
+After creating the job, upload the return text file to `data.txt_file_upload_url` and the CSI file to `data.csi_file_upload_url` using HTTP PUT. For correction returns, the response includes `data.conso_file_upload_url` for the consolidated file. Save `data.job_id` to check the validation result.
+
+
 <Note>
-This endpoint is part of a job-based async workflow. See the [job-based API workflow guide](/guides/developer-resources/job_based_apis#job-based-api-workflow) for job creation, payload upload, and status polling.
+  For HTTP PUT upload instructions, see the [job-based API workflow](/guides/developer-resources/job_based_apis#how-it-works).
 </Note>
