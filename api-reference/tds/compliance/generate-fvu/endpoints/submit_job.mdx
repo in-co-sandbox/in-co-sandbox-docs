@@ -7,8 +7,13 @@ keywords:
 openapi: '/api-reference/tds/compliance/openapi.json POST /tds/compliance/fvu/generate'
 ---
 
-After creating the job, upload the return text file to `data.txt_file_upload_url` and the CSI file to `data.csi_file_upload_url` using HTTP PUT. For correction returns, the response includes `data.conso_file_upload_url` for the consolidated file. Save `data.job_id` to check the validation result.
+After creating the job, upload these files using HTTP PUT:
 
+- Return text file → `data.txt_file_upload_url`
+- CSI file → `data.csi_file_upload_url`
+- Consolidated file for correction returns → `data.conso_file_upload_url`
+
+Save `data.job_id` to [check the validation result](/api-reference/tds/compliance/generate-fvu/endpoints/poll_job).
 
 <Note>
   For HTTP PUT upload instructions, see the [job-based API workflow](/guides/developer-resources/job_based_apis#how-it-works).

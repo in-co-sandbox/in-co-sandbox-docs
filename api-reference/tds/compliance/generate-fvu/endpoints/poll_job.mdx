@@ -8,3 +8,5 @@ openapi: '/api-reference/tds/compliance/openapi.json GET /tds/compliance/fvu/gen
 ---
 
 Use the `job_id` from the create response. When `data.status` is `succeeded`, download the ZIP from `data.fvu_zip_file_url`. A validation failure can return `data.validation_report_file_url`. HTTP 200 means the status request succeeded, even when the job has failed.
+
+To file the validated return, [create an e-filing job](/api-reference/tds/compliance/e-file/endpoints/submit_job).

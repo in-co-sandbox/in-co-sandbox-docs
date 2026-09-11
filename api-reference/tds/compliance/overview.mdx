@@ -23,7 +23,9 @@ keywords:
 
 Sandbox's TDS compliance API provides file validation and electronic filing for Tax Deducted at Source (TDS) and Tax Collected at Source (TCS) returns. Use it to add quarterly return filing to your payroll, accounting, or tax software.
 
-## Choose a capability
+<div id="choose-a-capability" />
+
+## FVU generation and e-filing
 
 FVU generation validates return files using the File Validation Utility (FVU). E-filing submits the validated return.
 
@@ -47,7 +49,9 @@ FVU generation and e-filing support these return forms:
 
 See the Income Tax Department's [transition FAQs](https://www.incometaxindia.gov.in/documents/81799/11848482/Updated-FQAs-on-Interplay%26Transitions.pdf/e10ad2b6-9495-de90-58d3-20606d8954ae) for the statutory form changes. For certificate forms, see the [certificate overview](/api-reference/tds/compliance/certificates/overview#choose-a-certificate).
 
-## What you need
+<div id="what-you-need" />
+
+## Requirements
 
 - A Sandbox API key and access token. Follow the [Quickstart guide](/guides/get-started/quickstart).
 - The TAN, return form, tax year, and quarter for the job.
@@ -55,7 +59,9 @@ See the Income Tax Department's [transition FAQs](https://www.incometaxindia.gov
 
 FVU generation supports regular and correction returns. See the [FVU endpoint](/api-reference/tds/compliance/generate-fvu/endpoints/submit_job) for upload requirements.
 
-## How it works
+<div id="how-it-works" />
+
+## Return filing workflow
 
 <Steps>
   <Step title="Create an FVU generation job">
@@ -83,7 +89,9 @@ Both operations run asynchronously. Creating a job does not complete validation 
 | [Search FVU generation jobs](/api-reference/tds/compliance/generate-fvu/endpoints/search_job) | Find jobs by return details and creation date. |
 | [FVU generation status webhook](/api-reference/tds/compliance/generate-fvu/endpoints/webhook) | Receive a notification when a job succeeds or fails. |
 
-## E-file APIs
+<div id="e-file-apis" />
+
+## TDS e-filing APIs
 
 | API | Purpose |
 |:----|:--------|
@@ -120,7 +128,7 @@ Both operations run asynchronously. Creating a job does not complete validation 
 
 <AccordionGroup>
   <Accordion title="Does FVU validation also file the return?">
-    FVU generation validates the input files and produces an FVU ZIP. Filing is a separate operation through the e-filing API.
+    No. FVU generation validates your return files. Submit the validated return through the e-filing API.
   </Accordion>
   <Accordion title="Does a successful e-filing job mean certificates are available?">
     TRACES processes the statement after filing. Check the [certificate prerequisites](/api-reference/tds/compliance/certificates/overview#what-you-need) before requesting certificates.

@@ -6,3 +6,7 @@ keywords:
   - TDS e-filing API
 openapi: '/api-reference/tds/compliance/openapi.json GET /tds/compliance/e-file'
 ---
+
+Use the `job_id` from the create response. When `data.status` is `succeeded`, download the receipt from `data.receipt_file_url`. If the job fails, check `data.message`.
+
+HTTP 200 means the status request succeeded. Check `data.status` for the filing result.
