@@ -1,0 +1,105 @@
+---
+title: "TDS certificate API"
+sidebarTitle: "TDS certificate API"
+description: "Generate and download TDS and TCS certificates: Form 130 (formerly Form 16), Form 131 (formerly Form 16A), and Form 133."
+keywords:
+  - TDS certificate API
+  - TDS certificate
+  - TCS certificate API
+  - Form 130 certificate
+  - Form 131 certificate
+  - Form 133 certificate
+  - Form 27D
+  - Form 27D API
+  - Form 16 API
+  - Form 16A API
+  - certificate job API
+---
+
+Sandbox's TDS certificate API automates certificate generation and download from TRACES. Use it to add salary and non-salary certificate workflows to your payroll or accounting software.
+
+The API supports Form 130 and Form 131 TDS certificates and Form 133 TCS certificates under the Income-tax Act, 2025.
+
+## Choose a certificate
+
+| Certificate | Earlier name | Use it for |
+|:------------|:-------------|:-----------|
+| [Form 130](/recipes/tds/form-130/generate-form-130-certificates) | Form 16 | Salary TDS, pension, or specified senior citizen interest |
+| [Form 131](/recipes/tds/form-131/generate-form-131-certificates) | Form 16A | TDS on income other than salary |
+| Form 133 | Form 27D | Tax Collected at Source, or TCS |
+
+The Income Tax Department documents these mappings in its [Form 130 FAQs](https://www.incometaxindia.gov.in/documents/d/guest/form-130-faqs), [Form 131 FAQs](https://www.incometaxindia.gov.in/documents/d/guest/form-131-faqs), and [Form 133 FAQs](https://www.incometaxindia.gov.in/documents/d/guest/form-133-faqs).
+
+## What you need
+
+- A Sandbox access token. See the [Quickstart guide](/guides/get-started/quickstart).
+- The TAN and its [TRACES credentials](/api-reference/tds/compliance/traces-credentials/endpoints/save_credential).
+- The certificate type, tax year, and quarter for the request.
+- A statement that TRACES has processed, with certificates available for download.
+
+<Note>
+Form 130 certificate generation is available after the tax year ends and TRACES processes the corresponding Form 138 statement.
+</Note>
+
+## What you receive
+
+Certificate generation runs asynchronously. The initial response identifies the job. Once the job succeeds, you can download ZIP files containing the certificate PDFs.
+
+## How it works
+
+<Steps>
+  <Step title="Submit a certificate job">
+    Request certificates for the TAN and tax period.
+  </Step>
+  <Step title="Check the job status">
+    Check the job status periodically, or configure a webhook before submitting the job to receive a completion notification.
+  </Step>
+  <Step title="Download the certificate ZIP files">
+    After the job succeeds, use the download URLs returned in the status response.
+  </Step>
+</Steps>
+
+## Certificate integration guides
+
+<CardGroup cols={2}>
+  <Card title="Form 130 certificate availability" icon="file-lines" href="/recipes/tds/form-130/generate-form-130-certificates">
+    Check salary certificate prerequisites and availability before submitting a Form 130 job.
+  </Card>
+  <Card title="Generate Form 131 certificates" icon="file-lines" href="/recipes/tds/form-131/generate-form-131-certificates">
+    Follow the cURL examples to submit a non-salary TDS certificate job and download the certificates.
+  </Card>
+</CardGroup>
+
+## Certificate endpoints
+
+| API | Purpose |
+|:----|:--------|
+| [Submit certificate job](/api-reference/tds/compliance/certificates/endpoints/submit_job) | Create a certificate generation job. |
+| [Get certificate job status](/api-reference/tds/compliance/certificates/endpoints/poll_job) | Check a job status and retrieve its certificate output. |
+| [Search certificate jobs](/api-reference/tds/compliance/certificates/endpoints/fetch_job) | Find certificate jobs by TAN, tax year, quarter, form, and status. |
+| [Certificate webhook](/api-reference/tds/compliance/certificates/endpoints/webhook) | Receive a notification when a certificate job succeeds or fails. |
+
+## Frequently asked questions
+
+<AccordionGroup>
+  <Accordion title="How long does TDS certificate generation take?">
+    The TDS certificate API does not specify a fixed completion time. Timing depends on TRACES processing and certificate availability.
+  </Accordion>
+</AccordionGroup>
+
+## Existing integrations
+
+<div id="form-16-and-form-16a-api-migration" />
+
+<Accordion title="Updating an existing Form 16 or Form 16A integration?">
+  Form 130 replaces Form 16, and Form 131 replaces Form 16A. For an existing API integration, update these request fields and response handlers.
+
+  | Integration detail | Earlier certificate API | Current certificate API |
+  |:-------------------|:------------------------|:------------------------|
+  | Certificate selection | Form 16 or Form 16A workflow | `130` or `131` in the `certificate_type` path parameter |
+  | Request `form` | Statement form such as `24Q`, `26Q`, or `27Q` | Certificate form string `"130"` or `"131"` |
+  | Tax period | `financial_year` | `tax_year`, for example `"TY 2026-27"` |
+  | Check job status | `POST` request | `GET` request with `job_id` in the query string |
+  | Download output | `certificate_zip_urls` | `certificate_pdf_zip_urls` |
+
+</Accordion>

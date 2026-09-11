@@ -1,8 +1,8 @@
 ---
 title: "TDS API Recipes"
 sidebarTitle: "Overview"
-description: "API recipes for preparing and filing TDS Forms 24Q and 26Q, plus generating Form 16 and Form 16A certificates."
-"og:description": "API recipes for TDS compliance automation. Implement Form 24Q and 26Q preparation and filing workflows, plus Form 16 and Form 16A generation."
+description: "API recipes for preparing and filing TDS returns, plus generating Form 130 and Form 131 certificates."
+"og:description": "API recipes for TDS compliance automation, including return preparation, filing, and Form 130 and Form 131 certificate generation."
 ---
 
 Implementation patterns for Tax Deducted at Source (TDS) compliance. Use these code samples and API sequences to file returns, generate employee certificates, and add compliance features to your applications.
@@ -43,16 +43,16 @@ File your prepared quarterly returns to the Income Tax Department portal.
 
 ---
 
-## Form 16 and Form 16A certificates
+## Form 130 and Form 131 certificates
 
-Generate TDS certificates for employees after filing.
+Generate TDS certificates after the Income Tax Department processes the relevant quarterly statement.
 
 <CardGroup cols={2}>
-    <Card title="Generate Form 16 Certificates" icon="certificate" href="./form-16/generate_form_16_certificates">
-        Create and download Form 16 Part A and Part B certificates for salary employees.
+    <Card title="Form 130 certificate availability" icon="certificate" href="/recipes/tds/form-130/generate-form-130-certificates">
+        Check when Form 130 certificates, formerly called Form 16, become available for salary TDS.
     </Card>
-    <Card title="Generate Form 16A Certificates" icon="certificate" href="./form-16a/generate-form-16a-certificates">
-        Create and download Form 16A certificates for non-salary deductees.
+    <Card title="Generate Form 131 certificates" icon="certificate" href="/recipes/tds/form-131/generate-form-131-certificates">
+        Generate Form 131 certificates, formerly called Form 16A, for non-salary deductions.
     </Card>
 </CardGroup>
 
