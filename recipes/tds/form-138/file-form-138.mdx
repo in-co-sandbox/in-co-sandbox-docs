@@ -1,0 +1,229 @@
+---
+title: "File Form 138 TDS returns"
+sidebarTitle: "File Form 138"
+description: "Validate and e-file Form 138 salary TDS returns, formerly Form 24Q, with Sandbox's APIs."
+keywords:
+  - file Form 138 using API
+  - Form 138 TDS return filing
+  - Form 24Q filing API
+  - salary TDS return
+  - quarterly TDS returns
+---
+
+Start with your prepared TXT file and follow the steps to validate the return, file it, and download the receipt.
+
+## Before you start
+
+<div id="prepare-tds-return-generate-txt" />
+
+- Get a Sandbox API key and access token using the [Quickstart guide](/guides/get-started/quickstart).
+- Prepare the Form 138 TXT file for your TAN, tax year, and quarter. You can use the [TDS Reports API](/api-reference/tds/reports/tds-reports/endpoints/submit_job) to generate it.
+
+The examples use Q1 of TY 2026-27. Replace the sample TAN and placeholders with your own values. Use the same TAN and return period throughout.
+
+Already have the CSI file? Start at [Create an FVU job](#generate-fvu). If you have a validated ZIP containing the FVU file and Form 27A, start at [Create an e-filing job](#e-file-tds-return).
+
+## File the return
+
+<Steps>
+
+  <Step title="Request the CSI OTP" titleSize="h3">
+    <div id="generate-otp-for-csi-download" />
+
+    Obtain the user's consent, then call [Generate CSI OTP](/api-reference/tds/compliance/download-csi/endpoints/generate_otp) with the TAN, mobile number, and challan date range.
+
+    The example covers 1 April to 31 July 2026 in IST. The timestamps are in milliseconds. Adjust the range to include all challans needed for the return.
+
+    ```bash
+    curl --request POST \
+      --url 'https://api.sandbox.co.in/tds/compliance/csi/otp' \
+      --header 'Authorization: {sandbox-access-token}' \
+      --header 'x-api-key: {sandbox-api-key}' \
+      --header 'Content-Type: application/json' \
+      --data '{
+        "@entity": "in.co.sandbox.tds.compliance.deductors.otp.request",
+        "tan": "AHMA09719B",
+        "mobile_number": "{mobile-number}",
+        "from": 1774981800000,
+        "to": 1785522599000,
+        "consent": "Y",
+        "reason": "Download challan details for TDS return validation"
+      }'
+    ```
+
+    Save `data.reference_id` for OTP verification. If the response has no reference ID, check its message before continuing.
+  </Step>
+
+  <Step title="Verify the OTP and download CSI" titleSize="h3">
+    <div id="verify-otp-and-get-csi-download-url" />
+
+    Call [Verify CSI OTP](/api-reference/tds/compliance/download-csi/endpoints/verify_otp) with the reference ID and the OTP received.
+
+    ```bash
+    curl --request POST \
+      --url 'https://api.sandbox.co.in/tds/compliance/csi/otp/verify' \
+      --header 'Authorization: {sandbox-access-token}' \
+      --header 'x-api-key: {sandbox-api-key}' \
+      --header 'Content-Type: application/json' \
+      --data '{
+        "@entity": "in.co.sandbox.tds.compliance.deductors.csi.request",
+        "reference_id": "{reference-id}",
+        "otp": "{otp}"
+      }'
+    ```
+
+    Use `data.csi_url` to download the file. If verification fails, resolve the error before continuing.
+
+    ```bash
+    curl --request GET \
+      --url '{csi-url}' \
+      --output challan.csi
+    ```
+  </Step>
+
+  <Step title="Create an FVU job" titleSize="h3">
+    <div id="generate-fvu" />
+
+    Call [Generate FVU](/api-reference/tds/compliance/generate-fvu/endpoints/submit_job) with the return details. This guide uses `"regular"` as the filing type.
+
+    ```bash
+    curl --request POST \
+      --url 'https://api.sandbox.co.in/tds/compliance/fvu/generate' \
+      --header 'Authorization: {sandbox-access-token}' \
+      --header 'x-api-key: {sandbox-api-key}' \
+      --header 'Content-Type: application/json' \
+      --data '{
+        "@entity": "in.co.sandbox.tds.compliance.fvu.generate.request",
+        "tax_year": "TY 2026-27",
+        "quarter": "Q1",
+        "form": "138",
+        "tan": "AHMA09719B",
+        "filing_type": "regular"
+      }'
+    ```
+
+    Save `data.job_id` as your FVU job ID. The response also provides `data.txt_file_upload_url` and `data.csi_file_upload_url` for the next step.
+  </Step>
+
+  <Step title="Upload the TXT and CSI files" titleSize="h3">
+    <div id="provide-txt-and-csi-files" />
+    <div id="provide-txt-csi-files" />
+
+    Upload both files to the URLs returned by the FVU job. Use the signed upload URLs directly.
+
+    ```bash
+    curl --request PUT \
+      --url '{txt-file-upload-url}' \
+      --header 'Content-Type: text/plain' \
+      --data-binary '@form-138.txt'
+    ```
+
+    ```bash
+    curl --request PUT \
+      --url '{csi-file-upload-url}' \
+      --header 'Content-Type: application/octet-stream' \
+      --data-binary '@challan.csi'
+    ```
+
+    Confirm that both uploads succeed before checking the job.
+  </Step>
+
+  <Step title="Check validation and download the FVU ZIP" titleSize="h3">
+    <div id="fetch-fvu-generation-status" />
+
+    Call [Get FVU job status](/api-reference/tds/compliance/generate-fvu/endpoints/poll_job) with the FVU job ID.
+
+    ```bash
+    curl --request GET \
+      --url 'https://api.sandbox.co.in/tds/compliance/fvu/generate?job_id={fvu-job-id}' \
+      --header 'Authorization: {sandbox-access-token}' \
+      --header 'x-api-key: {sandbox-api-key}'
+    ```
+
+    Check `data.status`; an HTTP `200` response alone does not mean validation succeeded. Poll until the job reaches `succeeded` or `failed`.
+
+    If it fails, review the validation report at `data.validation_report_file_url` when provided. Correct the return and create a new FVU job.
+
+    When it succeeds, download `data.fvu_zip_file_url`. Check that the ZIP contains the FVU file and Form 27A.
+
+    ```bash
+    curl --request GET \
+      --url '{fvu-zip-file-url}' \
+      --output form-138-fvu.zip
+    ```
+  </Step>
+
+  <Step title="Create an e-filing job" titleSize="h3">
+    <div id="e-file-tds-return" />
+
+    Call [E-file TDS return](/api-reference/tds/compliance/e-file/endpoints/submit_job) using the same TAN, tax year, quarter, and form as the validated return.
+
+    ```bash
+    curl --request POST \
+      --url 'https://api.sandbox.co.in/tds/compliance/e-file' \
+      --header 'Authorization: {sandbox-access-token}' \
+      --header 'x-api-key: {sandbox-api-key}' \
+      --header 'Content-Type: application/json' \
+      --data '{
+        "@entity": "in.co.sandbox.tds.compliance.e-file.request",
+        "tax_year": "TY 2026-27",
+        "quarter": "Q1",
+        "form": "138",
+        "tan": "AHMA09719B"
+      }'
+    ```
+
+    Save the new `data.job_id` as your e-filing job ID. It is separate from the FVU job ID. Use `data.fvu_upload_file_url` for the upload.
+  </Step>
+
+  <Step title="Upload the FVU ZIP" titleSize="h3">
+    <div id="provide-fvu-zip" />
+
+    Upload the ZIP containing the validated FVU file and Form 27A.
+
+    ```bash
+    curl --request PUT \
+      --url '{fvu-upload-file-url}' \
+      --header 'Content-Type: application/zip' \
+      --data-binary '@form-138-fvu.zip'
+    ```
+
+    Creating a job does not complete the filing. After the upload succeeds, check the e-filing status.
+  </Step>
+
+  <Step title="Check filing status and download the receipt" titleSize="h3">
+    <div id="fetch-tds-return-status" />
+
+    Call [Get TDS e-filing status](/api-reference/tds/compliance/e-file/endpoints/poll_job) with the e-filing job ID.
+
+    ```bash
+    curl --request GET \
+      --url 'https://api.sandbox.co.in/tds/compliance/e-file?job_id={efile-job-id}' \
+      --header 'Authorization: {sandbox-access-token}' \
+      --header 'x-api-key: {sandbox-api-key}'
+    ```
+
+    Poll until `data.status` is `succeeded` or `failed`. If the job fails, read `data.message` and resolve the error.
+
+    When it succeeds, save `data.receipt_number` and download the receipt from `data.receipt_file_url`.
+
+    ```bash
+    curl --request GET \
+      --url '{receipt-file-url}' \
+      --output form-138-receipt.pdf
+    ```
+  </Step>
+
+</Steps>
+
+## After filing
+
+<div id="generate-form-16-optional" />
+
+Form 130 is an annual certificate. After the tax year ends and TRACES processes the relevant statement, check [Form 130 certificate availability](/recipes/tds/form-130/generate-form-130-certificates).
+
+## Related guides
+
+- [FVU webhooks](/api-reference/tds/compliance/generate-fvu/endpoints/webhook) and [e-filing webhooks](/api-reference/tds/compliance/e-file/endpoints/webhook): Receive job completion updates instead of polling.
+- [Job-based API workflow](/guides/developer-resources/job_based_apis): Learn how file uploads and background jobs work.
+- [TDS compliance API overview](/api-reference/tds/compliance/overview): Explore CSI download, return validation, e-filing, and TDS certificates.

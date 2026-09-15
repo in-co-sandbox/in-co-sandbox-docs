@@ -1287,8 +1287,14 @@
               {
                 "group": "Form 24Q",
                 "pages": [
-                  "recipes/tds/form-24q/prepare_form_24q",
-                  "recipes/tds/form-24q/file_form_24q"
+                  "recipes/tds/form-24q/prepare_form_24q"
+                ]
+              },
+              {
+                "group": "Return filing",
+                "pages": [
+                  "recipes/tds/form-138/file-form-138",
+                  "recipes/tds/form-140/file-form-140"
                 ]
               },
               {
@@ -1382,6 +1388,14 @@
     }
   },
   "redirects": [
+    {
+      "source": "recipes/tds/form-24q/file_form_24q",
+      "destination": "recipes/tds/form-138/file-form-138"
+    },
+    {
+      "source": "recipes/tds/form-26q/file_form_26q",
+      "destination": "recipes/tds/form-140/file-form-140"
+    },
     {
       "source": "recipes/tds/form-16/generate_form_16_certificates",
       "destination": "recipes/tds/form-130/generate-form-130-certificates"
