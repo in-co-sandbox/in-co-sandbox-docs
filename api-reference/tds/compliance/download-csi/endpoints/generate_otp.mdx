@@ -1,5 +1,19 @@
 ---
-title: 'Generate OTP'
-description: "generate otp to download csi file"
+title: 'Generate OTP for CSI download'
+description: "Send an OTP to the provided mobile number to request a CSI file."
+keywords:
+  - CSI download API
+  - CSI file download API
+  - Challan Status Inquiry API
+  - generate CSI OTP
 openapi: '/api-reference/tds/compliance/openapi.json POST /tds/compliance/csi/otp'
 ---
+
+Use the CSI download API to retrieve a Challan Status Inquiry file for TDS or TCS return validation.
+
+1. Request an OTP with the TAN, mobile number, challan dates, consent and reason.
+2. Use the returned `data.reference_id` and OTP to [verify the CSI OTP](/api-reference/tds/compliance/download-csi/endpoints/verify_otp) and download the file.
+
+<Note>
+  An HTTP 200 response can also contain an error. Check `data.message` and continue only when the response includes `data.reference_id`.
+</Note>

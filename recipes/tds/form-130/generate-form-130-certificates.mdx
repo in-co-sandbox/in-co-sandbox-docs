@@ -1,0 +1,36 @@
+---
+title: "Form 130 API availability and prerequisites (formerly Form 16)"
+sidebarTitle: "Form 130 certificate availability"
+description: "Check when Form 130 salary TDS certificates, formerly Form 16, become available on TRACES and what you need to request them through Sandbox's API."
+keywords:
+  - Form 130
+  - Form 130 certificate
+  - Form 130 API
+  - Form 16
+  - Form 16 API
+  - Form 16 download API
+  - salary TDS certificate
+  - TRACES Form 130
+---
+
+Form 130 is the TDS certificate for salary, pension, and specified senior citizen interest under the Income-tax Act, 2025. It corresponds to Form 16 under the earlier rules. See the [Income Tax Department's Form 130 FAQs](https://www.incometaxindia.gov.in/documents/d/guest/form-130-faqs) for the statutory requirements.
+
+## When is Form 130 available?
+
+Form 130 becomes available after the tax year ends, once TRACES has processed the corresponding Form 138 statement. Form 130 is an annual certificate covering the completed tax year.
+
+## Before you request Form 130 certificates
+
+- Confirm that the certificates are available on TRACES before submitting a job.
+- Obtain a Sandbox access token using the [Quickstart guide](/guides/get-started/quickstart).
+- [Add TRACES credentials](/api-reference/tds/compliance/traces-credentials/endpoints/save_credential) for the TAN.
+
+## Request and download certificates
+
+The [submit certificate job endpoint](/api-reference/tds/compliance/certificates/endpoints/submit_job) uses `130` in the `certificate_type` path parameter and `"130"` in the JSON `form` field. The response returns a `job_id`.
+
+Use the `job_id` to [check the certificate job status](/api-reference/tds/compliance/certificates/endpoints/poll_job). When the status is `succeeded`, download the ZIP files from `data.certificate_pdf_zip_urls`.
+
+## Certificates for other TDS
+
+Form 131 applies to TDS on income other than salary. Follow the [Form 131 certificate recipe](/recipes/tds/form-131/generate-form-131-certificates) to generate these certificates.

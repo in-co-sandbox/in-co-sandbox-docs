@@ -1,5 +1,10 @@
 ---
-title: 'Search E-File TDS Return Jobs'
-description: "Fetch all TDS/TCS E-file Jobs through this API"
+title: "Search TDS return e-filing jobs"
+description: "Find TDS and TCS e-filing jobs by TAN, return details, or date."
+keywords:
+  - search tds return e-filing jobs
+  - TDS e-filing API
 openapi: '/api-reference/tds/compliance/openapi.json POST /tds/compliance/e-file/search'
 ---
+
+Filter jobs by TAN, form, tax year, quarter, or creation date. The response lists matching jobs in `data.items`. Use `page_size` to request up to 50 records per page.

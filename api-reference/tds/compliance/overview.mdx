@@ -1,172 +1,156 @@
 ---
-title: "Overview"
-description: "Generate FVU files, e-file quarterly TDS returns, and create Form 16/16A certificates using job-based async APIs with webhooks."
+title: "TDS compliance API"
+sidebarTitle: "Overview"
+description: "Download CSI files, validate and e-file quarterly TDS and TCS returns, and generate certificates with Sandbox's compliance APIs."
 keywords:
-  - TDS compliance
-  - FVU generation
-  - e-file TDS return
-  - Form 16
-  - Form 16A
-  - TRACES
+  - TDS compliance API
+  - TDS return filing API
+  - TCS return filing API
+  - FVU generation API
+  - TDS e-filing API
   - CSI download
   - TDS certificates
   - quarterly returns
+  - Form 138
+  - Form 140
+  - Form 144
+  - Form 143
   - Form 24Q
   - Form 26Q
   - Form 27Q
+  - Form 27EQ
 ---
 
-# TDS Compliance API
+Use Sandbox's TDS compliance APIs to download CSI files, validate and e-file quarterly returns, and generate TDS and TCS certificates. Add these workflows to your payroll, accounting, or tax software.
 
-TDS (Tax Deducted at Source) compliance is the set of processes used by a deductor to prepare, validate, and submit quarterly e-TDS returns and generate TDS certificates in India. Use these APIs to download CSI (Challan Status Inquiry) files, generate FVU (File Validation Utility) packages, e-file quarterly TDS returns, and create Form 16/16A certificates using a job-based async workflow with optional webhooks.
+<div id="choose-a-capability" />
+<div id="fvu-generation-and-e-filing" />
+<div id="what-you-can-do" />
 
 ## Key features
 
 <CardGroup cols={2}>
-  <Card title="CSI download" icon="file-invoice" href="/api-reference/tds/compliance/download-csi/endpoints/generate_otp">
-    Retrieve Challan Status Inquiry files from TRACES to reconcile tax payments before preparing quarterly returns.
+  <Card title="CSI download" icon="download" href="/api-reference/tds/compliance/download-csi/endpoints/generate_otp">
+    Download Challan Status Inquiry files for return validation.
   </Card>
-  <Card title="FVU generation" icon="file-lines" href="/api-reference/tds/compliance/generate-fvu/endpoints/submit_job">
-    Validate and package TDS return data into FVU-ready ZIP files for upload to the income tax portal.
+  <Card title="FVU generation" icon="file-circle-check" href="/api-reference/tds/compliance/generate-fvu/endpoints/submit_job">
+    Validate TDS and TCS return files and generate the FVU package for filing.
   </Card>
   <Card title="E-file returns" icon="paper-plane" href="/api-reference/tds/compliance/e-file/endpoints/submit_job">
-    Submit quarterly TDS returns electronically and download acknowledgement receipts and Form 27A artifacts.
+    Submit validated TDS and TCS returns and download filing receipts.
   </Card>
-  <Card title="Form 16/16A certificates" icon="badge-check" href="/api-reference/tds/compliance/certificate-form16(a)/endpoints/submit_job">
-    Generate salary (Form 16) and non-salary (Form 16A) TDS certificates from TRACES for distribution to deductees.
-  </Card>
-  <Card title="Job-based async workflow" icon="server" href="/guides/developer-resources/job_based_apis">
-    Submit long-running compliance tasks as jobs and poll for status or receive webhook callbacks when complete.
-  </Card>
-  <Card title="Webhook notifications" icon="bell" href="/guides/developer-resources/webhooks">
-    Receive real-time status updates for job completion instead of polling, enabling event-driven integrations.
+  <Card title="TDS certificates" icon="badge-check" href="/api-reference/tds/compliance/certificates/overview">
+    Generate and download Form 130 and Form 131 TDS certificates and Form 133 TCS certificates.
   </Card>
 </CardGroup>
+
+<div id="return-filing-workflow" />
 
 ## How it works
 
+Follow these steps to file a return. If you already have the FVU file and Form 27A, start at step 3.
+
 <Steps>
-  <Step title="Authenticate to get an access token">
-    Call the authentication endpoint to obtain a bearer token for subsequent API requests.
+  <Step title="Download the CSI file">
+    Download the Challan Status Inquiry file to validate the challans in your return.
   </Step>
-  <Step title="Download CSI file">
-    Generate an OTP and verify it to retrieve the CSI file URL for challan reconciliation.
+  <Step title="Validate the return">
+    Upload your return text file and supporting files. The File Validation Utility (FVU) checks them and generates the filing package, or reports errors to fix.
   </Step>
-  <Step title="Generate FVU package">
-    Submit a job with return data, upload additional inputs if needed, then poll or await a webhook to download the validated FVU ZIP.
-  </Step>
-  <Step title="E-file the quarterly return">
-    Submit the FVU for e-filing, then poll or await a webhook to download the acknowledgement receipt and Form 27A.
-  </Step>
-  <Step title="Generate Form 16/16A certificates">
-    Submit a certificate generation job with deductee details, then poll or await a webhook to fetch completed certificate outputs.
+  <Step title="E-file the return">
+    Submit the FVU file and Form 27A for e-filing. Check the filing status and download the receipt once the job succeeds.
   </Step>
 </Steps>
 
-## Recipes
+<Note>
+  To generate certificates, wait until TRACES processes the relevant statement and makes the certificates available. Then use the [TDS certificate API](/api-reference/tds/compliance/certificates/overview) to generate and download them.
+</Note>
+
+## Supported return forms
+
+FVU generation and e-filing support these return forms:
+
+| Return form | Earlier name | Use it for |
+|:------------|:-------------|:-----------|
+| Form 138 | Form 24Q | Salary TDS returns |
+| Form 140 | Form 26Q | Non-salary TDS returns for payments to residents |
+| Form 144 | Form 27Q | TDS returns for payments to non-residents |
+| Form 143 | Form 27EQ | TCS returns |
+
+See the Income Tax Department's [transition FAQs](https://www.incometaxindia.gov.in/documents/81799/11848482/Updated-FQAs-on-Interplay%26Transitions.pdf/e10ad2b6-9495-de90-58d3-20606d8954ae) for the statutory form changes. For certificate forms, see the [certificate overview](/api-reference/tds/compliance/certificates/overview#supported-certificates).
+
+<div id="frequently-asked-questions" />
+
+<Note>
+  FVU generation supports regular and correction returns. For correction returns, include the consolidated file with your return text file and CSI file. See the [FVU upload requirements](/api-reference/tds/compliance/generate-fvu/endpoints/submit_job).
+</Note>
+
+<div id="what-you-need" />
+<div id="requirements" />
+<div id="start-integrating" />
+
+## Before you start
+
+Get your API key and access token from the [Quickstart guide](/guides/get-started/quickstart). Prepare the files and details for your workflow:
+
+- [Return validation](/api-reference/tds/compliance/generate-fvu/endpoints/submit_job): A return text file and supporting files.
+- [E-filing](/api-reference/tds/compliance/e-file/endpoints/submit_job): An FVU file and Form 27A.
+- [Certificates](/api-reference/tds/compliance/certificates/overview#requirements): TRACES credentials and certificates available for the requested period.
+
+FVU generation, e-filing, and certificate generation run as background jobs. See the [job-based API workflow](/guides/developer-resources/job_based_apis#how-it-works) for uploads and completion checks.
+
+<div id="recipes" />
+
+## Integration guides
+
+Follow a guide to file a return or generate certificates.
 
 <CardGroup cols={2}>
-  <Card title="File Form 24Q" icon="paper-plane" href="/recipes/tds/form-24q/file_form_24q">
-    E-file Form 24Q with CSI download, FVU generation, and receipt downloads.
+  <Card title="File Form 138" icon="paper-plane" href="/recipes/tds/form-138/file-form-138">
+    Download CSI, validate a salary TDS return, and e-file it.
   </Card>
-  <Card title="File Form 26Q" icon="paper-plane" href="/recipes/tds/form-26q/file_form_26q">
-    E-file Form 26Q (non-salary TDS) with CSI download, FVU generation, and receipts.
+  <Card title="File Form 140" icon="paper-plane" href="/recipes/tds/form-140/file-form-140">
+    Download CSI, validate a non-salary TDS return for residents, and e-file it.
   </Card>
-  <Card title="Generate Form 16 certificates" icon="badge-check" href="/recipes/tds/form-16/generate_form_16_certificates">
-    Download Form 16 salary certificates after Form 24Q filing.
+  <Card title="Form 130 TDS certificates" icon="badge-check" href="/recipes/tds/form-130/generate-form-130-certificates">
+    Check when Form 130 certificates become available after Form 138 processing.
   </Card>
-  <Card title="Generate Form 16A certificates" icon="badge-check" href="/recipes/tds/form-16a/generate-form-16a-certificates">
-    Download Form 16A certificates after Form 26Q or 27Q filing.
+  <Card title="Generate Form 131 certificates" icon="badge-check" href="/recipes/tds/form-131/generate-form-131-certificates">
+    Download Form 131 certificates after Form 140 or Form 144 filing.
   </Card>
 </CardGroup>
 
-## API categories
+<div id="api-categories" />
 
-<CardGroup cols={2}>
-  <Card title="Download CSI" icon="file-invoice" href="/api-reference/tds/compliance/download-csi/endpoints/generate_otp">
-    Generate and verify OTP to retrieve Challan Status Inquiry files.
-  </Card>
-  <Card title="Generate FVU" icon="file-lines" href="/api-reference/tds/compliance/generate-fvu/endpoints/submit_job">
-    Submit, poll, and search FVU generation jobs, with webhook status notifications.
-  </Card>
-  <Card title="E-file returns" icon="paper-plane" href="/api-reference/tds/compliance/e-file/endpoints/submit_job">
-    Submit, poll, and search e-filing jobs for quarterly returns, with webhook status notifications.
-  </Card>
-  <Card title="Form 16/16A certificates" icon="badge-check" href="/api-reference/tds/compliance/certificate-form16(a)/endpoints/submit_job">
-    Submit, poll, and fetch certificate generation jobs, with webhook status notifications.
-  </Card>
-</CardGroup>
+## API reference
 
-## CSI download APIs
+### CSI download APIs
 
 | API | Purpose |
 |:----|:--------|
-| [Generate OTP](/api-reference/tds/compliance/download-csi/endpoints/generate_otp) | Request an OTP to initiate CSI file download from TRACES |
-| [Verify OTP](/api-reference/tds/compliance/download-csi/endpoints/verify_otp) | Verify OTP and retrieve the CSI file download URL |
+| [Generate OTP for CSI download](/api-reference/tds/compliance/download-csi/endpoints/generate_otp) | Send an OTP to request a CSI file. |
+| [Verify OTP for CSI download](/api-reference/tds/compliance/download-csi/endpoints/verify_otp) | Verify the OTP to download the CSI file. |
 
-## FVU generation APIs
+### FVU generation APIs
 
-| API | Purpose |
-|:----|:--------|
-| [Submit job](/api-reference/tds/compliance/generate-fvu/endpoints/submit_job) | Create a new FVU generation job with return data |
-| [Poll job](/api-reference/tds/compliance/generate-fvu/endpoints/poll_job) | Check job status and download FVU ZIP when complete |
-| [Job status webhook](/api-reference/tds/compliance/generate-fvu/endpoints/webhook) | Receive notification when an FVU generation job succeeds or fails |
-| [Search job](/api-reference/tds/compliance/generate-fvu/endpoints/search_job) | List and filter previously submitted FVU jobs |
+| API | Use it to |
+|:----|:----------|
+| [Create FVU generation job](/api-reference/tds/compliance/generate-fvu/endpoints/submit_job) | Start validation and get file upload URLs. |
+| [Check FVU generation status](/api-reference/tds/compliance/generate-fvu/endpoints/poll_job) | Check progress and retrieve validation results. |
+| [Search FVU generation jobs](/api-reference/tds/compliance/generate-fvu/endpoints/search_job) | Find previously submitted jobs. |
+| [FVU generation webhook](/api-reference/tds/compliance/generate-fvu/endpoints/webhook) | Receive completion notifications. |
 
-## E-file APIs
+<div id="e-file-apis" />
 
-| API | Purpose |
-|:----|:--------|
-| [Submit job](/api-reference/tds/compliance/e-file/endpoints/submit_job) | Submit FVU for e-filing to the income tax portal |
-| [Poll job](/api-reference/tds/compliance/e-file/endpoints/poll_job) | Check filing status and download receipt/Form 27A |
-| [Job status webhook](/api-reference/tds/compliance/e-file/endpoints/webhook) | Receive notification when an e-file job succeeds or fails |
-| [Search job](/api-reference/tds/compliance/e-file/endpoints/search_job) | List and filter previously submitted e-filing jobs |
+### TDS e-filing APIs
 
-## Form 16/16A certificate APIs
+| API | Use it to |
+|:----|:----------|
+| [Create TDS return e-filing job](/api-reference/tds/compliance/e-file/endpoints/submit_job) | Start a filing job and get the file upload URL. |
+| [Check TDS return e-filing status](/api-reference/tds/compliance/e-file/endpoints/poll_job) | Check the filing result and download the receipt. |
+| [Search TDS return e-filing jobs](/api-reference/tds/compliance/e-file/endpoints/search_job) | Find previously submitted jobs. |
+| [TDS e-filing webhook](/api-reference/tds/compliance/e-file/endpoints/webhook) | Receive completion notifications. |
 
-| API | Purpose |
-|:----|:--------|
-| [Submit job](/api-reference/tds/compliance/certificate-form16(a)/endpoints/submit_job) | Create a certificate generation job for Form 16 or Form 16A |
-| [Credentials](/api-reference/tds/compliance/certificate-form16(a)/credentials) | Reference for TRACES credentials required for certificate generation |
-| [Poll job](/api-reference/tds/compliance/certificate-form16(a)/endpoints/poll_job) | Check job status and retrieve certificate outputs |
-| [Job status webhook](/api-reference/tds/compliance/certificate-form16(a)/endpoints/webhook) | Receive notification when a certificate job succeeds or fails |
-| [Fetch job](/api-reference/tds/compliance/certificate-form16(a)/endpoints/fetch_job) | Retrieve details of a specific certificate generation job |
+### TDS certificate APIs
 
-## Common use cases
-
-Use the TDS Compliance API when you need to:
-
-- Build a payroll platform that validates quarterly TDS return files by generating FVU packages automatically
-- Help finance teams e-file quarterly TDS returns programmatically and store acknowledgements and receipts
-- Generate and distribute Form 16/16A certificates to employees and vendors after returns are processed
-- Automate CSI retrieval for challan reconciliation before preparing the quarterly return
-- Run asynchronous compliance workflows at scale using webhooks instead of polling
-
-## Frequently asked questions
-
-<AccordionGroup>
-  <Accordion title="What is TDS compliance?">
-    TDS (Tax Deducted at Source) compliance refers to the processes a deductor follows to withhold tax at source, file quarterly returns with the Income Tax Department, and issue TDS certificates to deductees. The TDS Compliance API automates these workflows including CSI download, FVU generation, e-filing, and certificate creation.
-  </Accordion>
-  <Accordion title="What is a CSI file and why do I need it?">
-    CSI (Challan Status Inquiry) is a file downloaded from TRACES (TDS Reconciliation Analysis and Correction Enabling System) that contains challan payment details. You need the CSI file to reconcile tax payments before preparing your quarterly TDS return. Use the [Download CSI APIs](/api-reference/tds/compliance/download-csi/endpoints/generate_otp) to retrieve this file programmatically.
-  </Accordion>
-  <Accordion title="What is FVU and how does it work?">
-    FVU (File Validation Utility) is a tool provided by the Income Tax Department to validate TDS return files before submission. The TDS Compliance API generates FVU-validated ZIP packages from your return data. Submit a job with your return data, then poll or receive a webhook to download the validated FVU package ready for e-filing.
-  </Accordion>
-  <Accordion title="How do job-based APIs work?">
-    Job-based APIs handle long-running operations asynchronously. You submit a job with input data, receive a job ID, then either poll the job status endpoint or configure webhooks to receive a callback when the job completes. See the [job-based API workflow guide](/guides/developer-resources/job_based_apis) for implementation details.
-  </Accordion>
-  <Accordion title="Can I receive notifications instead of polling?">
-    The TDS Compliance API supports webhooks for all job-based endpoints. Configure a webhook URL to receive notifications when jobs complete instead of polling. See the [webhooks guide](/guides/developer-resources/webhooks).
-  </Accordion>
-  <Accordion title="What credentials do I need for Form 16/16A generation?">
-    You need valid TRACES credentials (TAN-based login) to generate Form 16 and Form 16A certificates. See the [credentials reference](/api-reference/tds/compliance/certificate-form16(a)/credentials) for required fields and setup before submitting jobs.
-  </Accordion>
-  <Accordion title="What forms does the TDS Compliance API support?">
-    The TDS Compliance API supports quarterly TDS returns filed by deductors, including Form 24Q (salary payments), Form 26Q (non-salary payments), and Form 27Q (payments to non-residents). Certificate generation supports both Form 16 (salary) and Form 16A (non-salary) TDS certificates.
-  </Accordion>
-  <Accordion title="How do I handle errors during compliance workflows?">
-    The TDS Compliance API returns structured error responses with codes and messages. Common errors include invalid credentials, validation failures, and job timeouts. Check the [errors guide](/guides/developer-resources/errors) for error code reference and troubleshooting steps.
-  </Accordion>
-</AccordionGroup>
+See the [certificate endpoints](/api-reference/tds/compliance/certificates/overview#certificate-endpoints) to submit a generation job, check its status, search jobs, or configure a webhook.

@@ -1,0 +1,20 @@
+---
+title: 'TDS certificate webhook'
+description: "Receive updates when a Form 130, 131, or 133 certificate job completes."
+keywords:
+  - TDS certificate webhook
+  - TCS certificate webhook
+  - Form 130 webhook
+  - Form 131 webhook
+  - Form 133 webhook
+  - Form 16 webhook
+  - Form 16A webhook
+  - certificate job notification
+openapi: '/api-reference/tds/compliance/openapi.json webhook CertificateJobStatus'
+---
+
+<Note>
+  Webhooks fire only when a certificate job transitions to `succeeded` or `failed`.
+
+  To configure your webhook URL and validate the `x-sandbox-signature` header, see the [webhooks guide](/guides/developer-resources/webhooks).
+</Note>
