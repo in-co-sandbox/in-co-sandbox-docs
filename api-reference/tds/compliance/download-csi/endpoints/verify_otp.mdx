@@ -1,5 +1,17 @@
 ---
-title: 'Verify OTP'
-description: "verify otp to download csi file"
+title: 'Verify OTP for CSI download'
+description: "Verify the OTP to download the CSI file."
+keywords:
+  - verify CSI OTP API
+  - CSI OTP verification
+  - CSI file download URL
 openapi: '/api-reference/tds/compliance/openapi.json POST /tds/compliance/csi/otp/verify'
 ---
+
+Use the reference ID returned by [Generate OTP for CSI download](/api-reference/tds/compliance/download-csi/endpoints/generate_otp) and the OTP sent to the mobile number.
+
+On success, download the file using `data.csi_url`.
+
+<Note>
+  An incorrect or expired OTP can return HTTP 200 with an error in `data.message`. Continue only when the response includes `data.csi_url`.
+</Note>

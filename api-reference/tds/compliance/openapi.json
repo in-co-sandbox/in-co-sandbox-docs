@@ -465,9 +465,9 @@
     },
     "/tds/compliance/csi/otp": {
       "post": {
-        "summary": "Generate OTP",
+        "summary": "Generate OTP for CSI download",
         "deprecated": false,
-        "description": "",
+        "description": "Send an OTP to the provided mobile number to request a CSI file.",
         "tags": [
           "Download CSI"
         ],
@@ -561,7 +561,7 @@
                     "from": 1722450600000,
                     "to": 1730313000000,
                     "consent": "Y",
-                    "reason": "TDS Return"
+                    "reason": "Download CSI for TDS return filing"
                   },
                   "summary": "200 - Success"
                 },
@@ -573,7 +573,7 @@
                     "from": 1722450600000,
                     "to": 1730313000000,
                     "consent": "Y",
-                    "reason": "TDS Return"
+                    "reason": "Download CSI for TDS return filing"
                   },
                   "summary": "200 Invalid TAN"
                 },
@@ -585,7 +585,7 @@
                     "from": 1722450600000,
                     "to": 1730313000000,
                     "consent": "Y",
-                    "reason": "TDS Return"
+                    "reason": "Download CSI for TDS return filing"
                   },
                   "summary": "200 OTP already generated"
                 },
@@ -597,7 +597,7 @@
                     "from": 1722450600000,
                     "to": 1730313000000,
                     "consent": "Y",
-                    "reason": "TDS Return"
+                    "reason": "Download CSI for TDS return filing"
                   },
                   "summary": "422 - Unprocessable Entity"
                 }
@@ -607,7 +607,7 @@
         },
         "responses": {
           "200": {
-            "description": "200 - OK",
+            "description": "Check the response body for the result. HTTP 200 can also contain an application error in data.message.",
             "content": {
               "application/json": {
                 "schema": {
@@ -638,10 +638,12 @@
                           "type": "integer"
                         },
                         "reference_id": {
-                          "type": "string"
+                          "type": "string",
+                          "description": "Reference ID for the OTP request. Pass this value with the received OTP to verify the request."
                         },
                         "message": {
-                          "type": "string"
+                          "type": "string",
+                          "description": "Result of the OTP request, including any application error."
                         }
                       }
                     },
@@ -739,9 +741,9 @@
     },
     "/tds/compliance/csi/otp/verify": {
       "post": {
-        "summary": "Verify OTP",
+        "summary": "Verify OTP for CSI download",
         "deprecated": false,
-        "description": "",
+        "description": "Verify the OTP to download the CSI file.",
         "tags": [
           "Download CSI"
         ],
@@ -790,10 +792,12 @@
                     ]
                   },
                   "reference_id": {
-                    "type": "string"
+                    "type": "string",
+                    "description": "The data.reference_id returned by Generate OTP for CSI download."
                   },
                   "otp": {
-                    "type": "string"
+                    "type": "string",
+                    "description": "OTP sent to the mobile number provided in the generation request."
                   }
                 },
                 "required": [
@@ -833,7 +837,7 @@
         },
         "responses": {
           "200": {
-            "description": "200 - OK",
+            "description": "Check the response body for the result. HTTP 200 can also contain an application error in data.message.",
             "content": {
               "application/json": {
                 "schema": {
@@ -861,10 +865,16 @@
                           "type": "integer"
                         },
                         "reference_id": {
-                          "type": "string"
+                          "type": "string",
+                          "description": "Reference ID associated with the verified OTP request."
                         },
                         "csi_url": {
-                          "type": "string"
+                          "type": "string",
+                          "description": "Download the CSI file from this URL after successful verification. The example URL is illustrative."
+                        },
+                        "message": {
+                          "type": "string",
+                          "description": "Application error message when verification fails, such as an incorrect or expired OTP."
                         }
                       }
                     },
@@ -885,7 +895,7 @@
                         "from": 1722450600000,
                         "to": 1730313000000,
                         "reference_id": "FOS005981930273",
-                        "csi_url": ".."
+                        "csi_url": "https://example.com/challan.csi"
                       },
                       "code": 200
                     }
@@ -3319,7 +3329,7 @@
     },
     "/tds/compliance/traces/deductors/forms/{certificate_type}": {
       "post": {
-        "summary": "Submit TDS certificate job",
+        "summary": "Create TDS or TCS certificate job",
         "deprecated": false,
         "description": "Create an asynchronous certificate generation job for the selected certificate type, tax year, quarter, and TAN. Use the returned job ID with the status endpoint to track the job.",
         "operationId": "SubmitCertificateJob",

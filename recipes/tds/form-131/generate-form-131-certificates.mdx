@@ -1,7 +1,7 @@
 ---
 title: "Form 131 API: generate certificates, formerly Form 16A"
 sidebarTitle: "Generate Form 131 certificates"
-description: "Generate Form 131 certificates, formerly Form 16A, with Sandbox's API. Follow cURL examples to submit a TRACES job and download certificate PDFs in ZIP files."
+description: "Generate Form 131 certificates, formerly Form 16A, with Sandbox's API. Follow cURL examples to create a TRACES job and download certificate PDFs in ZIP files."
 keywords:
   - Form 131
   - Form 131 certificate
@@ -46,8 +46,8 @@ Replace the sample TAN and period with your own values. Use the same TAN as the 
     Skip this step if valid credentials are already saved for the TAN. To replace saved credentials, follow the [credential endpoint instructions](/api-reference/tds/compliance/traces-credentials/endpoints/save_credential).
   </Step>
 
-  <Step title="Submit a Form 131 certificate job" titleSize="h3">
-    Call the [Submit TDS certificate job](/api-reference/tds/compliance/certificates/endpoints/submit_job) endpoint with `131` in the path. Set the JSON `form` field to `"131"`.
+  <Step title="Create a Form 131 certificate job" titleSize="h3">
+    Call the [Create TDS or TCS certificate job](/api-reference/tds/compliance/certificates/endpoints/submit_job) endpoint with `131` in the path. Set the JSON `form` field to `"131"`.
 
     ```bash
     curl --request POST \
