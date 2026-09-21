@@ -1,13 +1,15 @@
 ---
 title: "Master data"
+description: "Reference values and codes for TDS compliance, calculator, and reports APIs."
+keywords: [TDS master data, TDS compliance, TDS calculator, TDS reports, nature of remittance, deductor type]
 ---
 
-Use this page as a reference for the master data used across TDS APIs.
+This page lists field values and codes used by TDS compliance, calculator, and reports APIs.
 
 
 ## Nature of payments
 
-The tables below reflect the published Form 138, Form 140, and Form 144 reference data fetched on July 7, 2026.
+The following tables list `nature_of_payment` values and their codes by form.
 
 ### Form 138
 
@@ -39,6 +41,7 @@ The tables below reflect the published Form 138, Form 140, and Form 144 referenc
 | 1013 | dividend_from_mutual_funds |
 | 1014 | interest_payment_from_units_of_a_business_trust |
 | 1015 | dividend_payment_from_units_of_a_business_trust |
+| 1016 | rental_income_from_units_of_a_real_estate_investment_trust |
 | 1017 | income_in_respect_of_units_of_investment_fund |
 | 1018 | income_in_respect_of_investment_in_securitization_trust |
 | 1019 | interest_on_securities |
@@ -276,12 +279,15 @@ The tables below reflect the published Form 138, Form 140, and Form 144 referenc
 
 ## Deductor type
 
+The following `deductor_type` values apply to Forms 138, 140, and 144.
+
 | Code | deductor_type (to be passed as below) |
 | ---- | ----------------------------------------- |
 | B | body_of_individuals |
 | F | firm |
 | J | artificial_judicial_person |
 | K | company |
+| M | branch_or_division_of_company |
 | P | association_of_persons |
 | Q | huf |
 | Q | individual |
@@ -351,6 +357,8 @@ The tables below reflect the published Form 138, Form 140, and Form 144 referenc
 
 ## Country
 
+The `country` field accepts the country names listed below.
+
 | Country code | country (to be passed as below)                   |
 | ------------ | ------------------------------------------------- |
 | 01           | AFGHANISTAN                                       |
@@ -408,8 +416,8 @@ The tables below reflect the published Form 138, Form 140, and Form 144 referenc
 | 53           | COMMONWEALTH OF PUERTO RICO                       |
 | 54           | COMMONWEALTH OF THE NORTHERN MARIANA ISLANDS      |
 | 55           | COMOROS                                           |
-| 56           | CONGO,DEMOCRATIC REPUBLIC OF THE                  |
-| 57           | CONGO,REPUBLIC OF THE                             |
+| 56           | DEMOCRATIC REPUBLIC OF THE CONGO                  |
+| 57           | REPUBLIC OF THE CONGO                             |
 | 58           | COOK ISLANDS                                      |
 | 59           | CORAL SEA ISLANDS                                 |
 | 60           | CORAL SEA ISLANDS TERRITORY                       |
@@ -483,8 +491,8 @@ The tables below reflect the published Form 138, Form 140, and Form 144 referenc
 | 129          | KENYA                                             |
 | 130          | KINGMAN REEF                                      |
 | 131          | KIRIBATI                                          |
-| 132          | KOREA, NORTH                                      |
-| 133          | KOREA, SOUTH                                      |
+| 132          | NORTH KOREA                                       |
+| 133          | SOUTH KOREA                                       |
 | 134          | KOSOVO                                            |
 | 135          | KUWAIT                                            |
 | 136          | KYRGYZSTAN                                        |
@@ -512,7 +520,7 @@ The tables below reflect the published Form 138, Form 140, and Form 144 referenc
 | 158          | MAURITIUS                                         |
 | 159          | MAYOTTE                                           |
 | 160          | UNITED MEXICAN STATES                             |
-| 161          | MICRONESIA, FEDERATED STATES OF                   |
+| 161          | FEDERATED STATES OF MICRONESIA                    |
 | 162          | MIDWAY ISLANDS                                    |
 | 163          | MOLDOVA                                           |
 | 164          | MONACO                                            |
@@ -548,7 +556,7 @@ The tables below reflect the published Form 138, Form 140, and Form 144 referenc
 | 194          | PERU                                              |
 | 195          | PHILIPPINES                                       |
 | 196          | PITCAIRN ISLANDS                                  |
-| 197          | PITCAIRN, HENDERSON, DUCIE, AND OENO ISLANDS      |
+| 197          | PITCAIRN                                         |
 | 198          | POLAND                                            |
 | 199          | PORTUGAL                                          |
 | 200          | PUERTO RICO                                       |
@@ -626,7 +634,7 @@ The tables below reflect the published Form 138, Form 140, and Form 144 referenc
 | 272          | VENEZUELA                                         |
 | 273          | VIETNAM                                           |
 | 274          | VIRGIN ISLANDS, BRITISH                           |
-| 275          | VIRGIN ISLANDS, U.S.                              |
+| 275          | U.S. VIRGIN ISLANDS                               |
 | 276          | WAKE ISLAND                                       |
 | 277          | WALLIS AND FUTUNA                                 |
 | 278          | WESTERN SAHARA                                    |
@@ -644,27 +652,26 @@ The tables below reflect the published Form 138, Form 140, and Form 144 referenc
 
 ## Nature of remittances
 
+The following table lists `nature_of_remittance` values and their codes for Form 144.
+
 | Code | nature_of_remittance (to be passed as below) |
 | ---- | ----------------------------------------- |
-| 01 | winnings_from_lottery_crossword_puzzle_card_game_gambling_or_betting |
-| 02 | winnings_from_online_games |
-| 03 | winnings_from_horse_race |
-| 04 | payments_to_non_resident_sportsmen_or_entertainer_sport_associations_or_institution |
-| 05 | interest_income |
-| 06 | dividend_income_referred_to_in_section_207_1_table_sl_no_1 |
-| 07 | dividend_income_referred_to_in_section_207_1_table_sl_no_2 |
-| 08 | income_from_renting_leasing_or_letting_out_real_estate_asset |
-| 09 | investment_income |
-| 10 | long_term_capital_gains_referred_to_in_section_214_table_sl_no_2_or_197_1 |
-| 11 | long_term_capital_gains_referred_to_in_section_198_exceeding_one_lakh_twenty_five_thousand_rupees |
-| 12 | long_term_capital_gains_referred_to_in_section_214_table_sl_no_1 |
-| 13 | short_term_capital_gains_referred_to_in_section_196 |
-| 14 | short_term_capital_gains_not_referred_to_in_section_196 |
-| 15 | commission |
-| 16 | fee_for_technical_services_or_included_services |
-| 17 | royalty |
-| 18 | cash_withdrawal |
-| 19 | other_income |
+| 16 | dividend_income_referred_to_in_section_207_1_table_sl_no_2 |
+| 21 | fees_for_technical_services_or_included_services_agreement_after_31_march_1976 |
+| 27 | interest_income |
+| 28 | investment_income |
+| 49 | royalty_agreement_after_31_march_1976 |
+| 66 | long_term_capital_gains_referred_to_in_section_214_table_sl_no_2 |
+| 67 | long_term_capital_gains_referred_to_in_section_197_1 |
+| 68 | long_term_capital_gains_other_than_those_specifically_listed_under_schedule_ii_sl_no_14_and_sl_no_17 |
+| 69 | long_term_capital_gains_referred_to_in_section_198_exceeding_one_lakh_twenty_five_thousand_rupees |
+| 70 | short_term_capital_gains_referred_to_in_section_196 |
+| 71 | long_term_capital_gains_from_transfer_of_units_referred_to_in_section_208 |
+| 72 | long_term_capital_gains_from_transfer_of_bonds_or_global_depository_receipts_referred_to_in_section_209 |
+| 73 | dividend_income_referred_to_in_section_207_1_table_sl_no_1 |
+| 74 | fees_for_technical_services_or_included_services_agreement_after_29_february_1964_before_1_april_1976 |
+| 75 | royalty_agreement_after_31_march_1961_before_1_april_1976 |
+| 99 | other_income |
 
 ## TIN-FC error codes and messages
 

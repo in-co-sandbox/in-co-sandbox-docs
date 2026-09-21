@@ -1,5 +1,7 @@
 ---
 title: "TDS annexures"
+description: "Request and response payloads, workbook structures, and TXT field handling for TDS APIs."
+keywords: [TDS API payloads, Form 138, Form 140, Form 144, Sheet JSON, TXT generation]
 ---
 
 Use this page to reference request and response payloads for TDS APIs.
@@ -354,6 +356,22 @@ TDS Reports workbook support now uses the Income-tax Act 2025 forms:
   TDS report jobs use `tax_year`. Form `138` currently supports `Q1` to `Q3` only.
 </Note>
 
+### TXT field handling
+
+TXT fields follow the rules for the selected form and payment section.
+
+| Output | Handling |
+| --- | --- |
+| Form 140 and Form 144 deduction rate | The rate is `total_tax_deducted * 100 / payment_amount`, rounded to four decimal places. Section-specific zero-tax rules take precedence. |
+| Higher-deduction reason | The converter maps a supplied reason key to its code. A derived 20% rate alone does not insert reason `C`. |
+| Cash withdrawal, Forms 140 and 144 | Section `1065` uses `amount_of_cash_withdrawal_more_than_1_crore_under_section_393_3` for DD22. Section `1064` uses `amount_of_cash_withdrawal_more_than_3_crore_for_cooperative_societies_under_section_393_3` for DD23. Other sections leave both fields blank. Supplied values use two decimal places. Null produces a blank field, and zero produces `0.00`. |
+| Form 140 zero-tax sections | Sections `1034`, `1038`, `1059`, and `1061` emit zero tax deducted, zero tax deposited, a blank deduction date, and a zero rate. |
+| Form 144 in-kind winnings | Sections `1059` and `1061` emit zero tax deducted, zero tax deposited, a blank deduction date, and a zero rate. Their payment tax is excluded from CD21 and CD22. The supplied challan components and deposit totals are retained. |
+
+### Does generating a TXT file verify the tax due?
+
+No. TDS Reports validates individual fields and generates the TXT file. It does not check tax liability, payment timeliness, or whether a deduction reason applies to a section. The [FVU generation API](/api-reference/tds/compliance/generate-fvu/endpoints/submit_job) provides separate file validation.
+
 <SubsectionSpacingWithDivider />
 
 ### Form 138
@@ -439,7 +457,7 @@ TDS Reports workbook support now uses the Income-tax Act 2025 forms:
 - `payer_sheet / responsible_person_list`: `name`, `designation`, `pan`, `flat_door_block_number`, `post_office`, `road_street_block_sector`, `area_locality`, `district`, `state`, `postal_code`, `email`, `country`, `contact_country_code`, `contact_number`
 - `payee_sheet / payee_table`: `sr_no`, `pan`, `name`, `opting_out_of_taxation_regime_under_section_202_1`, `country`, `address_in_country_of_residence`, `email`, `isd_code`, `mobile`, `tax_identification_number`
 - `challan_sheet / challan_table`: `bank_challan_number_or_ddo_serial_number`, `bsr_code_or_form_24g_receipt_number`, `bank_challan_or_transfer_voucher_date_epoch`, `minor_head`, `mode_of_payment`, `nil_challan_indicator`, `total_tax_deducted`, `total_interest`, `total_fee`, `total_penalty`, `total_tax_deposited`
-- `payment_sheet / payment_table`: `payee_sr_no`, `bank_challan_number_or_ddo_serial_number`, `bsr_code_or_form_24g_receipt_number`, `nature_of_payment`, `nature_of_remittance`, `payment_amount`, `payment_date_epoch`, `total_tax_deducted`, `deduction_date_epoch`, `total_tax_deposited`, `grossed_up_under_section_393_10`, `applicability_of_tds_rate_under_dtaa`, `unique_identification_number_form_121`, `reason_for_lower_deduction`, `certificate_number`, `amount_of_cash_withdrawal_more_than_1_crore_under_section_393_3`, `amount_of_cash_withdrawal_more_than_3_crore_for_cooperative_societies_under_section_393_3`
+- `payment_sheet / payment_table`: `payee_sr_no`, `bank_challan_number_or_ddo_serial_number`, `bsr_code_or_form_24g_receipt_number`, `nature_of_payment`, `nature_of_remittance`, `payment_amount`, `payment_date_epoch`, `total_tax_deducted`, `deduction_date_epoch`, `total_tax_deposited`, `grossed_up_under_section_393_10`, `applicability_of_tds_rate_under_dtaa`, `unique_acknowledgement_number_form_15ca`, `reason_for_lower_deduction`, `certificate_number`, `amount_of_cash_withdrawal_more_than_1_crore_under_section_393_3`, `amount_of_cash_withdrawal_more_than_3_crore_for_cooperative_societies_under_section_393_3`
 
 ### Potential notice report
 
