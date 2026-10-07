@@ -4,6 +4,22 @@ description: "Changelog for Sandbox APIs"
 rss: "true"
 ---
 
+<Update label="October 7th, 2026" tags={["Improvements"]}>
+  ## **TDS Calculator: Bulk non-salary TDS under the Income-tax Act, 2025**
+
+  The [Bulk non-salary TDS calculator API](/api-reference/tds/calculator/tds-calculator/endpoints/non_salary) now calculates TDS under the Income-tax Act, 2025 for payments credited or paid on or after 1 April 2026.
+
+  Send a workbook with one row per payment. For each payment, the response gives the section, section code, TDS rate, TDS amount and deposit due date, with the reason for any nil or higher TDS. You report payments to resident payees in Form 140 and payments to non-resident payees in Form 144.
+
+  **Key behaviour**
+
+  - Each row carries `year_to_date_payment_amount`, the amount you credited or paid to the payee earlier in the tax year. The calculator uses it only to check the threshold and never deducts TDS on it.
+  - The calculator works out each row on its own, so rows in one request don't add up toward a threshold.
+  - A non-resident payee's TDS rate includes 4% health and education cess.
+  - An inoperative PAN takes the higher TDS rate of section 397(2)(b)(i), and the response gives the reason in `reason_for_lower_deduction`.
+  - The [nature of payment](/api-reference/tds/annexures/tds_annexures#nature-of-payment) annexure lists the values for resident and non-resident payees.
+</Update>
+
 <Update label="August 30th, 2026" tags={["Feature"]}>
   ## **GST Compliance – E-Way Bill PDF APIs**
 
