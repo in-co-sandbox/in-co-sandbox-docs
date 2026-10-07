@@ -225,23 +225,132 @@ Use this page to reference request and response payloads for TDS APIs.
 
 ### Non-Salary Payments
 
-| Key                 | Type    | Description                                                                                                                                | Example             |
-| :------------------ | :------ | :----------------------------------------------------------------------------------------------------------------------------------------- | :------------------ |
-| deductee_type       | string  | Type of Deductee                                                                                                                           | company             |
-| is_pan_available    | boolean | Returns PAN status                                                                                                                         | false               |
-| is_206ab_applicable | boolean | Returns 206AB status                                                                                                                       | false               |
-| is_pan_operative    | boolean | Returns PAN operative                                                                                                                      | false               |
-| residential_status  | string  | Residential Status of the deductee                                                                                                         | resident            |
-| section             | string  | Section under which the tax is to be deducted                                                                                              | 194C                |
-| code                | string  | Code under which the tax is to be deducted                                                                                                 | 94C                 |
-| category            | string  | Category under which tax is to be deducted                                                                                                 | contractual_payment |
-| nature_of_payment   | string  | The kind of payment being made. View applicable [Nature of Payments](https://developer.sandbox.co.in/api-reference/tds/annexures/master_data#form-140) | tender_fees         |
-| credit_amount       | number  | Payment amount (in INR)                                                                                                                    | 90500               |
-| credit_date         | number  | Date of payment in EPOCH Timestamp                                                                                                         | 1685577600000       |
-| deduction_rate      | number  | Applicable TDS rate                                                                                                                        | 20                  |
-| threshold_amount    | number  | The threshold amount after which TDS is applicable                                                                                         | 100000              |
-| due_date            | number  | Due date of depositing TDS in EPOCH Timestamp                                                                                              | 1688688000000       |
-| deduction_amount    | number  | TDS amount to be deducted                                                                                                                  | 0                   |
+Each row of `payment_table` in the request takes these columns, in this order.
+
+| Key | Type | Description | Example |
+| :-- | :--- | :---------- | :------ |
+| payment_id | string | Your identifier for the payment, unique within the request | P-001 |
+| payee_type | string | Legal status of the payee, shown by the 4th character of its PAN. Possible values: <br />`individual`, `huf`, `company`, `firm`, `association_of_persons`, `body_of_individuals`, `trust`, `local_authority`, `artificial_judicial_person` | individual |
+| residential_status | string | Residential status of the payee for the tax year. Possible values: <br />`resident`, `non_resident` | resident |
+| nature_of_payment | string | What the payment is for. View applicable [nature of payment](#nature-of-payment) values | professional_services |
+| payment_amount | number | Amount credited or paid (in INR) | 30000 |
+| year_to_date_payment_amount | number | Amount credited or paid to the payee earlier in the tax year for the natures of payment that share this payment's threshold. Natures of payment that return the same `section` share a threshold. `0` for the payee's first payment | 0 |
+| credit_or_payment_date_epoch | number | Earlier of the credit date and the payment date in EPOCH milliseconds, on or after 1 April 2026 | 1775759400000 |
+| pan_status | string | Status of the payee's PAN on the credit or payment date. Possible values: <br />`operative`, `inoperative` | operative |
+
+#### Nature of payment
+
+A payee with `residential_status` `resident` takes these values:
+
+| nature_of_payment |
+| :---------------- |
+| `insurance_commission` |
+| `other_commissions` |
+| `equipment_rental_charges` |
+| `lease_and_rental_payment` |
+| `interest_from_bank_deposits` |
+| `interest_from_bank_deposits_for_senior_citizen` |
+| `other_interest` |
+| `advertisement_fee` |
+| `amc_charges` |
+| `bandwidth_charges` |
+| `cargo_handling_services_inspection_and_logistics_services` |
+| `charter_hire_charges_shipping` |
+| `clearing_and_forwarding_charges` |
+| `drilling` |
+| `fabrication_services` |
+| `freight_charges` |
+| `income_from_shipping_inland_waterways_or_air_transport` |
+| `installation_and_commissioning_services` |
+| `retention_fees` |
+| `sales_and_marketing_services` |
+| `sponsorship_fees` |
+| `telecasting_services` |
+| `tender_fees` |
+| `warranty_services` |
+| `architectural_services` |
+| `consulting_services` |
+| `designing_fee` |
+| `engineering_services` |
+| `licensing_fee` |
+| `payments_to_sports_person_and_artists` |
+| `payments_to_students_or_business_apprentice` |
+| `processing_charges_paid_to_others` |
+| `professional_services` |
+| `r_&_d_charges` |
+| `retainership_fees` |
+| `subscription_fees_other_than_membership_fees_or_sale_of_goods` |
+| `supervision_charges` |
+| `training` |
+| `fees_for_technical_service` |
+| `seismic_data_processing` |
+| `testing_charges` |
+| `royalty` |
+| `directors_fees` |
+| `dividend` |
+| `payment_of_certain_sums_for_purchase_of_goods` |
+| `purchase_of_software` |
+| `software_licences` |
+| `payment_for_e-commerce_transactions` |
+| `payment_for_transfer_of_virtual_digital_assets` |
+| `payment_for_transfer_of_virtual_digital_asset_where_payment_is_in_kind_or_in_exchange_of_another_virtual_digital_asset_and_tax_required_to_be_deducted_is_paid_before_such_payment_is_released` |
+| `payment_of_accumulated_balance_of_provident_fund` |
+| `payment_for_development_agreement` |
+| `payment_for_compulsory_acquisition_of_immovable_properties` |
+| `dividend_from_mutual_funds` |
+| `interest_payment_from_units_of_a_business_trust` |
+| `dividend_payment_from_units_of_a_business_trust` |
+| `rental_income_from_units_of_a_real_estate_investment_trust` |
+| `income_in_respect_of_units_of_investment_fund` |
+| `income_in_respect_of_investment_in_securitization_trust` |
+| `interest_on_securities` |
+| `interest_on_debentures_paid_by_cheque` |
+| `prequisites_or_benefits_allowed_to_distributors_or_agents` |
+| `benefits_or_perquisites_of_business_or_profession_where_such_benefit_is_provided_in_kind_or_where_part_in_cash_is_not_sufficient_to_meet_tax_liability_and_tax_required_to_be_deducted_is_paid_before_such_benefit_is_released` |
+| `winning_from_lotteries_crossword_puzzles_card_games_and_other_games_of_any_sort` |
+| `winnings_from_lottery_and_other_games_of_any_sort_where_winnings_are_made_in_kind_or_cash_is_not_sufficient_to_meet_the_tax_liability_and_tax_has_been_paid_before_said_winnings_are_released` |
+| `winning_from_horse_races` |
+| `commission_on_sale_of_lottery_tickets` |
+| `withdrawal_from_nss_deposit` |
+| `payment_of_salary_remuneration_commission_bonus_or_interest_to_a_partner_of_the_firm` |
+
+A payee with `residential_status` `non_resident` takes these values:
+
+| nature_of_payment |
+| :---------------- |
+| `fees_for_technical_service` |
+| `royalty` |
+| `dividend` |
+| `payment_of_accumulated_balance_of_provident_fund` |
+| `dividend_from_mutual_funds` |
+| `interest_payment_from_units_of_a_business_trust` |
+| `dividend_payment_from_units_of_a_business_trust` |
+| `rental_income_from_units_of_a_real_estate_investment_trust` |
+| `income_in_respect_of_units_of_investment_fund` |
+| `income_in_respect_of_investment_in_securitization_trust` |
+| `winning_from_lotteries_crossword_puzzles_card_games_and_other_games_of_any_sort` |
+| `winnings_from_lottery_and_other_games_of_any_sort_where_winnings_are_made_in_kind_or_cash_is_not_sufficient_to_meet_the_tax_liability_and_tax_has_been_paid_before_said_winnings_are_released` |
+| `winning_from_horse_races` |
+| `commission_on_sale_of_lottery_tickets` |
+| `withdrawal_from_nss_deposit` |
+| `payment_of_salary_remuneration_commission_bonus_or_interest_to_a_partner_of_the_firm` |
+| `income_of_non_resident_sportsmen_or_entertainers` |
+| `interest_on_approved_foreign_currency_loans_or_long_term_bonds_before_1_july_2023` |
+| `interest_on_rupee_denominated_bonds_before_1_july_2023` |
+| `interest_on_bonds_listed_in_ifsc_issued_before_1_july_2023` |
+| `interest_on_bonds_listed_in_ifsc_issued_on_or_after_1_july_2023` |
+| `interest_from_infrastructure_debt_fund` |
+| `income_from_units_of_offshore_fund` |
+| `long_term_capital_gains_from_units_of_offshore_fund` |
+| `interest_or_dividend_on_foreign_currency_bonds_or_gdrs` |
+| `long_term_capital_gains_from_foreign_currency_bonds_or_gdrs` |
+| `income_of_foreign_institutional_investors_from_securities` |
+| `income_of_specified_fund_from_securities` |
+| `interest_on_moneys_borrowed_in_foreign_currency` |
+| `long_term_capital_gains` |
+| `short_term_capital_gains_on_listed_equity` |
+| `investment_income_of_non_resident_indian` |
+| `any_other_sum_payable_to_non_resident` |
 
 ### TCS Payments
 
