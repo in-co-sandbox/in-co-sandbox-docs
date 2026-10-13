@@ -5298,6 +5298,7 @@
                 "examples": {
                   "Challan found": {
                     "summary": "Challan found",
+                    "description": "Fictional example data.",
                     "value": {
                       "code": 200,
                       "timestamp": 1791829800000,
@@ -5361,6 +5362,7 @@
                 "examples": {
                   "Incorrect TRACES credentials": {
                     "summary": "Incorrect TRACES credentials",
+                    "description": "Fictional example data.",
                     "value": {
                       "code": 401,
                       "timestamp": 1791829800000,
@@ -5411,6 +5413,7 @@
                 "examples": {
                   "TRACES login unavailable": {
                     "summary": "TRACES login unavailable",
+                    "description": "Fictional example data.",
                     "value": {
                       "code": 500,
                       "timestamp": 1791829800000,
@@ -5448,6 +5451,7 @@
                 "examples": {
                   "TRACES credentials not stored": {
                     "summary": "TRACES credentials not stored",
+                    "description": "Fictional example data.",
                     "value": {
                       "code": 521,
                       "timestamp": 1791829800000,
@@ -5466,7 +5470,12 @@
         "security": [],
         "x-apidog-folder": "TRACES/Challans",
         "x-apidog-status": "released",
-        "x-run-in-apidog": "https://app.apidog.com/web/project/1186657/apis/api-45162941-run"
+        "x-run-in-apidog": "https://app.apidog.com/web/project/1186657/apis/api-45162941-run",
+        "servers": [
+          {
+            "url": "https://api.sandbox.co.in"
+          }
+        ]
       }
     },
     "/tds/compliance/traces/deductors/challans/search": {
@@ -5529,6 +5538,28 @@
                     "page_size": 10
                   },
                   "summary": "Challans found within the date range"
+                },
+                "No challans found within date range": {
+                  "value": {
+                    "@entity": "in.co.sandbox.tds.compliance.challan.search",
+                    "tan": "AHMA12345A",
+                    "from_date_epoch": 1785522600000,
+                    "to_date_epoch": 1788114600000,
+                    "page_number": 0,
+                    "page_size": 10
+                  },
+                  "summary": "No challans found within date range"
+                },
+                "Challans found on the next page": {
+                  "value": {
+                    "@entity": "in.co.sandbox.tds.compliance.challan.search",
+                    "tan": "AHMA12345A",
+                    "from_date_epoch": 1788201000000,
+                    "to_date_epoch": 1790706600000,
+                    "page_number": 1,
+                    "page_size": 1
+                  },
+                  "summary": "Challans found on the next page"
                 }
               }
             }
@@ -5578,6 +5609,7 @@
                 "examples": {
                   "Challans found within the date range": {
                     "summary": "Challans found within the date range",
+                    "description": "Fictional example data.",
                     "value": {
                       "code": 200,
                       "timestamp": 1791829800000,
@@ -5615,6 +5647,64 @@
                         ],
                         "totalPages": 1,
                         "totalElements": 1
+                      }
+                    }
+                  },
+                  "No challans found within date range": {
+                    "summary": "No challans found within date range",
+                    "description": "Fictional example data.",
+                    "value": {
+                      "code": 200,
+                      "timestamp": 1791829800000,
+                      "transaction_id": "87c1b4f6-1632-4d8b-a2f9-05f291c00a42",
+                      "data": {
+                        "@entity": "in.co.sandbox.tds.compliance.challan.search.response",
+                        "data": [],
+                        "totalPages": 0,
+                        "totalElements": 0
+                      }
+                    }
+                  },
+                  "Challans found on the next page": {
+                    "summary": "Challans found on the next page",
+                    "description": "Fictional example data.",
+                    "value": {
+                      "code": 200,
+                      "timestamp": 1791829800000,
+                      "transaction_id": "87c1b4f6-1632-4d8b-a2f9-05f291c00a42",
+                      "data": {
+                        "@entity": "in.co.sandbox.tds.compliance.challan.search.response",
+                        "data": [
+                          {
+                            "@entity": "in.co.sandbox.tds.compliance.challan.response",
+                            "tan": "AHMA12345A",
+                            "bsr_code": "0123456",
+                            "challan_serial": "00043",
+                            "paid_date_epoch": 1789497000000,
+                            "challan_identification_number": "01234561609202600043",
+                            "receipt_number": "9000000002",
+                            "financial_year": "FY 2026-27",
+                            "major_head": "0021",
+                            "minor_head": "200",
+                            "total_amount": 2000,
+                            "status": "CLAIMED",
+                            "section_code": "94D",
+                            "residency_status": "R",
+                            "tax_breakdown": [
+                              {
+                                "@entity": "in.co.sandbox.tds.compliance.challan.tax_breakdown",
+                                "section": "393(1) [Table: Sl. No. 1(i)]",
+                                "tax_amount": 2000,
+                                "surcharge": 0,
+                                "cess": 0,
+                                "total_amount": 2000
+                              }
+                            ],
+                            "consumption_details": null
+                          }
+                        ],
+                        "totalPages": 2,
+                        "totalElements": 2
                       }
                     }
                   }
@@ -5720,7 +5810,12 @@
         "security": [],
         "x-apidog-folder": "TRACES/Challans",
         "x-apidog-status": "released",
-        "x-run-in-apidog": "https://app.apidog.com/web/project/1186657/apis/api-45162942-run"
+        "x-run-in-apidog": "https://app.apidog.com/web/project/1186657/apis/api-45162942-run",
+        "servers": [
+          {
+            "url": "https://api.sandbox.co.in"
+          }
+        ]
       }
     }
   },
