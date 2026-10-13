@@ -1,7 +1,7 @@
 ---
 title: "TDS compliance API"
 sidebarTitle: "Overview"
-description: "Download CSI files, validate and e-file quarterly TDS and TCS returns, and generate certificates with Sandbox's compliance APIs."
+description: "Search TDS challans, download CSI files, validate and e-file quarterly TDS and TCS returns, and generate certificates with Sandbox's compliance APIs."
 keywords:
   - TDS compliance API
   - TDS return filing API
@@ -10,6 +10,8 @@ keywords:
   - TDS e-filing API
   - CSI download
   - TDS certificates
+  - TDS challan
+  - TDS challan API
   - quarterly returns
   - Form 138
   - Form 140
@@ -21,7 +23,7 @@ keywords:
   - Form 27EQ
 ---
 
-Use Sandbox's TDS compliance APIs to download CSI files, validate and e-file quarterly returns, and generate TDS and TCS certificates. Add these workflows to your payroll, accounting, or tax software.
+Use Sandbox's TDS compliance APIs to check TDS challans, download CSI files, validate and e-file quarterly returns, and generate TDS and TCS certificates. Add these workflows to your payroll, accounting, or tax software.
 
 <div id="choose-a-capability" />
 <div id="fvu-generation-and-e-filing" />
@@ -30,6 +32,9 @@ Use Sandbox's TDS compliance APIs to download CSI files, validate and e-file qua
 ## Key features
 
 <CardGroup cols={2}>
+  <Card title="TDS challan details" icon="file-invoice" href="/recipes/tds/challans/check-tds-challans">
+    Search challans by deposit date and check payment status and available consumption details from TRACES.
+  </Card>
   <Card title="CSI download" icon="download" href="/api-reference/tds/compliance/download-csi/endpoints/generate_otp">
     Download Challan Status Inquiry files for return validation.
   </Card>
@@ -96,6 +101,7 @@ Get your API key and access token from the [Quickstart guide](/guides/get-starte
 - [Return validation](/api-reference/tds/compliance/generate-fvu/endpoints/submit_job): A return text file and supporting files.
 - [E-filing](/api-reference/tds/compliance/e-file/endpoints/submit_job): An FVU file and Form 27A.
 - [Certificates](/api-reference/tds/compliance/certificates/overview#requirements): TRACES credentials and certificates available for the requested period.
+- [TDS challans](/recipes/tds/challans/check-tds-challans): TRACES credentials and a deposit date range or specific challan details.
 
 FVU generation, e-filing, and certificate generation run as background jobs. See the [job-based API workflow](/guides/developer-resources/job_based_apis#how-it-works) for uploads and completion checks.
 
@@ -123,6 +129,13 @@ Follow a guide to file a return or generate certificates.
 <div id="api-categories" />
 
 ## API reference
+
+### TDS challan APIs
+
+| API | Use it to |
+|:----|:----------|
+| [Fetch TDS challan details](/api-reference/tds/compliance/challans/endpoints/fetch_challan) | Check a challan using its payment details. |
+| [Search TDS challans](/api-reference/tds/compliance/challans/endpoints/search_challans) | Find challans for a TAN and deposit date range. |
 
 ### CSI download APIs
 
