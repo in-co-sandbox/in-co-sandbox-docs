@@ -45,7 +45,12 @@
 													"items": {
 														"type": "object",
 														"properties": {
-															"name": { "type": "string" },
+															"name": {
+																"type": "string",
+																"pattern": "^(?=.*[A-Za-z0-9])(?!.*\\^)[\\x20-\\x7E]{1,75}$",
+																"minLength": 1,
+																"maxLength": 75
+															},
 															"tan": { "type": "string" },
 															"pan": { "type": "string" },
 															"country": { "type": "string" },
@@ -66,7 +71,7 @@
 															"account_office_identification_number": { "type": ["string", "null"] },
 															"gstin": { "type": ["string", "null"] }
 														},
-														"additionalProperties": false
+														"additionalProperties": true
 													}
 												}
 											},
@@ -165,14 +170,24 @@
 														"type": "array",
 														"items": [
 															{ "type": "integer" },
-															{ "type": "string" },
-															{ "type": "string" },
+															{
+																"type": "string",
+																"pattern": "^(?:[A-Z]{3}[PCFTGHLABJ][A-Z][0-9]{4}[A-Z]|PANNOTAVBL|PANAPPLIED|PANINVALID)$",
+																"minLength": 10,
+																"maxLength": 10
+															},
+															{
+																"type": "string",
+																"pattern": "^(?!.*\\^)[\\x20-\\x7E]{1,75}$",
+																"minLength": 1,
+																"maxLength": 75
+															},
 															{ "type": "boolean" },
 															{ "type": "string" },
 															{ "type": ["string", "null"] },
 															{ "type": ["string", "null"] },
-															{ "type": ["number", "null"] },
-															{ "type": ["number", "null"] },
+															{ "type": ["string", "null"] },
+															{ "type": ["string", "null"] },
 															{ "type": ["string", "null"] }
 														],
 														"additionalItems": false,
@@ -306,7 +321,7 @@
 														{ "type": "string", "enum": ["total_tax_deposited"] },
 														{ "type": "string", "enum": ["grossed_up_under_section_393_10"] },
 														{ "type": "string", "enum": ["applicability_of_tds_rate_under_dtaa"] },
-														{ "type": "string", "enum": ["unique_identification_number_form_121"] },
+														{ "type": "string", "enum": ["unique_acknowledgement_number_form_15ca"] },
 														{ "type": "string", "enum": ["reason_for_lower_deduction"] },
 														{ "type": "string", "enum": ["certificate_number"] },
 														{ "type": "string", "enum": ["amount_of_cash_withdrawal_more_than_1_crore_under_section_393_3"] },
@@ -325,8 +340,8 @@
 															{ "type": ["string", "null"] },
 															{ "type": ["string", "null"] },
 															{ "type": "string" },
-															{ "type": "string" },
-															{ "type": "number" },
+															{ "type": ["string", "null"] },
+															{ "type": "number", "maximum": 999999999999.99 },
 															{ "type": "integer" },
 															{ "type": "number" },
 															{ "type": ["integer", "null"] },

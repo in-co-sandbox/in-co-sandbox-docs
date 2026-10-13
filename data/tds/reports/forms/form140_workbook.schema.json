@@ -69,7 +69,9 @@
                               },
                               "name": {
                                 "type": "string",
-                                "pattern": "^(?![. ]+$)[^~!@#$%^&*()_+,/?;:’”[\\]{}\\\\]+$",
+                                "pattern": "^(?=.*[A-Za-z0-9])(?!.*\\^)[\\x20-\\x7E]{1,75}$",
+                                "minLength": 1,
+                                "maxLength": 75,
                                 "description": "Name of the Deductor"
                               },
                               "street": {
@@ -163,7 +165,7 @@
                                 "description": "Deductor category from Annexure 4."
                               }
                             },
-                            "additionalProperties": false
+                            "additionalProperties": true
                           }
                         }
                       },
@@ -379,11 +381,16 @@
                               },
                               {
                                 "type": "string",
-                                "pattern": "[A-Z]{3}[PCFTGHLABJ]{1}[A-Z]{1}[0-9]{4}[A-Z]{1}",
+                                "pattern": "^(?:[A-Z]{3}[PCFTGHLABJ][A-Z][0-9]{4}[A-Z]|PANNOTAVBL|PANAPPLIED|PANINVALID)$",
+                                "minLength": 10,
+                                "maxLength": 10,
                                 "description": "PAN of the Payee. Allow \"PANNOTAVBL\", \"PANAPPLIED\", \"PANINVALID\""
                               },
                               {
                                 "type": "string",
+                                "pattern": "^(?!.*\\^)[\\x20-\\x7E]{1,75}$",
+                                "minLength": 1,
+                                "maxLength": 75,
                                 "description": "Name of the Payee"
                               }
                             ],
@@ -516,7 +523,7 @@
                                 "description": "BSR Code on the Challan"
                               },
                               {
-                                "type": "long",
+                                "type": "integer",
                                 "description": "Date at which Challan was paid to the government"
                               },
                               {
@@ -786,6 +793,7 @@
                                   "training",
                                   "interest_payment_from_units_of_a_business_trust",
                                   "dividend_payment_from_units_of_a_business_trust",
+                                  "rental_income_from_units_of_a_real_estate_investment_trust",
                                   "payment_for_e-commerce_transactions",
                                   "payment_of_certain_sums_for_purchase_of_goods",
                                   "payment_for_transfer_of_virtual_digital_assets",
@@ -802,11 +810,11 @@
                               },
                               {
                                 "type": "number",
-                                "maximum": 1000000000000000,
+                                "maximum": 999999999999.99,
                                 "description": "The Payment amount made to the Payee"
                               },
                               {
-                                "type": "long",
+                                "type": "integer",
                                 "description": "Date of Payment"
                               },
                               {
@@ -820,7 +828,7 @@
                                 "description": "Total tax deposited for the payment amount"
                               },
                               {
-                                "type": "long",
+                                "type": "integer",
                                 "description": "Date at which the Deduction took place"
                               },
                               {
@@ -841,7 +849,8 @@
                                   "no_deduction_is_in_view_of_tax_being_deductible_or_collectible_under_any_provision_of_the_act_for_transaction_referred_in_section_393_1_table_sl_no_8_ii_note_1_a",
                                   "in_case_of_no_deduction_is_on_account_of_deductee_payee_being_transporter_and_valid_pan_is_provided",
                                   "no_deduction_on_account_of_payment_being_below_threshold_limit_as_specified_in_the_act",
-                                  "no_deduction_or_lower_deduction_on_account_of_notification_issued_u_s_400_1"
+                                  "no_deduction_or_lower_deduction_on_account_of_notification_issued_u_s_400_1",
+                                  null
                                 ],
                                 "description": "Reason for Lower Deduction of TDS Amount than the prescribed rate in force"
                               },
