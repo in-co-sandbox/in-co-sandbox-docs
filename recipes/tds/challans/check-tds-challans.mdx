@@ -1,0 +1,100 @@
+---
+title: "TDS challan API: search and check challan details"
+sidebarTitle: "Check TDS challans"
+description: "Search TDS challans by deposit date and fetch challan details from TRACES. Follow cURL examples to add credentials and read status and consumption details."
+keywords:
+  - TDS challan
+  - TDS challan API
+  - TDS challan status
+  - TDS challan search
+  - TRACES challan details
+  - challan consumption details
+---
+
+Use Sandbox's TDS challan API to find challans for a TAN and check their payment status, tax breakdown, and available consumption details. [TRACES supports challan status searches by deposit date or challan particulars](https://traces61contents.tdscpc.gov.in/en/faq-dedu-challan-status.html).
+
+## Before you start
+
+- Obtain a Sandbox access token using the [Quickstart guide](/guides/get-started/quickstart).
+- Keep the TAN and its TRACES password ready.
+- Choose the deposit date range to search. For a specific challan, keep its BSR code, deposit date, and serial number ready.
+
+The examples use fictional challan data. Replace the sample TAN and payment details with your own values. Use the same TAN as the saved credentials.
+
+## Search and check TDS challans
+
+<Steps>
+  <Step title="Add the TRACES credentials" titleSize="h3">
+    Add the TAN and its password with the [Add TRACES credentials](/api-reference/tds/compliance/traces-credentials/endpoints/save_credential) endpoint.
+
+    ```bash
+    curl --request POST \
+      --url https://api.sandbox.co.in/tds/traces/deductors/credential \
+      --header 'Authorization: {sandbox-access-token}' \
+      --header 'Content-Type: application/json' \
+      --header 'x-api-key: {sandbox-api-key}' \
+      --data '{
+		"@entity": "in.co.sandbox.tds.traces.deductor.credential.request",
+		"tan": "AHMA12345A",
+		"password": "{traces-password}"
+      }'
+    ```
+
+    Use the same Sandbox workspace for credential setup and challan requests. Skip this step if valid credentials are already saved for the TAN. To replace saved credentials, [delete the credentials](/api-reference/tds/compliance/traces-credentials/endpoints/delete_credential), then add the new password.
+  </Step>
+
+  <Step title="Search by deposit date" titleSize="h3">
+    Call [Search TDS challans](/api-reference/tds/compliance/challans/endpoints/search_challans) with the TAN and the deposit date range. This example searches July 2026.
+
+    ```bash
+    curl --request POST \
+      --url https://api.sandbox.co.in/tds/compliance/traces/deductors/challans/search \
+      --header 'Authorization: {sandbox-access-token}' \
+      --header 'Content-Type: application/json' \
+      --header 'x-api-key: {sandbox-api-key}' \
+      --data '{
+		"@entity": "in.co.sandbox.tds.compliance.challan.search",
+		"tan": "AHMA12345A",
+		"from_date_epoch": 1782844200000,
+		"to_date_epoch": 1785436200000,
+		"page_number": 0,
+		"page_size": 10
+      }'
+    ```
+
+    Send deposit dates as Unix timestamps in milliseconds. The API interprets their calendar dates in Asia/Kolkata. `from_date_epoch` and `to_date_epoch` are required.
+
+    Read the challans in `data.data`. The response includes `data.totalPages` and `data.totalElements`. To request another page, increase `page_number`, starting at `0`. `page_number` and `page_size` are optional.
+
+    A search with no matching challans returns HTTP `200` with an empty `data.data` list.
+  </Step>
+
+  <Step title="Fetch a specific challan" titleSize="h3">
+    Call [Fetch TDS challan details](/api-reference/tds/compliance/challans/endpoints/fetch_challan) with the payment details from a search result or your challan record. You can skip the search when you already have these details.
+
+    ```bash
+    curl --request POST \
+      --url https://api.sandbox.co.in/tds/compliance/traces/deductors/challans \
+      --header 'Authorization: {sandbox-access-token}' \
+      --header 'Content-Type: application/json' \
+      --header 'x-api-key: {sandbox-api-key}' \
+      --data '{
+		"@entity": "in.co.sandbox.tds.compliance.challan.request",
+		"tan": "AHMA12345A",
+		"bsr_code": "0123456",
+		"challan_serial": "00123",
+		"paid_date_epoch": 1784226600000
+      }'
+    ```
+
+    Send the BSR code and challan serial number as strings to preserve leading zeros. The example deposit date is 17 July 2026 in Asia/Kolkata.
+
+    Read `data.status` and `data.tax_breakdown` from the response. When `data.consumption_details` is present, use its claimed and available amounts to review utilization. A `null` value means consumption details are unavailable.
+  </Step>
+</Steps>
+
+## Resolve request errors
+
+If a challan request returns HTTP `521` with `Credentials not found`, [add the TRACES credentials](/api-reference/tds/compliance/traces-credentials/endpoints/save_credential) for the TAN in your current Sandbox workspace, then retry.
+
+A specific challan lookup returns HTTP `521` with `Challan not found` when no challan matches the supplied details. Check the TAN, BSR code, serial number, and deposit date before retrying. See the [API error guide](/guides/developer-resources/errors) for other errors.

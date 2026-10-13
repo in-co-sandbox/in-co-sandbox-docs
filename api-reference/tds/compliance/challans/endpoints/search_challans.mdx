@@ -1,0 +1,18 @@
+---
+title: "Search TDS challans"
+description: "Search TDS challans on TRACES for a TAN and deposit date range. Use optional pagination to retrieve the matching challan records."
+keywords:
+  - TDS challan
+  - TDS challan search
+  - TDS challan API
+  - TRACES challan status
+openapi: '/api-reference/tds/compliance/openapi.json POST /tds/compliance/traces/deductors/challans/search'
+---
+
+<Note>
+Before you search TDS challans, [add the TRACES credentials](/api-reference/tds/compliance/traces-credentials/endpoints/save_credential) for the TAN. If the credentials already exist, you do not need to add them again.
+</Note>
+
+To look up a challan with its payment details, use [Fetch TDS challan details](/api-reference/tds/compliance/challans/endpoints/fetch_challan).
+
+See [Check TDS challans](/recipes/tds/challans/check-tds-challans) for credential setup and cURL examples.
