@@ -64,7 +64,7 @@ The examples use fictional challan data. Replace the sample TAN and payment deta
 
     Send deposit dates as Unix timestamps in milliseconds. The API interprets their calendar dates in Asia/Kolkata. `from_date_epoch` and `to_date_epoch` are required.
 
-    Read the challans in `data.data`. The response includes `data.totalPages` and `data.totalElements`. To request another page, increase `page_number`, starting at `0`. `page_number` and `page_size` are optional.
+    Read the challans in `data.data`. The response includes `data.totalPages` and `data.totalElements`. To request another page, increase `page_number`, starting at `0`. Keep the date range and `page_size` the same across pages. Stop when `page_number` reaches `data.totalPages - 1`. `page_number` and `page_size` are optional.
 
     A search with no matching challans returns HTTP `200` with an empty `data.data` list.
   </Step>
@@ -96,5 +96,9 @@ The examples use fictional challan data. Replace the sample TAN and payment deta
 ## Resolve request errors
 
 If a challan request returns HTTP `521` with `Credentials not found`, [add the TRACES credentials](/api-reference/tds/compliance/traces-credentials/endpoints/save_credential) for the TAN in your current Sandbox workspace, then retry.
+
+If a challan request returns HTTP `401` with `Invalid credentials`, check the TAN and TRACES password. To replace the password, [delete the saved credentials](/api-reference/tds/compliance/traces-credentials/endpoints/delete_credential), then add the correct credentials.
+
+If a challan request returns HTTP `500` with `Failed to log in to TRACES`, retry after some time.
 
 A specific challan lookup returns HTTP `521` with `Challan not found` when no challan matches the supplied details. Check the TAN, BSR code, serial number, and deposit date before retrying. See the [API error guide](/guides/developer-resources/errors) for other errors.
