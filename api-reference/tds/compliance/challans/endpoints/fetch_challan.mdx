@@ -16,3 +16,124 @@ Before you fetch TDS challan details, [add the TRACES credentials](/api-referenc
 To find challans by deposit date, use [Search TDS challans](/api-reference/tds/compliance/challans/endpoints/search_challans).
 
 See [Check TDS challans](/recipes/tds/challans/check-tds-challans) for credential setup and cURL examples.
+
+## Examples
+
+Select a case to view its request body and matching response. These examples use fictional challan data.
+
+<Tabs>
+	<Tab title="Challan found">
+		The challan matches the supplied payment details.
+
+		```json Request body
+		{
+		  "@entity": "in.co.sandbox.tds.compliance.challan.request",
+		  "tan": "AHMA12345A",
+		  "bsr_code": "0123456",
+		  "challan_serial": "00042",
+		  "paid_date_epoch": 1784053800000
+		}
+		```
+
+		```json Response (200)
+		{
+		  "code": 200,
+		  "timestamp": 1791829800000,
+		  "transaction_id": "87c1b4f6-1632-4d8b-a2f9-05f291c00a42",
+		  "data": {
+		    "@entity": "in.co.sandbox.tds.compliance.challan.response",
+		    "tan": "AHMA12345A",
+		    "bsr_code": "0123456",
+		    "challan_serial": "00042",
+		    "paid_date_epoch": 1784053800000,
+		    "challan_identification_number": "01234561507202600042",
+		    "receipt_number": "9000000001",
+		    "financial_year": "FY 2026-27",
+		    "major_head": "0021",
+		    "minor_head": "200",
+		    "total_amount": 1500,
+		    "status": "CLAIMED",
+		    "section_code": "94D",
+		    "residency_status": "R",
+		    "tax_breakdown": [
+		      {
+		        "@entity": "in.co.sandbox.tds.compliance.challan.tax_breakdown",
+		        "section": "393(1) [Table: Sl. No. 1(i)]",
+		        "tax_amount": 1500,
+		        "surcharge": 0,
+		        "cess": 0,
+		        "total_amount": 1500
+		      }
+		    ],
+		    "consumption_details": null
+		  }
+		}
+		```
+	</Tab>
+	<Tab title="TRACES credentials not stored">
+		No TRACES credentials are stored for the supplied TAN.
+
+		```json Request body
+		{
+		  "@entity": "in.co.sandbox.tds.compliance.challan.request",
+		  "tan": "AHMA12345A",
+		  "bsr_code": "0123456",
+		  "challan_serial": "00042",
+		  "paid_date_epoch": 1784053800000
+		}
+		```
+
+		```json Response (521)
+		{
+		  "code": 521,
+		  "timestamp": 1791829800000,
+		  "transaction_id": "87c1b4f6-1632-4d8b-a2f9-05f291c00a42",
+		  "message": "Credentials not found"
+		}
+		```
+	</Tab>
+	<Tab title="Incorrect TRACES credentials">
+		The stored TRACES credentials are incorrect.
+
+		```json Request body
+		{
+		  "@entity": "in.co.sandbox.tds.compliance.challan.request",
+		  "tan": "AHMA12345A",
+		  "bsr_code": "0123456",
+		  "challan_serial": "00042",
+		  "paid_date_epoch": 1784053800000
+		}
+		```
+
+		```json Response (401)
+		{
+		  "code": 401,
+		  "timestamp": 1791829800000,
+		  "transaction_id": "87c1b4f6-1632-4d8b-a2f9-05f291c00a42",
+		  "message": "Invalid credentials"
+		}
+		```
+	</Tab>
+	<Tab title="TRACES login unavailable">
+		TRACES login cannot be completed. Retry the request later.
+
+		```json Request body
+		{
+		  "@entity": "in.co.sandbox.tds.compliance.challan.request",
+		  "tan": "AHMA12345A",
+		  "bsr_code": "0123456",
+		  "challan_serial": "00042",
+		  "paid_date_epoch": 1784053800000
+		}
+		```
+
+		```json Response (500)
+		{
+		  "code": 500,
+		  "timestamp": 1791829800000,
+		  "transaction_id": "87c1b4f6-1632-4d8b-a2f9-05f291c00a42",
+		  "message": "Failed to log in to TRACES"
+		}
+		```
+	</Tab>
+</Tabs>

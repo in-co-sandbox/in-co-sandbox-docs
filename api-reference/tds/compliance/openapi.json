@@ -19,18 +19,6 @@
       "name": "E-File TDS Return"
     },
     {
-      "name": "TRACES"
-    },
-    {
-      "name": "TRACES/TDS Certificate"
-    },
-    {
-      "name": "TRACES/Credentials"
-    },
-    {
-      "name": "TRACES/Challans"
-    },
-    {
       "name": "TDS"
     },
     {
@@ -40,7 +28,13 @@
       "name": "TRACES Credentials"
     },
     {
+      "name": "TRACES"
+    },
+    {
       "name": "Challans"
+    },
+    {
+      "name": "PAN Verification"
     }
   ],
   "paths": {
@@ -113,14 +107,7 @@
                   "pan",
                   "consent",
                   "reason"
-                ],
-                "x-apidog-orders": [
-                  "@entity",
-                  "pan",
-                  "consent",
-                  "reason"
-                ],
-                "x-apidog-ignore-properties": []
+                ]
               },
               "examples": {
                 "200 Specified person": {
@@ -270,26 +257,9 @@
                         "pan_status": {
                           "type": "string"
                         }
-                      },
-                      "x-apidog-orders": [
-                        "@entity",
-                        "pan",
-                        "name",
-                        "pan_allotment_date",
-                        "financial_year",
-                        "specified_person_us_206ab_&_206cca",
-                        "pan_status"
-                      ],
-                      "x-apidog-ignore-properties": []
+                      }
                     }
-                  },
-                  "x-apidog-orders": [
-                    "code",
-                    "timestamp",
-                    "transaction_id",
-                    "data"
-                  ],
-                  "x-apidog-ignore-properties": []
+                  }
                 },
                 "examples": {
                   "200 Specified person": {
@@ -460,8 +430,7 @@
                 }
               }
             },
-            "headers": {},
-            "x-apidog-ordering": 0
+            "headers": {}
           },
           "422": {
             "description": "422 - Unprocessable Entity",
@@ -482,14 +451,7 @@
                     "message": {
                       "type": "string"
                     }
-                  },
-                  "x-apidog-orders": [
-                    "code",
-                    "timestamp",
-                    "transaction_id",
-                    "message"
-                  ],
-                  "x-apidog-ignore-properties": []
+                  }
                 },
                 "examples": {
                   "422 Invalid PAN pattern": {
@@ -504,14 +466,10 @@
                 }
               }
             },
-            "headers": {},
-            "x-apidog-ordering": 1
+            "headers": {}
           }
         },
-        "security": [],
-        "x-apidog-folder": "TDS Compliance Check",
-        "x-apidog-status": "released",
-        "x-run-in-apidog": "https://app.apidog.com/web/project/1186657/apis/api-34524273-run"
+        "security": []
       }
     },
     "/tds/compliance/csi/otp": {
@@ -601,17 +559,7 @@
                   "to",
                   "consent",
                   "reason"
-                ],
-                "x-apidog-orders": [
-                  "@entity",
-                  "tan",
-                  "mobile_number",
-                  "from",
-                  "to",
-                  "consent",
-                  "reason"
-                ],
-                "x-apidog-ignore-properties": []
+                ]
               },
               "examples": {
                 "200 - Success": {
@@ -706,29 +654,12 @@
                           "type": "string",
                           "description": "Result of the OTP request, including any application error."
                         }
-                      },
-                      "x-apidog-orders": [
-                        "@entity",
-                        "tan",
-                        "mobile_number",
-                        "from",
-                        "to",
-                        "reference_id",
-                        "message"
-                      ],
-                      "x-apidog-ignore-properties": []
+                      }
                     },
                     "code": {
                       "type": "integer"
                     }
-                  },
-                  "x-apidog-orders": [
-                    "timestamp",
-                    "transaction_id",
-                    "data",
-                    "code"
-                  ],
-                  "x-apidog-ignore-properties": []
+                  }
                 },
                 "examples": {
                   "200 - Success": {
@@ -775,8 +706,7 @@
                 }
               }
             },
-            "headers": {},
-            "x-apidog-ordering": 0
+            "headers": {}
           },
           "422": {
             "description": "422 - Unprocessable Entity",
@@ -797,14 +727,7 @@
                     "message": {
                       "type": "string"
                     }
-                  },
-                  "x-apidog-orders": [
-                    "code",
-                    "timestamp",
-                    "transaction_id",
-                    "message"
-                  ],
-                  "x-apidog-ignore-properties": []
+                  }
                 },
                 "examples": {
                   "422 - Unprocessable Entity": {
@@ -819,14 +742,10 @@
                 }
               }
             },
-            "headers": {},
-            "x-apidog-ordering": 1
+            "headers": {}
           }
         },
-        "security": [],
-        "x-apidog-folder": "Download CSI",
-        "x-apidog-status": "released",
-        "x-run-in-apidog": "https://app.apidog.com/web/project/1186657/apis/api-34524274-run"
+        "security": []
       }
     },
     "/tds/compliance/csi/otp/verify": {
@@ -894,13 +813,7 @@
                   "@entity",
                   "reference_id",
                   "otp"
-                ],
-                "x-apidog-orders": [
-                  "@entity",
-                  "reference_id",
-                  "otp"
-                ],
-                "x-apidog-ignore-properties": []
+                ]
               },
               "examples": {
                 "200 - Success": {
@@ -972,29 +885,12 @@
                           "type": "string",
                           "description": "Application error message when verification fails, such as an incorrect or expired OTP."
                         }
-                      },
-                      "x-apidog-orders": [
-                        "@entity",
-                        "tan",
-                        "from",
-                        "to",
-                        "reference_id",
-                        "csi_url",
-                        "message"
-                      ],
-                      "x-apidog-ignore-properties": []
+                      }
                     },
                     "code": {
                       "type": "integer"
                     }
-                  },
-                  "x-apidog-orders": [
-                    "timestamp",
-                    "transaction_id",
-                    "data",
-                    "code"
-                  ],
-                  "x-apidog-ignore-properties": []
+                  }
                 },
                 "examples": {
                   "200 - Success": {
@@ -1040,14 +936,10 @@
                 }
               }
             },
-            "headers": {},
-            "x-apidog-ordering": 0
+            "headers": {}
           }
         },
-        "security": [],
-        "x-apidog-folder": "Download CSI",
-        "x-apidog-status": "released",
-        "x-run-in-apidog": "https://app.apidog.com/web/project/1186657/apis/api-34524275-run"
+        "security": []
       }
     },
     "/tds/compliance/fvu/generate": {
@@ -1105,8 +997,10 @@
                   "tax_year": {
                     "description": "Tax Year (e.g. TY 2026-27)",
                     "type": "string",
-                    "pattern": "^TY [0-9]{4}-[0-9]{2}$",
-                    "example": "TY 2026-27"
+                    "examples": [
+                      "TY 2026-27"
+                    ],
+                    "pattern": "^TY [0-9]{4}-[0-9]{2}$"
                   },
                   "quarter": {
                     "enum": [
@@ -1116,7 +1010,9 @@
                       "Q4"
                     ],
                     "type": "string",
-                    "example": "Q1"
+                    "examples": [
+                      "Q1"
+                    ]
                   },
                   "form": {
                     "enum": [
@@ -1126,8 +1022,10 @@
                       "143"
                     ],
                     "type": "string",
-                    "description": "TDS/TCS return form. Use 138 for erstwhile 24Q, 140 for erstwhile 26Q, 144 for erstwhile 27Q, and 143 for erstwhile 27EQ.",
-                    "example": "140"
+                    "examples": [
+                      "140"
+                    ],
+                    "description": "TDS/TCS return form. Use 138 for erstwhile 24Q, 140 for erstwhile 26Q, 144 for erstwhile 27Q, and 143 for erstwhile 27EQ."
                   },
                   "tan": {
                     "description": "TAN of deductor/collector. Regular Expression: [A-Z]{4}[0-9]{5}[A-Z]{1}",
@@ -1141,7 +1039,9 @@
                       "correction"
                     ],
                     "type": "string",
-                    "example": "regular"
+                    "examples": [
+                      "regular"
+                    ]
                   }
                 },
                 "required": [
@@ -1151,16 +1051,7 @@
                   "form",
                   "quarter",
                   "filing_type"
-                ],
-                "x-apidog-orders": [
-                  "@entity",
-                  "tax_year",
-                  "quarter",
-                  "form",
-                  "tan",
-                  "filing_type"
-                ],
-                "x-apidog-ignore-properties": []
+                ]
               },
               "examples": {
                 "200 - Success": {
@@ -1222,8 +1113,10 @@
                         "tax_year": {
                           "type": "string",
                           "description": "Tax Year (e.g. TY 2026-27)",
-                          "pattern": "^TY [0-9]{4}-[0-9]{2}$",
-                          "example": "TY 2026-27"
+                          "examples": [
+                            "TY 2026-27"
+                          ],
+                          "pattern": "^TY [0-9]{4}-[0-9]{2}$"
                         },
                         "quarter": {
                           "type": "string"
@@ -1250,30 +1143,9 @@
                           "format": "uri",
                           "description": "Pre-signed URL for uploading the CSI file with HTTP PUT."
                         }
-                      },
-                      "x-apidog-orders": [
-                        "@entity",
-                        "job_id",
-                        "tan",
-                        "tax_year",
-                        "quarter",
-                        "form",
-                        "filing_type",
-                        "status",
-                        "created_at",
-                        "txt_file_upload_url",
-                        "csi_file_upload_url"
-                      ],
-                      "x-apidog-ignore-properties": []
+                      }
                     }
-                  },
-                  "x-apidog-orders": [
-                    "code",
-                    "timestamp",
-                    "transaction_id",
-                    "data"
-                  ],
-                  "x-apidog-ignore-properties": []
+                  }
                 },
                 "examples": {
                   "200 - Success": {
@@ -1322,14 +1194,10 @@
                 }
               }
             },
-            "headers": {},
-            "x-apidog-ordering": 0
+            "headers": {}
           }
         },
-        "security": [],
-        "x-apidog-folder": "FVU Generation",
-        "x-apidog-status": "released",
-        "x-run-in-apidog": "https://app.apidog.com/web/project/1186657/apis/api-34524276-run"
+        "security": []
       },
       "get": {
         "summary": "Get FVU generation job status",
@@ -1414,8 +1282,10 @@
                             "tax_year": {
                               "type": "string",
                               "description": "Tax Year (e.g. TY 2026-27)",
-                              "pattern": "^TY [0-9]{4}-[0-9]{2}$",
-                              "example": "TY 2026-27"
+                              "examples": [
+                                "TY 2026-27"
+                              ],
+                              "pattern": "^TY [0-9]{4}-[0-9]{2}$"
                             },
                             "quarter": {
                               "type": "string"
@@ -1435,29 +1305,9 @@
                             "updated_at": {
                               "type": "integer"
                             }
-                          },
-                          "x-apidog-orders": [
-                            "@entity",
-                            "job_id",
-                            "tan",
-                            "tax_year",
-                            "quarter",
-                            "form",
-                            "filing_type",
-                            "status",
-                            "created_at",
-                            "updated_at"
-                          ],
-                          "x-apidog-ignore-properties": []
+                          }
                         }
-                      },
-                      "x-apidog-orders": [
-                        "code",
-                        "timestamp",
-                        "transaction_id",
-                        "data"
-                      ],
-                      "x-apidog-ignore-properties": []
+                      }
                     },
                     {
                       "title": "Job Succeeded",
@@ -1488,8 +1338,10 @@
                             "tax_year": {
                               "type": "string",
                               "description": "Tax Year (e.g. TY 2026-27)",
-                              "pattern": "^TY [0-9]{4}-[0-9]{2}$",
-                              "example": "TY 2026-27"
+                              "examples": [
+                                "TY 2026-27"
+                              ],
+                              "pattern": "^TY [0-9]{4}-[0-9]{2}$"
                             },
                             "quarter": {
                               "type": "string"
@@ -1514,30 +1366,9 @@
                               "format": "uri",
                               "description": "Download URL for the FVU ZIP produced by a successful validation job."
                             }
-                          },
-                          "x-apidog-orders": [
-                            "@entity",
-                            "job_id",
-                            "tan",
-                            "tax_year",
-                            "quarter",
-                            "form",
-                            "filing_type",
-                            "status",
-                            "created_at",
-                            "updated_at",
-                            "fvu_zip_file_url"
-                          ],
-                          "x-apidog-ignore-properties": []
+                          }
                         }
-                      },
-                      "x-apidog-orders": [
-                        "code",
-                        "timestamp",
-                        "transaction_id",
-                        "data"
-                      ],
-                      "x-apidog-ignore-properties": []
+                      }
                     },
                     {
                       "title": "Job Failed",
@@ -1568,8 +1399,10 @@
                             "tax_year": {
                               "type": "string",
                               "description": "Tax Year (e.g. TY 2026-27)",
-                              "pattern": "^TY [0-9]{4}-[0-9]{2}$",
-                              "example": "TY 2026-27"
+                              "examples": [
+                                "TY 2026-27"
+                              ],
+                              "pattern": "^TY [0-9]{4}-[0-9]{2}$"
                             },
                             "quarter": {
                               "type": "string"
@@ -1594,30 +1427,9 @@
                               "format": "uri",
                               "description": "Download URL for the report describing input validation failures."
                             }
-                          },
-                          "x-apidog-orders": [
-                            "@entity",
-                            "job_id",
-                            "tan",
-                            "tax_year",
-                            "quarter",
-                            "form",
-                            "filing_type",
-                            "status",
-                            "created_at",
-                            "updated_at",
-                            "validation_report_file_url"
-                          ],
-                          "x-apidog-ignore-properties": []
+                          }
                         }
-                      },
-                      "x-apidog-orders": [
-                        "code",
-                        "timestamp",
-                        "transaction_id",
-                        "data"
-                      ],
-                      "x-apidog-ignore-properties": []
+                      }
                     }
                   ]
                 },
@@ -1727,8 +1539,7 @@
                 }
               }
             },
-            "headers": {},
-            "x-apidog-ordering": 0
+            "headers": {}
           },
           "521": {
             "description": "521 - Data Not Found",
@@ -1750,14 +1561,7 @@
                       "type": "string",
                       "description": "Reason for the job failure."
                     }
-                  },
-                  "x-apidog-orders": [
-                    "code",
-                    "timestamp",
-                    "transaction_id",
-                    "message"
-                  ],
-                  "x-apidog-ignore-properties": []
+                  }
                 },
                 "examples": {
                   "521 Data not found": {
@@ -1772,14 +1576,10 @@
                 }
               }
             },
-            "headers": {},
-            "x-apidog-ordering": 1
+            "headers": {}
           }
         },
-        "security": [],
-        "x-apidog-folder": "FVU Generation",
-        "x-apidog-status": "released",
-        "x-run-in-apidog": "https://app.apidog.com/web/project/1186657/apis/api-34524277-run"
+        "security": []
       }
     },
     "/tds/compliance/fvu/generate/search": {
@@ -1838,7 +1638,9 @@
                     "description": "Tax Year (e.g. TY 2026-27)",
                     "type": "string",
                     "pattern": "^TY [0-9]{4}-[0-9]{2}$",
-                    "example": "TY 2026-27"
+                    "examples": [
+                      "TY 2026-27"
+                    ]
                   },
                   "form": {
                     "description": "TDS return form",
@@ -1875,20 +1677,7 @@
                 },
                 "required": [
                   "@entity"
-                ],
-                "x-apidog-orders": [
-                  "@entity",
-                  "tax_year",
-                  "form",
-                  "quarter",
-                  "tan",
-                  "filing_type",
-                  "from_date",
-                  "to_date",
-                  "page_size",
-                  "last_evaluated_key"
-                ],
-                "x-apidog-ignore-properties": []
+                ]
               },
               "examples": {
                 "Search by TAN and tax period": {
@@ -1950,8 +1739,10 @@
                               "tax_year": {
                                 "type": "string",
                                 "description": "Tax Year (e.g. TY 2026-27)",
-                                "pattern": "^TY [0-9]{4}-[0-9]{2}$",
-                                "example": "TY 2026-27"
+                                "examples": [
+                                  "TY 2026-27"
+                                ],
+                                "pattern": "^TY [0-9]{4}-[0-9]{2}$"
                               },
                               "quarter": {
                                 "type": "string"
@@ -1965,39 +1756,15 @@
                               "status": {
                                 "type": "string"
                               }
-                            },
-                            "x-apidog-orders": [
-                              "created_at",
-                              "@entity",
-                              "job_id",
-                              "tan",
-                              "tax_year",
-                              "quarter",
-                              "form",
-                              "filing_type",
-                              "status"
-                            ],
-                            "x-apidog-ignore-properties": []
+                            }
                           }
                         }
-                      },
-                      "x-apidog-orders": [
-                        "@entity",
-                        "items"
-                      ],
-                      "x-apidog-ignore-properties": []
+                      }
                     },
                     "transaction_id": {
                       "type": "string"
                     }
-                  },
-                  "x-apidog-orders": [
-                    "code",
-                    "timestamp",
-                    "data",
-                    "transaction_id"
-                  ],
-                  "x-apidog-ignore-properties": []
+                  }
                 },
                 "examples": {
                   "200 job success": {
@@ -2217,14 +1984,10 @@
                 }
               }
             },
-            "headers": {},
-            "x-apidog-ordering": 0
+            "headers": {}
           }
         },
-        "security": [],
-        "x-apidog-folder": "FVU Generation",
-        "x-apidog-status": "released",
-        "x-run-in-apidog": "https://app.apidog.com/web/project/1186657/apis/api-34524278-run"
+        "security": []
       }
     },
     "/tds/compliance/e-file": {
@@ -2282,8 +2045,10 @@
                   "tax_year": {
                     "description": "Tax Year (e.g. TY 2026-27)",
                     "type": "string",
-                    "pattern": "^TY [0-9]{4}-[0-9]{2}$",
-                    "example": "TY 2026-27"
+                    "examples": [
+                      "TY 2026-27"
+                    ],
+                    "pattern": "^TY [0-9]{4}-[0-9]{2}$"
                   },
                   "form": {
                     "description": "TDS/TCS return form. Use 138 for erstwhile 24Q, 140 for erstwhile 26Q, 144 for erstwhile 27Q, and 143 for erstwhile 27EQ.",
@@ -2307,7 +2072,9 @@
                   "tan": {
                     "description": "TAN of deductor/collector. Regular Expression: [A-Z]{4}[0-9]{5}[A-Z]{1}",
                     "type": "string",
-                    "example": "AHMA09719B"
+                    "examples": [
+                      "AHMA09719B"
+                    ]
                   }
                 },
                 "required": [
@@ -2316,15 +2083,7 @@
                   "quarter",
                   "tan",
                   "form"
-                ],
-                "x-apidog-orders": [
-                  "@entity",
-                  "tax_year",
-                  "form",
-                  "quarter",
-                  "tan"
-                ],
-                "x-apidog-ignore-properties": []
+                ]
               },
               "examples": {
                 "200 Job created": {
@@ -2494,8 +2253,10 @@
                         "tax_year": {
                           "type": "string",
                           "description": "Tax Year (e.g. TY 2026-27)",
-                          "pattern": "^TY [0-9]{4}-[0-9]{2}$",
-                          "example": "TY 2026-27"
+                          "examples": [
+                            "TY 2026-27"
+                          ],
+                          "pattern": "^TY [0-9]{4}-[0-9]{2}$"
                         },
                         "quarter": {
                           "type": "string"
@@ -2514,28 +2275,9 @@
                           "format": "uri",
                           "description": "Pre-signed URL for uploading a ZIP containing the FVU file and Form 27A with HTTP PUT."
                         }
-                      },
-                      "x-apidog-orders": [
-                        "@entity",
-                        "job_id",
-                        "tan",
-                        "tax_year",
-                        "quarter",
-                        "form",
-                        "status",
-                        "created_at",
-                        "fvu_upload_file_url"
-                      ],
-                      "x-apidog-ignore-properties": []
+                      }
                     }
-                  },
-                  "x-apidog-orders": [
-                    "code",
-                    "timestamp",
-                    "transaction_id",
-                    "data"
-                  ],
-                  "x-apidog-ignore-properties": []
+                  }
                 },
                 "examples": {
                   "200 Job created": {
@@ -2773,14 +2515,10 @@
                 }
               }
             },
-            "headers": {},
-            "x-apidog-ordering": 0
+            "headers": {}
           }
         },
-        "security": [],
-        "x-apidog-folder": "E-File TDS Return",
-        "x-apidog-status": "released",
-        "x-run-in-apidog": "https://app.apidog.com/web/project/1186657/apis/api-34524279-run"
+        "security": []
       },
       "get": {
         "summary": "Get TDS return e-filing status",
@@ -2867,8 +2605,10 @@
                             "tax_year": {
                               "type": "string",
                               "description": "Tax Year (e.g. TY 2026-27)",
-                              "pattern": "^TY [0-9]{4}-[0-9]{2}$",
-                              "example": "TY 2026-27"
+                              "examples": [
+                                "TY 2026-27"
+                              ],
+                              "pattern": "^TY [0-9]{4}-[0-9]{2}$"
                             },
                             "quarter": {
                               "type": "string"
@@ -2888,29 +2628,9 @@
                             "updated_at": {
                               "type": "integer"
                             }
-                          },
-                          "x-apidog-orders": [
-                            "@entity",
-                            "job_id",
-                            "tan",
-                            "tax_year",
-                            "quarter",
-                            "form",
-                            "filing_type",
-                            "status",
-                            "created_at",
-                            "updated_at"
-                          ],
-                          "x-apidog-ignore-properties": []
+                          }
                         }
-                      },
-                      "x-apidog-orders": [
-                        "code",
-                        "timestamp",
-                        "transaction_id",
-                        "data"
-                      ],
-                      "x-apidog-ignore-properties": []
+                      }
                     },
                     {
                       "title": "Job Succeeded",
@@ -2941,8 +2661,10 @@
                             "tax_year": {
                               "type": "string",
                               "description": "Tax Year (e.g. TY 2026-27)",
-                              "pattern": "^TY [0-9]{4}-[0-9]{2}$",
-                              "example": "TY 2026-27"
+                              "examples": [
+                                "TY 2026-27"
+                              ],
+                              "pattern": "^TY [0-9]{4}-[0-9]{2}$"
                             },
                             "quarter": {
                               "type": "string"
@@ -2980,33 +2702,9 @@
                               "format": "uri",
                               "description": "Download URL for Form 27A associated with the filing."
                             }
-                          },
-                          "x-apidog-orders": [
-                            "@entity",
-                            "job_id",
-                            "tan",
-                            "tax_year",
-                            "quarter",
-                            "form",
-                            "filing_type",
-                            "status",
-                            "receipt_number",
-                            "created_at",
-                            "updated_at",
-                            "receipt_file_url",
-                            "fvu_file_url",
-                            "form27a_file_url"
-                          ],
-                          "x-apidog-ignore-properties": []
+                          }
                         }
-                      },
-                      "x-apidog-orders": [
-                        "code",
-                        "timestamp",
-                        "transaction_id",
-                        "data"
-                      ],
-                      "x-apidog-ignore-properties": []
+                      }
                     },
                     {
                       "title": "Job Failed",
@@ -3037,8 +2735,10 @@
                             "tax_year": {
                               "type": "string",
                               "description": "Tax Year (e.g. TY 2026-27)",
-                              "pattern": "^TY [0-9]{4}-[0-9]{2}$",
-                              "example": "TY 2026-27"
+                              "examples": [
+                                "TY 2026-27"
+                              ],
+                              "pattern": "^TY [0-9]{4}-[0-9]{2}$"
                             },
                             "quarter": {
                               "type": "string"
@@ -3062,30 +2762,9 @@
                             "updated_at": {
                               "type": "integer"
                             }
-                          },
-                          "x-apidog-orders": [
-                            "@entity",
-                            "job_id",
-                            "tan",
-                            "tax_year",
-                            "quarter",
-                            "form",
-                            "filing_type",
-                            "status",
-                            "message",
-                            "created_at",
-                            "updated_at"
-                          ],
-                          "x-apidog-ignore-properties": []
+                          }
                         }
-                      },
-                      "x-apidog-orders": [
-                        "code",
-                        "timestamp",
-                        "transaction_id",
-                        "data"
-                      ],
-                      "x-apidog-ignore-properties": []
+                      }
                     }
                   ]
                 },
@@ -3368,8 +3047,7 @@
                 }
               }
             },
-            "headers": {},
-            "x-apidog-ordering": 0
+            "headers": {}
           },
           "521": {
             "description": "521 - Data Not Found",
@@ -3391,14 +3069,7 @@
                       "type": "string",
                       "description": "Reason for the job failure."
                     }
-                  },
-                  "x-apidog-orders": [
-                    "code",
-                    "timestamp",
-                    "transaction_id",
-                    "message"
-                  ],
-                  "x-apidog-ignore-properties": []
+                  }
                 },
                 "examples": {
                   "521 Data not found": {
@@ -3413,14 +3084,10 @@
                 }
               }
             },
-            "headers": {},
-            "x-apidog-ordering": 1
+            "headers": {}
           }
         },
-        "security": [],
-        "x-apidog-folder": "E-File TDS Return",
-        "x-apidog-status": "released",
-        "x-run-in-apidog": "https://app.apidog.com/web/project/1186657/apis/api-34524280-run"
+        "security": []
       }
     },
     "/tds/compliance/e-file/search": {
@@ -3503,7 +3170,9 @@
                     "description": "Tax Year (e.g. TY 2026-27)",
                     "type": "string",
                     "pattern": "^TY [0-9]{4}-[0-9]{2}$",
-                    "example": "TY 2026-27"
+                    "examples": [
+                      "TY 2026-27"
+                    ]
                   },
                   "from_date": {
                     "description": "Start of the job creation-date range, expressed as an epoch timestamp.",
@@ -3524,19 +3193,7 @@
                 },
                 "required": [
                   "@entity"
-                ],
-                "x-apidog-orders": [
-                  "@entity",
-                  "tan",
-                  "quarter",
-                  "form",
-                  "tax_year",
-                  "from_date",
-                  "to_date",
-                  "page_size",
-                  "last_evaluated_key"
-                ],
-                "x-apidog-ignore-properties": []
+                ]
               },
               "examples": {
                 "Search by TAN and tax period": {
@@ -3595,8 +3252,10 @@
                               "tax_year": {
                                 "type": "string",
                                 "description": "Tax Year (e.g. TY 2026-27)",
-                                "pattern": "^TY [0-9]{4}-[0-9]{2}$",
-                                "example": "TY 2026-27"
+                                "examples": [
+                                  "TY 2026-27"
+                                ],
+                                "pattern": "^TY [0-9]{4}-[0-9]{2}$"
                               },
                               "quarter": {
                                 "type": "string"
@@ -3610,39 +3269,15 @@
                               "status": {
                                 "type": "string"
                               }
-                            },
-                            "x-apidog-orders": [
-                              "created_at",
-                              "@entity",
-                              "job_id",
-                              "tan",
-                              "tax_year",
-                              "quarter",
-                              "form",
-                              "filing_type",
-                              "status"
-                            ],
-                            "x-apidog-ignore-properties": []
+                            }
                           }
                         }
-                      },
-                      "x-apidog-orders": [
-                        "@entity",
-                        "items"
-                      ],
-                      "x-apidog-ignore-properties": []
+                      }
                     },
                     "transaction_id": {
                       "type": "string"
                     }
-                  },
-                  "x-apidog-orders": [
-                    "code",
-                    "timestamp",
-                    "data",
-                    "transaction_id"
-                  ],
-                  "x-apidog-ignore-properties": []
+                  }
                 },
                 "examples": {
                   "200 Job succeeded": {
@@ -3695,14 +3330,10 @@
                 }
               }
             },
-            "headers": {},
-            "x-apidog-ordering": 0
+            "headers": {}
           }
         },
-        "security": [],
-        "x-apidog-folder": "E-File TDS Return",
-        "x-apidog-status": "released",
-        "x-run-in-apidog": "https://app.apidog.com/web/project/1186657/apis/api-34524281-run"
+        "security": []
       }
     },
     "/tds/compliance/traces/deductors/forms/{certificate_type}/status": {
@@ -3710,9 +3341,7 @@
         "summary": "Get certificate job status",
         "deprecated": false,
         "description": "",
-        "tags": [
-          "TRACES/TDS Certificate"
-        ],
+        "tags": [],
         "parameters": [
           {
             "name": "certificate_type",
@@ -3824,20 +3453,7 @@
                         "form",
                         "message",
                         "status"
-                      ],
-                      "x-apidog-orders": [
-                        "created_at",
-                        "updated_at",
-                        "@entity",
-                        "job_id",
-                        "tan",
-                        "tax_year",
-                        "quarter",
-                        "form",
-                        "message",
-                        "status"
-                      ],
-                      "x-apidog-ignore-properties": []
+                      ]
                     },
                     "transaction_id": {
                       "type": "string"
@@ -3848,14 +3464,7 @@
                     "timestamp",
                     "data",
                     "transaction_id"
-                  ],
-                  "x-apidog-orders": [
-                    "code",
-                    "timestamp",
-                    "data",
-                    "transaction_id"
-                  ],
-                  "x-apidog-ignore-properties": []
+                  ]
                 },
                 "example": {
                   "code": 200,
@@ -3875,8 +3484,7 @@
                   "transaction_id": "a0a12a28-82bb-4fab-bdb2-2b314c97deba"
                 }
               }
-            },
-            "x-apidog-ordering": 0
+            }
           },
           "521": {
             "description": "",
@@ -3903,14 +3511,7 @@
                     "timestamp",
                     "message",
                     "transaction_id"
-                  ],
-                  "x-apidog-orders": [
-                    "code",
-                    "timestamp",
-                    "message",
-                    "transaction_id"
-                  ],
-                  "x-apidog-ignore-properties": []
+                  ]
                 },
                 "example": {
                   "code": 521,
@@ -3919,31 +3520,10 @@
                   "transaction_id": "6bc012e4-e16f-4814-a809-710479da3334"
                 }
               }
-            },
-            "x-apidog-ordering": 1
-          },
-          "x-apidog-additional-responses": [
-            {
-              "statusCode": 200,
-              "description": "",
-              "content": {
-                "application/octet-stream": {
-                  "schema": {
-                    "type": "object",
-                    "properties": {},
-                    "x-apidog-orders": [],
-                    "x-apidog-ignore-properties": []
-                  }
-                }
-              },
-              "x-apidog-ordering": 2
             }
-          ]
+          }
         },
-        "security": [],
-        "x-apidog-folder": "TRACES/TDS Certificate",
-        "x-apidog-status": "released",
-        "x-run-in-apidog": "https://app.apidog.com/web/project/1186657/apis/api-43150998-run"
+        "security": []
       }
     },
     "/tds/compliance/traces/deductors/forms/{certificate_type}": {
@@ -3953,7 +3533,6 @@
         "description": "Create an asynchronous certificate generation job for the selected certificate type, tax year, quarter, and TAN. Use the returned job ID with the status endpoint to track the job.",
         "operationId": "SubmitCertificateJob",
         "tags": [
-          "TRACES/TDS Certificate",
           "TDS",
           "TDS Certificate"
         ],
@@ -4013,7 +3592,9 @@
                   "@entity": {
                     "type": "string",
                     "description": "Request entity type.",
-                    "example": "in.co.sandbox.tds.compliance.certificate.job.request"
+                    "examples": [
+                      "in.co.sandbox.tds.compliance.certificate.job.request"
+                    ]
                   },
                   "quarter": {
                     "type": "string",
@@ -4028,7 +3609,9 @@
                   "tax_year": {
                     "type": "string",
                     "description": "Tax year for the certificate request. Use the TY YYYY-YY format.",
-                    "example": "TY 2026-27"
+                    "examples": [
+                      "TY 2026-27"
+                    ]
                   },
                   "form": {
                     "type": "string",
@@ -4042,7 +3625,9 @@
                   "tan": {
                     "type": "string",
                     "description": "Tax Deduction and Collection Account Number (TAN).",
-                    "example": "AHMS45586C"
+                    "examples": [
+                      "AHMS45586C"
+                    ]
                   }
                 },
                 "required": [
@@ -4051,15 +3636,7 @@
                   "tax_year",
                   "form",
                   "tan"
-                ],
-                "x-apidog-orders": [
-                  "@entity",
-                  "quarter",
-                  "tax_year",
-                  "form",
-                  "tan"
-                ],
-                "x-apidog-ignore-properties": []
+                ]
               },
               "examples": {
                 "Submit form 133 job": {
@@ -4168,18 +3745,7 @@
                         "quarter",
                         "form",
                         "status"
-                      ],
-                      "x-apidog-orders": [
-                        "created_at",
-                        "@entity",
-                        "job_id",
-                        "tan",
-                        "tax_year",
-                        "quarter",
-                        "form",
-                        "status"
-                      ],
-                      "x-apidog-ignore-properties": []
+                      ]
                     },
                     "transaction_id": {
                       "type": "string",
@@ -4191,14 +3757,7 @@
                     "timestamp",
                     "data",
                     "transaction_id"
-                  ],
-                  "x-apidog-orders": [
-                    "code",
-                    "timestamp",
-                    "data",
-                    "transaction_id"
-                  ],
-                  "x-apidog-ignore-properties": []
+                  ]
                 },
                 "examples": {
                   "Submit form 133 job": {
@@ -4240,8 +3799,7 @@
                 }
               }
             },
-            "headers": {},
-            "x-apidog-ordering": 0
+            "headers": {}
           },
           "400": {
             "description": "The request body or certificate parameters are invalid.",
@@ -4268,14 +3826,7 @@
                     "timestamp",
                     "message",
                     "transaction_id"
-                  ],
-                  "x-apidog-orders": [
-                    "code",
-                    "timestamp",
-                    "message",
-                    "transaction_id"
-                  ],
-                  "x-apidog-ignore-properties": []
+                  ]
                 },
                 "examples": {
                   "Invalid Request Body": {
@@ -4290,14 +3841,10 @@
                 }
               }
             },
-            "headers": {},
-            "x-apidog-ordering": 1
+            "headers": {}
           }
         },
-        "security": [],
-        "x-apidog-folder": "TRACES/TDS Certificate",
-        "x-apidog-status": "released",
-        "x-run-in-apidog": "https://app.apidog.com/web/project/1186657/apis/api-43150997-run"
+        "security": []
       }
     },
     "/tds/compliance/traces/deductors/forms/{certificate_type}/search": {
@@ -4307,7 +3854,6 @@
         "description": "Search certificate generation jobs by certificate type, TAN, tax year, quarter, form, and status. Use the returned pagination key to request the next page.",
         "operationId": "SearchCertificateJobs",
         "tags": [
-          "TRACES/TDS Certificate",
           "TDS",
           "TDS Certificate"
         ],
@@ -4518,20 +4064,7 @@
                               "created_at",
                               "updated_at",
                               "status"
-                            ],
-                            "x-apidog-orders": [
-                              "@entity",
-                              "job_id",
-                              "tan",
-                              "tax_year",
-                              "quarter",
-                              "form",
-                              "created_at",
-                              "updated_at",
-                              "status",
-                              "message"
-                            ],
-                            "x-apidog-ignore-properties": []
+                            ]
                           }
                         },
                         "last_evaluated_key": {
@@ -4542,13 +4075,7 @@
                       "required": [
                         "@entity",
                         "items"
-                      ],
-                      "x-apidog-orders": [
-                        "@entity",
-                        "items",
-                        "last_evaluated_key"
-                      ],
-                      "x-apidog-ignore-properties": []
+                      ]
                     }
                   },
                   "required": [
@@ -4556,14 +4083,7 @@
                     "timestamp",
                     "transaction_id",
                     "data"
-                  ],
-                  "x-apidog-orders": [
-                    "code",
-                    "timestamp",
-                    "transaction_id",
-                    "data"
-                  ],
-                  "x-apidog-ignore-properties": []
+                  ]
                 },
                 "examples": {
                   "Success": {
@@ -4724,8 +4244,7 @@
                 }
               }
             },
-            "headers": {},
-            "x-apidog-ordering": 0
+            "headers": {}
           },
           "400": {
             "description": "Invalid request body.",
@@ -4752,14 +4271,7 @@
                     "timestamp",
                     "message",
                     "transaction_id"
-                  ],
-                  "x-apidog-orders": [
-                    "code",
-                    "timestamp",
-                    "message",
-                    "transaction_id"
-                  ],
-                  "x-apidog-ignore-properties": []
+                  ]
                 },
                 "examples": {
                   "Failure Invalid Request Body": {
@@ -4774,14 +4286,10 @@
                 }
               }
             },
-            "headers": {},
-            "x-apidog-ordering": 1
+            "headers": {}
           }
         },
-        "security": [],
-        "x-apidog-folder": "TRACES/TDS Certificate",
-        "x-apidog-status": "released",
-        "x-run-in-apidog": "https://app.apidog.com/web/project/1186657/apis/api-43150999-run"
+        "security": []
       }
     },
     "/tds/traces/deductors/credential": {
@@ -4791,7 +4299,6 @@
         "description": "Add the TRACES login credentials for a TAN. APIs that require TRACES access use these credentials when processing requests for the TAN.",
         "operationId": "AddTracesCredentials",
         "tags": [
-          "TRACES/Credentials",
           "TRACES Credentials"
         ],
         "parameters": [
@@ -4851,13 +4358,7 @@
                   "@entity",
                   "tan",
                   "password"
-                ],
-                "x-apidog-orders": [
-                  "@entity",
-                  "tan",
-                  "password"
-                ],
-                "x-apidog-ignore-properties": []
+                ]
               },
               "examples": {
                 "Success": {
@@ -4910,13 +4411,7 @@
                     "code",
                     "timestamp",
                     "transaction_id"
-                  ],
-                  "x-apidog-orders": [
-                    "code",
-                    "timestamp",
-                    "transaction_id"
-                  ],
-                  "x-apidog-ignore-properties": []
+                  ]
                 },
                 "examples": {
                   "Success": {
@@ -4930,8 +4425,7 @@
                 }
               }
             },
-            "headers": {},
-            "x-apidog-ordering": 0
+            "headers": {}
           },
           "400": {
             "description": "The request body is invalid.",
@@ -4958,14 +4452,7 @@
                     "timestamp",
                     "message",
                     "transaction_id"
-                  ],
-                  "x-apidog-orders": [
-                    "code",
-                    "timestamp",
-                    "message",
-                    "transaction_id"
-                  ],
-                  "x-apidog-ignore-properties": []
+                  ]
                 },
                 "examples": {
                   "Failure: Invalid Request Body": {
@@ -4980,8 +4467,7 @@
                 }
               }
             },
-            "headers": {},
-            "x-apidog-ordering": 1
+            "headers": {}
           },
           "409": {
             "description": "Credentials already exist for the TAN. Delete the existing credentials before you add new credentials.",
@@ -5008,14 +4494,7 @@
                     "timestamp",
                     "message",
                     "transaction_id"
-                  ],
-                  "x-apidog-orders": [
-                    "code",
-                    "timestamp",
-                    "message",
-                    "transaction_id"
-                  ],
-                  "x-apidog-ignore-properties": []
+                  ]
                 },
                 "examples": {
                   "Failure: Credential already exists": {
@@ -5030,14 +4509,10 @@
                 }
               }
             },
-            "headers": {},
-            "x-apidog-ordering": 2
+            "headers": {}
           }
         },
-        "security": [],
-        "x-apidog-folder": "TRACES/Credentials",
-        "x-apidog-status": "released",
-        "x-run-in-apidog": "https://app.apidog.com/web/project/1186657/apis/api-43151000-run"
+        "security": []
       },
       "delete": {
         "summary": "Delete TRACES credentials",
@@ -5045,7 +4520,6 @@
         "description": "Delete the TRACES login credentials for a TAN. Add the credentials again before you use an API that requires TRACES access for the TAN.",
         "operationId": "DeleteTracesCredentials",
         "tags": [
-          "TRACES/Credentials",
           "TRACES Credentials"
         ],
         "parameters": [
@@ -5088,12 +4562,7 @@
                 "required": [
                   "@entity",
                   "tan"
-                ],
-                "x-apidog-orders": [
-                  "@entity",
-                  "tan"
-                ],
-                "x-apidog-ignore-properties": []
+                ]
               },
               "examples": {
                 "Success": {
@@ -5130,13 +4599,7 @@
                     "code",
                     "timestamp",
                     "transaction_id"
-                  ],
-                  "x-apidog-orders": [
-                    "code",
-                    "timestamp",
-                    "transaction_id"
-                  ],
-                  "x-apidog-ignore-properties": []
+                  ]
                 },
                 "examples": {
                   "Success": {
@@ -5150,14 +4613,10 @@
                 }
               }
             },
-            "headers": {},
-            "x-apidog-ordering": 0
+            "headers": {}
           }
         },
-        "security": [],
-        "x-apidog-folder": "TRACES/Credentials",
-        "x-apidog-status": "released",
-        "x-run-in-apidog": "https://app.apidog.com/web/project/1186657/apis/api-43151001-run"
+        "security": []
       }
     },
     "/tds/compliance/traces/deductors/challans": {
@@ -5167,7 +4626,6 @@
         "description": "Retrieves a TDS challan and its tax and available consumption details from TRACES.\n\nIdentify the challan using the deductor's TAN, BSR code, deposit date, and challan serial number. The deposit date uses epoch milliseconds and the Asia/Kolkata calendar date.\n\nRequires registered TRACES deductor credentials for the requested TAN and Sandbox authentication.\n\nReturns HTTP 521 when no challan matches the supplied particulars. A null consumption_details value means utilization details are unavailable; it does not indicate an unused challan.",
         "operationId": "getChallan",
         "tags": [
-          "TRACES/Challans",
           "TRACES",
           "Challans"
         ],
@@ -5286,58 +4744,43 @@
                     "transaction_id",
                     "data"
                   ],
-                  "additionalProperties": false,
-                  "x-apidog-ignore-properties": [],
-                  "x-apidog-orders": [
-                    "code",
-                    "timestamp",
-                    "transaction_id",
-                    "data"
-                  ]
+                  "additionalProperties": false
                 },
-                "examples": {
-                  "Challan found": {
-                    "summary": "Challan found",
-                    "description": "Fictional example data.",
-                    "value": {
-                      "code": 200,
-                      "timestamp": 1791829800000,
-                      "transaction_id": "87c1b4f6-1632-4d8b-a2f9-05f291c00a42",
-                      "data": {
-                        "@entity": "in.co.sandbox.tds.compliance.challan.response",
-                        "tan": "AHMA12345A",
-                        "bsr_code": "0123456",
-                        "challan_serial": "00042",
-                        "paid_date_epoch": 1784053800000,
-                        "challan_identification_number": "01234561507202600042",
-                        "receipt_number": "9000000001",
-                        "financial_year": "FY 2026-27",
-                        "major_head": "0021",
-                        "minor_head": "200",
-                        "total_amount": 1500,
-                        "status": "CLAIMED",
-                        "section_code": "94D",
-                        "residency_status": "R",
-                        "tax_breakdown": [
-                          {
-                            "@entity": "in.co.sandbox.tds.compliance.challan.tax_breakdown",
-                            "section": "393(1) [Table: Sl. No. 1(i)]",
-                            "tax_amount": 1500,
-                            "surcharge": 0,
-                            "cess": 0,
-                            "total_amount": 1500
-                          }
-                        ],
-                        "consumption_details": null
+                "example": {
+                  "code": 200,
+                  "timestamp": 1791829800000,
+                  "transaction_id": "87c1b4f6-1632-4d8b-a2f9-05f291c00a42",
+                  "data": {
+                    "@entity": "in.co.sandbox.tds.compliance.challan.response",
+                    "tan": "AHMA12345A",
+                    "bsr_code": "0123456",
+                    "challan_serial": "00042",
+                    "paid_date_epoch": 1784053800000,
+                    "challan_identification_number": "01234561507202600042",
+                    "receipt_number": "9000000001",
+                    "financial_year": "FY 2026-27",
+                    "major_head": "0021",
+                    "minor_head": "200",
+                    "total_amount": 1500,
+                    "status": "CLAIMED",
+                    "section_code": "94D",
+                    "residency_status": "R",
+                    "tax_breakdown": [
+                      {
+                        "@entity": "in.co.sandbox.tds.compliance.challan.tax_breakdown",
+                        "section": "393(1) [Table: Sl. No. 1(i)]",
+                        "tax_amount": 1500,
+                        "surcharge": 0,
+                        "cess": 0,
+                        "total_amount": 1500
                       }
-                    }
+                    ],
+                    "consumption_details": null
                   }
                 }
               }
             },
-            "headers": {},
-            "x-apidog-name": "Success",
-            "x-apidog-ordering": 0
+            "headers": {}
           },
           "400": {
             "description": "The request body is malformed or does not match the request schema.",
@@ -5348,9 +4791,7 @@
                 }
               }
             },
-            "headers": {},
-            "x-apidog-name": "Invalid request body",
-            "x-apidog-ordering": 1
+            "headers": {}
           },
           "401": {
             "description": "Sandbox authorization is missing or invalid, or the stored TRACES credentials are incorrect.",
@@ -5359,23 +4800,15 @@
                 "schema": {
                   "$ref": "#/components/schemas/ErrorResponse"
                 },
-                "examples": {
-                  "Incorrect TRACES credentials": {
-                    "summary": "Incorrect TRACES credentials",
-                    "description": "Fictional example data.",
-                    "value": {
-                      "code": 401,
-                      "timestamp": 1791829800000,
-                      "transaction_id": "87c1b4f6-1632-4d8b-a2f9-05f291c00a42",
-                      "message": "Invalid credentials"
-                    }
-                  }
+                "example": {
+                  "code": 401,
+                  "timestamp": 1791829800000,
+                  "transaction_id": "87c1b4f6-1632-4d8b-a2f9-05f291c00a42",
+                  "message": "Invalid credentials"
                 }
               }
             },
-            "headers": {},
-            "x-apidog-name": "Unauthorized",
-            "x-apidog-ordering": 2
+            "headers": {}
           },
           "403": {
             "description": "Access is denied for this request.",
@@ -5386,9 +4819,7 @@
                 }
               }
             },
-            "headers": {},
-            "x-apidog-name": "Forbidden",
-            "x-apidog-ordering": 3
+            "headers": {}
           },
           "429": {
             "description": "The request rate limit has been exceeded.",
@@ -5399,9 +4830,7 @@
                 }
               }
             },
-            "headers": {},
-            "x-apidog-name": "Too Many Requests",
-            "x-apidog-ordering": 4
+            "headers": {}
           },
           "500": {
             "description": "The challan request could not be completed.",
@@ -5410,23 +4839,15 @@
                 "schema": {
                   "$ref": "#/components/schemas/ErrorResponse"
                 },
-                "examples": {
-                  "TRACES login unavailable": {
-                    "summary": "TRACES login unavailable",
-                    "description": "Fictional example data.",
-                    "value": {
-                      "code": 500,
-                      "timestamp": 1791829800000,
-                      "transaction_id": "87c1b4f6-1632-4d8b-a2f9-05f291c00a42",
-                      "message": "Failed to log in to TRACES"
-                    }
-                  }
+                "example": {
+                  "code": 500,
+                  "timestamp": 1791829800000,
+                  "transaction_id": "87c1b4f6-1632-4d8b-a2f9-05f291c00a42",
+                  "message": "Failed to log in to TRACES"
                 }
               }
             },
-            "headers": {},
-            "x-apidog-name": "Failed to fetch TRACES challans",
-            "x-apidog-ordering": 5
+            "headers": {}
           },
           "503": {
             "description": "TRACES is temporarily unavailable.",
@@ -5437,9 +4858,7 @@
                 }
               }
             },
-            "headers": {},
-            "x-apidog-name": "Source Unavailable",
-            "x-apidog-ordering": 6
+            "headers": {}
           },
           "521": {
             "description": "TRACES credentials are not stored for this TAN, or no challan matches the supplied payment details.",
@@ -5448,34 +4867,18 @@
                 "schema": {
                   "$ref": "#/components/schemas/ErrorResponse"
                 },
-                "examples": {
-                  "TRACES credentials not stored": {
-                    "summary": "TRACES credentials not stored",
-                    "description": "Fictional example data.",
-                    "value": {
-                      "code": 521,
-                      "timestamp": 1791829800000,
-                      "transaction_id": "87c1b4f6-1632-4d8b-a2f9-05f291c00a42",
-                      "message": "Credentials not found"
-                    }
-                  }
+                "example": {
+                  "code": 521,
+                  "timestamp": 1791829800000,
+                  "transaction_id": "87c1b4f6-1632-4d8b-a2f9-05f291c00a42",
+                  "message": "Credentials not found"
                 }
               }
             },
-            "headers": {},
-            "x-apidog-name": "Challan not found",
-            "x-apidog-ordering": 7
+            "headers": {}
           }
         },
-        "security": [],
-        "x-apidog-folder": "TRACES/Challans",
-        "x-apidog-status": "released",
-        "x-run-in-apidog": "https://app.apidog.com/web/project/1186657/apis/api-45162941-run",
-        "servers": [
-          {
-            "url": "https://api.sandbox.co.in"
-          }
-        ]
+        "security": []
       }
     },
     "/tds/compliance/traces/deductors/challans/search": {
@@ -5485,7 +4888,6 @@
         "description": "Searches a deductor's TDS challans by deposit-date range and returns one page of results from TRACES.\n\nProvide the deductor's TAN, from_date_epoch, and to_date_epoch. Both dates are required and use epoch milliseconds. The calendar dates are interpreted in Asia/Kolkata.\n\npage_number starts at 0. page_size specifies the number of challans requested per page. Both fields are optional.\n\nThe response includes the challans in data and the pagination totals totalPages and totalElements. A page with no challans returns HTTP 200 with an empty data list.\n\nRequires registered TRACES deductor credentials for the requested TAN and Sandbox authentication.",
         "operationId": "searchChallans",
         "tags": [
-          "TRACES/Challans",
           "TRACES",
           "Challans"
         ],
@@ -5597,19 +4999,11 @@
                     "transaction_id",
                     "data"
                   ],
-                  "additionalProperties": false,
-                  "x-apidog-ignore-properties": [],
-                  "x-apidog-orders": [
-                    "code",
-                    "timestamp",
-                    "transaction_id",
-                    "data"
-                  ]
+                  "additionalProperties": false
                 },
                 "examples": {
-                  "Challans found within the date range": {
+                  "1": {
                     "summary": "Challans found within the date range",
-                    "description": "Fictional example data.",
                     "value": {
                       "code": 200,
                       "timestamp": 1791829800000,
@@ -5650,9 +5044,8 @@
                       }
                     }
                   },
-                  "No challans found within date range": {
+                  "2": {
                     "summary": "No challans found within date range",
-                    "description": "Fictional example data.",
                     "value": {
                       "code": 200,
                       "timestamp": 1791829800000,
@@ -5665,9 +5058,8 @@
                       }
                     }
                   },
-                  "Challans found on the next page": {
+                  "3": {
                     "summary": "Challans found on the next page",
-                    "description": "Fictional example data.",
                     "value": {
                       "code": 200,
                       "timestamp": 1791829800000,
@@ -5711,9 +5103,7 @@
                 }
               }
             },
-            "headers": {},
-            "x-apidog-name": "Success",
-            "x-apidog-ordering": 0
+            "headers": {}
           },
           "400": {
             "description": "The request body is malformed or does not match the request schema.",
@@ -5724,9 +5114,7 @@
                 }
               }
             },
-            "headers": {},
-            "x-apidog-name": "Invalid request body",
-            "x-apidog-ordering": 1
+            "headers": {}
           },
           "401": {
             "description": "Sandbox authorization is missing or invalid, or the stored TRACES credentials are incorrect.",
@@ -5737,9 +5125,7 @@
                 }
               }
             },
-            "headers": {},
-            "x-apidog-name": "Unauthorized",
-            "x-apidog-ordering": 2
+            "headers": {}
           },
           "403": {
             "description": "Access is denied for this request.",
@@ -5750,9 +5136,7 @@
                 }
               }
             },
-            "headers": {},
-            "x-apidog-name": "Forbidden",
-            "x-apidog-ordering": 3
+            "headers": {}
           },
           "429": {
             "description": "The request rate limit has been exceeded.",
@@ -5763,9 +5147,7 @@
                 }
               }
             },
-            "headers": {},
-            "x-apidog-name": "Too Many Requests",
-            "x-apidog-ordering": 4
+            "headers": {}
           },
           "500": {
             "description": "The challan request could not be completed.",
@@ -5776,9 +5158,7 @@
                 }
               }
             },
-            "headers": {},
-            "x-apidog-name": "Failed to fetch TRACES challans",
-            "x-apidog-ordering": 5
+            "headers": {}
           },
           "503": {
             "description": "TRACES is temporarily unavailable.",
@@ -5789,9 +5169,7 @@
                 }
               }
             },
-            "headers": {},
-            "x-apidog-name": "Source Unavailable",
-            "x-apidog-ordering": 6
+            "headers": {}
           },
           "521": {
             "description": "No TRACES credentials are stored for the deductor TAN in the workspace.",
@@ -5802,1410 +5180,703 @@
                 }
               }
             },
-            "headers": {},
-            "x-apidog-name": "Credentials not found",
-            "x-apidog-ordering": 7
+            "headers": {}
           }
         },
-        "security": [],
-        "x-apidog-folder": "TRACES/Challans",
-        "x-apidog-status": "released",
-        "x-run-in-apidog": "https://app.apidog.com/web/project/1186657/apis/api-45162942-run",
-        "servers": [
-          {
-            "url": "https://api.sandbox.co.in"
-          }
-        ]
+        "security": []
       }
-    }
-  },
-  "components": {
-    "schemas": {
-      "CertificateJob": {
-        "type": "object",
-        "additionalProperties": false,
-        "description": "Certificate download job.",
-        "required": [
-          "@entity",
-          "job_id",
-          "tan",
-          "tax_year",
-          "quarter",
-          "form",
-          "status",
-          "created_at"
+    },
+    "/tds/compliance/traces/deductors/pan/verify": {
+      "post": {
+        "summary": "Create bulk PAN verification job",
+        "deprecated": false,
+        "description": "Creates an asynchronous bulk PAN verification job for the supplied TAN. The response contains a job ID and a signed URL for the input JSON workbook. Upload the workbook with HTTP PUT and Content-Type application/json.\n\nSave the [TRACES credentials](https://developer.sandbox.co.in/api-reference/tds/compliance/traces-credentials/endpoints/save_credential) for the TAN before processing. Credential checks happen after the workbook upload. Missing or incorrect credentials appear as a failed job when you retrieve its status.\n\nThe uploaded JSON file must be at most 5,000,000 bytes. The workbook contains payee_sheet and payee_table with the header [\"sr_no\", \"pan\"]. Missing or malformed PAN values fail workbook validation. For repeated PANs, verification keeps the first row and ignores later rows.\n\nRetrieve the job with the returned job_id to check progress and obtain the output download URL.\n\nInput workbook example:\n\n```json\n{\n  \"@entity\": \"workbook\",\n  \"name\": \"pan_verification_workbook\",\n  \"sheets\": [\n    {\n      \"@entity\": \"sheet\",\n      \"name\": \"payee_sheet\",\n      \"blocks\": [\n        {\n          \"@entity\": \"table\",\n          \"name\": \"payee_table\",\n          \"header\": [\n            \"sr_no\",\n            \"pan\"\n          ],\n          \"rows\": [\n            [\n              1,\n              \"ABCPD1234E\"\n            ],\n            [\n              2,\n              \"XYZPK5678L\"\n            ],\n            [\n              3,\n              \"ABCPD1234E\"\n            ],\n            [\n              4,\n              \"AAAAA1111A\"\n            ]\n          ]\n        }\n      ]\n    }\n  ]\n}\n```",
+        "operationId": "SubmitPanVerificationJob",
+        "tags": [
+          "TDS",
+          "TRACES",
+          "PAN Verification"
         ],
-        "properties": {
-          "@entity": {
-            "type": "string",
-            "enum": [
-              "in.co.sandbox.tds.compliance.certificate.job"
-            ],
-            "description": "Identifies the object as a certificate job."
-          },
-          "job_id": {
-            "type": "string",
-            "format": "uuid",
-            "description": "Unique identifier for the certificate job."
-          },
-          "tan": {
-            "type": "string",
-            "pattern": "^[A-Z]{4}[0-9]{5}[A-Z]$",
-            "description": "TAN used to request the certificate.",
-            "example": "AHMS12345C"
-          },
-          "tax_year": {
-            "type": "string",
-            "pattern": "^TY [0-9]{4}-[0-9]{2}$",
-            "description": "Tax year of the requested certificate.",
-            "example": "TY 2025-26"
-          },
-          "quarter": {
-            "type": "string",
-            "enum": [
-              "Q1",
-              "Q2",
-              "Q3",
-              "Q4"
-            ],
-            "description": "Quarter of the requested certificate."
-          },
-          "form": {
-            "type": "string",
-            "description": "TDS return form of the requested certificate.",
-            "example": "24Q"
-          },
-          "status": {
-            "type": "string",
-            "enum": [
-              "created",
-              "queued",
-              "in_progress",
-              "succeeded",
-              "failed"
-            ],
-            "description": "Current status of the certificate job."
-          },
-          "created_at": {
-            "type": "integer",
-            "format": "int64",
-            "description": "Time the job was created, in epoch milliseconds."
-          },
-          "updated_at": {
-            "type": "integer",
-            "format": "int64",
-            "description": "Time the job was last updated, in epoch milliseconds. Omitted while the job is queued."
-          },
-          "certificate_pdf_zip_urls": {
-            "type": "array",
-            "minItems": 1,
-            "description": "Presigned URLs for the certificate PDF ZIP files. Returned only for a succeeded job.",
-            "items": {
-              "type": "string",
-              "format": "uri"
+        "parameters": [
+          {
+            "name": "Authorization",
+            "in": "header",
+            "description": "Sandbox JWT access token. See the [Quickstart guide](https://developer.sandbox.co.in/guides/get-started/quickstart).",
+            "required": true,
+            "example": "{{access_token}}",
+            "schema": {
+              "type": "string"
             }
           },
-          "message": {
-            "type": "string",
-            "description": "Reason the job failed. Returned only for a failed job."
-          }
-        },
-        "x-apidog-orders": [
-          "@entity",
-          "job_id",
-          "tan",
-          "tax_year",
-          "quarter",
-          "form",
-          "status",
-          "created_at",
-          "updated_at",
-          "certificate_pdf_zip_urls",
-          "message"
-        ],
-        "x-apidog-ignore-properties": [],
-        "x-apidog-folder": ""
-      },
-      "CertificatePaginatedList": {
-        "type": "object",
-        "additionalProperties": false,
-        "description": "Page of certificate jobs.",
-        "required": [
-          "@entity",
-          "items"
-        ],
-        "properties": {
-          "@entity": {
-            "type": "string",
-            "enum": [
-              "in.co.sandbox.tds.compliance.certificate.paginated_list"
-            ],
-            "description": "Identifies the object as a page of certificate jobs."
-          },
-          "items": {
-            "type": "array",
-            "description": "Certificate jobs in the current page.",
-            "items": {
-              "$ref": "#/components/schemas/CertificateJob"
+          {
+            "name": "x-api-key",
+            "in": "header",
+            "description": "Sandbox API key for the request.",
+            "required": true,
+            "example": "{{api_key}}",
+            "schema": {
+              "type": "string"
             }
           },
-          "last_evaluated_key": {
-            "type": "string",
-            "description": "Opaque cursor for the next page. Omitted when no more results exist."
+          {
+            "name": "Content-Type",
+            "in": "header",
+            "description": "Request body format.",
+            "required": true,
+            "example": "application/json",
+            "schema": {
+              "type": "string"
+            }
           }
-        },
-        "x-apidog-orders": [
-          "@entity",
-          "items",
-          "last_evaluated_key"
         ],
-        "x-apidog-ignore-properties": [],
-        "x-apidog-folder": ""
-      },
-      "CertificateJobRequest": {
-        "type": "object",
-        "additionalProperties": false,
-        "required": [
-          "@entity",
-          "tan",
-          "quarter",
-          "tax_year",
-          "form"
-        ],
-        "properties": {
-          "@entity": {
-            "type": "string",
-            "enum": [
-              "in.co.sandbox.tds.compliance.certificate.job.request"
-            ],
-            "description": "Identifies the object as a certificate job request."
-          },
-          "tan": {
-            "type": "string",
-            "pattern": "^[A-Z]{4}[0-9]{5}[A-Z]$",
-            "description": "TAN used to request the certificate.",
-            "example": "AHMS45586C"
-          },
-          "quarter": {
-            "type": "string",
-            "enum": [
-              "Q1",
-              "Q2",
-              "Q3",
-              "Q4"
-            ],
-            "description": "Quarter of the requested certificate."
-          },
-          "tax_year": {
-            "type": "string",
-            "pattern": "^TY [0-9]{4}-[0-9]{2}$",
-            "description": "Tax year of the requested certificate.",
-            "example": "TY 2025-26"
-          },
-          "form": {
-            "type": "string",
-            "description": "TDS return form of the requested certificate.",
-            "example": "24Q"
-          }
-        },
-        "x-apidog-orders": [
-          "@entity",
-          "tan",
-          "quarter",
-          "tax_year",
-          "form"
-        ],
-        "x-apidog-ignore-properties": [],
-        "x-apidog-folder": ""
-      },
-      "CertificateJobSearchRequest": {
-        "type": "object",
-        "description": "Filters used to search certificate generation jobs.",
-        "properties": {
-          "@entity": {
-            "type": "string",
-            "description": "Search request entity type.",
-            "example": "in.co.sandbox.tds.compliance.certificate.job.search"
-          },
-          "tan": {
-            "type": "string",
-            "description": "Tax Deduction and Collection Account Number (TAN).",
-            "example": "AHMS45586C"
-          },
-          "tax_year": {
-            "type": "string",
-            "description": "Tax year used to filter certificate jobs. Use the TY YYYY-YY format.",
-            "example": "TY 2026-27"
-          },
-          "quarter": {
-            "type": "string",
-            "description": "Quarter used to filter certificate jobs.",
-            "enum": [
-              "Q1",
-              "Q2",
-              "Q3",
-              "Q4"
-            ]
-          },
-          "form": {
-            "type": "string",
-            "description": "Certificate form used to filter jobs. Use 130 for salary TDS, 131 for other TDS, or 133 for TCS.",
-            "enum": [
-              "130",
-              "131",
-              "133"
-            ]
-          },
-          "status": {
-            "type": "string",
-            "description": "Job status used to filter results.",
-            "enum": [
-              "created",
-              "queued",
-              "in_progress",
-              "succeeded",
-              "failed"
-            ]
-          },
-          "page_size": {
-            "type": "integer",
-            "description": "Maximum number of jobs to return.",
-            "minimum": 1
-          },
-          "last_evaluated_key": {
-            "type": "string",
-            "description": "Pagination key returned by the previous search response."
-          }
-        },
-        "required": [
-          "@entity",
-          "tan",
-          "tax_year",
-          "quarter",
-          "form",
-          "page_size"
-        ],
-        "x-apidog-orders": [
-          "@entity",
-          "tan",
-          "tax_year",
-          "quarter",
-          "form",
-          "status",
-          "page_size",
-          "last_evaluated_key"
-        ],
-        "x-apidog-ignore-properties": [],
-        "x-apidog-folder": ""
-      },
-      "CertificateJobResponse": {
-        "type": "object",
-        "additionalProperties": false,
-        "required": [
-          "code",
-          "timestamp",
-          "transaction_id",
-          "data"
-        ],
-        "properties": {
-          "code": {
-            "type": "integer",
-            "description": "HTTP status code.",
-            "example": 200
-          },
-          "timestamp": {
-            "type": "integer",
-            "format": "int64",
-            "description": "Response timestamp in epoch milliseconds.",
-            "example": 1716870600000
-          },
-          "transaction_id": {
-            "type": "string",
-            "description": "Transaction identifier used to trace the API request.",
-            "example": "f24cd229-42c8-43de-af79-8ce2d3c4c3db"
-          },
-          "data": {
-            "$ref": "#/components/schemas/CertificateJob"
-          }
-        },
-        "x-apidog-orders": [
-          "code",
-          "timestamp",
-          "transaction_id",
-          "data"
-        ],
-        "x-apidog-ignore-properties": [],
-        "x-apidog-folder": ""
-      },
-      "CertificatePaginatedListResponse": {
-        "type": "object",
-        "additionalProperties": false,
-        "required": [
-          "code",
-          "timestamp",
-          "transaction_id",
-          "data"
-        ],
-        "properties": {
-          "code": {
-            "type": "integer",
-            "description": "HTTP status code.",
-            "example": 200
-          },
-          "timestamp": {
-            "type": "integer",
-            "format": "int64",
-            "description": "Response timestamp in epoch milliseconds.",
-            "example": 1716870600000
-          },
-          "transaction_id": {
-            "type": "string",
-            "description": "Transaction identifier used to trace the API request.",
-            "example": "f24cd229-42c8-43de-af79-8ce2d3c4c3db"
-          },
-          "data": {
-            "$ref": "#/components/schemas/CertificatePaginatedList"
-          }
-        },
-        "x-apidog-orders": [
-          "code",
-          "timestamp",
-          "transaction_id",
-          "data"
-        ],
-        "x-apidog-ignore-properties": [],
-        "x-apidog-folder": ""
-      },
-      "ErrorResponse": {
-        "type": "object",
-        "additionalProperties": false,
-        "required": [
-          "code",
-          "timestamp",
-          "transaction_id",
-          "message"
-        ],
-        "properties": {
-          "code": {
-            "type": "integer",
-            "description": "HTTP status code."
-          },
-          "timestamp": {
-            "type": "integer",
-            "format": "int64",
-            "description": "Response timestamp in epoch milliseconds."
-          },
-          "transaction_id": {
-            "type": "string",
-            "description": "Transaction identifier used to trace the API request."
-          },
-          "message": {
-            "type": "string",
-            "description": "Error message."
-          }
-        },
-        "x-apidog-orders": [
-          "code",
-          "timestamp",
-          "transaction_id",
-          "message"
-        ],
-        "x-apidog-ignore-properties": [],
-        "x-apidog-folder": ""
-      },
-      "ChallanTaxBreakdown": {
-        "title": "ChallanTaxBreakdown",
-        "type": "object",
-        "additionalProperties": false,
-        "properties": {
-          "@entity": {
-            "type": "string",
-            "default": "in.co.sandbox.tds.compliance.challan.tax_breakdown",
-            "enum": [
-              "in.co.sandbox.tds.compliance.challan.tax_breakdown"
-            ],
-            "description": "Identifies the type of this object."
-          },
-          "id": {
-            "type": "string",
-            "description": "Object identifier, when available."
-          },
-          "description": {
-            "type": "string",
-            "description": "Additional information about the object, when available."
-          },
-          "created_at": {
-            "type": "string",
-            "description": "Creation timestamp, when available."
-          },
-          "updated_at": {
-            "type": "string",
-            "description": "Last update timestamp, when available."
-          },
-          "section": {
-            "type": "string",
-            "description": "TDS section reported by TRACES for this tax breakdown."
-          },
-          "tax_amount": {
-            "type": "number",
-            "description": "Base tax amount in INR, excluding surcharge and cess."
-          },
-          "surcharge": {
-            "type": "number",
-            "description": "Surcharge amount in INR."
-          },
-          "cess": {
-            "type": "number",
-            "description": "Cess amount in INR."
-          },
-          "total_amount": {
-            "type": "number",
-            "description": "Total amount in INR."
-          }
-        },
-        "required": [
-          "@entity",
-          "section",
-          "tax_amount",
-          "surcharge",
-          "cess",
-          "total_amount"
-        ],
-        "description": "Tax, surcharge, and cess for a section reported against the challan. All amounts are in INR.",
-        "x-apidog-ignore-properties": [],
-        "x-apidog-orders": [
-          "@entity",
-          "id",
-          "description",
-          "created_at",
-          "updated_at",
-          "section",
-          "tax_amount",
-          "surcharge",
-          "cess",
-          "total_amount"
-        ],
-        "x-apidog-folder": ""
-      },
-      "ChallanConsumptionDetails": {
-        "title": "ChallanConsumptionDetails",
-        "description": "Challan utilization for the statement reported by TRACES. This record is not a complete history of utilization across statements.",
-        "type": "object",
-        "additionalProperties": false,
-        "properties": {
-          "@entity": {
-            "type": "string",
-            "default": "in.co.sandbox.tds.compliance.challan.consumption_details",
-            "enum": [
-              "in.co.sandbox.tds.compliance.challan.consumption_details"
-            ],
-            "description": "Identifies the type of this object."
-          },
-          "id": {
-            "type": "string",
-            "description": "Object identifier, when available."
-          },
-          "description": {
-            "type": "string",
-            "description": "Additional information about the object, when available."
-          },
-          "created_at": {
-            "type": "string",
-            "description": "Creation timestamp, when available."
-          },
-          "updated_at": {
-            "type": "string",
-            "description": "Last update timestamp, when available."
-          },
-          "statement_token_number": {
-            "type": "string",
-            "description": "Token number of the statement against which the challan was claimed."
-          },
-          "financial_year": {
-            "type": "string",
-            "pattern": "^FY [0-9]{4}-[0-9]{2}$",
-            "description": "Financial year of the reported TDS statement in FY YYYY-YY format."
-          },
-          "quarter": {
-            "type": "string",
-            "description": "Quarter of the TDS statement, from Q1 to Q4."
-          },
-          "form": {
-            "type": "string",
-            "description": "TDS statement form code reported by TRACES."
-          },
-          "status": {
-            "type": "string",
-            "description": "Consumption status of the challan in the reported statement."
-          },
-          "claimed_amount": {
-            "type": "number",
-            "description": "Amount claimed against the challan in the reported statement, in INR."
-          },
-          "excess_claimed_amount": {
-            "type": "number",
-            "description": "Excess claimed amount reported by TRACES, in INR."
-          },
-          "available_amount": {
-            "type": "number",
-            "description": "Available challan amount reported by TRACES, in INR."
-          }
-        },
-        "required": [
-          "@entity",
-          "statement_token_number",
-          "financial_year",
-          "quarter",
-          "form",
-          "status",
-          "claimed_amount",
-          "excess_claimed_amount",
-          "available_amount"
-        ],
-        "x-apidog-ignore-properties": [],
-        "x-apidog-orders": [
-          "@entity",
-          "id",
-          "description",
-          "created_at",
-          "updated_at",
-          "statement_token_number",
-          "financial_year",
-          "quarter",
-          "form",
-          "status",
-          "claimed_amount",
-          "excess_claimed_amount",
-          "available_amount"
-        ],
-        "x-apidog-folder": ""
-      },
-      "Challan": {
-        "title": "Challan",
-        "type": "object",
-        "additionalProperties": false,
-        "properties": {
-          "@entity": {
-            "type": "string",
-            "default": "in.co.sandbox.tds.compliance.challan.response",
-            "enum": [
-              "in.co.sandbox.tds.compliance.challan.response"
-            ],
-            "description": "Identifies the type of this object."
-          },
-          "id": {
-            "type": "string",
-            "description": "Object identifier, when available."
-          },
-          "description": {
-            "type": "string",
-            "description": "Additional information about the object, when available."
-          },
-          "created_at": {
-            "type": "string",
-            "description": "Creation timestamp, when available."
-          },
-          "updated_at": {
-            "type": "string",
-            "description": "Last update timestamp, when available."
-          },
-          "tan": {
-            "type": "string",
-            "description": "Tax Deduction and Collection Account Number (TAN) of the deductor."
-          },
-          "bsr_code": {
-            "type": "string",
-            "description": "Basic Statistical Return (BSR) code of the bank branch where the challan was deposited."
-          },
-          "challan_serial": {
-            "type": "string",
-            "description": "Five-digit challan serial number, including leading zeroes."
-          },
-          "paid_date_epoch": {
-            "type": "integer",
-            "description": "Deposit date in epoch milliseconds. The calendar date is interpreted in Asia/Kolkata."
-          },
-          "challan_identification_number": {
-            "type": "string",
-            "description": "Challan Identification Number (CIN) reported by TRACES."
-          },
-          "receipt_number": {
-            "type": "string",
-            "description": "Receipt number reported by TRACES."
-          },
-          "financial_year": {
-            "type": "string",
-            "description": "Financial year reported by TRACES in FY YYYY-YY format. This year can differ from the financial year of the deposit date."
-          },
-          "major_head": {
-            "type": "string",
-            "description": "Major head of tax, including leading zeroes, such as 0021."
-          },
-          "minor_head": {
-            "type": "string",
-            "description": "Minor head of payment, such as 200."
-          },
-          "total_amount": {
-            "type": "number",
-            "description": "Total amount in INR."
-          },
-          "status": {
-            "type": "string",
-            "description": "Challan matching status reported by TRACES."
-          },
-          "section_code": {
-            "type": [
-              "string",
-              "null"
-            ],
-            "description": "Legacy section code reported by TRACES, or null if unavailable. This code can be present even when tax_breakdown is empty."
-          },
-          "residency_status": {
-            "type": [
-              "string",
-              "null"
-            ],
-            "description": "Residency status code reported by TRACES, or null if unavailable."
-          },
-          "tax_breakdown": {
-            "type": "array",
-            "items": {
-              "title": "ChallanTaxBreakdown",
-              "type": "object",
-              "additionalProperties": false,
-              "properties": {
-                "@entity": {
-                  "type": "string",
-                  "default": "in.co.sandbox.tds.compliance.challan.tax_breakdown",
-                  "enum": [
-                    "in.co.sandbox.tds.compliance.challan.tax_breakdown"
-                  ],
-                  "description": "Identifies the type of this object."
-                },
-                "id": {
-                  "type": "string",
-                  "description": "Object identifier, when available."
-                },
-                "description": {
-                  "type": "string",
-                  "description": "Additional information about the object, when available."
-                },
-                "created_at": {
-                  "type": "string",
-                  "description": "Creation timestamp, when available."
-                },
-                "updated_at": {
-                  "type": "string",
-                  "description": "Last update timestamp, when available."
-                },
-                "section": {
-                  "type": "string",
-                  "description": "TDS section reported by TRACES for this tax breakdown."
-                },
-                "tax_amount": {
-                  "type": "number",
-                  "description": "Base tax amount in INR, excluding surcharge and cess."
-                },
-                "surcharge": {
-                  "type": "number",
-                  "description": "Surcharge amount in INR."
-                },
-                "cess": {
-                  "type": "number",
-                  "description": "Cess amount in INR."
-                },
-                "total_amount": {
-                  "type": "number",
-                  "description": "Total amount in INR."
-                }
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/PanVerificationRequest"
               },
-              "required": [
-                "@entity",
-                "section",
-                "tax_amount",
-                "surcharge",
-                "cess",
-                "total_amount"
-              ],
-              "description": "Tax, surcharge, and cess for a section reported against the challan. All amounts are in INR.",
-              "x-apidog-ignore-properties": [],
-              "x-apidog-orders": [
-                "@entity",
-                "id",
-                "description",
-                "created_at",
-                "updated_at",
-                "section",
-                "tax_amount",
-                "surcharge",
-                "cess",
-                "total_amount"
-              ]
-            },
-            "description": "Section-wise tax breakdown in INR. An empty list means no breakdown is available."
-          },
-          "consumption_details": {
-            "title": "ChallanConsumptionDetails",
-            "description": "Statement utilization reported by TRACES. null means utilization details are unavailable and does not indicate an unused challan.",
-            "type": [
-              "object",
-              "null"
-            ],
-            "additionalProperties": false,
-            "properties": {
-              "@entity": {
-                "type": "string",
-                "default": "in.co.sandbox.tds.compliance.challan.consumption_details",
-                "enum": [
-                  "in.co.sandbox.tds.compliance.challan.consumption_details"
-                ],
-                "description": "Identifies the type of this object."
-              },
-              "id": {
-                "type": "string",
-                "description": "Object identifier, when available."
-              },
-              "description": {
-                "type": "string",
-                "description": "Additional information about the object, when available."
-              },
-              "created_at": {
-                "type": "string",
-                "description": "Creation timestamp, when available."
-              },
-              "updated_at": {
-                "type": "string",
-                "description": "Last update timestamp, when available."
-              },
-              "statement_token_number": {
-                "type": "string",
-                "description": "Token number of the statement against which the challan was claimed."
-              },
-              "financial_year": {
-                "type": "string",
-                "pattern": "^FY [0-9]{4}-[0-9]{2}$",
-                "description": "Financial year of the reported TDS statement in FY YYYY-YY format."
-              },
-              "quarter": {
-                "type": "string",
-                "description": "Quarter of the TDS statement, from Q1 to Q4."
-              },
-              "form": {
-                "type": "string",
-                "description": "TDS statement form code reported by TRACES."
-              },
-              "status": {
-                "type": "string",
-                "description": "Consumption status of the challan in the reported statement."
-              },
-              "claimed_amount": {
-                "type": "number",
-                "description": "Amount claimed against the challan in the reported statement, in INR."
-              },
-              "excess_claimed_amount": {
-                "type": "number",
-                "description": "Excess claimed amount reported by TRACES, in INR."
-              },
-              "available_amount": {
-                "type": "number",
-                "description": "Available challan amount reported by TRACES, in INR."
-              }
-            },
-            "required": [
-              "@entity",
-              "statement_token_number",
-              "financial_year",
-              "quarter",
-              "form",
-              "status",
-              "claimed_amount",
-              "excess_claimed_amount",
-              "available_amount"
-            ],
-            "x-apidog-ignore-properties": [],
-            "x-apidog-orders": [
-              "@entity",
-              "id",
-              "description",
-              "created_at",
-              "updated_at",
-              "statement_token_number",
-              "financial_year",
-              "quarter",
-              "form",
-              "status",
-              "claimed_amount",
-              "excess_claimed_amount",
-              "available_amount"
-            ]
-          }
-        },
-        "required": [
-          "@entity",
-          "tan",
-          "bsr_code",
-          "challan_serial",
-          "paid_date_epoch",
-          "challan_identification_number",
-          "receipt_number",
-          "financial_year",
-          "major_head",
-          "minor_head",
-          "total_amount",
-          "status",
-          "section_code",
-          "residency_status",
-          "tax_breakdown",
-          "consumption_details"
-        ],
-        "description": "A TDS challan with its tax breakdown and available utilization details from TRACES. All amounts are in INR.",
-        "x-apidog-ignore-properties": [],
-        "x-apidog-orders": [
-          "@entity",
-          "id",
-          "description",
-          "created_at",
-          "updated_at",
-          "tan",
-          "bsr_code",
-          "challan_serial",
-          "paid_date_epoch",
-          "challan_identification_number",
-          "receipt_number",
-          "financial_year",
-          "major_head",
-          "minor_head",
-          "total_amount",
-          "status",
-          "section_code",
-          "residency_status",
-          "tax_breakdown",
-          "consumption_details"
-        ],
-        "x-apidog-folder": ""
-      },
-      "ChallanLookupRequest": {
-        "title": "ChallanLookupRequest",
-        "type": "object",
-        "additionalProperties": false,
-        "properties": {
-          "@entity": {
-            "type": "string",
-            "default": "in.co.sandbox.tds.compliance.challan.request",
-            "enum": [
-              "in.co.sandbox.tds.compliance.challan.request"
-            ],
-            "description": "Identifies the type of this object."
-          },
-          "id": {
-            "type": "string",
-            "description": "Object identifier, when available."
-          },
-          "description": {
-            "type": "string",
-            "description": "Additional information about the object, when available."
-          },
-          "created_at": {
-            "type": "string",
-            "description": "Creation timestamp, when available."
-          },
-          "updated_at": {
-            "type": "string",
-            "description": "Last update timestamp, when available."
-          },
-          "tan": {
-            "type": "string",
-            "pattern": "^[A-Z]{4}[0-9]{5}[A-Z]$",
-            "description": "Tax Deduction and Collection Account Number (TAN) of the deductor."
-          },
-          "bsr_code": {
-            "type": "string",
-            "pattern": "^[0-9]{7}$",
-            "description": "Basic Statistical Return (BSR) code of the bank branch where the challan was deposited."
-          },
-          "challan_serial": {
-            "type": "string",
-            "pattern": "^[0-9]{5}$",
-            "description": "Five-digit challan serial number, including leading zeroes."
-          },
-          "paid_date_epoch": {
-            "type": "integer",
-            "minimum": 0,
-            "description": "Deposit date in epoch milliseconds. The calendar date is interpreted in Asia/Kolkata."
-          }
-        },
-        "required": [
-          "@entity",
-          "tan",
-          "bsr_code",
-          "challan_serial",
-          "paid_date_epoch"
-        ],
-        "description": "Particulars that identify a TDS challan for a deductor.",
-        "x-apidog-ignore-properties": [],
-        "x-apidog-orders": [
-          "@entity",
-          "id",
-          "description",
-          "created_at",
-          "updated_at",
-          "tan",
-          "bsr_code",
-          "challan_serial",
-          "paid_date_epoch"
-        ],
-        "x-apidog-folder": ""
-      },
-      "ChallanSearchRequest": {
-        "title": "ChallanSearchRequest",
-        "description": "Deposit-date filters for a deductor's challan search. Both dates are required. Pagination is optional.",
-        "type": "object",
-        "additionalProperties": false,
-        "properties": {
-          "@entity": {
-            "type": "string",
-            "default": "in.co.sandbox.tds.compliance.challan.search",
-            "enum": [
-              "in.co.sandbox.tds.compliance.challan.search"
-            ],
-            "description": "Identifies the type of this object."
-          },
-          "id": {
-            "type": "string",
-            "description": "Object identifier, when available."
-          },
-          "description": {
-            "type": "string",
-            "description": "Additional information about the object, when available."
-          },
-          "created_at": {
-            "type": "string",
-            "description": "Creation timestamp, when available."
-          },
-          "updated_at": {
-            "type": "string",
-            "description": "Last update timestamp, when available."
-          },
-          "tan": {
-            "type": "string",
-            "pattern": "^[A-Z]{4}[0-9]{5}[A-Z]$",
-            "description": "Tax Deduction and Collection Account Number (TAN) of the deductor."
-          },
-          "from_date_epoch": {
-            "type": "integer",
-            "minimum": 0,
-            "description": "Start of the deposit-date range in epoch milliseconds, interpreted in Asia/Kolkata."
-          },
-          "to_date_epoch": {
-            "type": "integer",
-            "minimum": 0,
-            "description": "End of the deposit-date range in epoch milliseconds, interpreted in Asia/Kolkata."
-          },
-          "page_number": {
-            "type": "integer",
-            "minimum": 0,
-            "description": "Zero-based page number. 0 requests the first page. Omit to use the default page."
-          },
-          "page_size": {
-            "type": "integer",
-            "minimum": 1,
-            "description": "Number of challans requested per page. Omit to use the default page size."
-          }
-        },
-        "required": [
-          "@entity",
-          "tan",
-          "from_date_epoch",
-          "to_date_epoch"
-        ],
-        "x-apidog-ignore-properties": [],
-        "x-apidog-orders": [
-          "@entity",
-          "id",
-          "description",
-          "created_at",
-          "updated_at",
-          "tan",
-          "from_date_epoch",
-          "to_date_epoch",
-          "page_number",
-          "page_size"
-        ],
-        "x-apidog-folder": ""
-      },
-      "ChallanSearchResponse": {
-        "title": "ChallanSearchResponse",
-        "type": "object",
-        "additionalProperties": false,
-        "properties": {
-          "@entity": {
-            "type": "string",
-            "default": "in.co.sandbox.tds.compliance.challan.search.response",
-            "enum": [
-              "in.co.sandbox.tds.compliance.challan.search.response"
-            ],
-            "description": "Identifies the type of this object."
-          },
-          "id": {
-            "type": "string",
-            "description": "Object identifier, when available."
-          },
-          "description": {
-            "type": "string",
-            "description": "Additional information about the object, when available."
-          },
-          "created_at": {
-            "type": "string",
-            "description": "Creation timestamp, when available."
-          },
-          "updated_at": {
-            "type": "string",
-            "description": "Last update timestamp, when available."
-          },
-          "data": {
-            "type": "array",
-            "items": {
-              "title": "Challan",
-              "type": "object",
-              "additionalProperties": false,
-              "properties": {
-                "@entity": {
-                  "type": "string",
-                  "default": "in.co.sandbox.tds.compliance.challan.response",
-                  "enum": [
-                    "in.co.sandbox.tds.compliance.challan.response"
-                  ],
-                  "description": "Identifies the type of this object."
-                },
-                "id": {
-                  "type": "string",
-                  "description": "Object identifier, when available."
-                },
-                "description": {
-                  "type": "string",
-                  "description": "Additional information about the object, when available."
-                },
-                "created_at": {
-                  "type": "string",
-                  "description": "Creation timestamp, when available."
-                },
-                "updated_at": {
-                  "type": "string",
-                  "description": "Last update timestamp, when available."
-                },
-                "tan": {
-                  "type": "string",
-                  "description": "Tax Deduction and Collection Account Number (TAN) of the deductor."
-                },
-                "bsr_code": {
-                  "type": "string",
-                  "description": "Basic Statistical Return (BSR) code of the bank branch where the challan was deposited."
-                },
-                "challan_serial": {
-                  "type": "string",
-                  "description": "Five-digit challan serial number, including leading zeroes."
-                },
-                "paid_date_epoch": {
-                  "type": "integer",
-                  "description": "Deposit date in epoch milliseconds. The calendar date is interpreted in Asia/Kolkata."
-                },
-                "challan_identification_number": {
-                  "type": "string",
-                  "description": "Challan Identification Number (CIN) reported by TRACES."
-                },
-                "receipt_number": {
-                  "type": "string",
-                  "description": "Receipt number reported by TRACES."
-                },
-                "financial_year": {
-                  "type": "string",
-                  "description": "Financial year reported by TRACES in FY YYYY-YY format. This year can differ from the financial year of the deposit date."
-                },
-                "major_head": {
-                  "type": "string",
-                  "description": "Major head of tax, including leading zeroes, such as 0021."
-                },
-                "minor_head": {
-                  "type": "string",
-                  "description": "Minor head of payment, such as 200."
-                },
-                "total_amount": {
-                  "type": "number",
-                  "description": "Total amount in INR."
-                },
-                "status": {
-                  "type": "string",
-                  "description": "Challan matching status reported by TRACES."
-                },
-                "section_code": {
-                  "type": [
-                    "string",
-                    "null"
-                  ],
-                  "description": "Legacy section code reported by TRACES, or null if unavailable. This code can be present even when tax_breakdown is empty."
-                },
-                "residency_status": {
-                  "type": [
-                    "string",
-                    "null"
-                  ],
-                  "description": "Residency status code reported by TRACES, or null if unavailable."
-                },
-                "tax_breakdown": {
-                  "type": "array",
-                  "items": {
-                    "title": "ChallanTaxBreakdown",
-                    "type": "object",
-                    "additionalProperties": false,
-                    "properties": {
-                      "@entity": {
-                        "type": "string",
-                        "default": "in.co.sandbox.tds.compliance.challan.tax_breakdown",
-                        "enum": [
-                          "in.co.sandbox.tds.compliance.challan.tax_breakdown"
-                        ],
-                        "description": "Identifies the type of this object."
-                      },
-                      "id": {
-                        "type": "string",
-                        "description": "Object identifier, when available."
-                      },
-                      "description": {
-                        "type": "string",
-                        "description": "Additional information about the object, when available."
-                      },
-                      "created_at": {
-                        "type": "string",
-                        "description": "Creation timestamp, when available."
-                      },
-                      "updated_at": {
-                        "type": "string",
-                        "description": "Last update timestamp, when available."
-                      },
-                      "section": {
-                        "type": "string",
-                        "description": "TDS section reported by TRACES for this tax breakdown."
-                      },
-                      "tax_amount": {
-                        "type": "number",
-                        "description": "Base tax amount in INR, excluding surcharge and cess."
-                      },
-                      "surcharge": {
-                        "type": "number",
-                        "description": "Surcharge amount in INR."
-                      },
-                      "cess": {
-                        "type": "number",
-                        "description": "Cess amount in INR."
-                      },
-                      "total_amount": {
-                        "type": "number",
-                        "description": "Total amount in INR."
-                      }
-                    },
-                    "required": [
-                      "@entity",
-                      "section",
-                      "tax_amount",
-                      "surcharge",
-                      "cess",
-                      "total_amount"
-                    ],
-                    "description": "Tax, surcharge, and cess for a section reported against the challan. All amounts are in INR.",
-                    "x-apidog-ignore-properties": [],
-                    "x-apidog-orders": [
-                      "@entity",
-                      "id",
-                      "description",
-                      "created_at",
-                      "updated_at",
-                      "section",
-                      "tax_amount",
-                      "surcharge",
-                      "cess",
-                      "total_amount"
-                    ]
+              "examples": {
+                "Job created": {
+                  "value": {
+                    "@entity": "in.co.sandbox.tds.compliance.pan.verification.request",
+                    "tan": "AHMA12345A"
                   },
-                  "description": "Section-wise tax breakdown in INR. An empty list means no breakdown is available."
-                },
-                "consumption_details": {
-                  "title": "ChallanConsumptionDetails",
-                  "description": "Statement utilization reported by TRACES. null means utilization details are unavailable and does not indicate an unused challan.",
-                  "type": [
-                    "object",
-                    "null"
-                  ],
-                  "additionalProperties": false,
+                  "summary": "Job created"
+                }
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "The job is created and ready for the input workbook upload.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
                   "properties": {
-                    "@entity": {
-                      "type": "string",
-                      "default": "in.co.sandbox.tds.compliance.challan.consumption_details",
+                    "code": {
+                      "type": "integer",
                       "enum": [
-                        "in.co.sandbox.tds.compliance.challan.consumption_details"
+                        200
                       ],
-                      "description": "Identifies the type of this object."
+                      "description": "HTTP status code."
                     },
-                    "id": {
+                    "timestamp": {
+                      "type": "integer",
+                      "format": "int64",
+                      "description": "Response timestamp in epoch milliseconds."
+                    },
+                    "transaction_id": {
                       "type": "string",
-                      "description": "Object identifier, when available."
+                      "format": "uuid",
+                      "description": "Unique identifier for this API transaction."
                     },
-                    "description": {
-                      "type": "string",
-                      "description": "Additional information about the object, when available."
-                    },
-                    "created_at": {
-                      "type": "string",
-                      "description": "Creation timestamp, when available."
-                    },
-                    "updated_at": {
-                      "type": "string",
-                      "description": "Last update timestamp, when available."
-                    },
-                    "statement_token_number": {
-                      "type": "string",
-                      "description": "Token number of the statement against which the challan was claimed."
-                    },
-                    "financial_year": {
-                      "type": "string",
-                      "pattern": "^FY [0-9]{4}-[0-9]{2}$",
-                      "description": "Financial year of the reported TDS statement in FY YYYY-YY format."
-                    },
-                    "quarter": {
-                      "type": "string",
-                      "description": "Quarter of the TDS statement, from Q1 to Q4."
-                    },
-                    "form": {
-                      "type": "string",
-                      "description": "TDS statement form code reported by TRACES."
-                    },
-                    "status": {
-                      "type": "string",
-                      "description": "Consumption status of the challan in the reported statement."
-                    },
-                    "claimed_amount": {
-                      "type": "number",
-                      "description": "Amount claimed against the challan in the reported statement, in INR."
-                    },
-                    "excess_claimed_amount": {
-                      "type": "number",
-                      "description": "Excess claimed amount reported by TRACES, in INR."
-                    },
-                    "available_amount": {
-                      "type": "number",
-                      "description": "Available challan amount reported by TRACES, in INR."
+                    "data": {
+                      "allOf": [
+                        {
+                          "$ref": "#/components/schemas/PanVerificationJob"
+                        },
+                        {
+                          "type": "object",
+                          "properties": {
+                            "status": {
+                              "type": "string",
+                              "enum": [
+                                "created"
+                              ]
+                            }
+                          },
+                          "required": [
+                            "json_url"
+                          ]
+                        }
+                      ]
                     }
                   },
                   "required": [
-                    "@entity",
-                    "statement_token_number",
-                    "financial_year",
-                    "quarter",
-                    "form",
-                    "status",
-                    "claimed_amount",
-                    "excess_claimed_amount",
-                    "available_amount"
-                  ],
-                  "x-apidog-ignore-properties": [],
-                  "x-apidog-orders": [
-                    "@entity",
-                    "id",
-                    "description",
-                    "created_at",
-                    "updated_at",
-                    "statement_token_number",
-                    "financial_year",
-                    "quarter",
-                    "form",
-                    "status",
-                    "claimed_amount",
-                    "excess_claimed_amount",
-                    "available_amount"
+                    "code",
+                    "timestamp",
+                    "transaction_id",
+                    "data"
+                  ]
+                },
+                "example": {
+                  "code": 200,
+                  "timestamp": 1791948600000,
+                  "transaction_id": "52c98016-3595-41b5-92dd-c4db41ea6876",
+                  "data": {
+                    "@entity": "in.co.sandbox.tds.compliance.pan.verification.job",
+                    "job_id": "b5084575-7bdf-4a40-a8db-e19c93d34ec4",
+                    "tan": "AHMA12345A",
+                    "status": "created",
+                    "created_at": 1791948600000,
+                    "json_url": "https://sandbox-example.s3.ap-south-1.amazonaws.com/pan-verification/input/b5084575-7bdf-4a40-a8db-e19c93d34ec4.json?X-Amz-Signature=example"
+                  }
+                }
+              }
+            },
+            "headers": {}
+          },
+          "400": {
+            "description": "The request body or query parameters are invalid.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "code": {
+                      "type": "integer",
+                      "enum": [
+                        400
+                      ],
+                      "description": "HTTP status code."
+                    },
+                    "timestamp": {
+                      "type": "integer",
+                      "format": "int64",
+                      "description": "Response timestamp in epoch milliseconds."
+                    },
+                    "transaction_id": {
+                      "type": "string",
+                      "format": "uuid",
+                      "description": "Unique identifier for this API transaction."
+                    },
+                    "message": {
+                      "type": "string",
+                      "description": "Reason the request could not be completed."
+                    }
+                  },
+                  "required": [
+                    "code",
+                    "timestamp",
+                    "transaction_id",
+                    "message"
+                  ]
+                },
+                "example": {
+                  "code": 400,
+                  "timestamp": 1791948600000,
+                  "transaction_id": "08328229-71e7-44dd-aae7-0e5decce9bc1",
+                  "message": "Invalid request body"
+                }
+              }
+            },
+            "headers": {}
+          },
+          "401": {
+            "description": "Sandbox authorization is missing, invalid, or expired.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "code": {
+                      "type": "integer",
+                      "enum": [
+                        401
+                      ],
+                      "description": "HTTP status code."
+                    },
+                    "timestamp": {
+                      "type": "integer",
+                      "format": "int64",
+                      "description": "Response timestamp in epoch milliseconds."
+                    },
+                    "transaction_id": {
+                      "type": "string",
+                      "format": "uuid",
+                      "description": "Unique identifier for this API transaction."
+                    },
+                    "message": {
+                      "type": "string",
+                      "description": "Reason the request could not be completed."
+                    }
+                  },
+                  "required": [
+                    "code",
+                    "timestamp",
+                    "transaction_id",
+                    "message"
                   ]
                 }
-              },
-              "required": [
-                "@entity",
-                "tan",
-                "bsr_code",
-                "challan_serial",
-                "paid_date_epoch",
-                "challan_identification_number",
-                "receipt_number",
-                "financial_year",
-                "major_head",
-                "minor_head",
-                "total_amount",
-                "status",
-                "section_code",
-                "residency_status",
-                "tax_breakdown",
-                "consumption_details"
-              ],
-              "description": "A TDS challan with its tax breakdown and available utilization details from TRACES. All amounts are in INR.",
-              "x-apidog-ignore-properties": [],
-              "x-apidog-orders": [
-                "@entity",
-                "id",
-                "description",
-                "created_at",
-                "updated_at",
-                "tan",
-                "bsr_code",
-                "challan_serial",
-                "paid_date_epoch",
-                "challan_identification_number",
-                "receipt_number",
-                "financial_year",
-                "major_head",
-                "minor_head",
-                "total_amount",
-                "status",
-                "section_code",
-                "residency_status",
-                "tax_breakdown",
-                "consumption_details"
-              ]
+              }
             },
-            "description": "Challans in the requested page. An empty list means no challans were returned for that page."
+            "headers": {}
           },
-          "totalPages": {
-            "type": "integer",
-            "minimum": 0,
-            "description": "Total number of result pages reported by TRACES."
+          "403": {
+            "description": "Access to this API is denied.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "code": {
+                      "type": "integer",
+                      "enum": [
+                        403
+                      ],
+                      "description": "HTTP status code."
+                    },
+                    "timestamp": {
+                      "type": "integer",
+                      "format": "int64",
+                      "description": "Response timestamp in epoch milliseconds."
+                    },
+                    "transaction_id": {
+                      "type": "string",
+                      "format": "uuid",
+                      "description": "Unique identifier for this API transaction."
+                    },
+                    "message": {
+                      "type": "string",
+                      "description": "Reason the request could not be completed."
+                    }
+                  },
+                  "required": [
+                    "code",
+                    "timestamp",
+                    "transaction_id",
+                    "message"
+                  ]
+                }
+              }
+            },
+            "headers": {}
           },
-          "totalElements": {
-            "type": "integer",
-            "minimum": 0,
-            "description": "Total number of matching challans reported by TRACES."
+          "500": {
+            "description": "The API request could not be completed.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "code": {
+                      "type": "integer",
+                      "enum": [
+                        500
+                      ],
+                      "description": "HTTP status code."
+                    },
+                    "timestamp": {
+                      "type": "integer",
+                      "format": "int64",
+                      "description": "Response timestamp in epoch milliseconds."
+                    },
+                    "transaction_id": {
+                      "type": "string",
+                      "format": "uuid",
+                      "description": "Unique identifier for this API transaction."
+                    },
+                    "message": {
+                      "type": "string",
+                      "description": "Reason the request could not be completed."
+                    }
+                  },
+                  "required": [
+                    "code",
+                    "timestamp",
+                    "transaction_id",
+                    "message"
+                  ]
+                }
+              }
+            },
+            "headers": {}
           }
         },
-        "required": [
-          "@entity",
-          "data",
-          "totalPages",
-          "totalElements"
+        "security": []
+      },
+      "get": {
+        "summary": "Get bulk PAN verification job status",
+        "deprecated": false,
+        "description": "Returns the current status of a bulk PAN verification job in your workspace. This GET request has no body.\n\nA created job waits for the workbook upload. queued waits to start processing. in_progress covers workbook validation, TRACES authentication and verification, and output workbook generation. A job succeeds after the output JSON workbook is saved and provides output_json_url for its download. A failed job provides message. Retrieving a failed job returns HTTP 200.\n\nTRACES report availability is polled for up to one day after successful submission. Authentication, validation, processing, and report-availability failures appear on the job.\n\nThe output workbook contains payee_sheet and payee_table with the header [\"sr_no\", \"pan\", \"pan_status\"]. It includes only submitted PANs returned by TRACES, in their original input order. The first input sr_no is retained for each PAN. A missing PAN is omitted and does not fail the job.\n\nThe pan_status value is the exact text returned by TRACES. Known values include Valid and Operative, Valid and Inoperative, Valid, Inactive, and Invalid. Other source values are returned unchanged. An Invalid PAN result does not mean the job failed. The input file limit does not limit the output file.\n\nOutput workbook example:\n\n```json\n{\n  \"@entity\": \"workbook\",\n  \"name\": \"pan_verification_workbook\",\n  \"sheets\": [\n    {\n      \"@entity\": \"sheet\",\n      \"name\": \"payee_sheet\",\n      \"blocks\": [\n        {\n          \"@entity\": \"table\",\n          \"name\": \"payee_table\",\n          \"header\": [\n            \"sr_no\",\n            \"pan\",\n            \"pan_status\"\n          ],\n          \"rows\": [\n            [\n              1,\n              \"ABCPD1234E\",\n              \"Valid and Operative\"\n            ],\n            [\n              2,\n              \"XYZPK5678L\",\n              \"Valid and Inoperative\"\n            ]\n          ]\n        }\n      ]\n    }\n  ]\n}\n```\n\nThis example omits the repeated input PAN and a PAN absent from the TRACES report.",
+        "operationId": "GetPanVerificationJobStatus",
+        "tags": [
+          "TDS",
+          "TRACES",
+          "PAN Verification"
         ],
-        "description": "One page of challans with pagination totals reported by TRACES.",
-        "x-apidog-ignore-properties": [],
-        "x-apidog-orders": [
-          "@entity",
-          "id",
-          "description",
-          "created_at",
-          "updated_at",
-          "data",
-          "totalPages",
-          "totalElements"
+        "parameters": [
+          {
+            "name": "job_id",
+            "in": "query",
+            "description": "Job ID returned when the PAN verification job was created.",
+            "required": true,
+            "example": "b5084575-7bdf-4a40-a8db-e19c93d34ec4",
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          },
+          {
+            "name": "Authorization",
+            "in": "header",
+            "description": "Sandbox JWT access token. See the [Quickstart guide](https://developer.sandbox.co.in/guides/get-started/quickstart).",
+            "required": true,
+            "example": "{{access_token}}",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "x-api-key",
+            "in": "header",
+            "description": "Sandbox API key for the request.",
+            "required": true,
+            "example": "{{api_key}}",
+            "schema": {
+              "type": "string"
+            }
+          }
         ],
-        "x-apidog-folder": ""
+        "responses": {
+          "200": {
+            "description": "The current job status. Failed verification jobs are returned with HTTP 200 and status failed.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "code": {
+                      "type": "integer",
+                      "enum": [
+                        200
+                      ],
+                      "description": "HTTP status code."
+                    },
+                    "timestamp": {
+                      "type": "integer",
+                      "format": "int64",
+                      "description": "Response timestamp in epoch milliseconds."
+                    },
+                    "transaction_id": {
+                      "type": "string",
+                      "format": "uuid",
+                      "description": "Unique identifier for this API transaction."
+                    },
+                    "data": {
+                      "$ref": "#/components/schemas/PanVerificationJob"
+                    }
+                  },
+                  "required": [
+                    "code",
+                    "timestamp",
+                    "transaction_id",
+                    "data"
+                  ]
+                },
+                "examples": {
+                  "1": {
+                    "summary": "Waiting for workbook upload",
+                    "value": {
+                      "code": 200,
+                      "timestamp": 1791948600000,
+                      "transaction_id": "4ce46c58-bc0b-4b48-9bdf-d4404f7f55ea",
+                      "data": {
+                        "@entity": "in.co.sandbox.tds.compliance.pan.verification.job",
+                        "job_id": "b5084575-7bdf-4a40-a8db-e19c93d34ec4",
+                        "tan": "AHMA12345A",
+                        "status": "created",
+                        "created_at": 1791948600000,
+                        "json_url": "https://sandbox-example.s3.ap-south-1.amazonaws.com/pan-verification/input/b5084575-7bdf-4a40-a8db-e19c93d34ec4.json?X-Amz-Signature=example"
+                      }
+                    }
+                  },
+                  "2": {
+                    "summary": "Workbook queued",
+                    "value": {
+                      "code": 200,
+                      "timestamp": 1791948601000,
+                      "transaction_id": "a8d2f614-e19e-4412-8c97-b41f951f698b",
+                      "data": {
+                        "@entity": "in.co.sandbox.tds.compliance.pan.verification.job",
+                        "job_id": "b5084575-7bdf-4a40-a8db-e19c93d34ec4",
+                        "tan": "AHMA12345A",
+                        "status": "queued",
+                        "created_at": 1791948600000,
+                        "updated_at": 1791948601000
+                      }
+                    }
+                  },
+                  "3": {
+                    "summary": "Verification in progress",
+                    "value": {
+                      "code": 200,
+                      "timestamp": 1791948602000,
+                      "transaction_id": "548c8fbb-61a8-4590-baa6-c138a6ccf8a7",
+                      "data": {
+                        "@entity": "in.co.sandbox.tds.compliance.pan.verification.job",
+                        "job_id": "b5084575-7bdf-4a40-a8db-e19c93d34ec4",
+                        "tan": "AHMA12345A",
+                        "status": "in_progress",
+                        "created_at": 1791948600000,
+                        "updated_at": 1791948602000
+                      }
+                    }
+                  },
+                  "4": {
+                    "summary": "Verification completed",
+                    "value": {
+                      "code": 200,
+                      "timestamp": 1791948720000,
+                      "transaction_id": "8bc70d6c-bace-4070-a77d-d0a0e8094c3e",
+                      "data": {
+                        "@entity": "in.co.sandbox.tds.compliance.pan.verification.job",
+                        "job_id": "b5084575-7bdf-4a40-a8db-e19c93d34ec4",
+                        "tan": "AHMA12345A",
+                        "status": "succeeded",
+                        "created_at": 1791948600000,
+                        "updated_at": 1791948720000,
+                        "output_json_url": "https://sandbox-example.s3.ap-south-1.amazonaws.com/pan-verification/output/b5084575-7bdf-4a40-a8db-e19c93d34ec4.json?X-Amz-Signature=example"
+                      }
+                    }
+                  },
+                  "5": {
+                    "summary": "TRACES credentials not stored",
+                    "value": {
+                      "code": 200,
+                      "timestamp": 1791948605000,
+                      "transaction_id": "942adf54-dc8d-4c72-accd-3b442747b6d5",
+                      "data": {
+                        "@entity": "in.co.sandbox.tds.compliance.pan.verification.job",
+                        "job_id": "b5084575-7bdf-4a40-a8db-e19c93d34ec4",
+                        "tan": "AHMA12345A",
+                        "status": "failed",
+                        "created_at": 1791948600000,
+                        "updated_at": 1791948605000,
+                        "message": "Credentials not found"
+                      }
+                    }
+                  },
+                  "6": {
+                    "summary": "Incorrect TRACES credentials",
+                    "value": {
+                      "code": 200,
+                      "timestamp": 1791948605000,
+                      "transaction_id": "a6bee2e4-31c0-4994-9b6c-a463bdfa1a94",
+                      "data": {
+                        "@entity": "in.co.sandbox.tds.compliance.pan.verification.job",
+                        "job_id": "b5084575-7bdf-4a40-a8db-e19c93d34ec4",
+                        "tan": "AHMA12345A",
+                        "status": "failed",
+                        "created_at": 1791948600000,
+                        "updated_at": 1791948605000,
+                        "message": "Invalid credentials"
+                      }
+                    }
+                  },
+                  "7": {
+                    "summary": "Input exceeds the file size limit",
+                    "value": {
+                      "code": 200,
+                      "timestamp": 1791948605000,
+                      "transaction_id": "006dfc76-df44-4a0e-b168-b80fe3cde073",
+                      "data": {
+                        "@entity": "in.co.sandbox.tds.compliance.pan.verification.job",
+                        "job_id": "b5084575-7bdf-4a40-a8db-e19c93d34ec4",
+                        "tan": "AHMA12345A",
+                        "status": "failed",
+                        "created_at": 1791948600000,
+                        "updated_at": 1791948605000,
+                        "message": "Input workbook exceeds the 5 MB limit"
+                      }
+                    }
+                  },
+                  "8": {
+                    "summary": "Report not available within one day",
+                    "value": {
+                      "code": 200,
+                      "timestamp": 1792035000000,
+                      "transaction_id": "ee23fac6-7ce1-41b5-9d9b-b9e48caf6277",
+                      "data": {
+                        "@entity": "in.co.sandbox.tds.compliance.pan.verification.job",
+                        "job_id": "b5084575-7bdf-4a40-a8db-e19c93d34ec4",
+                        "tan": "AHMA12345A",
+                        "status": "failed",
+                        "created_at": 1791948600000,
+                        "updated_at": 1792035000000,
+                        "message": "PAN verification report was not available within one day"
+                      }
+                    }
+                  }
+                }
+              }
+            },
+            "headers": {}
+          },
+          "401": {
+            "description": "Sandbox authorization is missing, invalid, or expired.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "code": {
+                      "type": "integer",
+                      "enum": [
+                        401
+                      ],
+                      "description": "HTTP status code."
+                    },
+                    "timestamp": {
+                      "type": "integer",
+                      "format": "int64",
+                      "description": "Response timestamp in epoch milliseconds."
+                    },
+                    "transaction_id": {
+                      "type": "string",
+                      "format": "uuid",
+                      "description": "Unique identifier for this API transaction."
+                    },
+                    "message": {
+                      "type": "string",
+                      "description": "Reason the request could not be completed."
+                    }
+                  },
+                  "required": [
+                    "code",
+                    "timestamp",
+                    "transaction_id",
+                    "message"
+                  ]
+                }
+              }
+            },
+            "headers": {}
+          },
+          "403": {
+            "description": "Access to this API is denied.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "code": {
+                      "type": "integer",
+                      "enum": [
+                        403
+                      ],
+                      "description": "HTTP status code."
+                    },
+                    "timestamp": {
+                      "type": "integer",
+                      "format": "int64",
+                      "description": "Response timestamp in epoch milliseconds."
+                    },
+                    "transaction_id": {
+                      "type": "string",
+                      "format": "uuid",
+                      "description": "Unique identifier for this API transaction."
+                    },
+                    "message": {
+                      "type": "string",
+                      "description": "Reason the request could not be completed."
+                    }
+                  },
+                  "required": [
+                    "code",
+                    "timestamp",
+                    "transaction_id",
+                    "message"
+                  ]
+                }
+              }
+            },
+            "headers": {}
+          },
+          "500": {
+            "description": "The API request could not be completed.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "code": {
+                      "type": "integer",
+                      "enum": [
+                        500
+                      ],
+                      "description": "HTTP status code."
+                    },
+                    "timestamp": {
+                      "type": "integer",
+                      "format": "int64",
+                      "description": "Response timestamp in epoch milliseconds."
+                    },
+                    "transaction_id": {
+                      "type": "string",
+                      "format": "uuid",
+                      "description": "Unique identifier for this API transaction."
+                    },
+                    "message": {
+                      "type": "string",
+                      "description": "Reason the request could not be completed."
+                    }
+                  },
+                  "required": [
+                    "code",
+                    "timestamp",
+                    "transaction_id",
+                    "message"
+                  ]
+                }
+              }
+            },
+            "headers": {}
+          },
+          "521": {
+            "description": "No PAN verification job matches the supplied job ID in your workspace.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "code": {
+                      "type": "integer",
+                      "enum": [
+                        521
+                      ],
+                      "description": "HTTP status code."
+                    },
+                    "timestamp": {
+                      "type": "integer",
+                      "format": "int64",
+                      "description": "Response timestamp in epoch milliseconds."
+                    },
+                    "transaction_id": {
+                      "type": "string",
+                      "format": "uuid",
+                      "description": "Unique identifier for this API transaction."
+                    },
+                    "message": {
+                      "type": "string",
+                      "description": "Reason the request could not be completed."
+                    }
+                  },
+                  "required": [
+                    "code",
+                    "timestamp",
+                    "transaction_id",
+                    "message"
+                  ]
+                },
+                "example": {
+                  "code": 521,
+                  "timestamp": 1791948600000,
+                  "transaction_id": "6531080e-ee10-4d33-8213-e6d9d2bec9e1",
+                  "message": "Job not found"
+                }
+              }
+            },
+            "headers": {}
+          }
+        },
+        "security": []
       }
-    },
-    "responses": {},
-    "securitySchemes": {}
+    }
   },
-  "servers": [],
-  "security": [],
   "webhooks": {
     "FVUGenerateJobStatus": {
       "post": {
@@ -7817,7 +6488,7 @@
                     "quarter": "Q1",
                     "form": "131",
                     "certificate_pdf_zip_urls": [
-                      "https://in-co-sandbox-tds-compliance-certificate-dev.s3.ap-south-1.amazonaws.com/b0ae5ad8-6d75-413d-9516-5773e62055f3/AHMS45586C/TY%202026-27/Q1/131/2b61a200-d225-48b5-a6a8-d29d9351c014/pdf/1_AHMxxxxx6C_FORM131_2026_Q1_251155230_1.zip?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Credential=AKIAZG5IA3J4IHC65GYQ%2F20260907%2Fap-south-1%2Fs3%2Faws4_request&X-Amz-Date=20260907T120448Z&X-Amz-Expires=86400&X-Amz-Signature=5ae3fdc51be4da7786f3e118dea41c0ad2679197140931616c60271b5c3cc0d2&X-Amz-SignedHeaders=host&x-amz-checksum-mode=ENABLED&x-id=GetObject"
+                      "https://in-co-sandbox-tds-test-storage.s3.ap-south-1.amazonaws.com/AHMS45586C/TY+2026-27/1_AHMxxxxx6C_FORM131_2026_Q1_certificate.zip"
                     ],
                     "status": "succeeded"
                   },
@@ -7854,5 +6525,1368 @@
         "security": []
       }
     }
-  }
+  },
+  "components": {
+    "schemas": {
+      "PanVerificationRequest": {
+        "type": "object",
+        "description": "Creates a bulk PAN verification job for a TAN. The payee workbook is uploaded separately to the returned signed URL.",
+        "properties": {
+          "@entity": {
+            "type": "string",
+            "enum": [
+              "in.co.sandbox.tds.compliance.pan.verification.request"
+            ],
+            "description": "Request entity type."
+          },
+          "tan": {
+            "type": "string",
+            "pattern": "^[A-Z]{4}[0-9]{5}[A-Z]$",
+            "description": "Tax Deduction and Collection Account Number associated with the saved TRACES credentials.",
+            "example": "AHMA12345A"
+          }
+        },
+        "required": [
+          "@entity",
+          "tan"
+        ],
+        "additionalProperties": false
+      },
+      "PanVerificationJob": {
+        "type": "object",
+        "description": "A bulk PAN verification job. Upload the input through json_url. A succeeded job provides output_json_url. A failed job provides message.",
+        "properties": {
+          "@entity": {
+            "type": "string",
+            "enum": [
+              "in.co.sandbox.tds.compliance.pan.verification.job"
+            ],
+            "description": "Job entity type."
+          },
+          "job_id": {
+            "type": "string",
+            "format": "uuid",
+            "description": "Unique identifier returned when the job is created."
+          },
+          "tan": {
+            "type": "string",
+            "pattern": "^[A-Z]{4}[0-9]{5}[A-Z]$",
+            "description": "TAN associated with the verification job."
+          },
+          "status": {
+            "type": "string",
+            "enum": [
+              "created",
+              "queued",
+              "in_progress",
+              "succeeded",
+              "failed"
+            ],
+            "description": "Current job status. created waits for the workbook upload. queued waits to start processing. in_progress covers workbook validation, TRACES authentication and verification, and output workbook generation. succeeded means the output JSON workbook is saved. failed means processing did not complete."
+          },
+          "created_at": {
+            "type": "integer",
+            "format": "int64",
+            "description": "Job creation timestamp in epoch milliseconds."
+          },
+          "updated_at": {
+            "type": "integer",
+            "format": "int64",
+            "description": "Last job update timestamp in epoch milliseconds. Omitted from the job creation response."
+          },
+          "json_url": {
+            "type": "string",
+            "format": "uri",
+            "description": "Signed URL for uploading the input JSON workbook with HTTP PUT. The input limit is 5,000,000 bytes."
+          },
+          "output_json_url": {
+            "type": "string",
+            "format": "uri",
+            "description": "Signed URL for downloading the completed output JSON workbook with HTTP GET. Available when status is succeeded."
+          },
+          "message": {
+            "type": "string",
+            "description": "Reason the job failed. Present when status is failed."
+          }
+        },
+        "required": [
+          "@entity",
+          "job_id",
+          "tan",
+          "status",
+          "created_at"
+        ],
+        "additionalProperties": false,
+        "oneOf": [
+          {
+            "properties": {
+              "status": {
+                "enum": [
+                  "created",
+                  "queued",
+                  "in_progress"
+                ]
+              }
+            },
+            "type": "object"
+          },
+          {
+            "properties": {
+              "status": {
+                "enum": [
+                  "succeeded"
+                ]
+              }
+            },
+            "required": [
+              "output_json_url"
+            ],
+            "type": "object"
+          },
+          {
+            "properties": {
+              "status": {
+                "enum": [
+                  "failed"
+                ]
+              }
+            },
+            "required": [
+              "message"
+            ],
+            "type": "object"
+          }
+        ]
+      },
+      "CertificateJob": {
+        "type": "object",
+        "additionalProperties": false,
+        "description": "Certificate download job.",
+        "required": [
+          "@entity",
+          "job_id",
+          "tan",
+          "tax_year",
+          "quarter",
+          "form",
+          "status",
+          "created_at"
+        ],
+        "properties": {
+          "@entity": {
+            "type": "string",
+            "enum": [
+              "in.co.sandbox.tds.compliance.certificate.job"
+            ],
+            "description": "Identifies the object as a certificate job."
+          },
+          "job_id": {
+            "type": "string",
+            "format": "uuid",
+            "description": "Unique identifier for the certificate job."
+          },
+          "tan": {
+            "type": "string",
+            "pattern": "^[A-Z]{4}[0-9]{5}[A-Z]$",
+            "description": "TAN used to request the certificate.",
+            "examples": [
+              "AHMS12345C"
+            ]
+          },
+          "tax_year": {
+            "type": "string",
+            "pattern": "^TY [0-9]{4}-[0-9]{2}$",
+            "description": "Tax year of the requested certificate.",
+            "examples": [
+              "TY 2025-26"
+            ]
+          },
+          "quarter": {
+            "type": "string",
+            "enum": [
+              "Q1",
+              "Q2",
+              "Q3",
+              "Q4"
+            ],
+            "description": "Quarter of the requested certificate."
+          },
+          "form": {
+            "type": "string",
+            "description": "TDS return form of the requested certificate.",
+            "examples": [
+              "24Q"
+            ]
+          },
+          "status": {
+            "type": "string",
+            "enum": [
+              "created",
+              "queued",
+              "in_progress",
+              "succeeded",
+              "failed"
+            ],
+            "description": "Current status of the certificate job."
+          },
+          "created_at": {
+            "type": "integer",
+            "format": "int64",
+            "description": "Time the job was created, in epoch milliseconds."
+          },
+          "updated_at": {
+            "type": "integer",
+            "format": "int64",
+            "description": "Time the job was last updated, in epoch milliseconds. Omitted while the job is queued."
+          },
+          "certificate_pdf_zip_urls": {
+            "type": "array",
+            "minItems": 1,
+            "description": "Presigned URLs for the certificate PDF ZIP files. Returned only for a succeeded job.",
+            "items": {
+              "type": "string",
+              "format": "uri"
+            }
+          },
+          "message": {
+            "type": "string",
+            "description": "Reason the job failed. Returned only for a failed job."
+          }
+        }
+      },
+      "CertificatePaginatedList": {
+        "type": "object",
+        "additionalProperties": false,
+        "description": "Page of certificate jobs.",
+        "required": [
+          "@entity",
+          "items"
+        ],
+        "properties": {
+          "@entity": {
+            "type": "string",
+            "enum": [
+              "in.co.sandbox.tds.compliance.certificate.paginated_list"
+            ],
+            "description": "Identifies the object as a page of certificate jobs."
+          },
+          "items": {
+            "type": "array",
+            "description": "Certificate jobs in the current page.",
+            "items": {
+              "$ref": "#/components/schemas/CertificateJob"
+            }
+          },
+          "last_evaluated_key": {
+            "type": "string",
+            "description": "Opaque cursor for the next page. Omitted when no more results exist."
+          }
+        }
+      },
+      "CertificateJobRequest": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "@entity",
+          "tan",
+          "quarter",
+          "tax_year",
+          "form"
+        ],
+        "properties": {
+          "@entity": {
+            "type": "string",
+            "enum": [
+              "in.co.sandbox.tds.compliance.certificate.job.request"
+            ],
+            "description": "Identifies the object as a certificate job request."
+          },
+          "tan": {
+            "type": "string",
+            "pattern": "^[A-Z]{4}[0-9]{5}[A-Z]$",
+            "description": "TAN used to request the certificate.",
+            "examples": [
+              "AHMS45586C"
+            ]
+          },
+          "quarter": {
+            "type": "string",
+            "enum": [
+              "Q1",
+              "Q2",
+              "Q3",
+              "Q4"
+            ],
+            "description": "Quarter of the requested certificate."
+          },
+          "tax_year": {
+            "type": "string",
+            "pattern": "^TY [0-9]{4}-[0-9]{2}$",
+            "description": "Tax year of the requested certificate.",
+            "examples": [
+              "TY 2025-26"
+            ]
+          },
+          "form": {
+            "type": "string",
+            "description": "TDS return form of the requested certificate.",
+            "examples": [
+              "24Q"
+            ]
+          }
+        }
+      },
+      "CertificateJobSearchRequest": {
+        "type": "object",
+        "description": "Filters used to search certificate generation jobs.",
+        "properties": {
+          "@entity": {
+            "type": "string",
+            "description": "Search request entity type.",
+            "examples": [
+              "in.co.sandbox.tds.compliance.certificate.job.search"
+            ]
+          },
+          "tan": {
+            "type": "string",
+            "description": "Tax Deduction and Collection Account Number (TAN).",
+            "examples": [
+              "AHMS45586C"
+            ]
+          },
+          "tax_year": {
+            "type": "string",
+            "description": "Tax year used to filter certificate jobs. Use the TY YYYY-YY format.",
+            "examples": [
+              "TY 2026-27"
+            ]
+          },
+          "quarter": {
+            "type": "string",
+            "description": "Quarter used to filter certificate jobs.",
+            "enum": [
+              "Q1",
+              "Q2",
+              "Q3",
+              "Q4"
+            ]
+          },
+          "form": {
+            "type": "string",
+            "description": "Certificate form used to filter jobs. Use 130 for salary TDS, 131 for other TDS, or 133 for TCS.",
+            "enum": [
+              "130",
+              "131",
+              "133"
+            ]
+          },
+          "status": {
+            "type": "string",
+            "description": "Job status used to filter results.",
+            "enum": [
+              "created",
+              "queued",
+              "in_progress",
+              "succeeded",
+              "failed"
+            ]
+          },
+          "page_size": {
+            "type": "integer",
+            "description": "Maximum number of jobs to return.",
+            "minimum": 1
+          },
+          "last_evaluated_key": {
+            "type": "string",
+            "description": "Pagination key returned by the previous search response."
+          }
+        },
+        "required": [
+          "@entity",
+          "tan",
+          "tax_year",
+          "quarter",
+          "form",
+          "page_size"
+        ]
+      },
+      "CertificateJobResponse": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "code",
+          "timestamp",
+          "transaction_id",
+          "data"
+        ],
+        "properties": {
+          "code": {
+            "type": "integer",
+            "description": "HTTP status code.",
+            "examples": [
+              200
+            ]
+          },
+          "timestamp": {
+            "type": "integer",
+            "format": "int64",
+            "description": "Response timestamp in epoch milliseconds.",
+            "examples": [
+              1716870600000
+            ]
+          },
+          "transaction_id": {
+            "type": "string",
+            "description": "Transaction identifier used to trace the API request.",
+            "examples": [
+              "f24cd229-42c8-43de-af79-8ce2d3c4c3db"
+            ]
+          },
+          "data": {
+            "$ref": "#/components/schemas/CertificateJob"
+          }
+        }
+      },
+      "CertificatePaginatedListResponse": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "code",
+          "timestamp",
+          "transaction_id",
+          "data"
+        ],
+        "properties": {
+          "code": {
+            "type": "integer",
+            "description": "HTTP status code.",
+            "examples": [
+              200
+            ]
+          },
+          "timestamp": {
+            "type": "integer",
+            "format": "int64",
+            "description": "Response timestamp in epoch milliseconds.",
+            "examples": [
+              1716870600000
+            ]
+          },
+          "transaction_id": {
+            "type": "string",
+            "description": "Transaction identifier used to trace the API request.",
+            "examples": [
+              "f24cd229-42c8-43de-af79-8ce2d3c4c3db"
+            ]
+          },
+          "data": {
+            "$ref": "#/components/schemas/CertificatePaginatedList"
+          }
+        }
+      },
+      "ErrorResponse": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "code",
+          "timestamp",
+          "transaction_id",
+          "message"
+        ],
+        "properties": {
+          "code": {
+            "type": "integer",
+            "description": "HTTP status code."
+          },
+          "timestamp": {
+            "type": "integer",
+            "format": "int64",
+            "description": "Response timestamp in epoch milliseconds."
+          },
+          "transaction_id": {
+            "type": "string",
+            "description": "Transaction identifier used to trace the API request."
+          },
+          "message": {
+            "type": "string",
+            "description": "Error message."
+          }
+        }
+      },
+      "ChallanTaxBreakdown": {
+        "title": "ChallanTaxBreakdown",
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "@entity": {
+            "type": "string",
+            "default": "in.co.sandbox.tds.compliance.challan.tax_breakdown",
+            "enum": [
+              "in.co.sandbox.tds.compliance.challan.tax_breakdown"
+            ],
+            "description": "Identifies the type of this object."
+          },
+          "created_at": {
+            "type": "string",
+            "description": "Creation timestamp, when available."
+          },
+          "updated_at": {
+            "type": "string",
+            "description": "Last update timestamp, when available."
+          },
+          "section": {
+            "type": "string",
+            "description": "TDS section reported by TRACES for this tax breakdown."
+          },
+          "tax_amount": {
+            "type": "number",
+            "description": "Base tax amount in INR, excluding surcharge and cess."
+          },
+          "surcharge": {
+            "type": "number",
+            "description": "Surcharge amount in INR."
+          },
+          "cess": {
+            "type": "number",
+            "description": "Cess amount in INR."
+          },
+          "total_amount": {
+            "type": "number",
+            "description": "Total amount in INR."
+          }
+        },
+        "required": [
+          "@entity",
+          "section",
+          "tax_amount",
+          "surcharge",
+          "cess",
+          "total_amount"
+        ],
+        "description": "Tax, surcharge, and cess for a section reported against the challan. All amounts are in INR."
+      },
+      "ChallanConsumptionDetails": {
+        "title": "ChallanConsumptionDetails",
+        "description": "Challan utilization for the statement reported by TRACES. This record is not a complete history of utilization across statements.",
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "@entity": {
+            "type": "string",
+            "default": "in.co.sandbox.tds.compliance.challan.consumption_details",
+            "enum": [
+              "in.co.sandbox.tds.compliance.challan.consumption_details"
+            ],
+            "description": "Identifies the type of this object."
+          },
+          "created_at": {
+            "type": "string",
+            "description": "Creation timestamp, when available."
+          },
+          "updated_at": {
+            "type": "string",
+            "description": "Last update timestamp, when available."
+          },
+          "statement_token_number": {
+            "type": "string",
+            "description": "Token number of the statement against which the challan was claimed."
+          },
+          "financial_year": {
+            "type": "string",
+            "pattern": "^FY [0-9]{4}-[0-9]{2}$",
+            "description": "Financial year of the reported TDS statement in FY YYYY-YY format."
+          },
+          "quarter": {
+            "type": "string",
+            "description": "Quarter of the TDS statement, from Q1 to Q4."
+          },
+          "form": {
+            "type": "string",
+            "description": "TDS statement form code reported by TRACES."
+          },
+          "status": {
+            "type": "string",
+            "description": "Consumption status of the challan in the reported statement."
+          },
+          "claimed_amount": {
+            "type": "number",
+            "description": "Amount claimed against the challan in the reported statement, in INR."
+          },
+          "excess_claimed_amount": {
+            "type": "number",
+            "description": "Excess claimed amount reported by TRACES, in INR."
+          },
+          "available_amount": {
+            "type": "number",
+            "description": "Available challan amount reported by TRACES, in INR."
+          }
+        },
+        "required": [
+          "@entity",
+          "statement_token_number",
+          "financial_year",
+          "quarter",
+          "form",
+          "status",
+          "claimed_amount",
+          "excess_claimed_amount",
+          "available_amount"
+        ]
+      },
+      "Challan": {
+        "title": "Challan",
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "@entity": {
+            "type": "string",
+            "default": "in.co.sandbox.tds.compliance.challan.response",
+            "enum": [
+              "in.co.sandbox.tds.compliance.challan.response"
+            ],
+            "description": "Identifies the type of this object."
+          },
+          "created_at": {
+            "type": "string",
+            "description": "Creation timestamp, when available."
+          },
+          "updated_at": {
+            "type": "string",
+            "description": "Last update timestamp, when available."
+          },
+          "tan": {
+            "type": "string",
+            "description": "Tax Deduction and Collection Account Number (TAN) of the deductor."
+          },
+          "bsr_code": {
+            "type": "string",
+            "description": "Basic Statistical Return (BSR) code of the bank branch where the challan was deposited."
+          },
+          "challan_serial": {
+            "type": "string",
+            "description": "Five-digit challan serial number, including leading zeroes."
+          },
+          "paid_date_epoch": {
+            "type": "integer",
+            "description": "Deposit date in epoch milliseconds. The calendar date is interpreted in Asia/Kolkata."
+          },
+          "challan_identification_number": {
+            "type": "string",
+            "description": "Challan Identification Number (CIN) reported by TRACES."
+          },
+          "receipt_number": {
+            "type": "string",
+            "description": "Receipt number reported by TRACES."
+          },
+          "financial_year": {
+            "type": "string",
+            "description": "Financial year reported by TRACES in FY YYYY-YY format. This year can differ from the financial year of the deposit date."
+          },
+          "major_head": {
+            "type": "string",
+            "description": "Major head of tax, including leading zeroes, such as 0021."
+          },
+          "minor_head": {
+            "type": "string",
+            "description": "Minor head of payment, such as 200."
+          },
+          "total_amount": {
+            "type": "number",
+            "description": "Total amount in INR."
+          },
+          "status": {
+            "type": "string",
+            "description": "Challan matching status reported by TRACES."
+          },
+          "section_code": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "description": "Legacy section code reported by TRACES, or null if unavailable. This code can be present even when tax_breakdown is empty."
+          },
+          "residency_status": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "description": "Residency status code reported by TRACES, or null if unavailable."
+          },
+          "tax_breakdown": {
+            "type": "array",
+            "items": {
+              "title": "ChallanTaxBreakdown",
+              "type": "object",
+              "additionalProperties": false,
+              "properties": {
+                "@entity": {
+                  "type": "string",
+                  "default": "in.co.sandbox.tds.compliance.challan.tax_breakdown",
+                  "enum": [
+                    "in.co.sandbox.tds.compliance.challan.tax_breakdown"
+                  ],
+                  "description": "Identifies the type of this object."
+                },
+                "created_at": {
+                  "type": "string",
+                  "description": "Creation timestamp, when available."
+                },
+                "updated_at": {
+                  "type": "string",
+                  "description": "Last update timestamp, when available."
+                },
+                "section": {
+                  "type": "string",
+                  "description": "TDS section reported by TRACES for this tax breakdown."
+                },
+                "tax_amount": {
+                  "type": "number",
+                  "description": "Base tax amount in INR, excluding surcharge and cess."
+                },
+                "surcharge": {
+                  "type": "number",
+                  "description": "Surcharge amount in INR."
+                },
+                "cess": {
+                  "type": "number",
+                  "description": "Cess amount in INR."
+                },
+                "total_amount": {
+                  "type": "number",
+                  "description": "Total amount in INR."
+                }
+              },
+              "required": [
+                "@entity",
+                "section",
+                "tax_amount",
+                "surcharge",
+                "cess",
+                "total_amount"
+              ],
+              "description": "Tax, surcharge, and cess for a section reported against the challan. All amounts are in INR."
+            },
+            "description": "Section-wise tax breakdown in INR. An empty list means no breakdown is available."
+          },
+          "consumption_details": {
+            "title": "ChallanConsumptionDetails",
+            "description": "Statement utilization reported by TRACES. null means utilization details are unavailable and does not indicate an unused challan.",
+            "type": [
+              "object",
+              "null"
+            ],
+            "additionalProperties": false,
+            "properties": {
+              "@entity": {
+                "type": "string",
+                "default": "in.co.sandbox.tds.compliance.challan.consumption_details",
+                "enum": [
+                  "in.co.sandbox.tds.compliance.challan.consumption_details"
+                ],
+                "description": "Identifies the type of this object."
+              },
+              "created_at": {
+                "type": "string",
+                "description": "Creation timestamp, when available."
+              },
+              "updated_at": {
+                "type": "string",
+                "description": "Last update timestamp, when available."
+              },
+              "statement_token_number": {
+                "type": "string",
+                "description": "Token number of the statement against which the challan was claimed."
+              },
+              "financial_year": {
+                "type": "string",
+                "pattern": "^FY [0-9]{4}-[0-9]{2}$",
+                "description": "Financial year of the reported TDS statement in FY YYYY-YY format."
+              },
+              "quarter": {
+                "type": "string",
+                "description": "Quarter of the TDS statement, from Q1 to Q4."
+              },
+              "form": {
+                "type": "string",
+                "description": "TDS statement form code reported by TRACES."
+              },
+              "status": {
+                "type": "string",
+                "description": "Consumption status of the challan in the reported statement."
+              },
+              "claimed_amount": {
+                "type": "number",
+                "description": "Amount claimed against the challan in the reported statement, in INR."
+              },
+              "excess_claimed_amount": {
+                "type": "number",
+                "description": "Excess claimed amount reported by TRACES, in INR."
+              },
+              "available_amount": {
+                "type": "number",
+                "description": "Available challan amount reported by TRACES, in INR."
+              }
+            },
+            "required": [
+              "@entity",
+              "statement_token_number",
+              "financial_year",
+              "quarter",
+              "form",
+              "status",
+              "claimed_amount",
+              "excess_claimed_amount",
+              "available_amount"
+            ]
+          }
+        },
+        "required": [
+          "@entity",
+          "tan",
+          "bsr_code",
+          "challan_serial",
+          "paid_date_epoch",
+          "challan_identification_number",
+          "receipt_number",
+          "financial_year",
+          "major_head",
+          "minor_head",
+          "total_amount",
+          "status",
+          "section_code",
+          "residency_status",
+          "tax_breakdown",
+          "consumption_details"
+        ],
+        "description": "A TDS challan with its tax breakdown and available utilization details from TRACES. All amounts are in INR."
+      },
+      "ChallanLookupRequest": {
+        "title": "ChallanLookupRequest",
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "@entity": {
+            "type": "string",
+            "default": "in.co.sandbox.tds.compliance.challan.request",
+            "enum": [
+              "in.co.sandbox.tds.compliance.challan.request"
+            ],
+            "description": "Identifies the type of this object."
+          },
+          "created_at": {
+            "type": "string",
+            "description": "Creation timestamp, when available."
+          },
+          "updated_at": {
+            "type": "string",
+            "description": "Last update timestamp, when available."
+          },
+          "tan": {
+            "type": "string",
+            "pattern": "^[A-Z]{4}[0-9]{5}[A-Z]$",
+            "description": "Tax Deduction and Collection Account Number (TAN) of the deductor."
+          },
+          "bsr_code": {
+            "type": "string",
+            "pattern": "^[0-9]{7}$",
+            "description": "Basic Statistical Return (BSR) code of the bank branch where the challan was deposited."
+          },
+          "challan_serial": {
+            "type": "string",
+            "pattern": "^[0-9]{5}$",
+            "description": "Five-digit challan serial number, including leading zeroes."
+          },
+          "paid_date_epoch": {
+            "type": "integer",
+            "minimum": 0,
+            "description": "Deposit date in epoch milliseconds. The calendar date is interpreted in Asia/Kolkata."
+          }
+        },
+        "required": [
+          "@entity",
+          "tan",
+          "bsr_code",
+          "challan_serial",
+          "paid_date_epoch"
+        ],
+        "description": "Particulars that identify a TDS challan for a deductor."
+      },
+      "ChallanSearchRequest": {
+        "title": "ChallanSearchRequest",
+        "description": "Deposit-date filters for a deductor's challan search. Both dates are required. Pagination is optional.",
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "@entity": {
+            "type": "string",
+            "default": "in.co.sandbox.tds.compliance.challan.search",
+            "enum": [
+              "in.co.sandbox.tds.compliance.challan.search"
+            ],
+            "description": "Identifies the type of this object."
+          },
+          "created_at": {
+            "type": "string",
+            "description": "Creation timestamp, when available."
+          },
+          "updated_at": {
+            "type": "string",
+            "description": "Last update timestamp, when available."
+          },
+          "tan": {
+            "type": "string",
+            "pattern": "^[A-Z]{4}[0-9]{5}[A-Z]$",
+            "description": "Tax Deduction and Collection Account Number (TAN) of the deductor."
+          },
+          "from_date_epoch": {
+            "type": "integer",
+            "minimum": 0,
+            "description": "Start of the deposit-date range in epoch milliseconds, interpreted in Asia/Kolkata."
+          },
+          "to_date_epoch": {
+            "type": "integer",
+            "minimum": 0,
+            "description": "End of the deposit-date range in epoch milliseconds, interpreted in Asia/Kolkata."
+          },
+          "page_number": {
+            "type": "integer",
+            "minimum": 0,
+            "description": "Zero-based page number. 0 requests the first page. Omit to use the default page."
+          },
+          "page_size": {
+            "type": "integer",
+            "minimum": 1,
+            "description": "Number of challans requested per page. Omit to use the default page size."
+          }
+        },
+        "required": [
+          "@entity",
+          "tan",
+          "from_date_epoch",
+          "to_date_epoch"
+        ]
+      },
+      "ChallanSearchResponse": {
+        "title": "ChallanSearchResponse",
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "@entity": {
+            "type": "string",
+            "default": "in.co.sandbox.tds.compliance.challan.search.response",
+            "enum": [
+              "in.co.sandbox.tds.compliance.challan.search.response"
+            ],
+            "description": "Identifies the type of this object."
+          },
+          "created_at": {
+            "type": "string",
+            "description": "Creation timestamp, when available."
+          },
+          "updated_at": {
+            "type": "string",
+            "description": "Last update timestamp, when available."
+          },
+          "data": {
+            "type": "array",
+            "items": {
+              "title": "Challan",
+              "type": "object",
+              "additionalProperties": false,
+              "properties": {
+                "@entity": {
+                  "type": "string",
+                  "default": "in.co.sandbox.tds.compliance.challan.response",
+                  "enum": [
+                    "in.co.sandbox.tds.compliance.challan.response"
+                  ],
+                  "description": "Identifies the type of this object."
+                },
+                "created_at": {
+                  "type": "string",
+                  "description": "Creation timestamp, when available."
+                },
+                "updated_at": {
+                  "type": "string",
+                  "description": "Last update timestamp, when available."
+                },
+                "tan": {
+                  "type": "string",
+                  "description": "Tax Deduction and Collection Account Number (TAN) of the deductor."
+                },
+                "bsr_code": {
+                  "type": "string",
+                  "description": "Basic Statistical Return (BSR) code of the bank branch where the challan was deposited."
+                },
+                "challan_serial": {
+                  "type": "string",
+                  "description": "Five-digit challan serial number, including leading zeroes."
+                },
+                "paid_date_epoch": {
+                  "type": "integer",
+                  "description": "Deposit date in epoch milliseconds. The calendar date is interpreted in Asia/Kolkata."
+                },
+                "challan_identification_number": {
+                  "type": "string",
+                  "description": "Challan Identification Number (CIN) reported by TRACES."
+                },
+                "receipt_number": {
+                  "type": "string",
+                  "description": "Receipt number reported by TRACES."
+                },
+                "financial_year": {
+                  "type": "string",
+                  "description": "Financial year reported by TRACES in FY YYYY-YY format. This year can differ from the financial year of the deposit date."
+                },
+                "major_head": {
+                  "type": "string",
+                  "description": "Major head of tax, including leading zeroes, such as 0021."
+                },
+                "minor_head": {
+                  "type": "string",
+                  "description": "Minor head of payment, such as 200."
+                },
+                "total_amount": {
+                  "type": "number",
+                  "description": "Total amount in INR."
+                },
+                "status": {
+                  "type": "string",
+                  "description": "Challan matching status reported by TRACES."
+                },
+                "section_code": {
+                  "type": [
+                    "string",
+                    "null"
+                  ],
+                  "description": "Legacy section code reported by TRACES, or null if unavailable. This code can be present even when tax_breakdown is empty."
+                },
+                "residency_status": {
+                  "type": [
+                    "string",
+                    "null"
+                  ],
+                  "description": "Residency status code reported by TRACES, or null if unavailable."
+                },
+                "tax_breakdown": {
+                  "type": "array",
+                  "items": {
+                    "title": "ChallanTaxBreakdown",
+                    "type": "object",
+                    "additionalProperties": false,
+                    "properties": {
+                      "@entity": {
+                        "type": "string",
+                        "default": "in.co.sandbox.tds.compliance.challan.tax_breakdown",
+                        "enum": [
+                          "in.co.sandbox.tds.compliance.challan.tax_breakdown"
+                        ],
+                        "description": "Identifies the type of this object."
+                      },
+                      "created_at": {
+                        "type": "string",
+                        "description": "Creation timestamp, when available."
+                      },
+                      "updated_at": {
+                        "type": "string",
+                        "description": "Last update timestamp, when available."
+                      },
+                      "section": {
+                        "type": "string",
+                        "description": "TDS section reported by TRACES for this tax breakdown."
+                      },
+                      "tax_amount": {
+                        "type": "number",
+                        "description": "Base tax amount in INR, excluding surcharge and cess."
+                      },
+                      "surcharge": {
+                        "type": "number",
+                        "description": "Surcharge amount in INR."
+                      },
+                      "cess": {
+                        "type": "number",
+                        "description": "Cess amount in INR."
+                      },
+                      "total_amount": {
+                        "type": "number",
+                        "description": "Total amount in INR."
+                      }
+                    },
+                    "required": [
+                      "@entity",
+                      "section",
+                      "tax_amount",
+                      "surcharge",
+                      "cess",
+                      "total_amount"
+                    ],
+                    "description": "Tax, surcharge, and cess for a section reported against the challan. All amounts are in INR."
+                  },
+                  "description": "Section-wise tax breakdown in INR. An empty list means no breakdown is available."
+                },
+                "consumption_details": {
+                  "title": "ChallanConsumptionDetails",
+                  "description": "Statement utilization reported by TRACES. null means utilization details are unavailable and does not indicate an unused challan.",
+                  "type": [
+                    "object",
+                    "null"
+                  ],
+                  "additionalProperties": false,
+                  "properties": {
+                    "@entity": {
+                      "type": "string",
+                      "default": "in.co.sandbox.tds.compliance.challan.consumption_details",
+                      "enum": [
+                        "in.co.sandbox.tds.compliance.challan.consumption_details"
+                      ],
+                      "description": "Identifies the type of this object."
+                    },
+                    "created_at": {
+                      "type": "string",
+                      "description": "Creation timestamp, when available."
+                    },
+                    "updated_at": {
+                      "type": "string",
+                      "description": "Last update timestamp, when available."
+                    },
+                    "statement_token_number": {
+                      "type": "string",
+                      "description": "Token number of the statement against which the challan was claimed."
+                    },
+                    "financial_year": {
+                      "type": "string",
+                      "pattern": "^FY [0-9]{4}-[0-9]{2}$",
+                      "description": "Financial year of the reported TDS statement in FY YYYY-YY format."
+                    },
+                    "quarter": {
+                      "type": "string",
+                      "description": "Quarter of the TDS statement, from Q1 to Q4."
+                    },
+                    "form": {
+                      "type": "string",
+                      "description": "TDS statement form code reported by TRACES."
+                    },
+                    "status": {
+                      "type": "string",
+                      "description": "Consumption status of the challan in the reported statement."
+                    },
+                    "claimed_amount": {
+                      "type": "number",
+                      "description": "Amount claimed against the challan in the reported statement, in INR."
+                    },
+                    "excess_claimed_amount": {
+                      "type": "number",
+                      "description": "Excess claimed amount reported by TRACES, in INR."
+                    },
+                    "available_amount": {
+                      "type": "number",
+                      "description": "Available challan amount reported by TRACES, in INR."
+                    }
+                  },
+                  "required": [
+                    "@entity",
+                    "statement_token_number",
+                    "financial_year",
+                    "quarter",
+                    "form",
+                    "status",
+                    "claimed_amount",
+                    "excess_claimed_amount",
+                    "available_amount"
+                  ]
+                }
+              },
+              "required": [
+                "@entity",
+                "tan",
+                "bsr_code",
+                "challan_serial",
+                "paid_date_epoch",
+                "challan_identification_number",
+                "receipt_number",
+                "financial_year",
+                "major_head",
+                "minor_head",
+                "total_amount",
+                "status",
+                "section_code",
+                "residency_status",
+                "tax_breakdown",
+                "consumption_details"
+              ],
+              "description": "A TDS challan with its tax breakdown and available utilization details from TRACES. All amounts are in INR."
+            },
+            "description": "Challans in the requested page. An empty list means no challans were returned for that page."
+          },
+          "totalPages": {
+            "type": "integer",
+            "minimum": 0,
+            "description": "Total number of result pages reported by TRACES."
+          },
+          "totalElements": {
+            "type": "integer",
+            "minimum": 0,
+            "description": "Total number of matching challans reported by TRACES."
+          }
+        },
+        "required": [
+          "@entity",
+          "data",
+          "totalPages",
+          "totalElements"
+        ],
+        "description": "One page of challans with pagination totals reported by TRACES."
+      }
+    },
+    "responses": {
+      "BadRequest": {
+        "description": "Bad request",
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/ErrorResponse"
+            }
+          }
+        }
+      },
+      "Forbidden": {
+        "description": "TRACES access token is missing or expired",
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/ErrorResponse"
+            }
+          }
+        }
+      },
+      "UnprocessableEntity": {
+        "description": "Request validation failed",
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/ErrorResponse"
+            },
+            "examples": {
+              "invalidRequest": {
+                "summary": "invalidRequest",
+                "value": {
+                  "code": 422,
+                  "timestamp": 1716870600000,
+                  "transaction_id": "f24cd229-42c8-43de-af79-8ce2d3c4c3db",
+                  "message": "Invalid certificate request"
+                }
+              }
+            }
+          }
+        }
+      },
+      "DataNotFound": {
+        "description": "Certificate job was not found",
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/ErrorResponse"
+            },
+            "examples": {
+              "notFound": {
+                "summary": "notFound",
+                "value": {
+                  "code": 521,
+                  "timestamp": 1716870600000,
+                  "transaction_id": "f24cd229-42c8-43de-af79-8ce2d3c4c3db",
+                  "message": "Data not found for the supplied job_id"
+                }
+              }
+            }
+          }
+        }
+      },
+      "InternalServerError": {
+        "description": "Internal server error",
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/ErrorResponse"
+            }
+          }
+        }
+      },
+      "Unauthorized": {
+        "description": "The access token is missing or invalid.",
+        "content": {
+          "application/json": {
+            "schema": {
+              "type": "object",
+              "properties": {}
+            }
+          }
+        }
+      },
+      "CredentialAlreadyExists": {
+        "description": "A credential already exists for the authenticated workspace and TAN.",
+        "content": {
+          "application/json": {
+            "schema": {
+              "type": "object",
+              "properties": {}
+            }
+          }
+        }
+      },
+      "CredentialNotFound": {
+        "description": "No credential exists for the authenticated workspace and TAN.",
+        "content": {
+          "application/json": {
+            "schema": {
+              "type": "object",
+              "properties": {}
+            }
+          }
+        }
+      }
+    },
+    "securitySchemes": {
+      "TracesAccessToken": {
+        "type": "apiKey",
+        "in": "header",
+        "name": "Authorization",
+        "description": "Raw TRACES access token returned by login. Do not prefix the token with Bearer."
+      },
+      "ApiKeyAuth": {
+        "type": "apiKey",
+        "in": "header",
+        "name": "x-api-key",
+        "description": "API key used to identify and authenticate the client."
+      },
+      "SandboxAccessToken": {
+        "type": "apiKey",
+        "in": "header",
+        "name": "Authorization",
+        "description": "JWT access token. For token-generation steps, refer to the [Quickstart Guide](https://developer.sandbox.co.in/guides/get-started/quickstart)."
+      },
+      "accessTokenAuth": {
+        "type": "apiKey",
+        "in": "header",
+        "name": "Authorization",
+        "description": "JWT access token. For token-generation steps, refer to the [Quickstart Guide](https://developer.sandbox.co.in/guides/get-started/quickstart)."
+      },
+      "apiKeyAuth": {
+        "type": "apiKey",
+        "in": "header",
+        "name": "x-api-key",
+        "description": "API key used to identify and authenticate the client."
+      }
+    }
+  },
+  "servers": [
+    {
+      "url": "https://test-api.sandbox.co.in",
+      "description": "test"
+    },
+    {
+      "url": "https://api.sandbox.co.in",
+      "description": "prod"
+    }
+  ],
+  "security": []
 }
