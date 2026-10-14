@@ -4623,7 +4623,7 @@
       "post": {
         "summary": "Get challan",
         "deprecated": false,
-        "description": "Retrieves a TDS challan and its tax and available consumption details from TRACES.\n\nIdentify the challan using the deductor's TAN, BSR code, deposit date, and challan serial number. The deposit date uses epoch milliseconds and the Asia/Kolkata calendar date.\n\nRequires registered TRACES deductor credentials for the requested TAN and Sandbox authentication.\n\nReturns HTTP 521 when no challan matches the supplied particulars. A null consumption_details value means utilization details are unavailable; it does not indicate an unused challan.",
+        "description": "Get a TDS challan’s payment details, status, and utilization using the TAN, BSR code, deposit date, and challan serial number.",
         "operationId": "getChallan",
         "tags": [
           "TRACES",
@@ -4905,7 +4905,7 @@
       "post": {
         "summary": "Search challans",
         "deprecated": false,
-        "description": "Searches a deductor's TDS challans by deposit-date range and returns one page of results from TRACES.\n\nProvide the deductor's TAN, from_date_epoch, and to_date_epoch. Both dates are required and use epoch milliseconds. The calendar dates are interpreted in Asia/Kolkata.\n\npage_number starts at 0. page_size specifies the number of challans requested per page. Both fields are optional.\n\nThe response includes the challans in data and the pagination totals totalPages and totalElements. A page with no challans returns HTTP 200 with an empty data list.\n\nRequires registered TRACES deductor credentials for the requested TAN and Sandbox authentication.",
+        "description": "Search TDS challans by TAN and deposit date range. Get challan details with paginated results.",
         "operationId": "searchChallans",
         "tags": [
           "TRACES",
