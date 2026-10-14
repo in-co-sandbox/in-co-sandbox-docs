@@ -4746,36 +4746,41 @@
                   ],
                   "additionalProperties": false
                 },
-                "example": {
-                  "code": 200,
-                  "timestamp": 1791829800000,
-                  "transaction_id": "87c1b4f6-1632-4d8b-a2f9-05f291c00a42",
-                  "data": {
-                    "@entity": "in.co.sandbox.tds.compliance.challan.response",
-                    "tan": "AHMA12345A",
-                    "bsr_code": "0123456",
-                    "challan_serial": "00042",
-                    "paid_date_epoch": 1784053800000,
-                    "challan_identification_number": "01234561507202600042",
-                    "receipt_number": "9000000001",
-                    "financial_year": "FY 2026-27",
-                    "major_head": "0021",
-                    "minor_head": "200",
-                    "total_amount": 1500,
-                    "status": "CLAIMED",
-                    "section_code": "94D",
-                    "residency_status": "R",
-                    "tax_breakdown": [
-                      {
-                        "@entity": "in.co.sandbox.tds.compliance.challan.tax_breakdown",
-                        "section": "393(1) [Table: Sl. No. 1(i)]",
-                        "tax_amount": 1500,
-                        "surcharge": 0,
-                        "cess": 0,
-                        "total_amount": 1500
+                "examples": {
+                  "Challan found": {
+                    "summary": "Challan found",
+                    "value": {
+                      "code": 200,
+                      "timestamp": 1791829800000,
+                      "transaction_id": "87c1b4f6-1632-4d8b-a2f9-05f291c00a42",
+                      "data": {
+                        "@entity": "in.co.sandbox.tds.compliance.challan.response",
+                        "tan": "AHMA12345A",
+                        "bsr_code": "0123456",
+                        "challan_serial": "00042",
+                        "paid_date_epoch": 1784053800000,
+                        "challan_identification_number": "01234561507202600042",
+                        "receipt_number": "9000000001",
+                        "financial_year": "FY 2026-27",
+                        "major_head": "0021",
+                        "minor_head": "200",
+                        "total_amount": 1500,
+                        "status": "CLAIMED",
+                        "section_code": "94D",
+                        "residency_status": "R",
+                        "tax_breakdown": [
+                          {
+                            "@entity": "in.co.sandbox.tds.compliance.challan.tax_breakdown",
+                            "section": "393(1) [Table: Sl. No. 1(i)]",
+                            "tax_amount": 1500,
+                            "surcharge": 0,
+                            "cess": 0,
+                            "total_amount": 1500
+                          }
+                        ],
+                        "consumption_details": null
                       }
-                    ],
-                    "consumption_details": null
+                    }
                   }
                 }
               }
@@ -4800,11 +4805,16 @@
                 "schema": {
                   "$ref": "#/components/schemas/ErrorResponse"
                 },
-                "example": {
-                  "code": 401,
-                  "timestamp": 1791829800000,
-                  "transaction_id": "87c1b4f6-1632-4d8b-a2f9-05f291c00a42",
-                  "message": "Invalid credentials"
+                "examples": {
+                  "Incorrect TRACES credentials": {
+                    "summary": "Incorrect TRACES credentials",
+                    "value": {
+                      "code": 401,
+                      "timestamp": 1791829800000,
+                      "transaction_id": "87c1b4f6-1632-4d8b-a2f9-05f291c00a42",
+                      "message": "Invalid credentials"
+                    }
+                  }
                 }
               }
             },
@@ -4839,11 +4849,16 @@
                 "schema": {
                   "$ref": "#/components/schemas/ErrorResponse"
                 },
-                "example": {
-                  "code": 500,
-                  "timestamp": 1791829800000,
-                  "transaction_id": "87c1b4f6-1632-4d8b-a2f9-05f291c00a42",
-                  "message": "Failed to log in to TRACES"
+                "examples": {
+                  "TRACES login unavailable": {
+                    "summary": "TRACES login unavailable",
+                    "value": {
+                      "code": 500,
+                      "timestamp": 1791829800000,
+                      "transaction_id": "87c1b4f6-1632-4d8b-a2f9-05f291c00a42",
+                      "message": "Failed to log in to TRACES"
+                    }
+                  }
                 }
               }
             },
@@ -4867,11 +4882,16 @@
                 "schema": {
                   "$ref": "#/components/schemas/ErrorResponse"
                 },
-                "example": {
-                  "code": 521,
-                  "timestamp": 1791829800000,
-                  "transaction_id": "87c1b4f6-1632-4d8b-a2f9-05f291c00a42",
-                  "message": "Credentials not found"
+                "examples": {
+                  "TRACES credentials not stored": {
+                    "summary": "TRACES credentials not stored",
+                    "value": {
+                      "code": 521,
+                      "timestamp": 1791829800000,
+                      "transaction_id": "87c1b4f6-1632-4d8b-a2f9-05f291c00a42",
+                      "message": "Credentials not found"
+                    }
+                  }
                 }
               }
             },
@@ -5002,7 +5022,7 @@
                   "additionalProperties": false
                 },
                 "examples": {
-                  "1": {
+                  "Challans found within the date range": {
                     "summary": "Challans found within the date range",
                     "value": {
                       "code": 200,
@@ -5044,7 +5064,7 @@
                       }
                     }
                   },
-                  "2": {
+                  "No challans found within date range": {
                     "summary": "No challans found within date range",
                     "value": {
                       "code": 200,
@@ -5058,7 +5078,7 @@
                       }
                     }
                   },
-                  "3": {
+                  "Challans found on the next page": {
                     "summary": "Challans found on the next page",
                     "value": {
                       "code": 200,
