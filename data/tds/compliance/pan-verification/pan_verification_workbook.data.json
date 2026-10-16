@@ -1,0 +1,22 @@
+{
+  "@entity": "workbook",
+  "name": "pan_verification_workbook",
+  "sheets": [
+    {
+      "@entity": "sheet",
+      "name": "payee_sheet",
+      "blocks": [
+        {
+          "@entity": "table",
+          "name": "payee_table",
+          "header": ["sr_no", "pan", "pan_status"],
+          "rows": [
+            [1, "ABCPD1234E", "Valid and Operative"],
+            [2, "XYZPK5678L", "Valid and Inoperative"],
+            [3, "AAAAA1111A", "Invalid"]
+          ]
+        }
+      ]
+    }
+  ]
+}

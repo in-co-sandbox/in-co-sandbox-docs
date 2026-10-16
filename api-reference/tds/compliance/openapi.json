@@ -5817,6 +5817,727 @@
           }
         ]
       }
+    },
+    "/tds/compliance/enriched/traces/deductors/pan/verify": {
+      "post": {
+        "summary": "Create bulk PAN verification job",
+        "deprecated": false,
+        "description": "Creates an enriched bulk PAN verification job for the supplied TAN. Sandbox manages TRACES authentication using your stored credentials. The response contains a job ID and a signed URL for the input JSON workbook. Upload the workbook with HTTP PUT and Content-Type application/json.\n\nSave the [TRACES credentials](https://developer.sandbox.co.in/api-reference/tds/compliance/traces-credentials/endpoints/save_credential) for the TAN before processing. Credential checks happen after the workbook upload. Missing or incorrect credentials appear as a failed job when you retrieve its status.\n\nThe uploaded JSON file must be at most 5,000,000 bytes. The workbook contains payee_sheet and payee_table with the header [\"sr_no\", \"pan\"]. PAN values are submitted to TRACES as provided. For repeated PANs, verification keeps the first row and ignores later rows.\n\nRetrieve the job with the returned job_id to check progress and obtain the output download URL.\n\nInput workbook example:\n\n```json\n{\n  \"@entity\": \"workbook\",\n  \"name\": \"payee_workbook\",\n  \"sheets\": [\n    {\n      \"@entity\": \"sheet\",\n      \"name\": \"payee_sheet\",\n      \"blocks\": [\n        {\n          \"@entity\": \"table\",\n          \"name\": \"payee_table\",\n          \"header\": [\n            \"sr_no\",\n            \"pan\"\n          ],\n          \"rows\": [\n            [\n              1,\n              \"ABCPD1234E\"\n            ],\n            [\n              2,\n              \"XYZPK5678L\"\n            ],\n            [\n              3,\n              \"ABCPD1234E\"\n            ],\n            [\n              4,\n              \"AAAAA1111A\"\n            ]\n          ]\n        }\n      ]\n    }\n  ]\n}\n```",
+        "operationId": "SubmitPanVerificationJob",
+        "tags": [
+          "TDS",
+          "TRACES",
+          "PAN Verification"
+        ],
+        "parameters": [
+          {
+            "name": "Authorization",
+            "in": "header",
+            "description": "Sandbox JWT access token. See the [Quickstart guide](https://developer.sandbox.co.in/guides/get-started/quickstart).",
+            "required": true,
+            "example": "{{access_token}}",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "x-api-key",
+            "in": "header",
+            "description": "Sandbox API key for the request.",
+            "required": true,
+            "example": "{{api_key}}",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "Content-Type",
+            "in": "header",
+            "description": "Request body format.",
+            "required": true,
+            "example": "application/json",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/PanVerificationRequest"
+              },
+              "examples": {
+                "Job created": {
+                  "value": {
+                    "@entity": "in.co.sandbox.tds.compliance.pan.verification.request",
+                    "tan": "AHMA12345A"
+                  },
+                  "summary": "Job created",
+                  "description": "Create a job and receive a signed URL to upload the payee workbook."
+                },
+                "Missing TAN": {
+                  "value": {
+                    "@entity": "in.co.sandbox.tds.compliance.pan.verification.request"
+                  },
+                  "summary": "Missing TAN",
+                  "description": "The request does not include tan."
+                },
+                "Invalid TAN format": {
+                  "value": {
+                    "@entity": "in.co.sandbox.tds.compliance.pan.verification.request",
+                    "tan": "12345"
+                  },
+                  "summary": "Invalid TAN format",
+                  "description": "The TAN does not match the required format."
+                },
+                "Missing authorization": {
+                  "value": {
+                    "@entity": "in.co.sandbox.tds.compliance.pan.verification.request",
+                    "tan": "AHMA12345A"
+                  },
+                  "summary": "Missing authorization",
+                  "description": "The request does not include the Authorization header."
+                },
+                "Missing API key": {
+                  "value": {
+                    "@entity": "in.co.sandbox.tds.compliance.pan.verification.request",
+                    "tan": "AHMA12345A"
+                  },
+                  "summary": "Missing API key",
+                  "description": "The request does not include the x-api-key header."
+                }
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "The job is created and ready for the input workbook upload.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "code": {
+                      "type": "integer",
+                      "enum": [
+                        200
+                      ],
+                      "description": "HTTP status code."
+                    },
+                    "timestamp": {
+                      "type": "integer",
+                      "format": "int64",
+                      "description": "Response timestamp in epoch milliseconds."
+                    },
+                    "transaction_id": {
+                      "type": "string",
+                      "format": "uuid",
+                      "description": "Unique identifier for this API transaction."
+                    },
+                    "data": {
+                      "allOf": [
+                        {
+                          "$ref": "#/components/schemas/PanVerificationJob"
+                        },
+                        {
+                          "type": "object",
+                          "properties": {
+                            "status": {
+                              "type": "string",
+                              "enum": [
+                                "created"
+                              ]
+                            }
+                          }
+                        }
+                      ]
+                    }
+                  },
+                  "required": [
+                    "code",
+                    "timestamp",
+                    "transaction_id",
+                    "data"
+                  ]
+                },
+                "examples": {
+                  "Job created": {
+                    "summary": "Job created",
+                    "value": {
+                      "code": 200,
+                      "timestamp": 1792136869079,
+                      "data": {
+                        "created_at": 1792136873733,
+                        "@entity": "in.co.sandbox.tds.compliance.pan.verification.job",
+                        "job_id": "b5084575-7bdf-4a40-a8db-e19c93d34ec4",
+                        "tan": "AHMA12345A",
+                        "status": "created",
+                        "json_url": "https://sandbox-example.s3.ap-south-1.amazonaws.com/example-workspace/b5084575-7bdf-4a40-a8db-e19c93d34ec4/payee.json?X-Amz-Signature=example"
+                      },
+                      "transaction_id": "6ead62b9-35c9-4c1c-8625-4e0bfdc025d5"
+                    }
+                  }
+                }
+              }
+            },
+            "headers": {}
+          },
+          "400": {
+            "description": "The request body or query parameters are invalid.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "code": {
+                      "type": "integer",
+                      "enum": [
+                        400
+                      ],
+                      "description": "HTTP status code."
+                    },
+                    "timestamp": {
+                      "type": "integer",
+                      "format": "int64",
+                      "description": "Response timestamp in epoch milliseconds."
+                    },
+                    "transaction_id": {
+                      "type": "string",
+                      "format": "uuid",
+                      "description": "Unique identifier for this API transaction."
+                    },
+                    "message": {
+                      "type": "string",
+                      "description": "Reason the request could not be completed."
+                    }
+                  },
+                  "required": [
+                    "code",
+                    "timestamp",
+                    "transaction_id",
+                    "message"
+                  ]
+                },
+                "examples": {
+                  "Missing TAN": {
+                    "summary": "Missing TAN",
+                    "value": {
+                      "code": 400,
+                      "timestamp": 1792136874200,
+                      "message": "Invalid request body",
+                      "transaction_id": "6b31ee70-abdf-4428-8678-67c75d42712a"
+                    }
+                  },
+                  "Invalid TAN format": {
+                    "summary": "Invalid TAN format",
+                    "value": {
+                      "code": 400,
+                      "timestamp": 1792136874678,
+                      "message": "Invalid request body",
+                      "transaction_id": "330b6df2-a419-4942-be5d-8ffd1073ada8"
+                    }
+                  }
+                }
+              }
+            },
+            "headers": {}
+          },
+          "401": {
+            "description": "Sandbox authorization is missing, invalid, or expired.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "code": {
+                      "type": "integer",
+                      "enum": [
+                        401
+                      ],
+                      "description": "HTTP status code."
+                    },
+                    "timestamp": {
+                      "type": "integer",
+                      "format": "int64",
+                      "description": "Response timestamp in epoch milliseconds."
+                    },
+                    "transaction_id": {
+                      "type": "string",
+                      "format": "uuid",
+                      "description": "Unique identifier for this API transaction."
+                    },
+                    "message": {
+                      "type": "string",
+                      "description": "Reason the request could not be completed."
+                    }
+                  },
+                  "required": [
+                    "code",
+                    "timestamp",
+                    "transaction_id",
+                    "message"
+                  ]
+                },
+                "examples": {
+                  "Missing authorization": {
+                    "summary": "Missing authorization",
+                    "value": {
+                      "code": 401,
+                      "message": "Unauthorized",
+                      "timestamp": 1792136874846,
+                      "transaction_id": "b0b82447-fe6a-4852-a320-405f6744ce08"
+                    }
+                  }
+                }
+              }
+            },
+            "headers": {}
+          },
+          "403": {
+            "description": "Access to this API is denied.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "code": {
+                      "type": "integer",
+                      "enum": [
+                        403
+                      ],
+                      "description": "HTTP status code."
+                    },
+                    "timestamp": {
+                      "type": "integer",
+                      "format": "int64",
+                      "description": "Response timestamp in epoch milliseconds."
+                    },
+                    "transaction_id": {
+                      "type": "string",
+                      "format": "uuid",
+                      "description": "Unique identifier for this API transaction."
+                    },
+                    "message": {
+                      "type": "string",
+                      "description": "Reason the request could not be completed."
+                    }
+                  },
+                  "required": [
+                    "code",
+                    "timestamp",
+                    "transaction_id",
+                    "message"
+                  ]
+                },
+                "examples": {
+                  "Missing API key": {
+                    "summary": "Missing API key",
+                    "value": {
+                      "code": 403,
+                      "message": "Forbidden",
+                      "timestamp": 1792136874924,
+                      "transaction_id": "90caaf62-2271-4172-b711-c5f5a5cc07d2"
+                    }
+                  }
+                }
+              }
+            },
+            "headers": {}
+          },
+          "500": {
+            "description": "The API request could not be completed.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "code": {
+                      "type": "integer",
+                      "enum": [
+                        500
+                      ],
+                      "description": "HTTP status code."
+                    },
+                    "timestamp": {
+                      "type": "integer",
+                      "format": "int64",
+                      "description": "Response timestamp in epoch milliseconds."
+                    },
+                    "transaction_id": {
+                      "type": "string",
+                      "format": "uuid",
+                      "description": "Unique identifier for this API transaction."
+                    },
+                    "message": {
+                      "type": "string",
+                      "description": "Reason the request could not be completed."
+                    }
+                  },
+                  "required": [
+                    "code",
+                    "timestamp",
+                    "transaction_id",
+                    "message"
+                  ]
+                }
+              }
+            },
+            "headers": {}
+          }
+        },
+        "security": []
+      }
+    },
+    "/tds/compliance/enriched/traces/deductors/pan/verify/status": {
+      "get": {
+        "summary": "Get bulk PAN verification job status",
+        "deprecated": false,
+        "description": "Returns the current status of a bulk PAN verification job in your workspace. This GET request has no body.\n\nA created job waits for the workbook upload. queued waits to start processing. in_progress covers input-size checks, TRACES authentication and verification, and output workbook generation. A job succeeds after the output JSON workbook is saved and provides output_json_url for its download. A failed job provides message. Retrieving a failed job returns HTTP 200.\n\nTRACES report availability is polled for up to one day after successful submission. Authentication, processing, and report-availability failures appear on the job.\n\nThe output workbook contains payee_sheet and payee_table with the header [\"sr_no\", \"pan\", \"pan_status\"]. It includes only submitted PANs returned by TRACES. The first input sr_no is retained for each PAN. A missing PAN is omitted and does not fail the job.\n\nThe pan_status value is the exact text returned by TRACES. Known values include Valid and Operative, Valid and Inoperative, Valid, Inactive, and Invalid. Other source values are returned unchanged. An Invalid PAN result does not mean the job failed. The input file limit does not limit the output file.\n\nOutput workbook example:\n\n```json\n{\n  \"@entity\": \"workbook\",\n  \"name\": \"pan_verification_workbook\",\n  \"sheets\": [\n    {\n      \"@entity\": \"sheet\",\n      \"name\": \"payee_sheet\",\n      \"blocks\": [\n        {\n          \"@entity\": \"table\",\n          \"name\": \"payee_table\",\n          \"header\": [\n            \"sr_no\",\n            \"pan\",\n            \"pan_status\"\n          ],\n          \"rows\": [\n            [\n              1,\n              \"ABCPD1234E\",\n              \"Valid and Operative\"\n            ],\n            [\n              2,\n              \"XYZPK5678L\",\n              \"Valid and Inoperative\"\n            ]\n          ]\n        }\n      ]\n    }\n  ]\n}\n```\n\nThis example omits the repeated input PAN and a PAN absent from the TRACES report.",
+        "operationId": "GetPanVerificationJobStatus",
+        "tags": [
+          "TDS",
+          "TRACES",
+          "PAN Verification"
+        ],
+        "parameters": [
+          {
+            "name": "job_id",
+            "in": "query",
+            "description": "Job ID returned when the PAN verification job was created.",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            },
+            "examples": {
+              "Status created": {
+                "summary": "Status created",
+                "value": "b5084575-7bdf-4a40-a8db-e19c93d34ec4"
+              },
+              "Verification in progress": {
+                "summary": "Verification in progress",
+                "value": "b5084575-7bdf-4a40-a8db-e19c93d34ec4"
+              },
+              "Verification completed": {
+                "summary": "Verification completed",
+                "value": "8941b6c4-8104-4a4b-b38c-14b0a1ed6837"
+              },
+              "Verification failed": {
+                "summary": "Verification failed",
+                "value": "b5084575-7bdf-4a40-a8db-e19c93d34ec4"
+              },
+              "Job not found": {
+                "summary": "Job not found",
+                "value": "00000000-0000-4000-8000-000000000000"
+              }
+            }
+          },
+          {
+            "name": "Authorization",
+            "in": "header",
+            "description": "Sandbox JWT access token. See the [Quickstart guide](https://developer.sandbox.co.in/guides/get-started/quickstart).",
+            "required": true,
+            "example": "{{access_token}}",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "x-api-key",
+            "in": "header",
+            "description": "Sandbox API key for the request.",
+            "required": true,
+            "example": "{{api_key}}",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "The current job status. Failed verification jobs are returned with HTTP 200 and status failed.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "code": {
+                      "type": "integer",
+                      "enum": [
+                        200
+                      ],
+                      "description": "HTTP status code."
+                    },
+                    "timestamp": {
+                      "type": "integer",
+                      "format": "int64",
+                      "description": "Response timestamp in epoch milliseconds."
+                    },
+                    "transaction_id": {
+                      "type": "string",
+                      "format": "uuid",
+                      "description": "Unique identifier for this API transaction."
+                    },
+                    "data": {
+                      "$ref": "#/components/schemas/PanVerificationJob"
+                    }
+                  },
+                  "required": [
+                    "code",
+                    "timestamp",
+                    "transaction_id",
+                    "data"
+                  ]
+                },
+                "examples": {
+                  "Status created": {
+                    "summary": "Status created",
+                    "value": {
+                      "code": 200,
+                      "timestamp": 1792136875077,
+                      "data": {
+                        "created_at": 1792136873733,
+                        "updated_at": 1792136873769,
+                        "@entity": "in.co.sandbox.tds.compliance.pan.verification.job",
+                        "job_id": "b5084575-7bdf-4a40-a8db-e19c93d34ec4",
+                        "tan": "AHMA12345A",
+                        "status": "created"
+                      },
+                      "transaction_id": "41586383-1df1-4c50-8c46-b1e810d6a70d"
+                    }
+                  },
+                  "Verification in progress": {
+                    "summary": "Verification in progress",
+                    "value": {
+                      "code": 200,
+                      "timestamp": 1792136921704,
+                      "data": {
+                        "created_at": 1792136873733,
+                        "updated_at": 1792136921653,
+                        "@entity": "in.co.sandbox.tds.compliance.pan.verification.job",
+                        "job_id": "b5084575-7bdf-4a40-a8db-e19c93d34ec4",
+                        "tan": "AHMA12345A",
+                        "status": "in_progress"
+                      },
+                      "transaction_id": "825ecaf8-df37-4ca7-9dcf-3f134d9747a6"
+                    }
+                  },
+                  "Verification completed": {
+                    "summary": "Verification completed",
+                    "value": {
+                      "code": 200,
+                      "timestamp": 1792136917339,
+                      "data": {
+                        "created_at": 1792054456408,
+                        "updated_at": 1792054527258,
+                        "@entity": "in.co.sandbox.tds.compliance.pan.verification.job",
+                        "job_id": "8941b6c4-8104-4a4b-b38c-14b0a1ed6837",
+                        "tan": "AHMA12345A",
+                        "status": "succeeded",
+                        "output_json_url": "https://sandbox-example.s3.ap-south-1.amazonaws.com/example-workspace/8941b6c4-8104-4a4b-b38c-14b0a1ed6837/pan-verification.json?X-Amz-Signature=example"
+                      },
+                      "transaction_id": "3663d8df-d06f-4d88-a250-a74d99e5750e"
+                    }
+                  },
+                  "Verification failed": {
+                    "summary": "Verification failed",
+                    "value": {
+                      "code": 200,
+                      "timestamp": 1792136925346,
+                      "data": {
+                        "created_at": 1792136873733,
+                        "updated_at": 1792136925094,
+                        "@entity": "in.co.sandbox.tds.compliance.pan.verification.job",
+                        "job_id": "b5084575-7bdf-4a40-a8db-e19c93d34ec4",
+                        "tan": "AHMA12345A",
+                        "message": "Credentials not found",
+                        "status": "failed"
+                      },
+                      "transaction_id": "f77d73e8-5f0f-4e96-a16f-045fdd41618a"
+                    }
+                  }
+                }
+              }
+            },
+            "headers": {}
+          },
+          "401": {
+            "description": "Sandbox authorization is missing, invalid, or expired.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "code": {
+                      "type": "integer",
+                      "enum": [
+                        401
+                      ],
+                      "description": "HTTP status code."
+                    },
+                    "timestamp": {
+                      "type": "integer",
+                      "format": "int64",
+                      "description": "Response timestamp in epoch milliseconds."
+                    },
+                    "transaction_id": {
+                      "type": "string",
+                      "format": "uuid",
+                      "description": "Unique identifier for this API transaction."
+                    },
+                    "message": {
+                      "type": "string",
+                      "description": "Reason the request could not be completed."
+                    }
+                  },
+                  "required": [
+                    "code",
+                    "timestamp",
+                    "transaction_id",
+                    "message"
+                  ]
+                }
+              }
+            },
+            "headers": {}
+          },
+          "403": {
+            "description": "Access to this API is denied.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "code": {
+                      "type": "integer",
+                      "enum": [
+                        403
+                      ],
+                      "description": "HTTP status code."
+                    },
+                    "timestamp": {
+                      "type": "integer",
+                      "format": "int64",
+                      "description": "Response timestamp in epoch milliseconds."
+                    },
+                    "transaction_id": {
+                      "type": "string",
+                      "format": "uuid",
+                      "description": "Unique identifier for this API transaction."
+                    },
+                    "message": {
+                      "type": "string",
+                      "description": "Reason the request could not be completed."
+                    }
+                  },
+                  "required": [
+                    "code",
+                    "timestamp",
+                    "transaction_id",
+                    "message"
+                  ]
+                }
+              }
+            },
+            "headers": {}
+          },
+          "500": {
+            "description": "The API request could not be completed.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "code": {
+                      "type": "integer",
+                      "enum": [
+                        500
+                      ],
+                      "description": "HTTP status code."
+                    },
+                    "timestamp": {
+                      "type": "integer",
+                      "format": "int64",
+                      "description": "Response timestamp in epoch milliseconds."
+                    },
+                    "transaction_id": {
+                      "type": "string",
+                      "format": "uuid",
+                      "description": "Unique identifier for this API transaction."
+                    },
+                    "message": {
+                      "type": "string",
+                      "description": "Reason the request could not be completed."
+                    }
+                  },
+                  "required": [
+                    "code",
+                    "timestamp",
+                    "transaction_id",
+                    "message"
+                  ]
+                }
+              }
+            },
+            "headers": {}
+          },
+          "521": {
+            "description": "No PAN verification job matches the supplied job ID in your workspace.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "code": {
+                      "type": "integer",
+                      "enum": [
+                        521
+                      ],
+                      "description": "HTTP status code."
+                    },
+                    "timestamp": {
+                      "type": "integer",
+                      "format": "int64",
+                      "description": "Response timestamp in epoch milliseconds."
+                    },
+                    "transaction_id": {
+                      "type": "string",
+                      "format": "uuid",
+                      "description": "Unique identifier for this API transaction."
+                    },
+                    "message": {
+                      "type": "string",
+                      "description": "Reason the request could not be completed."
+                    }
+                  },
+                  "required": [
+                    "code",
+                    "timestamp",
+                    "transaction_id",
+                    "message"
+                  ]
+                },
+                "examples": {
+                  "Job not found": {
+                    "summary": "Job not found",
+                    "value": {
+                      "code": 521,
+                      "timestamp": 1792136877482,
+                      "message": "Data not found",
+                      "transaction_id": "8eb6e7a7-518b-4471-a6bc-a3bd30b71106"
+                    }
+                  }
+                }
+              }
+            },
+            "headers": {}
+          }
+        },
+        "security": []
+      }
     }
   },
   "components": {
@@ -7199,12 +7920,147 @@
           "totalElements"
         ],
         "x-apidog-folder": ""
+      },
+      "PanVerificationJob": {
+        "type": "object",
+        "description": "A bulk PAN verification job. Upload the input through json_url. A succeeded job provides output_json_url. A failed job provides message.",
+        "properties": {
+          "@entity": {
+            "type": "string",
+            "enum": [
+              "in.co.sandbox.tds.compliance.pan.verification.job"
+            ],
+            "description": "Job entity type."
+          },
+          "job_id": {
+            "type": "string",
+            "format": "uuid",
+            "description": "Unique identifier returned when the job is created."
+          },
+          "tan": {
+            "type": "string",
+            "pattern": "^[A-Z]{4}[0-9]{5}[A-Z]$",
+            "description": "TAN associated with the verification job."
+          },
+          "status": {
+            "type": "string",
+            "enum": [
+              "created",
+              "queued",
+              "in_progress",
+              "succeeded",
+              "failed"
+            ],
+            "description": "Current job status. created waits for the workbook upload. queued waits to start processing. in_progress covers workbook validation, TRACES authentication and verification, and output workbook generation. succeeded means the output JSON workbook is saved. failed means processing did not complete."
+          },
+          "created_at": {
+            "type": "integer",
+            "format": "int64",
+            "description": "Job creation timestamp in epoch milliseconds."
+          },
+          "updated_at": {
+            "type": "integer",
+            "format": "int64",
+            "description": "Last job update timestamp in epoch milliseconds. Omitted from the job creation response."
+          },
+          "json_url": {
+            "type": "string",
+            "format": "uri",
+            "description": "Signed URL for uploading the input JSON workbook with HTTP PUT. The input limit is 5,000,000 bytes."
+          },
+          "output_json_url": {
+            "type": "string",
+            "format": "uri",
+            "description": "Signed URL for downloading the completed output JSON workbook with HTTP GET. Available when status is succeeded."
+          },
+          "message": {
+            "type": "string",
+            "description": "Reason the job failed. Present when status is failed."
+          }
+        },
+        "required": [
+          "@entity",
+          "job_id",
+          "tan",
+          "status",
+          "created_at"
+        ],
+        "additionalProperties": false,
+        "oneOf": [
+          {
+            "properties": {
+              "status": {
+                "enum": [
+                  "created",
+                  "queued",
+                  "in_progress"
+                ]
+              }
+            },
+            "type": "object"
+          },
+          {
+            "properties": {
+              "status": {
+                "enum": [
+                  "succeeded"
+                ]
+              }
+            },
+            "type": "object"
+          },
+          {
+            "properties": {
+              "status": {
+                "enum": [
+                  "failed"
+                ]
+              }
+            },
+            "type": "object"
+          }
+        ]
+      },
+      "PanVerificationRequest": {
+        "type": "object",
+        "description": "Creates a bulk PAN verification job for a TAN. The payee workbook is uploaded separately to the returned signed URL.",
+        "properties": {
+          "@entity": {
+            "type": "string",
+            "enum": [
+              "in.co.sandbox.tds.compliance.pan.verification.request"
+            ],
+            "description": "Request entity type."
+          },
+          "tan": {
+            "type": "string",
+            "pattern": "^[A-Z]{4}[0-9]{5}[A-Z]$",
+            "description": "Tax Deduction and Collection Account Number associated with the saved TRACES credentials.",
+            "examples": [
+              "AHMA12345A"
+            ]
+          }
+        },
+        "required": [
+          "@entity",
+          "tan"
+        ],
+        "additionalProperties": false
       }
     },
     "responses": {},
     "securitySchemes": {}
   },
-  "servers": [],
+  "servers": [
+    {
+      "url": "https://test-api.sandbox.co.in",
+      "description": "test"
+    },
+    {
+      "url": "https://api.sandbox.co.in",
+      "description": "prod"
+    }
+  ],
   "security": [],
   "webhooks": {
     "FVUGenerateJobStatus": {
@@ -7848,6 +8704,75 @@
         "responses": {
           "200": {
             "description": "Return any 2xx status to acknowledge receipt. Sandbox retries delivery on non-2xx responses.",
+            "headers": {}
+          }
+        },
+        "security": []
+      }
+    },
+    "PanVerificationJobStatus": {
+      "post": {
+        "summary": "Bulk PAN verification webhook",
+        "deprecated": false,
+        "description": "Sandbox sends this webhook when a bulk PAN verification job changes to `succeeded` or `failed`. The `data` object contains the same job fields as the [PAN verification status response](https://developer.sandbox.co.in/api-reference/tds/compliance/pan-verification/endpoints/poll_job). A successful job includes `output_json_url`. A failed job includes `message`.\n\nSubscribe to these events in the Sandbox Console:\n\n- `in.co.sandbox.tds.compliance.pan.verification.job.succeeded`\n- `in.co.sandbox.tds.compliance.pan.verification.job.failed`\n\nSee the [webhooks guide](https://developer.sandbox.co.in/guides/developer-resources/webhooks) to configure your webhook URL and validate the `x-sandbox-signature` header.",
+        "operationId": "PanVerificationJobStatus",
+        "tags": [
+          "PAN Verification"
+        ],
+        "parameters": [],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "description": "PAN verification job status notification.",
+                "properties": {
+                  "data": {
+                    "$ref": "#/components/schemas/PanVerificationJob",
+                    "description": "Job details use the same schema as data in the PAN verification status response."
+                  }
+                },
+                "required": [
+                  "data"
+                ]
+              },
+              "examples": {
+                "Verification completed": {
+                  "value": {
+                    "data": {
+                      "created_at": 1792054456408,
+                      "updated_at": 1792054527258,
+                      "@entity": "in.co.sandbox.tds.compliance.pan.verification.job",
+                      "job_id": "8941b6c4-8104-4a4b-b38c-14b0a1ed6837",
+                      "tan": "AHMA12345A",
+                      "status": "succeeded",
+                      "output_json_url": "https://sandbox-example.s3.ap-south-1.amazonaws.com/example-workspace/8941b6c4-8104-4a4b-b38c-14b0a1ed6837/pan-verification.json?X-Amz-Signature=example"
+                    }
+                  },
+                  "summary": "Verification completed"
+                },
+                "Verification failed": {
+                  "value": {
+                    "data": {
+                      "created_at": 1792136873733,
+                      "updated_at": 1792136925094,
+                      "@entity": "in.co.sandbox.tds.compliance.pan.verification.job",
+                      "job_id": "b5084575-7bdf-4a40-a8db-e19c93d34ec4",
+                      "tan": "AHMA12345A",
+                      "message": "Credentials not found",
+                      "status": "failed"
+                    }
+                  },
+                  "summary": "Verification failed"
+                }
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Return a 2xx status to acknowledge receipt of the notification.",
             "headers": {}
           }
         },

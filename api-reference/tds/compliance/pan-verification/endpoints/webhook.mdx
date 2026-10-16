@@ -1,0 +1,17 @@
+---
+title: "Bulk PAN verification webhook"
+sidebarTitle: "Job status webhook"
+description: "Receive a webhook when a TRACES bulk PAN verification job succeeds or fails. Read the job result and validate the Sandbox signature."
+keywords:
+  - bulk PAN verification webhook
+  - PAN verification job notification
+  - TRACES PAN verification
+  - x-sandbox-signature
+openapi: '/api-reference/tds/compliance/openapi.json webhook PanVerificationJobStatus'
+---
+
+Webhooks fire when a bulk PAN verification job reaches `succeeded` or `failed`.
+
+The webhook's `data` contains the job object, with the same schema as `data` in the [job status response](/api-reference/tds/compliance/pan-verification/endpoints/poll_job). Read `data.output_json_url` after success, or `data.message` after failure.
+
+Configure the webhook before creating the job. See the [webhooks guide](/guides/developer-resources/webhooks) to set your URL and validate `x-sandbox-signature`.

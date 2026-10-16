@@ -1,0 +1,14 @@
+---
+title: "Get bulk PAN verification job status"
+sidebarTitle: "Poll job"
+description: "Check a TRACES bulk PAN verification job by job ID. Get its processing status, result download URL, or failure message."
+keywords:
+  - bulk PAN verification status
+  - PAN verification job status
+  - TRACES PAN status
+openapi: '/api-reference/tds/compliance/openapi.json GET /tds/compliance/enriched/traces/deductors/pan/verify/status'
+---
+
+When `data.status` is `succeeded`, download the [PAN verification workbook](/api-reference/tds/compliance/pan-verification/pan_verification_workbook) from `data.output_json_url`. The workbook reference contains the output schema, sample, and PAN status guidance.
+
+For upload, polling, and download examples, see [Verify PANs in bulk](/recipes/tds/pan-verification/verify-pans-in-bulk). To receive completion notifications, use the [job status webhook](/api-reference/tds/compliance/pan-verification/endpoints/webhook).

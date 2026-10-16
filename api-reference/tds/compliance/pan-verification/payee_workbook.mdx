@@ -1,0 +1,53 @@
+---
+title: "Bulk PAN verification input workbook"
+sidebarTitle: "Payee workbook"
+description: "Build the JSON payee workbook for TRACES bulk PAN verification. View the schema and sample, upload the file, and check input requirements."
+keywords:
+  - bulk PAN verification workbook
+  - payee workbook
+  - PAN verification JSON schema
+  - Sheet JSON
+  - TRACES PAN verification
+mode: "wide"
+---
+
+Bulk PAN verification accepts a JSON file in [Sheet JSON format](/guides/developer-resources/sheet_json). The `payee_workbook` contains one `payee_sheet` with one `payee_table`.
+
+<CardGroup cols={2}>
+  <Card title="View schema" icon="file-spreadsheet" horizontal href="https://sheet-tools.quicko.org.in/sheet-schema-builder?schema_url=https://raw.githubusercontent.com/in-co-sandbox/in-co-sandbox-docs/refs/heads/main/data/tds/compliance/pan-verification/payee_workbook.schema.json" arrow={true}>
+    Open the input workbook schema.
+  </Card>
+  <Card title="View sample" icon="file-spreadsheet" horizontal href="https://sheet-tools.quicko.org.in/sheet-visualiser?schema_url=https://raw.githubusercontent.com/in-co-sandbox/in-co-sandbox-docs/refs/heads/main/data/tds/compliance/pan-verification/payee_workbook.schema.json&data_url=https://raw.githubusercontent.com/in-co-sandbox/in-co-sandbox-docs/refs/heads/main/data/tds/compliance/pan-verification/payee_workbook.data.json" arrow={true}>
+    Open a workbook with three fictional PANs.
+  </Card>
+</CardGroup>
+
+## Input requirements
+
+The table header is `["sr_no", "pan"]`. Each row contains these values in the same order.
+
+| Column | Type | Description |
+|:-------|:-----|:------------|
+| `sr_no` | Integer | A positive serial number identifying the input row. |
+| `pan` | String | The PAN text to submit to TRACES. |
+
+The JSON file must be at most **5,000,000 bytes**. Sandbox checks the file size during processing after upload.
+
+Sandbox submits PAN strings unchanged. For repeated exact PAN strings, verification keeps the first row and its `sr_no`, and ignores later rows.
+
+## Upload the workbook
+
+After you [create a job](/api-reference/tds/compliance/pan-verification/endpoints/submit_job), upload the JSON file to `data.json_url` with HTTP PUT and `Content-Type: application/json`.
+
+```bash
+curl --request PUT \
+	--url '{json_url}' \
+	--header 'Content-Type: application/json' \
+	--data-binary '@payee_workbook.json'
+```
+
+The signed upload URL authorizes this request. Omit the Sandbox `Authorization` and `x-api-key` headers when uploading the file.
+
+Signed upload and download URLs are valid for 24 hours. Uploaded and generated files are retained for 30 days.
+
+After uploading, [poll the job](/api-reference/tds/compliance/pan-verification/endpoints/poll_job) for the result. See [Verify PANs in bulk](/recipes/tds/pan-verification/verify-pans-in-bulk) for the complete workflow.
