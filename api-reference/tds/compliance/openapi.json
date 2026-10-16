@@ -7682,8 +7682,11 @@
             "description": "Last update timestamp, when available."
           },
           "section": {
-            "type": "string",
-            "description": "TDS section reported by TRACES for this tax breakdown."
+            "type": [
+              "string",
+              "null"
+            ],
+            "description": "TDS section reported by TRACES, or null when unavailable."
           },
           "tax_amount": {
             "type": "number",
@@ -7938,8 +7941,11 @@
                   "description": "Last update timestamp, when available."
                 },
                 "section": {
-                  "type": "string",
-                  "description": "TDS section reported by TRACES for this tax breakdown."
+                  "type": [
+                    "string",
+                    "null"
+                  ],
+                  "description": "TDS section reported by TRACES, or null when unavailable."
                 },
                 "tax_amount": {
                   "type": "number",
@@ -8368,8 +8374,11 @@
                         "description": "Last update timestamp, when available."
                       },
                       "section": {
-                        "type": "string",
-                        "description": "TDS section reported by TRACES for this tax breakdown."
+                        "type": [
+                          "string",
+                          "null"
+                        ],
+                        "description": "TDS section reported by TRACES, or null when unavailable."
                       },
                       "tax_amount": {
                         "type": "number",

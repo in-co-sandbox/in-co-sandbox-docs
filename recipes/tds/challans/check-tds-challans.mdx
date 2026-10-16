@@ -98,6 +98,8 @@ The examples use fictional TAN and challan data. Replace the sample values with 
     Send the BSR code and challan serial number as strings to preserve leading zeros. The example deposit date is 17 July 2026 in Asia/Kolkata.
 
     Read `data.status` and `data.tax_breakdown` from the response. When `data.consumption_details` is present, use its claimed and available amounts to review utilization. A `null` value means consumption details are unavailable.
+
+    `tax_breakdown[].section` can be `null` when TRACES reports tax amounts without a section label.
   </Step>
 </Steps>
 
