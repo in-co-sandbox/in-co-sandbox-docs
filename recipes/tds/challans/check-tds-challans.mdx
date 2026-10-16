@@ -55,7 +55,7 @@ The examples use fictional TAN and challan data. Replace the sample values with 
     <Accordion title="Challan search request">
     ```bash
     curl --request POST \
-      --url https://api.sandbox.co.in/tds/traces/deductors/challans/search \
+      --url https://api.sandbox.co.in/tds/compliance/traces/deductors/challans/search \
       --header 'Authorization: {deductor_access_token}' \
       --header 'Content-Type: application/json' \
       --header 'x-api-key: {sandbox-api-key}' \
@@ -82,7 +82,7 @@ The examples use fictional TAN and challan data. Replace the sample values with 
     <Accordion title="Challan lookup request">
     ```bash
     curl --request POST \
-      --url https://api.sandbox.co.in/tds/traces/deductors/challans \
+      --url https://api.sandbox.co.in/tds/compliance/traces/deductors/challan \
       --header 'Authorization: {deductor_access_token}' \
       --header 'Content-Type: application/json' \
       --header 'x-api-key: {sandbox-api-key}' \
