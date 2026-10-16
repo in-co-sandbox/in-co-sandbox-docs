@@ -5,9 +5,6 @@ openapi: "/api-reference/kyc/openapi.json POST /kyc/aadhaar/okyc/otp/verify"
 sidebarTitle: "Verify OTP"
 ---
 
-<Warning>
-**Deprecation Notice:** This Aadhaar verification endpoint has been deprecated by UIDAI. For a more compliant and reliable verification process, we recommend migrating to the [DigiLocker-based](https://developer.sandbox.co.in/api-reference/kyc/digilocker/overview) verification flow.
-</Warning>
-
-<Card title="Run in Postman" icon="/static/svg/Postman.svg" horizontal href="https://www.postman.com/in-co-sandbox/sandbox-api/request/jr5gzo1/aadhaar-offline-e-kyc-verify-otp" arrow="true">
-</Card>
+<Danger>
+**Discontinued:** UIDAI has discontinued Aadhaar offline e-KYC (OKYC), and this endpoint no longer works. To verify an individual's Aadhaar, use the [DigiLocker API](/api-reference/kyc/digilocker/overview) to fetch their Aadhaar from DigiLocker with their consent.
+</Danger>
