@@ -1,0 +1,45 @@
+---
+title: "Bulk PAN verification output workbook"
+sidebarTitle: "PAN verification workbook"
+description: "Read TRACES bulk PAN verification results in a JSON workbook. View the output schema, sample, column definitions, and PAN status guidance."
+keywords:
+  - bulk PAN verification output
+  - PAN verification workbook
+  - TRACES PAN status
+  - pan_verification_workbook
+  - PAN verification JSON schema
+mode: "wide"
+---
+
+The `pan_verification_workbook` contains bulk PAN verification results in [Sheet JSON format](/guides/developer-resources/sheet_json). It has one `payee_sheet` with one `payee_table`.
+
+<CardGroup cols={2}>
+  <Card title="View output schema" icon="file-spreadsheet" horizontal href="https://sheet-tools.quicko.org.in/sheet-schema-builder?schema_url=https://raw.githubusercontent.com/in-co-sandbox/in-co-sandbox-docs/refs/heads/main/data/tds/compliance/pan-verification/pan_verification_workbook.schema.json" arrow={true}>
+    Open the PAN verification result schema.
+  </Card>
+  <Card title="View output sample" icon="file-spreadsheet" horizontal href="https://sheet-tools.quicko.org.in/sheet-visualiser?schema_url=https://raw.githubusercontent.com/in-co-sandbox/in-co-sandbox-docs/refs/heads/main/data/tds/compliance/pan-verification/pan_verification_workbook.schema.json&data_url=https://raw.githubusercontent.com/in-co-sandbox/in-co-sandbox-docs/refs/heads/main/data/tds/compliance/pan-verification/pan_verification_workbook.data.json" arrow={true}>
+    Open fictional PANs with illustrative status values.
+  </Card>
+</CardGroup>
+
+## Output columns
+
+The table header is `["sr_no", "pan", "pan_status"]`. Each row contains these values in the same order.
+
+| Column | Type | Description |
+|:-------|:-----|:------------|
+| `sr_no` | Integer | Serial number from the first input row for this PAN. |
+| `pan` | String | The submitted PAN returned in the TRACES report. |
+| `pan_status` | String | PAN status text returned by TRACES. |
+
+## PAN verification results
+
+Results include only submitted PANs present in the TRACES report. A missing PAN is omitted from the workbook. For repeated exact PAN strings, the output keeps the first input row's `sr_no`.
+
+Sandbox returns `pan_status` exactly as TRACES supplies it. Treat `Valid` and `Valid and Operative` as distinct values. An `Invalid` row does not make the job fail.
+
+## Download the workbook
+
+When the [job status](/api-reference/tds/compliance/pan-verification/endpoints/poll_job) is `succeeded`, download the workbook from `data.output_json_url`. The signed URL is valid for 24 hours. Generated files are retained for 30 days.
+
+For the complete workflow, see [Verify PANs in bulk](/recipes/tds/pan-verification/verify-pans-in-bulk).

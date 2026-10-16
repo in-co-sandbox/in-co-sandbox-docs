@@ -770,6 +770,26 @@
                       "api-reference/tds/compliance/challans/endpoints/search_challans"
                     ]
                   },
+                  {
+                    "group": "Bulk PAN verification",
+                    "pages": [
+                      {
+                        "group": "Create job",
+                        "pages": [
+                          "api-reference/tds/compliance/pan-verification/endpoints/submit_job",
+                          "api-reference/tds/compliance/pan-verification/payee_workbook"
+                        ]
+                      },
+                      {
+                        "group": "Poll job",
+                        "pages": [
+                          "api-reference/tds/compliance/pan-verification/endpoints/poll_job",
+                          "api-reference/tds/compliance/pan-verification/pan_verification_workbook"
+                        ]
+                      },
+                      "api-reference/tds/compliance/pan-verification/endpoints/webhook"
+                    ]
+                  },
                   "api-reference/tds/compliance/certificates/overview",
                   {
                     "group": "TDS certificate APIs",
@@ -1315,6 +1335,12 @@
                 "group": "TDS challans",
                 "pages": [
                   "recipes/tds/challans/check-tds-challans"
+                ]
+              },
+              {
+                "group": "PAN verification",
+                "pages": [
+                  "recipes/tds/pan-verification/verify-pans-in-bulk"
                 ]
               }
             ]

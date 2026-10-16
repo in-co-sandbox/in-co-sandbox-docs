@@ -1,0 +1,107 @@
+---
+title: "Verify PANs in bulk through TRACES"
+sidebarTitle: "Verify PANs in bulk"
+description: "Verify PANs in bulk through TRACES with Sandbox's API. Follow cURL examples to create a job, upload a JSON workbook, and download PAN status results."
+keywords:
+  - bulk PAN verification API
+  - verify PANs in bulk
+  - TRACES PAN verification
+  - PAN status API
+  - JSON payee workbook
+---
+
+Use Sandbox's bulk PAN verification API to check PAN statuses through TRACES and download a JSON workbook of results. Sandbox manages TRACES authentication with the credentials saved for your TAN.
+
+## Before you start
+
+- Obtain a Sandbox access token and API key using the [Quickstart guide](/guides/get-started/quickstart).
+- Save the TAN's [TRACES credentials](/api-reference/tds/compliance/traces-credentials/endpoints/save_credential) in the same Sandbox workspace. Skip credential setup if valid credentials are already saved.
+- Prepare a [JSON payee workbook](/api-reference/tds/compliance/pan-verification/payee_workbook) named `payee_workbook.json` with your PANs. The file must be at most 5,000,000 bytes.
+
+Replace the sample TAN with your own TAN and use the same TAN as the saved credentials. Replace placeholders with the values returned by each request.
+
+## Verify the PANs
+
+<Steps>
+  <Step title="Create a verification job" titleSize="h3">
+    Call [Create a bulk PAN verification job](/api-reference/tds/compliance/pan-verification/endpoints/submit_job) with the TAN.
+
+    <Accordion title="Create job with cURL" defaultOpen>
+```bash
+curl --request POST \
+	--url https://api.sandbox.co.in/tds/compliance/enriched/traces/deductors/pan/verify \
+	--header 'Authorization: {sandbox-access-token}' \
+	--header 'x-api-key: {sandbox-api-key}' \
+	--header 'Content-Type: application/json' \
+	--data '{
+		"@entity": "in.co.sandbox.tds.compliance.pan.verification.request",
+		"tan": "AHMA12345A"
+	}'
+```
+    </Accordion>
+
+    The response has `data.status: "created"`. Save `data.job_id` to check progress and `data.json_url` to upload the workbook.
+  </Step>
+
+  <Step title="Upload the payee workbook" titleSize="h3">
+    Send the JSON file to the returned `data.json_url` with HTTP PUT. The [payee workbook reference](/api-reference/tds/compliance/pan-verification/payee_workbook) provides the schema and a sample.
+
+    <Accordion title="Upload workbook with cURL" defaultOpen>
+```bash
+curl --request PUT \
+	--url '{json_url}' \
+	--header 'Content-Type: application/json' \
+	--data-binary '@payee_workbook.json'
+```
+    </Accordion>
+
+    Use the signed URL within 24 hours. The URL authorizes the upload, so omit the Sandbox `Authorization` and `x-api-key` headers.
+
+    Processing starts after upload. Sandbox then checks file size and the saved TRACES credentials. A successful create request does not confirm those checks have passed.
+  </Step>
+
+  <Step title="Check the verification job status" titleSize="h3">
+    Call [Get bulk PAN verification job status](/api-reference/tds/compliance/pan-verification/endpoints/poll_job) with the returned `job_id`.
+
+    <Accordion title="Poll job with cURL" defaultOpen>
+```bash
+curl --request GET \
+	--url 'https://api.sandbox.co.in/tds/compliance/enriched/traces/deductors/pan/verify/status?job_id={job_id}' \
+	--header 'Authorization: {sandbox-access-token}' \
+	--header 'x-api-key: {sandbox-api-key}'
+```
+    </Accordion>
+
+    Continue polling while `data.status` is `created`, `queued`, or `in_progress`. If the job stays `created`, confirm that you uploaded the workbook successfully.
+
+    Stop polling when the status is `succeeded` or `failed`. A failed job still returns HTTP `200`. Read `data.message` for the reason.
+
+    You can also configure a [job status webhook](/api-reference/tds/compliance/pan-verification/endpoints/webhook) before creating the job to receive completion notifications.
+  </Step>
+
+  <Step title="Download the verification results" titleSize="h3">
+    When `data.status` is `succeeded`, download the result from `data.output_json_url`.
+
+    <Accordion title="Download results with cURL" defaultOpen>
+```bash
+curl --request GET \
+	--url '{output_json_url}' \
+	--output pan_verification_workbook.json
+```
+    </Accordion>
+
+    The download URL is valid for 24 hours. Uploaded and generated files are retained for 30 days. See the [output schema and sample](/api-reference/tds/compliance/pan-verification/pan_verification_workbook) to read the result workbook.
+  </Step>
+</Steps>
+
+## Read the results
+
+Read the [PAN verification workbook reference](/api-reference/tds/compliance/pan-verification/pan_verification_workbook) for column definitions and PAN status guidance.
+
+## Resolve errors
+
+If `data.status` is `failed`, read `data.message` before creating another job. For credential errors, check the saved TAN and TRACES password in your current Sandbox workspace. To replace saved credentials, [delete the credentials](/api-reference/tds/compliance/traces-credentials/endpoints/delete_credential), then [add the correct credentials](/api-reference/tds/compliance/traces-credentials/endpoints/save_credential).
+
+If the file exceeds 5,000,000 bytes, reduce its size and upload it to a new job. For other workbook errors, compare the file with the [input schema](/api-reference/tds/compliance/pan-verification/payee_workbook).
+
+If polling returns HTTP `521` with `Data not found`, check the job ID and confirm that you are using the workspace where you created the job. See the [API error guide](/guides/developer-resources/errors) for request and authorization errors.

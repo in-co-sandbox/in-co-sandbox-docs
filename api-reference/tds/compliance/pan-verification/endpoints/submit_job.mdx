@@ -1,0 +1,21 @@
+---
+title: "Create a bulk PAN verification job"
+sidebarTitle: "Submit job"
+description: "Create a TRACES bulk PAN verification job for a TAN and receive a signed URL to upload the JSON payee workbook."
+keywords:
+  - bulk PAN verification API
+  - TRACES PAN verification
+  - PAN verification job
+  - TAN
+openapi: '/api-reference/tds/compliance/openapi.json POST /tds/compliance/enriched/traces/deductors/pan/verify'
+---
+
+Save the [TRACES credentials](/api-reference/tds/compliance/traces-credentials/endpoints/save_credential) for the TAN in your Sandbox workspace. Sandbox manages TRACES authentication during processing.
+
+After creating the job, upload the [JSON payee workbook](/api-reference/tds/compliance/pan-verification/payee_workbook) to `data.json_url` with HTTP PUT. Then use `data.job_id` to [check the job status](/api-reference/tds/compliance/pan-verification/endpoints/poll_job).
+
+<Note>
+Credential checks happen after the workbook upload. Missing or incorrect TRACES credentials appear as a `failed` job with a `message` in the status response.
+</Note>
+
+For cURL examples covering the complete workflow, see [Verify PANs in bulk](/recipes/tds/pan-verification/verify-pans-in-bulk).

@@ -1,0 +1,137 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "type": "object",
+  "description": "TRACES bulk PAN verification output workbook.",
+  "properties": {
+    "@entity": {
+      "type": "string",
+      "enum": [
+        "workbook"
+      ]
+    },
+    "name": {
+      "type": "string",
+      "enum": [
+        "pan_verification_workbook"
+      ]
+    },
+    "sheets": {
+      "type": "array",
+      "minItems": 1,
+      "maxItems": 1,
+      "items": {
+        "oneOf": [
+          {
+            "type": "object",
+            "properties": {
+              "@entity": {
+                "type": "string",
+                "enum": [
+                  "sheet"
+                ]
+              },
+              "name": {
+                "type": "string",
+                "enum": [
+                  "payee_sheet"
+                ]
+              },
+              "blocks": {
+                "type": "array",
+                "minItems": 1,
+                "maxItems": 1,
+                "items": {
+                  "oneOf": [
+                    {
+                      "type": "object",
+                      "properties": {
+                        "@entity": {
+                          "type": "string",
+                          "enum": [
+                            "table"
+                          ]
+                        },
+                        "name": {
+                          "type": "string",
+                          "enum": [
+                            "payee_table"
+                          ]
+                        },
+                        "header": {
+                          "type": "array",
+                          "items": [
+                            {
+                              "type": "string",
+                              "enum": [
+                                "sr_no"
+                              ]
+                            },
+                            {
+                              "type": "string",
+                              "enum": [
+                                "pan"
+                              ]
+                            },
+                            {
+                              "type": "string",
+                              "enum": [
+                                "pan_status"
+                              ]
+                            }
+                          ],
+                          "additionalItems": false,
+                          "minItems": 3,
+                          "maxItems": 3
+                        },
+                        "rows": {
+                          "type": "array",
+                          "items": {
+                            "type": "array",
+                            "items": [
+                              {
+                                "type": "integer",
+                                "minimum": 1,
+                                "description": "Serial number of the payee in the uploaded workbook."
+                              },
+                              {
+                                "type": "string",
+                                "description": "PAN text returned by TRACES."
+                              },
+                              {
+                                "type": "string",
+                                "description": "PAN status returned by TRACES, preserved without interpretation."
+                              }
+                            ],
+                            "additionalItems": false,
+                            "minItems": 3,
+                            "maxItems": 3
+                          }
+                        }
+                      },
+                      "required": [
+                        "@entity",
+                        "name",
+                        "header",
+                        "rows"
+                      ]
+                    }
+                  ]
+                }
+              }
+            },
+            "required": [
+              "@entity",
+              "name",
+              "blocks"
+            ]
+          }
+        ]
+      }
+    }
+  },
+  "required": [
+    "@entity",
+    "name",
+    "sheets"
+  ]
+}
