@@ -5160,664 +5160,6 @@
         "x-run-in-apidog": "https://app.apidog.com/web/project/1186657/apis/api-43151001-run"
       }
     },
-    "/tds/compliance/traces/deductors/challans": {
-      "post": {
-        "summary": "Get challan",
-        "deprecated": false,
-        "description": "Retrieves a TDS challan and its tax and available consumption details from TRACES.\n\nIdentify the challan using the deductor's TAN, BSR code, deposit date, and challan serial number. The deposit date uses epoch milliseconds and the Asia/Kolkata calendar date.\n\nRequires registered TRACES deductor credentials for the requested TAN and Sandbox authentication.\n\nReturns HTTP 521 when no challan matches the supplied particulars. A null consumption_details value means utilization details are unavailable; it does not indicate an unused challan.",
-        "operationId": "getChallan",
-        "tags": [
-          "TRACES/Challans",
-          "TRACES",
-          "Challans"
-        ],
-        "parameters": [
-          {
-            "name": "Authorization",
-            "in": "header",
-            "description": "JWT access token. For token-generation steps, refer to the [Quickstart Guide](https://developer.sandbox.co.in/guides/get-started/quickstart).",
-            "required": true,
-            "example": "{{access_token}}",
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "x-api-key",
-            "in": "header",
-            "description": "API key used to identify and authenticate the client.",
-            "required": true,
-            "example": "{{api_key}}",
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "Content-Type",
-            "in": "header",
-            "description": "Request body format.",
-            "required": true,
-            "example": "application/json",
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
-        "requestBody": {
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/ChallanLookupRequest"
-              },
-              "examples": {
-                "Challan found": {
-                  "value": {
-                    "@entity": "in.co.sandbox.tds.compliance.challan.request",
-                    "tan": "AHMA12345A",
-                    "bsr_code": "0123456",
-                    "challan_serial": "00042",
-                    "paid_date_epoch": 1784053800000
-                  },
-                  "summary": "Challan found"
-                },
-                "TRACES credentials not stored": {
-                  "value": {
-                    "@entity": "in.co.sandbox.tds.compliance.challan.request",
-                    "tan": "AHMA12345A",
-                    "bsr_code": "0123456",
-                    "challan_serial": "00042",
-                    "paid_date_epoch": 1784053800000
-                  },
-                  "summary": "TRACES credentials not stored"
-                },
-                "Incorrect TRACES credentials": {
-                  "value": {
-                    "@entity": "in.co.sandbox.tds.compliance.challan.request",
-                    "tan": "AHMA12345A",
-                    "bsr_code": "0123456",
-                    "challan_serial": "00042",
-                    "paid_date_epoch": 1784053800000
-                  },
-                  "summary": "Incorrect TRACES credentials"
-                },
-                "TRACES login unavailable": {
-                  "value": {
-                    "@entity": "in.co.sandbox.tds.compliance.challan.request",
-                    "tan": "AHMA12345A",
-                    "bsr_code": "0123456",
-                    "challan_serial": "00042",
-                    "paid_date_epoch": 1784053800000
-                  },
-                  "summary": "TRACES login unavailable"
-                }
-              }
-            }
-          },
-          "required": true
-        },
-        "responses": {
-          "200": {
-            "description": "The matching challan with its tax and available consumption details.",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "object",
-                  "properties": {
-                    "code": {
-                      "type": "integer",
-                      "const": 200,
-                      "description": "HTTP status code."
-                    },
-                    "timestamp": {
-                      "type": "integer",
-                      "description": "Response timestamp in epoch milliseconds."
-                    },
-                    "transaction_id": {
-                      "type": "string",
-                      "description": "Unique identifier for this API request."
-                    },
-                    "data": {
-                      "$ref": "#/components/schemas/Challan"
-                    }
-                  },
-                  "required": [
-                    "code",
-                    "timestamp",
-                    "transaction_id",
-                    "data"
-                  ],
-                  "additionalProperties": false,
-                  "x-apidog-ignore-properties": [],
-                  "x-apidog-orders": [
-                    "code",
-                    "timestamp",
-                    "transaction_id",
-                    "data"
-                  ]
-                },
-                "examples": {
-                  "Challan found": {
-                    "summary": "Challan found",
-                    "description": "Fictional example data.",
-                    "value": {
-                      "code": 200,
-                      "timestamp": 1791829800000,
-                      "transaction_id": "87c1b4f6-1632-4d8b-a2f9-05f291c00a42",
-                      "data": {
-                        "@entity": "in.co.sandbox.tds.compliance.challan.response",
-                        "tan": "AHMA12345A",
-                        "bsr_code": "0123456",
-                        "challan_serial": "00042",
-                        "paid_date_epoch": 1784053800000,
-                        "challan_identification_number": "01234561507202600042",
-                        "receipt_number": "9000000001",
-                        "financial_year": "FY 2026-27",
-                        "major_head": "0021",
-                        "minor_head": "200",
-                        "total_amount": 1500,
-                        "status": "CLAIMED",
-                        "section_code": "94D",
-                        "residency_status": "R",
-                        "tax_breakdown": [
-                          {
-                            "@entity": "in.co.sandbox.tds.compliance.challan.tax_breakdown",
-                            "section": "393(1) [Table: Sl. No. 1(i)]",
-                            "tax_amount": 1500,
-                            "surcharge": 0,
-                            "cess": 0,
-                            "total_amount": 1500
-                          }
-                        ],
-                        "consumption_details": null
-                      }
-                    }
-                  }
-                }
-              }
-            },
-            "headers": {},
-            "x-apidog-name": "Success",
-            "x-apidog-ordering": 0
-          },
-          "400": {
-            "description": "The request body is malformed or does not match the request schema.",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ErrorResponse"
-                }
-              }
-            },
-            "headers": {},
-            "x-apidog-name": "Invalid request body",
-            "x-apidog-ordering": 1
-          },
-          "401": {
-            "description": "Sandbox authorization is missing or invalid, or the stored TRACES credentials are incorrect.",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ErrorResponse"
-                },
-                "examples": {
-                  "Incorrect TRACES credentials": {
-                    "summary": "Incorrect TRACES credentials",
-                    "description": "Fictional example data.",
-                    "value": {
-                      "code": 401,
-                      "timestamp": 1791829800000,
-                      "transaction_id": "87c1b4f6-1632-4d8b-a2f9-05f291c00a42",
-                      "message": "Invalid credentials"
-                    }
-                  }
-                }
-              }
-            },
-            "headers": {},
-            "x-apidog-name": "Unauthorized",
-            "x-apidog-ordering": 2
-          },
-          "403": {
-            "description": "Access is denied for this request.",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ErrorResponse"
-                }
-              }
-            },
-            "headers": {},
-            "x-apidog-name": "Forbidden",
-            "x-apidog-ordering": 3
-          },
-          "429": {
-            "description": "The request rate limit has been exceeded.",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ErrorResponse"
-                }
-              }
-            },
-            "headers": {},
-            "x-apidog-name": "Too Many Requests",
-            "x-apidog-ordering": 4
-          },
-          "500": {
-            "description": "The challan request could not be completed.",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ErrorResponse"
-                },
-                "examples": {
-                  "TRACES login unavailable": {
-                    "summary": "TRACES login unavailable",
-                    "description": "Fictional example data.",
-                    "value": {
-                      "code": 500,
-                      "timestamp": 1791829800000,
-                      "transaction_id": "87c1b4f6-1632-4d8b-a2f9-05f291c00a42",
-                      "message": "Failed to log in to TRACES"
-                    }
-                  }
-                }
-              }
-            },
-            "headers": {},
-            "x-apidog-name": "Failed to fetch TRACES challans",
-            "x-apidog-ordering": 5
-          },
-          "503": {
-            "description": "TRACES is temporarily unavailable.",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ErrorResponse"
-                }
-              }
-            },
-            "headers": {},
-            "x-apidog-name": "Source Unavailable",
-            "x-apidog-ordering": 6
-          },
-          "521": {
-            "description": "TRACES credentials are not stored for this TAN, or no challan matches the supplied payment details.",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ErrorResponse"
-                },
-                "examples": {
-                  "TRACES credentials not stored": {
-                    "summary": "TRACES credentials not stored",
-                    "description": "Fictional example data.",
-                    "value": {
-                      "code": 521,
-                      "timestamp": 1791829800000,
-                      "transaction_id": "87c1b4f6-1632-4d8b-a2f9-05f291c00a42",
-                      "message": "Credentials not found"
-                    }
-                  }
-                }
-              }
-            },
-            "headers": {},
-            "x-apidog-name": "Challan not found",
-            "x-apidog-ordering": 7
-          }
-        },
-        "security": [],
-        "x-apidog-folder": "TRACES/Challans",
-        "x-apidog-status": "released",
-        "x-run-in-apidog": "https://app.apidog.com/web/project/1186657/apis/api-45162941-run",
-        "servers": [
-          {
-            "url": "https://api.sandbox.co.in"
-          }
-        ]
-      }
-    },
-    "/tds/compliance/traces/deductors/challans/search": {
-      "post": {
-        "summary": "Search challans",
-        "deprecated": false,
-        "description": "Searches a deductor's TDS challans by deposit-date range and returns one page of results from TRACES.\n\nProvide the deductor's TAN, from_date_epoch, and to_date_epoch. Both dates are required and use epoch milliseconds. The calendar dates are interpreted in Asia/Kolkata.\n\npage_number starts at 0. page_size specifies the number of challans requested per page. Both fields are optional.\n\nThe response includes the challans in data and the pagination totals totalPages and totalElements. A page with no challans returns HTTP 200 with an empty data list.\n\nRequires registered TRACES deductor credentials for the requested TAN and Sandbox authentication.",
-        "operationId": "searchChallans",
-        "tags": [
-          "TRACES/Challans",
-          "TRACES",
-          "Challans"
-        ],
-        "parameters": [
-          {
-            "name": "Authorization",
-            "in": "header",
-            "description": "JWT access token. For token-generation steps, refer to the [Quickstart Guide](https://developer.sandbox.co.in/guides/get-started/quickstart).",
-            "required": true,
-            "example": "{{access_token}}",
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "x-api-key",
-            "in": "header",
-            "description": "API key used to identify and authenticate the client.",
-            "required": true,
-            "example": "{{api_key}}",
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "Content-Type",
-            "in": "header",
-            "description": "Request body format.",
-            "required": true,
-            "example": "application/json",
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
-        "requestBody": {
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/ChallanSearchRequest"
-              },
-              "examples": {
-                "Challans found within the date range": {
-                  "value": {
-                    "@entity": "in.co.sandbox.tds.compliance.challan.search",
-                    "tan": "AHMA12345A",
-                    "from_date_epoch": 1782844200000,
-                    "to_date_epoch": 1785436200000,
-                    "page_number": 0,
-                    "page_size": 10
-                  },
-                  "summary": "Challans found within the date range"
-                },
-                "No challans found within date range": {
-                  "value": {
-                    "@entity": "in.co.sandbox.tds.compliance.challan.search",
-                    "tan": "AHMA12345A",
-                    "from_date_epoch": 1785522600000,
-                    "to_date_epoch": 1788114600000,
-                    "page_number": 0,
-                    "page_size": 10
-                  },
-                  "summary": "No challans found within date range"
-                },
-                "Challans found on the next page": {
-                  "value": {
-                    "@entity": "in.co.sandbox.tds.compliance.challan.search",
-                    "tan": "AHMA12345A",
-                    "from_date_epoch": 1788201000000,
-                    "to_date_epoch": 1790706600000,
-                    "page_number": 1,
-                    "page_size": 1
-                  },
-                  "summary": "Challans found on the next page"
-                }
-              }
-            }
-          },
-          "required": true
-        },
-        "responses": {
-          "200": {
-            "description": "One page of challans with pagination totals. The data list is empty when the page contains no challans.",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "object",
-                  "properties": {
-                    "code": {
-                      "type": "integer",
-                      "const": 200,
-                      "description": "HTTP status code."
-                    },
-                    "timestamp": {
-                      "type": "integer",
-                      "description": "Response timestamp in epoch milliseconds."
-                    },
-                    "transaction_id": {
-                      "type": "string",
-                      "description": "Unique identifier for this API request."
-                    },
-                    "data": {
-                      "$ref": "#/components/schemas/ChallanSearchResponse"
-                    }
-                  },
-                  "required": [
-                    "code",
-                    "timestamp",
-                    "transaction_id",
-                    "data"
-                  ],
-                  "additionalProperties": false,
-                  "x-apidog-ignore-properties": [],
-                  "x-apidog-orders": [
-                    "code",
-                    "timestamp",
-                    "transaction_id",
-                    "data"
-                  ]
-                },
-                "examples": {
-                  "Challans found within the date range": {
-                    "summary": "Challans found within the date range",
-                    "description": "Fictional example data.",
-                    "value": {
-                      "code": 200,
-                      "timestamp": 1791829800000,
-                      "transaction_id": "87c1b4f6-1632-4d8b-a2f9-05f291c00a42",
-                      "data": {
-                        "@entity": "in.co.sandbox.tds.compliance.challan.search.response",
-                        "data": [
-                          {
-                            "@entity": "in.co.sandbox.tds.compliance.challan.response",
-                            "tan": "AHMA12345A",
-                            "bsr_code": "0123456",
-                            "challan_serial": "00042",
-                            "paid_date_epoch": 1784053800000,
-                            "challan_identification_number": "01234561507202600042",
-                            "receipt_number": "9000000001",
-                            "financial_year": "FY 2026-27",
-                            "major_head": "0021",
-                            "minor_head": "200",
-                            "total_amount": 1500,
-                            "status": "CLAIMED",
-                            "section_code": "94D",
-                            "residency_status": "R",
-                            "tax_breakdown": [
-                              {
-                                "@entity": "in.co.sandbox.tds.compliance.challan.tax_breakdown",
-                                "section": "393(1) [Table: Sl. No. 1(i)]",
-                                "tax_amount": 1500,
-                                "surcharge": 0,
-                                "cess": 0,
-                                "total_amount": 1500
-                              }
-                            ],
-                            "consumption_details": null
-                          }
-                        ],
-                        "totalPages": 1,
-                        "totalElements": 1
-                      }
-                    }
-                  },
-                  "No challans found within date range": {
-                    "summary": "No challans found within date range",
-                    "description": "Fictional example data.",
-                    "value": {
-                      "code": 200,
-                      "timestamp": 1791829800000,
-                      "transaction_id": "87c1b4f6-1632-4d8b-a2f9-05f291c00a42",
-                      "data": {
-                        "@entity": "in.co.sandbox.tds.compliance.challan.search.response",
-                        "data": [],
-                        "totalPages": 0,
-                        "totalElements": 0
-                      }
-                    }
-                  },
-                  "Challans found on the next page": {
-                    "summary": "Challans found on the next page",
-                    "description": "Fictional example data.",
-                    "value": {
-                      "code": 200,
-                      "timestamp": 1791829800000,
-                      "transaction_id": "87c1b4f6-1632-4d8b-a2f9-05f291c00a42",
-                      "data": {
-                        "@entity": "in.co.sandbox.tds.compliance.challan.search.response",
-                        "data": [
-                          {
-                            "@entity": "in.co.sandbox.tds.compliance.challan.response",
-                            "tan": "AHMA12345A",
-                            "bsr_code": "0123456",
-                            "challan_serial": "00043",
-                            "paid_date_epoch": 1789497000000,
-                            "challan_identification_number": "01234561609202600043",
-                            "receipt_number": "9000000002",
-                            "financial_year": "FY 2026-27",
-                            "major_head": "0021",
-                            "minor_head": "200",
-                            "total_amount": 2000,
-                            "status": "CLAIMED",
-                            "section_code": "94D",
-                            "residency_status": "R",
-                            "tax_breakdown": [
-                              {
-                                "@entity": "in.co.sandbox.tds.compliance.challan.tax_breakdown",
-                                "section": "393(1) [Table: Sl. No. 1(i)]",
-                                "tax_amount": 2000,
-                                "surcharge": 0,
-                                "cess": 0,
-                                "total_amount": 2000
-                              }
-                            ],
-                            "consumption_details": null
-                          }
-                        ],
-                        "totalPages": 2,
-                        "totalElements": 2
-                      }
-                    }
-                  }
-                }
-              }
-            },
-            "headers": {},
-            "x-apidog-name": "Success",
-            "x-apidog-ordering": 0
-          },
-          "400": {
-            "description": "The request body is malformed or does not match the request schema.",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ErrorResponse"
-                }
-              }
-            },
-            "headers": {},
-            "x-apidog-name": "Invalid request body",
-            "x-apidog-ordering": 1
-          },
-          "401": {
-            "description": "Sandbox authorization is missing or invalid, or the stored TRACES credentials are incorrect.",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ErrorResponse"
-                }
-              }
-            },
-            "headers": {},
-            "x-apidog-name": "Unauthorized",
-            "x-apidog-ordering": 2
-          },
-          "403": {
-            "description": "Access is denied for this request.",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ErrorResponse"
-                }
-              }
-            },
-            "headers": {},
-            "x-apidog-name": "Forbidden",
-            "x-apidog-ordering": 3
-          },
-          "429": {
-            "description": "The request rate limit has been exceeded.",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ErrorResponse"
-                }
-              }
-            },
-            "headers": {},
-            "x-apidog-name": "Too Many Requests",
-            "x-apidog-ordering": 4
-          },
-          "500": {
-            "description": "The challan request could not be completed.",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ErrorResponse"
-                }
-              }
-            },
-            "headers": {},
-            "x-apidog-name": "Failed to fetch TRACES challans",
-            "x-apidog-ordering": 5
-          },
-          "503": {
-            "description": "TRACES is temporarily unavailable.",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ErrorResponse"
-                }
-              }
-            },
-            "headers": {},
-            "x-apidog-name": "Source Unavailable",
-            "x-apidog-ordering": 6
-          },
-          "521": {
-            "description": "No TRACES credentials are stored for the deductor TAN in the workspace.",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ErrorResponse"
-                }
-              }
-            },
-            "headers": {},
-            "x-apidog-name": "Credentials not found",
-            "x-apidog-ordering": 7
-          }
-        },
-        "security": [],
-        "x-apidog-folder": "TRACES/Challans",
-        "x-apidog-status": "released",
-        "x-run-in-apidog": "https://app.apidog.com/web/project/1186657/apis/api-45162942-run",
-        "servers": [
-          {
-            "url": "https://api.sandbox.co.in"
-          }
-        ]
-      }
-    },
     "/tds/compliance/enriched/traces/deductors/pan/verify": {
       "post": {
         "summary": "Create bulk PAN verification job",
@@ -6537,6 +5879,1382 @@
           }
         },
         "security": []
+      }
+    },
+    "/tds/traces/deductors/challans": {
+      "post": {
+        "summary": "Get challan",
+        "deprecated": false,
+        "description": "Get a TDS challan's payment details, status, and utilization using its BSR code, deposit date, and serial number. Send the deductor access token returned by TRACES authentication in the Authorization header. The token identifies the deductor TAN. Authenticate or refresh separately when the token expires.",
+        "operationId": "getChallan",
+        "tags": [
+          "TRACES/Challans",
+          "TRACES",
+          "Challans"
+        ],
+        "parameters": [
+          {
+            "name": "Authorization",
+            "in": "header",
+            "description": "Deductor access token returned by the TRACES authenticate or refresh API.",
+            "required": true,
+            "example": "{{deductor_access_token}}",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "x-api-key",
+            "in": "header",
+            "description": "API key used to identify and authenticate the client.",
+            "required": true,
+            "example": "{{api_key}}",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "Content-Type",
+            "in": "header",
+            "description": "Request body format.",
+            "required": true,
+            "example": "application/json",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ChallanLookupRequest"
+              },
+              "examples": {
+                "Challan found": {
+                  "summary": "Challan found",
+                  "value": {
+                    "@entity": "in.co.sandbox.tds.compliance.challan.request",
+                    "bsr_code": "0123456",
+                    "challan_serial": "00042",
+                    "paid_date_epoch": 1784053800000
+                  }
+                },
+                "Challan not found": {
+                  "summary": "Challan not found",
+                  "value": {
+                    "@entity": "in.co.sandbox.tds.compliance.challan.request",
+                    "bsr_code": "0123456",
+                    "challan_serial": "99999",
+                    "paid_date_epoch": 1784053800000
+                  }
+                },
+                "Missing deductor access token": {
+                  "summary": "Missing deductor access token",
+                  "value": {
+                    "@entity": "in.co.sandbox.tds.compliance.challan.request",
+                    "bsr_code": "0123456",
+                    "challan_serial": "00042",
+                    "paid_date_epoch": 1784053800000
+                  }
+                },
+                "Invalid deductor access token": {
+                  "summary": "Invalid deductor access token",
+                  "value": {
+                    "@entity": "in.co.sandbox.tds.compliance.challan.request",
+                    "bsr_code": "0123456",
+                    "challan_serial": "00042",
+                    "paid_date_epoch": 1784053800000
+                  }
+                }
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "The matching challan with its tax and available consumption details.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "code": {
+                      "type": "integer",
+                      "const": 200,
+                      "description": "HTTP status code."
+                    },
+                    "timestamp": {
+                      "type": "integer",
+                      "description": "Response timestamp in epoch milliseconds."
+                    },
+                    "transaction_id": {
+                      "type": "string",
+                      "description": "Unique identifier for this API request."
+                    },
+                    "data": {
+                      "$ref": "#/components/schemas/Challan"
+                    }
+                  },
+                  "required": [
+                    "code",
+                    "timestamp",
+                    "transaction_id",
+                    "data"
+                  ],
+                  "additionalProperties": false,
+                  "x-apidog-orders": [
+                    "code",
+                    "timestamp",
+                    "transaction_id",
+                    "data"
+                  ],
+                  "x-apidog-ignore-properties": []
+                },
+                "examples": {
+                  "Challan found": {
+                    "summary": "Challan found",
+                    "value": {
+                      "code": 200,
+                      "timestamp": 1791829800000,
+                      "transaction_id": "87c1b4f6-1632-4d8b-a2f9-05f291c00a42",
+                      "data": {
+                        "@entity": "in.co.sandbox.tds.compliance.challan.response",
+                        "tan": "AHMA12345A",
+                        "bsr_code": "0123456",
+                        "challan_serial": "00042",
+                        "paid_date_epoch": 1784053800000,
+                        "challan_identification_number": "01234561507202600042",
+                        "receipt_number": "9000000001",
+                        "financial_year": "FY 2026-27",
+                        "major_head": "0021",
+                        "minor_head": "200",
+                        "total_amount": 1500,
+                        "status": "CLAIMED",
+                        "section_code": "94D",
+                        "residency_status": "R",
+                        "tax_breakdown": [
+                          {
+                            "@entity": "in.co.sandbox.tds.compliance.challan.tax_breakdown",
+                            "section": "393(1) [Table: Sl. No. 1(i)]",
+                            "tax_amount": 1500,
+                            "surcharge": 0,
+                            "cess": 0,
+                            "total_amount": 1500
+                          }
+                        ],
+                        "consumption_details": null
+                      }
+                    }
+                  }
+                }
+              }
+            },
+            "headers": {},
+            "x-apidog-name": "Success",
+            "x-apidog-ordering": 0
+          },
+          "400": {
+            "description": "The request body is malformed or does not match the request schema.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            },
+            "headers": {},
+            "x-apidog-name": "Invalid request body",
+            "x-apidog-ordering": 1
+          },
+          "401": {
+            "description": "The deductor access token is missing, or TRACES rejects the session as unauthorized.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                },
+                "examples": {
+                  "Missing deductor access token": {
+                    "summary": "Missing deductor access token",
+                    "value": {
+                      "code": 401,
+                      "timestamp": 1792195200000,
+                      "transaction_id": "5d447816-e21f-4697-a2ab-e87a51c2d18d",
+                      "message": "Unauthorized"
+                    }
+                  }
+                }
+              }
+            },
+            "headers": {},
+            "x-apidog-name": "Unauthorized",
+            "x-apidog-ordering": 2
+          },
+          "403": {
+            "description": "The deductor access token is invalid or expired, access is denied, or TRACES rejects the session.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                },
+                "examples": {
+                  "Invalid deductor access token": {
+                    "summary": "Invalid deductor access token",
+                    "value": {
+                      "code": 403,
+                      "timestamp": 1792195200000,
+                      "transaction_id": "ff4d47b2-573b-4221-b981-46c32ba43703",
+                      "message": "Forbidden"
+                    }
+                  }
+                }
+              }
+            },
+            "headers": {},
+            "x-apidog-name": "Forbidden",
+            "x-apidog-ordering": 3
+          },
+          "429": {
+            "description": "The request rate limit has been exceeded.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            },
+            "headers": {},
+            "x-apidog-name": "Too Many Requests",
+            "x-apidog-ordering": 4
+          },
+          "500": {
+            "description": "The challan request could not be completed.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            },
+            "headers": {},
+            "x-apidog-name": "Failed to fetch TRACES challans",
+            "x-apidog-ordering": 5
+          },
+          "503": {
+            "description": "TRACES is temporarily unavailable.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            },
+            "headers": {},
+            "x-apidog-name": "Source Unavailable",
+            "x-apidog-ordering": 6
+          },
+          "521": {
+            "description": "No challan matches the supplied details.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                },
+                "examples": {
+                  "Challan not found": {
+                    "summary": "Challan not found",
+                    "value": {
+                      "code": 521,
+                      "timestamp": 1792195200000,
+                      "transaction_id": "911be931-35f8-459e-94aa-a802a0edfeca",
+                      "message": "Challan not found"
+                    }
+                  }
+                }
+              }
+            },
+            "headers": {},
+            "x-apidog-name": "Challan not found",
+            "x-apidog-ordering": 7
+          }
+        },
+        "security": [],
+        "x-apidog-folder": "TRACES/Challans",
+        "x-apidog-status": "released",
+        "x-run-in-apidog": "https://app.apidog.com/web/project/1186657/apis/api-45162941-run"
+      }
+    },
+    "/tds/traces/deductors/challans/search": {
+      "post": {
+        "summary": "Search challans",
+        "deprecated": false,
+        "description": "Search TDS challans by deposit date range for the deductor identified by the access token. Use page_number and page_size to retrieve subsequent pages. Send the deductor access token returned by TRACES authentication in the Authorization header. Authenticate or refresh separately when the token expires.",
+        "operationId": "searchChallans",
+        "tags": [
+          "TRACES/Challans",
+          "TRACES",
+          "Challans"
+        ],
+        "parameters": [
+          {
+            "name": "Authorization",
+            "in": "header",
+            "description": "Deductor access token returned by the TRACES authenticate or refresh API.",
+            "required": true,
+            "example": "{{deductor_access_token}}",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "x-api-key",
+            "in": "header",
+            "description": "API key used to identify and authenticate the client.",
+            "required": true,
+            "example": "{{api_key}}",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "Content-Type",
+            "in": "header",
+            "description": "Request body format.",
+            "required": true,
+            "example": "application/json",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ChallanSearchRequest"
+              },
+              "examples": {
+                "Missing deductor access token": {
+                  "summary": "Missing deductor access token",
+                  "value": {
+                    "@entity": "in.co.sandbox.tds.compliance.challan.search",
+                    "from_date_epoch": 1782844200000,
+                    "to_date_epoch": 1785436200000,
+                    "page_number": 0,
+                    "page_size": 10
+                  }
+                },
+                "Invalid deductor access token": {
+                  "summary": "Invalid deductor access token",
+                  "value": {
+                    "@entity": "in.co.sandbox.tds.compliance.challan.search",
+                    "from_date_epoch": 1782844200000,
+                    "to_date_epoch": 1785436200000,
+                    "page_number": 0,
+                    "page_size": 10
+                  }
+                },
+                "No challans found within date range": {
+                  "summary": "No challans found within date range",
+                  "value": {
+                    "@entity": "in.co.sandbox.tds.compliance.challan.search",
+                    "from_date_epoch": 1785522600000,
+                    "to_date_epoch": 1788114600000,
+                    "page_number": 0,
+                    "page_size": 10
+                  }
+                },
+                "Challans found on the next page": {
+                  "summary": "Challans found on the next page",
+                  "value": {
+                    "@entity": "in.co.sandbox.tds.compliance.challan.search",
+                    "from_date_epoch": 1788201000000,
+                    "to_date_epoch": 1790706600000,
+                    "page_number": 1,
+                    "page_size": 1
+                  }
+                },
+                "Challans found within the date range": {
+                  "summary": "Challans found within the date range",
+                  "value": {
+                    "@entity": "in.co.sandbox.tds.compliance.challan.search",
+                    "from_date_epoch": 1782844200000,
+                    "to_date_epoch": 1785436200000,
+                    "page_number": 0,
+                    "page_size": 10
+                  }
+                }
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "One page of challans with pagination totals. The data list is empty when the page contains no challans.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "code": {
+                      "type": "integer",
+                      "const": 200,
+                      "description": "HTTP status code."
+                    },
+                    "timestamp": {
+                      "type": "integer",
+                      "description": "Response timestamp in epoch milliseconds."
+                    },
+                    "transaction_id": {
+                      "type": "string",
+                      "description": "Unique identifier for this API request."
+                    },
+                    "data": {
+                      "$ref": "#/components/schemas/ChallanSearchResponse"
+                    }
+                  },
+                  "required": [
+                    "code",
+                    "timestamp",
+                    "transaction_id",
+                    "data"
+                  ],
+                  "additionalProperties": false,
+                  "x-apidog-orders": [
+                    "code",
+                    "timestamp",
+                    "transaction_id",
+                    "data"
+                  ],
+                  "x-apidog-ignore-properties": []
+                },
+                "examples": {
+                  "No challans found within date range": {
+                    "summary": "No challans found within date range",
+                    "value": {
+                      "code": 200,
+                      "timestamp": 1791829800000,
+                      "transaction_id": "87c1b4f6-1632-4d8b-a2f9-05f291c00a42",
+                      "data": {
+                        "@entity": "in.co.sandbox.tds.compliance.challan.search.response",
+                        "data": [],
+                        "totalPages": 0,
+                        "totalElements": 0
+                      }
+                    }
+                  },
+                  "Challans found on the next page": {
+                    "summary": "Challans found on the next page",
+                    "value": {
+                      "code": 200,
+                      "timestamp": 1791829800000,
+                      "transaction_id": "87c1b4f6-1632-4d8b-a2f9-05f291c00a42",
+                      "data": {
+                        "@entity": "in.co.sandbox.tds.compliance.challan.search.response",
+                        "data": [
+                          {
+                            "@entity": "in.co.sandbox.tds.compliance.challan.response",
+                            "tan": "AHMA12345A",
+                            "bsr_code": "0123456",
+                            "challan_serial": "00043",
+                            "paid_date_epoch": 1789497000000,
+                            "challan_identification_number": "01234561609202600043",
+                            "receipt_number": "9000000002",
+                            "financial_year": "FY 2026-27",
+                            "major_head": "0021",
+                            "minor_head": "200",
+                            "total_amount": 2000,
+                            "status": "CLAIMED",
+                            "section_code": "94D",
+                            "residency_status": "R",
+                            "tax_breakdown": [
+                              {
+                                "@entity": "in.co.sandbox.tds.compliance.challan.tax_breakdown",
+                                "section": "393(1) [Table: Sl. No. 1(i)]",
+                                "tax_amount": 2000,
+                                "surcharge": 0,
+                                "cess": 0,
+                                "total_amount": 2000
+                              }
+                            ],
+                            "consumption_details": null
+                          }
+                        ],
+                        "totalPages": 2,
+                        "totalElements": 2
+                      }
+                    }
+                  },
+                  "Challans found within the date range": {
+                    "summary": "Challans found within the date range",
+                    "value": {
+                      "code": 200,
+                      "timestamp": 1791829800000,
+                      "transaction_id": "87c1b4f6-1632-4d8b-a2f9-05f291c00a42",
+                      "data": {
+                        "@entity": "in.co.sandbox.tds.compliance.challan.search.response",
+                        "data": [
+                          {
+                            "@entity": "in.co.sandbox.tds.compliance.challan.response",
+                            "tan": "AHMA12345A",
+                            "bsr_code": "0123456",
+                            "challan_serial": "00042",
+                            "paid_date_epoch": 1784053800000,
+                            "challan_identification_number": "01234561507202600042",
+                            "receipt_number": "9000000001",
+                            "financial_year": "FY 2026-27",
+                            "major_head": "0021",
+                            "minor_head": "200",
+                            "total_amount": 1500,
+                            "status": "CLAIMED",
+                            "section_code": "94D",
+                            "residency_status": "R",
+                            "tax_breakdown": [
+                              {
+                                "@entity": "in.co.sandbox.tds.compliance.challan.tax_breakdown",
+                                "section": "393(1) [Table: Sl. No. 1(i)]",
+                                "tax_amount": 1500,
+                                "surcharge": 0,
+                                "cess": 0,
+                                "total_amount": 1500
+                              }
+                            ],
+                            "consumption_details": null
+                          }
+                        ],
+                        "totalPages": 1,
+                        "totalElements": 1
+                      }
+                    }
+                  }
+                }
+              }
+            },
+            "headers": {},
+            "x-apidog-name": "Success",
+            "x-apidog-ordering": 0
+          },
+          "400": {
+            "description": "The request body is malformed or does not match the request schema.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            },
+            "headers": {},
+            "x-apidog-name": "Invalid request body",
+            "x-apidog-ordering": 1
+          },
+          "401": {
+            "description": "The deductor access token is missing, or TRACES rejects the session as unauthorized.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                },
+                "examples": {
+                  "Missing deductor access token": {
+                    "summary": "Missing deductor access token",
+                    "value": {
+                      "code": 401,
+                      "timestamp": 1792195200000,
+                      "transaction_id": "69ba52f1-4327-4c69-8909-425c16e004fa",
+                      "message": "Unauthorized"
+                    }
+                  }
+                }
+              }
+            },
+            "headers": {},
+            "x-apidog-name": "Unauthorized",
+            "x-apidog-ordering": 2
+          },
+          "403": {
+            "description": "The deductor access token is invalid or expired, access is denied, or TRACES rejects the session.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                },
+                "examples": {
+                  "Invalid deductor access token": {
+                    "summary": "Invalid deductor access token",
+                    "value": {
+                      "code": 403,
+                      "timestamp": 1792195200000,
+                      "transaction_id": "785fffda-dbf8-431d-9f9d-4877e83600b7",
+                      "message": "Forbidden"
+                    }
+                  }
+                }
+              }
+            },
+            "headers": {},
+            "x-apidog-name": "Forbidden",
+            "x-apidog-ordering": 3
+          },
+          "429": {
+            "description": "The request rate limit has been exceeded.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            },
+            "headers": {},
+            "x-apidog-name": "Too Many Requests",
+            "x-apidog-ordering": 4
+          },
+          "500": {
+            "description": "The challan request could not be completed.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            },
+            "headers": {},
+            "x-apidog-name": "Failed to fetch TRACES challans",
+            "x-apidog-ordering": 5
+          },
+          "503": {
+            "description": "TRACES is temporarily unavailable.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            },
+            "headers": {},
+            "x-apidog-name": "Source Unavailable",
+            "x-apidog-ordering": 6
+          },
+          "521": {
+            "description": "The requested source data is unavailable.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            },
+            "headers": {},
+            "x-apidog-name": "Credentials not found",
+            "x-apidog-ordering": 7
+          }
+        },
+        "security": [],
+        "x-apidog-folder": "TRACES/Challans",
+        "x-apidog-status": "released",
+        "x-run-in-apidog": "https://app.apidog.com/web/project/1186657/apis/api-45162942-run"
+      }
+    },
+    "/tds/traces/deductors/authenticate": {
+      "post": {
+        "summary": "Authenticate with TRACES",
+        "deprecated": false,
+        "description": "Authenticate with a deductor TAN and TRACES password. Returns access and refresh tokens for the TRACES session. Send your Sandbox API access token in the Authorization header. Example credentials and tokens are illustrative.",
+        "operationId": "authenticateTraces",
+        "tags": [
+          "TRACES/Authentication"
+        ],
+        "parameters": [
+          {
+            "name": "Authorization",
+            "in": "header",
+            "description": "Sandbox access token from the authenticate API.",
+            "required": true,
+            "example": "{{access_token}}",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "x-api-key",
+            "in": "header",
+            "description": "Sandbox API key.",
+            "required": true,
+            "example": "{{api_key}}",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "Content-Type",
+            "in": "header",
+            "description": "Request body format.",
+            "required": true,
+            "example": "application/json",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "@entity": {
+                    "type": "string",
+                    "enum": [
+                      "in.co.sandbox.tds.compliance.traces.authentication.request"
+                    ]
+                  },
+                  "tan": {
+                    "type": "string",
+                    "pattern": "^[A-Z]{4}[0-9]{5}[A-Z]$",
+                    "description": "Deductor TAN registered with TRACES."
+                  },
+                  "password": {
+                    "type": "string",
+                    "minLength": 1,
+                    "writeOnly": true,
+                    "description": "Password for the deductor TRACES account."
+                  }
+                },
+                "required": [
+                  "@entity",
+                  "tan",
+                  "password"
+                ]
+              },
+              "examples": {
+                "Session created": {
+                  "summary": "Session created",
+                  "value": {
+                    "@entity": "in.co.sandbox.tds.compliance.traces.authentication.request",
+                    "tan": "AHMA12345A",
+                    "password": "your-traces-password"
+                  }
+                },
+                "Missing password": {
+                  "summary": "Missing password",
+                  "value": {
+                    "@entity": "in.co.sandbox.tds.compliance.traces.authentication.request",
+                    "tan": "AHMA12345A"
+                  }
+                },
+                "Incorrect TRACES credentials": {
+                  "summary": "Incorrect TRACES credentials",
+                  "value": {
+                    "@entity": "in.co.sandbox.tds.compliance.traces.authentication.request",
+                    "tan": "AHMA12345A",
+                    "password": "incorrect-example-password"
+                  }
+                },
+                "Missing Sandbox authorization": {
+                  "summary": "Missing Sandbox authorization",
+                  "value": {
+                    "@entity": "in.co.sandbox.tds.compliance.traces.authentication.request",
+                    "tan": "AHMA12345A",
+                    "password": "your-traces-password"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Returns access and refresh tokens for the TRACES session.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "code": {
+                      "type": "integer",
+                      "enum": [
+                        200
+                      ]
+                    },
+                    "timestamp": {
+                      "type": "integer",
+                      "format": "int64"
+                    },
+                    "transaction_id": {
+                      "type": "string"
+                    },
+                    "data": {
+                      "type": "object",
+                      "properties": {
+                        "@entity": {
+                          "type": "string",
+                          "enum": [
+                            "in.co.sandbox.tds.compliance.traces.authentication.response"
+                          ]
+                        },
+                        "access_token": {
+                          "type": "string",
+                          "description": "Sandbox access JWT for the TRACES session."
+                        },
+                        "refresh_token": {
+                          "type": "string",
+                          "description": "Sandbox refresh JWT used to renew the TRACES session."
+                        },
+                        "access_token_expiry": {
+                          "type": "integer",
+                          "format": "int64",
+                          "description": "Access token expiry as Unix time in milliseconds."
+                        },
+                        "refresh_token_expiry": {
+                          "type": "integer",
+                          "format": "int64",
+                          "description": "Refresh token expiry as Unix time in milliseconds."
+                        }
+                      },
+                      "required": [
+                        "@entity",
+                        "access_token",
+                        "refresh_token",
+                        "access_token_expiry",
+                        "refresh_token_expiry"
+                      ]
+                    }
+                  },
+                  "required": [
+                    "code",
+                    "timestamp",
+                    "transaction_id",
+                    "data"
+                  ]
+                },
+                "examples": {
+                  "Session created": {
+                    "summary": "Session created",
+                    "value": {
+                      "code": 200,
+                      "timestamp": 1792176139900,
+                      "transaction_id": "198e8f90-691e-4c04-afaf-377611afa55f",
+                      "data": {
+                        "@entity": "in.co.sandbox.tds.compliance.traces.authentication.response",
+                        "access_token": "eyJhbGciOiJSU0FTU0FfUFNTX1NIQV81MTIiLCJ0eXAiOiJKV1QiLCJraWQiOiJleGFtcGxlLXNpZ25pbmcta2V5In0.eyJpc3MiOiJhcGkuc2FuZGJveC5jby5pbiIsImF1ZCI6IkFQSSIsImludGVudCI6IkFDQ0VTU19UT0tFTiIsImlhdCI6MTc5MjE3NjEzOSwiZXhwIjoxNzkyMTc3MDQ3fQ.invalid-example-signature",
+                        "refresh_token": "eyJhbGciOiJSU0FTU0FfUFNTX1NIQV81MTIiLCJ0eXAiOiJKV1QiLCJraWQiOiJleGFtcGxlLXNpZ25pbmcta2V5In0.eyJpc3MiOiJhcGkuc2FuZGJveC5jby5pbiIsImF1ZCI6IkFQSSIsImludGVudCI6IlJFRlJFU0hfVE9LRU4iLCJpYXQiOjE3OTIxNzYxMzksImV4cCI6MTc5MjE4MzM0N30.invalid-example-signature",
+                        "access_token_expiry": 1792177047000,
+                        "refresh_token_expiry": 1792183347000
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "The request body is invalid. Include a TAN and a non-empty TRACES password.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "code": {
+                      "type": "integer"
+                    },
+                    "timestamp": {
+                      "type": "integer",
+                      "format": "int64"
+                    },
+                    "transaction_id": {
+                      "type": "string"
+                    },
+                    "message": {
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "code",
+                    "timestamp",
+                    "transaction_id",
+                    "message"
+                  ]
+                },
+                "examples": {
+                  "Missing password": {
+                    "summary": "Missing password",
+                    "value": {
+                      "code": 400,
+                      "timestamp": 1792176147907,
+                      "transaction_id": "807b7940-d53e-4a19-8ead-718fcaa5868d",
+                      "message": "Invalid request body"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "TRACES rejected the credentials, or the Sandbox Authorization header is missing.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "code": {
+                      "type": "integer"
+                    },
+                    "timestamp": {
+                      "type": "integer",
+                      "format": "int64"
+                    },
+                    "transaction_id": {
+                      "type": "string"
+                    },
+                    "message": {
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "code",
+                    "timestamp",
+                    "transaction_id",
+                    "message"
+                  ]
+                },
+                "examples": {
+                  "Incorrect TRACES credentials": {
+                    "summary": "Incorrect TRACES credentials",
+                    "value": {
+                      "code": 401,
+                      "timestamp": 1792176148207,
+                      "transaction_id": "b7000183-316b-46b3-a7b9-494f9d16a995",
+                      "message": "Invalid credentials"
+                    }
+                  },
+                  "Missing Sandbox authorization": {
+                    "summary": "Missing Sandbox authorization",
+                    "value": {
+                      "code": 401,
+                      "timestamp": 1792176151923,
+                      "transaction_id": "e1dab6c2-d333-41a3-815b-932f869708e4",
+                      "message": "Unauthorized"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "The Sandbox API key or access token is invalid.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "code": {
+                      "type": "integer"
+                    },
+                    "timestamp": {
+                      "type": "integer",
+                      "format": "int64"
+                    },
+                    "transaction_id": {
+                      "type": "string"
+                    },
+                    "message": {
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "code",
+                    "timestamp",
+                    "transaction_id",
+                    "message"
+                  ]
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "TRACES authentication could not be completed. Retry the request.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "code": {
+                      "type": "integer"
+                    },
+                    "timestamp": {
+                      "type": "integer",
+                      "format": "int64"
+                    },
+                    "transaction_id": {
+                      "type": "string"
+                    },
+                    "message": {
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "code",
+                    "timestamp",
+                    "transaction_id",
+                    "message"
+                  ]
+                }
+              }
+            }
+          }
+        },
+        "security": [],
+        "x-apidog-folder": "TRACES/Authentication",
+        "x-apidog-status": "developing",
+        "x-run-in-apidog": "https://app.apidog.com/web/project/1186657/apis/api-45480502-run"
+      }
+    },
+    "/tds/traces/deductors/refresh": {
+      "post": {
+        "summary": "Refresh TRACES session",
+        "deprecated": false,
+        "description": "Renew a TRACES session by sending the refresh_token returned by Sandbox TRACES authentication in the request body. Send your Sandbox API access token in the Authorization header. Returns replacement TRACES session tokens and their expiry times. Authenticate again if the refresh token is invalid or expired. Example tokens are illustrative.",
+        "operationId": "refreshTracesSession",
+        "tags": [
+          "TRACES/Authentication"
+        ],
+        "parameters": [
+          {
+            "name": "Authorization",
+            "in": "header",
+            "description": "Sandbox access token from the authenticate API.",
+            "required": true,
+            "example": "{{access_token}}",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "x-api-key",
+            "in": "header",
+            "description": "Sandbox API key.",
+            "required": true,
+            "example": "{{api_key}}",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "Content-Type",
+            "in": "header",
+            "description": "Request body format.",
+            "required": true,
+            "example": "application/json",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "@entity": {
+                    "type": "string",
+                    "enum": [
+                      "in.co.sandbox.tds.compliance.traces.session.refresh.request"
+                    ]
+                  },
+                  "refresh_token": {
+                    "type": "string",
+                    "minLength": 1,
+                    "writeOnly": true,
+                    "description": "Sandbox refresh token returned by TRACES authentication."
+                  }
+                },
+                "required": [
+                  "@entity",
+                  "refresh_token"
+                ]
+              },
+              "examples": {
+                "Session refreshed": {
+                  "summary": "Session refreshed",
+                  "value": {
+                    "@entity": "in.co.sandbox.tds.compliance.traces.session.refresh.request",
+                    "refresh_token": "eyJhbGciOiJSU0FTU0FfUFNTX1NIQV81MTIiLCJ0eXAiOiJKV1QiLCJraWQiOiJleGFtcGxlLXNpZ25pbmcta2V5In0.eyJpc3MiOiJhcGkuc2FuZGJveC5jby5pbiIsImF1ZCI6IkFQSSIsImludGVudCI6IlJFRlJFU0hfVE9LRU4iLCJpYXQiOjE3OTIxNzYxMzksImV4cCI6MTc5MjE4MzM0N30.invalid-example-signature"
+                  }
+                },
+                "Missing refresh token": {
+                  "summary": "Missing refresh token",
+                  "value": {
+                    "@entity": "in.co.sandbox.tds.compliance.traces.session.refresh.request"
+                  }
+                },
+                "Invalid refresh token": {
+                  "summary": "Invalid refresh token",
+                  "value": {
+                    "@entity": "in.co.sandbox.tds.compliance.traces.session.refresh.request",
+                    "refresh_token": "invalid-example-refresh-token"
+                  }
+                },
+                "Missing Sandbox authorization": {
+                  "summary": "Missing Sandbox authorization",
+                  "value": {
+                    "@entity": "in.co.sandbox.tds.compliance.traces.session.refresh.request",
+                    "refresh_token": "eyJhbGciOiJSU0FTU0FfUFNTX1NIQV81MTIiLCJ0eXAiOiJKV1QiLCJraWQiOiJleGFtcGxlLXNpZ25pbmcta2V5In0.eyJpc3MiOiJhcGkuc2FuZGJveC5jby5pbiIsImF1ZCI6IkFQSSIsImludGVudCI6IlJFRlJFU0hfVE9LRU4iLCJpYXQiOjE3OTIxNzYxMzksImV4cCI6MTc5MjE4MzM0N30.invalid-example-signature"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Returns replacement access and refresh tokens for the TRACES session.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "code": {
+                      "type": "integer",
+                      "enum": [
+                        200
+                      ]
+                    },
+                    "timestamp": {
+                      "type": "integer",
+                      "format": "int64"
+                    },
+                    "transaction_id": {
+                      "type": "string"
+                    },
+                    "data": {
+                      "type": "object",
+                      "properties": {
+                        "@entity": {
+                          "type": "string",
+                          "enum": [
+                            "in.co.sandbox.tds.compliance.traces.authentication.response"
+                          ]
+                        },
+                        "access_token": {
+                          "type": "string",
+                          "description": "Sandbox access JWT for the TRACES session."
+                        },
+                        "refresh_token": {
+                          "type": "string",
+                          "description": "Sandbox refresh JWT used to renew the TRACES session."
+                        },
+                        "access_token_expiry": {
+                          "type": "integer",
+                          "format": "int64",
+                          "description": "Access token expiry as Unix time in milliseconds."
+                        },
+                        "refresh_token_expiry": {
+                          "type": "integer",
+                          "format": "int64",
+                          "description": "Refresh token expiry as Unix time in milliseconds."
+                        }
+                      },
+                      "required": [
+                        "@entity",
+                        "access_token",
+                        "refresh_token",
+                        "access_token_expiry",
+                        "refresh_token_expiry"
+                      ]
+                    }
+                  },
+                  "required": [
+                    "code",
+                    "timestamp",
+                    "transaction_id",
+                    "data"
+                  ]
+                },
+                "examples": {
+                  "Session refreshed": {
+                    "summary": "Session refreshed",
+                    "value": {
+                      "code": 200,
+                      "timestamp": 1792176147631,
+                      "transaction_id": "068a8718-9122-47b4-8e2f-56635d6299ed",
+                      "data": {
+                        "@entity": "in.co.sandbox.tds.compliance.traces.authentication.response",
+                        "access_token": "eyJhbGciOiJSU0FTU0FfUFNTX1NIQV81MTIiLCJ0eXAiOiJKV1QiLCJraWQiOiJleGFtcGxlLXNpZ25pbmcta2V5In0.eyJpc3MiOiJhcGkuc2FuZGJveC5jby5pbiIsImF1ZCI6IkFQSSIsImludGVudCI6IkFDQ0VTU19UT0tFTiIsImlhdCI6MTc5MjE3NjE0NywiZXhwIjoxNzkyMTc3MDQ3fQ.invalid-example-signature",
+                        "refresh_token": "eyJhbGciOiJSU0FTU0FfUFNTX1NIQV81MTIiLCJ0eXAiOiJKV1QiLCJraWQiOiJleGFtcGxlLXNpZ25pbmcta2V5In0.eyJpc3MiOiJhcGkuc2FuZGJveC5jby5pbiIsImF1ZCI6IkFQSSIsImludGVudCI6IlJFRlJFU0hfVE9LRU4iLCJpYXQiOjE3OTIxNzYxNDcsImV4cCI6MTc5MjE4MzM0N30.invalid-example-signature",
+                        "access_token_expiry": 1792177047000,
+                        "refresh_token_expiry": 1792183347000
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "The request body is invalid. Include a non-empty refresh_token.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "code": {
+                      "type": "integer"
+                    },
+                    "timestamp": {
+                      "type": "integer",
+                      "format": "int64"
+                    },
+                    "transaction_id": {
+                      "type": "string"
+                    },
+                    "message": {
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "code",
+                    "timestamp",
+                    "transaction_id",
+                    "message"
+                  ]
+                },
+                "examples": {
+                  "Missing refresh token": {
+                    "summary": "Missing refresh token",
+                    "value": {
+                      "code": 400,
+                      "timestamp": 1792176148027,
+                      "transaction_id": "8a0adb97-61cb-4004-99ac-069d98c91ecf",
+                      "message": "Invalid request body"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "The TRACES session refresh token is invalid or expired, or the Sandbox Authorization header is missing.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "code": {
+                      "type": "integer"
+                    },
+                    "timestamp": {
+                      "type": "integer",
+                      "format": "int64"
+                    },
+                    "transaction_id": {
+                      "type": "string"
+                    },
+                    "message": {
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "code",
+                    "timestamp",
+                    "transaction_id",
+                    "message"
+                  ]
+                },
+                "examples": {
+                  "Invalid refresh token": {
+                    "summary": "Invalid refresh token",
+                    "value": {
+                      "code": 401,
+                      "timestamp": 1792176151795,
+                      "transaction_id": "557c2e5a-357c-4fe3-ad65-139206bfef85",
+                      "message": "Invalid refresh token"
+                    }
+                  },
+                  "Missing Sandbox authorization": {
+                    "summary": "Missing Sandbox authorization",
+                    "value": {
+                      "code": 401,
+                      "timestamp": 1792176151991,
+                      "transaction_id": "1cfa715f-1a5a-452e-8843-b8e860e17fc1",
+                      "message": "Unauthorized"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "The Sandbox API key or access token is invalid.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "code": {
+                      "type": "integer"
+                    },
+                    "timestamp": {
+                      "type": "integer",
+                      "format": "int64"
+                    },
+                    "transaction_id": {
+                      "type": "string"
+                    },
+                    "message": {
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "code",
+                    "timestamp",
+                    "transaction_id",
+                    "message"
+                  ]
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "The TRACES session could not be refreshed. Retry the request.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "code": {
+                      "type": "integer"
+                    },
+                    "timestamp": {
+                      "type": "integer",
+                      "format": "int64"
+                    },
+                    "transaction_id": {
+                      "type": "string"
+                    },
+                    "message": {
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "code",
+                    "timestamp",
+                    "transaction_id",
+                    "message"
+                  ]
+                }
+              }
+            }
+          }
+        },
+        "security": [],
+        "x-apidog-folder": "TRACES/Authentication",
+        "x-apidog-status": "developing",
+        "x-run-in-apidog": "https://app.apidog.com/web/project/1186657/apis/api-45480505-run"
       }
     }
   },
@@ -7418,27 +8136,6 @@
             ],
             "description": "Identifies the type of this object."
           },
-          "id": {
-            "type": "string",
-            "description": "Object identifier, when available."
-          },
-          "description": {
-            "type": "string",
-            "description": "Additional information about the object, when available."
-          },
-          "created_at": {
-            "type": "string",
-            "description": "Creation timestamp, when available."
-          },
-          "updated_at": {
-            "type": "string",
-            "description": "Last update timestamp, when available."
-          },
-          "tan": {
-            "type": "string",
-            "pattern": "^[A-Z]{4}[0-9]{5}[A-Z]$",
-            "description": "Tax Deduction and Collection Account Number (TAN) of the deductor."
-          },
           "bsr_code": {
             "type": "string",
             "pattern": "^[0-9]{7}$",
@@ -7457,24 +8154,18 @@
         },
         "required": [
           "@entity",
-          "tan",
           "bsr_code",
           "challan_serial",
           "paid_date_epoch"
         ],
         "description": "Particulars that identify a TDS challan for a deductor.",
-        "x-apidog-ignore-properties": [],
         "x-apidog-orders": [
           "@entity",
-          "id",
-          "description",
-          "created_at",
-          "updated_at",
-          "tan",
           "bsr_code",
           "challan_serial",
           "paid_date_epoch"
         ],
+        "x-apidog-ignore-properties": [],
         "x-apidog-folder": ""
       },
       "ChallanSearchRequest": {
@@ -7490,27 +8181,6 @@
               "in.co.sandbox.tds.compliance.challan.search"
             ],
             "description": "Identifies the type of this object."
-          },
-          "id": {
-            "type": "string",
-            "description": "Object identifier, when available."
-          },
-          "description": {
-            "type": "string",
-            "description": "Additional information about the object, when available."
-          },
-          "created_at": {
-            "type": "string",
-            "description": "Creation timestamp, when available."
-          },
-          "updated_at": {
-            "type": "string",
-            "description": "Last update timestamp, when available."
-          },
-          "tan": {
-            "type": "string",
-            "pattern": "^[A-Z]{4}[0-9]{5}[A-Z]$",
-            "description": "Tax Deduction and Collection Account Number (TAN) of the deductor."
           },
           "from_date_epoch": {
             "type": "integer",
@@ -7535,23 +8205,17 @@
         },
         "required": [
           "@entity",
-          "tan",
           "from_date_epoch",
           "to_date_epoch"
         ],
-        "x-apidog-ignore-properties": [],
         "x-apidog-orders": [
           "@entity",
-          "id",
-          "description",
-          "created_at",
-          "updated_at",
-          "tan",
           "from_date_epoch",
           "to_date_epoch",
           "page_number",
           "page_size"
         ],
+        "x-apidog-ignore-properties": [],
         "x-apidog-folder": ""
       },
       "ChallanSearchResponse": {

@@ -1,0 +1,13 @@
+---
+title: "Refresh a TRACES deductor session"
+description: "Exchange a deductor refresh token for a new access token and refresh token to continue TDS challan requests without entering the TRACES password."
+keywords:
+  - TRACES refresh token
+  - deductor access token
+  - TDS challan API
+openapi: '/api-reference/tds/compliance/openapi.json POST /tds/traces/deductors/refresh'
+---
+
+This endpoint uses your Sandbox access token in the `Authorization` header. Pass the deductor refresh token in the request body, then replace both saved deductor tokens with the returned values.
+
+If the refresh token has expired or is rejected, [authenticate the deductor again](/api-reference/tds/compliance/traces/endpoints/authenticate). See [Check TDS challans](/recipes/tds/challans/check-tds-challans) for the complete flow.

@@ -1,18 +1,18 @@
 ---
 title: "Fetch TDS challan details"
-description: "Fetch TDS challan details from TRACES for a TAN using the challan's BSR code, deposit date, and serial number."
+description: "Fetch TDS challan details from TRACES using a deductor access token, BSR code, deposit date, and challan serial number."
 keywords:
   - TDS challan
   - TDS challan API
   - TDS challan status
   - TRACES challan details
-openapi: '/api-reference/tds/compliance/openapi.json POST /tds/compliance/traces/deductors/challans'
+openapi: '/api-reference/tds/compliance/openapi.json POST /tds/traces/deductors/challans'
 ---
 
 <Note>
-Before you fetch TDS challan details, [add the TRACES credentials](/api-reference/tds/compliance/traces-credentials/endpoints/save_credential) for the TAN. If the credentials already exist, you do not need to add them again.
+[Authenticate the deductor](/api-reference/tds/compliance/traces/endpoints/authenticate) and pass the returned `access_token` in the `Authorization` header. The token identifies the TAN, so the request body does not contain `tan`.
 </Note>
 
 To find challans by deposit date, use [Search TDS challans](/api-reference/tds/compliance/challans/endpoints/search_challans).
 
-See [Check TDS challans](/recipes/tds/challans/check-tds-challans) for credential setup and cURL examples.
+See [Check TDS challans](/recipes/tds/challans/check-tds-challans) for authentication, token refresh, and cURL examples.
