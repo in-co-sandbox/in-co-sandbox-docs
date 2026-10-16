@@ -36,6 +36,8 @@ The table header is `["sr_no", "pan", "pan_status"]`. Each row contains these va
 
 Results include only submitted PANs present in the TRACES report. A missing PAN is omitted from the workbook. For repeated exact PAN strings, the output keeps the first input row's `sr_no`.
 
+The output schema lists five `pan_status` values: `Valid and Operative`, `Valid and Inoperative`, `Valid`, `Inactive`, and `Invalid`.
+
 Sandbox returns `pan_status` exactly as TRACES supplies it. Treat `Valid` and `Valid and Operative` as distinct values. An `Invalid` row does not make the job fail.
 
 ## Download the workbook

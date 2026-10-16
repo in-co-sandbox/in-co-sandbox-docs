@@ -1,7 +1,8 @@
 {
   "$schema": "http://json-schema.org/draft-07/schema#",
   "type": "object",
-  "description": "TRACES bulk PAN verification output workbook.",
+  "title": "PAN verification workbook",
+  "description": "Bulk PAN verification results from TRACES.",
   "properties": {
     "@entity": {
       "type": "string",
@@ -17,12 +18,15 @@
     },
     "sheets": {
       "type": "array",
+      "description": "One payee sheet containing PAN verification results.",
       "minItems": 1,
       "maxItems": 1,
       "items": {
         "oneOf": [
           {
             "type": "object",
+            "title": "Payee sheet",
+            "description": "PAN verification results for submitted payees.",
             "properties": {
               "@entity": {
                 "type": "string",
@@ -38,12 +42,15 @@
               },
               "blocks": {
                 "type": "array",
+                "description": "One payee table with serial numbers, PANs, and verification statuses.",
                 "minItems": 1,
                 "maxItems": 1,
                 "items": {
                   "oneOf": [
                     {
                       "type": "object",
+                      "title": "Payee table",
+                      "description": "Submitted PANs included in the TRACES verification report.",
                       "properties": {
                         "@entity": {
                           "type": "string",
@@ -59,6 +66,7 @@
                         },
                         "header": {
                           "type": "array",
+                          "description": "Column names in the required order: sr_no, pan, pan_status.",
                           "items": [
                             {
                               "type": "string",
@@ -85,21 +93,36 @@
                         },
                         "rows": {
                           "type": "array",
+                          "description": "Verification results in the same column order as the header. Empty when no submitted PANs have results.",
                           "items": {
                             "type": "array",
+                            "examples": [[1, "ABCPD1234E", "Valid and Operative"]],
                             "items": [
                               {
                                 "type": "integer",
+                                "title": "Serial number",
                                 "minimum": 1,
-                                "description": "Serial number of the payee in the uploaded workbook."
+                                "description": "Serial number from this PAN's first input row.",
+                                "examples": [1]
                               },
                               {
                                 "type": "string",
-                                "description": "PAN text returned by TRACES."
+                                "title": "PAN",
+                                "description": "Payee PAN included in the verification report.",
+                                "examples": ["ABCPD1234E"]
                               },
                               {
                                 "type": "string",
-                                "description": "PAN status returned by TRACES, preserved without interpretation."
+                                "title": "PAN status",
+                                "description": "PAN validity and operative status reported by TRACES.",
+                                "enum": [
+                                  "Valid and Operative",
+                                  "Valid and Inoperative",
+                                  "Valid",
+                                  "Inactive",
+                                  "Invalid"
+                                ],
+                                "examples": ["Valid and Operative"]
                               }
                             ],
                             "additionalItems": false,
