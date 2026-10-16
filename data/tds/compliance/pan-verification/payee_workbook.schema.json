@@ -1,7 +1,8 @@
 {
   "$schema": "http://json-schema.org/draft-07/schema#",
   "type": "object",
-  "description": "TRACES bulk PAN verification input workbook.",
+  "title": "Payee workbook",
+  "description": "Payees for bulk PAN verification through TRACES.",
   "properties": {
     "@entity": {
       "type": "string",
@@ -17,12 +18,15 @@
     },
     "sheets": {
       "type": "array",
+      "description": "One payee sheet containing the PANs to verify.",
       "minItems": 1,
       "maxItems": 1,
       "items": {
         "oneOf": [
           {
             "type": "object",
+            "title": "Payee sheet",
+            "description": "Payee details for bulk PAN verification.",
             "properties": {
               "@entity": {
                 "type": "string",
@@ -38,12 +42,15 @@
               },
               "blocks": {
                 "type": "array",
+                "description": "One payee table with serial numbers and PANs.",
                 "minItems": 1,
                 "maxItems": 1,
                 "items": {
                   "oneOf": [
                     {
                       "type": "object",
+                      "title": "Payee table",
+                      "description": "Payee serial numbers and PANs to verify.",
                       "properties": {
                         "@entity": {
                           "type": "string",
@@ -59,6 +66,7 @@
                         },
                         "header": {
                           "type": "array",
+                          "description": "Column names in the required order: sr_no, pan.",
                           "items": [
                             {
                               "type": "string",
@@ -79,17 +87,23 @@
                         },
                         "rows": {
                           "type": "array",
+                          "description": "Payee records in the same column order as the header.",
                           "items": {
                             "type": "array",
+                            "examples": [[1, "ABCPD1234E"]],
                             "items": [
                               {
                                 "type": "integer",
+                                "title": "Serial number",
                                 "minimum": 1,
-                                "description": "Serial number of the payee in the uploaded workbook."
+                                "description": "Positive serial number identifying the payee.",
+                                "examples": [1]
                               },
                               {
                                 "type": "string",
-                                "description": "PAN text supplied by the caller and submitted unchanged to TRACES."
+                                "title": "PAN",
+                                "description": "Permanent Account Number (PAN) of the payee.",
+                                "examples": ["ABCPD1234E"]
                               }
                             ],
                             "additionalItems": false,
