@@ -4,6 +4,28 @@ description: "Changelog for Sandbox APIs"
 rss: "true"
 ---
 
+<Update label="October 17th, 2026" tags={["Deprecated"]}>
+  ## DigiLocker: Verify User Account is deprecated
+
+  [Verify User Account](/api-reference/kyc/digilocker/endpoints/verify_user) is deprecated. DigiLocker is enforcing its new specification from October 21st, 2026, and the new specification no longer supports account verification. After October 21st, Verify User Account is no longer officially supported.
+
+  We recommend removing Verify User Account from your integration and adopting the [Initiate Session](/api-reference/kyc/digilocker/endpoints/initiate_session) changes below before October 21st.
+</Update>
+
+<Update label="October 17th, 2026" tags={["Improvements"]}>
+  ## DigiLocker: more control over the consent journey
+
+  [Initiate Session](/api-reference/kyc/digilocker/endpoints/initiate_session) accepts three new optional fields:
+
+  - `purpose`: the purpose shown to the user on DigiLocker's consent screen. Defaults to `Know Your Customer`.
+  - `requestor_name`: the business name shown on DigiLocker's consent screen. Defaults to your workspace's business name from the Sandbox console.
+  - `options.force_login`: make the user log in to DigiLocker again, even if their browser already has a DigiLocker session.
+
+  `purpose` and `requestor_name` accept letters, digits, spaces and underscores only; anything else returns `400`.
+
+  `options.verified_mobile` now also works on the `signin` flow: DigiLocker opens on mobile login with the number pre-filled.
+</Update>
+
 <Update label="October 13th, 2026" tags={["Feature"]}>
   ## TDS challan APIs
 
