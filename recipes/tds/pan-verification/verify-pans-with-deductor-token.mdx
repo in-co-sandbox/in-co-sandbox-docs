@@ -1,0 +1,92 @@
+---
+title: "Verify PANs in bulk with a deductor token"
+sidebarTitle: "Verify PANs with a deductor token"
+description: "Authenticate a TRACES deductor, submit a PAN workbook, poll the token number, and download the JSON verification report with cURL examples."
+keywords:
+  - TRACES bulk PAN verification API
+  - bulk PAN verification
+  - deductor access token
+  - PAN verification status
+---
+
+Submit a payee workbook to TRACES and retrieve the verification report with the returned token number. You manage the deductor access token and decide when to check for the report.
+
+## Before you start
+
+- Obtain a Sandbox access token using the [Quickstart guide](/guides/get-started/quickstart).
+- Keep the deductor's TAN and TRACES password ready.
+- Save your PANs in a [payee workbook](/api-reference/tds/compliance/pan-verification/vanilla_payee_workbook) named `payee_workbook.json`.
+
+The examples use sample tokens and a fictional token number. Replace these values with your own.
+
+## Submit PANs and download the report
+
+<Steps>
+  <Step title="Authenticate the deductor" titleSize="h3">
+    Call [Authenticate a TRACES deductor](/api-reference/tds/compliance/traces/endpoints/authenticate) with the TAN and TRACES password. Use your Sandbox access token in the `Authorization` header.
+
+    Save `data.access_token` as `deductor_access_token` and `data.refresh_token` as `deductor_refresh_token`. Check the returned token expiry timestamps before sending requests.
+
+    Use `deductor_access_token` in the `Authorization` header for both PAN verification endpoints. The token identifies the TAN, so PAN requests do not contain `tan`.
+  </Step>
+
+  <Step title="Submit the payee workbook" titleSize="h3">
+    Call [Submit PANs for TRACES verification](/api-reference/tds/compliance/pan-verification/endpoints/submit_verification). Send the workbook directly in the request body.
+
+    <Accordion title="PAN submission request">
+    ```bash
+    curl --request POST \
+	--url https://api.sandbox.co.in/tds/compliance/traces/deductors/pan/verify \
+	--header 'Authorization: {deductor_access_token}' \
+	--header 'Content-Type: application/json' \
+	--header 'x-api-key: {sandbox-api-key}' \
+	--data-binary '@payee_workbook.json'
+    ```
+    </Accordion>
+
+    Save `data.token_number`. This is the TRACES token number for the submission. Sandbox sends each distinct PAN string once and preserves the submitted PAN text.
+  </Step>
+
+  <Step title="Check the token number" titleSize="h3">
+    Call [Get TRACES PAN verification status](/api-reference/tds/compliance/pan-verification/endpoints/poll_verification) with the token number.
+
+    <Accordion title="PAN status request">
+    ```bash
+    curl --request GET \
+	--url 'https://api.sandbox.co.in/tds/compliance/traces/deductors/pan/verify/status?token_number=26102348059' \
+	--header 'Authorization: {deductor_access_token}' \
+	--header 'x-api-key: {sandbox-api-key}'
+    ```
+    </Accordion>
+
+    While the report is unavailable, `data` contains `token_number`, the TRACES `status` array, and `rejection_remarks`. Check again later if TRACES is still processing the submission. Review any rejection remarks before submitting another workbook.
+
+    When the report is available, `data` contains only `output_json_url`.
+  </Step>
+
+  <Step title="Download the result workbook" titleSize="h3">
+    Download the [PAN verification workbook](/api-reference/tds/compliance/pan-verification/vanilla_pan_verification_workbook) from `data.output_json_url` within 24 hours. Generated files are retained for 30 days.
+
+    <Accordion title="Workbook download request">
+    ```bash
+    curl --request GET \
+	--url '{output_json_url}' \
+	--output pan-verification.json
+    ```
+    </Accordion>
+
+    Omit the Sandbox authentication headers for this download. The signed URL authorizes the request.
+
+    The workbook contains `sr_no`, `pan`, and `pan_status`. Rows follow the TRACES report order, with serial numbers starting at `1`. PANs absent from the report are omitted, and PAN statuses retain the source text.
+  </Step>
+</Steps>
+
+## Refresh the deductor tokens
+
+When the deductor access token expires, call [Refresh a TRACES deductor session](/api-reference/tds/compliance/traces/endpoints/refresh). Use your Sandbox access token in the header and `deductor_refresh_token` in the body.
+
+Replace both saved deductor tokens with the returned values. If refresh fails because the token is expired or rejected, authenticate again.
+
+PAN verification requests do not refresh tokens or log in automatically. A rejected TRACES session retains its HTTP `401` or `403` response. See the [API error guide](/guides/developer-resources/errors) for other errors.
+
+For verification with stored credentials, file uploads, and completion webhooks, use [the enriched bulk PAN verification workflow](/recipes/tds/pan-verification/verify-pans-in-bulk).

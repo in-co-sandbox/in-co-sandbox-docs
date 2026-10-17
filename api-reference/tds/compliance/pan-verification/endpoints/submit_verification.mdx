@@ -1,0 +1,16 @@
+---
+title: "Submit PANs for TRACES verification"
+sidebarTitle: "Submit PANs"
+description: "Submit a JSON payee workbook with a deductor access token and receive the TRACES token number for bulk PAN verification."
+keywords:
+  - TRACES bulk PAN verification API
+  - deductor access token
+  - PAN verification token number
+openapi: '/api-reference/tds/compliance/openapi.json POST /tds/compliance/traces/deductors/pan/verify'
+---
+
+[Authenticate the deductor](/api-reference/tds/compliance/traces/endpoints/authenticate) and pass `data.access_token` as `deductor_access_token` in the `Authorization` header. The token identifies the TAN.
+
+Send the [payee workbook](/api-reference/tds/compliance/pan-verification/vanilla_payee_workbook) directly in the request body. Save the returned `data.token_number` to [retrieve verification status](/api-reference/tds/compliance/pan-verification/endpoints/poll_verification).
+
+For authentication, submission, and result download examples, see [Verify PANs with a deductor token](/recipes/tds/pan-verification/verify-pans-with-deductor-token).

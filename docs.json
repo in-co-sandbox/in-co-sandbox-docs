@@ -776,6 +776,15 @@
                     "group": "Bulk PAN verification",
                     "pages": [
                       {
+                        "group": "With a deductor token",
+                        "pages": [
+                          "api-reference/tds/compliance/pan-verification/endpoints/submit_verification",
+                          "api-reference/tds/compliance/pan-verification/vanilla_payee_workbook",
+                          "api-reference/tds/compliance/pan-verification/endpoints/poll_verification",
+                          "api-reference/tds/compliance/pan-verification/vanilla_pan_verification_workbook"
+                        ]
+                      },
+                      {
                         "group": "Create job",
                         "pages": [
                           "api-reference/tds/compliance/pan-verification/endpoints/submit_job",
@@ -1342,7 +1351,8 @@
               {
                 "group": "PAN verification",
                 "pages": [
-                  "recipes/tds/pan-verification/verify-pans-in-bulk"
+                  "recipes/tds/pan-verification/verify-pans-in-bulk",
+                  "recipes/tds/pan-verification/verify-pans-with-deductor-token"
                 ]
               }
             ]

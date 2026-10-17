@@ -7256,6 +7256,1271 @@
         "x-apidog-status": "developing",
         "x-run-in-apidog": "https://app.apidog.com/web/project/1186657/apis/api-45480505-run"
       }
+    },
+    "/tds/compliance/traces/deductors/pan/verify": {
+      "post": {
+        "summary": "Submit bulk PAN verification",
+        "deprecated": false,
+        "description": "Submit PANs in a payee workbook and receive the TRACES token number. Repeated PAN values are submitted once. PAN text is sent unchanged to TRACES. Use the token number to check processing status and retrieve the completed workbook. Authenticate or refresh separately when the deductor access token expires.",
+        "operationId": "submitTracesPanVerification",
+        "tags": [
+          "TRACES",
+          "PAN verification"
+        ],
+        "parameters": [
+          {
+            "name": "Authorization",
+            "in": "header",
+            "description": "Deductor access token returned by TRACES authentication or refresh. The token identifies the deductor TAN.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "examples": {
+              "Submit three PANs": {
+                "summary": "Submit three PANs",
+                "value": "{{deductor_access_token}}"
+              },
+              "Missing workbook sheets": {
+                "summary": "Missing workbook sheets",
+                "value": "{{deductor_access_token}}"
+              },
+              "Missing API key": {
+                "summary": "Missing API key",
+                "value": "{{deductor_access_token}}"
+              }
+            }
+          },
+          {
+            "name": "x-api-key",
+            "in": "header",
+            "description": "Sandbox API key.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "examples": {
+              "Submit three PANs": {
+                "summary": "Submit three PANs",
+                "value": "{{api_key}}"
+              },
+              "Missing workbook sheets": {
+                "summary": "Missing workbook sheets",
+                "value": "{{api_key}}"
+              },
+              "Missing deductor access token": {
+                "summary": "Missing deductor access token",
+                "value": "{{api_key}}"
+              }
+            }
+          },
+          {
+            "name": "Content-Type",
+            "in": "header",
+            "description": "Request body format.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "examples": {
+              "Submit three PANs": {
+                "summary": "Submit three PANs",
+                "value": "application/json"
+              },
+              "Missing workbook sheets": {
+                "summary": "Missing workbook sheets",
+                "value": "application/json"
+              },
+              "Missing API key": {
+                "summary": "Missing API key",
+                "value": "application/json"
+              },
+              "Missing deductor access token": {
+                "summary": "Missing deductor access token",
+                "value": "application/json"
+              }
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "description": "TRACES bulk PAN verification input workbook.",
+                "properties": {
+                  "@entity": {
+                    "type": "string",
+                    "enum": [
+                      "workbook"
+                    ]
+                  },
+                  "name": {
+                    "type": "string",
+                    "enum": [
+                      "payee_workbook"
+                    ]
+                  },
+                  "sheets": {
+                    "type": "array",
+                    "minItems": 1,
+                    "maxItems": 1,
+                    "items": {
+                      "oneOf": [
+                        {
+                          "type": "object",
+                          "properties": {
+                            "@entity": {
+                              "type": "string",
+                              "enum": [
+                                "sheet"
+                              ]
+                            },
+                            "name": {
+                              "type": "string",
+                              "enum": [
+                                "payee_sheet"
+                              ]
+                            },
+                            "blocks": {
+                              "type": "array",
+                              "minItems": 1,
+                              "maxItems": 1,
+                              "items": {
+                                "oneOf": [
+                                  {
+                                    "type": "object",
+                                    "properties": {
+                                      "@entity": {
+                                        "type": "string",
+                                        "enum": [
+                                          "table"
+                                        ]
+                                      },
+                                      "name": {
+                                        "type": "string",
+                                        "enum": [
+                                          "payee_table"
+                                        ]
+                                      },
+                                      "header": {
+                                        "type": "array",
+                                        "minItems": 2,
+                                        "maxItems": 2,
+                                        "prefixItems": [
+                                          {
+                                            "type": "string",
+                                            "enum": [
+                                              "sr_no"
+                                            ]
+                                          },
+                                          {
+                                            "type": "string",
+                                            "enum": [
+                                              "pan"
+                                            ]
+                                          }
+                                        ],
+                                        "items": false
+                                      },
+                                      "rows": {
+                                        "type": "array",
+                                        "items": {
+                                          "type": "array",
+                                          "minItems": 2,
+                                          "maxItems": 2,
+                                          "prefixItems": [
+                                            {
+                                              "type": "integer",
+                                              "minimum": 1,
+                                              "description": "Serial number of the payee in the uploaded workbook."
+                                            },
+                                            {
+                                              "type": "string",
+                                              "description": "PAN text supplied by the caller and submitted unchanged to TRACES."
+                                            }
+                                          ],
+                                          "items": false
+                                        }
+                                      }
+                                    },
+                                    "required": [
+                                      "@entity",
+                                      "name",
+                                      "header",
+                                      "rows"
+                                    ]
+                                  }
+                                ]
+                              }
+                            }
+                          },
+                          "required": [
+                            "@entity",
+                            "name",
+                            "blocks"
+                          ]
+                        }
+                      ]
+                    }
+                  }
+                },
+                "required": [
+                  "@entity",
+                  "name",
+                  "sheets"
+                ]
+              },
+              "examples": {
+                "Submit three PANs": {
+                  "summary": "Submit three PANs",
+                  "value": {
+                    "@entity": "workbook",
+                    "name": "payee_workbook",
+                    "sheets": [
+                      {
+                        "@entity": "sheet",
+                        "name": "payee_sheet",
+                        "blocks": [
+                          {
+                            "@entity": "table",
+                            "name": "payee_table",
+                            "header": [
+                              "sr_no",
+                              "pan"
+                            ],
+                            "rows": [
+                              [
+                                1,
+                                "AAAPW9785C"
+                              ],
+                              [
+                                2,
+                                "AAAPW9795C"
+                              ],
+                              [
+                                3,
+                                "AAAPW9805C"
+                              ]
+                            ]
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                },
+                "Missing workbook sheets": {
+                  "summary": "Missing workbook sheets",
+                  "value": {
+                    "@entity": "workbook",
+                    "name": "payee_workbook"
+                  }
+                },
+                "Missing API key": {
+                  "summary": "Missing API key",
+                  "value": {
+                    "@entity": "workbook",
+                    "name": "payee_workbook",
+                    "sheets": [
+                      {
+                        "@entity": "sheet",
+                        "name": "payee_sheet",
+                        "blocks": [
+                          {
+                            "@entity": "table",
+                            "name": "payee_table",
+                            "header": [
+                              "sr_no",
+                              "pan"
+                            ],
+                            "rows": [
+                              [
+                                1,
+                                "AAAPW9785C"
+                              ],
+                              [
+                                2,
+                                "AAAPW9795C"
+                              ],
+                              [
+                                3,
+                                "AAAPW9805C"
+                              ]
+                            ]
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                },
+                "Missing deductor access token": {
+                  "summary": "Missing deductor access token",
+                  "value": {
+                    "@entity": "workbook",
+                    "name": "payee_workbook",
+                    "sheets": [
+                      {
+                        "@entity": "sheet",
+                        "name": "payee_sheet",
+                        "blocks": [
+                          {
+                            "@entity": "table",
+                            "name": "payee_table",
+                            "header": [
+                              "sr_no",
+                              "pan"
+                            ],
+                            "rows": [
+                              [
+                                1,
+                                "AAAPW9785C"
+                              ],
+                              [
+                                2,
+                                "AAAPW9795C"
+                              ],
+                              [
+                                3,
+                                "AAAPW9805C"
+                              ]
+                            ]
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                }
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "The PAN verification request was submitted to TRACES.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "code": {
+                      "type": "integer",
+                      "enum": [
+                        200
+                      ]
+                    },
+                    "timestamp": {
+                      "type": "integer"
+                    },
+                    "transaction_id": {
+                      "type": "string"
+                    },
+                    "data": {
+                      "type": "object",
+                      "properties": {
+                        "token_number": {
+                          "type": "string",
+                          "description": "Token number assigned by TRACES to this PAN verification request."
+                        }
+                      },
+                      "required": [
+                        "token_number"
+                      ],
+                      "additionalProperties": false
+                    }
+                  },
+                  "required": [
+                    "code",
+                    "timestamp",
+                    "transaction_id",
+                    "data"
+                  ],
+                  "additionalProperties": false
+                },
+                "examples": {
+                  "Submit three PANs": {
+                    "summary": "Submit three PANs",
+                    "value": {
+                      "code": 200,
+                      "timestamp": 1792265451650,
+                      "data": {
+                        "token_number": "26102348059"
+                      },
+                      "transaction_id": "2faa2970-c4dc-4cad-9aa0-af8767aad856"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Required request data is missing or invalid.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "code": {
+                      "type": "integer",
+                      "enum": [
+                        400
+                      ]
+                    },
+                    "timestamp": {
+                      "type": "integer"
+                    },
+                    "transaction_id": {
+                      "type": "string"
+                    },
+                    "message": {
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "code",
+                    "timestamp",
+                    "transaction_id",
+                    "message"
+                  ],
+                  "additionalProperties": false
+                },
+                "examples": {
+                  "Missing workbook sheets": {
+                    "summary": "Missing workbook sheets",
+                    "value": {
+                      "code": 400,
+                      "timestamp": 1792265461716,
+                      "message": "Invalid request body",
+                      "transaction_id": "466092af-2865-43c2-a257-942e42bb7b63"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "The deductor access token is not valid for this request.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "code": {
+                      "type": "integer",
+                      "enum": [
+                        401
+                      ]
+                    },
+                    "timestamp": {
+                      "type": "integer"
+                    },
+                    "transaction_id": {
+                      "type": "string"
+                    },
+                    "message": {
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "code",
+                    "timestamp",
+                    "transaction_id",
+                    "message"
+                  ],
+                  "additionalProperties": false
+                },
+                "examples": {
+                  "Missing deductor access token": {
+                    "summary": "Missing deductor access token",
+                    "value": {
+                      "code": 401,
+                      "message": "Unauthorized",
+                      "timestamp": 1792265461644,
+                      "transaction_id": "61438e84-db3c-41ea-8694-8091b7cfe000"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Access to this API is denied.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "code": {
+                      "type": "integer",
+                      "enum": [
+                        403
+                      ]
+                    },
+                    "timestamp": {
+                      "type": "integer"
+                    },
+                    "transaction_id": {
+                      "type": "string"
+                    },
+                    "message": {
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "code",
+                    "timestamp",
+                    "transaction_id",
+                    "message"
+                  ],
+                  "additionalProperties": false
+                },
+                "examples": {
+                  "Missing API key": {
+                    "summary": "Missing API key",
+                    "value": {
+                      "code": 403,
+                      "message": "Forbidden",
+                      "timestamp": 1792265461907,
+                      "transaction_id": "4201145a-9834-480b-adff-a5d8d8a07791"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "The request could not be completed.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "code": {
+                      "type": "integer",
+                      "enum": [
+                        500
+                      ]
+                    },
+                    "timestamp": {
+                      "type": "integer"
+                    },
+                    "transaction_id": {
+                      "type": "string"
+                    },
+                    "message": {
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "code",
+                    "timestamp",
+                    "transaction_id",
+                    "message"
+                  ],
+                  "additionalProperties": false
+                }
+              }
+            }
+          },
+          "503": {
+            "description": "TRACES could not complete the request.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "code": {
+                      "type": "integer",
+                      "enum": [
+                        503
+                      ]
+                    },
+                    "timestamp": {
+                      "type": "integer"
+                    },
+                    "transaction_id": {
+                      "type": "string"
+                    },
+                    "message": {
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "code",
+                    "timestamp",
+                    "transaction_id",
+                    "message"
+                  ],
+                  "additionalProperties": false
+                }
+              }
+            }
+          }
+        },
+        "security": [],
+        "x-sandbox-request-examples": {
+          "Submit three PANs": {
+            "summary": "Submit three PANs",
+            "value": {
+              "method": "POST",
+              "path": "/tds/compliance/traces/deductors/pan/verify",
+              "query": {},
+              "headers": {
+                "Authorization": "{{deductor_access_token}}",
+                "x-api-key": "{{api_key}}",
+                "Content-Type": "application/json"
+              },
+              "body": {
+                "@entity": "workbook",
+                "name": "payee_workbook",
+                "sheets": [
+                  {
+                    "@entity": "sheet",
+                    "name": "payee_sheet",
+                    "blocks": [
+                      {
+                        "@entity": "table",
+                        "name": "payee_table",
+                        "header": [
+                          "sr_no",
+                          "pan"
+                        ],
+                        "rows": [
+                          [
+                            1,
+                            "AAAPW9785C"
+                          ],
+                          [
+                            2,
+                            "AAAPW9795C"
+                          ],
+                          [
+                            3,
+                            "AAAPW9805C"
+                          ]
+                        ]
+                      }
+                    ]
+                  }
+                ]
+              }
+            }
+          },
+          "Missing workbook sheets": {
+            "summary": "Missing workbook sheets",
+            "value": {
+              "method": "POST",
+              "path": "/tds/compliance/traces/deductors/pan/verify",
+              "query": {},
+              "headers": {
+                "Authorization": "{{deductor_access_token}}",
+                "x-api-key": "{{api_key}}",
+                "Content-Type": "application/json"
+              },
+              "body": {
+                "@entity": "workbook",
+                "name": "payee_workbook"
+              }
+            }
+          },
+          "Missing API key": {
+            "summary": "Missing API key",
+            "value": {
+              "method": "POST",
+              "path": "/tds/compliance/traces/deductors/pan/verify",
+              "query": {},
+              "headers": {
+                "Authorization": "{{deductor_access_token}}",
+                "Content-Type": "application/json"
+              },
+              "body": {
+                "@entity": "workbook",
+                "name": "payee_workbook",
+                "sheets": [
+                  {
+                    "@entity": "sheet",
+                    "name": "payee_sheet",
+                    "blocks": [
+                      {
+                        "@entity": "table",
+                        "name": "payee_table",
+                        "header": [
+                          "sr_no",
+                          "pan"
+                        ],
+                        "rows": [
+                          [
+                            1,
+                            "AAAPW9785C"
+                          ],
+                          [
+                            2,
+                            "AAAPW9795C"
+                          ],
+                          [
+                            3,
+                            "AAAPW9805C"
+                          ]
+                        ]
+                      }
+                    ]
+                  }
+                ]
+              }
+            }
+          },
+          "Missing deductor access token": {
+            "summary": "Missing deductor access token",
+            "value": {
+              "method": "POST",
+              "path": "/tds/compliance/traces/deductors/pan/verify",
+              "query": {},
+              "headers": {
+                "x-api-key": "{{api_key}}",
+                "Content-Type": "application/json"
+              },
+              "body": {
+                "@entity": "workbook",
+                "name": "payee_workbook",
+                "sheets": [
+                  {
+                    "@entity": "sheet",
+                    "name": "payee_sheet",
+                    "blocks": [
+                      {
+                        "@entity": "table",
+                        "name": "payee_table",
+                        "header": [
+                          "sr_no",
+                          "pan"
+                        ],
+                        "rows": [
+                          [
+                            1,
+                            "AAAPW9785C"
+                          ],
+                          [
+                            2,
+                            "AAAPW9795C"
+                          ],
+                          [
+                            3,
+                            "AAAPW9805C"
+                          ]
+                        ]
+                      }
+                    ]
+                  }
+                ]
+              }
+            }
+          }
+        }
+      }
+    },
+    "/tds/compliance/traces/deductors/pan/verify/status": {
+      "get": {
+        "summary": "Get bulk PAN verification status",
+        "deprecated": false,
+        "description": "Check a PAN verification request using its TRACES token number. While the report is unavailable, the response contains the TRACES status history and rejection remarks. When the report is available, data contains only output_json_url, a signed URL for the PAN verification workbook. The URL is valid for one day and the file is retained for 30 days. The output contains PANs returned by TRACES, their source status text, and serial numbers assigned in report order.",
+        "operationId": "getTracesPanVerificationStatus",
+        "tags": [
+          "TRACES",
+          "PAN verification"
+        ],
+        "parameters": [
+          {
+            "name": "token_number",
+            "in": "query",
+            "description": "Token number returned when the PAN verification request was submitted.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "examples": {
+              "Verification report available": {
+                "summary": "Verification report available",
+                "value": "26102348059"
+              },
+              "Token number not found": {
+                "summary": "Token number not found",
+                "value": "99999999999999999999"
+              },
+              "Missing deductor access token": {
+                "summary": "Missing deductor access token",
+                "value": "26102348059"
+              }
+            }
+          },
+          {
+            "name": "Authorization",
+            "in": "header",
+            "description": "Deductor access token returned by TRACES authentication or refresh. The token identifies the deductor TAN.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "examples": {
+              "Verification report available": {
+                "summary": "Verification report available",
+                "value": "{{deductor_access_token}}"
+              },
+              "Token number not found": {
+                "summary": "Token number not found",
+                "value": "{{deductor_access_token}}"
+              },
+              "Missing token number": {
+                "summary": "Missing token number",
+                "value": "{{deductor_access_token}}"
+              }
+            }
+          },
+          {
+            "name": "x-api-key",
+            "in": "header",
+            "description": "Sandbox API key.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "examples": {
+              "Verification report available": {
+                "summary": "Verification report available",
+                "value": "{{api_key}}"
+              },
+              "Token number not found": {
+                "summary": "Token number not found",
+                "value": "{{api_key}}"
+              },
+              "Missing token number": {
+                "summary": "Missing token number",
+                "value": "{{api_key}}"
+              },
+              "Missing deductor access token": {
+                "summary": "Missing deductor access token",
+                "value": "{{api_key}}"
+              }
+            }
+          },
+          {
+            "name": "Content-Type",
+            "in": "header",
+            "description": "Request body format.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "examples": {
+              "Verification report available": {
+                "summary": "Verification report available",
+                "value": "application/json"
+              },
+              "Token number not found": {
+                "summary": "Token number not found",
+                "value": "application/json"
+              },
+              "Missing token number": {
+                "summary": "Missing token number",
+                "value": "application/json"
+              },
+              "Missing deductor access token": {
+                "summary": "Missing deductor access token",
+                "value": "application/json"
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "The TRACES status history or the signed URL for the completed PAN verification workbook.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "code": {
+                      "type": "integer",
+                      "enum": [
+                        200
+                      ]
+                    },
+                    "timestamp": {
+                      "type": "integer"
+                    },
+                    "transaction_id": {
+                      "type": "string"
+                    },
+                    "data": {
+                      "oneOf": [
+                        {
+                          "type": "object",
+                          "properties": {
+                            "token_number": {
+                              "type": "string",
+                              "description": "Token number assigned by TRACES to this PAN verification request."
+                            },
+                            "status": {
+                              "type": "array",
+                              "items": {
+                                "type": "string"
+                              },
+                              "description": "Processing status history returned by TRACES. Values are returned unchanged."
+                            },
+                            "rejection_remarks": {
+                              "type": [
+                                "string",
+                                "null"
+                              ],
+                              "description": "Rejection remarks returned by TRACES, or null when none are available."
+                            }
+                          },
+                          "required": [
+                            "token_number",
+                            "status",
+                            "rejection_remarks"
+                          ],
+                          "additionalProperties": false
+                        },
+                        {
+                          "type": "object",
+                          "properties": {
+                            "output_json_url": {
+                              "type": "string",
+                              "format": "uri",
+                              "description": "Signed download URL for the PAN verification workbook. The URL is valid for one day."
+                            }
+                          },
+                          "required": [
+                            "output_json_url"
+                          ],
+                          "additionalProperties": false
+                        }
+                      ]
+                    }
+                  },
+                  "required": [
+                    "code",
+                    "timestamp",
+                    "transaction_id",
+                    "data"
+                  ],
+                  "additionalProperties": false
+                },
+                "examples": {
+                  "Verification report available": {
+                    "summary": "Verification report available",
+                    "value": {
+                      "code": 200,
+                      "timestamp": 1792265454381,
+                      "data": {
+                        "output_json_url": "https://example-bucket.s3.ap-south-1.amazonaws.com/workspace-id/AHMS45586C/26102348059/pan-verification.json?X-Amz-Expires=86400&X-Amz-Signature=example"
+                      },
+                      "transaction_id": "d14d4747-9478-4557-b357-fe143549939d"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Required request data is missing or invalid.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "code": {
+                      "type": "integer",
+                      "enum": [
+                        400
+                      ]
+                    },
+                    "timestamp": {
+                      "type": "integer"
+                    },
+                    "transaction_id": {
+                      "type": "string"
+                    },
+                    "message": {
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "code",
+                    "timestamp",
+                    "transaction_id",
+                    "message"
+                  ],
+                  "additionalProperties": false
+                },
+                "examples": {
+                  "Missing token number": {
+                    "summary": "Missing token number",
+                    "value": {
+                      "code": 400,
+                      "timestamp": 1792265462163,
+                      "message": "Missing required request parameters: [token_number]",
+                      "transaction_id": "0b3bba3e-3cc6-49e8-9bb9-a2becd68809c"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "The deductor access token is not valid for this request.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "code": {
+                      "type": "integer",
+                      "enum": [
+                        401
+                      ]
+                    },
+                    "timestamp": {
+                      "type": "integer"
+                    },
+                    "transaction_id": {
+                      "type": "string"
+                    },
+                    "message": {
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "code",
+                    "timestamp",
+                    "transaction_id",
+                    "message"
+                  ],
+                  "additionalProperties": false
+                },
+                "examples": {
+                  "Missing deductor access token": {
+                    "summary": "Missing deductor access token",
+                    "value": {
+                      "code": 401,
+                      "message": "Unauthorized",
+                      "timestamp": 1792265462059,
+                      "transaction_id": "95f1cca7-9751-4117-897e-7653dd81085a"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Access to this API is denied.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "code": {
+                      "type": "integer",
+                      "enum": [
+                        403
+                      ]
+                    },
+                    "timestamp": {
+                      "type": "integer"
+                    },
+                    "transaction_id": {
+                      "type": "string"
+                    },
+                    "message": {
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "code",
+                    "timestamp",
+                    "transaction_id",
+                    "message"
+                  ],
+                  "additionalProperties": false
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "The request could not be completed.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "code": {
+                      "type": "integer",
+                      "enum": [
+                        500
+                      ]
+                    },
+                    "timestamp": {
+                      "type": "integer"
+                    },
+                    "transaction_id": {
+                      "type": "string"
+                    },
+                    "message": {
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "code",
+                    "timestamp",
+                    "transaction_id",
+                    "message"
+                  ],
+                  "additionalProperties": false
+                }
+              }
+            }
+          },
+          "503": {
+            "description": "TRACES could not complete the request.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "code": {
+                      "type": "integer",
+                      "enum": [
+                        503
+                      ]
+                    },
+                    "timestamp": {
+                      "type": "integer"
+                    },
+                    "transaction_id": {
+                      "type": "string"
+                    },
+                    "message": {
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "code",
+                    "timestamp",
+                    "transaction_id",
+                    "message"
+                  ],
+                  "additionalProperties": false
+                }
+              }
+            }
+          },
+          "521": {
+            "description": "No PAN verification request matches the token number for the authenticated deductor.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "code": {
+                      "type": "integer",
+                      "enum": [
+                        521
+                      ]
+                    },
+                    "timestamp": {
+                      "type": "integer"
+                    },
+                    "transaction_id": {
+                      "type": "string"
+                    },
+                    "message": {
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "code",
+                    "timestamp",
+                    "transaction_id",
+                    "message"
+                  ],
+                  "additionalProperties": false
+                },
+                "examples": {
+                  "Token number not found": {
+                    "summary": "Token number not found",
+                    "value": {
+                      "code": 521,
+                      "timestamp": 1792265461191,
+                      "message": "PAN verification request not found",
+                      "transaction_id": "ab61a481-a0cc-40de-adc1-d6b550c4c50a"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "security": [],
+        "x-sandbox-request-examples": {
+          "Verification report available": {
+            "summary": "Verification report available",
+            "value": {
+              "method": "GET",
+              "path": "/tds/compliance/traces/deductors/pan/verify/status",
+              "query": {
+                "token_number": "26102348059"
+              },
+              "headers": {
+                "Authorization": "{{deductor_access_token}}",
+                "x-api-key": "{{api_key}}",
+                "Content-Type": "application/json"
+              }
+            }
+          },
+          "Token number not found": {
+            "summary": "Token number not found",
+            "value": {
+              "method": "GET",
+              "path": "/tds/compliance/traces/deductors/pan/verify/status",
+              "query": {
+                "token_number": "99999999999999999999"
+              },
+              "headers": {
+                "Authorization": "{{deductor_access_token}}",
+                "x-api-key": "{{api_key}}",
+                "Content-Type": "application/json"
+              }
+            }
+          },
+          "Missing token number": {
+            "summary": "Missing token number",
+            "value": {
+              "method": "GET",
+              "path": "/tds/compliance/traces/deductors/pan/verify/status",
+              "query": {},
+              "headers": {
+                "Authorization": "{{deductor_access_token}}",
+                "x-api-key": "{{api_key}}",
+                "Content-Type": "application/json"
+              }
+            }
+          },
+          "Missing deductor access token": {
+            "summary": "Missing deductor access token",
+            "value": {
+              "method": "GET",
+              "path": "/tds/compliance/traces/deductors/pan/verify/status",
+              "query": {
+                "token_number": "26102348059"
+              },
+              "headers": {
+                "x-api-key": "{{api_key}}",
+                "Content-Type": "application/json"
+              }
+            }
+          }
+        }
+      }
     }
   },
   "components": {
