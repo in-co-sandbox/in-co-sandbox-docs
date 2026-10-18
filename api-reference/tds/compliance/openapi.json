@@ -8838,7 +8838,9 @@
           "page_size": {
             "type": "integer",
             "description": "Maximum number of jobs to return.",
-            "minimum": 1
+            "minimum": 1,
+            "maximum": 50,
+            "default": 20
           },
           "last_evaluated_key": {
             "type": "string",
@@ -8854,11 +8856,7 @@
           }
         },
         "required": [
-          "@entity",
-          "tan",
-          "tax_year",
-          "quarter",
-          "page_size"
+          "@entity"
         ],
         "x-apidog-orders": [
           "@entity",
