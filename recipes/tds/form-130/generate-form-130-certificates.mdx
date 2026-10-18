@@ -27,7 +27,7 @@ Form 130 becomes available after the tax year ends, once TRACES has processed th
 
 ## Request and download certificates
 
-The [submit certificate job endpoint](/api-reference/tds/compliance/certificates/endpoints/submit_job) uses `130` in the `certificate_type` path parameter and `"130"` in the JSON `form` field. The response returns a `job_id`.
+The [submit certificate job endpoint](/api-reference/tds/compliance/certificates/endpoints/submit_job) uses `130` in the `certificate_type` path parameter. Submit the TAN, tax year, and quarter in the request body. Save the returned `job_id`.
 
 Use the `job_id` to [check the certificate job status](/api-reference/tds/compliance/certificates/endpoints/poll_job). When the status is `succeeded`, download the ZIP files from `data.certificate_pdf_zip_urls`.
 
