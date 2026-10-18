@@ -10,7 +10,7 @@ openapi: '/api-reference/tds/compliance/openapi.json POST /tds/compliance/traces
 ---
 
 <Note>
-[Authenticate the deductor](/api-reference/tds/compliance/traces/endpoints/authenticate) and pass the returned `access_token` in the `Authorization` header. The token identifies the TAN, so the request body does not contain `tan`.
+[Authenticate a TRACES deductor](/api-reference/tds/compliance/traces/endpoints/authenticate) and pass the returned `data.access_token` as the value of the `Authorization` header. The token identifies the TAN, so the request body does not contain `tan`.
 </Note>
 
 To look up a challan with its payment details, use [Fetch TDS challan details](/api-reference/tds/compliance/challans/endpoints/fetch_challan).

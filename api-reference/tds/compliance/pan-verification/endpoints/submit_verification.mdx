@@ -9,7 +9,7 @@ keywords:
 openapi: '/api-reference/tds/compliance/openapi.json POST /tds/compliance/traces/deductors/pan/verify'
 ---
 
-[Authenticate the deductor](/api-reference/tds/compliance/traces/endpoints/authenticate) and pass `data.access_token` as `deductor_access_token` in the `Authorization` header. The token identifies the TAN.
+[Authenticate a TRACES deductor](/api-reference/tds/compliance/traces/endpoints/authenticate) and pass the returned `data.access_token` as the value of the `Authorization` header. The token identifies the TAN.
 
 Send the [payee workbook](/api-reference/tds/compliance/pan-verification/vanilla_payee_workbook) directly in the request body. Save the returned `data.token_number` to [retrieve verification status](/api-reference/tds/compliance/pan-verification/endpoints/poll_verification).
 

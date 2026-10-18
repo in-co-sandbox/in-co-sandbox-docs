@@ -5896,7 +5896,7 @@
           {
             "name": "Authorization",
             "in": "header",
-            "description": "Deductor access token returned by the TRACES authenticate or refresh API.",
+            "description": "Deductor access token returned by [Authenticate a TRACES deductor](https://developer.sandbox.co.in/api-reference/tds/compliance/traces/endpoints/authenticate). The token identifies the deductor TAN.",
             "required": true,
             "example": "{{deductor_access_token}}",
             "schema": {
@@ -6190,7 +6190,7 @@
       "post": {
         "summary": "Search challans",
         "deprecated": false,
-        "description": "Search TDS challans by deposit date range for the deductor identified by the access token. Use page_number and page_size to retrieve subsequent pages. Send the deductor access token returned by TRACES authentication in the Authorization header. Authenticate or refresh separately when the token expires.",
+        "description": "Search TDS challans by deposit date range for the deductor identified by the access token. For subsequent pages, keep page_size fixed and increment page_number. Page numbers start at 0. Send the deductor access token returned by TRACES authentication in the Authorization header. Authenticate or refresh separately when the token expires.",
         "operationId": "searchChallans",
         "tags": [
           "TRACES/Challans",
@@ -6201,7 +6201,7 @@
           {
             "name": "Authorization",
             "in": "header",
-            "description": "Deductor access token returned by the TRACES authenticate or refresh API.",
+            "description": "Deductor access token returned by [Authenticate a TRACES deductor](https://developer.sandbox.co.in/api-reference/tds/compliance/traces/endpoints/authenticate). The token identifies the deductor TAN.",
             "required": true,
             "example": "{{deductor_access_token}}",
             "schema": {
@@ -6570,7 +6570,7 @@
           {
             "name": "Authorization",
             "in": "header",
-            "description": "Sandbox access token from the authenticate API.",
+            "description": "Sandbox access token. For token-generation steps, see the [Quickstart guide](https://developer.sandbox.co.in/guides/get-started/quickstart).",
             "required": true,
             "example": "{{access_token}}",
             "schema": {
@@ -6681,7 +6681,8 @@
                     },
                     "timestamp": {
                       "type": "integer",
-                      "format": "int64"
+                      "format": "int64",
+                      "description": "Unix timestamp in milliseconds."
                     },
                     "transaction_id": {
                       "type": "string"
@@ -6697,11 +6698,11 @@
                         },
                         "access_token": {
                           "type": "string",
-                          "description": "Sandbox access JWT for the TRACES session."
+                          "description": "Deductor access token for TDS challan and bulk PAN verification requests. Obtain a token with [Authenticate a TRACES deductor](https://developer.sandbox.co.in/api-reference/tds/compliance/traces/endpoints/authenticate)."
                         },
                         "refresh_token": {
                           "type": "string",
-                          "description": "Sandbox refresh JWT used to renew the TRACES session."
+                          "description": "Deductor refresh token used by [Refresh a TRACES deductor session](https://developer.sandbox.co.in/api-reference/tds/compliance/traces/endpoints/refresh) to renew the TRACES session."
                         },
                         "access_token_expiry": {
                           "type": "integer",
@@ -6762,7 +6763,8 @@
                     },
                     "timestamp": {
                       "type": "integer",
-                      "format": "int64"
+                      "format": "int64",
+                      "description": "Unix timestamp in milliseconds."
                     },
                     "transaction_id": {
                       "type": "string"
@@ -6804,7 +6806,8 @@
                     },
                     "timestamp": {
                       "type": "integer",
-                      "format": "int64"
+                      "format": "int64",
+                      "description": "Unix timestamp in milliseconds."
                     },
                     "transaction_id": {
                       "type": "string"
@@ -6855,7 +6858,8 @@
                     },
                     "timestamp": {
                       "type": "integer",
-                      "format": "int64"
+                      "format": "int64",
+                      "description": "Unix timestamp in milliseconds."
                     },
                     "transaction_id": {
                       "type": "string"
@@ -6886,7 +6890,8 @@
                     },
                     "timestamp": {
                       "type": "integer",
-                      "format": "int64"
+                      "format": "int64",
+                      "description": "Unix timestamp in milliseconds."
                     },
                     "transaction_id": {
                       "type": "string"
@@ -6925,7 +6930,7 @@
           {
             "name": "Authorization",
             "in": "header",
-            "description": "Sandbox access token from the authenticate API.",
+            "description": "Sandbox access token. For token-generation steps, see the [Quickstart guide](https://developer.sandbox.co.in/guides/get-started/quickstart).",
             "required": true,
             "example": "{{access_token}}",
             "schema": {
@@ -6970,7 +6975,7 @@
                     "type": "string",
                     "minLength": 1,
                     "writeOnly": true,
-                    "description": "Sandbox refresh token returned by TRACES authentication."
+                    "description": "Deductor refresh token returned by [Authenticate a TRACES deductor](https://developer.sandbox.co.in/api-reference/tds/compliance/traces/endpoints/authenticate) or [Refresh a TRACES deductor session](https://developer.sandbox.co.in/api-reference/tds/compliance/traces/endpoints/refresh)."
                   }
                 },
                 "required": [
@@ -7026,7 +7031,8 @@
                     },
                     "timestamp": {
                       "type": "integer",
-                      "format": "int64"
+                      "format": "int64",
+                      "description": "Unix timestamp in milliseconds."
                     },
                     "transaction_id": {
                       "type": "string"
@@ -7042,11 +7048,11 @@
                         },
                         "access_token": {
                           "type": "string",
-                          "description": "Sandbox access JWT for the TRACES session."
+                          "description": "Deductor access token for TDS challan and bulk PAN verification requests. Obtain a token with [Authenticate a TRACES deductor](https://developer.sandbox.co.in/api-reference/tds/compliance/traces/endpoints/authenticate)."
                         },
                         "refresh_token": {
                           "type": "string",
-                          "description": "Sandbox refresh JWT used to renew the TRACES session."
+                          "description": "Deductor refresh token used by [Refresh a TRACES deductor session](https://developer.sandbox.co.in/api-reference/tds/compliance/traces/endpoints/refresh) to renew the TRACES session."
                         },
                         "access_token_expiry": {
                           "type": "integer",
@@ -7107,7 +7113,8 @@
                     },
                     "timestamp": {
                       "type": "integer",
-                      "format": "int64"
+                      "format": "int64",
+                      "description": "Unix timestamp in milliseconds."
                     },
                     "transaction_id": {
                       "type": "string"
@@ -7149,7 +7156,8 @@
                     },
                     "timestamp": {
                       "type": "integer",
-                      "format": "int64"
+                      "format": "int64",
+                      "description": "Unix timestamp in milliseconds."
                     },
                     "transaction_id": {
                       "type": "string"
@@ -7200,7 +7208,8 @@
                     },
                     "timestamp": {
                       "type": "integer",
-                      "format": "int64"
+                      "format": "int64",
+                      "description": "Unix timestamp in milliseconds."
                     },
                     "transaction_id": {
                       "type": "string"
@@ -7231,7 +7240,8 @@
                     },
                     "timestamp": {
                       "type": "integer",
-                      "format": "int64"
+                      "format": "int64",
+                      "description": "Unix timestamp in milliseconds."
                     },
                     "transaction_id": {
                       "type": "string"
@@ -7271,7 +7281,7 @@
           {
             "name": "Authorization",
             "in": "header",
-            "description": "Deductor access token returned by TRACES authentication or refresh. The token identifies the deductor TAN.",
+            "description": "Deductor access token returned by [Authenticate a TRACES deductor](https://developer.sandbox.co.in/api-reference/tds/compliance/traces/endpoints/authenticate). The token identifies the deductor TAN.",
             "required": true,
             "schema": {
               "type": "string"
@@ -7610,7 +7620,8 @@
                       ]
                     },
                     "timestamp": {
-                      "type": "integer"
+                      "type": "integer",
+                      "description": "Unix timestamp in milliseconds."
                     },
                     "transaction_id": {
                       "type": "string"
@@ -7667,7 +7678,8 @@
                       ]
                     },
                     "timestamp": {
-                      "type": "integer"
+                      "type": "integer",
+                      "description": "Unix timestamp in milliseconds."
                     },
                     "transaction_id": {
                       "type": "string"
@@ -7712,7 +7724,8 @@
                       ]
                     },
                     "timestamp": {
-                      "type": "integer"
+                      "type": "integer",
+                      "description": "Unix timestamp in milliseconds."
                     },
                     "transaction_id": {
                       "type": "string"
@@ -7757,7 +7770,8 @@
                       ]
                     },
                     "timestamp": {
-                      "type": "integer"
+                      "type": "integer",
+                      "description": "Unix timestamp in milliseconds."
                     },
                     "transaction_id": {
                       "type": "string"
@@ -7802,7 +7816,8 @@
                       ]
                     },
                     "timestamp": {
-                      "type": "integer"
+                      "type": "integer",
+                      "description": "Unix timestamp in milliseconds."
                     },
                     "transaction_id": {
                       "type": "string"
@@ -7836,7 +7851,8 @@
                       ]
                     },
                     "timestamp": {
-                      "type": "integer"
+                      "type": "integer",
+                      "description": "Unix timestamp in milliseconds."
                     },
                     "transaction_id": {
                       "type": "string"
@@ -8055,7 +8071,7 @@
           {
             "name": "Authorization",
             "in": "header",
-            "description": "Deductor access token returned by TRACES authentication or refresh. The token identifies the deductor TAN.",
+            "description": "Deductor access token returned by [Authenticate a TRACES deductor](https://developer.sandbox.co.in/api-reference/tds/compliance/traces/endpoints/authenticate). The token identifies the deductor TAN.",
             "required": true,
             "schema": {
               "type": "string"
@@ -8145,7 +8161,8 @@
                       ]
                     },
                     "timestamp": {
-                      "type": "integer"
+                      "type": "integer",
+                      "description": "Unix timestamp in milliseconds."
                     },
                     "transaction_id": {
                       "type": "string"
@@ -8236,7 +8253,8 @@
                       ]
                     },
                     "timestamp": {
-                      "type": "integer"
+                      "type": "integer",
+                      "description": "Unix timestamp in milliseconds."
                     },
                     "transaction_id": {
                       "type": "string"
@@ -8281,7 +8299,8 @@
                       ]
                     },
                     "timestamp": {
-                      "type": "integer"
+                      "type": "integer",
+                      "description": "Unix timestamp in milliseconds."
                     },
                     "transaction_id": {
                       "type": "string"
@@ -8326,7 +8345,8 @@
                       ]
                     },
                     "timestamp": {
-                      "type": "integer"
+                      "type": "integer",
+                      "description": "Unix timestamp in milliseconds."
                     },
                     "transaction_id": {
                       "type": "string"
@@ -8360,7 +8380,8 @@
                       ]
                     },
                     "timestamp": {
-                      "type": "integer"
+                      "type": "integer",
+                      "description": "Unix timestamp in milliseconds."
                     },
                     "transaction_id": {
                       "type": "string"
@@ -8394,7 +8415,8 @@
                       ]
                     },
                     "timestamp": {
-                      "type": "integer"
+                      "type": "integer",
+                      "description": "Unix timestamp in milliseconds."
                     },
                     "transaction_id": {
                       "type": "string"
@@ -8428,7 +8450,8 @@
                       ]
                     },
                     "timestamp": {
-                      "type": "integer"
+                      "type": "integer",
+                      "description": "Unix timestamp in milliseconds."
                     },
                     "transaction_id": {
                       "type": "string"
@@ -9466,12 +9489,12 @@
           "page_number": {
             "type": "integer",
             "minimum": 0,
-            "description": "Zero-based page number. 0 requests the first page. Omit to use the default page."
+            "description": "Zero-based page number. 0 requests the first page. If omitted, TRACES selects the default page."
           },
           "page_size": {
             "type": "integer",
             "minimum": 1,
-            "description": "Number of challans requested per page. Omit to use the default page size."
+            "description": "Number of challans requested per page. If omitted, TRACES selects the page size."
           }
         },
         "required": [
