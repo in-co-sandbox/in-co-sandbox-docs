@@ -44,7 +44,7 @@ The examples use fictional TAN and challan data. Replace the sample values with 
 
     Save `data.access_token` as `deductor_access_token` and `data.refresh_token` as `deductor_refresh_token`. Check expiry with `data.access_token_expiry` and `data.refresh_token_expiry`. Both are Unix timestamps in milliseconds.
 
-    Use `deductor_access_token` in the `Authorization` header of challan requests. The token identifies the TAN, so challan request bodies do not contain `tan`. Keep your Sandbox access token for authentication and refresh requests.
+    Use `deductor_access_token` in the `Authorization` header of challan requests. The token identifies the TAN, so challan request bodies do not contain `tan`. Keep your Sandbox access token for authentication requests.
 
     Use the same API key for authentication, refresh, and challan requests.
   </Step>
@@ -105,19 +105,14 @@ The examples use fictional TAN and challan data. Replace the sample values with 
 
 ## Refresh the deductor tokens
 
-When the deductor access token expires, call [Refresh a TRACES deductor session](/api-reference/tds/compliance/traces/endpoints/refresh). Use your Sandbox access token in the header and the deductor refresh token in the body.
+When the deductor access token expires, call [Refresh a TRACES deductor session](/api-reference/tds/compliance/traces/endpoints/refresh). Send `deductor_refresh_token` in the `Authorization` header and your Sandbox API key in `x-api-key`. This request has no body.
 
 <Accordion title="Token refresh request">
 ```bash
 curl --request POST \
   --url https://api.sandbox.co.in/tds/traces/deductors/refresh \
-  --header 'Authorization: {sandbox-access-token}' \
-  --header 'Content-Type: application/json' \
-  --header 'x-api-key: {sandbox-api-key}' \
-  --data '{
-	"@entity": "in.co.sandbox.tds.compliance.traces.session.refresh.request",
-	"refresh_token": "{deductor_refresh_token}"
-  }'
+  --header 'Authorization: {deductor_refresh_token}' \
+  --header 'x-api-key: {sandbox-api-key}'
 ```
 </Accordion>
 

@@ -83,7 +83,7 @@ The examples use sample tokens and a fictional token number. Replace these value
 
 ## Refresh the deductor tokens
 
-When the deductor access token expires, call [Refresh a TRACES deductor session](/api-reference/tds/compliance/traces/endpoints/refresh). Use your Sandbox access token in the header and `deductor_refresh_token` in the body.
+When the deductor access token expires, call [Refresh a TRACES deductor session](/api-reference/tds/compliance/traces/endpoints/refresh). Send `deductor_refresh_token` in the `Authorization` header and your Sandbox API key in `x-api-key`. This request has no body.
 
 Replace both saved deductor tokens with the returned values. If refresh fails because the token is expired or rejected, authenticate again.
 
