@@ -9,8 +9,8 @@ keywords:
 openapi: '/api-reference/tds/compliance/openapi.json POST /tds/traces/deductors/refresh'
 ---
 
-This endpoint uses your Sandbox access token in the `Authorization` header. See the [Quickstart guide](/guides/get-started/quickstart) for Sandbox authentication.
+Send the `deductor_refresh_token` returned by [Authenticate a TRACES deductor](/api-reference/tds/compliance/traces/endpoints/authenticate) in the `Authorization` header. Include your Sandbox API key in `x-api-key`. This request has no body.
 
-Pass the deductor refresh token in the request body, then replace both saved deductor tokens with the returned values.
+Replace both saved deductor tokens with the returned `data.access_token` and `data.refresh_token`.
 
 If the refresh token has expired or is rejected, [authenticate the deductor again](/api-reference/tds/compliance/traces/endpoints/authenticate). See [Check TDS challans](/recipes/tds/challans/check-tds-challans) or [Verify PANs with a deductor token](/recipes/tds/pan-verification/verify-pans-with-deductor-token) for the complete flow.
