@@ -106,10 +106,10 @@ Get your API key and access token from the [Quickstart guide](/guides/get-starte
 - [Return validation](/api-reference/tds/compliance/generate-fvu/endpoints/submit_job): A return text file and supporting files.
 - [E-filing](/api-reference/tds/compliance/e-file/endpoints/submit_job): An FVU file and Form 27A.
 - [Certificates](/api-reference/tds/compliance/certificates/overview#requirements): TRACES credentials and certificates available for the requested period.
-- [TDS challans](/recipes/tds/challans/check-tds-challans): TRACES credentials and a deposit date range or specific challan details.
-- [Bulk PAN verification](/recipes/tds/pan-verification/verify-pans-in-bulk): A TAN, TRACES credentials saved in your Sandbox workspace, and a [JSON payee workbook](/api-reference/tds/compliance/pan-verification/payee_workbook).
+- [TDS challans](/recipes/tds/challans/check-tds-challans): A [deductor access token](/api-reference/tds/compliance/traces/endpoints/authenticate) and a deposit date range or specific challan details.
+- Bulk PAN verification: A [deductor access token](/api-reference/tds/compliance/traces/endpoints/authenticate) and a [JSON payee workbook](/api-reference/tds/compliance/pan-verification/vanilla_payee_workbook) for [direct submission](/recipes/tds/pan-verification/verify-pans-with-deductor-token). For [enriched jobs](/recipes/tds/pan-verification/verify-pans-in-bulk), prepare a TAN and save its TRACES credentials in your Sandbox workspace.
 
-FVU generation, e-filing, certificate generation, and bulk PAN verification run as background jobs. See the [job-based API workflow](/guides/developer-resources/job_based_apis#how-it-works) for uploads and completion checks.
+FVU generation, e-filing, certificate generation, and enriched bulk PAN verification run as background jobs. See the [job-based API workflow](/guides/developer-resources/job_based_apis#how-it-works) for uploads and completion checks.
 
 <div id="recipes" />
 
@@ -139,6 +139,8 @@ Follow a guide to file a return, generate certificates, or verify PANs in bulk.
 
 ## API reference
 
+Use [Authenticate a TRACES deductor](/api-reference/tds/compliance/traces/endpoints/authenticate) to obtain tokens for challan requests and direct bulk PAN verification. Use [Refresh a TRACES deductor session](/api-reference/tds/compliance/traces/endpoints/refresh) to renew the tokens.
+
 ### TDS challan APIs
 
 | API | Use it to |
@@ -150,11 +152,13 @@ Follow a guide to file a return, generate certificates, or verify PANs in bulk.
 
 | API | Use it to |
 |:----|:----------|
+| [Submit PANs for TRACES verification](/api-reference/tds/compliance/pan-verification/endpoints/submit_verification) | Submit the payee workbook directly using a deductor access token. |
+| [Get TRACES PAN verification status](/api-reference/tds/compliance/pan-verification/endpoints/poll_verification) | Poll the TRACES token number and get the result download URL. |
 | [Create a bulk PAN verification job](/api-reference/tds/compliance/pan-verification/endpoints/submit_job) | Start a verification job and get the JSON workbook upload URL. |
 | [Get bulk PAN verification job status](/api-reference/tds/compliance/pan-verification/endpoints/poll_job) | Check progress and get the result download URL. |
 | [Bulk PAN verification webhook](/api-reference/tds/compliance/pan-verification/endpoints/webhook) | Receive notifications when a job succeeds or fails. |
 
-See the [payee workbook](/api-reference/tds/compliance/pan-verification/payee_workbook) for the input schema and the [PAN verification workbook](/api-reference/tds/compliance/pan-verification/pan_verification_workbook) for the output schema and sample.
+For requests with a deductor token, see the [payee workbook](/api-reference/tds/compliance/pan-verification/vanilla_payee_workbook) and [PAN verification workbook](/api-reference/tds/compliance/pan-verification/vanilla_pan_verification_workbook) for schemas and samples. For enriched jobs, see the [payee workbook](/api-reference/tds/compliance/pan-verification/payee_workbook) and [PAN verification workbook](/api-reference/tds/compliance/pan-verification/pan_verification_workbook).
 
 ### CSI download APIs
 

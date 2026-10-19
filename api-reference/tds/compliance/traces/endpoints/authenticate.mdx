@@ -1,0 +1,16 @@
+---
+title: "Authenticate a TRACES deductor"
+description: "Authenticate a deductor with a TAN and TRACES password to obtain access and refresh tokens for TDS challan and bulk PAN verification requests."
+keywords:
+  - TRACES authentication API
+  - deductor access token
+  - TDS challan API
+  - TRACES bulk PAN verification API
+openapi: '/api-reference/tds/compliance/openapi.json POST /tds/traces/deductors/authenticate'
+---
+
+This endpoint uses your Sandbox access token in the `Authorization` header. See the [Quickstart guide](/guides/get-started/quickstart) for Sandbox authentication.
+
+Pass the returned `data.access_token` as the value of the `Authorization` header for [TDS challan requests](/recipes/tds/challans/check-tds-challans) and [bulk PAN verification requests](/recipes/tds/pan-verification/verify-pans-with-deductor-token).
+
+When the deductor access token expires, use [Refresh a TRACES deductor session](/api-reference/tds/compliance/traces/endpoints/refresh).
