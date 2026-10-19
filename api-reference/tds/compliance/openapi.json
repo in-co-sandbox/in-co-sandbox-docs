@@ -6916,7 +6916,7 @@
       "post": {
         "summary": "Refresh TRACES session",
         "deprecated": false,
-        "description": "Renew a TRACES session by sending the refresh_token returned by Sandbox TRACES authentication in the request body. Send your Sandbox API access token in the Authorization header. Returns replacement TRACES session tokens and their expiry times. Authenticate again if the refresh token is invalid or expired. Example tokens are illustrative.",
+        "description": "Refresh a TRACES deductor session using the deductor refresh token returned by [Authenticate a TRACES deductor](https://developer.sandbox.co.in/api-reference/tds/compliance/traces/endpoints/authenticate). Send the token in the Authorization header with your Sandbox API key. This request has no body. Replace both saved deductor tokens with the returned values. If the refresh token has expired or is rejected, authenticate again.",
         "operationId": "refreshTracesSession",
         "tags": [
           "TRACES/Authentication"
@@ -6925,11 +6925,30 @@
           {
             "name": "Authorization",
             "in": "header",
-            "description": "Sandbox access token from the authenticate API.",
+            "description": "Deductor refresh token returned by [Authenticate a TRACES deductor](https://developer.sandbox.co.in/api-reference/tds/compliance/traces/endpoints/authenticate) or this endpoint. Send the token without a Bearer prefix.",
             "required": true,
-            "example": "{{access_token}}",
             "schema": {
               "type": "string"
+            },
+            "examples": {
+              "Session refreshed": {
+                "summary": "Session refreshed",
+                "value": "{{deductor_refresh_token}}"
+              },
+              "Missing refresh token": {
+                "summary": "Missing refresh token",
+                "description": "Omit the Authorization header.",
+                "value": ""
+              },
+              "Invalid refresh token": {
+                "summary": "Invalid refresh token",
+                "value": "invalid-deductor-refresh-token"
+              },
+              "Access token used for refresh": {
+                "summary": "Access token used for refresh",
+                "description": "An access token cannot refresh a session.",
+                "value": "{{deductor_access_token}}"
+              }
             }
           },
           {
@@ -6937,79 +6956,29 @@
             "in": "header",
             "description": "Sandbox API key.",
             "required": true,
-            "example": "{{api_key}}",
             "schema": {
               "type": "string"
-            }
-          },
-          {
-            "name": "Content-Type",
-            "in": "header",
-            "description": "Request body format.",
-            "required": true,
-            "example": "application/json",
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
-        "requestBody": {
-          "required": true,
-          "content": {
-            "application/json": {
-              "schema": {
-                "type": "object",
-                "properties": {
-                  "@entity": {
-                    "type": "string",
-                    "enum": [
-                      "in.co.sandbox.tds.compliance.traces.session.refresh.request"
-                    ]
-                  },
-                  "refresh_token": {
-                    "type": "string",
-                    "minLength": 1,
-                    "writeOnly": true,
-                    "description": "Sandbox refresh token returned by TRACES authentication."
-                  }
-                },
-                "required": [
-                  "@entity",
-                  "refresh_token"
-                ]
+            },
+            "examples": {
+              "Session refreshed": {
+                "summary": "Session refreshed",
+                "value": "{{api_key}}"
               },
-              "examples": {
-                "Session refreshed": {
-                  "summary": "Session refreshed",
-                  "value": {
-                    "@entity": "in.co.sandbox.tds.compliance.traces.session.refresh.request",
-                    "refresh_token": "eyJhbGciOiJSU0FTU0FfUFNTX1NIQV81MTIiLCJ0eXAiOiJKV1QiLCJraWQiOiJleGFtcGxlLXNpZ25pbmcta2V5In0.eyJpc3MiOiJhcGkuc2FuZGJveC5jby5pbiIsImF1ZCI6IkFQSSIsImludGVudCI6IlJFRlJFU0hfVE9LRU4iLCJpYXQiOjE3OTIxNzYxMzksImV4cCI6MTc5MjE4MzM0N30.invalid-example-signature"
-                  }
-                },
-                "Missing refresh token": {
-                  "summary": "Missing refresh token",
-                  "value": {
-                    "@entity": "in.co.sandbox.tds.compliance.traces.session.refresh.request"
-                  }
-                },
-                "Invalid refresh token": {
-                  "summary": "Invalid refresh token",
-                  "value": {
-                    "@entity": "in.co.sandbox.tds.compliance.traces.session.refresh.request",
-                    "refresh_token": "invalid-example-refresh-token"
-                  }
-                },
-                "Missing Sandbox authorization": {
-                  "summary": "Missing Sandbox authorization",
-                  "value": {
-                    "@entity": "in.co.sandbox.tds.compliance.traces.session.refresh.request",
-                    "refresh_token": "eyJhbGciOiJSU0FTU0FfUFNTX1NIQV81MTIiLCJ0eXAiOiJKV1QiLCJraWQiOiJleGFtcGxlLXNpZ25pbmcta2V5In0.eyJpc3MiOiJhcGkuc2FuZGJveC5jby5pbiIsImF1ZCI6IkFQSSIsImludGVudCI6IlJFRlJFU0hfVE9LRU4iLCJpYXQiOjE3OTIxNzYxMzksImV4cCI6MTc5MjE4MzM0N30.invalid-example-signature"
-                  }
-                }
+              "Missing refresh token": {
+                "summary": "Missing refresh token",
+                "value": "{{api_key}}"
+              },
+              "Invalid refresh token": {
+                "summary": "Invalid refresh token",
+                "value": "{{api_key}}"
+              },
+              "Access token used for refresh": {
+                "summary": "Access token used for refresh",
+                "value": "{{api_key}}"
               }
             }
           }
-        },
+        ],
         "responses": {
           "200": {
             "description": "Returns replacement access and refresh tokens for the TRACES session.",
@@ -7026,7 +6995,8 @@
                     },
                     "timestamp": {
                       "type": "integer",
-                      "format": "int64"
+                      "format": "int64",
+                      "description": "Unix timestamp in milliseconds."
                     },
                     "transaction_id": {
                       "type": "string"
@@ -7042,11 +7012,11 @@
                         },
                         "access_token": {
                           "type": "string",
-                          "description": "Sandbox access JWT for the TRACES session."
+                          "description": "Deductor access token for TDS challan and bulk PAN verification requests. Obtain a token with [Authenticate a TRACES deductor](https://developer.sandbox.co.in/api-reference/tds/compliance/traces/endpoints/authenticate)."
                         },
                         "refresh_token": {
                           "type": "string",
-                          "description": "Sandbox refresh JWT used to renew the TRACES session."
+                          "description": "Deductor refresh token used by [Refresh a TRACES deductor session](https://developer.sandbox.co.in/api-reference/tds/compliance/traces/endpoints/refresh) to renew the TRACES session."
                         },
                         "access_token_expiry": {
                           "type": "integer",
@@ -7078,6 +7048,7 @@
                 "examples": {
                   "Session refreshed": {
                     "summary": "Session refreshed",
+                    "description": "Returns replacement deductor tokens.",
                     "value": {
                       "code": 200,
                       "timestamp": 1792176147631,
@@ -7095,8 +7066,8 @@
               }
             }
           },
-          "400": {
-            "description": "The request body is invalid. Include a non-empty refresh_token.",
+          "401": {
+            "description": "The Authorization header is missing, or TRACES rejected the session refresh token. Authenticate again if the refresh token is rejected.",
             "content": {
               "application/json": {
                 "schema": {
@@ -7107,7 +7078,8 @@
                     },
                     "timestamp": {
                       "type": "integer",
-                      "format": "int64"
+                      "format": "int64",
+                      "description": "Unix timestamp in milliseconds."
                     },
                     "transaction_id": {
                       "type": "string"
@@ -7126,19 +7098,20 @@
                 "examples": {
                   "Missing refresh token": {
                     "summary": "Missing refresh token",
+                    "description": "The Authorization header is missing.",
                     "value": {
-                      "code": 400,
+                      "code": 401,
                       "timestamp": 1792176148027,
                       "transaction_id": "8a0adb97-61cb-4004-99ac-069d98c91ecf",
-                      "message": "Invalid request body"
+                      "message": "Unauthorized"
                     }
                   }
                 }
               }
             }
           },
-          "401": {
-            "description": "The TRACES session refresh token is invalid or expired, or the Sandbox Authorization header is missing.",
+          "403": {
+            "description": "The deductor token or API key is not authorized for this request.",
             "content": {
               "application/json": {
                 "schema": {
@@ -7149,7 +7122,8 @@
                     },
                     "timestamp": {
                       "type": "integer",
-                      "format": "int64"
+                      "format": "int64",
+                      "description": "Unix timestamp in milliseconds."
                     },
                     "transaction_id": {
                       "type": "string"
@@ -7168,53 +7142,24 @@
                 "examples": {
                   "Invalid refresh token": {
                     "summary": "Invalid refresh token",
+                    "description": "The Authorization header contains an invalid token.",
                     "value": {
-                      "code": 401,
+                      "code": 403,
                       "timestamp": 1792176151795,
                       "transaction_id": "557c2e5a-357c-4fe3-ad65-139206bfef85",
-                      "message": "Invalid refresh token"
+                      "message": "Insufficient privilege"
                     }
                   },
-                  "Missing Sandbox authorization": {
-                    "summary": "Missing Sandbox authorization",
+                  "Access token used for refresh": {
+                    "summary": "Access token used for refresh",
+                    "description": "An access token cannot refresh a session.",
                     "value": {
-                      "code": 401,
+                      "code": 403,
                       "timestamp": 1792176151991,
                       "transaction_id": "1cfa715f-1a5a-452e-8843-b8e860e17fc1",
-                      "message": "Unauthorized"
+                      "message": "Insufficient privilege"
                     }
                   }
-                }
-              }
-            }
-          },
-          "403": {
-            "description": "The Sandbox API key or access token is invalid.",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "object",
-                  "properties": {
-                    "code": {
-                      "type": "integer"
-                    },
-                    "timestamp": {
-                      "type": "integer",
-                      "format": "int64"
-                    },
-                    "transaction_id": {
-                      "type": "string"
-                    },
-                    "message": {
-                      "type": "string"
-                    }
-                  },
-                  "required": [
-                    "code",
-                    "timestamp",
-                    "transaction_id",
-                    "message"
-                  ]
                 }
               }
             }
@@ -7231,7 +7176,8 @@
                     },
                     "timestamp": {
                       "type": "integer",
-                      "format": "int64"
+                      "format": "int64",
+                      "description": "Unix timestamp in milliseconds."
                     },
                     "transaction_id": {
                       "type": "string"
@@ -7246,7 +7192,8 @@
                     "transaction_id",
                     "message"
                   ]
-                }
+                },
+                "examples": {}
               }
             }
           }
