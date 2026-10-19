@@ -54,6 +54,17 @@ Use Sandbox's TDS compliance APIs to verify PANs in bulk, check challans, downlo
   </Card>
 </CardGroup>
 
+## Choose a TRACES integration
+
+Use **TRACES APIs** when your application manages deductor tokens. Use **enriched TRACES APIs** when you want Sandbox to manage TRACES credentials, sessions, and background jobs.
+
+| Integration | Setup | Available APIs |
+|:------------|:------|:---------------|
+| TRACES APIs | [Authenticate the deductor](/api-reference/tds/compliance/traces/endpoints/authenticate), then keep and refresh the returned tokens. | [TDS challans](/recipes/tds/challans/check-tds-challans) and [bulk PAN verification with a deductor token](/recipes/tds/pan-verification/verify-pans-with-deductor-token). |
+| Enriched TRACES APIs | [Save the TRACES credentials](/api-reference/tds/compliance/traces-credentials/endpoints/save_credential) for the TAN in your Sandbox workspace. | [Bulk PAN verification jobs](/recipes/tds/pan-verification/verify-pans-in-bulk) and [TDS and TCS certificate jobs](/api-reference/tds/compliance/certificates/overview). |
+
+Both bulk PAN verification options require you to submit a request and retrieve the results later. With a deductor token, poll using the returned `token_number`. With an enriched job, poll using the `job_id` or configure a completion webhook.
+
 <div id="return-filing-workflow" />
 
 ## How it works
@@ -107,7 +118,7 @@ Get your API key and access token from the [Quickstart guide](/guides/get-starte
 - [E-filing](/api-reference/tds/compliance/e-file/endpoints/submit_job): An FVU file and Form 27A.
 - [Certificates](/api-reference/tds/compliance/certificates/overview#requirements): TRACES credentials and certificates available for the requested period.
 - [TDS challans](/recipes/tds/challans/check-tds-challans): A [deductor access token](/api-reference/tds/compliance/traces/endpoints/authenticate) and a deposit date range or specific challan details.
-- Bulk PAN verification: A [deductor access token](/api-reference/tds/compliance/traces/endpoints/authenticate) and a [JSON payee workbook](/api-reference/tds/compliance/pan-verification/vanilla_payee_workbook) for [direct submission](/recipes/tds/pan-verification/verify-pans-with-deductor-token). For [enriched jobs](/recipes/tds/pan-verification/verify-pans-in-bulk), prepare a TAN and save its TRACES credentials in your Sandbox workspace.
+- Bulk PAN verification: A [deductor access token](/api-reference/tds/compliance/traces/endpoints/authenticate) and a [JSON payee workbook](/api-reference/tds/compliance/pan-verification/vanilla_payee_workbook) for [verification with a deductor token](/recipes/tds/pan-verification/verify-pans-with-deductor-token). For [enriched jobs](/recipes/tds/pan-verification/verify-pans-in-bulk), prepare a TAN and save its TRACES credentials in your Sandbox workspace.
 
 FVU generation, e-filing, certificate generation, and enriched bulk PAN verification run as background jobs. See the [job-based API workflow](/guides/developer-resources/job_based_apis#how-it-works) for uploads and completion checks.
 
