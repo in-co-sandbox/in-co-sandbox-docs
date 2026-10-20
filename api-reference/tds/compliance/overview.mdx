@@ -60,7 +60,7 @@ Use **TRACES APIs** when your application manages deductor tokens. Use **enriche
 
 | Integration | Setup | Available APIs |
 |:------------|:------|:---------------|
-| TRACES APIs | [Authenticate the deductor](/api-reference/tds/compliance/traces/endpoints/authenticate), then keep and refresh the returned tokens. | [TDS challans](/recipes/tds/challans/check-tds-challans) and [bulk PAN verification with a deductor token](/recipes/tds/pan-verification/verify-pans-with-deductor-token). |
+| TRACES APIs | [Authenticate the deductor](/api-reference/tds/compliance/traces/endpoints/authenticate), then keep and refresh the returned tokens. | [TDS challans](/recipes/tds/challans/check-tds-challans), [bulk PAN verification](/recipes/tds/pan-verification/verify-pans-with-deductor-token), and [TDS and TCS certificates](/recipes/tds/certificates/generate-certificates-with-deductor-token). |
 | Enriched TRACES APIs | [Save the TRACES credentials](/api-reference/tds/compliance/traces-credentials/endpoints/save_credential) for the TAN in your Sandbox workspace. | [Bulk PAN verification jobs](/recipes/tds/pan-verification/verify-pans-in-bulk) and [TDS and TCS certificate jobs](/api-reference/tds/compliance/certificates/overview). |
 
 Both bulk PAN verification options require you to submit a request and retrieve the results later. With a deductor token, poll using the returned `token_number`. With an enriched job, poll using the `job_id` or configure a completion webhook.
@@ -116,7 +116,7 @@ Get your API key and access token from the [Quickstart guide](/guides/get-starte
 
 - [Return validation](/api-reference/tds/compliance/generate-fvu/endpoints/submit_job): A return text file and supporting files.
 - [E-filing](/api-reference/tds/compliance/e-file/endpoints/submit_job): An FVU file and Form 27A.
-- [Certificates](/api-reference/tds/compliance/certificates/overview#requirements): TRACES credentials and certificates available for the requested period.
+- Certificates: A [deductor access token](/recipes/tds/certificates/generate-certificates-with-deductor-token) or [saved TRACES credentials](/api-reference/tds/compliance/certificates/overview#requirements), and certificates available for the requested period.
 - [TDS challans](/recipes/tds/challans/check-tds-challans): A [deductor access token](/api-reference/tds/compliance/traces/endpoints/authenticate) and a deposit date range or specific challan details.
 - Bulk PAN verification: A [deductor access token](/api-reference/tds/compliance/traces/endpoints/authenticate) and a [JSON payee workbook](/api-reference/tds/compliance/pan-verification/vanilla_payee_workbook) for [verification with a deductor token](/recipes/tds/pan-verification/verify-pans-with-deductor-token). For [enriched jobs](/recipes/tds/pan-verification/verify-pans-in-bulk), prepare a TAN and save its TRACES credentials in your Sandbox workspace.
 
@@ -150,7 +150,7 @@ Follow a guide to file a return, generate certificates, or verify PANs in bulk.
 
 ## API reference
 
-Use [Authenticate a TRACES deductor](/api-reference/tds/compliance/traces/endpoints/authenticate) to obtain tokens for challan requests and direct bulk PAN verification. Use [Refresh a TRACES deductor session](/api-reference/tds/compliance/traces/endpoints/refresh) to renew the tokens.
+Use [Authenticate a TRACES deductor](/api-reference/tds/compliance/traces/endpoints/authenticate) to obtain tokens for challans, bulk PAN verification, and certificate jobs. Use [Refresh a TRACES deductor session](/api-reference/tds/compliance/traces/endpoints/refresh) to renew the tokens.
 
 ### TDS challan APIs
 
@@ -200,4 +200,4 @@ For requests with a deductor token, see the [payee workbook](/api-reference/tds/
 
 ### TDS certificate APIs
 
-See the [certificate endpoints](/api-reference/tds/compliance/certificates/overview#certificate-endpoints) to submit a generation job, check its status, search jobs, or configure a webhook.
+Use a [deductor token](/recipes/tds/certificates/generate-certificates-with-deductor-token) to submit and poll certificate jobs. For generation with saved credentials, job search, and completion webhooks, use the [enriched certificate APIs](/api-reference/tds/compliance/certificates/overview#certificate-endpoints).

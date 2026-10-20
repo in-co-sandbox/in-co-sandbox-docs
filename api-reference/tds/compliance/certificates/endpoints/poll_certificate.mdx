@@ -1,0 +1,19 @@
+---
+title: "Get certificate job status with a deductor token"
+sidebarTitle: "Get certificate job status"
+description: "Check a TDS or TCS certificate job with its job ID and a deductor token. Get signed PDF ZIP download URLs when the job succeeds."
+keywords:
+  - TDS certificate job status
+  - TRACES certificate download
+  - Form 131 certificate
+  - Form 133 certificate
+openapi: '/api-reference/tds/compliance/openapi.json GET /tds/compliance/traces/deductor/certificates/{certificate_type}/status'
+---
+
+Use the same certificate type and TAN as the submit request. Pass `job_id` in the query string and `deductor_access_token` in the `Authorization` header. This request has no body.
+
+Continue polling while `data.status` is `in_progress`. Certificates can remain in progress after TRACES makes the source files available, while Sandbox prepares the PDFs.
+
+When the job succeeds, download each ZIP file from `data.certificate_pdf_zip_urls`. If the job fails, read `data.message` for the reason.
+
+If the deductor access token expires, [refresh the deductor session](/api-reference/tds/compliance/traces/endpoints/refresh), then retry with the new access token and the same `job_id`.

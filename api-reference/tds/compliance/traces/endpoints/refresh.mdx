@@ -1,6 +1,6 @@
 ---
 title: "Refresh a TRACES deductor session"
-description: "Refresh a TRACES deductor session to continue TDS challan and bulk PAN verification requests without entering the TRACES password."
+description: "Refresh a TRACES deductor session to continue challan, bulk PAN verification, and certificate requests without entering the TRACES password."
 keywords:
   - TRACES refresh token
   - deductor access token
@@ -13,4 +13,4 @@ Send the `deductor_refresh_token` returned by [Authenticate a TRACES deductor](/
 
 Replace both saved deductor tokens with the returned `data.access_token` and `data.refresh_token`.
 
-If the refresh token has expired or is rejected, [authenticate the deductor again](/api-reference/tds/compliance/traces/endpoints/authenticate). See [Check TDS challans](/recipes/tds/challans/check-tds-challans) or [Verify PANs with a deductor token](/recipes/tds/pan-verification/verify-pans-with-deductor-token) for the complete flow.
+If the refresh token has expired or is rejected, [authenticate the deductor again](/api-reference/tds/compliance/traces/endpoints/authenticate). See the guides for [TDS challans](/recipes/tds/challans/check-tds-challans), [bulk PAN verification](/recipes/tds/pan-verification/verify-pans-with-deductor-token), or [certificate generation](/recipes/tds/certificates/generate-certificates-with-deductor-token) for the complete flow.

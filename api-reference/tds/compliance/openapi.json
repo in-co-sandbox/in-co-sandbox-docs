@@ -8534,6 +8534,1171 @@
           }
         }
       }
+    },
+    "/tds/compliance/traces/deductor/certificates/{certificate_type}": {
+      "post": {
+        "summary": "Create TDS or TCS certificate job",
+        "deprecated": false,
+        "description": "Create a certificate job for the deductor identified by your access token. Use certificate type 131 for TDS on non-salary payments or 133 for TCS. The response includes a job_id and the current job status. Use the status endpoint to check progress and retrieve signed download URLs when the certificate ZIP files are ready.",
+        "operationId": "SubmitVanillaCertificateJob",
+        "tags": [
+          "TRACES/TDS Certificate",
+          "TDS Certificate"
+        ],
+        "parameters": [
+          {
+            "name": "certificate_type",
+            "in": "path",
+            "description": "Certificate type. Use 131 for TDS on non-salary payments or 133 for TCS.",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "enum": [
+                "131",
+                "133"
+              ]
+            },
+            "examples": {
+              "Non-salary TDS certificates requested": {
+                "summary": "Non-salary TDS certificates requested",
+                "value": "131"
+              },
+              "TCS certificates requested": {
+                "summary": "TCS certificates requested",
+                "value": "133"
+              },
+              "Quarter is missing": {
+                "summary": "Quarter is missing",
+                "value": "131"
+              },
+              "Deductor access token is missing": {
+                "summary": "Deductor access token is missing",
+                "value": "131"
+              },
+              "Deductor access token has expired": {
+                "summary": "Deductor access token has expired",
+                "value": "131"
+              }
+            }
+          },
+          {
+            "name": "Authorization",
+            "in": "header",
+            "description": "Deductor access token returned by [Authenticate a TRACES deductor](https://developer.sandbox.co.in/api-reference/tds/compliance/traces/endpoints/authenticate). The token identifies the deductor TAN.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "examples": {
+              "Non-salary TDS certificates requested": {
+                "summary": "Non-salary TDS certificates requested",
+                "value": "{{deductor_access_token}}"
+              },
+              "TCS certificates requested": {
+                "summary": "TCS certificates requested",
+                "value": "{{deductor_access_token}}"
+              },
+              "Quarter is missing": {
+                "summary": "Quarter is missing",
+                "value": "{{deductor_access_token}}"
+              },
+              "Deductor access token has expired": {
+                "summary": "Deductor access token has expired",
+                "value": "{{expired_deductor_access_token}}"
+              }
+            }
+          },
+          {
+            "name": "x-api-key",
+            "in": "header",
+            "description": "Sandbox API key.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "examples": {
+              "Non-salary TDS certificates requested": {
+                "summary": "Non-salary TDS certificates requested",
+                "value": "{{api_key}}"
+              },
+              "TCS certificates requested": {
+                "summary": "TCS certificates requested",
+                "value": "{{api_key}}"
+              },
+              "Quarter is missing": {
+                "summary": "Quarter is missing",
+                "value": "{{api_key}}"
+              },
+              "Deductor access token is missing": {
+                "summary": "Deductor access token is missing",
+                "value": "{{api_key}}"
+              },
+              "Deductor access token has expired": {
+                "summary": "Deductor access token has expired",
+                "value": "{{api_key}}"
+              }
+            }
+          },
+          {
+            "name": "Content-Type",
+            "in": "header",
+            "description": "Request body format.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "examples": {
+              "Non-salary TDS certificates requested": {
+                "summary": "Non-salary TDS certificates requested",
+                "value": "application/json"
+              },
+              "TCS certificates requested": {
+                "summary": "TCS certificates requested",
+                "value": "application/json"
+              },
+              "Quarter is missing": {
+                "summary": "Quarter is missing",
+                "value": "application/json"
+              },
+              "Deductor access token is missing": {
+                "summary": "Deductor access token is missing",
+                "value": "application/json"
+              },
+              "Deductor access token has expired": {
+                "summary": "Deductor access token has expired",
+                "value": "application/json"
+              }
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "@entity": {
+                    "type": "string",
+                    "description": "Request entity type.",
+                    "const": "in.co.sandbox.tds.compliance.certificate.job.request",
+                    "example": "in.co.sandbox.tds.compliance.certificate.job.request"
+                  },
+                  "tax_year": {
+                    "type": "string",
+                    "description": "Tax year for the certificate request. Use the TY YYYY-YY format.",
+                    "pattern": "^TY [0-9]{4}-[0-9]{2}$",
+                    "example": "TY 2026-27"
+                  },
+                  "quarter": {
+                    "type": "string",
+                    "description": "Quarter of the tax year.",
+                    "enum": [
+                      "Q1",
+                      "Q2",
+                      "Q3",
+                      "Q4"
+                    ]
+                  }
+                },
+                "required": [
+                  "@entity",
+                  "quarter",
+                  "tax_year"
+                ],
+                "x-apidog-orders": [
+                  "@entity",
+                  "tax_year",
+                  "quarter"
+                ],
+                "additionalProperties": false,
+                "x-apidog-ignore-properties": []
+              },
+              "examples": {
+                "Non-salary TDS certificates requested": {
+                  "summary": "Non-salary TDS certificates requested",
+                  "value": {
+                    "@entity": "in.co.sandbox.tds.compliance.certificate.job.request",
+                    "tax_year": "TY 2026-27",
+                    "quarter": "Q1"
+                  }
+                },
+                "TCS certificates requested": {
+                  "summary": "TCS certificates requested",
+                  "value": {
+                    "@entity": "in.co.sandbox.tds.compliance.certificate.job.request",
+                    "tax_year": "TY 2026-27",
+                    "quarter": "Q1"
+                  }
+                },
+                "Quarter is missing": {
+                  "summary": "Quarter is missing",
+                  "value": {
+                    "@entity": "in.co.sandbox.tds.compliance.certificate.job.request",
+                    "tax_year": "TY 2026-27"
+                  }
+                },
+                "Deductor access token is missing": {
+                  "summary": "Deductor access token is missing",
+                  "value": {
+                    "@entity": "in.co.sandbox.tds.compliance.certificate.job.request",
+                    "tax_year": "TY 2026-27",
+                    "quarter": "Q1"
+                  }
+                },
+                "Deductor access token has expired": {
+                  "summary": "Deductor access token has expired",
+                  "value": {
+                    "@entity": "in.co.sandbox.tds.compliance.certificate.job.request",
+                    "tax_year": "TY 2026-27",
+                    "quarter": "Q1"
+                  }
+                }
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Certificate generation job created.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "code": {
+                      "type": "integer"
+                    },
+                    "timestamp": {
+                      "type": "integer"
+                    },
+                    "data": {
+                      "type": "object",
+                      "properties": {
+                        "@entity": {
+                          "type": "string",
+                          "description": "Certificate job entity type."
+                        },
+                        "job_id": {
+                          "type": "string",
+                          "description": "Unique identifier for the certificate job."
+                        },
+                        "tan": {
+                          "type": "string",
+                          "description": "Tax Deduction and Collection Account Number (TAN)."
+                        },
+                        "tax_year": {
+                          "type": "string",
+                          "description": "Tax year for the certificate job, in TY YYYY-YY format."
+                        },
+                        "quarter": {
+                          "type": "string",
+                          "enum": [
+                            "Q1",
+                            "Q2",
+                            "Q3",
+                            "Q4"
+                          ],
+                          "description": "Quarter of the tax year."
+                        },
+                        "created_at": {
+                          "type": "integer",
+                          "description": "Job creation time as a Unix timestamp in milliseconds."
+                        },
+                        "updated_at": {
+                          "type": "integer",
+                          "description": "Last job update time as a Unix timestamp in milliseconds, when available."
+                        },
+                        "status": {
+                          "type": "string",
+                          "enum": [
+                            "created",
+                            "queued",
+                            "in_progress",
+                            "succeeded",
+                            "failed"
+                          ],
+                          "description": "Current status of the certificate job."
+                        },
+                        "message": {
+                          "type": "string",
+                          "description": "Reason the job failed, when available."
+                        },
+                        "certificate_pdf_zip_urls": {
+                          "type": "array",
+                          "description": "Signed URLs for the certificate ZIP files, available after the job succeeds.",
+                          "items": {
+                            "type": "string",
+                            "format": "uri"
+                          }
+                        }
+                      },
+                      "required": [
+                        "@entity",
+                        "job_id",
+                        "tan",
+                        "tax_year",
+                        "quarter",
+                        "status"
+                      ],
+                      "x-apidog-orders": [
+                        "@entity",
+                        "job_id",
+                        "tan",
+                        "tax_year",
+                        "quarter",
+                        "created_at",
+                        "updated_at",
+                        "status",
+                        "message",
+                        "certificate_pdf_zip_urls"
+                      ],
+                      "x-apidog-ignore-properties": []
+                    },
+                    "transaction_id": {
+                      "type": "string",
+                      "description": "Unique identifier for the API transaction."
+                    }
+                  },
+                  "required": [
+                    "code",
+                    "timestamp",
+                    "data",
+                    "transaction_id"
+                  ],
+                  "x-apidog-orders": [
+                    "code",
+                    "timestamp",
+                    "data",
+                    "transaction_id"
+                  ],
+                  "x-apidog-ignore-properties": []
+                },
+                "examples": {
+                  "Non-salary TDS certificates requested": {
+                    "summary": "Non-salary TDS certificates requested",
+                    "value": {
+                      "code": 200,
+                      "timestamp": 1792479600000,
+                      "data": {
+                        "@entity": "in.co.sandbox.tds.compliance.certificate.job",
+                        "job_id": "4d882797-f968-474e-b05b-85cb5eba3d9a",
+                        "tan": "AHMA12345A",
+                        "tax_year": "TY 2026-27",
+                        "quarter": "Q1",
+                        "created_at": 1792479600000,
+                        "updated_at": 1792479600000,
+                        "status": "in_progress"
+                      },
+                      "transaction_id": "171f4869-bcd6-4f7d-905a-b1186b907857"
+                    }
+                  },
+                  "TCS certificates requested": {
+                    "summary": "TCS certificates requested",
+                    "value": {
+                      "code": 200,
+                      "timestamp": 1792479600000,
+                      "data": {
+                        "@entity": "in.co.sandbox.tds.compliance.certificate.job",
+                        "job_id": "4d882797-f968-474e-b05b-85cb5eba3d9a",
+                        "tan": "AHMA12345A",
+                        "tax_year": "TY 2026-27",
+                        "quarter": "Q1",
+                        "created_at": 1792479600000,
+                        "updated_at": 1792479600000,
+                        "status": "in_progress"
+                      },
+                      "transaction_id": "171f4869-bcd6-4f7d-905a-b1186b907857"
+                    }
+                  }
+                }
+              }
+            },
+            "headers": {},
+            "x-apidog-ordering": 0
+          },
+          "400": {
+            "description": "The request body or certificate type is invalid.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "code": {
+                      "type": "integer"
+                    },
+                    "timestamp": {
+                      "type": "integer"
+                    },
+                    "message": {
+                      "type": "string"
+                    },
+                    "transaction_id": {
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "code",
+                    "timestamp",
+                    "message",
+                    "transaction_id"
+                  ],
+                  "x-apidog-orders": [
+                    "code",
+                    "timestamp",
+                    "message",
+                    "transaction_id"
+                  ],
+                  "x-apidog-ignore-properties": []
+                },
+                "examples": {
+                  "Quarter is missing": {
+                    "summary": "Quarter is missing",
+                    "value": {
+                      "code": 400,
+                      "timestamp": 1792479600000,
+                      "message": "Invalid request body",
+                      "transaction_id": "171f4869-bcd6-4f7d-905a-b1186b907857"
+                    }
+                  }
+                }
+              }
+            },
+            "headers": {},
+            "x-apidog-ordering": 1
+          },
+          "401": {
+            "description": "The deductor access token is missing or expired.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "code": {
+                      "type": "integer"
+                    },
+                    "timestamp": {
+                      "type": "integer"
+                    },
+                    "message": {
+                      "type": "string"
+                    },
+                    "transaction_id": {
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "code",
+                    "timestamp",
+                    "message",
+                    "transaction_id"
+                  ],
+                  "x-apidog-orders": [
+                    "code",
+                    "timestamp",
+                    "message",
+                    "transaction_id"
+                  ],
+                  "x-apidog-ignore-properties": []
+                },
+                "examples": {
+                  "Deductor access token is missing": {
+                    "summary": "Deductor access token is missing",
+                    "value": {
+                      "code": 401,
+                      "timestamp": 1792479600000,
+                      "message": "Unauthorized",
+                      "transaction_id": "171f4869-bcd6-4f7d-905a-b1186b907857"
+                    }
+                  }
+                }
+              }
+            },
+            "headers": {},
+            "x-apidog-name": "401",
+            "x-apidog-ordering": 2
+          },
+          "403": {
+            "description": "The API key or deductor access token does not permit this request.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "code": {
+                      "type": "integer"
+                    },
+                    "timestamp": {
+                      "type": "integer"
+                    },
+                    "message": {
+                      "type": "string"
+                    },
+                    "transaction_id": {
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "code",
+                    "timestamp",
+                    "message",
+                    "transaction_id"
+                  ],
+                  "x-apidog-orders": [
+                    "code",
+                    "timestamp",
+                    "message",
+                    "transaction_id"
+                  ],
+                  "x-apidog-ignore-properties": []
+                },
+                "examples": {
+                  "Deductor access token has expired": {
+                    "summary": "Deductor access token has expired",
+                    "value": {
+                      "code": 403,
+                      "timestamp": 1792479600000,
+                      "message": "Insufficient privilege",
+                      "transaction_id": "171f4869-bcd6-4f7d-905a-b1186b907857"
+                    }
+                  }
+                }
+              }
+            },
+            "headers": {},
+            "x-apidog-name": "403",
+            "x-apidog-ordering": 3
+          },
+          "500": {
+            "description": "The request could not be completed.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "code": {
+                      "type": "integer"
+                    },
+                    "timestamp": {
+                      "type": "integer"
+                    },
+                    "message": {
+                      "type": "string"
+                    },
+                    "transaction_id": {
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "code",
+                    "timestamp",
+                    "message",
+                    "transaction_id"
+                  ],
+                  "x-apidog-orders": [
+                    "code",
+                    "timestamp",
+                    "message",
+                    "transaction_id"
+                  ],
+                  "x-apidog-ignore-properties": []
+                }
+              }
+            },
+            "headers": {},
+            "x-apidog-name": "500",
+            "x-apidog-ordering": 4
+          },
+          "503": {
+            "description": "TRACES is temporarily unavailable.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "code": {
+                      "type": "integer"
+                    },
+                    "timestamp": {
+                      "type": "integer"
+                    },
+                    "message": {
+                      "type": "string"
+                    },
+                    "transaction_id": {
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "code",
+                    "timestamp",
+                    "message",
+                    "transaction_id"
+                  ],
+                  "x-apidog-orders": [
+                    "code",
+                    "timestamp",
+                    "message",
+                    "transaction_id"
+                  ],
+                  "x-apidog-ignore-properties": []
+                }
+              }
+            },
+            "headers": {},
+            "x-apidog-name": "503",
+            "x-apidog-ordering": 5
+          }
+        },
+        "security": [],
+        "x-apidog-folder": "TRACES/TDS Certificate",
+        "x-apidog-status": "developing",
+        "x-run-in-apidog": "https://app.apidog.com/web/project/1186657/apis/api-45615475-run"
+      }
+    },
+    "/tds/compliance/traces/deductor/certificates/{certificate_type}/status": {
+      "get": {
+        "summary": "Get certificate job status",
+        "deprecated": false,
+        "description": "Get the current status of a certificate job using its job_id and certificate type. The response has status in_progress while the certificates are being prepared. A succeeded job includes signed URLs for the PDF ZIP files. A failed job includes a message describing the failure. Refresh your deductor access token if it expires, then repeat the request with the same job_id.",
+        "operationId": "GetVanillaCertificateJobStatus",
+        "tags": [
+          "TRACES/TDS Certificate",
+          "TDS Certificate"
+        ],
+        "parameters": [
+          {
+            "name": "certificate_type",
+            "in": "path",
+            "description": "Certificate type. Use 131 for TDS on non-salary payments or 133 for TCS.",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "enum": [
+                "131",
+                "133"
+              ]
+            },
+            "examples": {
+              "Certificates are being prepared": {
+                "summary": "Certificates are being prepared",
+                "value": "131"
+              },
+              "Certificates are ready": {
+                "summary": "Certificates are ready",
+                "value": "131"
+              },
+              "Certificate generation failed": {
+                "summary": "Certificate generation failed",
+                "value": "131"
+              },
+              "Job was not found": {
+                "summary": "Job was not found",
+                "value": "131"
+              },
+              "Deductor access token is missing": {
+                "summary": "Deductor access token is missing",
+                "value": "131"
+              }
+            }
+          },
+          {
+            "name": "job_id",
+            "in": "query",
+            "description": "Unique identifier returned when the certificate job was created.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "examples": {
+              "Certificates are being prepared": {
+                "summary": "Certificates are being prepared",
+                "value": "4d882797-f968-474e-b05b-85cb5eba3d9a"
+              },
+              "Certificates are ready": {
+                "summary": "Certificates are ready",
+                "value": "4d882797-f968-474e-b05b-85cb5eba3d9a"
+              },
+              "Certificate generation failed": {
+                "summary": "Certificate generation failed",
+                "value": "4d882797-f968-474e-b05b-85cb5eba3d9a"
+              },
+              "Job was not found": {
+                "summary": "Job was not found",
+                "value": "00000000-0000-4000-8000-000000000000"
+              },
+              "Deductor access token is missing": {
+                "summary": "Deductor access token is missing",
+                "value": "4d882797-f968-474e-b05b-85cb5eba3d9a"
+              }
+            }
+          },
+          {
+            "name": "Authorization",
+            "in": "header",
+            "description": "Deductor access token returned by [Authenticate a TRACES deductor](https://developer.sandbox.co.in/api-reference/tds/compliance/traces/endpoints/authenticate). The token identifies the deductor TAN.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "examples": {
+              "Certificates are being prepared": {
+                "summary": "Certificates are being prepared",
+                "value": "{{deductor_access_token}}"
+              },
+              "Certificates are ready": {
+                "summary": "Certificates are ready",
+                "value": "{{deductor_access_token}}"
+              },
+              "Certificate generation failed": {
+                "summary": "Certificate generation failed",
+                "value": "{{deductor_access_token}}"
+              },
+              "Job was not found": {
+                "summary": "Job was not found",
+                "value": "{{deductor_access_token}}"
+              }
+            }
+          },
+          {
+            "name": "x-api-key",
+            "in": "header",
+            "description": "Sandbox API key.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "examples": {
+              "Certificates are being prepared": {
+                "summary": "Certificates are being prepared",
+                "value": "{{api_key}}"
+              },
+              "Certificates are ready": {
+                "summary": "Certificates are ready",
+                "value": "{{api_key}}"
+              },
+              "Certificate generation failed": {
+                "summary": "Certificate generation failed",
+                "value": "{{api_key}}"
+              },
+              "Job was not found": {
+                "summary": "Job was not found",
+                "value": "{{api_key}}"
+              },
+              "Deductor access token is missing": {
+                "summary": "Deductor access token is missing",
+                "value": "{{api_key}}"
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Certificate job status and available download URLs.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "code": {
+                      "type": "integer"
+                    },
+                    "timestamp": {
+                      "type": "integer"
+                    },
+                    "data": {
+                      "type": "object",
+                      "properties": {
+                        "@entity": {
+                          "type": "string",
+                          "description": "Certificate job entity type."
+                        },
+                        "job_id": {
+                          "type": "string",
+                          "description": "Unique identifier for the certificate job."
+                        },
+                        "tan": {
+                          "type": "string",
+                          "description": "Tax Deduction and Collection Account Number (TAN)."
+                        },
+                        "tax_year": {
+                          "type": "string",
+                          "description": "Tax year for the certificate job, in TY YYYY-YY format."
+                        },
+                        "quarter": {
+                          "type": "string",
+                          "enum": [
+                            "Q1",
+                            "Q2",
+                            "Q3",
+                            "Q4"
+                          ],
+                          "description": "Quarter of the tax year."
+                        },
+                        "created_at": {
+                          "type": "integer",
+                          "description": "Job creation time as a Unix timestamp in milliseconds."
+                        },
+                        "updated_at": {
+                          "type": "integer",
+                          "description": "Last job update time as a Unix timestamp in milliseconds, when available."
+                        },
+                        "status": {
+                          "type": "string",
+                          "enum": [
+                            "created",
+                            "queued",
+                            "in_progress",
+                            "succeeded",
+                            "failed"
+                          ],
+                          "description": "Current status of the certificate job."
+                        },
+                        "message": {
+                          "type": "string",
+                          "description": "Reason the job failed, when available."
+                        },
+                        "certificate_pdf_zip_urls": {
+                          "type": "array",
+                          "description": "Signed URLs for the certificate ZIP files, available after the job succeeds.",
+                          "items": {
+                            "type": "string",
+                            "format": "uri"
+                          }
+                        }
+                      },
+                      "required": [
+                        "@entity",
+                        "job_id",
+                        "tan",
+                        "tax_year",
+                        "quarter",
+                        "status"
+                      ],
+                      "x-apidog-orders": [
+                        "@entity",
+                        "job_id",
+                        "tan",
+                        "tax_year",
+                        "quarter",
+                        "created_at",
+                        "updated_at",
+                        "status",
+                        "message",
+                        "certificate_pdf_zip_urls"
+                      ],
+                      "x-apidog-ignore-properties": []
+                    },
+                    "transaction_id": {
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "code",
+                    "timestamp",
+                    "data",
+                    "transaction_id"
+                  ],
+                  "x-apidog-orders": [
+                    "code",
+                    "timestamp",
+                    "data",
+                    "transaction_id"
+                  ],
+                  "x-apidog-ignore-properties": []
+                },
+                "examples": {
+                  "Certificates are being prepared": {
+                    "summary": "Certificates are being prepared",
+                    "value": {
+                      "code": 200,
+                      "timestamp": 1792479600000,
+                      "data": {
+                        "@entity": "in.co.sandbox.tds.compliance.certificate.job",
+                        "job_id": "4d882797-f968-474e-b05b-85cb5eba3d9a",
+                        "tan": "AHMA12345A",
+                        "tax_year": "TY 2026-27",
+                        "quarter": "Q1",
+                        "created_at": 1792479600000,
+                        "updated_at": 1792479600000,
+                        "status": "in_progress"
+                      },
+                      "transaction_id": "171f4869-bcd6-4f7d-905a-b1186b907857"
+                    }
+                  },
+                  "Certificates are ready": {
+                    "summary": "Certificates are ready",
+                    "value": {
+                      "code": 200,
+                      "timestamp": 1792479600000,
+                      "data": {
+                        "@entity": "in.co.sandbox.tds.compliance.certificate.job",
+                        "job_id": "4d882797-f968-474e-b05b-85cb5eba3d9a",
+                        "tan": "AHMA12345A",
+                        "tax_year": "TY 2026-27",
+                        "quarter": "Q1",
+                        "created_at": 1792479600000,
+                        "updated_at": 1792479600000,
+                        "status": "succeeded",
+                        "certificate_pdf_zip_urls": [
+                          "https://example-bucket.s3.ap-south-1.amazonaws.com/workspace-id/job-id/certificates.zip?X-Amz-Expires=86400&X-Amz-Signature=example"
+                        ]
+                      },
+                      "transaction_id": "171f4869-bcd6-4f7d-905a-b1186b907857"
+                    }
+                  },
+                  "Certificate generation failed": {
+                    "summary": "Certificate generation failed",
+                    "value": {
+                      "code": 200,
+                      "timestamp": 1792479600000,
+                      "data": {
+                        "@entity": "in.co.sandbox.tds.compliance.certificate.job",
+                        "job_id": "4d882797-f968-474e-b05b-85cb5eba3d9a",
+                        "tan": "AHMA12345A",
+                        "tax_year": "TY 2026-27",
+                        "quarter": "Q1",
+                        "created_at": 1792479600000,
+                        "updated_at": 1792479600000,
+                        "status": "failed",
+                        "message": "Failed to generate certificate PDFs"
+                      },
+                      "transaction_id": "171f4869-bcd6-4f7d-905a-b1186b907857"
+                    }
+                  }
+                }
+              }
+            },
+            "headers": {},
+            "x-apidog-ordering": 0
+          },
+          "401": {
+            "description": "The deductor access token is missing or expired.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "code": {
+                      "type": "integer"
+                    },
+                    "timestamp": {
+                      "type": "integer"
+                    },
+                    "message": {
+                      "type": "string"
+                    },
+                    "transaction_id": {
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "code",
+                    "timestamp",
+                    "message",
+                    "transaction_id"
+                  ],
+                  "x-apidog-orders": [
+                    "code",
+                    "timestamp",
+                    "message",
+                    "transaction_id"
+                  ],
+                  "x-apidog-ignore-properties": []
+                },
+                "examples": {
+                  "Deductor access token is missing": {
+                    "summary": "Deductor access token is missing",
+                    "value": {
+                      "code": 401,
+                      "timestamp": 1792479600000,
+                      "message": "Unauthorized",
+                      "transaction_id": "171f4869-bcd6-4f7d-905a-b1186b907857"
+                    }
+                  }
+                }
+              }
+            },
+            "headers": {},
+            "x-apidog-name": "401",
+            "x-apidog-ordering": 2
+          },
+          "403": {
+            "description": "The API key or deductor access token does not permit this request.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "code": {
+                      "type": "integer"
+                    },
+                    "timestamp": {
+                      "type": "integer"
+                    },
+                    "message": {
+                      "type": "string"
+                    },
+                    "transaction_id": {
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "code",
+                    "timestamp",
+                    "message",
+                    "transaction_id"
+                  ],
+                  "x-apidog-orders": [
+                    "code",
+                    "timestamp",
+                    "message",
+                    "transaction_id"
+                  ],
+                  "x-apidog-ignore-properties": []
+                }
+              }
+            },
+            "headers": {},
+            "x-apidog-name": "403",
+            "x-apidog-ordering": 3
+          },
+          "500": {
+            "description": "The request could not be completed.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "code": {
+                      "type": "integer"
+                    },
+                    "timestamp": {
+                      "type": "integer"
+                    },
+                    "message": {
+                      "type": "string"
+                    },
+                    "transaction_id": {
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "code",
+                    "timestamp",
+                    "message",
+                    "transaction_id"
+                  ],
+                  "x-apidog-orders": [
+                    "code",
+                    "timestamp",
+                    "message",
+                    "transaction_id"
+                  ],
+                  "x-apidog-ignore-properties": []
+                }
+              }
+            },
+            "headers": {},
+            "x-apidog-name": "500",
+            "x-apidog-ordering": 4
+          },
+          "503": {
+            "description": "TRACES is temporarily unavailable.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "code": {
+                      "type": "integer"
+                    },
+                    "timestamp": {
+                      "type": "integer"
+                    },
+                    "message": {
+                      "type": "string"
+                    },
+                    "transaction_id": {
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "code",
+                    "timestamp",
+                    "message",
+                    "transaction_id"
+                  ],
+                  "x-apidog-orders": [
+                    "code",
+                    "timestamp",
+                    "message",
+                    "transaction_id"
+                  ],
+                  "x-apidog-ignore-properties": []
+                }
+              }
+            },
+            "headers": {},
+            "x-apidog-name": "503",
+            "x-apidog-ordering": 5
+          },
+          "521": {
+            "description": "No certificate job matches the supplied job_id and certificate type for this deductor.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "code": {
+                      "type": "integer"
+                    },
+                    "timestamp": {
+                      "type": "integer"
+                    },
+                    "message": {
+                      "type": "string"
+                    },
+                    "transaction_id": {
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "code",
+                    "timestamp",
+                    "message",
+                    "transaction_id"
+                  ],
+                  "x-apidog-orders": [
+                    "code",
+                    "timestamp",
+                    "message",
+                    "transaction_id"
+                  ],
+                  "x-apidog-ignore-properties": []
+                },
+                "examples": {
+                  "Job was not found": {
+                    "summary": "Job was not found",
+                    "value": {
+                      "code": 521,
+                      "timestamp": 1792479600000,
+                      "message": "Data not found",
+                      "transaction_id": "171f4869-bcd6-4f7d-905a-b1186b907857"
+                    }
+                  }
+                }
+              }
+            },
+            "headers": {},
+            "x-apidog-ordering": 1
+          }
+        },
+        "security": [],
+        "x-apidog-folder": "TRACES/TDS Certificate",
+        "x-apidog-status": "developing",
+        "x-run-in-apidog": "https://app.apidog.com/web/project/1186657/apis/api-45615479-run"
+      }
     }
   },
   "components": {
