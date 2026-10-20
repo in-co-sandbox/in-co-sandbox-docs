@@ -8028,9 +8028,10 @@
       "get": {
         "summary": "Get bulk PAN verification status",
         "deprecated": false,
-        "description": "Check a PAN verification request using its TRACES token number. While the report is unavailable, the response contains the TRACES status history and rejection remarks. When the report is available, data contains only output_json_url, a signed URL for the PAN verification workbook. The URL is valid for one day and the file is retained for 30 days. The output contains PANs returned by TRACES, their source status text, and serial numbers assigned in report order.",
+        "description": "Retrieve the processing state or completed report for a PAN verification request using its TRACES token number. While the report is being prepared, the response contains token_number, status set to in_progress, and rejection_remarks. When the report is available, data contains only output_json_url, a signed URL for the PAN verification workbook. The URL is valid for one day and the file is retained for 30 days. The output contains PANs returned by TRACES, their unchanged pan_status text, and serial numbers assigned in report order.",
         "operationId": "getTracesPanVerificationStatus",
         "tags": [
+          "TRACES/PAN verification",
           "TRACES",
           "PAN verification"
         ],
@@ -8055,6 +8056,10 @@
               "Missing deductor access token": {
                 "summary": "Missing deductor access token",
                 "value": "26102348059"
+              },
+              "Verification in progress": {
+                "summary": "Verification in progress",
+                "value": "26102348059"
               }
             }
           },
@@ -8077,6 +8082,10 @@
               },
               "Missing token number": {
                 "summary": "Missing token number",
+                "value": "{{deductor_access_token}}"
+              },
+              "Verification in progress": {
+                "summary": "Verification in progress",
                 "value": "{{deductor_access_token}}"
               }
             }
@@ -8105,6 +8114,10 @@
               "Missing deductor access token": {
                 "summary": "Missing deductor access token",
                 "value": "{{api_key}}"
+              },
+              "Verification in progress": {
+                "summary": "Verification in progress",
+                "value": "{{api_key}}"
               }
             }
           },
@@ -8132,13 +8145,17 @@
               "Missing deductor access token": {
                 "summary": "Missing deductor access token",
                 "value": "application/json"
+              },
+              "Verification in progress": {
+                "summary": "Verification in progress",
+                "value": "application/json"
               }
             }
           }
         ],
         "responses": {
           "200": {
-            "description": "The TRACES status history or the signed URL for the completed PAN verification workbook.",
+            "description": "The current processing state or the signed URL for the completed PAN verification workbook.",
             "content": {
               "application/json": {
                 "schema": {
@@ -8167,11 +8184,11 @@
                               "description": "Token number assigned by TRACES to this PAN verification request."
                             },
                             "status": {
-                              "type": "array",
-                              "items": {
-                                "type": "string"
-                              },
-                              "description": "Processing status history returned by TRACES. Values are returned unchanged."
+                              "type": "string",
+                              "enum": [
+                                "in_progress"
+                              ],
+                              "description": "The verification report is being prepared."
                             },
                             "rejection_remarks": {
                               "type": [
@@ -8186,7 +8203,13 @@
                             "status",
                             "rejection_remarks"
                           ],
-                          "additionalProperties": false
+                          "additionalProperties": false,
+                          "x-apidog-ignore-properties": [],
+                          "x-apidog-orders": [
+                            "token_number",
+                            "status",
+                            "rejection_remarks"
+                          ]
                         },
                         {
                           "type": "object",
@@ -8200,7 +8223,11 @@
                           "required": [
                             "output_json_url"
                           ],
-                          "additionalProperties": false
+                          "additionalProperties": false,
+                          "x-apidog-ignore-properties": [],
+                          "x-apidog-orders": [
+                            "output_json_url"
+                          ]
                         }
                       ]
                     }
@@ -8211,7 +8238,14 @@
                     "transaction_id",
                     "data"
                   ],
-                  "additionalProperties": false
+                  "additionalProperties": false,
+                  "x-apidog-ignore-properties": [],
+                  "x-apidog-orders": [
+                    "code",
+                    "timestamp",
+                    "transaction_id",
+                    "data"
+                  ]
                 },
                 "examples": {
                   "Verification report available": {
@@ -8224,10 +8258,25 @@
                       },
                       "transaction_id": "d14d4747-9478-4557-b357-fe143549939d"
                     }
+                  },
+                  "Verification in progress": {
+                    "summary": "Verification in progress",
+                    "value": {
+                      "code": 200,
+                      "timestamp": 1792265454381,
+                      "data": {
+                        "token_number": "26102348059",
+                        "status": "in_progress",
+                        "rejection_remarks": null
+                      },
+                      "transaction_id": "d14d4747-9478-4557-b357-fe143549939d"
+                    }
                   }
                 }
               }
-            }
+            },
+            "x-apidog-name": "Success",
+            "x-apidog-ordering": 0
           },
           "400": {
             "description": "Required request data is missing or invalid.",
@@ -8259,7 +8308,14 @@
                     "transaction_id",
                     "message"
                   ],
-                  "additionalProperties": false
+                  "additionalProperties": false,
+                  "x-apidog-ignore-properties": [],
+                  "x-apidog-orders": [
+                    "code",
+                    "timestamp",
+                    "transaction_id",
+                    "message"
+                  ]
                 },
                 "examples": {
                   "Missing token number": {
@@ -8273,7 +8329,9 @@
                   }
                 }
               }
-            }
+            },
+            "x-apidog-name": "Invalid request",
+            "x-apidog-ordering": 1
           },
           "401": {
             "description": "The deductor access token is not valid for this request.",
@@ -8305,7 +8363,14 @@
                     "transaction_id",
                     "message"
                   ],
-                  "additionalProperties": false
+                  "additionalProperties": false,
+                  "x-apidog-ignore-properties": [],
+                  "x-apidog-orders": [
+                    "code",
+                    "timestamp",
+                    "transaction_id",
+                    "message"
+                  ]
                 },
                 "examples": {
                   "Missing deductor access token": {
@@ -8319,7 +8384,9 @@
                   }
                 }
               }
-            }
+            },
+            "x-apidog-name": "Unauthorized",
+            "x-apidog-ordering": 2
           },
           "403": {
             "description": "Access to this API is denied.",
@@ -8351,10 +8418,19 @@
                     "transaction_id",
                     "message"
                   ],
-                  "additionalProperties": false
+                  "additionalProperties": false,
+                  "x-apidog-ignore-properties": [],
+                  "x-apidog-orders": [
+                    "code",
+                    "timestamp",
+                    "transaction_id",
+                    "message"
+                  ]
                 }
               }
-            }
+            },
+            "x-apidog-name": "Insufficient privilege",
+            "x-apidog-ordering": 3
           },
           "500": {
             "description": "The request could not be completed.",
@@ -8386,10 +8462,19 @@
                     "transaction_id",
                     "message"
                   ],
-                  "additionalProperties": false
+                  "additionalProperties": false,
+                  "x-apidog-ignore-properties": [],
+                  "x-apidog-orders": [
+                    "code",
+                    "timestamp",
+                    "transaction_id",
+                    "message"
+                  ]
                 }
               }
-            }
+            },
+            "x-apidog-name": "Internal server error",
+            "x-apidog-ordering": 4
           },
           "503": {
             "description": "TRACES could not complete the request.",
@@ -8421,10 +8506,19 @@
                     "transaction_id",
                     "message"
                   ],
-                  "additionalProperties": false
+                  "additionalProperties": false,
+                  "x-apidog-ignore-properties": [],
+                  "x-apidog-orders": [
+                    "code",
+                    "timestamp",
+                    "transaction_id",
+                    "message"
+                  ]
                 }
               }
-            }
+            },
+            "x-apidog-name": "Source unavailable",
+            "x-apidog-ordering": 5
           },
           "521": {
             "description": "No PAN verification request matches the token number for the authenticated deductor.",
@@ -8456,7 +8550,14 @@
                     "transaction_id",
                     "message"
                   ],
-                  "additionalProperties": false
+                  "additionalProperties": false,
+                  "x-apidog-ignore-properties": [],
+                  "x-apidog-orders": [
+                    "code",
+                    "timestamp",
+                    "transaction_id",
+                    "message"
+                  ]
                 },
                 "examples": {
                   "Token number not found": {
@@ -8470,7 +8571,9 @@
                   }
                 }
               }
-            }
+            },
+            "x-apidog-name": "Data not found",
+            "x-apidog-ordering": 6
           }
         },
         "security": [],
@@ -8531,8 +8634,26 @@
                 "Content-Type": "application/json"
               }
             }
+          },
+          "Verification in progress": {
+            "summary": "Verification in progress",
+            "value": {
+              "method": "GET",
+              "path": "/tds/compliance/traces/deductors/pan/verify/status",
+              "query": {
+                "token_number": "26102348059"
+              },
+              "headers": {
+                "Authorization": "{{deductor_access_token}}",
+                "x-api-key": "{{api_key}}",
+                "Content-Type": "application/json"
+              }
+            }
           }
-        }
+        },
+        "x-apidog-folder": "TRACES/PAN verification",
+        "x-apidog-status": "released",
+        "x-run-in-apidog": "https://app.apidog.com/web/project/1186657/apis/api-45512323-run"
       }
     },
     "/tds/compliance/traces/deductor/certificates/{certificate_type}": {

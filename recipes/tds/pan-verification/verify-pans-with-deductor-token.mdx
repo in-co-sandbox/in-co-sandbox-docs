@@ -59,7 +59,7 @@ The examples use sample tokens and a fictional token number. Replace these value
     ```
     </Accordion>
 
-    While the report is unavailable, `data` contains `token_number`, the TRACES `status` array, and `rejection_remarks`. Check again later if TRACES is still processing the submission. Review any rejection remarks before submitting another workbook.
+    While the report is unavailable, `data.status` is `in_progress`. The response also contains `token_number` and `rejection_remarks`. Check again later using the same token number.
 
     When the report is available, `data` contains only `output_json_url`.
   </Step>

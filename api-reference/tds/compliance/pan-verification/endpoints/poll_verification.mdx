@@ -1,7 +1,7 @@
 ---
 title: "Get TRACES PAN verification status"
 sidebarTitle: "Get verification status"
-description: "Check a TRACES PAN verification token number. Get the source status while processing or a signed JSON workbook download URL when available."
+description: "Check a TRACES PAN verification token number. Get in_progress while processing or a signed JSON workbook download URL when available."
 keywords:
   - TRACES PAN verification status
   - bulk PAN verification result
@@ -11,7 +11,7 @@ openapi: '/api-reference/tds/compliance/openapi.json GET /tds/compliance/traces/
 
 Pass the TRACES `token_number` as a query parameter and `deductor_access_token` in the `Authorization` header. This request has no body.
 
-While the report is unavailable, `data` contains `token_number`, the TRACES `status` array, and `rejection_remarks`. Status values and rejection remarks retain the source text.
+While the report is unavailable, `data.status` is `in_progress`. The response also contains `token_number` and `rejection_remarks`. Check again later using the same token number.
 
 When the report is available, `data` contains only `output_json_url`. Download the [PAN verification workbook](/api-reference/tds/compliance/pan-verification/vanilla_pan_verification_workbook) from this signed URL within 24 hours. Generated files are retained for 30 days.
 
