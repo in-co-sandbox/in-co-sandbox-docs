@@ -9472,6 +9472,46 @@
             "headers": {},
             "x-apidog-ordering": 0
           },
+          "400": {
+            "description": "Required request parameters are missing, or the certificate type is not supported.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "code": {
+                      "type": "integer"
+                    },
+                    "timestamp": {
+                      "type": "integer"
+                    },
+                    "message": {
+                      "type": "string"
+                    },
+                    "transaction_id": {
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "code",
+                    "timestamp",
+                    "message",
+                    "transaction_id"
+                  ],
+                  "x-apidog-orders": [
+                    "code",
+                    "timestamp",
+                    "message",
+                    "transaction_id"
+                  ],
+                  "x-apidog-ignore-properties": []
+                }
+              }
+            },
+            "headers": {},
+            "x-apidog-name": "Bad request",
+            "x-apidog-ordering": 6
+          },
           "401": {
             "description": "The deductor access token is missing or expired.",
             "content": {
