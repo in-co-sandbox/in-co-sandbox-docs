@@ -1,0 +1,19 @@
+---
+title: "Get certificate job status with a deductor token"
+sidebarTitle: "Get certificate job status"
+description: "Check a Form 131 or Form 133 certificate job with a deductor token. Retrieve PDF ZIP URLs when the job succeeds."
+keywords:
+  - TRACES certificate job status
+  - deductor access token
+  - Form 131 certificate download
+  - Form 133 certificate download
+openapi: '/api-reference/tds/compliance/openapi.json GET /tds/compliance/traces/deductor/certificates/{certificate_type}/status'
+---
+
+Use the same certificate type as the create request and its returned `job_id`. The `Authorization` header requires a deductor access token for the same TAN.
+
+Continue polling while `data.status` is `in_progress`. A `succeeded` job includes `data.certificate_pdf_zip_urls`. A `failed` job still returns HTTP `200`, with the reason in `data.message`.
+
+If token expiry causes HTTP `403`, [refresh the deductor session](/api-reference/tds/compliance/traces/endpoints/refresh) and retry with the same `job_id`. If the refresh token is rejected, [authenticate again](/api-reference/tds/compliance/traces/endpoints/authenticate).
+
+See [Generate certificates with a deductor token](/recipes/tds/certificates/generate-with-deductor-token) for the complete cURL workflow.

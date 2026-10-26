@@ -1,7 +1,7 @@
 ---
 title: "TDS certificate API"
 sidebarTitle: "TDS certificate API"
-description: "Generate and download TDS and TCS certificates: Form 130 (formerly Form 16), Form 131 (formerly Form 16A), and Form 133."
+description: "Generate and download Form 131 and Form 133 certificates with a deductor access token or saved TRACES credentials."
 keywords:
   - TDS certificate API
   - TDS certificate
@@ -14,23 +14,33 @@ keywords:
   - Form 16 API
   - Form 16A API
   - certificate job API
+  - deductor access token
 ---
 
-The TDS certificate API generates TDS and TCS certificates from TRACES. Use the API to request certificates, check job progress, and download certificate PDFs.
+The TDS certificate API generates TDS and TCS certificates from TRACES. Use a deductor token or saved TRACES credentials to request certificates, check progress, and download PDF ZIP files.
 
 <div id="choose-a-certificate" />
 
 ## Supported certificates
 
-The API supports these certificates under the Income-tax Act, 2025.
+The certificate APIs support these forms under the Income-tax Act, 2025. Form 130 is available only through the enriched APIs.
 
-| Certificate | Earlier name | Use it for |
-|:------------|:-------------|:-----------|
-| [Form 130](/recipes/tds/form-130/generate-form-130-certificates) | Form 16 | Salary TDS, pension, or specified senior citizen interest |
-| [Form 131](/recipes/tds/form-131/generate-form-131-certificates) | Form 16A | TDS on income other than salary |
-| Form 133 | Form 27D | Tax Collected at Source, or TCS |
+| Certificate | Earlier name | Use it for | Integration |
+|:------------|:-------------|:-----------|:------------|
+| [Form 130](/recipes/tds/form-130/generate-form-130-certificates) | Form 16 | Salary TDS, pension, or specified senior citizen interest | Enriched APIs only |
+| [Form 131](/recipes/tds/form-131/generate-form-131-certificates) | Form 16A | TDS on income other than salary | Deductor token or enriched APIs |
+| Form 133 | Form 27D | Tax Collected at Source, or TCS | Deductor token or enriched APIs |
 
 The Income Tax Department documents these mappings in its [Form 130 FAQs](https://www.incometaxindia.gov.in/documents/d/guest/form-130-faqs), [Form 131 FAQs](https://www.incometaxindia.gov.in/documents/d/guest/form-131-faqs), and [Form 133 FAQs](https://www.incometaxindia.gov.in/documents/d/guest/form-133-faqs).
+
+## Choose your integration
+
+Choose how you authenticate the deductor and check job completion.
+
+| Integration | Before you request certificates | Check completion |
+|:------------|:--------------------------------|:-----------------|
+| [Deductor token](/recipes/tds/certificates/generate-with-deductor-token) | Authenticate the deductor and send the returned deductor access token. You manage token refresh. | Poll the certificate job status. |
+| [Enriched APIs](/api-reference/tds/compliance/certificates/endpoints/submit_job) | Save the TRACES credentials for the TAN and send your Sandbox access token. Sandbox manages the TRACES session. | Poll the status or configure an enriched certificate webhook. |
 
 <div id="what-you-receive" />
 <div id="certificate-downloads" />
@@ -39,13 +49,13 @@ The Income Tax Department documents these mappings in its [Form 130 FAQs](https:
 
 <Steps>
   <Step title="Request certificates">
-    Select the certificate type in the request path. Submit the TAN, tax year, and quarter in the request body.
+    Select a supported certificate type in your chosen endpoint. Submit the tax year and quarter in the request body. Include the TAN only for enriched requests.
   </Step>
   <Step title="Check progress">
-    Check the job status periodically, or configure a webhook before submitting the job to receive a completion notification.
+    Poll the status endpoint with the returned `job_id`. Enriched jobs also support [webhook notifications](/api-reference/tds/compliance/certificates/endpoints/webhook).
   </Step>
   <Step title="Download certificates">
-    When the job succeeds, use the download URLs in the status response to download ZIP files containing the certificate PDFs.
+    When the job succeeds, download each ZIP file from `data.certificate_pdf_zip_urls` in the status response.
   </Step>
 </Steps>
 
@@ -55,10 +65,14 @@ The Income Tax Department documents these mappings in its [Form 130 FAQs](https:
 
 ## Before you start
 
-- A Sandbox access token. See the [Quickstart guide](/guides/get-started/quickstart).
-- The TAN and its [TRACES credentials](/api-reference/tds/compliance/traces-credentials/endpoints/save_credential).
+- A Sandbox API key and access token. See the [Quickstart guide](/guides/get-started/quickstart).
+- The TAN and its TRACES password.
 - The certificate type, tax year, and quarter for the request.
 - A statement that TRACES has processed, with certificates available for download.
+
+For the deductor-token workflow, [authenticate the deductor](/api-reference/tds/compliance/traces/endpoints/authenticate) with your Sandbox access token. Use the returned deductor access token for certificate requests. When that token expires, [refresh the deductor session](/api-reference/tds/compliance/traces/endpoints/refresh) before continuing to poll the same job.
+
+For enriched APIs, [save the TRACES credentials](/api-reference/tds/compliance/traces-credentials/endpoints/save_credential) for the TAN. Certificate requests use your Sandbox access token.
 
 <Note>
 Form 130 certificate generation is available after the tax year ends and TRACES processes the corresponding Form 138 statement.
@@ -69,17 +83,29 @@ Form 130 certificate generation is available after the tax year ends and TRACES 
 ## Integration guides
 
 <CardGroup cols={2}>
+  <Card title="Generate certificates with a deductor token" icon="file-lines" href="/recipes/tds/certificates/generate-with-deductor-token">
+    Authenticate the deductor, request Form 131 or Form 133 certificates, and poll for the PDF ZIP files.
+  </Card>
   <Card title="Form 130 certificate availability" icon="file-lines" href="/recipes/tds/form-130/generate-form-130-certificates">
     Check salary certificate prerequisites and availability before submitting a Form 130 job.
   </Card>
-  <Card title="Generate Form 131 certificates" icon="file-lines" href="/recipes/tds/form-131/generate-form-131-certificates">
-    Follow the cURL examples to create a non-salary TDS certificate job and download the certificates.
+  <Card title="Generate Form 131 with saved credentials" icon="file-lines" href="/recipes/tds/form-131/generate-form-131-certificates">
+    Use the enriched APIs to request non-salary TDS certificates and download the PDF ZIP files.
   </Card>
 </CardGroup>
 
 <div id="certificate-endpoints" />
 
 ## Certificate APIs
+
+### With a deductor token
+
+| API | Use it to |
+|:----|:----------|
+| [Create certificate job](/api-reference/tds/compliance/certificates/endpoints/submit_with_deductor_token) | Request Form 131 or Form 133 certificate generation. |
+| [Get certificate job status](/api-reference/tds/compliance/certificates/endpoints/poll_with_deductor_token) | Check progress and retrieve download URLs. |
+
+### Enriched APIs
 
 | API | Use it to |
 |:----|:----------|

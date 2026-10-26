@@ -39,6 +39,8 @@
 - [TDS Reports API](https://developer.sandbox.co.in/api-reference/tds/reports/overview.md)
 - [TDS compliance API](https://developer.sandbox.co.in/api-reference/tds/compliance/overview.md): Download CSI files, validate and e-file TDS and TCS returns, and generate certificates with Sandbox's TDS compliance APIs.
 - [TDS certificate API](https://developer.sandbox.co.in/api-reference/tds/compliance/certificates/overview.md): Generate and download TDS and TCS certificates: Form 130 (formerly Form 16), Form 131 (formerly Form 16A), and Form 133.
+- [Create a certificate job with a deductor token](https://developer.sandbox.co.in/api-reference/tds/compliance/certificates/endpoints/submit_with_deductor_token.md): Request Form 131 or Form 133 certificates using a deductor access token, tax year, and quarter.
+- [Get certificate job status with a deductor token](https://developer.sandbox.co.in/api-reference/tds/compliance/certificates/endpoints/poll_with_deductor_token.md): Check progress using the job ID and retrieve PDF ZIP download URLs when the job succeeds.
 - [Income Tax API](https://developer.sandbox.co.in/api-reference/it/overview.md)
 - [Income Tax Compliance API](https://developer.sandbox.co.in/api-reference/it/compliance/overview.md)
 - [Income Tax Calculator APIs](https://developer.sandbox.co.in/api-reference/it/calculator/overview.md)
@@ -55,6 +57,7 @@
 - [KYC API Recipes](https://developer.sandbox.co.in/recipes/kyc/introduction.md): Production-ready KYC API integration recipes for PAN verification, Aadhaar validation, and DigiLocker document retrieval. Step-by-step implementation guides with code samples.
 - [GST API Recipes](https://developer.sandbox.co.in/recipes/gst/introduction.md): Production-ready GST API integration recipes for GSTR-1, GSTR-3B, GSTR-9, E-Invoice, and E-Way Bill. Step-by-step implementation guides with code samples.
 - [TDS API recipes](https://developer.sandbox.co.in/recipes/tds/introduction.md): Follow API recipes to prepare and file TDS returns, download filing receipts, and generate TDS certificates through TRACES.
+- [Generate certificates with a deductor access token](https://developer.sandbox.co.in/recipes/tds/certificates/generate-with-deductor-token.md): Authenticate a TRACES deductor, create a Form 131 or Form 133 job, poll its status, and download the certificate ZIP files.
 - [Income Tax API Recipes](https://developer.sandbox.co.in/recipes/it/introduction.md): Production-ready Income Tax API integration recipes for ITR filing, tax computation, and compliance automation. Step-by-step implementation guides with code samples.
 
 ## OpenAPI specifications

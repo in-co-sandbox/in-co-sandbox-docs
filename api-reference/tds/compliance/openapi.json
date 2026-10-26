@@ -4301,7 +4301,7 @@
             "headers": {}
           },
           "401": {
-            "description": "The deductor access token is missing or expired.",
+            "description": "The deductor access token is missing.",
             "content": {
               "application/json": {
                 "schema": {
@@ -4343,7 +4343,7 @@
             "headers": {}
           },
           "403": {
-            "description": "The API key or deductor access token does not permit this request.",
+            "description": "The deductor access token has expired, or the API key or deductor token does not permit this request.",
             "content": {
               "application/json": {
                 "schema": {
@@ -4479,9 +4479,30 @@
             "in": "query",
             "description": "Unique identifier returned when the certificate job was created.",
             "required": true,
-            "example": "{{certificate_job_id}}",
             "schema": {
               "type": "string"
+            },
+            "examples": {
+              "Certificates are being prepared": {
+                "summary": "Certificates are being prepared",
+                "value": "4d882797-f968-474e-b05b-85cb5eba3d9a"
+              },
+              "Certificates are ready": {
+                "summary": "Certificates are ready",
+                "value": "4d882797-f968-474e-b05b-85cb5eba3d9a"
+              },
+              "Certificate generation failed": {
+                "summary": "Certificate generation failed",
+                "value": "4d882797-f968-474e-b05b-85cb5eba3d9a"
+              },
+              "Job was not found": {
+                "summary": "Job was not found",
+                "value": "00000000-0000-4000-8000-000000000000"
+              },
+              "Deductor access token is missing": {
+                "summary": "Deductor access token is missing",
+                "value": "4d882797-f968-474e-b05b-85cb5eba3d9a"
+              }
             }
           },
           {
@@ -4696,7 +4717,7 @@
             "headers": {}
           },
           "401": {
-            "description": "The deductor access token is missing or expired.",
+            "description": "The deductor access token is missing.",
             "content": {
               "application/json": {
                 "schema": {
@@ -4738,7 +4759,7 @@
             "headers": {}
           },
           "403": {
-            "description": "The API key or deductor access token does not permit this request.",
+            "description": "The deductor access token has expired, or the API key or deductor token does not permit this request.",
             "content": {
               "application/json": {
                 "schema": {

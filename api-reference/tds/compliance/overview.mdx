@@ -48,7 +48,12 @@ Sandbox's TDS compliance APIs support return validation, e-filing, and certifica
 
 ## Generate certificates through TRACES
 
-[Save the TRACES credentials](/api-reference/tds/compliance/traces-credentials/endpoints/save_credential) for the TAN in your Sandbox workspace before creating a certificate job. Sandbox manages the TRACES session and certificate generation. Use the returned `job_id` to check progress, or configure a [certificate webhook](/api-reference/tds/compliance/certificates/endpoints/webhook) for completion notifications.
+Choose the certificate workflow that fits your integration:
+
+- [Use a deductor token](/recipes/tds/certificates/generate-with-deductor-token) for Form 131 or Form 133. You authenticate the deductor, refresh tokens, and poll the job status.
+- [Use saved TRACES credentials](/api-reference/tds/compliance/certificates/endpoints/submit_job) with the enriched APIs for Form 130, Form 131, or Form 133. Sandbox manages the TRACES session. You can poll the job status or configure an enriched [certificate webhook](/api-reference/tds/compliance/certificates/endpoints/webhook).
+
+Both workflows return a `job_id` to check progress and retrieve the certificate download URLs. See the [certificate overview](/api-reference/tds/compliance/certificates/overview#choose-your-integration) to compare them.
 
 <div id="return-filing-workflow" />
 
@@ -101,9 +106,9 @@ Get your API key and access token from the [Quickstart guide](/guides/get-starte
 
 - [Return validation](/api-reference/tds/compliance/generate-fvu/endpoints/submit_job): A return text file and supporting files.
 - [E-filing](/api-reference/tds/compliance/e-file/endpoints/submit_job): An FVU file and Form 27A.
-- [Certificates](/api-reference/tds/compliance/certificates/overview#requirements): TRACES credentials and certificates available for the requested period.
+- [Certificates](/api-reference/tds/compliance/certificates/overview#requirements): A deductor token or saved TRACES credentials, and certificates available for the requested period.
 
-FVU generation, e-filing, and certificate generation run as background jobs. See the [job-based API workflow](/guides/developer-resources/job_based_apis#how-it-works) for uploads and completion checks.
+FVU generation and e-filing run as background jobs with file uploads. See the [job-based API workflow](/guides/developer-resources/job_based_apis#how-it-works) for uploads and completion checks. Certificate jobs take the period details directly in the request body and require no file upload.
 
 <div id="recipes" />
 
@@ -121,8 +126,11 @@ Follow a guide to file a return or generate certificates.
   <Card title="Form 130 TDS certificates" icon="badge-check" href="/recipes/tds/form-130/generate-form-130-certificates">
     Check when Form 130 certificates become available after Form 138 processing.
   </Card>
-  <Card title="Generate Form 131 certificates" icon="badge-check" href="/recipes/tds/form-131/generate-form-131-certificates">
-    Download Form 131 certificates after Form 140 or Form 144 filing.
+  <Card title="Generate Form 131 with saved credentials" icon="badge-check" href="/recipes/tds/form-131/generate-form-131-certificates">
+    Use enriched APIs to download Form 131 certificates after Form 140 or Form 144 filing.
+  </Card>
+  <Card title="Generate certificates with a deductor token" icon="badge-check" href="/recipes/tds/certificates/generate-with-deductor-token">
+    Authenticate the deductor and poll for Form 131 or Form 133 certificate downloads.
   </Card>
 </CardGroup>
 
@@ -159,4 +167,4 @@ Follow a guide to file a return or generate certificates.
 
 ### TDS certificate APIs
 
-See the [certificate endpoints](/api-reference/tds/compliance/certificates/overview#certificate-endpoints) to submit a generation job, check its status, search jobs, or configure a webhook.
+See the [certificate endpoints](/api-reference/tds/compliance/certificates/overview#certificate-endpoints) to create a certificate job and check its status. The enriched certificate APIs also support job searches and webhooks.
