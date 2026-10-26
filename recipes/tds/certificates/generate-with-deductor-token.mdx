@@ -1,0 +1,130 @@
+---
+title: "Generate certificates with a deductor token"
+sidebarTitle: "Generate certificates with a deductor token"
+description: "Authenticate a TRACES deductor, create a Form 131 or Form 133 certificate job, poll its status, and download PDF ZIP files with cURL."
+keywords:
+  - TRACES certificate download
+  - deductor access token
+  - Form 131 certificate API
+  - Form 133 certificate API
+  - TDS certificate API
+  - TCS certificate API
+---
+
+Generate Form 131 TDS or Form 133 TCS certificates from TRACES with a deductor access token. You manage the deductor session and continue polling until the certificate job succeeds or fails.
+
+## Before you start
+
+- Obtain a Sandbox API key and access token using the [Quickstart guide](/guides/get-started/quickstart).
+- Keep the deductor's TAN and TRACES password ready.
+- Confirm that TRACES has processed the relevant statement and made the certificates available for the requested period.
+
+The example generates Form 131 certificates for `TY 2026-27`, `Q1`. Replace the sample TAN, period, and placeholders with your own values.
+
+## Generate Form 131 certificates
+
+<Steps>
+  <Step title="Authenticate the deductor" titleSize="h3">
+    Call [Authenticate a TRACES deductor](/api-reference/tds/compliance/traces/endpoints/authenticate) with your Sandbox access token in the `Authorization` header.
+
+    <Accordion title="Deductor authentication request" defaultOpen>
+    ```bash
+    curl --request POST \
+	--url https://api.sandbox.co.in/tds/traces/deductors/authenticate \
+	--header 'Authorization: {sandbox-access-token}' \
+	--header 'Content-Type: application/json' \
+	--header 'x-api-key: {sandbox-api-key}' \
+	--data '{
+		"@entity": "in.co.sandbox.tds.compliance.traces.authentication.request",
+		"tan": "AHMA12345A",
+		"password": "{traces-password}"
+	}'
+    ```
+    </Accordion>
+
+    Save `data.access_token` as your deductor access token and `data.refresh_token` as your deductor refresh token. Use the deductor access token in the `Authorization` header for certificate requests.
+  </Step>
+
+  <Step title="Create the certificate job" titleSize="h3">
+    Call [Create a certificate job with a deductor token](/api-reference/tds/compliance/certificates/endpoints/submit_with_deductor_token) with `131` in the path. The token identifies the TAN. Send only `@entity`, `tax_year`, and `quarter` in the body.
+
+    <Accordion title="Certificate job request" defaultOpen>
+    ```bash
+    curl --request POST \
+	--url https://api.sandbox.co.in/tds/compliance/traces/deductor/certificates/131 \
+	--header 'Authorization: {deductor-access-token}' \
+	--header 'Content-Type: application/json' \
+	--header 'x-api-key: {sandbox-api-key}' \
+	--data '{
+		"@entity": "in.co.sandbox.tds.compliance.certificate.job.request",
+		"tax_year": "TY 2026-27",
+		"quarter": "Q1"
+	}'
+    ```
+    </Accordion>
+
+    Save `data.job_id` from the response. The job starts with `data.status` set to `in_progress`.
+  </Step>
+
+  <Step title="Check the certificate job status" titleSize="h3">
+    Call [Get certificate job status with a deductor token](/api-reference/tds/compliance/certificates/endpoints/poll_with_deductor_token) with the returned `job_id` and the same certificate type.
+
+    <Accordion title="Certificate status request" defaultOpen>
+    ```bash
+    curl --request GET \
+	--url 'https://api.sandbox.co.in/tds/compliance/traces/deductor/certificates/131/status?job_id={job_id}' \
+	--header 'Authorization: {deductor-access-token}' \
+	--header 'x-api-key: {sandbox-api-key}'
+    ```
+    </Accordion>
+
+    Continue polling while `data.status` is `in_progress`, including while TRACES prepares the certificate files. When `data.status` is `failed`, stop polling and read `data.message` for the reason. A failed job still returns HTTP `200`.
+  </Step>
+
+  <Step title="Download the certificate ZIP files" titleSize="h3">
+    When `data.status` is `succeeded`, the response includes one or more signed URLs in `data.certificate_pdf_zip_urls`.
+
+    Response excerpt:
+
+    ```json
+    {
+	"data": {
+		"job_id": "4d882797-f968-474e-b05b-85cb5eba3d9a",
+		"status": "succeeded",
+		"certificate_pdf_zip_urls": [
+			"{certificate-pdf-zip-url}"
+		]
+	}
+    }
+    ```
+
+    Download each ZIP file, which contains certificate PDFs.
+
+    <Accordion title="Certificate ZIP download request" defaultOpen>
+    ```bash
+    curl --request GET \
+	--url '{certificate-pdf-zip-url}' \
+	--output form-131-certificates.zip
+    ```
+    </Accordion>
+  </Step>
+</Steps>
+
+## Generate Form 133 TCS certificates
+
+Replace `131` with `133` in both the create and status URLs. Use the same request body fields and deductor authentication flow.
+
+## Resume after token expiry
+
+If a status request returns HTTP `403` because the deductor access token expired, call [Refresh a TRACES deductor session](/api-reference/tds/compliance/traces/endpoints/refresh). Send the deductor refresh token in `Authorization`.
+
+```bash
+curl --request POST \
+	--url https://api.sandbox.co.in/tds/traces/deductors/refresh \
+	--header 'Authorization: {deductor-refresh-token}' \
+	--header 'x-api-key: {sandbox-api-key}'
+```
+
+Replace both saved deductor tokens with the returned `data.access_token` and `data.refresh_token`. Retry the status request with the new access token and the same `job_id`.
+
+If the refresh token has expired or is rejected, authenticate the same deductor again. Resume polling the existing `job_id` with the new deductor access token.

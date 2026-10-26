@@ -1,0 +1,18 @@
+---
+title: "Create a certificate job with a deductor token"
+sidebarTitle: "Create certificate job"
+description: "Create a Form 131 TDS or Form 133 TCS certificate job with a deductor access token, tax year, and quarter."
+keywords:
+  - TRACES certificate API
+  - deductor access token
+  - Form 131 certificate
+  - Form 133 certificate
+  - create certificate job
+openapi: '/api-reference/tds/compliance/openapi.json POST /tds/compliance/traces/deductor/certificates/{certificate_type}'
+---
+
+The `Authorization` header requires a deductor access token from [Authenticate a TRACES deductor](/api-reference/tds/compliance/traces/endpoints/authenticate). The token identifies the TAN.
+
+Certificate type `131` is for non-salary TDS, and `133` is for TCS. The request body contains only `@entity`, `tax_year`, and `quarter`.
+
+Use the returned `data.job_id` to [check the certificate job status](/api-reference/tds/compliance/certificates/endpoints/poll_with_deductor_token). For the complete cURL workflow, see [Generate certificates with a deductor token](/recipes/tds/certificates/generate-with-deductor-token).
