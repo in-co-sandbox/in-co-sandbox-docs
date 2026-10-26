@@ -47,11 +47,11 @@ Replace the sample TAN and period with your own values. Use the same TAN as the 
   </Step>
 
   <Step title="Create a Form 131 certificate job" titleSize="h3">
-    Call the [Create TDS or TCS certificate job](/api-reference/tds/compliance/certificates/endpoints/submit_job) endpoint with `131` in the path. Set the JSON `form` field to `"131"`.
+    Call the [Create TDS or TCS certificate job](/api-reference/tds/compliance/certificates/endpoints/submit_job) endpoint with `131` in the path.
 
     ```bash
     curl --request POST \
-      --url https://api.sandbox.co.in/tds/compliance/traces/deductors/forms/131 \
+      --url https://api.sandbox.co.in/tds/compliance/enriched/traces/deductor/certificates/131 \
       --header 'Authorization: {sandbox-access-token}' \
       --header 'Content-Type: application/json' \
       --header 'x-api-key: {sandbox-api-key}' \
@@ -59,7 +59,6 @@ Replace the sample TAN and period with your own values. Use the same TAN as the 
         "@entity": "in.co.sandbox.tds.compliance.certificate.job.request",
         "quarter": "Q1",
         "tax_year": "TY 2026-27",
-        "form": "131",
         "tan": "AHMS45586C"
       }'
     ```
@@ -72,9 +71,10 @@ Replace the sample TAN and period with your own values. Use the same TAN as the 
 
     ```bash
     curl --request GET \
-      --url 'https://api.sandbox.co.in/tds/compliance/traces/deductors/forms/131/status?job_id={job_id}' \
+      --url 'https://api.sandbox.co.in/tds/compliance/enriched/traces/deductor/certificates/131/status?job_id={job_id}' \
       --header 'Authorization: {sandbox-access-token}' \
-      --header 'x-api-key: {sandbox-api-key}'
+      --header 'x-api-key: {sandbox-api-key}' \
+      --header 'x-api-version: 1.0.0'
     ```
 
     Continue polling while the status is `created`, `queued`, or `in_progress`. When the status is `failed`, read `data.message` for the reason. Stop and resolve the error before submitting another job.
@@ -89,7 +89,6 @@ Replace the sample TAN and period with your own values. Use the same TAN as the 
     {
       "data": {
         "job_id": "518bf6d5-be9d-4723-8fee-2382919fb605",
-        "form": "131",
         "status": "succeeded",
         "certificate_pdf_zip_urls": [
           "{certificate-pdf-zip-url}"
