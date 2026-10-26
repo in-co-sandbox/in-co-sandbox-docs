@@ -8,5 +8,9 @@ keywords:
   - Form 130
   - Form 131
   - Form 133
-openapi: '/api-reference/tds/compliance/openapi.json POST /tds/compliance/traces/deductors/forms/{certificate_type}/search'
+openapi: '/api-reference/tds/compliance/openapi.json POST /tds/compliance/enriched/traces/deductor/certificates/{certificate_type}/search'
 ---
+
+Select the certificate type in the path. Filter its jobs by TAN, tax year, quarter, status, or creation dates.
+
+To retrieve the next page, pass the returned `last_evaluated_key` with the same filters.

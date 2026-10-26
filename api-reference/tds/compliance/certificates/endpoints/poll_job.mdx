@@ -7,7 +7,9 @@ keywords:
   - Form 130
   - Form 131
   - Form 133
-openapi: '/api-reference/tds/compliance/openapi.json GET /tds/compliance/traces/deductors/forms/{certificate_type}/status'
+openapi: '/api-reference/tds/compliance/openapi.json GET /tds/compliance/enriched/traces/deductor/certificates/{certificate_type}/status'
 ---
+
+Use the same `certificate_type` as the submit request and pass the returned `job_id` in the query string.
 
 To find an earlier job, use [Search certificate jobs](/api-reference/tds/compliance/certificates/endpoints/fetch_job).
