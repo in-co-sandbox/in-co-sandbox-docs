@@ -1,4 +1,5 @@
 ---
+hidden: true
 title: "Get TRACES PAN verification status"
 sidebarTitle: "Get verification status"
 description: "Check a TRACES PAN verification token number. Get the source status while processing or a signed JSON workbook download URL when available."
@@ -6,7 +7,7 @@ keywords:
   - TRACES PAN verification status
   - bulk PAN verification result
   - PAN verification workbook
-openapi: '/api-reference/tds/compliance/openapi.json GET /tds/compliance/traces/deductors/pan/verify/status'
+openapi: '/api-reference/tds/compliance-internal/openapi.json GET /tds/compliance/traces/deductors/pan/verify/status'
 ---
 
 Pass the TRACES `token_number` as a query parameter and `deductor_access_token` in the `Authorization` header. This request has no body.

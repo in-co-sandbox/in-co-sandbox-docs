@@ -767,51 +767,25 @@
                         ]
                       },
                       {
-                        "group": "TDS challans",
+                        "group": "Enriched APIs",
                         "pages": [
-                          "api-reference/tds/compliance/challans/endpoints/fetch_challan",
-                          "api-reference/tds/compliance/challans/endpoints/search_challans"
-                        ]
-                      },
-                      {
-                        "group": "Bulk PAN verification",
-                        "pages": [
-                          "api-reference/tds/compliance/pan-verification/endpoints/submit_verification",
-                          "api-reference/tds/compliance/pan-verification/vanilla_payee_workbook",
-                          "api-reference/tds/compliance/pan-verification/endpoints/poll_verification",
-                          "api-reference/tds/compliance/pan-verification/vanilla_pan_verification_workbook"
-                        ]
-                      }
-                    ]
-                  },
-                  {
-                    "group": "Enriched TRACES APIs",
-                    "pages": [
-                      {
-                        "group": "TRACES credentials",
-                        "pages": [
-                          "api-reference/tds/compliance/traces-credentials/endpoints/save_credential",
-                          "api-reference/tds/compliance/traces-credentials/endpoints/delete_credential"
-                        ]
-                      },
-                      {
-                        "group": "Bulk PAN verification",
-                        "pages": [
-                          "api-reference/tds/compliance/pan-verification/endpoints/submit_job",
-                          "api-reference/tds/compliance/pan-verification/payee_workbook",
-                          "api-reference/tds/compliance/pan-verification/endpoints/poll_job",
-                          "api-reference/tds/compliance/pan-verification/pan_verification_workbook",
-                          "api-reference/tds/compliance/pan-verification/endpoints/webhook"
-                        ]
-                      },
-                      {
-                        "group": "TDS and TCS certificates",
-                        "pages": [
-                          "api-reference/tds/compliance/certificates/overview",
-                          "api-reference/tds/compliance/certificates/endpoints/submit_job",
-                          "api-reference/tds/compliance/certificates/endpoints/poll_job",
-                          "api-reference/tds/compliance/certificates/endpoints/fetch_job",
-                          "api-reference/tds/compliance/certificates/endpoints/webhook"
+                          {
+                            "group": "TRACES credentials",
+                            "pages": [
+                              "api-reference/tds/compliance/traces-credentials/endpoints/save_credential",
+                              "api-reference/tds/compliance/traces-credentials/endpoints/delete_credential"
+                            ]
+                          },
+                          {
+                            "group": "TDS and TCS certificates",
+                            "pages": [
+                              "api-reference/tds/compliance/certificates/overview",
+                              "api-reference/tds/compliance/certificates/endpoints/submit_job",
+                              "api-reference/tds/compliance/certificates/endpoints/poll_job",
+                              "api-reference/tds/compliance/certificates/endpoints/fetch_job",
+                              "api-reference/tds/compliance/certificates/endpoints/webhook"
+                            ]
+                          }
                         ]
                       }
                     ]
@@ -1345,19 +1319,6 @@
                 "pages": [
                   "recipes/tds/form-130/generate-form-130-certificates",
                   "recipes/tds/form-131/generate-form-131-certificates"
-                ]
-              },
-              {
-                "group": "TDS challans",
-                "pages": [
-                  "recipes/tds/challans/check-tds-challans"
-                ]
-              },
-              {
-                "group": "PAN verification",
-                "pages": [
-                  "recipes/tds/pan-verification/verify-pans-in-bulk",
-                  "recipes/tds/pan-verification/verify-pans-with-deductor-token"
                 ]
               }
             ]
