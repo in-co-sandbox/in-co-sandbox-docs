@@ -1,0 +1,3640 @@
+{
+  "openapi": "3.1.0",
+  "info": {
+    "title": "compliance-internal",
+    "description": "",
+    "version": "1.0.0"
+  },
+  "tags": [
+    {
+      "name": "PAN Verification"
+    },
+    {
+      "name": "TDS"
+    },
+    {
+      "name": "TRACES"
+    },
+    {
+      "name": "Challans"
+    },
+    {
+      "name": "PAN verification"
+    }
+  ],
+  "paths": {
+    "/tds/compliance/enriched/traces/deductors/pan/verify": {
+      "post": {
+        "summary": "Create bulk PAN verification job",
+        "deprecated": false,
+        "description": "Creates an enriched bulk PAN verification job for the supplied TAN. Sandbox manages TRACES authentication using your stored credentials. The response contains a job ID and a signed URL for the input JSON workbook. Upload the workbook with HTTP PUT and Content-Type application/json.\n\nSave the [TRACES credentials](https://developer.sandbox.co.in/api-reference/tds/compliance/traces-credentials/endpoints/save_credential) for the TAN before processing. Credential checks happen after the workbook upload. Missing or incorrect credentials appear as a failed job when you retrieve its status.\n\nThe uploaded JSON file must be at most 5,000,000 bytes. The workbook contains payee_sheet and payee_table with the header [\"sr_no\", \"pan\"]. PAN values are submitted to TRACES as provided. For repeated PANs, verification keeps the first row and ignores later rows.\n\nRetrieve the job with the returned job_id to check progress and obtain the output download URL.\n\nInput workbook example:\n\n```json\n{\n  \"@entity\": \"workbook\",\n  \"name\": \"payee_workbook\",\n  \"sheets\": [\n    {\n      \"@entity\": \"sheet\",\n      \"name\": \"payee_sheet\",\n      \"blocks\": [\n        {\n          \"@entity\": \"table\",\n          \"name\": \"payee_table\",\n          \"header\": [\n            \"sr_no\",\n            \"pan\"\n          ],\n          \"rows\": [\n            [\n              1,\n              \"ABCPD1234E\"\n            ],\n            [\n              2,\n              \"XYZPK5678L\"\n            ],\n            [\n              3,\n              \"ABCPD1234E\"\n            ],\n            [\n              4,\n              \"AAAAA1111A\"\n            ]\n          ]\n        }\n      ]\n    }\n  ]\n}\n```",
+        "operationId": "SubmitPanVerificationJob",
+        "tags": [
+          "TDS",
+          "TRACES",
+          "PAN Verification"
+        ],
+        "parameters": [
+          {
+            "name": "Authorization",
+            "in": "header",
+            "description": "Sandbox JWT access token. See the [Quickstart guide](https://developer.sandbox.co.in/guides/get-started/quickstart).",
+            "required": true,
+            "example": "{{access_token}}",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "x-api-key",
+            "in": "header",
+            "description": "Sandbox API key for the request.",
+            "required": true,
+            "example": "{{api_key}}",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "Content-Type",
+            "in": "header",
+            "description": "Request body format.",
+            "required": true,
+            "example": "application/json",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/PanVerificationRequest"
+              },
+              "examples": {
+                "Job created": {
+                  "value": {
+                    "@entity": "in.co.sandbox.tds.compliance.pan.verification.request",
+                    "tan": "AHMA12345A"
+                  },
+                  "summary": "Job created",
+                  "description": "Create a job and receive a signed URL to upload the payee workbook."
+                },
+                "Missing TAN": {
+                  "value": {
+                    "@entity": "in.co.sandbox.tds.compliance.pan.verification.request"
+                  },
+                  "summary": "Missing TAN",
+                  "description": "The request does not include tan."
+                },
+                "Invalid TAN format": {
+                  "value": {
+                    "@entity": "in.co.sandbox.tds.compliance.pan.verification.request",
+                    "tan": "12345"
+                  },
+                  "summary": "Invalid TAN format",
+                  "description": "The TAN does not match the required format."
+                },
+                "Missing authorization": {
+                  "value": {
+                    "@entity": "in.co.sandbox.tds.compliance.pan.verification.request",
+                    "tan": "AHMA12345A"
+                  },
+                  "summary": "Missing authorization",
+                  "description": "The request does not include the Authorization header."
+                },
+                "Missing API key": {
+                  "value": {
+                    "@entity": "in.co.sandbox.tds.compliance.pan.verification.request",
+                    "tan": "AHMA12345A"
+                  },
+                  "summary": "Missing API key",
+                  "description": "The request does not include the x-api-key header."
+                }
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "The job is created and ready for the input workbook upload.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "code": {
+                      "type": "integer",
+                      "enum": [
+                        200
+                      ],
+                      "description": "HTTP status code."
+                    },
+                    "timestamp": {
+                      "type": "integer",
+                      "format": "int64",
+                      "description": "Response timestamp in epoch milliseconds."
+                    },
+                    "transaction_id": {
+                      "type": "string",
+                      "format": "uuid",
+                      "description": "Unique identifier for this API transaction."
+                    },
+                    "data": {
+                      "allOf": [
+                        {
+                          "$ref": "#/components/schemas/PanVerificationJob"
+                        },
+                        {
+                          "type": "object",
+                          "properties": {
+                            "status": {
+                              "type": "string",
+                              "enum": [
+                                "created"
+                              ]
+                            }
+                          }
+                        }
+                      ]
+                    }
+                  },
+                  "required": [
+                    "code",
+                    "timestamp",
+                    "transaction_id",
+                    "data"
+                  ]
+                },
+                "examples": {
+                  "Job created": {
+                    "summary": "Job created",
+                    "value": {
+                      "code": 200,
+                      "timestamp": 1792136869079,
+                      "data": {
+                        "created_at": 1792136873733,
+                        "@entity": "in.co.sandbox.tds.compliance.pan.verification.job",
+                        "job_id": "b5084575-7bdf-4a40-a8db-e19c93d34ec4",
+                        "tan": "AHMA12345A",
+                        "status": "created",
+                        "json_url": "https://sandbox-example.s3.ap-south-1.amazonaws.com/example-workspace/b5084575-7bdf-4a40-a8db-e19c93d34ec4/payee.json?X-Amz-Signature=example"
+                      },
+                      "transaction_id": "6ead62b9-35c9-4c1c-8625-4e0bfdc025d5"
+                    }
+                  }
+                }
+              }
+            },
+            "headers": {}
+          },
+          "400": {
+            "description": "The request body or query parameters are invalid.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "code": {
+                      "type": "integer",
+                      "enum": [
+                        400
+                      ],
+                      "description": "HTTP status code."
+                    },
+                    "timestamp": {
+                      "type": "integer",
+                      "format": "int64",
+                      "description": "Response timestamp in epoch milliseconds."
+                    },
+                    "transaction_id": {
+                      "type": "string",
+                      "format": "uuid",
+                      "description": "Unique identifier for this API transaction."
+                    },
+                    "message": {
+                      "type": "string",
+                      "description": "Reason the request could not be completed."
+                    }
+                  },
+                  "required": [
+                    "code",
+                    "timestamp",
+                    "transaction_id",
+                    "message"
+                  ]
+                },
+                "examples": {
+                  "Missing TAN": {
+                    "summary": "Missing TAN",
+                    "value": {
+                      "code": 400,
+                      "timestamp": 1792136874200,
+                      "message": "Invalid request body",
+                      "transaction_id": "6b31ee70-abdf-4428-8678-67c75d42712a"
+                    }
+                  },
+                  "Invalid TAN format": {
+                    "summary": "Invalid TAN format",
+                    "value": {
+                      "code": 400,
+                      "timestamp": 1792136874678,
+                      "message": "Invalid request body",
+                      "transaction_id": "330b6df2-a419-4942-be5d-8ffd1073ada8"
+                    }
+                  }
+                }
+              }
+            },
+            "headers": {}
+          },
+          "401": {
+            "description": "Sandbox authorization is missing, invalid, or expired.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "code": {
+                      "type": "integer",
+                      "enum": [
+                        401
+                      ],
+                      "description": "HTTP status code."
+                    },
+                    "timestamp": {
+                      "type": "integer",
+                      "format": "int64",
+                      "description": "Response timestamp in epoch milliseconds."
+                    },
+                    "transaction_id": {
+                      "type": "string",
+                      "format": "uuid",
+                      "description": "Unique identifier for this API transaction."
+                    },
+                    "message": {
+                      "type": "string",
+                      "description": "Reason the request could not be completed."
+                    }
+                  },
+                  "required": [
+                    "code",
+                    "timestamp",
+                    "transaction_id",
+                    "message"
+                  ]
+                },
+                "examples": {
+                  "Missing authorization": {
+                    "summary": "Missing authorization",
+                    "value": {
+                      "code": 401,
+                      "message": "Unauthorized",
+                      "timestamp": 1792136874846,
+                      "transaction_id": "b0b82447-fe6a-4852-a320-405f6744ce08"
+                    }
+                  }
+                }
+              }
+            },
+            "headers": {}
+          },
+          "403": {
+            "description": "Access to this API is denied.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "code": {
+                      "type": "integer",
+                      "enum": [
+                        403
+                      ],
+                      "description": "HTTP status code."
+                    },
+                    "timestamp": {
+                      "type": "integer",
+                      "format": "int64",
+                      "description": "Response timestamp in epoch milliseconds."
+                    },
+                    "transaction_id": {
+                      "type": "string",
+                      "format": "uuid",
+                      "description": "Unique identifier for this API transaction."
+                    },
+                    "message": {
+                      "type": "string",
+                      "description": "Reason the request could not be completed."
+                    }
+                  },
+                  "required": [
+                    "code",
+                    "timestamp",
+                    "transaction_id",
+                    "message"
+                  ]
+                },
+                "examples": {
+                  "Missing API key": {
+                    "summary": "Missing API key",
+                    "value": {
+                      "code": 403,
+                      "message": "Forbidden",
+                      "timestamp": 1792136874924,
+                      "transaction_id": "90caaf62-2271-4172-b711-c5f5a5cc07d2"
+                    }
+                  }
+                }
+              }
+            },
+            "headers": {}
+          },
+          "500": {
+            "description": "The API request could not be completed.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "code": {
+                      "type": "integer",
+                      "enum": [
+                        500
+                      ],
+                      "description": "HTTP status code."
+                    },
+                    "timestamp": {
+                      "type": "integer",
+                      "format": "int64",
+                      "description": "Response timestamp in epoch milliseconds."
+                    },
+                    "transaction_id": {
+                      "type": "string",
+                      "format": "uuid",
+                      "description": "Unique identifier for this API transaction."
+                    },
+                    "message": {
+                      "type": "string",
+                      "description": "Reason the request could not be completed."
+                    }
+                  },
+                  "required": [
+                    "code",
+                    "timestamp",
+                    "transaction_id",
+                    "message"
+                  ]
+                }
+              }
+            },
+            "headers": {}
+          }
+        },
+        "security": []
+      }
+    },
+    "/tds/compliance/enriched/traces/deductors/pan/verify/status": {
+      "get": {
+        "summary": "Get bulk PAN verification job status",
+        "deprecated": false,
+        "description": "Returns the current status of a bulk PAN verification job in your workspace. This GET request has no body.\n\nA created job waits for the workbook upload. queued waits to start processing. in_progress covers input-size checks, TRACES authentication and verification, and output workbook generation. A job succeeds after the output JSON workbook is saved and provides output_json_url for its download. A failed job provides message. Retrieving a failed job returns HTTP 200.\n\nTRACES report availability is polled for up to one day after successful submission. Authentication, processing, and report-availability failures appear on the job.\n\nThe output workbook contains payee_sheet and payee_table with the header [\"sr_no\", \"pan\", \"pan_status\"]. It includes only submitted PANs returned by TRACES. The first input sr_no is retained for each PAN. A missing PAN is omitted and does not fail the job.\n\nThe pan_status value is the exact text returned by TRACES. Known values include Valid and Operative, Valid and Inoperative, Valid, Inactive, and Invalid. Other source values are returned unchanged. An Invalid PAN result does not mean the job failed. The input file limit does not limit the output file.\n\nOutput workbook example:\n\n```json\n{\n  \"@entity\": \"workbook\",\n  \"name\": \"pan_verification_workbook\",\n  \"sheets\": [\n    {\n      \"@entity\": \"sheet\",\n      \"name\": \"payee_sheet\",\n      \"blocks\": [\n        {\n          \"@entity\": \"table\",\n          \"name\": \"payee_table\",\n          \"header\": [\n            \"sr_no\",\n            \"pan\",\n            \"pan_status\"\n          ],\n          \"rows\": [\n            [\n              1,\n              \"ABCPD1234E\",\n              \"Valid and Operative\"\n            ],\n            [\n              2,\n              \"XYZPK5678L\",\n              \"Valid and Inoperative\"\n            ]\n          ]\n        }\n      ]\n    }\n  ]\n}\n```\n\nThis example omits the repeated input PAN and a PAN absent from the TRACES report.",
+        "operationId": "GetPanVerificationJobStatus",
+        "tags": [
+          "TDS",
+          "TRACES",
+          "PAN Verification"
+        ],
+        "parameters": [
+          {
+            "name": "job_id",
+            "in": "query",
+            "description": "Job ID returned when the PAN verification job was created.",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            },
+            "examples": {
+              "Status created": {
+                "summary": "Status created",
+                "value": "b5084575-7bdf-4a40-a8db-e19c93d34ec4"
+              },
+              "Verification in progress": {
+                "summary": "Verification in progress",
+                "value": "b5084575-7bdf-4a40-a8db-e19c93d34ec4"
+              },
+              "Verification completed": {
+                "summary": "Verification completed",
+                "value": "8941b6c4-8104-4a4b-b38c-14b0a1ed6837"
+              },
+              "Verification failed": {
+                "summary": "Verification failed",
+                "value": "b5084575-7bdf-4a40-a8db-e19c93d34ec4"
+              },
+              "Job not found": {
+                "summary": "Job not found",
+                "value": "00000000-0000-4000-8000-000000000000"
+              }
+            }
+          },
+          {
+            "name": "Authorization",
+            "in": "header",
+            "description": "Sandbox JWT access token. See the [Quickstart guide](https://developer.sandbox.co.in/guides/get-started/quickstart).",
+            "required": true,
+            "example": "{{access_token}}",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "x-api-key",
+            "in": "header",
+            "description": "Sandbox API key for the request.",
+            "required": true,
+            "example": "{{api_key}}",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "The current job status. Failed verification jobs are returned with HTTP 200 and status failed.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "code": {
+                      "type": "integer",
+                      "enum": [
+                        200
+                      ],
+                      "description": "HTTP status code."
+                    },
+                    "timestamp": {
+                      "type": "integer",
+                      "format": "int64",
+                      "description": "Response timestamp in epoch milliseconds."
+                    },
+                    "transaction_id": {
+                      "type": "string",
+                      "format": "uuid",
+                      "description": "Unique identifier for this API transaction."
+                    },
+                    "data": {
+                      "$ref": "#/components/schemas/PanVerificationJob"
+                    }
+                  },
+                  "required": [
+                    "code",
+                    "timestamp",
+                    "transaction_id",
+                    "data"
+                  ]
+                },
+                "examples": {
+                  "Status created": {
+                    "summary": "Status created",
+                    "value": {
+                      "code": 200,
+                      "timestamp": 1792136875077,
+                      "data": {
+                        "created_at": 1792136873733,
+                        "updated_at": 1792136873769,
+                        "@entity": "in.co.sandbox.tds.compliance.pan.verification.job",
+                        "job_id": "b5084575-7bdf-4a40-a8db-e19c93d34ec4",
+                        "tan": "AHMA12345A",
+                        "status": "created"
+                      },
+                      "transaction_id": "41586383-1df1-4c50-8c46-b1e810d6a70d"
+                    }
+                  },
+                  "Verification in progress": {
+                    "summary": "Verification in progress",
+                    "value": {
+                      "code": 200,
+                      "timestamp": 1792136921704,
+                      "data": {
+                        "created_at": 1792136873733,
+                        "updated_at": 1792136921653,
+                        "@entity": "in.co.sandbox.tds.compliance.pan.verification.job",
+                        "job_id": "b5084575-7bdf-4a40-a8db-e19c93d34ec4",
+                        "tan": "AHMA12345A",
+                        "status": "in_progress"
+                      },
+                      "transaction_id": "825ecaf8-df37-4ca7-9dcf-3f134d9747a6"
+                    }
+                  },
+                  "Verification completed": {
+                    "summary": "Verification completed",
+                    "value": {
+                      "code": 200,
+                      "timestamp": 1792136917339,
+                      "data": {
+                        "created_at": 1792054456408,
+                        "updated_at": 1792054527258,
+                        "@entity": "in.co.sandbox.tds.compliance.pan.verification.job",
+                        "job_id": "8941b6c4-8104-4a4b-b38c-14b0a1ed6837",
+                        "tan": "AHMA12345A",
+                        "status": "succeeded",
+                        "output_json_url": "https://sandbox-example.s3.ap-south-1.amazonaws.com/example-workspace/8941b6c4-8104-4a4b-b38c-14b0a1ed6837/pan-verification.json?X-Amz-Signature=example"
+                      },
+                      "transaction_id": "3663d8df-d06f-4d88-a250-a74d99e5750e"
+                    }
+                  },
+                  "Verification failed": {
+                    "summary": "Verification failed",
+                    "value": {
+                      "code": 200,
+                      "timestamp": 1792136925346,
+                      "data": {
+                        "created_at": 1792136873733,
+                        "updated_at": 1792136925094,
+                        "@entity": "in.co.sandbox.tds.compliance.pan.verification.job",
+                        "job_id": "b5084575-7bdf-4a40-a8db-e19c93d34ec4",
+                        "tan": "AHMA12345A",
+                        "message": "Credentials not found",
+                        "status": "failed"
+                      },
+                      "transaction_id": "f77d73e8-5f0f-4e96-a16f-045fdd41618a"
+                    }
+                  }
+                }
+              }
+            },
+            "headers": {}
+          },
+          "401": {
+            "description": "Sandbox authorization is missing, invalid, or expired.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "code": {
+                      "type": "integer",
+                      "enum": [
+                        401
+                      ],
+                      "description": "HTTP status code."
+                    },
+                    "timestamp": {
+                      "type": "integer",
+                      "format": "int64",
+                      "description": "Response timestamp in epoch milliseconds."
+                    },
+                    "transaction_id": {
+                      "type": "string",
+                      "format": "uuid",
+                      "description": "Unique identifier for this API transaction."
+                    },
+                    "message": {
+                      "type": "string",
+                      "description": "Reason the request could not be completed."
+                    }
+                  },
+                  "required": [
+                    "code",
+                    "timestamp",
+                    "transaction_id",
+                    "message"
+                  ]
+                }
+              }
+            },
+            "headers": {}
+          },
+          "403": {
+            "description": "Access to this API is denied.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "code": {
+                      "type": "integer",
+                      "enum": [
+                        403
+                      ],
+                      "description": "HTTP status code."
+                    },
+                    "timestamp": {
+                      "type": "integer",
+                      "format": "int64",
+                      "description": "Response timestamp in epoch milliseconds."
+                    },
+                    "transaction_id": {
+                      "type": "string",
+                      "format": "uuid",
+                      "description": "Unique identifier for this API transaction."
+                    },
+                    "message": {
+                      "type": "string",
+                      "description": "Reason the request could not be completed."
+                    }
+                  },
+                  "required": [
+                    "code",
+                    "timestamp",
+                    "transaction_id",
+                    "message"
+                  ]
+                }
+              }
+            },
+            "headers": {}
+          },
+          "500": {
+            "description": "The API request could not be completed.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "code": {
+                      "type": "integer",
+                      "enum": [
+                        500
+                      ],
+                      "description": "HTTP status code."
+                    },
+                    "timestamp": {
+                      "type": "integer",
+                      "format": "int64",
+                      "description": "Response timestamp in epoch milliseconds."
+                    },
+                    "transaction_id": {
+                      "type": "string",
+                      "format": "uuid",
+                      "description": "Unique identifier for this API transaction."
+                    },
+                    "message": {
+                      "type": "string",
+                      "description": "Reason the request could not be completed."
+                    }
+                  },
+                  "required": [
+                    "code",
+                    "timestamp",
+                    "transaction_id",
+                    "message"
+                  ]
+                }
+              }
+            },
+            "headers": {}
+          },
+          "521": {
+            "description": "No PAN verification job matches the supplied job ID in your workspace.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "code": {
+                      "type": "integer",
+                      "enum": [
+                        521
+                      ],
+                      "description": "HTTP status code."
+                    },
+                    "timestamp": {
+                      "type": "integer",
+                      "format": "int64",
+                      "description": "Response timestamp in epoch milliseconds."
+                    },
+                    "transaction_id": {
+                      "type": "string",
+                      "format": "uuid",
+                      "description": "Unique identifier for this API transaction."
+                    },
+                    "message": {
+                      "type": "string",
+                      "description": "Reason the request could not be completed."
+                    }
+                  },
+                  "required": [
+                    "code",
+                    "timestamp",
+                    "transaction_id",
+                    "message"
+                  ]
+                },
+                "examples": {
+                  "Job not found": {
+                    "summary": "Job not found",
+                    "value": {
+                      "code": 521,
+                      "timestamp": 1792136877482,
+                      "message": "Data not found",
+                      "transaction_id": "8eb6e7a7-518b-4471-a6bc-a3bd30b71106"
+                    }
+                  }
+                }
+              }
+            },
+            "headers": {}
+          }
+        },
+        "security": []
+      }
+    },
+    "/tds/compliance/traces/deductors/challan": {
+      "post": {
+        "summary": "Get challan",
+        "deprecated": false,
+        "description": "Get a TDS challan's payment details, status, and utilization using its BSR code, deposit date, and serial number. Send the deductor access token returned by TRACES authentication in the Authorization header. The token identifies the deductor TAN. Authenticate or refresh separately when the token expires.",
+        "operationId": "getChallan",
+        "tags": [
+          "TRACES",
+          "Challans"
+        ],
+        "parameters": [
+          {
+            "name": "Authorization",
+            "in": "header",
+            "description": "Deductor access token returned by [Authenticate a TRACES deductor](https://developer.sandbox.co.in/api-reference/tds/compliance/traces/endpoints/authenticate). The token identifies the deductor TAN.",
+            "required": true,
+            "example": "{{deductor_access_token}}",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "x-api-key",
+            "in": "header",
+            "description": "API key used to identify and authenticate the client.",
+            "required": true,
+            "example": "{{api_key}}",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "Content-Type",
+            "in": "header",
+            "description": "Request body format.",
+            "required": true,
+            "example": "application/json",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ChallanLookupRequest"
+              },
+              "examples": {
+                "Challan found": {
+                  "value": {
+                    "@entity": "in.co.sandbox.tds.compliance.challan.request",
+                    "bsr_code": "0123456",
+                    "challan_serial": "00042",
+                    "paid_date_epoch": 1784053800000
+                  },
+                  "summary": "Challan found"
+                },
+                "Challan not found": {
+                  "value": {
+                    "@entity": "in.co.sandbox.tds.compliance.challan.request",
+                    "bsr_code": "0123456",
+                    "challan_serial": "99999",
+                    "paid_date_epoch": 1784053800000
+                  },
+                  "summary": "Challan not found"
+                },
+                "Missing deductor access token": {
+                  "value": {
+                    "@entity": "in.co.sandbox.tds.compliance.challan.request",
+                    "bsr_code": "0123456",
+                    "challan_serial": "00042",
+                    "paid_date_epoch": 1784053800000
+                  },
+                  "summary": "Missing deductor access token"
+                },
+                "Invalid deductor access token": {
+                  "value": {
+                    "@entity": "in.co.sandbox.tds.compliance.challan.request",
+                    "bsr_code": "0123456",
+                    "challan_serial": "00042",
+                    "paid_date_epoch": 1784053800000
+                  },
+                  "summary": "Invalid deductor access token"
+                }
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "The matching challan with its tax and available consumption details.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "code": {
+                      "type": "integer",
+                      "const": 200,
+                      "description": "HTTP status code."
+                    },
+                    "timestamp": {
+                      "type": "integer",
+                      "description": "Response timestamp in epoch milliseconds."
+                    },
+                    "transaction_id": {
+                      "type": "string",
+                      "description": "Unique identifier for this API request."
+                    },
+                    "data": {
+                      "$ref": "#/components/schemas/Challan"
+                    }
+                  },
+                  "required": [
+                    "code",
+                    "timestamp",
+                    "transaction_id",
+                    "data"
+                  ],
+                  "additionalProperties": false
+                },
+                "examples": {
+                  "Challan found": {
+                    "summary": "Challan found",
+                    "value": {
+                      "code": 200,
+                      "timestamp": 1791829800000,
+                      "transaction_id": "87c1b4f6-1632-4d8b-a2f9-05f291c00a42",
+                      "data": {
+                        "@entity": "in.co.sandbox.tds.compliance.challan.response",
+                        "tan": "AHMA12345A",
+                        "bsr_code": "0123456",
+                        "challan_serial": "00042",
+                        "paid_date_epoch": 1784053800000,
+                        "challan_identification_number": "01234561507202600042",
+                        "receipt_number": "9000000001",
+                        "financial_year": "FY 2026-27",
+                        "major_head": "0021",
+                        "minor_head": "200",
+                        "total_amount": 1500,
+                        "status": "CLAIMED",
+                        "section_code": "94D",
+                        "residency_status": "R",
+                        "tax_breakdown": [
+                          {
+                            "@entity": "in.co.sandbox.tds.compliance.challan.tax_breakdown",
+                            "section": "393(1) [Table: Sl. No. 1(i)]",
+                            "tax_amount": 1500,
+                            "surcharge": 0,
+                            "cess": 0,
+                            "total_amount": 1500
+                          }
+                        ],
+                        "consumption_details": null
+                      }
+                    }
+                  }
+                }
+              }
+            },
+            "headers": {}
+          },
+          "400": {
+            "description": "The request body is malformed or does not match the request schema.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            },
+            "headers": {}
+          },
+          "401": {
+            "description": "The deductor access token is missing, or TRACES rejects the session as unauthorized.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                },
+                "examples": {
+                  "Missing deductor access token": {
+                    "summary": "Missing deductor access token",
+                    "value": {
+                      "code": 401,
+                      "timestamp": 1792195200000,
+                      "transaction_id": "5d447816-e21f-4697-a2ab-e87a51c2d18d",
+                      "message": "Unauthorized"
+                    }
+                  }
+                }
+              }
+            },
+            "headers": {}
+          },
+          "403": {
+            "description": "The deductor access token is invalid or expired, access is denied, or TRACES rejects the session.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                },
+                "examples": {
+                  "Invalid deductor access token": {
+                    "summary": "Invalid deductor access token",
+                    "value": {
+                      "code": 403,
+                      "timestamp": 1792195200000,
+                      "transaction_id": "ff4d47b2-573b-4221-b981-46c32ba43703",
+                      "message": "Insufficient privilege"
+                    }
+                  }
+                }
+              }
+            },
+            "headers": {}
+          },
+          "429": {
+            "description": "The request rate limit has been exceeded.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            },
+            "headers": {}
+          },
+          "500": {
+            "description": "The challan request could not be completed.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            },
+            "headers": {}
+          },
+          "503": {
+            "description": "TRACES is temporarily unavailable.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            },
+            "headers": {}
+          },
+          "521": {
+            "description": "No challan matches the supplied details.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                },
+                "examples": {
+                  "Challan not found": {
+                    "summary": "Challan not found",
+                    "value": {
+                      "code": 521,
+                      "timestamp": 1792195200000,
+                      "transaction_id": "911be931-35f8-459e-94aa-a802a0edfeca",
+                      "message": "Challan not found"
+                    }
+                  }
+                }
+              }
+            },
+            "headers": {}
+          }
+        },
+        "security": []
+      }
+    },
+    "/tds/compliance/traces/deductors/challans/search": {
+      "post": {
+        "summary": "Search challans",
+        "deprecated": false,
+        "description": "Search TDS challans by deposit date range for the deductor identified by the access token. For subsequent pages, keep page_size fixed and increment page_number. Page numbers start at 0. Send the deductor access token returned by TRACES authentication in the Authorization header. Authenticate or refresh separately when the token expires.",
+        "operationId": "searchChallans",
+        "tags": [
+          "TRACES",
+          "Challans"
+        ],
+        "parameters": [
+          {
+            "name": "Authorization",
+            "in": "header",
+            "description": "Deductor access token returned by [Authenticate a TRACES deductor](https://developer.sandbox.co.in/api-reference/tds/compliance/traces/endpoints/authenticate). The token identifies the deductor TAN.",
+            "required": true,
+            "example": "{{deductor_access_token}}",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "x-api-key",
+            "in": "header",
+            "description": "API key used to identify and authenticate the client.",
+            "required": true,
+            "example": "{{api_key}}",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "Content-Type",
+            "in": "header",
+            "description": "Request body format.",
+            "required": true,
+            "example": "application/json",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ChallanSearchRequest"
+              },
+              "examples": {
+                "No challans found within date range": {
+                  "value": {
+                    "@entity": "in.co.sandbox.tds.compliance.challan.search",
+                    "from_date_epoch": 1785522600000,
+                    "to_date_epoch": 1788114600000,
+                    "page_number": 0,
+                    "page_size": 10
+                  },
+                  "summary": "No challans found within date range"
+                },
+                "Challans found on the next page": {
+                  "value": {
+                    "@entity": "in.co.sandbox.tds.compliance.challan.search",
+                    "from_date_epoch": 1788201000000,
+                    "to_date_epoch": 1790706600000,
+                    "page_number": 1,
+                    "page_size": 1
+                  },
+                  "summary": "Challans found on the next page"
+                },
+                "Challans found within the date range": {
+                  "value": {
+                    "@entity": "in.co.sandbox.tds.compliance.challan.search",
+                    "from_date_epoch": 1782844200000,
+                    "to_date_epoch": 1785436200000,
+                    "page_number": 0,
+                    "page_size": 10
+                  },
+                  "summary": "Challans found within the date range"
+                },
+                "Missing deductor access token": {
+                  "value": {
+                    "@entity": "in.co.sandbox.tds.compliance.challan.search",
+                    "from_date_epoch": 1782844200000,
+                    "to_date_epoch": 1785436200000,
+                    "page_number": 0,
+                    "page_size": 10
+                  },
+                  "summary": "Missing deductor access token"
+                },
+                "Invalid deductor access token": {
+                  "value": {
+                    "@entity": "in.co.sandbox.tds.compliance.challan.search",
+                    "from_date_epoch": 1782844200000,
+                    "to_date_epoch": 1785436200000,
+                    "page_number": 0,
+                    "page_size": 10
+                  },
+                  "summary": "Invalid deductor access token"
+                }
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "One page of challans with pagination totals. The data list is empty when the page contains no challans.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "code": {
+                      "type": "integer",
+                      "const": 200,
+                      "description": "HTTP status code."
+                    },
+                    "timestamp": {
+                      "type": "integer",
+                      "description": "Response timestamp in epoch milliseconds."
+                    },
+                    "transaction_id": {
+                      "type": "string",
+                      "description": "Unique identifier for this API request."
+                    },
+                    "data": {
+                      "$ref": "#/components/schemas/ChallanSearchResponse"
+                    }
+                  },
+                  "required": [
+                    "code",
+                    "timestamp",
+                    "transaction_id",
+                    "data"
+                  ],
+                  "additionalProperties": false
+                },
+                "examples": {
+                  "No challans found within date range": {
+                    "summary": "No challans found within date range",
+                    "value": {
+                      "code": 200,
+                      "timestamp": 1791829800000,
+                      "transaction_id": "87c1b4f6-1632-4d8b-a2f9-05f291c00a42",
+                      "data": {
+                        "@entity": "in.co.sandbox.tds.compliance.challan.search.response",
+                        "data": [],
+                        "totalPages": 0,
+                        "totalElements": 0
+                      }
+                    }
+                  },
+                  "Challans found on the next page": {
+                    "summary": "Challans found on the next page",
+                    "value": {
+                      "code": 200,
+                      "timestamp": 1791829800000,
+                      "transaction_id": "87c1b4f6-1632-4d8b-a2f9-05f291c00a42",
+                      "data": {
+                        "@entity": "in.co.sandbox.tds.compliance.challan.search.response",
+                        "data": [
+                          {
+                            "@entity": "in.co.sandbox.tds.compliance.challan.response",
+                            "tan": "AHMA12345A",
+                            "bsr_code": "0123456",
+                            "challan_serial": "00043",
+                            "paid_date_epoch": 1789497000000,
+                            "challan_identification_number": "01234561609202600043",
+                            "receipt_number": "9000000002",
+                            "financial_year": "FY 2026-27",
+                            "major_head": "0021",
+                            "minor_head": "200",
+                            "total_amount": 2000,
+                            "status": "CLAIMED",
+                            "section_code": "94D",
+                            "residency_status": "R",
+                            "tax_breakdown": [
+                              {
+                                "@entity": "in.co.sandbox.tds.compliance.challan.tax_breakdown",
+                                "section": "393(1) [Table: Sl. No. 1(i)]",
+                                "tax_amount": 2000,
+                                "surcharge": 0,
+                                "cess": 0,
+                                "total_amount": 2000
+                              }
+                            ],
+                            "consumption_details": null
+                          }
+                        ],
+                        "totalPages": 2,
+                        "totalElements": 2
+                      }
+                    }
+                  },
+                  "Challans found within the date range": {
+                    "summary": "Challans found within the date range",
+                    "value": {
+                      "code": 200,
+                      "timestamp": 1791829800000,
+                      "transaction_id": "87c1b4f6-1632-4d8b-a2f9-05f291c00a42",
+                      "data": {
+                        "@entity": "in.co.sandbox.tds.compliance.challan.search.response",
+                        "data": [
+                          {
+                            "@entity": "in.co.sandbox.tds.compliance.challan.response",
+                            "tan": "AHMA12345A",
+                            "bsr_code": "0123456",
+                            "challan_serial": "00042",
+                            "paid_date_epoch": 1784053800000,
+                            "challan_identification_number": "01234561507202600042",
+                            "receipt_number": "9000000001",
+                            "financial_year": "FY 2026-27",
+                            "major_head": "0021",
+                            "minor_head": "200",
+                            "total_amount": 1500,
+                            "status": "CLAIMED",
+                            "section_code": "94D",
+                            "residency_status": "R",
+                            "tax_breakdown": [
+                              {
+                                "@entity": "in.co.sandbox.tds.compliance.challan.tax_breakdown",
+                                "section": "393(1) [Table: Sl. No. 1(i)]",
+                                "tax_amount": 1500,
+                                "surcharge": 0,
+                                "cess": 0,
+                                "total_amount": 1500
+                              }
+                            ],
+                            "consumption_details": null
+                          }
+                        ],
+                        "totalPages": 1,
+                        "totalElements": 1
+                      }
+                    }
+                  }
+                }
+              }
+            },
+            "headers": {}
+          },
+          "400": {
+            "description": "The request body is malformed or does not match the request schema.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            },
+            "headers": {}
+          },
+          "401": {
+            "description": "The deductor access token is missing, or TRACES rejects the session as unauthorized.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                },
+                "examples": {
+                  "Missing deductor access token": {
+                    "summary": "Missing deductor access token",
+                    "value": {
+                      "code": 401,
+                      "timestamp": 1792195200000,
+                      "transaction_id": "69ba52f1-4327-4c69-8909-425c16e004fa",
+                      "message": "Unauthorized"
+                    }
+                  }
+                }
+              }
+            },
+            "headers": {}
+          },
+          "403": {
+            "description": "The deductor access token is invalid or expired, access is denied, or TRACES rejects the session.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                },
+                "examples": {
+                  "Invalid deductor access token": {
+                    "summary": "Invalid deductor access token",
+                    "value": {
+                      "code": 403,
+                      "timestamp": 1792195200000,
+                      "transaction_id": "785fffda-dbf8-431d-9f9d-4877e83600b7",
+                      "message": "Insufficient privilege"
+                    }
+                  }
+                }
+              }
+            },
+            "headers": {}
+          },
+          "429": {
+            "description": "The request rate limit has been exceeded.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            },
+            "headers": {}
+          },
+          "500": {
+            "description": "The challan request could not be completed.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            },
+            "headers": {}
+          },
+          "503": {
+            "description": "TRACES is temporarily unavailable.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            },
+            "headers": {}
+          },
+          "521": {
+            "description": "The requested source data is unavailable.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            },
+            "headers": {}
+          }
+        },
+        "security": []
+      }
+    },
+    "/tds/compliance/traces/deductors/pan/verify/status": {
+      "get": {
+        "summary": "Get bulk PAN verification status",
+        "deprecated": false,
+        "description": "Retrieve the processing state or completed report for a PAN verification request using its TRACES token number. While the report is being prepared, the response contains token_number, status set to in_progress, and rejection_remarks. When the report is available, data contains only output_json_url, a signed URL for the PAN verification workbook. The URL is valid for one day and the file is retained for 30 days. The output contains PANs returned by TRACES, their unchanged pan_status text, and serial numbers assigned in report order.",
+        "operationId": "getTracesPanVerificationStatus",
+        "tags": [
+          "TRACES",
+          "PAN verification"
+        ],
+        "parameters": [
+          {
+            "name": "token_number",
+            "in": "query",
+            "description": "Token number returned when the PAN verification request was submitted.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "examples": {
+              "Verification report available": {
+                "summary": "Verification report available",
+                "value": "26102348059"
+              },
+              "Token number not found": {
+                "summary": "Token number not found",
+                "value": "99999999999999999999"
+              },
+              "Missing deductor access token": {
+                "summary": "Missing deductor access token",
+                "value": "26102348059"
+              },
+              "Verification in progress": {
+                "summary": "Verification in progress",
+                "value": "26102348059"
+              }
+            }
+          },
+          {
+            "name": "Authorization",
+            "in": "header",
+            "description": "Deductor access token returned by [Authenticate a TRACES deductor](https://developer.sandbox.co.in/api-reference/tds/compliance/traces/endpoints/authenticate). The token identifies the deductor TAN.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "examples": {
+              "Verification report available": {
+                "summary": "Verification report available",
+                "value": "{{deductor_access_token}}"
+              },
+              "Token number not found": {
+                "summary": "Token number not found",
+                "value": "{{deductor_access_token}}"
+              },
+              "Missing token number": {
+                "summary": "Missing token number",
+                "value": "{{deductor_access_token}}"
+              },
+              "Verification in progress": {
+                "summary": "Verification in progress",
+                "value": "{{deductor_access_token}}"
+              }
+            }
+          },
+          {
+            "name": "x-api-key",
+            "in": "header",
+            "description": "Sandbox API key.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "examples": {
+              "Verification report available": {
+                "summary": "Verification report available",
+                "value": "{{api_key}}"
+              },
+              "Token number not found": {
+                "summary": "Token number not found",
+                "value": "{{api_key}}"
+              },
+              "Missing token number": {
+                "summary": "Missing token number",
+                "value": "{{api_key}}"
+              },
+              "Missing deductor access token": {
+                "summary": "Missing deductor access token",
+                "value": "{{api_key}}"
+              },
+              "Verification in progress": {
+                "summary": "Verification in progress",
+                "value": "{{api_key}}"
+              }
+            }
+          },
+          {
+            "name": "Content-Type",
+            "in": "header",
+            "description": "Request body format.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "examples": {
+              "Verification report available": {
+                "summary": "Verification report available",
+                "value": "application/json"
+              },
+              "Token number not found": {
+                "summary": "Token number not found",
+                "value": "application/json"
+              },
+              "Missing token number": {
+                "summary": "Missing token number",
+                "value": "application/json"
+              },
+              "Missing deductor access token": {
+                "summary": "Missing deductor access token",
+                "value": "application/json"
+              },
+              "Verification in progress": {
+                "summary": "Verification in progress",
+                "value": "application/json"
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "The current processing state or the signed URL for the completed PAN verification workbook.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "code": {
+                      "type": "integer",
+                      "enum": [
+                        200
+                      ]
+                    },
+                    "timestamp": {
+                      "type": "integer",
+                      "description": "Unix timestamp in milliseconds."
+                    },
+                    "transaction_id": {
+                      "type": "string"
+                    },
+                    "data": {
+                      "oneOf": [
+                        {
+                          "type": "object",
+                          "properties": {
+                            "token_number": {
+                              "type": "string",
+                              "description": "Token number assigned by TRACES to this PAN verification request."
+                            },
+                            "status": {
+                              "type": "string",
+                              "enum": [
+                                "in_progress"
+                              ],
+                              "description": "The verification report is being prepared."
+                            },
+                            "rejection_remarks": {
+                              "type": [
+                                "string",
+                                "null"
+                              ],
+                              "description": "Rejection remarks returned by TRACES, or null when none are available."
+                            }
+                          },
+                          "required": [
+                            "token_number",
+                            "status",
+                            "rejection_remarks"
+                          ],
+                          "additionalProperties": false
+                        },
+                        {
+                          "type": "object",
+                          "properties": {
+                            "output_json_url": {
+                              "type": "string",
+                              "format": "uri",
+                              "description": "Signed download URL for the PAN verification workbook. The URL is valid for one day."
+                            }
+                          },
+                          "required": [
+                            "output_json_url"
+                          ],
+                          "additionalProperties": false
+                        }
+                      ]
+                    }
+                  },
+                  "required": [
+                    "code",
+                    "timestamp",
+                    "transaction_id",
+                    "data"
+                  ],
+                  "additionalProperties": false
+                },
+                "examples": {
+                  "Verification report available": {
+                    "summary": "Verification report available",
+                    "value": {
+                      "code": 200,
+                      "timestamp": 1792265454381,
+                      "data": {
+                        "output_json_url": "https://example-bucket.s3.ap-south-1.amazonaws.com/workspace-id/AHMS45586C/26102348059/pan-verification.json?X-Amz-Expires=86400&X-Amz-Signature=example"
+                      },
+                      "transaction_id": "d14d4747-9478-4557-b357-fe143549939d"
+                    }
+                  },
+                  "Verification in progress": {
+                    "summary": "Verification in progress",
+                    "value": {
+                      "code": 200,
+                      "timestamp": 1792265454381,
+                      "data": {
+                        "token_number": "26102348059",
+                        "status": "in_progress",
+                        "rejection_remarks": null
+                      },
+                      "transaction_id": "d14d4747-9478-4557-b357-fe143549939d"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Required request data is missing or invalid.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "code": {
+                      "type": "integer",
+                      "enum": [
+                        400
+                      ]
+                    },
+                    "timestamp": {
+                      "type": "integer",
+                      "description": "Unix timestamp in milliseconds."
+                    },
+                    "transaction_id": {
+                      "type": "string"
+                    },
+                    "message": {
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "code",
+                    "timestamp",
+                    "transaction_id",
+                    "message"
+                  ],
+                  "additionalProperties": false
+                },
+                "examples": {
+                  "Missing token number": {
+                    "summary": "Missing token number",
+                    "value": {
+                      "code": 400,
+                      "timestamp": 1792265462163,
+                      "message": "Missing required request parameters: [token_number]",
+                      "transaction_id": "0b3bba3e-3cc6-49e8-9bb9-a2becd68809c"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "The deductor access token is not valid for this request.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "code": {
+                      "type": "integer",
+                      "enum": [
+                        401
+                      ]
+                    },
+                    "timestamp": {
+                      "type": "integer",
+                      "description": "Unix timestamp in milliseconds."
+                    },
+                    "transaction_id": {
+                      "type": "string"
+                    },
+                    "message": {
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "code",
+                    "timestamp",
+                    "transaction_id",
+                    "message"
+                  ],
+                  "additionalProperties": false
+                },
+                "examples": {
+                  "Missing deductor access token": {
+                    "summary": "Missing deductor access token",
+                    "value": {
+                      "code": 401,
+                      "message": "Unauthorized",
+                      "timestamp": 1792265462059,
+                      "transaction_id": "95f1cca7-9751-4117-897e-7653dd81085a"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Access to this API is denied.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "code": {
+                      "type": "integer",
+                      "enum": [
+                        403
+                      ]
+                    },
+                    "timestamp": {
+                      "type": "integer",
+                      "description": "Unix timestamp in milliseconds."
+                    },
+                    "transaction_id": {
+                      "type": "string"
+                    },
+                    "message": {
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "code",
+                    "timestamp",
+                    "transaction_id",
+                    "message"
+                  ],
+                  "additionalProperties": false
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "The request could not be completed.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "code": {
+                      "type": "integer",
+                      "enum": [
+                        500
+                      ]
+                    },
+                    "timestamp": {
+                      "type": "integer",
+                      "description": "Unix timestamp in milliseconds."
+                    },
+                    "transaction_id": {
+                      "type": "string"
+                    },
+                    "message": {
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "code",
+                    "timestamp",
+                    "transaction_id",
+                    "message"
+                  ],
+                  "additionalProperties": false
+                }
+              }
+            }
+          },
+          "503": {
+            "description": "TRACES could not complete the request.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "code": {
+                      "type": "integer",
+                      "enum": [
+                        503
+                      ]
+                    },
+                    "timestamp": {
+                      "type": "integer",
+                      "description": "Unix timestamp in milliseconds."
+                    },
+                    "transaction_id": {
+                      "type": "string"
+                    },
+                    "message": {
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "code",
+                    "timestamp",
+                    "transaction_id",
+                    "message"
+                  ],
+                  "additionalProperties": false
+                }
+              }
+            }
+          },
+          "521": {
+            "description": "No PAN verification request matches the token number for the authenticated deductor.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "code": {
+                      "type": "integer",
+                      "enum": [
+                        521
+                      ]
+                    },
+                    "timestamp": {
+                      "type": "integer",
+                      "description": "Unix timestamp in milliseconds."
+                    },
+                    "transaction_id": {
+                      "type": "string"
+                    },
+                    "message": {
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "code",
+                    "timestamp",
+                    "transaction_id",
+                    "message"
+                  ],
+                  "additionalProperties": false
+                },
+                "examples": {
+                  "Token number not found": {
+                    "summary": "Token number not found",
+                    "value": {
+                      "code": 521,
+                      "timestamp": 1792265461191,
+                      "message": "PAN verification request not found",
+                      "transaction_id": "ab61a481-a0cc-40de-adc1-d6b550c4c50a"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "security": [],
+        "x-sandbox-request-examples": {
+          "Verification report available": {
+            "summary": "Verification report available",
+            "value": {
+              "method": "GET",
+              "path": "/tds/compliance/traces/deductors/pan/verify/status",
+              "query": {
+                "token_number": "26102348059"
+              },
+              "headers": {
+                "Authorization": "{{deductor_access_token}}",
+                "x-api-key": "{{api_key}}",
+                "Content-Type": "application/json"
+              }
+            }
+          },
+          "Token number not found": {
+            "summary": "Token number not found",
+            "value": {
+              "method": "GET",
+              "path": "/tds/compliance/traces/deductors/pan/verify/status",
+              "query": {
+                "token_number": "99999999999999999999"
+              },
+              "headers": {
+                "Authorization": "{{deductor_access_token}}",
+                "x-api-key": "{{api_key}}",
+                "Content-Type": "application/json"
+              }
+            }
+          },
+          "Missing token number": {
+            "summary": "Missing token number",
+            "value": {
+              "method": "GET",
+              "path": "/tds/compliance/traces/deductors/pan/verify/status",
+              "query": {},
+              "headers": {
+                "Authorization": "{{deductor_access_token}}",
+                "x-api-key": "{{api_key}}",
+                "Content-Type": "application/json"
+              }
+            }
+          },
+          "Missing deductor access token": {
+            "summary": "Missing deductor access token",
+            "value": {
+              "method": "GET",
+              "path": "/tds/compliance/traces/deductors/pan/verify/status",
+              "query": {
+                "token_number": "26102348059"
+              },
+              "headers": {
+                "x-api-key": "{{api_key}}",
+                "Content-Type": "application/json"
+              }
+            }
+          },
+          "Verification in progress": {
+            "summary": "Verification in progress",
+            "value": {
+              "method": "GET",
+              "path": "/tds/compliance/traces/deductors/pan/verify/status",
+              "query": {
+                "token_number": "26102348059"
+              },
+              "headers": {
+                "Authorization": "{{deductor_access_token}}",
+                "x-api-key": "{{api_key}}",
+                "Content-Type": "application/json"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/tds/compliance/traces/deductors/pan/verify": {
+      "post": {
+        "summary": "Submit bulk PAN verification",
+        "deprecated": false,
+        "description": "Submit PANs in a payee workbook and receive the TRACES token number. Repeated PAN values are submitted once. PAN text is sent unchanged to TRACES. Use the token number to check processing status and retrieve the completed workbook. Authenticate or refresh separately when the deductor access token expires.",
+        "operationId": "submitTracesPanVerification",
+        "tags": [
+          "TRACES",
+          "PAN verification"
+        ],
+        "parameters": [
+          {
+            "name": "Authorization",
+            "in": "header",
+            "description": "Deductor access token returned by [Authenticate a TRACES deductor](https://developer.sandbox.co.in/api-reference/tds/compliance/traces/endpoints/authenticate). The token identifies the deductor TAN.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "examples": {
+              "Submit three PANs": {
+                "summary": "Submit three PANs",
+                "value": "{{deductor_access_token}}"
+              },
+              "Missing workbook sheets": {
+                "summary": "Missing workbook sheets",
+                "value": "{{deductor_access_token}}"
+              },
+              "Missing API key": {
+                "summary": "Missing API key",
+                "value": "{{deductor_access_token}}"
+              }
+            }
+          },
+          {
+            "name": "x-api-key",
+            "in": "header",
+            "description": "Sandbox API key.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "examples": {
+              "Submit three PANs": {
+                "summary": "Submit three PANs",
+                "value": "{{api_key}}"
+              },
+              "Missing workbook sheets": {
+                "summary": "Missing workbook sheets",
+                "value": "{{api_key}}"
+              },
+              "Missing deductor access token": {
+                "summary": "Missing deductor access token",
+                "value": "{{api_key}}"
+              }
+            }
+          },
+          {
+            "name": "Content-Type",
+            "in": "header",
+            "description": "Request body format.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "examples": {
+              "Submit three PANs": {
+                "summary": "Submit three PANs",
+                "value": "application/json"
+              },
+              "Missing workbook sheets": {
+                "summary": "Missing workbook sheets",
+                "value": "application/json"
+              },
+              "Missing API key": {
+                "summary": "Missing API key",
+                "value": "application/json"
+              },
+              "Missing deductor access token": {
+                "summary": "Missing deductor access token",
+                "value": "application/json"
+              }
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "description": "TRACES bulk PAN verification input workbook.",
+                "properties": {
+                  "@entity": {
+                    "type": "string",
+                    "enum": [
+                      "workbook"
+                    ]
+                  },
+                  "name": {
+                    "type": "string",
+                    "enum": [
+                      "payee_workbook"
+                    ]
+                  },
+                  "sheets": {
+                    "type": "array",
+                    "minItems": 1,
+                    "maxItems": 1,
+                    "items": {
+                      "oneOf": [
+                        {
+                          "type": "object",
+                          "properties": {
+                            "@entity": {
+                              "type": "string",
+                              "enum": [
+                                "sheet"
+                              ]
+                            },
+                            "name": {
+                              "type": "string",
+                              "enum": [
+                                "payee_sheet"
+                              ]
+                            },
+                            "blocks": {
+                              "type": "array",
+                              "minItems": 1,
+                              "maxItems": 1,
+                              "items": {
+                                "oneOf": [
+                                  {
+                                    "type": "object",
+                                    "properties": {
+                                      "@entity": {
+                                        "type": "string",
+                                        "enum": [
+                                          "table"
+                                        ]
+                                      },
+                                      "name": {
+                                        "type": "string",
+                                        "enum": [
+                                          "payee_table"
+                                        ]
+                                      },
+                                      "header": {
+                                        "type": "array",
+                                        "minItems": 2,
+                                        "maxItems": 2,
+                                        "prefixItems": [
+                                          {
+                                            "type": "string",
+                                            "enum": [
+                                              "sr_no"
+                                            ]
+                                          },
+                                          {
+                                            "type": "string",
+                                            "enum": [
+                                              "pan"
+                                            ]
+                                          }
+                                        ],
+                                        "items": false
+                                      },
+                                      "rows": {
+                                        "type": "array",
+                                        "items": {
+                                          "type": "array",
+                                          "minItems": 2,
+                                          "maxItems": 2,
+                                          "prefixItems": [
+                                            {
+                                              "type": "integer",
+                                              "minimum": 1,
+                                              "description": "Serial number of the payee in the uploaded workbook."
+                                            },
+                                            {
+                                              "type": "string",
+                                              "description": "PAN text supplied by the caller and submitted unchanged to TRACES."
+                                            }
+                                          ],
+                                          "items": false
+                                        }
+                                      }
+                                    },
+                                    "required": [
+                                      "@entity",
+                                      "name",
+                                      "header",
+                                      "rows"
+                                    ]
+                                  }
+                                ]
+                              }
+                            }
+                          },
+                          "required": [
+                            "@entity",
+                            "name",
+                            "blocks"
+                          ]
+                        }
+                      ]
+                    }
+                  }
+                },
+                "required": [
+                  "@entity",
+                  "name",
+                  "sheets"
+                ]
+              },
+              "examples": {
+                "Submit three PANs": {
+                  "summary": "Submit three PANs",
+                  "value": {
+                    "@entity": "workbook",
+                    "name": "payee_workbook",
+                    "sheets": [
+                      {
+                        "@entity": "sheet",
+                        "name": "payee_sheet",
+                        "blocks": [
+                          {
+                            "@entity": "table",
+                            "name": "payee_table",
+                            "header": [
+                              "sr_no",
+                              "pan"
+                            ],
+                            "rows": [
+                              [
+                                1,
+                                "AAAPW9785C"
+                              ],
+                              [
+                                2,
+                                "AAAPW9795C"
+                              ],
+                              [
+                                3,
+                                "AAAPW9805C"
+                              ]
+                            ]
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                },
+                "Missing workbook sheets": {
+                  "summary": "Missing workbook sheets",
+                  "value": {
+                    "@entity": "workbook",
+                    "name": "payee_workbook"
+                  }
+                },
+                "Missing API key": {
+                  "summary": "Missing API key",
+                  "value": {
+                    "@entity": "workbook",
+                    "name": "payee_workbook",
+                    "sheets": [
+                      {
+                        "@entity": "sheet",
+                        "name": "payee_sheet",
+                        "blocks": [
+                          {
+                            "@entity": "table",
+                            "name": "payee_table",
+                            "header": [
+                              "sr_no",
+                              "pan"
+                            ],
+                            "rows": [
+                              [
+                                1,
+                                "AAAPW9785C"
+                              ],
+                              [
+                                2,
+                                "AAAPW9795C"
+                              ],
+                              [
+                                3,
+                                "AAAPW9805C"
+                              ]
+                            ]
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                },
+                "Missing deductor access token": {
+                  "summary": "Missing deductor access token",
+                  "value": {
+                    "@entity": "workbook",
+                    "name": "payee_workbook",
+                    "sheets": [
+                      {
+                        "@entity": "sheet",
+                        "name": "payee_sheet",
+                        "blocks": [
+                          {
+                            "@entity": "table",
+                            "name": "payee_table",
+                            "header": [
+                              "sr_no",
+                              "pan"
+                            ],
+                            "rows": [
+                              [
+                                1,
+                                "AAAPW9785C"
+                              ],
+                              [
+                                2,
+                                "AAAPW9795C"
+                              ],
+                              [
+                                3,
+                                "AAAPW9805C"
+                              ]
+                            ]
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                }
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "The PAN verification request was submitted to TRACES.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "code": {
+                      "type": "integer",
+                      "enum": [
+                        200
+                      ]
+                    },
+                    "timestamp": {
+                      "type": "integer",
+                      "description": "Unix timestamp in milliseconds."
+                    },
+                    "transaction_id": {
+                      "type": "string"
+                    },
+                    "data": {
+                      "type": "object",
+                      "properties": {
+                        "token_number": {
+                          "type": "string",
+                          "description": "Token number assigned by TRACES to this PAN verification request."
+                        }
+                      },
+                      "required": [
+                        "token_number"
+                      ],
+                      "additionalProperties": false
+                    }
+                  },
+                  "required": [
+                    "code",
+                    "timestamp",
+                    "transaction_id",
+                    "data"
+                  ],
+                  "additionalProperties": false
+                },
+                "examples": {
+                  "Submit three PANs": {
+                    "summary": "Submit three PANs",
+                    "value": {
+                      "code": 200,
+                      "timestamp": 1792265451650,
+                      "data": {
+                        "token_number": "26102348059"
+                      },
+                      "transaction_id": "2faa2970-c4dc-4cad-9aa0-af8767aad856"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Required request data is missing or invalid.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "code": {
+                      "type": "integer",
+                      "enum": [
+                        400
+                      ]
+                    },
+                    "timestamp": {
+                      "type": "integer",
+                      "description": "Unix timestamp in milliseconds."
+                    },
+                    "transaction_id": {
+                      "type": "string"
+                    },
+                    "message": {
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "code",
+                    "timestamp",
+                    "transaction_id",
+                    "message"
+                  ],
+                  "additionalProperties": false
+                },
+                "examples": {
+                  "Missing workbook sheets": {
+                    "summary": "Missing workbook sheets",
+                    "value": {
+                      "code": 400,
+                      "timestamp": 1792265461716,
+                      "message": "Invalid request body",
+                      "transaction_id": "466092af-2865-43c2-a257-942e42bb7b63"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "The deductor access token is not valid for this request.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "code": {
+                      "type": "integer",
+                      "enum": [
+                        401
+                      ]
+                    },
+                    "timestamp": {
+                      "type": "integer",
+                      "description": "Unix timestamp in milliseconds."
+                    },
+                    "transaction_id": {
+                      "type": "string"
+                    },
+                    "message": {
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "code",
+                    "timestamp",
+                    "transaction_id",
+                    "message"
+                  ],
+                  "additionalProperties": false
+                },
+                "examples": {
+                  "Missing deductor access token": {
+                    "summary": "Missing deductor access token",
+                    "value": {
+                      "code": 401,
+                      "message": "Unauthorized",
+                      "timestamp": 1792265461644,
+                      "transaction_id": "61438e84-db3c-41ea-8694-8091b7cfe000"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Access to this API is denied.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "code": {
+                      "type": "integer",
+                      "enum": [
+                        403
+                      ]
+                    },
+                    "timestamp": {
+                      "type": "integer",
+                      "description": "Unix timestamp in milliseconds."
+                    },
+                    "transaction_id": {
+                      "type": "string"
+                    },
+                    "message": {
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "code",
+                    "timestamp",
+                    "transaction_id",
+                    "message"
+                  ],
+                  "additionalProperties": false
+                },
+                "examples": {
+                  "Missing API key": {
+                    "summary": "Missing API key",
+                    "value": {
+                      "code": 403,
+                      "message": "Forbidden",
+                      "timestamp": 1792265461907,
+                      "transaction_id": "4201145a-9834-480b-adff-a5d8d8a07791"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "The request could not be completed.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "code": {
+                      "type": "integer",
+                      "enum": [
+                        500
+                      ]
+                    },
+                    "timestamp": {
+                      "type": "integer",
+                      "description": "Unix timestamp in milliseconds."
+                    },
+                    "transaction_id": {
+                      "type": "string"
+                    },
+                    "message": {
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "code",
+                    "timestamp",
+                    "transaction_id",
+                    "message"
+                  ],
+                  "additionalProperties": false
+                }
+              }
+            }
+          },
+          "503": {
+            "description": "TRACES could not complete the request.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "code": {
+                      "type": "integer",
+                      "enum": [
+                        503
+                      ]
+                    },
+                    "timestamp": {
+                      "type": "integer",
+                      "description": "Unix timestamp in milliseconds."
+                    },
+                    "transaction_id": {
+                      "type": "string"
+                    },
+                    "message": {
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "code",
+                    "timestamp",
+                    "transaction_id",
+                    "message"
+                  ],
+                  "additionalProperties": false
+                }
+              }
+            }
+          }
+        },
+        "security": [],
+        "x-sandbox-request-examples": {
+          "Submit three PANs": {
+            "summary": "Submit three PANs",
+            "value": {
+              "method": "POST",
+              "path": "/tds/compliance/traces/deductors/pan/verify",
+              "query": {},
+              "headers": {
+                "Authorization": "{{deductor_access_token}}",
+                "x-api-key": "{{api_key}}",
+                "Content-Type": "application/json"
+              },
+              "body": {
+                "@entity": "workbook",
+                "name": "payee_workbook",
+                "sheets": [
+                  {
+                    "@entity": "sheet",
+                    "name": "payee_sheet",
+                    "blocks": [
+                      {
+                        "@entity": "table",
+                        "name": "payee_table",
+                        "header": [
+                          "sr_no",
+                          "pan"
+                        ],
+                        "rows": [
+                          [
+                            1,
+                            "AAAPW9785C"
+                          ],
+                          [
+                            2,
+                            "AAAPW9795C"
+                          ],
+                          [
+                            3,
+                            "AAAPW9805C"
+                          ]
+                        ]
+                      }
+                    ]
+                  }
+                ]
+              }
+            }
+          },
+          "Missing workbook sheets": {
+            "summary": "Missing workbook sheets",
+            "value": {
+              "method": "POST",
+              "path": "/tds/compliance/traces/deductors/pan/verify",
+              "query": {},
+              "headers": {
+                "Authorization": "{{deductor_access_token}}",
+                "x-api-key": "{{api_key}}",
+                "Content-Type": "application/json"
+              },
+              "body": {
+                "@entity": "workbook",
+                "name": "payee_workbook"
+              }
+            }
+          },
+          "Missing API key": {
+            "summary": "Missing API key",
+            "value": {
+              "method": "POST",
+              "path": "/tds/compliance/traces/deductors/pan/verify",
+              "query": {},
+              "headers": {
+                "Authorization": "{{deductor_access_token}}",
+                "Content-Type": "application/json"
+              },
+              "body": {
+                "@entity": "workbook",
+                "name": "payee_workbook",
+                "sheets": [
+                  {
+                    "@entity": "sheet",
+                    "name": "payee_sheet",
+                    "blocks": [
+                      {
+                        "@entity": "table",
+                        "name": "payee_table",
+                        "header": [
+                          "sr_no",
+                          "pan"
+                        ],
+                        "rows": [
+                          [
+                            1,
+                            "AAAPW9785C"
+                          ],
+                          [
+                            2,
+                            "AAAPW9795C"
+                          ],
+                          [
+                            3,
+                            "AAAPW9805C"
+                          ]
+                        ]
+                      }
+                    ]
+                  }
+                ]
+              }
+            }
+          },
+          "Missing deductor access token": {
+            "summary": "Missing deductor access token",
+            "value": {
+              "method": "POST",
+              "path": "/tds/compliance/traces/deductors/pan/verify",
+              "query": {},
+              "headers": {
+                "x-api-key": "{{api_key}}",
+                "Content-Type": "application/json"
+              },
+              "body": {
+                "@entity": "workbook",
+                "name": "payee_workbook",
+                "sheets": [
+                  {
+                    "@entity": "sheet",
+                    "name": "payee_sheet",
+                    "blocks": [
+                      {
+                        "@entity": "table",
+                        "name": "payee_table",
+                        "header": [
+                          "sr_no",
+                          "pan"
+                        ],
+                        "rows": [
+                          [
+                            1,
+                            "AAAPW9785C"
+                          ],
+                          [
+                            2,
+                            "AAAPW9795C"
+                          ],
+                          [
+                            3,
+                            "AAAPW9805C"
+                          ]
+                        ]
+                      }
+                    ]
+                  }
+                ]
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "webhooks": {
+    "PanVerificationJobStatus": {
+      "post": {
+        "summary": "Bulk PAN verification webhook",
+        "deprecated": false,
+        "description": "Sandbox sends this webhook when a bulk PAN verification job changes to `succeeded` or `failed`. The `data` object contains the same job fields as the [PAN verification status response](https://developer.sandbox.co.in/api-reference/tds/compliance/pan-verification/endpoints/poll_job). A successful job includes `output_json_url`. A failed job includes `message`.\n\nSubscribe to these events in the Sandbox Console:\n\n- `in.co.sandbox.tds.compliance.pan.verification.job.succeeded`\n- `in.co.sandbox.tds.compliance.pan.verification.job.failed`\n\nSee the [webhooks guide](https://developer.sandbox.co.in/guides/developer-resources/webhooks) to configure your webhook URL and validate the `x-sandbox-signature` header.",
+        "operationId": "PanVerificationJobStatus",
+        "tags": [
+          "PAN Verification"
+        ],
+        "parameters": [],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "description": "PAN verification job status notification.",
+                "properties": {
+                  "data": {
+                    "$ref": "#/components/schemas/PanVerificationJob",
+                    "description": "Job details use the same schema as data in the PAN verification status response."
+                  }
+                },
+                "required": [
+                  "data"
+                ]
+              },
+              "examples": {
+                "Verification completed": {
+                  "value": {
+                    "data": {
+                      "created_at": 1792054456408,
+                      "updated_at": 1792054527258,
+                      "@entity": "in.co.sandbox.tds.compliance.pan.verification.job",
+                      "job_id": "8941b6c4-8104-4a4b-b38c-14b0a1ed6837",
+                      "tan": "AHMA12345A",
+                      "status": "succeeded",
+                      "output_json_url": "https://sandbox-example.s3.ap-south-1.amazonaws.com/example-workspace/8941b6c4-8104-4a4b-b38c-14b0a1ed6837/pan-verification.json?X-Amz-Signature=example"
+                    }
+                  },
+                  "summary": "Verification completed"
+                },
+                "Verification failed": {
+                  "value": {
+                    "data": {
+                      "created_at": 1792136873733,
+                      "updated_at": 1792136925094,
+                      "@entity": "in.co.sandbox.tds.compliance.pan.verification.job",
+                      "job_id": "b5084575-7bdf-4a40-a8db-e19c93d34ec4",
+                      "tan": "AHMA12345A",
+                      "message": "Credentials not found",
+                      "status": "failed"
+                    }
+                  },
+                  "summary": "Verification failed"
+                }
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Return a 2xx status to acknowledge receipt of the notification.",
+            "headers": {}
+          }
+        },
+        "security": []
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "PanVerificationRequest": {
+        "type": "object",
+        "description": "Creates a bulk PAN verification job for a TAN. The payee workbook is uploaded separately to the returned signed URL.",
+        "properties": {
+          "@entity": {
+            "type": "string",
+            "enum": [
+              "in.co.sandbox.tds.compliance.pan.verification.request"
+            ],
+            "description": "Request entity type."
+          },
+          "tan": {
+            "type": "string",
+            "pattern": "^[A-Z]{4}[0-9]{5}[A-Z]$",
+            "description": "Tax Deduction and Collection Account Number associated with the saved TRACES credentials.",
+            "examples": [
+              "AHMA12345A"
+            ]
+          }
+        },
+        "required": [
+          "@entity",
+          "tan"
+        ],
+        "additionalProperties": false
+      },
+      "PanVerificationJob": {
+        "type": "object",
+        "description": "A bulk PAN verification job. Upload the input through json_url. A succeeded job provides output_json_url. A failed job provides message.",
+        "properties": {
+          "@entity": {
+            "type": "string",
+            "enum": [
+              "in.co.sandbox.tds.compliance.pan.verification.job"
+            ],
+            "description": "Job entity type."
+          },
+          "job_id": {
+            "type": "string",
+            "format": "uuid",
+            "description": "Unique identifier returned when the job is created."
+          },
+          "tan": {
+            "type": "string",
+            "pattern": "^[A-Z]{4}[0-9]{5}[A-Z]$",
+            "description": "TAN associated with the verification job."
+          },
+          "status": {
+            "type": "string",
+            "enum": [
+              "created",
+              "queued",
+              "in_progress",
+              "succeeded",
+              "failed"
+            ],
+            "description": "Current job status. created waits for the workbook upload. queued waits to start processing. in_progress covers workbook validation, TRACES authentication and verification, and output workbook generation. succeeded means the output JSON workbook is saved. failed means processing did not complete."
+          },
+          "created_at": {
+            "type": "integer",
+            "format": "int64",
+            "description": "Job creation timestamp in epoch milliseconds."
+          },
+          "updated_at": {
+            "type": "integer",
+            "format": "int64",
+            "description": "Last job update timestamp in epoch milliseconds. Omitted from the job creation response."
+          },
+          "json_url": {
+            "type": "string",
+            "format": "uri",
+            "description": "Signed URL for uploading the input JSON workbook with HTTP PUT. The input limit is 5,000,000 bytes."
+          },
+          "output_json_url": {
+            "type": "string",
+            "format": "uri",
+            "description": "Signed URL for downloading the completed output JSON workbook with HTTP GET. Available when status is succeeded."
+          },
+          "message": {
+            "type": "string",
+            "description": "Reason the job failed. Present when status is failed."
+          }
+        },
+        "required": [
+          "@entity",
+          "job_id",
+          "tan",
+          "status",
+          "created_at"
+        ],
+        "additionalProperties": false,
+        "oneOf": [
+          {
+            "properties": {
+              "status": {
+                "enum": [
+                  "created",
+                  "queued",
+                  "in_progress"
+                ]
+              }
+            },
+            "type": "object"
+          },
+          {
+            "properties": {
+              "status": {
+                "enum": [
+                  "succeeded"
+                ]
+              }
+            },
+            "type": "object"
+          },
+          {
+            "properties": {
+              "status": {
+                "enum": [
+                  "failed"
+                ]
+              }
+            },
+            "type": "object"
+          }
+        ]
+      },
+      "Challan": {
+        "title": "Challan",
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "@entity": {
+            "type": "string",
+            "default": "in.co.sandbox.tds.compliance.challan.response",
+            "enum": [
+              "in.co.sandbox.tds.compliance.challan.response"
+            ],
+            "description": "Identifies the type of this object."
+          },
+          "created_at": {
+            "type": "string",
+            "description": "Creation timestamp, when available."
+          },
+          "updated_at": {
+            "type": "string",
+            "description": "Last update timestamp, when available."
+          },
+          "tan": {
+            "type": "string",
+            "description": "Tax Deduction and Collection Account Number (TAN) of the deductor."
+          },
+          "bsr_code": {
+            "type": "string",
+            "description": "Basic Statistical Return (BSR) code of the bank branch where the challan was deposited."
+          },
+          "challan_serial": {
+            "type": "string",
+            "description": "Five-digit challan serial number, including leading zeroes."
+          },
+          "paid_date_epoch": {
+            "type": "integer",
+            "description": "Deposit date in epoch milliseconds. The calendar date is interpreted in Asia/Kolkata."
+          },
+          "challan_identification_number": {
+            "type": "string",
+            "description": "Challan Identification Number (CIN) reported by TRACES."
+          },
+          "receipt_number": {
+            "type": "string",
+            "description": "Receipt number reported by TRACES."
+          },
+          "financial_year": {
+            "type": "string",
+            "description": "Financial year reported by TRACES in FY YYYY-YY format. This year can differ from the financial year of the deposit date."
+          },
+          "major_head": {
+            "type": "string",
+            "description": "Major head of tax, including leading zeroes, such as 0021."
+          },
+          "minor_head": {
+            "type": "string",
+            "description": "Minor head of payment, such as 200."
+          },
+          "total_amount": {
+            "type": "number",
+            "description": "Total amount in INR."
+          },
+          "status": {
+            "type": "string",
+            "description": "Challan matching status reported by TRACES."
+          },
+          "section_code": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "description": "Legacy section code reported by TRACES, or null if unavailable. This code can be present even when tax_breakdown is empty."
+          },
+          "residency_status": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "description": "Residency status code reported by TRACES, or null if unavailable."
+          },
+          "tax_breakdown": {
+            "type": "array",
+            "items": {
+              "title": "ChallanTaxBreakdown",
+              "type": "object",
+              "additionalProperties": false,
+              "properties": {
+                "@entity": {
+                  "type": "string",
+                  "default": "in.co.sandbox.tds.compliance.challan.tax_breakdown",
+                  "enum": [
+                    "in.co.sandbox.tds.compliance.challan.tax_breakdown"
+                  ],
+                  "description": "Identifies the type of this object."
+                },
+                "created_at": {
+                  "type": "string",
+                  "description": "Creation timestamp, when available."
+                },
+                "updated_at": {
+                  "type": "string",
+                  "description": "Last update timestamp, when available."
+                },
+                "section": {
+                  "type": [
+                    "string",
+                    "null"
+                  ],
+                  "description": "TDS section reported by TRACES, or null when unavailable."
+                },
+                "tax_amount": {
+                  "type": "number",
+                  "description": "Base tax amount in INR, excluding surcharge and cess."
+                },
+                "surcharge": {
+                  "type": "number",
+                  "description": "Surcharge amount in INR."
+                },
+                "cess": {
+                  "type": "number",
+                  "description": "Cess amount in INR."
+                },
+                "total_amount": {
+                  "type": "number",
+                  "description": "Total amount in INR."
+                }
+              },
+              "required": [
+                "@entity",
+                "section",
+                "tax_amount",
+                "surcharge",
+                "cess",
+                "total_amount"
+              ],
+              "description": "Tax, surcharge, and cess for a section reported against the challan. All amounts are in INR."
+            },
+            "description": "Section-wise tax breakdown in INR. An empty list means no breakdown is available."
+          },
+          "consumption_details": {
+            "title": "ChallanConsumptionDetails",
+            "description": "Statement utilization reported by TRACES. null means utilization details are unavailable and does not indicate an unused challan.",
+            "type": [
+              "object",
+              "null"
+            ],
+            "additionalProperties": false,
+            "properties": {
+              "@entity": {
+                "type": "string",
+                "default": "in.co.sandbox.tds.compliance.challan.consumption_details",
+                "enum": [
+                  "in.co.sandbox.tds.compliance.challan.consumption_details"
+                ],
+                "description": "Identifies the type of this object."
+              },
+              "created_at": {
+                "type": "string",
+                "description": "Creation timestamp, when available."
+              },
+              "updated_at": {
+                "type": "string",
+                "description": "Last update timestamp, when available."
+              },
+              "statement_token_number": {
+                "type": "string",
+                "description": "Token number of the statement against which the challan was claimed."
+              },
+              "financial_year": {
+                "type": "string",
+                "pattern": "^FY [0-9]{4}-[0-9]{2}$",
+                "description": "Financial year of the reported TDS statement in FY YYYY-YY format."
+              },
+              "quarter": {
+                "type": "string",
+                "description": "Quarter of the TDS statement, from Q1 to Q4."
+              },
+              "form": {
+                "type": "string",
+                "description": "TDS statement form code reported by TRACES."
+              },
+              "status": {
+                "type": "string",
+                "description": "Consumption status of the challan in the reported statement."
+              },
+              "claimed_amount": {
+                "type": "number",
+                "description": "Amount claimed against the challan in the reported statement, in INR."
+              },
+              "excess_claimed_amount": {
+                "type": "number",
+                "description": "Excess claimed amount reported by TRACES, in INR."
+              },
+              "available_amount": {
+                "type": "number",
+                "description": "Available challan amount reported by TRACES, in INR."
+              }
+            },
+            "required": [
+              "@entity",
+              "statement_token_number",
+              "financial_year",
+              "quarter",
+              "form",
+              "status",
+              "claimed_amount",
+              "excess_claimed_amount",
+              "available_amount"
+            ]
+          }
+        },
+        "required": [
+          "@entity",
+          "tan",
+          "bsr_code",
+          "challan_serial",
+          "paid_date_epoch",
+          "challan_identification_number",
+          "receipt_number",
+          "financial_year",
+          "major_head",
+          "minor_head",
+          "total_amount",
+          "status",
+          "section_code",
+          "residency_status",
+          "tax_breakdown",
+          "consumption_details"
+        ],
+        "description": "A TDS challan with its tax breakdown and available utilization details from TRACES. All amounts are in INR."
+      },
+      "ChallanLookupRequest": {
+        "title": "ChallanLookupRequest",
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "@entity": {
+            "type": "string",
+            "default": "in.co.sandbox.tds.compliance.challan.request",
+            "enum": [
+              "in.co.sandbox.tds.compliance.challan.request"
+            ],
+            "description": "Identifies the type of this object."
+          },
+          "bsr_code": {
+            "type": "string",
+            "pattern": "^[0-9]{7}$",
+            "description": "Basic Statistical Return (BSR) code of the bank branch where the challan was deposited."
+          },
+          "challan_serial": {
+            "type": "string",
+            "pattern": "^[0-9]{5}$",
+            "description": "Five-digit challan serial number, including leading zeroes."
+          },
+          "paid_date_epoch": {
+            "type": "integer",
+            "minimum": 0,
+            "description": "Deposit date in epoch milliseconds. The calendar date is interpreted in Asia/Kolkata."
+          }
+        },
+        "required": [
+          "@entity",
+          "bsr_code",
+          "challan_serial",
+          "paid_date_epoch"
+        ],
+        "description": "Particulars that identify a TDS challan for a deductor."
+      },
+      "ChallanSearchResponse": {
+        "title": "ChallanSearchResponse",
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "@entity": {
+            "type": "string",
+            "default": "in.co.sandbox.tds.compliance.challan.search.response",
+            "enum": [
+              "in.co.sandbox.tds.compliance.challan.search.response"
+            ],
+            "description": "Identifies the type of this object."
+          },
+          "created_at": {
+            "type": "string",
+            "description": "Creation timestamp, when available."
+          },
+          "updated_at": {
+            "type": "string",
+            "description": "Last update timestamp, when available."
+          },
+          "data": {
+            "type": "array",
+            "items": {
+              "title": "Challan",
+              "type": "object",
+              "additionalProperties": false,
+              "properties": {
+                "@entity": {
+                  "type": "string",
+                  "default": "in.co.sandbox.tds.compliance.challan.response",
+                  "enum": [
+                    "in.co.sandbox.tds.compliance.challan.response"
+                  ],
+                  "description": "Identifies the type of this object."
+                },
+                "created_at": {
+                  "type": "string",
+                  "description": "Creation timestamp, when available."
+                },
+                "updated_at": {
+                  "type": "string",
+                  "description": "Last update timestamp, when available."
+                },
+                "tan": {
+                  "type": "string",
+                  "description": "Tax Deduction and Collection Account Number (TAN) of the deductor."
+                },
+                "bsr_code": {
+                  "type": "string",
+                  "description": "Basic Statistical Return (BSR) code of the bank branch where the challan was deposited."
+                },
+                "challan_serial": {
+                  "type": "string",
+                  "description": "Five-digit challan serial number, including leading zeroes."
+                },
+                "paid_date_epoch": {
+                  "type": "integer",
+                  "description": "Deposit date in epoch milliseconds. The calendar date is interpreted in Asia/Kolkata."
+                },
+                "challan_identification_number": {
+                  "type": "string",
+                  "description": "Challan Identification Number (CIN) reported by TRACES."
+                },
+                "receipt_number": {
+                  "type": "string",
+                  "description": "Receipt number reported by TRACES."
+                },
+                "financial_year": {
+                  "type": "string",
+                  "description": "Financial year reported by TRACES in FY YYYY-YY format. This year can differ from the financial year of the deposit date."
+                },
+                "major_head": {
+                  "type": "string",
+                  "description": "Major head of tax, including leading zeroes, such as 0021."
+                },
+                "minor_head": {
+                  "type": "string",
+                  "description": "Minor head of payment, such as 200."
+                },
+                "total_amount": {
+                  "type": "number",
+                  "description": "Total amount in INR."
+                },
+                "status": {
+                  "type": "string",
+                  "description": "Challan matching status reported by TRACES."
+                },
+                "section_code": {
+                  "type": [
+                    "string",
+                    "null"
+                  ],
+                  "description": "Legacy section code reported by TRACES, or null if unavailable. This code can be present even when tax_breakdown is empty."
+                },
+                "residency_status": {
+                  "type": [
+                    "string",
+                    "null"
+                  ],
+                  "description": "Residency status code reported by TRACES, or null if unavailable."
+                },
+                "tax_breakdown": {
+                  "type": "array",
+                  "items": {
+                    "title": "ChallanTaxBreakdown",
+                    "type": "object",
+                    "additionalProperties": false,
+                    "properties": {
+                      "@entity": {
+                        "type": "string",
+                        "default": "in.co.sandbox.tds.compliance.challan.tax_breakdown",
+                        "enum": [
+                          "in.co.sandbox.tds.compliance.challan.tax_breakdown"
+                        ],
+                        "description": "Identifies the type of this object."
+                      },
+                      "created_at": {
+                        "type": "string",
+                        "description": "Creation timestamp, when available."
+                      },
+                      "updated_at": {
+                        "type": "string",
+                        "description": "Last update timestamp, when available."
+                      },
+                      "section": {
+                        "type": [
+                          "string",
+                          "null"
+                        ],
+                        "description": "TDS section reported by TRACES, or null when unavailable."
+                      },
+                      "tax_amount": {
+                        "type": "number",
+                        "description": "Base tax amount in INR, excluding surcharge and cess."
+                      },
+                      "surcharge": {
+                        "type": "number",
+                        "description": "Surcharge amount in INR."
+                      },
+                      "cess": {
+                        "type": "number",
+                        "description": "Cess amount in INR."
+                      },
+                      "total_amount": {
+                        "type": "number",
+                        "description": "Total amount in INR."
+                      }
+                    },
+                    "required": [
+                      "@entity",
+                      "section",
+                      "tax_amount",
+                      "surcharge",
+                      "cess",
+                      "total_amount"
+                    ],
+                    "description": "Tax, surcharge, and cess for a section reported against the challan. All amounts are in INR."
+                  },
+                  "description": "Section-wise tax breakdown in INR. An empty list means no breakdown is available."
+                },
+                "consumption_details": {
+                  "title": "ChallanConsumptionDetails",
+                  "description": "Statement utilization reported by TRACES. null means utilization details are unavailable and does not indicate an unused challan.",
+                  "type": [
+                    "object",
+                    "null"
+                  ],
+                  "additionalProperties": false,
+                  "properties": {
+                    "@entity": {
+                      "type": "string",
+                      "default": "in.co.sandbox.tds.compliance.challan.consumption_details",
+                      "enum": [
+                        "in.co.sandbox.tds.compliance.challan.consumption_details"
+                      ],
+                      "description": "Identifies the type of this object."
+                    },
+                    "created_at": {
+                      "type": "string",
+                      "description": "Creation timestamp, when available."
+                    },
+                    "updated_at": {
+                      "type": "string",
+                      "description": "Last update timestamp, when available."
+                    },
+                    "statement_token_number": {
+                      "type": "string",
+                      "description": "Token number of the statement against which the challan was claimed."
+                    },
+                    "financial_year": {
+                      "type": "string",
+                      "pattern": "^FY [0-9]{4}-[0-9]{2}$",
+                      "description": "Financial year of the reported TDS statement in FY YYYY-YY format."
+                    },
+                    "quarter": {
+                      "type": "string",
+                      "description": "Quarter of the TDS statement, from Q1 to Q4."
+                    },
+                    "form": {
+                      "type": "string",
+                      "description": "TDS statement form code reported by TRACES."
+                    },
+                    "status": {
+                      "type": "string",
+                      "description": "Consumption status of the challan in the reported statement."
+                    },
+                    "claimed_amount": {
+                      "type": "number",
+                      "description": "Amount claimed against the challan in the reported statement, in INR."
+                    },
+                    "excess_claimed_amount": {
+                      "type": "number",
+                      "description": "Excess claimed amount reported by TRACES, in INR."
+                    },
+                    "available_amount": {
+                      "type": "number",
+                      "description": "Available challan amount reported by TRACES, in INR."
+                    }
+                  },
+                  "required": [
+                    "@entity",
+                    "statement_token_number",
+                    "financial_year",
+                    "quarter",
+                    "form",
+                    "status",
+                    "claimed_amount",
+                    "excess_claimed_amount",
+                    "available_amount"
+                  ]
+                }
+              },
+              "required": [
+                "@entity",
+                "tan",
+                "bsr_code",
+                "challan_serial",
+                "paid_date_epoch",
+                "challan_identification_number",
+                "receipt_number",
+                "financial_year",
+                "major_head",
+                "minor_head",
+                "total_amount",
+                "status",
+                "section_code",
+                "residency_status",
+                "tax_breakdown",
+                "consumption_details"
+              ],
+              "description": "A TDS challan with its tax breakdown and available utilization details from TRACES. All amounts are in INR."
+            },
+            "description": "Challans in the requested page. An empty list means no challans were returned for that page."
+          },
+          "totalPages": {
+            "type": "integer",
+            "minimum": 0,
+            "description": "Total number of result pages reported by TRACES."
+          },
+          "totalElements": {
+            "type": "integer",
+            "minimum": 0,
+            "description": "Total number of matching challans reported by TRACES."
+          }
+        },
+        "required": [
+          "@entity",
+          "data",
+          "totalPages",
+          "totalElements"
+        ],
+        "description": "One page of challans with pagination totals reported by TRACES."
+      },
+      "ChallanSearchRequest": {
+        "title": "ChallanSearchRequest",
+        "description": "Deposit-date filters for a deductor's challan search. Both dates are required. Pagination is optional.",
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "@entity": {
+            "type": "string",
+            "default": "in.co.sandbox.tds.compliance.challan.search",
+            "enum": [
+              "in.co.sandbox.tds.compliance.challan.search"
+            ],
+            "description": "Identifies the type of this object."
+          },
+          "from_date_epoch": {
+            "type": "integer",
+            "minimum": 0,
+            "description": "Start of the deposit-date range in epoch milliseconds, interpreted in Asia/Kolkata."
+          },
+          "to_date_epoch": {
+            "type": "integer",
+            "minimum": 0,
+            "description": "End of the deposit-date range in epoch milliseconds, interpreted in Asia/Kolkata."
+          },
+          "page_number": {
+            "type": "integer",
+            "minimum": 0,
+            "description": "Zero-based page number. 0 requests the first page. If omitted, TRACES selects the default page."
+          },
+          "page_size": {
+            "type": "integer",
+            "minimum": 1,
+            "description": "Number of challans requested per page. If omitted, TRACES selects the page size."
+          }
+        },
+        "required": [
+          "@entity",
+          "from_date_epoch",
+          "to_date_epoch"
+        ]
+      },
+      "ErrorResponse": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "code",
+          "timestamp",
+          "transaction_id",
+          "message"
+        ],
+        "properties": {
+          "code": {
+            "type": "integer",
+            "description": "HTTP status code."
+          },
+          "timestamp": {
+            "type": "integer",
+            "format": "int64",
+            "description": "Response timestamp in epoch milliseconds."
+          },
+          "transaction_id": {
+            "type": "string",
+            "description": "Transaction identifier used to trace the API request."
+          },
+          "message": {
+            "type": "string",
+            "description": "Error message."
+          }
+        }
+      },
+      "ChallanTaxBreakdown": {
+        "title": "ChallanTaxBreakdown",
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "@entity": {
+            "type": "string",
+            "default": "in.co.sandbox.tds.compliance.challan.tax_breakdown",
+            "enum": [
+              "in.co.sandbox.tds.compliance.challan.tax_breakdown"
+            ],
+            "description": "Identifies the type of this object."
+          },
+          "created_at": {
+            "type": "string",
+            "description": "Creation timestamp, when available."
+          },
+          "updated_at": {
+            "type": "string",
+            "description": "Last update timestamp, when available."
+          },
+          "section": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "description": "TDS section reported by TRACES, or null when unavailable."
+          },
+          "tax_amount": {
+            "type": "number",
+            "description": "Base tax amount in INR, excluding surcharge and cess."
+          },
+          "surcharge": {
+            "type": "number",
+            "description": "Surcharge amount in INR."
+          },
+          "cess": {
+            "type": "number",
+            "description": "Cess amount in INR."
+          },
+          "total_amount": {
+            "type": "number",
+            "description": "Total amount in INR."
+          }
+        },
+        "required": [
+          "@entity",
+          "section",
+          "tax_amount",
+          "surcharge",
+          "cess",
+          "total_amount"
+        ],
+        "description": "Tax, surcharge, and cess for a section reported against the challan. All amounts are in INR."
+      },
+      "ChallanConsumptionDetails": {
+        "title": "ChallanConsumptionDetails",
+        "description": "Challan utilization for the statement reported by TRACES. This record is not a complete history of utilization across statements.",
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "@entity": {
+            "type": "string",
+            "default": "in.co.sandbox.tds.compliance.challan.consumption_details",
+            "enum": [
+              "in.co.sandbox.tds.compliance.challan.consumption_details"
+            ],
+            "description": "Identifies the type of this object."
+          },
+          "created_at": {
+            "type": "string",
+            "description": "Creation timestamp, when available."
+          },
+          "updated_at": {
+            "type": "string",
+            "description": "Last update timestamp, when available."
+          },
+          "statement_token_number": {
+            "type": "string",
+            "description": "Token number of the statement against which the challan was claimed."
+          },
+          "financial_year": {
+            "type": "string",
+            "pattern": "^FY [0-9]{4}-[0-9]{2}$",
+            "description": "Financial year of the reported TDS statement in FY YYYY-YY format."
+          },
+          "quarter": {
+            "type": "string",
+            "description": "Quarter of the TDS statement, from Q1 to Q4."
+          },
+          "form": {
+            "type": "string",
+            "description": "TDS statement form code reported by TRACES."
+          },
+          "status": {
+            "type": "string",
+            "description": "Consumption status of the challan in the reported statement."
+          },
+          "claimed_amount": {
+            "type": "number",
+            "description": "Amount claimed against the challan in the reported statement, in INR."
+          },
+          "excess_claimed_amount": {
+            "type": "number",
+            "description": "Excess claimed amount reported by TRACES, in INR."
+          },
+          "available_amount": {
+            "type": "number",
+            "description": "Available challan amount reported by TRACES, in INR."
+          }
+        },
+        "required": [
+          "@entity",
+          "statement_token_number",
+          "financial_year",
+          "quarter",
+          "form",
+          "status",
+          "claimed_amount",
+          "excess_claimed_amount",
+          "available_amount"
+        ]
+      }
+    },
+    "responses": {},
+    "securitySchemes": {}
+  },
+  "servers": [
+    {
+      "url": "https://test-api.sandbox.co.in",
+      "description": "test"
+    },
+    {
+      "url": "https://api.sandbox.co.in",
+      "description": "prod"
+    }
+  ],
+  "security": []
+}
