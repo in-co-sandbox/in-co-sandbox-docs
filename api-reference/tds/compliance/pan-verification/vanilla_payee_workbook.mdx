@@ -1,0 +1,37 @@
+---
+title: "Payee workbook for token-based PAN verification"
+sidebarTitle: "Payee workbook"
+description: "Build the Sheet JSON payee workbook for bulk PAN verification with a deductor access token. Send serial numbers and PANs in the request body."
+keywords:
+  - bulk PAN verification workbook
+  - payee workbook
+  - TRACES PAN verification
+  - Sheet JSON
+mode: "wide"
+---
+
+The `payee_workbook` contains one `payee_sheet` with one `payee_table` in [Sheet JSON format](/guides/developer-resources/sheet_json).
+
+<CardGroup cols={2}>
+  <Card title="View input schema" icon="file-spreadsheet" href="https://sheet-tools.quicko.org.in/sheet-schema-builder?schema_url=https://raw.githubusercontent.com/in-co-sandbox/in-co-sandbox-docs/refs/heads/main/data/tds/compliance/pan-verification/payee_workbook.schema.json">
+    Open the payee workbook schema.
+  </Card>
+  <Card title="View input sample" icon="file-spreadsheet" href="https://sheet-tools.quicko.org.in/sheet-visualiser?schema_url=https://raw.githubusercontent.com/in-co-sandbox/in-co-sandbox-docs/refs/heads/main/data/tds/compliance/pan-verification/payee_workbook.schema.json&data_url=https://raw.githubusercontent.com/in-co-sandbox/in-co-sandbox-docs/refs/heads/main/data/tds/compliance/pan-verification/payee_workbook.data.json">
+    Open a workbook with fictional PANs.
+  </Card>
+</CardGroup>
+
+## Input columns
+
+The table header is `["sr_no", "pan"]`. Each row contains these values in the same order.
+
+| Column | Type | Description |
+|:-------|:-----|:------------|
+| `sr_no` | Integer | A positive serial number for the input row. |
+| `pan` | String | The PAN text to submit to TRACES. |
+
+Sandbox submits PAN strings unchanged. Repeated exact PAN strings are submitted once.
+
+Send this workbook as the JSON body of [Submit PANs for TRACES verification](/api-reference/tds/compliance/pan-verification/endpoints/submit_verification). The request uses a deductor access token and does not contain a TAN.
+
+The [output workbook](/api-reference/tds/compliance/pan-verification/vanilla_pan_verification_workbook) numbers rows from `1` in report order. Input serial numbers do not identify output rows.
