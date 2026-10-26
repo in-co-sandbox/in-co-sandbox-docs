@@ -4,6 +4,21 @@ description: "Changelog for Sandbox APIs"
 rss: "true"
 ---
 
+<Update label="October 26th, 2026" tags={["Feature"]}>
+  ## TDS compliance: certificate APIs
+
+  Generate Form 131 TDS and Form 133 TCS certificates from TRACES and download them as PDF ZIP files.
+
+  Choose how you authenticate:
+
+  - **Deductor access token:** Authenticate the deductor, then use the token to create certificate jobs and poll their status.
+  - **Enriched APIs:** Save the TRACES credentials and let Sandbox manage authentication and TRACES polling.
+
+  Both workflows return a job ID to track progress and retrieve download URLs. Enriched APIs also support job search and completion webhooks.
+
+  [Explore the certificate APIs](/api-reference/tds/compliance/certificates/overview).
+</Update>
+
 <Update label="October 17th, 2026" tags={["Deprecated"]}>
   ## DigiLocker: Verify User Account is deprecated
 
