@@ -1985,7 +1985,7 @@
       "post": {
         "summary": "Authenticate with TRACES",
         "deprecated": false,
-        "description": "Authenticate with a deductor TAN and TRACES password. Returns access and refresh tokens for the TRACES session. Send your Sandbox API access token in the Authorization header. Example credentials and tokens are illustrative.",
+        "description": "Authenticate with a deductor TAN and TRACES password to receive access and refresh tokens. Omit pan to use the administrator account. To use a sub-user account, include the sub-user PAN and password. Sub-user access follows the permissions assigned in TRACES. Send your Sandbox API access token in the Authorization header. Example credentials and tokens are illustrative.",
         "operationId": "authenticateTraces",
         "tags": [],
         "parameters": [
@@ -2042,7 +2042,12 @@
                     "type": "string",
                     "minLength": 1,
                     "writeOnly": true,
-                    "description": "Password for the deductor TRACES account."
+                    "description": "TRACES password for the sub-user when pan is provided, or for the administrator when pan is omitted."
+                  },
+                  "pan": {
+                    "type": "string",
+                    "pattern": "^[A-Z]{5}[0-9]{4}[A-Z]$",
+                    "description": "PAN of the TRACES sub-user. Omit to use the administrator account."
                   }
                 },
                 "required": [
@@ -2085,6 +2090,26 @@
                     "@entity": "in.co.sandbox.tds.compliance.traces.authentication.request",
                     "tan": "AHMA12345A",
                     "password": "your-traces-password"
+                  }
+                },
+                "Sub-user session created": {
+                  "summary": "Sub-user session created",
+                  "description": "An active TRACES sub-user account returns access and refresh tokens. Credentials and tokens in the example are illustrative.",
+                  "value": {
+                    "@entity": "in.co.sandbox.tds.compliance.traces.authentication.request",
+                    "tan": "AHMQ00112A",
+                    "pan": "{{traces_sub_user_pan}}",
+                    "password": "{{traces_sub_user_password}}"
+                  }
+                },
+                "No active sub-user": {
+                  "summary": "No active sub-user",
+                  "description": "The TAN has no active sub-user registered with TRACES.",
+                  "value": {
+                    "@entity": "in.co.sandbox.tds.compliance.traces.authentication.request",
+                    "tan": "AHMS45586C",
+                    "pan": "{{traces_sub_user_pan}}",
+                    "password": "{{traces_sub_user_password}}"
                   }
                 }
               }
@@ -2173,13 +2198,29 @@
                         "refresh_token_expiry": 1792183347000
                       }
                     }
+                  },
+                  "Sub-user session created": {
+                    "summary": "Sub-user session created",
+                    "description": "An active TRACES sub-user account returns access and refresh tokens. Credentials and tokens in the example are illustrative.",
+                    "value": {
+                      "code": 200,
+                      "timestamp": 1793006107551,
+                      "data": {
+                        "@entity": "in.co.sandbox.tds.compliance.traces.authentication.response",
+                        "access_token": "your-deductor-access-token",
+                        "refresh_token": "your-deductor-refresh-token",
+                        "access_token_expiry": 1793007014000,
+                        "refresh_token_expiry": 1793013314000
+                      },
+                      "transaction_id": "902189fe-20da-4a5a-8ea0-5ecc0189c9b5"
+                    }
                   }
                 }
               }
             }
           },
           "400": {
-            "description": "The request body is invalid. Include a TAN and a non-empty TRACES password.",
+            "description": "The request body is invalid, the TAN is not registered with TRACES, or the TAN has no active sub-user.",
             "content": {
               "application/json": {
                 "schema": {
@@ -2216,6 +2257,16 @@
                       "timestamp": 1792176147907,
                       "transaction_id": "807b7940-d53e-4a19-8ead-718fcaa5868d",
                       "message": "Invalid request body"
+                    }
+                  },
+                  "No active sub-user": {
+                    "summary": "No active sub-user",
+                    "description": "The TAN has no active sub-user registered with TRACES.",
+                    "value": {
+                      "code": 400,
+                      "timestamp": 1793006237476,
+                      "message": "There is no active Sub-user for the entered TAN, please retry.",
+                      "transaction_id": "8a33c4f9-0bc3-46cd-99c0-67b80e91f9f7"
                     }
                   }
                 }
@@ -3657,7 +3708,7 @@
       "post": {
         "summary": "Add TRACES credentials",
         "deprecated": false,
-        "description": "Add the TRACES login credentials for a TAN. APIs that require TRACES access use these credentials when processing requests for the TAN.",
+        "description": "Store one TRACES credential for a deductor TAN in your workspace. Omit pan to use the administrator account. To use a sub-user account, include the sub-user PAN and password. Enriched TRACES APIs use the stored account and its assigned permissions. To replace the stored account, delete the existing credential before you add another.",
         "operationId": "AddTracesCredentials",
         "tags": [
           "TRACES Credentials"
@@ -3708,11 +3759,16 @@
                     "type": "string",
                     "description": "TAN for the TRACES account."
                   },
+                  "pan": {
+                    "type": "string",
+                    "pattern": "^[A-Z]{5}[0-9]{4}[A-Z]$",
+                    "description": "PAN of the TRACES sub-user. Omit to use the administrator account."
+                  },
                   "password": {
                     "type": "string",
                     "format": "password",
                     "writeOnly": true,
-                    "description": "Password for the TRACES account."
+                    "description": "TRACES password for the sub-user when pan is provided, or for the administrator when pan is omitted."
                   }
                 },
                 "required": [
@@ -3744,6 +3800,16 @@
                     "password": "{{password}}"
                   },
                   "summary": "Failure: Credential already exists"
+                },
+                "Sub-user credentials added": {
+                  "value": {
+                    "@entity": "in.co.sandbox.tds.traces.deductor.credential.request",
+                    "tan": "AHMQ00112A",
+                    "pan": "{{traces_sub_user_pan}}",
+                    "password": "{{traces_sub_user_password}}"
+                  },
+                  "summary": "Sub-user credentials added",
+                  "description": "The sub-user credential is stored for the deductor TAN. Delete an existing credential before you add another."
                 }
               }
             }
@@ -3781,6 +3847,14 @@
                       "code": 200,
                       "timestamp": 1788414642383,
                       "transaction_id": "45a5d0e7-d428-47c3-906e-b039d0e4e157"
+                    }
+                  },
+                  "Sub-user credentials added": {
+                    "summary": "Sub-user credentials added",
+                    "value": {
+                      "code": 200,
+                      "timestamp": 1793006237023,
+                      "transaction_id": "612d5613-e113-4943-a239-cceb2e4e21f8"
                     }
                   }
                 }

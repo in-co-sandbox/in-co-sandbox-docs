@@ -1,14 +1,26 @@
 ---
 title: "Authenticate a TRACES deductor"
-description: "Authenticate a deductor with a TAN and TRACES password to obtain a deductor access token and refresh token."
+description: "Authenticate a TRACES administrator or sub-user and obtain a deductor access token and refresh token."
 keywords:
   - TRACES authentication API
+  - TRACES sub-user login
   - deductor access token
   - deductor refresh token
 openapi: '/api-reference/tds/compliance/openapi.json POST /tds/traces/deductors/authenticate'
 ---
 
 This endpoint uses your Sandbox access token in the `Authorization` header. See the [Quickstart guide](/guides/get-started/quickstart) for Sandbox authentication.
+
+## Choose the TRACES login
+
+Use the deductor's TAN in `tan` for either login.
+
+| Login | Request fields |
+| :--- | :--- |
+| Administrator | Send the administrator's TRACES password in `password`. Omit `pan`. |
+| Sub-user | Send the sub-user's PAN in `pan` and that sub-user's TRACES password in `password`. |
+
+## Use the returned tokens
 
 Save the returned `data.access_token` and `data.refresh_token`. Use `data.access_token` in the `Authorization` header for requests that require a deductor access token.
 
