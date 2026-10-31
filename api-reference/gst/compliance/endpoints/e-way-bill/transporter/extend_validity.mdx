@@ -1,8 +1,18 @@
 ---
 title: 'Extend E-Way Bill Validity'
-description: "With this API, businesses can extend validity of the E-Way Bill. You can extend an E-Way Bill up to eight hours before or after it expires. The validity extension will be based on the remaining distance to be traveled."
+description: "Extend the validity of an e-way bill assigned to you."
 openapi: '/api-reference/gst/compliance/openapi.json POST /gst/compliance/e-way-bill/transporter/bill/{ewb_no}/extend'
 ---
+
+## Who can extend e-way bill validity?
+
+<Info>
+The requester must be the current transporter under NIC's API validations.
+</Info>
+
+An extension can be requested within eight hours before or after expiry. The request must include the extension reason, current location, and remaining distance. NIC does not permit extension beyond 360 days from e-way bill generation.
+
+Source: [NIC API validations](https://docs.ewaybillgst.gov.in/apidocs/version1.03/extend-validity.html).
 
 #### Request body schema
 

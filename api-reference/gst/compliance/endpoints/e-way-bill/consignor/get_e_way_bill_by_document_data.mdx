@@ -1,8 +1,18 @@
 ---
 title: 'Get E-Way Bill by document data'
-description: "Fetch an E-Way Bill by document type and document number."
+description: "Fetch an active e-way bill using the document type and document number."
 openapi: '/api-reference/gst/compliance/openapi.json GET /gst/compliance/e-way-bill/consignor/bill'
 ---
+
+## Who can retrieve an e-way bill by document details?
+
+<Info>
+NIC treats the requester GSTIN as the generator GSTIN for this lookup. A consignor or consignee can retrieve an e-way bill using this API only if they generated it.
+</Info>
+
+Only active e-way bills are returned.
+
+Source: [NIC API validations](https://docs.ewaybillgst.gov.in/apidocs/version1.03/get-eway-bill-by-docNo.html).
 
 #### Response schema
 

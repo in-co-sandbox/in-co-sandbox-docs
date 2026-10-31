@@ -1,8 +1,16 @@
 ---
 title: 'Get Consolidated E-Way Bill'
-description: "Fetch a consolidated E-Way Bill by number."
+description: "Fetch a consolidated e-way bill using its consolidated e-way bill number."
 openapi: '/api-reference/gst/compliance/openapi.json GET /gst/compliance/e-way-bill/consignor/consolidated-bill/{consolidated_ewb_no}'
 ---
+
+## Who can retrieve a consolidated e-way bill?
+
+<Info>
+A consignor or consignee can retrieve a consolidated e-way bill only if they generated that consolidated e-way bill. Generating an individual e-way bill included in a consolidated e-way bill does not grant access.
+</Info>
+
+Source: [NIC API validations](https://docs.ewaybillgst.gov.in/apidocs/version1.03/get-consolidated-eway-bill.html).
 
 #### Response schema
 
