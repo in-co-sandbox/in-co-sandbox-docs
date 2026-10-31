@@ -1,8 +1,20 @@
 ---
 title: 'Initiate Multi-Vehicle Movement'
-description: "Initiate Multi-Vehicle Movement for an E-Way Bill"
+description: "Initiate a multi-vehicle movement for an e-way bill."
 openapi: '/api-reference/gst/compliance/openapi.json POST /gst/compliance/e-way-bill/consignor/bill/{ewb_no}/multi-vehicle'
 ---
+
+## NIC validations
+
+<Accordion title="View NIC validations">
+
+1. Eway bill should be active and valid.
+2. Valid reasonCode, state code and unitCode to be sent.
+3. totalQuantity should not be more than the quantity mentioned in eway bill for the first initiation
+4. After one group movement of consignment in multiple vehicles is initiated, requests for next group movement will consider the totalQuantity of previous group.
+5. If same JSON is passed without any change, new group will not be created.
+
+</Accordion>
 
 #### Request body schema
 

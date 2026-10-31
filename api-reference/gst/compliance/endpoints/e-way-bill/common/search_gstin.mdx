@@ -1,8 +1,19 @@
 ---
 title: 'Search GSTIN'
-description: "Get taxpayer and transporter details by passing the GSTIN. The data is fetched from the IRP database and not GST Network database."
+description: "Fetch taxpayer or registered transporter details for a GSTIN."
 openapi: '/api-reference/gst/compliance/openapi.json POST /gst/compliance/e-way-bill/tax-payer/gstin/search'
 ---
+
+## NIC validations
+
+<Accordion title="View NIC validations">
+
+1. An attribute "status" has been Added('ACT' or 'CNL' or 'INA' or 'PRO')
+2. An attribute "blkStatus" has been Added\
+   i) 'U' or ' ' for Unblocked\
+   ii) 'B' for blocked
+
+</Accordion>
 
 #### Request body schema
 

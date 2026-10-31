@@ -1,8 +1,22 @@
 ---
 title: 'Add Vehicle'
-description: "Add vehicle to the bill after initiating multi-vehicle movement"
+description: "Add a vehicle to a multi-vehicle movement group of an e-way bill."
 openapi: '/api-reference/gst/compliance/openapi.json POST /gst/compliance/e-way-bill/transporter/bill/{ewb_no}/multi-vehicle/vehicle'
 ---
+
+## NIC validations
+
+<Accordion title="View NIC validations">
+
+1. Eway bill should be active and valid
+2. Initiation for multi vehicle movement should have been done and the group no. should exist
+3. Valid vehicleNo should be there
+4. Valid transDocNo and transDocDate as per the allowed format.
+5. If transMode is 1 while initiating, vehicleNo is mandatory, else transDocNo is mandatory
+6. Quantity should not be more than the total quantity mentioned in the multi vehicle initiation request
+7. The sum of all quantity mentioned in the previous vehicles of the same group should not be more than the total quantity mentioned during multi vehicle initiation request
+
+</Accordion>
 
 #### Request body schema
 

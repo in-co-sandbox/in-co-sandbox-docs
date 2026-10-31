@@ -4,13 +4,14 @@ description: "Fetch a consolidated e-way bill using its consolidated e-way bill 
 openapi: '/api-reference/gst/compliance/openapi.json GET /gst/compliance/e-way-bill/consignor/consolidated-bill/{consolidated_ewb_no}'
 ---
 
-## Who can retrieve a consolidated e-way bill?
+## NIC validations
 
-<Info>
-A consignor or consignee can retrieve a consolidated e-way bill only if they generated that consolidated e-way bill. Generating an individual e-way bill included in a consolidated e-way bill does not grant access.
-</Info>
+<Accordion title="View NIC validations">
 
-Source: [NIC API validations](https://docs.ewaybillgst.gov.in/apidocs/version1.03/get-consolidated-eway-bill.html).
+1. Consolidated E-way bill number should be 10 digit and valid.
+2. Requestor GSTIN/TRANSIN has to generator of the Cons. e-way bill.
+
+</Accordion>
 
 #### Response schema
 

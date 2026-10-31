@@ -4,15 +4,20 @@ description: "Update the Part-B vehicle and transport details for an e-way bill.
 openapi: '/api-reference/gst/compliance/openapi.json PUT /gst/compliance/e-way-bill/consignor/bill/{ewb_no}/vehicle'
 ---
 
-## Who can update Part-B vehicle details?
+## NIC validations
 
-<Info>
-Under NIC's API validations, a consignor or consignee can use this API if they generated the e-way bill and no transporter is assigned. Once a transporter is assigned, the assigned transporter must update Part-B.
-</Info>
+<Accordion title="View NIC validations">
 
-The e-way bill must be active and within its validity period.
+1. Part-B can be updated by the generator of the e-way bill, if there is no transporter, or by the assigned transporter
+2. Part-B can be updated only if the e-way bill is active, that is, not cancelled
+3. Part-B can be updated only if the e-way bill is within validity period, that is, validity is not expired.
+4. If vehicle is passed, the format of the vehicle number should be valid and as per the format
+5. In case of road as a transportation mode , the vehicle number should be passed and transport document number is optional
+6. In case of rail, air or ship as a transportation mode, the transport document number is must
+7. Limiting generation of E Way Bill within 180 days of Document Date.
+8. Railways integration for validating Trans Document NO .
 
-Source: [NIC API validations](https://docs.ewaybillgst.gov.in/apidocs/version1.03/vehicle-number-update.html).
+</Accordion>
 
 #### Request body schema
 
