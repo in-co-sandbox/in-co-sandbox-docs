@@ -1,8 +1,18 @@
 ---
 title: 'Consolidate E-Way Bill'
-description: "Consolidate multiple E-Way Bills under one bill"
+description: "Generate a consolidated e-way bill for multiple e-way bills transported in one vehicle."
 openapi: '/api-reference/gst/compliance/openapi.json POST /gst/compliance/e-way-bill/consignor/consolidated-bill'
 ---
+
+## Who can generate a consolidated e-way bill?
+
+<Info>
+For each included e-way bill, the requester must be its generator or assigned transporter.
+</Info>
+
+Every included e-way bill must be active and within its validity period.
+
+Source: [NIC API validations](https://docs.ewaybillgst.gov.in/apidocs/version1.03/consolidated-eway-bill.html).
 
 #### Request body schema
 

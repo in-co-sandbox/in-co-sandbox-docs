@@ -1,8 +1,18 @@
 ---
 title: 'Generate E-Way Bill'
-description: "Generate E-Way Bill by providing consignor, consignee, transporter and products details."
+description: "Generate an e-way bill with consignment and transport details."
 openapi: '/api-reference/gst/compliance/openapi.json POST /gst/compliance/e-way-bill/consignor/bill'
 ---
+
+## Who can generate an e-way bill?
+
+<Info>
+A consignor, consignee, or transporter can generate an e-way bill, subject to NIC's generation requirements. The taxpayer or transporter who generates the e-way bill is its generator.
+</Info>
+
+For transactions that NIC requires to use the e-invoice system, the e-way bill must be generated through the e-invoice APIs, either while generating the Invoice Reference Number (IRN) or by referencing an existing IRN.
+
+Source: [NIC API validations](https://docs.ewaybillgst.gov.in/apidocs/version1.03/generate-eway-bill.html).
 
 #### Request body schema
 

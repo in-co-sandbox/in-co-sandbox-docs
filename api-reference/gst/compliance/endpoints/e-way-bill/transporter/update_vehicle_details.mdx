@@ -1,8 +1,18 @@
 ---
 title: 'Update Vehicle Details (Part B)'
-description: "Update the Vehicle details (Part B) in an E-Way Bill with this API."
+description: "Update the Part-B vehicle and transport details for an e-way bill assigned to you."
 openapi: '/api-reference/gst/compliance/openapi.json PUT /gst/compliance/e-way-bill/transporter/bill/{ewb_no}/vehicle'
 ---
+
+## Who can update Part-B vehicle details?
+
+<Info>
+The requester must be the assigned transporter under NIC's API validations.
+</Info>
+
+The e-way bill must be active and within its validity period.
+
+Source: [NIC API validations](https://docs.ewaybillgst.gov.in/apidocs/version1.03/vehicle-number-update.html).
 
 #### Request body schema
 

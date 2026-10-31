@@ -1,8 +1,16 @@
 ---
 title: 'Cancel E-Way Bill'
-description: "Cancel E-Way Bill by passing E-Way Bill number and cancel reason code."
+description: "Cancel an e-way bill by providing its number and the reason for cancellation."
 openapi: '/api-reference/gst/compliance/openapi.json POST /gst/compliance/e-way-bill/consignor/bill/{ewb_no}/cancel'
 ---
+
+## Who can cancel an e-way bill?
+
+<Info>
+Only the generator of the e-way bill can cancel it, within 24 hours of generation. This includes a consignor, consignee, or transporter that generated the e-way bill. Being named in the e-way bill or assigned as its transporter is not sufficient.
+</Info>
+
+Source: [NIC API validations](https://docs.ewaybillgst.gov.in/apidocs/version1.03/cancel-eway-bill.html) and [NIC e-way bill FAQ](https://docs.ewaybillgst.gov.in/html/faq.html).
 
 #### Request body schema
 
@@ -14,6 +22,3 @@ openapi: '/api-reference/gst/compliance/openapi.json POST /gst/compliance/e-way-
     horizontal
   >
   </Card>
-> 📘 Only the generator can cancel the E-Way Bill.
-
-> 🚧 The bill can be only cancelled within 24 hrs of generation.
