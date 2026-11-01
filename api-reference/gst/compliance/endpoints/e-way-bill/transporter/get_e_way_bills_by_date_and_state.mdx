@@ -4,6 +4,16 @@ description: "Fetch e-way bills assigned to you by generation date, with an opti
 openapi: '/api-reference/gst/compliance/openapi.json GET /gst/compliance/e-way-bill/transporter/bills'
 ---
 
+<Warning>
+**NIC rate limit**
+
+Applies when you pass `generator_state_code` with either `generated_date` or `assigned_date`.
+
+"This API can be accessed 50 times with in a span of 15 min."
+
+Read the [NIC validations](#nic-validations) section for the window, blocking behaviour and error `658`. [Sandbox rate limits](/guides/developer-resources/rate_limits) apply separately.
+</Warning>
+
 ## Choose a lookup
 
 Use one of these query parameter combinations:
