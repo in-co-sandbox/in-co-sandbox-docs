@@ -4,16 +4,6 @@ description: "Fetch e-way bills assigned to you by generation date, with an opti
 openapi: '/api-reference/gst/compliance/openapi.json GET /gst/compliance/e-way-bill/transporter/bills'
 ---
 
-<Warning>
-**NIC rate limit**
-
-Applies when you pass `generator_state_code` with either `generated_date` or `assigned_date`.
-
-"This API can be accessed 50 times with in a span of 15 min."
-
-Read the [NIC validations](#nic-validations) section for the window, blocking behaviour and error `658`. [Sandbox rate limits](/guides/developer-resources/rate_limits) apply separately.
-</Warning>
-
 ## Choose a lookup
 
 Use one of these query parameter combinations:
@@ -51,6 +41,16 @@ NIC has not published validations for this request.
 4. Rate control limit has been set for accessing this API. This API can be accessed 50 times with in a span of 15 min. This 15 min window starts from the time of first access of this API, if API is accessed 50 times within this period, API will be blocked for the remaining duration of time period. **For example:** If you have accessed this API at 2:00 PM and tried 50 access till 2:05 PM then, you will be blocked till 2:15 PM for accessing this API as the allowed number of requests has been exceeded, you will get an error code 658. Again you are allowed to access this API only after 2.15 PM and the same above process will continue there after.
 
 </Accordion>
+
+<Warning>
+**NIC rate limit**
+
+Applies when you pass `generator_state_code` with either `generated_date` or `assigned_date`.
+
+"This API can be accessed 50 times with in a span of 15 min."
+
+Read the [NIC validations](#nic-validations) section for the window, blocking behaviour and error `658`. [Sandbox rate limits](/guides/developer-resources/rate_limits) apply separately.
+</Warning>
 
 <Note>
 For the `assigned_date` lookup, NIC's first validation refers to the generated date. Pass the assignment date in `assigned_date`.
