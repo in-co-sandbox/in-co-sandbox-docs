@@ -1,8 +1,23 @@
 ---
 title: 'Consolidate E-Way Bill'
-description: "Consolidate multiple E-Way Bills under one bill"
+description: "Generate a consolidated e-way bill for multiple e-way bills transported in one vehicle."
 openapi: '/api-reference/gst/compliance/openapi.json POST /gst/compliance/e-way-bill/consignor/consolidated-bill'
 ---
+
+## NIC validations
+
+<Accordion title="View NIC validations">
+
+1. EWB can be added to the CEWB if the generator of CEWB is a generator or the assigned transporter of the e-way bill.
+2. EWB can be added to the CEWB only if the e-way bill is active, that is, not cancelled.
+3. EWB can be added to the CEWB only if the e-way bill is within validity period, that is validity is not expired.
+4. If vehicle number is passed, the format of the vehicle number should be valid and as per the format.
+5. In case of road as a transportation mode , the vehicle number should be passed and transport document number is optional.
+6. In case of rail, air or ship as a transportation mode, the transport document number is must.
+7. Limiting generation of E Way Bill within 180 days of Document Date.
+8. Railways integration for validating Trans Document NO .
+
+</Accordion>
 
 #### Request body schema
 

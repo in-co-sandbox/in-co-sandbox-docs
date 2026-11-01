@@ -1,8 +1,19 @@
 ---
 title: 'Update Transporter'
-description: "Update the transporter details by providing the E-Way Bill number and Transporter Id."
+description: "Assign an e-way bill to another transporter."
 openapi: '/api-reference/gst/compliance/openapi.json PUT /gst/compliance/e-way-bill/transporter/bill/{ewb_no}/transporter'
 ---
+
+## NIC validations
+
+<Accordion title="View NIC validations">
+
+1. The transporter can be updated for the e-way bill only by the current transporter. If transporter is not assigned, then the generator can update
+2. Transporter ID should be valid GSTIN or TRANSIN
+3. Transporter can be updated only if the e-way bill is active, that is, not cancelled
+4. Transporter can be updated only if the e-way bill is within validity period, that is, validity is not expired.
+
+</Accordion>
 
 #### Request body schema
 

@@ -1,8 +1,17 @@
 ---
 title: 'Get Consolidated E-Way Bill'
-description: "Fetch a consolidated E-Way Bill by number."
+description: "Fetch a consolidated e-way bill using its consolidated e-way bill number."
 openapi: '/api-reference/gst/compliance/openapi.json GET /gst/compliance/e-way-bill/consignor/consolidated-bill/{consolidated_ewb_no}'
 ---
+
+## NIC validations
+
+<Accordion title="View NIC validations">
+
+1. Consolidated E-way bill number should be 10 digit and valid.
+2. Requestor GSTIN/TRANSIN has to generator of the Cons. e-way bill.
+
+</Accordion>
 
 #### Response schema
 

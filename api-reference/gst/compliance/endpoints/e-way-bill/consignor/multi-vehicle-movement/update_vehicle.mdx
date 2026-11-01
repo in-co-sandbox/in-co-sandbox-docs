@@ -1,8 +1,19 @@
 ---
 title: 'Update Vehicle'
-description: "Update the Vehicle details in an E-Way Bill with multi-vehicle movement initiated."
+description: "Change a vehicle in a multi-vehicle movement group of an e-way bill."
 openapi: '/api-reference/gst/compliance/openapi.json PUT /gst/compliance/e-way-bill/consignor/bill/{ewb_no}/multi-vehicle/vehicle'
 ---
+
+## NIC validations
+
+<Accordion title="View NIC validations">
+
+1. Eway bill should be active and valid
+2. GroupNo should be mapped to eway bill and should exists for that e-way bill
+3. OldvehcileNo or oldTranNo should exists for the same e-waybill and group in the system
+4. Valid vehicle number and reason codes
+
+</Accordion>
 
 #### Request body schema
 

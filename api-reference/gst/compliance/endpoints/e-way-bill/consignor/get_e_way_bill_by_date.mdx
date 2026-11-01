@@ -1,8 +1,25 @@
 ---
 title: 'Get E-Way Bills by date'
-description: "Fetch generated or rejected E-Way Bills by date using the `rejected` filter."
+description: "Fetch e-way bills you generated, or those that other parties rejected, for a specified date."
 openapi: '/api-reference/gst/compliance/openapi.json GET /gst/compliance/e-way-bill/consignor/bills'
 ---
+
+## NIC validations
+
+The `rejected` query parameter selects the NIC API that Sandbox calls. Each NIC API applies its own validations.
+
+<Accordion title="View NIC validations">
+
+#### When `rejected` is `false`
+
+1. Only E-way bill generator can access this API.
+2. Only active E-way bills will be considered in this API.
+
+#### When `rejected` is `true`
+
+1. Only E-way bill generator can access this API.
+
+</Accordion>
 
 #### Response schema
 

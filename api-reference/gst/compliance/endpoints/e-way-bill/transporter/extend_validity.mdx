@@ -1,8 +1,28 @@
 ---
 title: 'Extend E-Way Bill Validity'
-description: "With this API, businesses can extend validity of the E-Way Bill. You can extend an E-Way Bill up to eight hours before or after it expires. The validity extension will be based on the remaining distance to be traveled."
+description: "Extend the validity of an e-way bill assigned to you."
 openapi: '/api-reference/gst/compliance/openapi.json POST /gst/compliance/e-way-bill/transporter/bill/{ewb_no}/extend'
 ---
+
+## NIC validations
+
+<Accordion title="View NIC validations">
+
+1. To distinguish between the goods either on Road or in transit, new parameter **transitType** ( R- Road, W - Warehouse, O-Others) are introduced for Extend E-waybill API.
+2. If transmode is 1 to 4 then **consignmentStatus** value should be M and transitType should be blank ("transitType":"").
+3. If transmode is 5 then **consignmentStatus** value should be T and transitType value can be either R or W or O.
+4. The Validity of EWB can be extended only by the current transporter. If transporter is not assigned, then the generator can update.
+5. The validity of EWB can be extended between 8 hours before expiry time and 8 hours after expiry time.
+6. The reason code along with reason description for the extension has to be entered.
+7. The present location of the consignment, at the time of requesting for the extension, has to be entered and distance to travel from there to destination has to be entered.
+8. If vehicle number is passed, the format of the vehicle number should be valid and as per the format
+9. In case of road as a transportation mode , the vehicle number should be passed and transport document number is optional.
+10. In case of rail, air or ship as a transportation mode, the transport document number is must.
+11. Remaining distance should not be more than the actual distance mentioned during the generation of E-way bill.
+12. Railways integration for validating Trans Document NO .
+13. Restriction of extension of E Way Bills beyond 360 days of generation of E Way Bill .
+
+</Accordion>
 
 #### Request body schema
 

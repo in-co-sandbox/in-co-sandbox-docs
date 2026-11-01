@@ -1,8 +1,18 @@
 ---
 title: 'Get E-Way Bill'
-description: "Fetch E-Way Bill details by number."
+description: "Fetch an e-way bill by its e-way bill number."
 openapi: '/api-reference/gst/compliance/openapi.json GET /gst/compliance/e-way-bill/tax-payer/bill/{ewb_no}'
 ---
+
+## NIC validations
+
+<Accordion title="View NIC validations">
+
+1. E-way bill number should be 12 digit and valid.
+2. Requestor GSTIN has to be supplier GSTIN or recipient GSTIN or transporter GSTIN/TRANSIN in that e-way bill.
+3. Get E Way Bill Response will have additional parameter transactionType indicating the Transaction type.
+
+</Accordion>
 
 #### Response schema
 

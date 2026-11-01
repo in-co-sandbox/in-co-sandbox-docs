@@ -1,8 +1,17 @@
 ---
 title: 'Get E-Way Bill by document data'
-description: "Fetch an E-Way Bill by document type and document number."
+description: "Fetch an active e-way bill using the document type and document number."
 openapi: '/api-reference/gst/compliance/openapi.json GET /gst/compliance/e-way-bill/consignor/bill'
 ---
+
+## NIC validations
+
+<Accordion title="View NIC validations">
+
+1. This API treats the logged in user as the Generator GSTIN.
+2. Only active E-Waybill will be considered in this API.
+
+</Accordion>
 
 #### Response schema
 
